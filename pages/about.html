@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn more about Montgomery Medical Clinic, our experienced providers, and our commitment to providing compassionate, personalized healthcare in Gaithersburg, MD.">
+    <title>About Us | Montgomery Medical Clinic</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dropdown-fix.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    <link rel="stylesheet" href="../css/contact-modal.css">
+    <link rel="stylesheet" href="../css/in-page-nav.css">
+    <link rel="preload" href="../includes/header.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="../js/header-footer-loader.js" as="script">
+    <link rel="preload" href="../js/critical-header.js" as="script">
+    <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-blue': '#0d47a1',
+                        'brand-orange': '#ff8f00',
+                        'light-gray': '#fdfdff',
+                        'dark-gray': '#1a1d23',
+                        'medium-gray': '#5a6474',
+                        'light-blue-bg': '#f5f9ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/in-page-nav.js" defer></script>
+    <style>
+        /* Enhanced Doctor Cards */
+
+        .doctor-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f9ff 0%, #e3f2fd 100%);
+        }
+
+        .doctor-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .doctor-card-enhanced:hover .doctor-image {
+            transform: scale(1.08);
+        }
+
+        .doctor-info-enhanced {
+            padding: 1.75rem;
+        }
+
+        .doctor-name-enhanced {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: #0d47a1;
+            margin-bottom: 0.375rem;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+
+        .doctor-title-enhanced {
+            color: #ff8f00;
+            font-weight: 600;
+            font-size: 0.8125rem;
+            margin-bottom: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: inline-block;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid rgba(255, 143, 0, 0.15);
+            width: 100%;
+        }
+
+        .doctor-bio-enhanced {
+            color: #5a6474;
+            line-height: 1.65;
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .specialty-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.75rem;
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.08) 0%, rgba(13, 71, 161, 0.12) 100%);
+            color: #0d47a1;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(13, 71, 161, 0.08);
+        }
+
+        .specialty-badge:hover {
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.12) 0%, rgba(13, 71, 161, 0.16) 100%);
+            transform: translateY(-1px);
+        }
+
+        .specialty-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* Tab Styles - Modern & Integrated */
+        .provider-tabs-wrapper {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0 auto 3rem;
+            max-width: 1200px;
+            box-shadow: 0 2px 16px rgba(13, 71, 161, 0.08);
+            border: 1px solid rgba(13, 71, 161, 0.08);
+        }
+
+        @media (min-width: 768px) {
+            .provider-tabs-wrapper {
+                padding: 1.5rem;
+                margin-bottom: 4rem;
+                border-radius: 16px;
+            }
+        }
+
+        .provider-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .provider-tabs {
+                gap: 0.75rem;
+            }
+        }
+
+        .tab-button {
+            padding: 0.75rem 1.25rem;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.8125rem;
+            color: #5a6474;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.02em;
+            position: relative;
+            overflow: hidden;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .tab-button {
+                padding: 0.875rem 1.75rem;
+                border-radius: 12px;
+                font-size: 0.875rem;
+            }
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            z-index: 0;
+        }
+
+        .tab-button > span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tab-button:hover {
+            transform: translateY(-1px);
+            background: #e8eef5;
+            border-color: rgba(13, 71, 161, 0.2);
+            color: #0d47a1;
+        }
+
+        .tab-button.active {
+            background: transparent;
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 12px rgba(13, 71, 161, 0.25);
+        }
+
+        .tab-button.active::before {
+            opacity: 1;
+        }
+
+        .tab-button.active:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(13, 71, 161, 0.35);
+        }
+
+        .provider-card {
+            display: none;
+        }
+
+        .provider-card.active {
+            display: block;
+            animation: slideUpFade 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .provider-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(13, 71, 161, 0.12);
+            color: #0d47a1;
+            padding: 0.15rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            margin-left: 0.4rem;
+            min-width: 20px;
+            transition: all 0.25s ease;
+        }
+
+        @media (min-width: 768px) {
+            .provider-count {
+                padding: 0.2rem 0.6rem;
+                border-radius: 10px;
+                font-size: 0.75rem;
+                margin-left: 0.5rem;
+                min-width: 24px;
+            }
+        }
+
+        .tab-button.active .provider-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+
+        #providers-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            min-height: 400px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        /* Ensure smooth grid reflow */
+        @media (min-width: 768px) {
+            #providers-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #providers-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Enhanced card styling */
+        .doctor-card-enhanced {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(13, 71, 161, 0.06);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(13, 71, 161, 0.06);
+            position: relative;
+        }
+
+        .doctor-card-enhanced:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(13, 71, 161, 0.15);
+            border-color: rgba(255, 143, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-light-gray text-dark-gray">
+
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <script src="../js/critical-header.js"></script>
+
+
+
+    <section class="page-header">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="breadcrumb" data-aos="fade-right">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>About Us</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight" data-aos="fade-up">About Montgomery Medical Clinic</h1>
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                Your trusted healthcare partner.
+            </p>
+        </div>
+    </section>
+
+    <section id="mission" data-page-nav data-page-nav-title="Mission" class="py-16 sm:py-20 md:py-24 lg:py-32 bg-white overflow-visible">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header Section -->
+            <div class="text-center mb-12 sm:mb-14 md:mb-16 max-w-4xl mx-auto" data-aos="fade-up">
+                <span class="text-brand-blue font-bold uppercase tracking-widest text-xs sm:text-sm">OUR MISSION</span>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mt-3 sm:mt-4 mb-6 sm:mb-8 pb-2 leading-tight">A Legacy of Compassionate Care</h2>
+            </div>
+
+            <!-- Content Section -->
+            <div class="max-w-6xl mx-auto space-y-6 sm:space-y-8" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-sm sm:text-base md:text-lg text-medium-gray leading-relaxed">
+                    When it comes to your health, you deserve exceptional care from a team you can trust. At Montgomery Medical Clinic, our experienced physicians are dedicated to keeping you and your family healthy—today and for years to come. With over five decades of combined experience, our team provides compassionate, comprehensive care tailored to your unique needs.
+                </p>
+                <p class="text-sm sm:text-base md:text-lg text-medium-gray leading-relaxed">
+                    Whether you need immediate medical attention, a routine vaccination, or your yearly annual, we're here when you need us most. In addition to our outstanding primary care services, our Dermatology Department offers specialized expertise in diagnosing and treating a wide range of skin conditions. With a wealth of knowledge and experience, our dermatology specialists are committed to helping you achieve healthy, confident skin.
+                </p>
+            </div>
+
+            <!-- Image and Benefits Section -->
+            <div class="mt-10 sm:mt-12 md:mt-14 lg:mt-16 max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-5 gap-8 sm:gap-10 md:gap-12 items-center">
+                    <!-- Image Column -->
+                    <div class="lg:col-span-2" data-aos="fade-right" data-aos-delay="200">
+                        <img src="../images/CurrentPhoto1.png" alt="Team of doctors at Montgomery Medical Clinic" class="rounded-2xl sm:rounded-3xl shadow-2xl w-full h-auto">
+                    </div>
+
+                    <!-- Benefits Column -->
+                    <div class="lg:col-span-3 flex flex-col justify-center mt-8 lg:mt-0" data-aos="fade-left" data-aos-delay="200">
+                        <p class="text-base sm:text-lg text-medium-gray leading-relaxed font-semibold mb-4">
+                            By choosing one of our physicians as your primary care provider, you'll benefit from:
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-sm sm:text-base text-dark-gray font-medium">Personalized attention and continuity of care</span>
+                            </li>
+                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-sm sm:text-base text-dark-gray font-medium">Advanced treatments using the latest medical technology</span>
+                            </li>
+                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-sm sm:text-base text-dark-gray font-medium">Expert dermatology care for all your skin health needs</span>
+                            </li>
+                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-sm sm:text-base text-dark-gray font-medium">A lasting relationship with trusted healthcare professionals</span>
+                            </li>
+                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span class="text-sm sm:text-base text-dark-gray font-medium">Convenient access to a full range of medical services</span>
+                            </li>
+                        </ul>
+                        <div class="mt-5 sm:mt-6 p-4 sm:p-5 bg-gradient-to-r from-brand-blue to-blue-600 rounded-xl sm:rounded-2xl">
+                            <p class="text-base sm:text-lg text-white font-bold text-center">
+                                At Montgomery Medical Clinic, your health—and your confidence—are our top priorities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="providers" data-page-nav data-page-nav-title="Providers" class="py-24 lg:py-32 bg-light-blue-bg">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12 max-w-3xl mx-auto" data-aos="fade-up">
+                <h2 class="section-title text-dark-gray mb-6">Meet Our Expert Providers</h2>
+                <p class="section-subtitle">Our team consists of board-certified physicians and healthcare professionals with extensive experience and a shared passion for patient-centered care.</p>
+            </div>
+
+            <!-- Provider Filter Tabs -->
+            <div class="provider-tabs-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <div class="provider-tabs">
+                    <button class="tab-button active" data-filter="all">
+                        <span>All Providers<span class="provider-count">10</span></span>
+                    </button>
+                    <button class="tab-button" data-filter="primary-care">
+                        <span>Primary Care<span class="provider-count">2</span></span>
+                    </button>
+                    <button class="tab-button" data-filter="dermatology">
+                        <span>Dermatology<span class="provider-count">2</span></span>
+                    </button>
+                    <button class="tab-button" data-filter="acupuncture">
+                        <span>Acupuncture<span class="provider-count">1</span></span>
+                    </button>
+                    <button class="tab-button" data-filter="wellness">
+                        <span>Wellness Center<span class="provider-count">2</span></span>
+                    </button>
+                    <button class="tab-button" data-filter="sports-medicine">
+                        <span>Sports Medicine<span class="provider-count">3</span></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto" id="providers-container">
+
+                <!-- Dr. Efi Kessous - Primary Care -->
+                <div class="doctor-card-enhanced provider-card active" data-category="primary-care" data-aos="fade-up">
+                    <div class="doctor-image-container">
+                        <img src="../images/Efi.jpg" alt="Dr. Efi Kessous" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Efi Kessous</h3>
+                        <p class="doctor-title-enhanced">MD, MPH</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Efi Kessous is board-certified in Family Medicine and practices primary and urgent care medicine at Montgomery Medical Clinic. He is also an Assistant Professor and faculty member at The George Washington University School of Medicine & Health Sciences. Dr. Kessous completed his medical degree and Master's in Public Health from St. Georges University School of Medicine, followed by family medicine residency at University of Maryland in Baltimore and surgical residency at Hahnemann/Drexel University Hospital in Philadelphia. His clinical interests include procedural family medicine, injuries and lacerations, women's health, and occupational and travel medicine. He is an active clinical instructor and a current member of the FAA aviation medical examiners.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Primary Care</span>
+                            <span class="specialty-badge">Urgent Care</span>
+                            <span class="specialty-badge">Women's Health</span>
+                            <span class="specialty-badge">FAA Medical Examiner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Bertha Velandia - Primary Care -->
+                <div class="doctor-card-enhanced provider-card active" data-category="primary-care" data-aos="fade-up" data-aos-delay="100">
+                    <div class="doctor-image-container">
+                        <img src="../images/Bertha.jpg" alt="Dr. Bertha Velandia" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Bertha Velandia</h3>
+                        <p class="doctor-title-enhanced">MD</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Bertha Velandia is an experienced primary care physician who received her medical degree from the Universidad Nacional in Bogota, Colombia in 1983. She completed her residency in family medicine at the UAB Huntsville Medical Campus in 2009. During her career, Dr. Velandia has received an outstanding award in Obstetrics and Gynecology. She has also served in rural communities and published an article on scurvy still being present in developed countries. Dr. Velandia now resides in Maryland and during her spare time likes hiking, playing hide and seek with her two grandsons, and listening to folklore music.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Primary Care</span>
+                            <span class="specialty-badge">Family Medicine</span>
+                            <span class="specialty-badge">OB/GYN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Eran Kessous - Sports Medicine -->
+                <div class="doctor-card-enhanced provider-card active" data-category="sports-medicine" data-aos="fade-up" data-aos-delay="200">
+                    <div class="doctor-image-container">
+                        <img src="../images/Eran.jpg" alt="Dr. Eran Kessous" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Eran Kessous</h3>
+                        <p class="doctor-title-enhanced">MD, CAQSM</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Eran Kessous is board certified in both family and sports medicine. He completed his sports medicine training at Harvard Medical School's Children's Hospital in Boston. Dr. Kessous received his medical degree from St. George's University in 1999, completed a surgical internship at Mount Sinai School of Medicine in New York, and after three years as a general and orthopedic surgery resident at Tel Aviv Medical Center, returned to Boston to complete a family medicine residency at Boston University Medical Center. He was an official team physician for the Major League Soccer Team DC United and is currently the medical consultant for the Kirov Academy of Ballet. He is also a clinical assistant professor at Georgetown University School of Medicine.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Sports Medicine</span>
+                            <span class="specialty-badge">Family Medicine</span>
+                            <span class="specialty-badge">Orthopedics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Jonathan Lawless - Sports Medicine & Primary Care -->
+                <div class="doctor-card-enhanced provider-card active" data-category="sports-medicine" data-aos="fade-up" data-aos-delay="300">
+                    <div class="doctor-image-container">
+                        <img src="../images/LawLess.png" alt="Dr. Jonathan Lawless" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Jonathan Lawless</h3>
+                        <p class="doctor-title-enhanced">DO, CAQSM</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Lawless is board-certified in family medicine and sports medicine. He completed his sports medicine training and family medicine training at Northwell Plainview Hospital in Plainview, NY. Dr. Lawless graduated from medical school at Lake Erie College of Osteopathic Medicine in 2012 and completed a traditional rotating internship at UPMC Mercy Hospital in Pittsburgh, PA. He was appointed a teaching associate in family medicine at Hofstra Northwell School of Medicine. His experience includes team physician for LIU Post University and medical coverage for marathons and triathlons. His skills include musculoskeletal care, diagnostic musculoskeletal ultrasound, ultrasound-guided injections, and osteopathic manipulative treatment.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Sports Medicine</span>
+                            <span class="specialty-badge">Family Medicine</span>
+                            <span class="specialty-badge">MSK Ultrasound</span>
+                            <span class="specialty-badge">OMT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Sara Brooks - Dermatology -->
+                <div class="doctor-card-enhanced provider-card active" data-category="dermatology" data-aos="fade-up" data-aos-delay="400">
+                    <div class="doctor-image-container">
+                        <img src="../images/Brooks.jpg" alt="Dr. Sara Brooks" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Sara Brooks</h3>
+                        <p class="doctor-title-enhanced">MD, Board Certified Dermatologist</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Sara Brooks is a Board Certified Dermatologist and Maryland native from St. Mary's County. She attended the Honors college at University of Maryland, College Park, obtaining both a Bachelor's in Cell Biology and a Master's in Management and Organization. She went to medical school at Drexel University in Philadelphia, where she was inducted into AOA, the prestigious medical honor society. She completed a medical internship at Thomas Jefferson University and her residency in Internal Medicine and Dermatology at Georgetown University and Washington Hospital Center, where she served as Chief Resident of Dermatology. She also completed a Melanoma Fellowship at the Washington Cancer Institute. She is a Fellow of the American Academy of Dermatology.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Dermatology</span>
+                            <span class="specialty-badge">Melanoma</span>
+                            <span class="specialty-badge">Skin Cancer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Marsha Mitchum - Dermatology -->
+                <div class="doctor-card-enhanced provider-card active" data-category="dermatology" data-aos="fade-up" data-aos-delay="500">
+                    <div class="doctor-image-container">
+                        <img src="../images/Mitchum.jpg" alt="Dr. Marsha Mitchum" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Marsha D. Mitchum</h3>
+                        <p class="doctor-title-enhanced">MD, MPH, Board Certified Dermatologist</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Marsha Mitchum is a board-certified dermatologist with extensive experience in medical and oncologic dermatology. Before entering medicine, she served in the United States Air Force as a KC-135 pilot and instructor, completing assignments across Europe and the Pacific. She later transitioned to medicine, serving as a Flight Surgeon and Dermatologist at several major military medical centers. Dr. Mitchum completed her Dermatology Residency with the National Capital Consortium and a Fellowship in Cutaneous Oncology at the Dana-Farber Cancer Institute and Brigham and Women's Hospital, Harvard University. She also worked as a Medical Officer in the Division of Oncology at the U.S. Food and Drug Administration, where she contributed to national cancer drug evaluation and clinical research oversight. Her clinical interests include general medical dermatology, skin cancer diagnosis and treatment, and complex skin disorders. At Montgomery Medical Clinic Dermatology, Dr. Mitchum is dedicated to providing evidence-based, compassionate care—combining her background in medicine, oncology, and aviation to deliver precise, patient-centered treatment.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Dermatology</span>
+                            <span class="specialty-badge">Cutaneous Oncology</span>
+                            <span class="specialty-badge">Skin Cancer</span>
+                            <span class="specialty-badge">Medical Dermatology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Heon Y Jang - Sports Medicine & Physical Therapy -->
+                <div class="doctor-card-enhanced provider-card active" data-category="sports-medicine" data-aos="fade-up" data-aos-delay="600">
+                    <div class="doctor-image-container">
+                        <img src="../images/Heon.jpeg" alt="Dr. Heon Y Jang" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Heon Y Jang</h3>
+                        <p class="doctor-title-enhanced">PT, DPT</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Heon Y Jang, PT, DPT is a graduate of Medical College of Virginia Campus, Virginia Commonwealth University. Prior to attending Doctor of Physical Therapy program, he attended South Western University in the Philippines and Won kang Health science college in Korea. He served in the Korean Air Force as a medic contributing to the Air Force Military health and readiness and was discharged honorably after 30 months of service. He has had over two decades of clinical experience as a Physical Therapy Practitioner focusing on orthopedic conditions and sports injuries. His academic and clinical training includes spinal manipulation through studies at Wonkang Health Science, and Functional Dry Needling through advanced training at Kinetacore Institute for Pain Management and sports Injuries. His approach is unique in that he tries to focus on the origin of the clinical symptoms even for extremity overuse syndromes and acute injuries. This comes from his own treatment for the injuries he sustained while practicing Martial arts and practicing manual therapy for diverse spinal patients. He has practiced Martial arts in Taekwondo, Kickboxing, kendo, boxing and has seen various martial arts associated injuries. He also has worked on diverse scoliosis patients helping them relieve pain and lead their lives at their full strength.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Sports Medicine</span>
+                            <span class="specialty-badge">Physical Therapy</span>
+                            <span class="specialty-badge">Orthopedic Conditions</span>
+                            <span class="specialty-badge">Sports Injuries</span>
+                            <span class="specialty-badge">Spinal Manipulation</span>
+                            <span class="specialty-badge">Dry Needling</span>
+                            <span class="specialty-badge">Scoliosis Treatment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hodaya Cohen - Wellness Center -->
+                <div class="doctor-card-enhanced provider-card active" data-category="wellness" data-aos="fade-up" data-aos-delay="700">
+                    <div class="doctor-image-container">
+                        <img src="../images/Hodaya.jpg" alt="Hodaya Cohen" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Hodaya Cohen</h3>
+                        <p class="doctor-title-enhanced">Nutrition Coach</p>
+                        <p class="doctor-bio-enhanced">
+                            Hodaya guides patients through realistic nutrition strategies that fit their medical plans and daily routines. She emphasizes mindful eating, weekly meal structure, and habit-building so individuals and families can sustain long-term wellness.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Nutrition Coaching</span>
+                            <span class="specialty-badge">Meal Planning</span>
+                            <span class="specialty-badge">Behavior Change Support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kevin Cedellios - Wellness Center -->
+                <div class="doctor-card-enhanced provider-card active" data-category="wellness" data-aos="fade-up" data-aos-delay="800">
+                    <div class="doctor-image-container">
+                        <img src="../images/Kevin.jpg" alt="Kevin Cedellios" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Kevin Cedellios</h3>
+                        <p class="doctor-title-enhanced">Personal Trainer</p>
+                        <p class="doctor-bio-enhanced">
+                            Kevin develops customized training plans that balance strength, mobility, and recovery. His coaching style blends functional movement with steady encouragement, keeping clients motivated while preventing injury and promoting confident movement.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Personal Training</span>
+                            <span class="specialty-badge">Strength & Mobility</span>
+                            <span class="specialty-badge">Injury Prevention</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dr. Min Lu - Acupuncture -->
+                <div class="doctor-card-enhanced provider-card active" data-category="acupuncture" data-aos="fade-up" data-aos-delay="900">
+                    <div class="doctor-image-container">
+                        <img src="../images/Lu.jpeg" alt="Dr. Min Lu" class="doctor-image">
+                    </div>
+                    <div class="doctor-info-enhanced">
+                        <h3 class="doctor-name-enhanced">Dr. Min Lu</h3>
+                        <p class="doctor-title-enhanced">L.Ac., DAOM (candidate)</p>
+                        <p class="doctor-bio-enhanced">
+                            Dr. Min Lu is a licensed acupuncturist dedicated to providing exceptional acupuncture care tailored to your unique health needs. She integrates traditional Chinese medicine with modern biomedical knowledge to offer comprehensive holistic wellness solutions. Dr. Lu specializes in pain management, fertility treatment, stress management, and a variety of traditional Chinese medicine therapies including cupping and moxibustion. Her approach focuses on treating the whole person, addressing both symptoms and root causes to achieve optimal health and wellbeing.
+                        </p>
+                        <div class="specialty-badges">
+                            <span class="specialty-badge">Acupuncture</span>
+                            <span class="specialty-badge">Chinese Medicine</span>
+                            <span class="specialty-badge">Pain Management</span>
+                            <span class="specialty-badge">Fertility Treatment</span>
+                            <span class="specialty-badge">Cupping Therapy</span>
+                            <span class="specialty-badge">Moxibustion</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="facility" data-page-nav data-page-nav-title="Facility" class="py-24 lg:py-32 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-20 lg:items-center">
+                <div class="space-y-6" data-aos="fade-right">
+                    <span class="text-brand-blue font-bold uppercase tracking-widest text-sm">OUR FACILITY</span>
+                    <h2 class="text-4xl lg:text-5xl font-black">Comprehensive Care Under One Roof</h2>
+                    <p class="text-lg text-medium-gray leading-relaxed">
+                        At Montgomery Medical Clinic, we've designed our facility to provide you with convenient, comprehensive care. Our on-site services and experienced medical team work together to ensure you receive prompt diagnosis and treatment without the need for multiple appointments or referrals to other locations.
+                    </p>
+                    <p class="text-lg text-medium-gray leading-relaxed">
+                        We believe quality healthcare should be accessible and efficient. That's why we've integrated essential medical services right here in our clinic, allowing us to serve you better and get you on the path to wellness faster.
+                    </p>
+                    <ul class="space-y-4 text-lg text-medium-gray">
+                        <li class="flex items-center gap-3"><svg class="w-6 h-6 text-brand-orange shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>In-House Radiology & X-Ray Services</li>
+                        <li class="flex items-center gap-3"><svg class="w-6 h-6 text-brand-orange shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Full-Service Physical Therapy</li>
+                        <li class="flex items-center gap-3"><svg class="w-6 h-6 text-brand-orange shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Diagnostic Ultrasound</li>
+                         <li class="flex items-center gap-3"><svg class="w-6 h-6 text-brand-orange shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>On-Site Laboratory</li>
+                    </ul>
+                </div>
+                 <div class="mt-16 lg:mt-0 floating" data-aos="fade-left">
+                    <img src="../images/Clinic.jpeg" alt="Montgomery Medical Clinic facility" class="rounded-3xl shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 lg:py-32 bg-light-blue-bg" data-page-nav-stop="cta">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="bg-gradient-blue text-white rounded-3xl p-12 lg:p-20 text-center shadow-2xl" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6">Ready to Experience the Difference?</h2>
+                <p class="text-xl mb-10 text-white/90 max-w-2xl mx-auto">Join thousands of satisfied patients who trust Montgomery Medical Clinic for their healthcare needs.</p>
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-12 py-5 text-lg inline-flex">
+                    Schedule Appointment
+                </a>
+            </div>
+        </div>
+    </section>
+
+            <!-- Footer Placeholder -->
+    <div id="footer-placeholder" data-page-nav-stop="footer"></div>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/header-footer-loader.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Provider filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const providerCards = document.querySelectorAll('.provider-card');
+            const container = document.getElementById('providers-container');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+
+                    // Prevent double-click on active tab
+                    if (this.classList.contains('active')) return;
+
+                    // Update active tab button
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // First, fade out all cards
+                    providerCards.forEach(card => {
+                        card.classList.remove('active');
+                    });
+
+                    // Then fade in matching cards with a slight delay
+                    setTimeout(() => {
+                        providerCards.forEach((card, index) => {
+                            const category = card.getAttribute('data-category');
+
+                            if (filter === 'all' || category === filter) {
+                                // Stagger the animation slightly for each card
+                                setTimeout(() => {
+                                    card.classList.add('active');
+                                }, index * 50);
+                            }
+                        });
+                    }, 150);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

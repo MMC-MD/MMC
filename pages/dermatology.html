@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expert clinical dermatology services. Our dermatology clinic offers comprehensive skin care and medical dermatology treatments for all your needs.">
+    <title>Clinical Dermatology Services | Montgomery Medical Clinic</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dropdown-fix.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    <link rel="stylesheet" href="../css/contact-modal.css">
+    <link rel="stylesheet" href="../css/in-page-nav.css">
+    <link rel="preload" href="../includes/header.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="../js/header-footer-loader.js" as="script">
+    <link rel="preload" href="../js/critical-header.js" as="script">
+    <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
+
+    <style>
+        /* Keep dermatology sections static so only the page scrolls */
+        body.freeze-scroll {
+            overflow-y: auto !important;
+            overscroll-behavior: auto;
+        }
+
+        body.freeze-scroll [data-aos] {
+            opacity: 1 !important;
+            transform: none !important;
+            transition-property: none !important;
+            transition-duration: 0s !important;
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-blue': '#0d47a1',
+                        'brand-orange': '#ff8f00',
+                        'light-gray': '#fdfdff',
+                        'dark-gray': '#1a1d23',
+                        'medium-gray': '#5a6474',
+                        'light-blue-bg': '#f5f9ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/in-page-nav.js" defer></script>
+</head>
+<body class="bg-light-gray text-dark-gray freeze-scroll">
+
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <script src="../js/critical-header.js"></script>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="breadcrumb" data-aos="fade-right">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>Clinical Dermatology</span>
+            </div>
+            <h1 class="text-5xl lg:text-6xl font-black mb-6" data-aos="fade-up">Clinical Dermatology</h1>
+            <p class="text-xl lg:text-2xl text-white/90 max-w-3xl" data-aos="fade-up" data-aos-delay="100">
+                Comprehensive clinical dermatology services for all your skin, hair, and nail concerns at our dermatology clinic.
+            </p>
+        </div>
+    </section>
+
+    <!-- INTRO SECTION -->
+    <section id="overview" data-page-nav data-page-nav-title="Overview" class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <!-- Welcome Message -->
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl lg:text-5xl font-black text-brand-blue mb-6">Welcome to Our Clinical Dermatology Practice</h2>
+                    <p class="text-xl text-medium-gray leading-relaxed max-w-4xl mx-auto">
+                        At our dermatology clinic within Montgomery Medical Clinic, we offer comprehensive clinical dermatology services. Whether concerned with acne, hair loss, or chronic skin disorders, our dermatology experts use the latest medical and clinical treatment techniques for all your dermatology concerns.
+                    </p>
+                </div>
+
+                <!-- Early Detection Feature Box -->
+                <div class="bg-gradient-to-br from-blue-50 via-white to-orange-50 rounded-3xl shadow-xl overflow-hidden border-2 border-blue-100" data-aos="fade-up" data-aos-delay="100">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                        <!-- Image Side -->
+                        <div class="relative h-full min-h-[300px] lg:min-h-[400px]">
+                            <img
+                                src="../images/skinscreening.jpg"
+                                alt="Skin Cancer Screening - Early Detection Saves Lives"
+                                class="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-br from-brand-blue/80 to-blue-600/80 flex items-center justify-center">
+                                <div class="text-center text-white p-8">
+                                    <h3 class="text-4xl font-black mb-2">Early Detection</h3>
+                                    <p class="text-2xl text-white/90">Saves Lives</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Side -->
+                        <div class="p-8 lg:p-12">
+                            <h3 class="text-3xl font-black text-brand-blue mb-4">Getting a Dermatology Diagnosis</h3>
+                            <p class="text-lg text-medium-gray leading-relaxed mb-6">
+                                This year alone, thousands of people will be diagnosed with skin cancer. Early dermatology detection is essential for your skin and overall health. Our dermatology clinic provides comprehensive cosmetic and dermatology screenings.
+                            </p>
+                            <div class="bg-brand-orange/10 border-l-4 border-brand-orange p-4 rounded-r-xl">
+                                <p class="text-medium-gray leading-relaxed">
+                                    Our highly experienced dermatology specialists at our dermatology clinic have extensive expertise in detecting and treating skin cancers through advanced cosmetic and dermatology procedures before they spread.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" data-page-nav data-page-nav-title="Services" class="py-20 lg:py-24 bg-light-blue-bg">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6">Our Clinical Dermatology Services</h2>
+                <p class="text-lg text-medium-gray max-w-3xl mx-auto">From medical dermatology treatments to aesthetic procedures, our dermatology clinic offers complete skin care solutions</p>
+            </div>
+
+            <!-- Common Conditions -->
+            <div class="max-w-4xl mx-auto mb-16" data-aos="fade-up">
+                <div class="bg-gradient-to-br from-blue-50 to-orange-50 p-8 rounded-3xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-4 text-center">Common Dermatology Conditions We Treat at Our Clinic</h3>
+                    <p class="text-medium-gray text-center mb-6">Expert dermatology diagnosis and medical treatment for a wide range of skin conditions</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Acne</div>
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Eczema</div>
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Psoriasis</div>
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Rosacea</div>
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Skin Cancer</div>
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Dermatitis</div>
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Warts</div>
+                        <div class="bg-white p-3 rounded-lg text-center font-semibold text-medium-gray">Hair Loss</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8">
+                
+                <!-- Medical Dermatology -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-brand-blue" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6">Medical Dermatology Services</h3>
+                    <ul class="space-y-3 text-medium-gray">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Dermatology Skin Cancer Screenings & Prevention</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Mole Evaluation & Removal</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Dermatology Acne Treatment (All Ages)</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Eczema & Psoriasis Management</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Rosacea Treatment</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Wart & Skin Tag Removal</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Skin Infections & Rashes</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Hair Loss Evaluation & Treatment</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Nail Disorder Treatment</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Anti-Aging Treatments</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Chemical Peels & Skin Rejuvenation</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Skin Biopsies</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Cyst Removal</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-blue shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Pediatric Dermatology</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Aesthetic Dermatology -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-brand-orange" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6">Aesthetic Dermatology Services</h3>
+                    <ul class="space-y-3 text-medium-gray">
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Botox Injections</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Dermal Fillers</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Microneedling</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>VI Beam Laser</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Chemical Peels</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <svg class="w-6 h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>Skin Rejuvenation Treatments</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROVIDERS SECTION -->
+    <section id="providers" data-page-nav data-page-nav-title="Providers" class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6">Our Clinical Dermatology Providers</h2>
+                <p class="text-xl text-medium-gray max-w-3xl mx-auto">Expert clinical dermatology care from experienced, board-certified professionals at our dermatology clinic.</p>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+
+                    <!-- Dr. Sara Brooks -->
+                    <div class="bg-gradient-to-br from-orange-50 via-white to-orange-50 rounded-3xl shadow-xl overflow-hidden border-2 border-orange-100" data-aos="fade-up">
+                        <div class="relative h-80 overflow-hidden">
+                            <img
+                                src="../images/Brooks.jpg"
+                                alt="Dr. Sara Brooks"
+                                class="w-full h-full object-contain object-top"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-3xl font-black text-brand-blue mb-2">Dr. Sara Brooks, MD</h3>
+                            <p class="text-xl text-brand-orange font-bold mb-6">Board-Certified Dermatologist</p>
+                            <div class="space-y-4 text-medium-gray leading-relaxed">
+                                <p>
+                                    Dr. Sara Brooks is a board-certified dermatologist and Maryland native from St. Mary's County. She attended the Honors College at University of Maryland, College Park, where she obtained both a Bachelor's degree in Cell Biology and a Master's degree in Management and Organization.
+                                </p>
+                                <p>
+                                    She completed medical school at Drexel University in Philadelphia, PA, where she was inducted into AOA, the prestigious medical honor society. After graduation, she performed a medical internship at Thomas Jefferson University.
+                                </p>
+                                <p>
+                                    Dr. Brooks returned to the DC area as a resident in both Internal Medicine and Dermatology at Georgetown University and Washington Hospital Center, where she served as Chief Resident of Dermatology. She also completed a Melanoma Fellowship at the Washington Cancer Institute.
+                                </p>
+                                <p>
+                                    She is a Fellow of the American Academy of Dermatology and a member of the American College of Physicians, American Medical Association, and American Society of Dermatologic Surgeons. Dr. Brooks is dedicated to providing comprehensive dermatological care with a focus on both medical and cosmetic treatments.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dr. Marsha Mitchum -->
+                    <div class="bg-gradient-to-br from-blue-50 via-white to-blue-50 rounded-3xl shadow-xl overflow-hidden border-2 border-blue-100" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative h-80 overflow-hidden">
+                            <img
+                                src="../images/Mitchum.jpg"
+                                alt="Dr. Marsha Mitchum"
+                                class="w-full h-full object-contain object-top"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-3xl font-black text-brand-blue mb-2">Dr. Marsha D. Mitchum, MD, MPH</h3>
+                            <p class="text-xl text-brand-orange font-bold mb-6">Board-Certified Clinical Dermatologist</p>
+                            <div class="space-y-4 text-medium-gray leading-relaxed">
+                                <p>
+                                    Dr. Marsha Mitchum is a board-certified dermatologist with extensive experience in medical and oncologic dermatology. Before entering medicine, she served in the United States Air Force as a KC-135 pilot and instructor, completing assignments across Europe and the Pacific. She later transitioned to medicine, serving as a Flight Surgeon and Dermatologist at several major military medical centers.
+                                </p>
+                                <p>
+                                    Dr. Mitchum completed her Dermatology Residency with the National Capital Consortium and a Fellowship in Cutaneous Oncology at the Dana-Farber Cancer Institute and Brigham and Women's Hospital, Harvard University. She also worked as a Medical Officer in the Division of Oncology at the U.S. Food and Drug Administration, where she contributed to national cancer drug evaluation and clinical research oversight.
+                                </p>
+                                <p>
+                                    Her clinical interests include general medical dermatology, skin cancer diagnosis and treatment, and complex skin disorders. At Montgomery Medical Clinic Dermatology, Dr. Mitchum is dedicated to providing evidence-based, compassionate care—combining her background in medicine, oncology, and aviation to deliver precise, patient-centered treatment.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav-stop="cta">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="bg-gradient-blue text-white rounded-3xl p-12 lg:p-16 text-center shadow-2xl max-w-4xl mx-auto" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-black mb-6">Ready for Expert Dermatology Care?</h2>
+                <p class="text-xl mb-8 text-white/90">Schedule your consultation with our experienced dermatology team today.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-10 py-4 text-lg">
+                        Schedule Appointment
+                    </a>
+                    <a href="tel:3012082273" class="btn btn-outline px-10 py-4 text-lg border-white text-white hover:bg-white hover:text-brand-blue">
+                        Call (301) 208-2273
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder" data-page-nav-stop="footer"></div>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/header-footer-loader.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+
+</body>
+</html>

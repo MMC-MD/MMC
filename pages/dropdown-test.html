@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Test - Montgomery Medical Clinic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dropdown-fix.css">
+    <link rel="stylesheet" href="../css/in-page-nav.css">
+    <link rel="preload" href="../includes/header.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="../js/header-footer-loader.js" as="script">
+    <link rel="preload" href="../js/critical-header.js" as="script">
+    <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-blue': '#0d47a1',
+                        'brand-orange': '#ff8f00',
+                        'light-gray': '#fafafa',
+                        'dark-gray': '#212121',
+                        'medium-gray': '#616161',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/in-page-nav.js" defer></script>
+</head>
+<body class="bg-light-gray">
+    
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <script src="../js/critical-header.js"></script>
+    
+    <!-- Test Content -->
+    <section id="dropdown-test-section" data-page-nav data-page-nav-title="Overview" class="relative text-white min-h-screen flex items-center py-20" style="background: linear-gradient(135deg, #0d47a1 0%, #002171 100%); z-index: 1; position: relative; isolation: isolate;">
+        <div class="relative z-20 container mx-auto px-6">
+            <h1 class="text-5xl font-black mb-6">Dropdown Test Page</h1>
+            <p class="text-xl mb-8">Click or hover over "Services" in the navigation to test the dropdown menu.</p>
+            <p class="text-lg">The dropdown should appear correctly positioned below the Services button on all pages.</p>
+        </div>
+    </section>
+    
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder" data-page-nav-stop="footer"></div>
+    
+    <script src="../js/header-footer-loader.js"></script>
+    <script src="../js/main-simple.js"></script>
+    
+    <script>
+        // Test function
+        console.log('Dropdown test page loaded');
+        console.log('Try hovering over Services in the navigation');
+        
+        // Add button to trigger dropdown programmatically
+        setTimeout(() => {
+            const testBtn = document.createElement('button');
+            testBtn.textContent = 'Force Show Dropdown (Test)';
+            testBtn.className = 'fixed bottom-10 right-10 bg-brand-orange text-white px-6 py-3 rounded-lg shadow-lg hover:bg-opacity-90 transition-all z-50';
+            testBtn.onclick = () => {
+                if (typeof window.testDropdown === 'function') {
+                    window.testDropdown();
+                } else {
+                    alert('Test function not loaded yet. Wait a moment and try again.');
+                }
+            };
+            document.body.appendChild(testBtn);
+        }, 1000);
+    </script>
+    
+</body>
+</html>

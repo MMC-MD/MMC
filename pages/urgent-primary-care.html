@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visit our urgent care center for immediate medical attention. Our primary care physicians and primary care providers offer comprehensive urgent care and primary doctor services.">
+    <title>Urgent Care Center & Primary Care Physicians | Montgomery Medical Clinic - Primary Care Providers</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dropdown-fix.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    <link rel="stylesheet" href="../css/contact-modal.css">
+    <link rel="stylesheet" href="../css/in-page-nav.css">
+    <link rel="preload" href="../includes/header.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="../js/header-footer-loader.js" as="script">
+    <link rel="preload" href="../js/critical-header.js" as="script">
+    <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-blue': '#0d47a1',
+                        'brand-orange': '#ff8f00',
+                        'light-gray': '#fdfdff',
+                        'dark-gray': '#1a1d23',
+                        'medium-gray': '#5a6474',
+                        'light-blue-bg': '#f5f9ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/in-page-nav.js" defer></script>
+    <style>
+        /* Provider Cards */
+        .provider-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(13, 71, 161, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+
+        .provider-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(13, 71, 161, 0.15);
+            border-color: #ff8f00;
+        }
+
+        .provider-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 75%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f9ff 0%, #e3f2fd 100%);
+        }
+
+        .provider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.4s ease;
+        }
+
+        .provider-card:hover .provider-image {
+            transform: scale(1.05);
+        }
+
+        .provider-info {
+            padding: 2rem;
+        }
+
+        .provider-name {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0d47a1;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .provider-title {
+            color: #ff8f00;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="bg-light-gray text-dark-gray">
+
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <script src="../js/critical-header.js"></script>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>Urgent Care & Primary Care</span>
+            </div>
+            <h1 class="text-5xl lg:text-6xl font-black mb-6">Urgent Care Center & Primary Care</h1>
+            <p class="text-xl lg:text-2xl text-white/90 max-w-3xl">
+                Our urgent care center and primary care providers deliver comprehensive medical services. Visit our urgent center for immediate care or see our primary doctors for ongoing health management.
+            </p>
+        </div>
+    </section>
+
+    <!-- INTRO SECTION -->
+    <section id="urgent-overview" data-page-nav data-page-nav-title="Overview" class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+                <div>
+                    <div class="prose max-w-none text-lg leading-relaxed space-y-4 text-medium-gray mb-12">
+                        <p>
+                            Having a primary care provider who understands your medical history is essential to your overall health. Our primary care physicians and primary doctors provide comprehensive preventative care at our urgent care center, ensuring your health needs are met promptly.
+                        </p>
+                        <p>
+                            At our urgent center and medical clinic, we strive to be your trusted primary care provider with seamless, patient-centered urgent care services. Our primary care physicians are committed to compassionate care for you and your family, whether you need immediate attention at our urgent care center or ongoing support from your primary doctor.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Walk-In Care Section -->
+                <div class="bg-gradient-to-br from-blue-600 to-blue-800 text-white p-10 lg:p-14 rounded-3xl mb-12 shadow-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mr-5">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-black">Urgent Care Center Walk-In Services & Primary Care Partnership</h3>
+                    </div>
+                    <p class="text-lg leading-relaxed mb-4 text-white/95">
+                        Your whole family needs a primary care provider for optimal health. Our primary care physicians at the urgent center offer routine physicals and preventative care. Research shows that adults who visit their primary doctor regularly manage chronic conditions better, maintain lower healthcare costs, and experience greater satisfaction with their primary care provider.
+                    </p>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20">
+                        <p class="text-xl leading-relaxed font-semibold">
+                            Our urgent care center and primary care physicians are available to provide urgent care services <span class="text-brand-orange font-black">without an appointment</span>. Visit our urgent center with flexible hours six days a week—we're even <span class="text-brand-orange font-black">open on most holidays!</span> Whether you need an urgent center visit or want to establish care with primary doctors, we're here for you.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+                    <!-- Insurance Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start">
+                            <div class="bg-blue-50 rounded-xl p-3 mr-5 flex-shrink-0">
+                                <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-brand-blue mb-2">Most Insurance Accepted</h3>
+                                <p class="text-medium-gray leading-relaxed mb-3">
+                                    We accept most major insurance plans.
+                                </p>
+                                <a href="insurance.html" class="text-brand-blue hover:text-brand-orange font-semibold text-sm transition-colors">
+                                    View accepted providers →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- X-Ray Card -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+                        <div class="flex items-start">
+                            <div class="bg-orange-50 rounded-xl p-3 mr-5 flex-shrink-0">
+                                <svg class="w-7 h-7 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                                </svg>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-xl font-bold text-brand-blue mb-2">On-Site X-Ray & Diagnostics</h3>
+                                <p class="text-medium-gray leading-relaxed">
+                                    Advanced diagnostic tools and imaging services available right here in our clinic for immediate results.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="urgent-services" data-page-nav data-page-nav-title="Services" class="py-20 lg:py-24 bg-light-blue-bg">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6">Comprehensive Urgent Care and Primary Care Services</h2>
+                <p class="text-xl text-medium-gray max-w-3xl mx-auto">From preventative care with our primary care physicians to urgent care center visits for immediate needs, our primary doctors provide complete healthcare services for your family.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6">Primary Care Physicians / Preventative Services</h3>
+                    <ul class="space-y-3 text-medium-gray">
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Routine physicals & wellness exams</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Routine vaccinations & immunizations</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Blood pressure screening</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Diagnostic testing & lab work</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Men's & women's health services</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> STD testing & treatment</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Well woman examinations</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> IUD placement & contraception</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Pap smears & breast exams</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6">Urgent Center & Urgent Care Services</h3>
+                    <ul class="space-y-3 text-medium-gray">
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Colds / Upper respiratory infections</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Fever & sore throat</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Influenza (flu) treatment</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Asthma attacks & breathing issues</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Abdominal pain</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> UTI & kidney infections</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Ear infections & earaches</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Eye infections</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Rashes, hives & allergic reactions</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-6">Chronic Disease Management</h3>
+                    <ul class="space-y-3 text-medium-gray">
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Hypertension (high blood pressure)</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Diabetes management</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Hyperlipidemia (high cholesterol)</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Asthma/COPD treatment</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Arthritis & chronic pain</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Depression & anxiety</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Migraine management</li>
+                        <li class="flex items-start"><span class="text-brand-orange mr-2">•</span> Weight loss & obesity management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCTORS SECTION -->
+    <section id="urgent-providers" data-page-nav data-page-nav-title="Providers" class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6">Our Primary Care Physicians and Primary Doctors</h2>
+                <p class="text-xl text-medium-gray max-w-3xl mx-auto">Board-certified primary care providers and family medicine primary doctors at our urgent care center, dedicated to your health and wellbeing.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                
+                <!-- Dr. Efi Kessous -->
+                <div class="provider-card">
+                    <div class="provider-image-container">
+                        <img src="../images/Efi.jpg" alt="Dr. Efi Kessous" class="provider-image">
+                    </div>
+                    <div class="provider-info">
+                        <h3 class="provider-name">Dr. Efi Kessous</h3>
+                        <p class="provider-title">MD, MPH - Primary Care Provider & Urgent Care Physician</p>
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            Dr. Efi Kessous is a board-certified primary care physician who practices at our urgent care center and serves as a trusted primary doctor at Montgomery Medical Clinic. As a primary care provider, he is also an Assistant Professor and faculty member at The George Washington University School of Medicine & Health Sciences.
+                        </p>
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            As a primary care physician at our urgent center, his clinical interests include procedural family medicine, injury management, women's health, and occupational medicine. Dr. Kessous is committed to providing comprehensive urgent care and primary care services for individuals and families as their dedicated primary doctor.
+                        </p>
+                        <p class="text-medium-gray leading-relaxed">
+                            He is a member of the American Academy of Family Physicians and serves as a designated FAA aviation medical examiner, bringing a diverse skill set to patient care.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dr. Bertha Velandia -->
+                <div class="provider-card">
+                    <div class="provider-image-container">
+                        <img src="../images/Bertha.jpg" alt="Dr. Bertha Velandia" class="provider-image">
+                    </div>
+                    <div class="provider-info">
+                        <h3 class="provider-name">Dr. Bertha Velandia</h3>
+                        <p class="provider-title">MD - Primary Care Provider</p>
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            Dr. Bertha Velandia is an experienced primary care provider and primary doctor who received her medical degree from the Universidad Nacional in Bogota, Colombia in 1983. As a primary care physician, she completed her residency in family medicine at the UAB Huntsville Medical Campus in 2009.
+                        </p>
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            During her distinguished career, Dr. Velandia has received an outstanding award in Obstetrics and Gynecology. She has also dedicated time serving in rural communities and published research on scurvy in developed countries.
+                        </p>
+                        <p class="text-medium-gray leading-relaxed">
+                            As a dedicated primary care physician at our urgent care center, Dr. Velandia brings warmth and experience as a primary doctor, making urgent care and primary care services accessible and compassionate for families in Gaithersburg.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Dr. Jonathan Lawless -->
+                <div class="provider-card">
+                    <div class="provider-image-container">
+                        <img src="../images/LawLess.png" alt="Dr. Jonathan Lawless" class="provider-image">
+                    </div>
+                    <div class="provider-info">
+                        <h3 class="provider-name">Dr. Jonathan Lawless</h3>
+                        <p class="provider-title">DO, CAQSM - Primary Care Physician & Sports Medicine</p>
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            Dr. Lawless is a dual board-certified primary care provider in family medicine and sports medicine at our urgent center. As a primary doctor, he completed his training at Northwell Plainview Hospital in Plainview, NY, and graduated from Lake Erie College of Osteopathic Medicine in 2012.
+                        </p>
+                        <p class="text-medium-gray leading-relaxed mb-4">
+                            His comprehensive training includes a traditional rotating internship at UPMC Mercy Hospital in Pittsburgh, PA. He was appointed as a teaching associate in family medicine at Hofstra Northwell School of Medicine during his sports medicine fellowship.
+                        </p>
+                        <p class="text-medium-gray leading-relaxed">
+                            As a primary care physician at our urgent care center, Dr. Lawless' expertise includes musculoskeletal care, diagnostic ultrasound, ultrasound-guided injections, and osteopathic treatment. This primary doctor provides comprehensive urgent care and primary care services for acute and chronic conditions.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav-stop="cta">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="bg-gradient-blue text-white rounded-3xl p-12 lg:p-16 text-center shadow-2xl max-w-4xl mx-auto">
+                <h2 class="text-3xl lg:text-4xl font-black mb-6">Ready to Get Started?</h2>
+                <p class="text-xl mb-8 text-white/90">Walk in today or schedule an appointment for your convenience.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-10 py-4 text-lg">
+                        Schedule Appointment
+                    </a>
+                    <a href="tel:3012082273" class="btn btn-outline px-10 py-4 text-lg border-white text-white hover:bg-white hover:text-brand-blue">
+                        Call (301) 208-2273
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder" data-page-nav-stop="footer"></div>
+    
+    <script src="../js/header-footer-loader.js"></script>
+    <script src="../js/main.js"></script>
+
+</body>
+</html>

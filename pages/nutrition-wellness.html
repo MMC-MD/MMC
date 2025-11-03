@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visit our wellness centers for functional medicine, holistic medicine, and functional doctors. Comprehensive wellness programs combining nutrition and personal training.">
+    <title>Wellness Center | Montgomery Medical Clinic - Holistic Medicine & Functional Doctors</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dropdown-fix.css">
+    <link rel="stylesheet" href="../css/in-page-nav.css">
+    <link rel="preload" href="../includes/header.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="../js/header-footer-loader.js" as="script">
+    <link rel="preload" href="../js/critical-header.js" as="script">
+    <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        'brand-blue': '#0d47a1',
+                        'brand-orange': '#ff8f00',
+                        'light-gray': '#fdfdff',
+                        'dark-gray': '#1a1d23',
+                        'medium-gray': '#5a6474',
+                        'light-blue-bg': '#f5f9ff',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../js/in-page-nav.js" defer></script>
+    <style>
+        .division-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(13, 71, 161, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .division-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(13, 71, 161, 0.2);
+        }
+
+        .division-card.nutrition-card {
+            border-top: 6px solid #4caf50;
+        }
+
+        .division-card.nutrition-card:hover {
+            border-color: #4caf50;
+        }
+
+        .division-card.training-card {
+            border-top: 6px solid #ff8f00;
+        }
+
+        .division-card.training-card:hover {
+            border-color: #ff8f00;
+        }
+
+        .division-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .division-card:hover .division-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .division-icon.nutrition {
+            background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+        }
+
+        .division-icon.training {
+            background: linear-gradient(135deg, #ff8f00 0%, #ffb300 100%);
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #5a6474;
+            font-size: 0.95rem;
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        .service-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+
+        .nutrition-card .service-check {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .training-card .service-check {
+            background: rgba(255, 143, 0, 0.1);
+            color: #ff8f00;
+        }
+
+        .provider-highlight {
+            background: linear-gradient(135deg, #f5f9ff 0%, #e3f2fd 100%);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 4px solid #0d47a1;
+        }
+
+        .provider-photo {
+            aspect-ratio: 10.19 / 12.74;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        .provider-photo-wrapper {
+            max-width: clamp(220px, 70%, 340px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body class="bg-light-gray text-dark-gray">
+
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <script src="../js/critical-header.js"></script>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container mx-auto px-6 lg:px-8 relative z-10">
+            <div class="breadcrumb" data-aos="fade-right">
+                <a href="../index.html">Home</a>
+                <span>/</span>
+                <span>Wellness Center</span>
+            </div>
+            <h1 class="text-5xl lg:text-6xl font-black mb-6" data-aos="fade-up">Wellness Center</h1>
+            <p class="text-xl lg:text-2xl text-white/90 max-w-3xl" data-aos="fade-up" data-aos-delay="100">
+                Our Wellness Center take a functional and holistic approach to health—helping you achieve your goals through customized nutrition and fitness programs. We focus on improving balance, strength, and overall well-being through personalized nutrition planning and guided personal training. Every program is designed to help you feel stronger, more energized, and in control of your health.
+            </p>
+        </div>
+    </section>
+
+    <!-- INTRO SECTION -->
+    <section id="wellness-overview" data-page-nav data-page-nav-title="Overview" class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6 text-brand-blue">Your Complete Wellness Journey at Our Wellness Center</h2>
+                <p class="text-xl text-medium-gray leading-relaxed">
+                    Our wellness centers offer functional medicine and holistic medicine approaches to health. Our functional doctors combine expert nutrition guidance with personalized fitness training to optimize your well-being. Whether you need functional medicine for a health condition or holistic medicine for wellness optimization, our integrated programs at our wellness centers help you succeed.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TWO MAIN DIVISIONS -->
+    <section id="wellness-divisions" data-page-nav data-page-nav-title="Divisions" class="py-20 lg:py-24 bg-light-blue-bg">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-black mb-6">Our Two Divisions at the Wellness Center</h2>
+                <p class="text-xl text-medium-gray max-w-3xl mx-auto">Our functional medicine and holistic medicine approaches combine nutrition and fitness for your optimal health and wellness.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                
+                <!-- NUTRITION DIVISION -->
+                <div class="division-card nutrition-card" data-aos="fade-up">
+                    <div class="p-8 lg:p-12">
+                        <div class="division-icon nutrition">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-black mb-4 text-center" style="color: #4caf50;">Nutrition Services</h3>
+                        <p class="text-center text-medium-gray mb-6 text-lg">
+                            Evidence-based functional medicine and holistic medicine nutrition counseling at our wellness center, tailored by our functional doctors to your health goals and medical needs.
+                        </p>
+                        
+                        <div class="bg-green-50 rounded-xl p-6 mb-6">
+                            <h4 class="font-bold text-lg mb-4" style="color: #4caf50;">What We Offer:</h4>
+                            <ul class="service-list">
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Personalized Nutrition Counseling</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Weight Management Programs</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Diabetes Disease Management</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Meal Planning & Education</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="provider-highlight">
+                            <p class="text-sm font-bold text-brand-blue mb-2">EXPERT FUNCTIONAL MEDICINE & WELLNESS GUIDANCE</p>
+                            <p class="text-sm text-medium-gray">Our certified functional doctors and nutrition specialists at our wellness center use functional medicine and holistic medicine principles to create comprehensive nutrition plans addressing your unique wellness needs.</p>
+                        </div>
+
+                        <div class="text-center mt-6">
+                            <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <span>Book Nutrition Consultation</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PERSONAL TRAINING DIVISION -->
+                <div class="division-card training-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8 lg:p-12">
+                        <div class="division-icon training">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-black mb-4 text-center" style="color: #ff8f00;">Personal Training</h3>
+                        <p class="text-center text-medium-gray mb-6 text-lg">
+                            Customized wellness and fitness programs at our wellness center designed using functional medicine principles to help you build strength, improve performance, and reach your wellness goals.
+                        </p>
+                        
+                        <div class="bg-orange-50 rounded-xl p-6 mb-6">
+                            <h4 class="font-bold text-lg mb-4" style="color: #ff8f00;">What We Offer:</h4>
+                            <ul class="service-list">
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>One-on-One Personal Training</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Customized Workout Programs</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Strength & Conditioning</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Weight Loss Training</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Athletic Performance Enhancement</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Post-Injury Rehabilitation Training</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Senior Fitness Programs</span>
+                                </li>
+                                <li>
+                                    <span class="service-check">✓</span>
+                                    <span>Functional Fitness Training</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="provider-highlight">
+                            <p class="text-sm font-bold text-brand-blue mb-2">PERSONALIZED TRAINING APPROACH</p>
+                            <p class="text-sm text-medium-gray">Our certified personal trainers work closely alongside patients to fully understand their individual needs, assess physical limitations, and develop customized programs that properly strengthen the body while preventing injury.</p>
+                        </div>
+
+                        <div class="text-center mt-6">
+                            <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <span>Book Training Session</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTEGRATED APPROACH -->
+    <section id="wellness-integration" data-page-nav data-page-nav-title="Integration" class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl lg:text-5xl font-black mb-6">The Power of Integration</h2>
+                    <p class="text-xl text-medium-gray">Nutrition and fitness work hand-in-hand for optimal results. Our integrated approach ensures you get the most effective care.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="text-center" data-aos="fade-up">
+                        <div class="w-16 h-16 bg-gradient-to-br from-brand-blue to-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Coordinated Wellness Care</h3>
+                        <p class="text-medium-gray">Your functional medicine nutrition and training plans from our functional doctors at our wellness centers work together seamlessly using holistic medicine principles.</p>
+                    </div>
+
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Better Wellness Results</h3>
+                        <p class="text-medium-gray">Combining functional medicine nutrition with exercise at our wellness centers accelerates your progress and maximizes wellness outcomes.</p>
+                    </div>
+
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Functional Medicine Support</h3>
+                        <p class="text-medium-gray">Our wellness programs are backed by functional doctors and holistic medicine practitioners at our wellness centers for safe, effective wellness care.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WELLNESS TEAM -->
+    <section id="wellness-team" data-page-nav data-page-nav-title="Our Team" class="py-20 lg:py-24 bg-light-blue-bg">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl lg:text-5xl font-black mb-5 text-brand-blue">Meet Our Wellness Team</h2>
+                <p class="text-xl text-medium-gray leading-relaxed">
+                    Our nutrition and fitness professionals collaborate with the clinical team to deliver practical guidance, approachable coaching, and the accountability you need to live well.
+                </p>
+            </div>
+
+            <div class="grid gap-10 lg:grid-cols-2">
+                <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col h-full" data-aos="fade-up">
+                    <div class="rounded-3xl overflow-hidden shadow-lg mb-6 provider-photo-wrapper">
+                        <img src="../images/Hodaya.jpg" alt="Hodaya Cohen" class="provider-photo">
+                    </div>
+                    <span class="text-sm font-semibold uppercase tracking-widest text-brand-blue mb-2">Nutrition Coach</span>
+                    <h3 class="text-2xl font-bold mb-4">Hodaya Cohen</h3>
+                    <p class="text-medium-gray leading-relaxed">
+                        Hodaya partners with patients to translate medical recommendations into real-world nutrition habits. She focuses on sustainable meal planning, mindful eating strategies, and building confidence in the kitchen so every client can make consistent, nourishing choices.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                    <div class="rounded-3xl overflow-hidden shadow-lg mb-6 provider-photo-wrapper">
+                        <img src="../images/Kevin.jpg" alt="Kevin Cedellios" class="provider-photo">
+                    </div>
+                    <span class="text-sm font-semibold uppercase tracking-widest text-brand-orange mb-2">Personal Trainer</span>
+                    <h3 class="text-2xl font-bold mb-4">Kevin Cedellios</h3>
+                    <p class="text-medium-gray leading-relaxed">
+                        Kevin designs individualized training programs that improve strength, mobility, and overall stamina. He blends functional movement with steady coaching support, helping each person stay motivated, recover safely, and celebrate measurable progress.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav-stop="cta">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="bg-gradient-blue text-white rounded-3xl p-12 lg:p-16 text-center shadow-2xl max-w-4xl mx-auto" data-aos="fade-up">
+                <h2 class="text-3xl lg:text-4xl font-black mb-6">Ready to Transform Your Health with Functional Medicine?</h2>
+                <p class="text-xl mb-8 text-white/90">Start your personalized wellness journey with our functional doctors and holistic medicine experts at our wellness centers today.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-10 py-4 text-lg">
+                        Schedule Consultation
+                    </a>
+                    <a href="#" class="btn btn-outline px-10 py-4 text-lg border-white text-white hover:bg-white hover:text-brand-blue contact-trigger" data-contact-trigger>
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-placeholder" data-page-nav-stop="footer"></div>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/header-footer-loader.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+
+</body>
+</html>
