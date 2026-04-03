@@ -356,13 +356,13 @@ function refreshMetrics() {
 
 function markDirty(message) {
     hasUnsavedChanges = true;
-    setStatus(message || 'Unsaved slideshow changes.', 'warning');
+    setStatus(message || 'You have unpublished slide changes.', 'warning');
     refreshMetrics();
 }
 
 function clearDirty(message) {
     hasUnsavedChanges = false;
-    setStatus(message || 'Homepage slideshow is synced with Firebase.', 'success');
+    setStatus(message || 'Homepage slides are up to date.', 'success');
     refreshMetrics();
 }
 
@@ -397,12 +397,12 @@ function setBannerStatus(message, tone) {
 
 function markBannerDirty(message) {
     hasUnsavedBannerChanges = true;
-    setBannerStatus(message || 'Unsaved emergency banner changes.', 'warning');
+    setBannerStatus(message || 'You have unpublished banner changes.', 'warning');
 }
 
 function clearBannerDirty(message) {
     hasUnsavedBannerChanges = false;
-    setBannerStatus(message || 'Emergency banner is synced with Firebase.', 'success');
+    setBannerStatus(message || 'Urgent banner is up to date.', 'success');
 }
 
 function buildBannerPresetGrid() {
@@ -467,7 +467,7 @@ function buildBannerPreviewMarkup(banner) {
     if (!previewBanner.enabled || !messageText) {
         return [
             '<div class="admin-empty-state">',
-            '<p>Turn the banner on and add a message to preview the sitewide emergency alert.</p>',
+            '<p>Turn the banner on and add a message to preview it here.</p>',
             '</div>'
         ].join('');
     }
@@ -667,7 +667,7 @@ function buildCredentialRows(slide) {
     if (!slide.credentials.length) {
         return [
             '<div class="admin-empty-state">',
-            '<p>Add checkmark lines only if you want to show special credentials or trust points on this slide.</p>',
+            '<p>Add trust points only if this slide needs credentials, certifications, or other highlights.</p>',
             '</div>'
         ].join('');
     }
@@ -678,18 +678,18 @@ function buildCredentialRows(slide) {
             credentialIndex,
             '">',
             '<label class="admin-field">',
-            '<span class="admin-field-label">Checkmark Line (EN)</span>',
+            '<span class="admin-field-label">Trust Point (EN)</span>',
             '<input type="text" data-role="credential-en" value="',
             escapeHtml(credential.en || ''),
             '" placeholder="Authorized Aviation Medical Examiner">',
             '</label>',
             '<label class="admin-field">',
-            '<span class="admin-field-label">Checkmark Line (ES)</span>',
+            '<span class="admin-field-label">Trust Point (ES)</span>',
             '<input type="text" data-role="credential-es" value="',
             escapeHtml(credential.es || ''),
             '" placeholder="Examinador autorizado">',
             '</label>',
-            '<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-credential">Remove</button>',
+            '<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-credential">Delete</button>',
             '</div>'
         ].join('');
     }).join('');
@@ -697,6 +697,9 @@ function buildCredentialRows(slide) {
 
 function buildSlideCard(slide, index) {
     const autoTranslateChecked = isSlideAutoTranslateEnabled(slide.id) ? ' checked' : '';
+    const expanded = isSlideExpanded(slide.id);
+    const statusLabel = slide.enabled ? 'Showing on homepage' : 'Hidden for now';
+    const toggleLabel = expanded ? 'Hide Details' : 'Open Details';
 
     return [
         '<article class="admin-slide-card" data-slide-index="',
@@ -712,29 +715,38 @@ function buildSlideCard(slide, index) {
         '<h2 class="admin-slide-name" data-role="slide-name">',
         escapeHtml(getSlideName(slide, index)),
         '</h2>',
+        '<p class="admin-slide-summary">Open this slide to update its text, button, colors, and Spanish version.</p>',
         '<div class="admin-slide-header-meta">',
         '<span class="admin-pill" data-role="slide-live-pill" data-state="',
         slide.enabled ? 'live' : 'disabled',
         '">',
-        slide.enabled ? 'Live on homepage' : 'Hidden from homepage',
+        statusLabel,
         '</span>',
-        '<span class="admin-pill" data-role="slide-accent-pill">Accent ',
+        '<span class="admin-pill" data-role="slide-accent-pill">Color ',
         escapeHtml(slide.accent),
         '</span>',
         '</div>',
         '</div>',
         '<div class="admin-slide-actions">',
-        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="move-up">Move Up</button>',
-        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="move-down">Move Down</button>',
-        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="duplicate-slide">Duplicate</button>',
-        '<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-slide">Remove</button>',
+        '<button class="admin-btn admin-btn-ghost admin-btn-small" type="button" data-action="toggle-slide" aria-expanded="',
+        expanded ? 'true' : 'false',
+        '">',
+        toggleLabel,
+        '</button>',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="move-up">Move Earlier</button>',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="move-down">Move Later</button>',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="duplicate-slide">Copy</button>',
+        '<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-slide">Delete</button>',
         '</div>',
         '</div>',
+        '<div class="admin-slide-body"',
+        expanded ? '' : ' hidden',
+        '>',
         '<div class="admin-slide-layout">',
         '<section class="admin-form-panel">',
         '<div class="admin-simple-strip">',
         '<div class="admin-simple-card">',
-        '<span class="admin-simple-label">Quick Options</span>',
+        '<span class="admin-simple-label">Basic Settings</span>',
         '<label class="admin-toggle admin-toggle-block">',
         '<input type="checkbox" data-field="enabled"',
         slide.enabled ? ' checked' : '',
@@ -749,7 +761,7 @@ function buildSlideCard(slide, index) {
         '</label>',
         '</div>',
         '<div class="admin-simple-card">',
-        '<span class="admin-simple-label">Accent Color</span>',
+        '<span class="admin-simple-label">Highlight Color</span>',
         '<div class="admin-color-picker">',
         '<input type="color" data-field="accent" value="',
         escapeHtml(slide.accent),
@@ -768,7 +780,7 @@ function buildSlideCard(slide, index) {
         '<div class="admin-copy-header">',
         '<div>',
         '<span class="admin-copy-badge">Step 1</span>',
-        '<h3 class="admin-copy-title">Write the slide in English</h3>',
+        '<h3 class="admin-copy-title">Write in English</h3>',
         '</div>',
         '<p class="admin-inline-hint">Start here. The Spanish side can fill automatically.</p>',
         '</div>',
@@ -778,7 +790,7 @@ function buildSlideCard(slide, index) {
         '<input type="text" data-field="pill-en" value="',
         escapeHtml(slide.pill.en),
         '" placeholder="Available Today">',
-        '<span class="admin-field-note">Optional. This is the small pill at the top.</span>',
+        '<span class="admin-field-note">Optional. This appears as the small label at the top.</span>',
         '</label>',
         '<label class="admin-field">',
         '<span class="admin-field-label">Main Title</span>',
@@ -825,7 +837,7 @@ function buildSlideCard(slide, index) {
         '<div class="admin-copy-header">',
         '<div>',
         '<span class="admin-copy-badge">Step 2</span>',
-        '<h3 class="admin-copy-title">Check the Spanish version</h3>',
+        '<h3 class="admin-copy-title">Review the Spanish version</h3>',
         '</div>',
         '<div class="admin-copy-actions">',
         '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="translate-slide">Translate to Spanish</button>',
@@ -836,7 +848,7 @@ function buildSlideCard(slide, index) {
         '<input type="checkbox" data-role="slide-auto-translate"',
         autoTranslateChecked,
         '>',
-        '<span>Keep Spanish filled automatically for this slide</span>',
+        '<span>Keep Spanish updated automatically for this slide</span>',
         '</label>',
         '<div class="admin-field-grid admin-field-grid-single">',
         '<label class="admin-field">',
@@ -874,7 +886,7 @@ function buildSlideCard(slide, index) {
         '<input type="text" data-field="ctaLabel-es" value="',
         escapeHtml(slide.ctaLabel.es),
         '" placeholder="Programar Cita">',
-        '<span class="admin-field-note">You can fine-tune the automatic translation here.</span>',
+        '<span class="admin-field-note">Review or adjust the Spanish wording here.</span>',
         '</label>',
         '</div>',
         '</section>',
@@ -882,7 +894,7 @@ function buildSlideCard(slide, index) {
         '</section>',
         '<div class="admin-side-column">',
         '<section class="admin-side-panel">',
-        '<h3 class="admin-panel-title">Live Preview</h3>',
+        '<h3 class="admin-panel-title">Preview</h3>',
         '<div class="admin-preview" data-role="slide-preview">',
         slideshow.buildPreviewMarkup(slide, 'en'),
         '</div>',
@@ -890,15 +902,16 @@ function buildSlideCard(slide, index) {
         '<section class="admin-side-panel">',
         '<div class="admin-credentials-head">',
         '<div>',
-        '<h3 class="admin-panel-title">Optional Checkmark Lines</h3>',
-        '<p class="admin-inline-hint">Only use this if the slide needs credential callouts like FAA, USCIS, or other special highlights.</p>',
+        '<h3 class="admin-panel-title">Extra Trust Points</h3>',
+        '<p class="admin-inline-hint">Use this only when the slide needs certifications, approvals, or other trust-building highlights.</p>',
         '</div>',
-        '<button class="admin-btn admin-btn-ghost admin-btn-small" type="button" data-action="add-credential">Add Checkmark Line</button>',
+        '<button class="admin-btn admin-btn-ghost admin-btn-small" type="button" data-action="add-credential">Add Trust Point</button>',
         '</div>',
         '<div class="admin-credential-list">',
         buildCredentialRows(slide),
         '</div>',
         '</section>',
+        '</div>',
         '</div>',
         '</div>',
         '</article>'
@@ -1088,7 +1101,7 @@ function refreshSlideCard(card, slide, index) {
     }
 
     if (livePill) {
-        livePill.textContent = slide.enabled ? 'Live on homepage' : 'Hidden from homepage';
+        livePill.textContent = slide.enabled ? 'Showing on homepage' : 'Hidden for now';
         livePill.dataset.state = slide.enabled ? 'live' : 'disabled';
     }
 
@@ -1101,7 +1114,7 @@ function refreshSlideCard(card, slide, index) {
     }
 
     if (accentPill) {
-        accentPill.textContent = 'Accent ' + slide.accent;
+        accentPill.textContent = 'Color ' + slide.accent;
     }
 }
 
@@ -1170,6 +1183,7 @@ function clearEditorState() {
     slides = [];
     remoteSlides = store.getSlides();
     hasUnsavedChanges = false;
+    expandedSlideId = null;
     slideAutoTranslateState.clear();
     translationRuns.clear();
     renderEditors();
@@ -1188,15 +1202,21 @@ function applyRemoteSlides(nextSlides, message, force) {
     remoteSlides = cloneSlides(nextSlides);
     store.setRemoteSlides(remoteSlides);
 
+    if (!expandedSlideId || !remoteSlides.some(function (slide) {
+        return slide.id === expandedSlideId;
+    })) {
+        expandedSlideId = remoteSlides.length ? remoteSlides[0].id : null;
+    }
+
     if (!slides.length || force || !hasUnsavedChanges) {
         slides = cloneSlides(remoteSlides);
         renderEditors();
-        clearDirty(message || 'Homepage slideshow is synced with Firebase.');
+        clearDirty(message || 'Homepage slides are up to date.');
         return;
     }
 
     if (!isSameSlides(remoteSlides, slides)) {
-        setStatus('Firebase has newer slideshow changes. Reload Firebase copy or save your current edits first.', 'warning');
+        setStatus('A newer saved version of the homepage slides is available. Reload it or publish your current edits first.', 'warning');
     }
 }
 
@@ -1205,12 +1225,12 @@ function applyRemoteBanner(nextBanner, message, force) {
 
     if (force || !hasUnsavedBannerChanges) {
         applyBannerToForm(remoteEmergencyBanner);
-        clearBannerDirty(message || 'Emergency banner is synced with Firebase.');
+        clearBannerDirty(message || 'Urgent banner is up to date.');
         return;
     }
 
     if (JSON.stringify(remoteEmergencyBanner) !== JSON.stringify(emergencyBanner)) {
-        setBannerStatus('Firebase has newer emergency banner changes. Reload Firebase copy or save your current edits first.', 'warning');
+        setBannerStatus('A newer saved version of the urgent banner is available. Reload it or publish your current edits first.', 'warning');
     }
 }
 
@@ -1329,7 +1349,7 @@ async function translateBannerToSpanish(options) {
 
     try {
         if (!silent) {
-            setBannerStatus('Translating the emergency banner into Spanish...', 'info');
+            setBannerStatus('Translating the urgent banner into Spanish...', 'info');
         }
 
         const translatedBanner = await buildTranslatedBanner(bannerToTranslate);
@@ -1360,7 +1380,7 @@ async function translateBannerToSpanish(options) {
         bannerTranslateTimer = null;
 
         if (!silent) {
-            markBannerDirty('Spanish emergency banner text updated. Save to publish it.');
+            markBannerDirty('Spanish banner text updated. Publish when ready.');
         } else {
             renderBannerPreview();
         }
@@ -1382,7 +1402,7 @@ function copyBannerEnglishToSpanish() {
     cancelPendingBannerTranslation();
     emergencyBanner = copyBannerEnglishToSpanishData(readBannerFromForm());
     applyBannerToForm(emergencyBanner);
-    markBannerDirty('English banner text copied into the Spanish fields. Save to publish it.');
+    markBannerDirty('English banner text copied into the Spanish fields. Publish when ready.');
 }
 
 function scheduleBannerAutoTranslate() {
@@ -1506,7 +1526,7 @@ async function translateSlideById(slideId, options) {
         clearTranslationTimer(slideId);
 
         if (!silent) {
-            markDirty('Spanish translation updated. Save to publish it.');
+            markDirty('Spanish translation updated. Publish when ready.');
         } else {
             refreshMetrics();
         }
@@ -1565,7 +1585,7 @@ async function translateAllSlides() {
     setStatus(
         failureCount
             ? 'Translated ' + successCount + ' slides. ' + failureCount + ' slide(s) still need manual Spanish review.'
-            : 'Spanish translation updated for all slides. Save to publish it.',
+            : 'Spanish translation updated for all slides. Publish when ready.',
         failureCount ? 'warning' : 'success'
     );
     refreshMetrics();
@@ -1586,7 +1606,7 @@ function copyEnglishToSpanish(index) {
     cancelPendingTranslation(slides[index].id);
     slides[index] = copyEnglishToSpanishData(slides[index]);
     applySlideToCard(card, slides[index], index, { spanishOnly: true });
-    markDirty('English text copied into the Spanish fields. Save to publish it.');
+    markDirty('English text copied into the Spanish fields. Publish when ready.');
 }
 
 function scheduleAutoTranslate(slideId) {
@@ -1641,7 +1661,7 @@ function turnOffSlideAutoTranslate(card) {
         toggle.checked = false;
     }
 
-    setStatus('Automatic Spanish fill was turned off for this slide so your manual Spanish edits are not overwritten.', 'info');
+    setStatus('Automatic Spanish fill was turned off for this slide so your manual Spanish edits stay in place.', 'info');
 }
 
 function addSlide(slideData, message) {
@@ -1653,8 +1673,10 @@ function addSlide(slideData, message) {
     }
 
     slides.push(nextSlide);
+    expandedSlideId = nextSlide.id;
+    setActiveAdminTab('slides');
     renderEditors();
-    markDirty(message || 'New slide added. Save to publish it to Firebase.');
+    markDirty(message || 'New slide added. Publish when ready.');
 
     const cards = elements.editorList
         ? elements.editorList.querySelectorAll('.admin-slide-card')
@@ -1681,17 +1703,17 @@ function useTemplate(templateId) {
         return;
     }
 
-    addSlide(template.buildSlide(), template.name + ' template added. Save to publish it to Firebase.');
+    addSlide(template.buildSlide(), template.name + ' added. Publish when ready.');
 }
 
 async function reloadFromFirebase() {
-    if (hasUnsavedChanges && !window.confirm('Discard local edits and reload the latest slideshow from Firebase?')) {
+    if (hasUnsavedChanges && !window.confirm('Discard your current slide edits and reload the latest saved version?')) {
         return;
     }
 
     try {
         const latestSlides = await fetchHomepageSlides();
-        applyRemoteSlides(latestSlides, 'Reloaded latest Firebase slideshow.', true);
+        applyRemoteSlides(latestSlides, 'Latest saved homepage slides loaded.', true);
     } catch (error) {
         setStatus(getFriendlyFirebaseError(error), 'danger');
     }
@@ -1701,7 +1723,7 @@ async function saveSlides() {
     const currentUser = auth.currentUser;
 
     if (!currentUser) {
-        setStatus('Sign in with Firebase before saving slideshow changes.', 'danger');
+        setStatus('Sign in before publishing homepage slide changes.', 'danger');
         return;
     }
 
@@ -1715,21 +1737,23 @@ async function saveSlides() {
 
     try {
         const savedSlides = await saveHomepageSlides(candidateSlides, currentUser);
-        applyRemoteSlides(savedSlides, 'Homepage slideshow saved to Firebase.', true);
+        applyRemoteSlides(savedSlides, 'Homepage slides published.', true);
     } catch (error) {
         setStatus(getFriendlyFirebaseError(error), 'danger');
     }
 }
 
 function resetSlidesToDefault() {
-    if (!window.confirm('Load the original default slides into the editor? Save afterward to publish them to Firebase.')) {
+    if (!window.confirm('Load the starter slides into the editor? You can review them, then publish when ready.')) {
         return;
     }
 
     cancelAllPendingTranslations();
     slides = cloneSlides(store.defaultSlides);
+    expandedSlideId = slides.length ? slides[0].id : null;
+    setActiveAdminTab('slides');
     renderEditors();
-    markDirty('Default slides loaded locally. Save to publish them to Firebase.');
+    markDirty('Starter slides loaded. Publish when ready.');
 }
 
 function exportSlides() {
@@ -1752,7 +1776,7 @@ function exportSlides() {
     link.remove();
     window.URL.revokeObjectURL(url);
 
-    setStatus('JSON backup exported.', 'success');
+    setStatus('Backup downloaded.', 'success');
 }
 
 function importSlides(event) {
@@ -1769,15 +1793,17 @@ function importSlides(event) {
             const incomingSlides = Array.isArray(parsed) ? parsed : parsed.slides;
 
             if (!Array.isArray(incomingSlides) || !incomingSlides.length) {
-                throw new Error('The JSON file does not contain any slides.');
+                throw new Error('That backup file does not contain any slides.');
             }
 
             cancelAllPendingTranslations();
             slides = cloneSlides(incomingSlides);
+            expandedSlideId = slides.length ? slides[0].id : null;
+            setActiveAdminTab('slides');
             renderEditors();
-            markDirty('Backup loaded locally. Save to publish it to Firebase.');
+            markDirty('Backup loaded. Publish when ready.');
         } catch (error) {
-            setStatus(error.message || 'Unable to import that JSON file.', 'danger');
+            setStatus(error.message || 'That backup file could not be opened.', 'danger');
         } finally {
             event.target.value = '';
         }
@@ -1795,7 +1821,7 @@ function duplicateSlide(index) {
 
     const copy = JSON.parse(JSON.stringify(slides[index]));
     copy.id = '';
-    addSlide(copy, 'Slide duplicated. Save to publish it to Firebase.');
+    addSlide(copy, 'Slide copied. Publish when ready.');
 }
 
 function moveSlide(index, direction) {
@@ -1815,7 +1841,7 @@ function moveSlide(index, direction) {
     slides[index] = slides[targetIndex];
     slides[targetIndex] = movingSlide;
     renderEditors();
-    markDirty('Slide order updated. Save to publish it to Firebase.');
+    markDirty('Slide order updated. Publish when ready.');
 }
 
 function removeSlide(index) {
@@ -1834,9 +1860,13 @@ function removeSlide(index) {
         return;
     }
 
+    const removedSlideId = slides[index].id;
     slides.splice(index, 1);
+    if (expandedSlideId === removedSlideId) {
+        expandedSlideId = slides[index] ? slides[index].id : (slides[index - 1] ? slides[index - 1].id : null);
+    }
     renderEditors();
-    markDirty('Slide removed. Save to publish it to Firebase.');
+    markDirty('Slide removed. Publish when ready.');
 }
 
 function addCredential(index) {
@@ -1848,7 +1878,7 @@ function addCredential(index) {
 
     slides[index].credentials.push({ en: '', es: '' });
     renderEditors();
-    markDirty('Checkmark line added. Save to publish it to Firebase.');
+    markDirty('Trust point added. Publish when ready.');
 }
 
 function removeCredential(index, credentialIndex) {
@@ -1864,7 +1894,7 @@ function removeCredential(index, credentialIndex) {
 
     slides[index].credentials.splice(credentialIndex, 1);
     renderEditors();
-    markDirty('Checkmark line removed. Save to publish it to Firebase.');
+    markDirty('Trust point removed. Publish when ready.');
 }
 
 function handleEditorInput(event) {
@@ -1898,7 +1928,7 @@ function handleEditorInput(event) {
 
     slides[slideIndex] = readSlideFromCard(card);
     refreshSlideCard(card, slides[slideIndex], slideIndex);
-    markDirty('Unsaved slideshow changes.');
+    markDirty('You have unpublished slide changes.');
 
     if (shouldAutoTranslateTarget(event.target)) {
         scheduleAutoTranslate(card.dataset.slideId);
@@ -1922,7 +1952,11 @@ function handleEditorClick(event) {
     const card = actionTrigger.closest('.admin-slide-card');
     const slideIndex = card ? Number(card.dataset.slideIndex) : -1;
 
-    if (action === 'move-up') {
+    if (action === 'toggle-slide') {
+        if (card && card.dataset.slideId) {
+            toggleSlideExpanded(card.dataset.slideId);
+        }
+    } else if (action === 'move-up') {
         moveSlide(slideIndex, -1);
     } else if (action === 'move-down') {
         moveSlide(slideIndex, 1);
@@ -1948,7 +1982,7 @@ function handleEditorClick(event) {
             setCardFieldValue(card, 'accent', actionTrigger.dataset.color);
             slides[slideIndex] = readSlideFromCard(card);
             refreshSlideCard(card, slides[slideIndex], slideIndex);
-            markDirty('Accent color updated.');
+            markDirty('Highlight color updated.');
         }
     }
 }
@@ -1963,7 +1997,8 @@ function useBannerPreset(presetId) {
     }
 
     applyBannerToForm(preset.banner);
-    markBannerDirty(preset.label + ' banner template loaded. Save to publish it.');
+    setActiveAdminTab('banner');
+    markBannerDirty(preset.label + ' example loaded. Publish when ready.');
 
     if (isBannerAutoTranslateEnabled()) {
         window.setTimeout(function () {
@@ -1973,13 +2008,13 @@ function useBannerPreset(presetId) {
 }
 
 async function reloadBannerFromFirebase() {
-    if (hasUnsavedBannerChanges && !window.confirm('Discard local emergency banner edits and reload the latest Firebase copy?')) {
+    if (hasUnsavedBannerChanges && !window.confirm('Discard your current banner edits and reload the latest saved version?')) {
         return;
     }
 
     try {
         const latestBanner = await fetchEmergencyBanner();
-        applyRemoteBanner(latestBanner, 'Reloaded latest Firebase emergency banner.', true);
+        applyRemoteBanner(latestBanner, 'Latest saved urgent banner loaded.', true);
     } catch (error) {
         setBannerStatus(getFriendlyFirebaseError(error), 'danger');
     }
@@ -1990,7 +2025,7 @@ async function saveBanner() {
     const candidateBanner = readBannerFromForm();
 
     if (!currentUser) {
-        setBannerStatus('Sign in with Firebase before saving emergency banner changes.', 'danger');
+        setBannerStatus('Sign in before publishing urgent banner changes.', 'danger');
         return;
     }
 
@@ -2001,7 +2036,7 @@ async function saveBanner() {
 
     try {
         const savedBanner = await saveEmergencyBanner(candidateBanner, currentUser);
-        applyRemoteBanner(savedBanner, 'Emergency banner saved to Firebase.', true);
+        applyRemoteBanner(savedBanner, 'Urgent banner published.', true);
     } catch (error) {
         setBannerStatus(getFriendlyFirebaseError(error), 'danger');
     }
@@ -2015,7 +2050,7 @@ function resetBanner() {
     cancelPendingBannerTranslation();
     setBannerAutoTranslateEnabled(true);
     applyBannerToForm(createDefaultEmergencyBanner());
-    markBannerDirty('Emergency banner turned off locally. Save to publish this change.');
+    markBannerDirty('Urgent banner cleared. Publish when ready.');
 }
 
 function turnOffBannerAutoTranslate() {
@@ -2025,7 +2060,7 @@ function turnOffBannerAutoTranslate() {
 
     cancelPendingBannerTranslation();
     setBannerAutoTranslateEnabled(false);
-    setBannerStatus('Automatic Spanish fill was turned off for the emergency banner so your manual Spanish edits are not overwritten.', 'info');
+    setBannerStatus('Automatic Spanish fill was turned off for the banner so your manual Spanish edits stay in place.', 'info');
 }
 
 function handleBannerInput(event) {
@@ -2057,8 +2092,8 @@ function handleBannerInput(event) {
             cancelPendingBannerTranslation();
         }
         setBannerStatus(target.checked
-            ? 'Automatic Spanish fill is on for the emergency banner.'
-            : 'Automatic Spanish fill is off for the emergency banner. Use the Translate button when needed.', 'info');
+            ? 'Automatic Spanish fill is on for the banner.'
+            : 'Automatic Spanish fill is off for the banner. Use the Translate button when needed.', 'info');
         return;
     }
 
@@ -2072,7 +2107,7 @@ function handleBannerInput(event) {
 
     emergencyBanner = readBannerFromForm();
     renderBannerPreview();
-    markBannerDirty('Unsaved emergency banner changes.');
+    markBannerDirty('You have unpublished banner changes.');
 
     if (
         target.id === 'adminBannerPillEn'
@@ -2109,11 +2144,11 @@ function disconnectBannerListener() {
 
 async function connectSlidesListener() {
     disconnectSlidesListener();
-    setStatus('Loading slideshow from Firebase...', 'info');
+    setStatus('Loading homepage slides...', 'info');
 
     try {
         const initialSlides = await fetchHomepageSlides();
-        applyRemoteSlides(initialSlides, 'Slides loaded from Firebase.', true);
+        applyRemoteSlides(initialSlides, 'Homepage slides loaded.', true);
     } catch (error) {
         setStatus(getFriendlyFirebaseError(error), 'danger');
         slides = cloneSlides(store.getSlides());
@@ -2122,7 +2157,7 @@ async function connectSlidesListener() {
 
     unsubscribeSlides = subscribeToHomepageSlides(
         function (liveSlides) {
-            applyRemoteSlides(liveSlides, 'Slides synced from Firebase.');
+            applyRemoteSlides(liveSlides, 'Homepage slides updated.');
         },
         function (error) {
             setStatus(getFriendlyFirebaseError(error), 'danger');
@@ -2132,11 +2167,11 @@ async function connectSlidesListener() {
 
 async function connectBannerListener() {
     disconnectBannerListener();
-    setBannerStatus('Loading emergency banner from Firebase...', 'info');
+    setBannerStatus('Loading urgent banner...', 'info');
 
     try {
         const initialBanner = await fetchEmergencyBanner();
-        applyRemoteBanner(initialBanner, 'Emergency banner loaded from Firebase.', true);
+        applyRemoteBanner(initialBanner, 'Urgent banner loaded.', true);
     } catch (error) {
         setBannerStatus(getFriendlyFirebaseError(error), 'danger');
         applyBannerToForm(createDefaultEmergencyBanner());
@@ -2144,7 +2179,7 @@ async function connectBannerListener() {
 
     unsubscribeBanner = subscribeToEmergencyBanner(
         function (liveBanner) {
-            applyRemoteBanner(liveBanner, 'Emergency banner synced from Firebase.');
+            applyRemoteBanner(liveBanner, 'Urgent banner updated.');
         },
         function (error) {
             setBannerStatus(getFriendlyFirebaseError(error), 'danger');
@@ -2156,7 +2191,7 @@ async function handlePasswordReset() {
     const email = elements.emailInput ? elements.emailInput.value.trim() : '';
 
     if (!email) {
-        setLockMessage('Enter the Firebase admin email first, then request a reset link.', 'warning');
+        setLockMessage('Enter the admin email first, then request a reset link.', 'warning');
         if (elements.emailInput) {
             elements.emailInput.focus();
         }
@@ -2178,11 +2213,11 @@ async function handleLogin(event) {
     const password = elements.passwordInput ? elements.passwordInput.value : '';
 
     if (!email || !password) {
-        setLockMessage('Enter the Firebase admin email and password.', 'warning');
+        setLockMessage('Enter the admin email and password.', 'warning');
         return;
     }
 
-    setLockMessage('Signing in to Firebase...', 'info');
+    setLockMessage('Signing in...', 'info');
 
     try {
         await signInAdmin(email, password);
@@ -2221,9 +2256,14 @@ function initEvents() {
     if (elements.bannerPresetGrid) {
         elements.bannerPresetGrid.addEventListener('click', handleBannerClick);
     }
+    elements.tabButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            setActiveAdminTab(button.dataset.adminTab);
+        });
+    });
     elements.saveButton.addEventListener('click', saveSlides);
     elements.addButton.addEventListener('click', function () {
-        addSlide(store.createSlideTemplate(), 'Blank slide added. Save to publish it to Firebase.');
+        addSlide(store.createSlideTemplate(), 'Blank slide added. Publish when ready.');
     });
     elements.reloadButton.addEventListener('click', reloadFromFirebase);
     elements.resetButton.addEventListener('click', resetSlidesToDefault);
@@ -2283,16 +2323,16 @@ function initAuthObserver() {
             disconnectBannerListener();
             clearEditorState();
             clearBannerEditorState();
-            setStatus('Sign in with a Firebase admin user to edit the slideshow.', 'info');
-            setBannerStatus('Sign in with a Firebase admin user to edit the sitewide emergency banner.', 'info');
-            setLockMessage('Sign in with a Firebase email/password admin account.', 'info');
+            setStatus('Sign in to edit the homepage slides.', 'info');
+            setBannerStatus('Sign in to edit the urgent banner.', 'info');
+            setLockMessage('Sign in with the office admin email and password.', 'info');
             if (elements.emailInput) {
                 elements.emailInput.focus();
             }
             return;
         }
 
-        setLockMessage('Signed in as ' + (user.email || 'Firebase user') + '.', 'success');
+        setLockMessage('Signed in as ' + (user.email || 'admin user') + '.', 'success');
         await Promise.all([
             connectSlidesListener(),
             connectBannerListener()
@@ -2308,6 +2348,7 @@ function init() {
     renderTemplateGrid();
     buildBannerPresetGrid();
     applyBannerToForm(createDefaultEmergencyBanner());
+    setActiveAdminTab(activeAdminTab);
     initEvents();
     initAuthObserver();
 }

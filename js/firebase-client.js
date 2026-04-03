@@ -139,7 +139,7 @@ function getFriendlyFirebaseError(error) {
     }
 
     if (code === 'auth/user-disabled') {
-        return 'This Firebase user has been disabled.';
+        return 'This account has been disabled.';
     }
 
     if (code === 'auth/too-many-requests') {
@@ -151,14 +151,14 @@ function getFriendlyFirebaseError(error) {
     }
 
     if (code === 'permission-denied' || code === 'firestore/permission-denied') {
-        return 'Firebase denied access. Update the Firestore rules before using this editor.';
+        return 'This account does not currently have permission to edit the website.';
     }
 
     if (code === 'unavailable' || code === 'firestore/unavailable') {
-        return 'Firestore is temporarily unavailable.';
+        return 'The website service is temporarily unavailable.';
     }
 
-    return (error && error.message) || 'Firebase request failed.';
+    return (error && error.message) || 'We could not complete that request right now.';
 }
 
 async function fetchHomepageSlides() {

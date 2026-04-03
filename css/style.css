@@ -180,87 +180,96 @@ section[data-aos], div[data-aos] {
 .site-emergency-banner {
     width: 100%;
     background:
-        linear-gradient(135deg, rgba(128, 15, 26, 0.98), rgba(184, 28, 28, 0.96)),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+        radial-gradient(circle at top center, rgba(255, 255, 255, 0.18), transparent 44%),
+        linear-gradient(135deg, rgba(117, 16, 33, 0.99), rgba(181, 24, 39, 0.98) 48%, rgba(221, 50, 70, 0.96));
     color: #ffffff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 10px 24px rgba(113, 16, 24, 0.16);
+    box-shadow: 0 14px 28px rgba(113, 16, 24, 0.18);
 }
 
 .site-emergency-banner-inner {
-    width: min(1400px, calc(100% - 28px));
+    width: min(1280px, calc(100% - 28px));
     margin: 0 auto;
-    padding: 12px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
+    padding: 14px 0 15px;
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+    text-align: center;
 }
 
 .site-emergency-banner-copy {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    max-width: 980px;
 }
 
 .site-emergency-banner-pill {
     display: inline-flex;
     align-items: center;
-    min-height: 28px;
-    padding: 0 12px;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0 14px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    font-size: 11px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    white-space: nowrap;
+    text-align: center;
 }
 
 .site-emergency-banner-message {
-    font-size: 15px;
+    font-size: clamp(15px, 1.7vw, 18px);
     line-height: 1.45;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
 }
 
 .site-emergency-banner-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 38px;
-    padding: 0 16px;
+    min-height: 40px;
+    padding: 0 18px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    color: #ffffff;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #8d1326;
     font-size: 13px;
     font-weight: 800;
     white-space: nowrap;
+    box-shadow: 0 10px 24px rgba(57, 7, 16, 0.16);
 }
 
 .site-emergency-banner-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
+    background: #fff3f5;
+    color: #7d1021;
 }
 
 @media (max-width: 768px) {
     .site-emergency-banner-inner {
-        width: min(100% - 24px, 100%);
-        padding: 10px 0;
-        align-items: flex-start;
-        flex-direction: column;
+        width: min(100%, calc(100% - 20px));
+        padding: 12px 0 14px;
+        gap: 10px;
     }
 
     .site-emergency-banner-copy {
-        align-items: flex-start;
-        flex-direction: column;
         gap: 8px;
     }
 
     .site-emergency-banner-message {
         font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .site-emergency-banner-link {
+        max-width: 100%;
+        white-space: normal;
+        text-align: center;
     }
 }
 
