@@ -68,6 +68,7 @@ function initHeaderFooter() {
             .then(data => {
                 footerPlaceholder.innerHTML = data;
                 updateFooterLinks(basePath);
+                if (typeof window.mmcApplyLang === 'function') window.mmcApplyLang();
             })
             .catch(error => console.error('Error loading footer:', error));
     }

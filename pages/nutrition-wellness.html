@@ -18,6 +18,7 @@
     <link rel="preload" href="../includes/header.html" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="../js/header-footer-loader.js" as="script">
     <link rel="preload" href="../js/critical-header.js" as="script">
+    <script>try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}</script>
     <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
 
     <script>
@@ -28,9 +29,9 @@
                     colors: {
                         'brand-blue': '#0d47a1',
                         'brand-orange': '#ff8f00',
-                        'light-gray': '#fdfdff',
-                        'dark-gray': '#1a1d23',
-                        'medium-gray': '#5a6474',
+                        'light-gray': '#fafafa',
+                        'dark-gray': '#212121',
+                        'medium-gray': '#616161',
                         'light-blue-bg': '#f5f9ff',
                     }
                 }
@@ -423,6 +424,7 @@
     <div id="footer-placeholder" data-page-nav-stop="footer"></div>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../js/lang-toggle.js"></script>
     <script src="../js/header-footer-loader.js"></script>
     <script src="../js/main.js"></script>
     <script>

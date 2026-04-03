@@ -8,7 +8,7 @@
                     <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
-                    <span class="tracking-wide whitespace-nowrap">Call: (301) 208-2273</span>
+                    <span class="tracking-wide whitespace-nowrap" data-en="Call: (301) 208-2273" data-es="Llamar: (301) 208-2273">Call: (301) 208-2273</span>
                 </a>
                 
                 <div class="hidden sm:block w-px h-6 bg-white/30"></div>
@@ -17,7 +17,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
-                    <span class="tracking-wide whitespace-nowrap">Text: (301) 205-2293</span>
+                    <span class="tracking-wide whitespace-nowrap" data-en="Text: (301) 205-2293" data-es="Texto: (301) 205-2293">Text: (301) 205-2293</span>
                 </a>
                 
                 <div class="hidden md:block w-px h-6 bg-white/30"></div>
@@ -26,8 +26,18 @@
                     <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <span class="tracking-wide whitespace-nowrap text-xs md:text-sm">Mon-Thu 8am-7pm | Fri 8am-6pm | Sat/Sun 8am-1pm</span>
+                    <span class="tracking-wide whitespace-nowrap text-xs md:text-sm" data-en="Mon-Thu 8am-7pm | Fri 8am-6pm | Sat/Sun 8am-1pm" data-es="Lun-Jue 8am-7pm | Vie 8am-6pm | S&aacute;b/Dom 8am-1pm">Mon-Thu 8am-7pm | Fri 8am-6pm | Sat/Sun 8am-1pm</span>
                 </div>
+
+                <div class="w-px h-5 bg-white/30"></div>
+
+                <button id="lang-toggle" type="button" class="lang-toggle" aria-label="Switch to Spanish" title="Español">
+                    <svg class="lang-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                    </svg>
+                    <span class="lang-toggle-label" id="lang-label">ES</span>
+                </button>
             </div>
         </div>
     </div>
@@ -54,34 +64,34 @@
 
             <!-- Center navigation links -->
             <div class="main-header-links hidden xl:flex items-center justify-center gap-4 xl:gap-5 flex-wrap">
-                <a href="#" class="nav-link nav-home">Home</a>
+                <a href="#" class="nav-link nav-home" data-en="Home" data-es="Inicio">Home</a>
                 <div class="services-dropdown-wrapper relative">
                     <button class="nav-link flex items-center gap-2" id="services-button">
-                        <strong>Services</strong>
+                        <strong data-en="Services" data-es="Servicios">Services</strong>
                         <svg class="w-4 h-4 transition-transform" id="services-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div class="services-dropdown" id="services-dropdown">
-                        <a href="#" class="dropdown-link nav-urgent">Urgent & Primary Care</a>
-                        <a href="#" class="dropdown-link nav-derma">Dermatology</a>
-                        <a href="#" class="dropdown-link nav-occupational">Occupational Health</a>
-                        <a href="#" class="dropdown-link nav-acupuncture">Five Elements Acupuncture</a>
-                        <a href="#" class="dropdown-link nav-wellness">Wellness Center</a>
-                        <a href="#" class="dropdown-link nav-sports">Sports Medicine & Physical Therapy</a>
+                        <a href="#" class="dropdown-link nav-urgent" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</a>
+                        <a href="#" class="dropdown-link nav-derma" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</a>
+                        <a href="#" class="dropdown-link nav-occupational" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</a>
+                        <a href="#" class="dropdown-link nav-acupuncture" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</a>
+                        <a href="#" class="dropdown-link nav-wellness" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</a>
+                        <a href="#" class="dropdown-link nav-sports" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</a>
                     </div>
                 </div>
-                <a href="#" class="nav-link nav-about">About</a>
-                <a href="#" class="nav-link nav-insurance">Insurance</a>
-                <a href="#" class="nav-link contact-trigger" data-contact-trigger>Contact</a>
+                <a href="#" class="nav-link nav-about" data-en="About" data-es="Nosotros">About</a>
+                <a href="#" class="nav-link nav-insurance" data-en="Insurance" data-es="Seguros">Insurance</a>
+                <a href="#" class="nav-link contact-trigger" data-contact-trigger data-en="Contact" data-es="Contacto">Contact</a>
             </div>
 
             <!-- Right aligned buttons -->
             <div class="main-header-actions flex items-center gap-1.5 sm:gap-2 xl:gap-3 flex-shrink-0">
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="hidden xl:inline-flex btn btn-secondary whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="hidden xl:inline-flex btn btn-secondary whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5" data-en="Request Appointment" data-es="Solicitar Cita">
                     Request Appointment
                 </a>
-                <a href="https://15259-6.portal.athenahealth.com" target="_blank" class="hidden sm:inline-flex btn btn-primary whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
+                <a href="https://15259-6.portal.athenahealth.com" target="_blank" class="hidden sm:inline-flex btn btn-primary whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5" data-en="Patient Portal" data-es="Portal del Paciente">
                     Patient Portal
                 </a>
 
@@ -97,18 +107,21 @@
         <!-- Mobile Menu - Minimal and clean -->
         <div id="mobile-menu" class="mobile-menu hidden">
             <div class="mobile-menu-inner">
-                <a href="#" class="mobile-menu-item mobile-nav-home">Home</a>
-                <a href="#" class="mobile-menu-item mobile-nav-urgent">Urgent & Primary Care</a>
-                <a href="#" class="mobile-menu-item mobile-nav-derma">Dermatology</a>
-                <a href="#" class="mobile-menu-item mobile-nav-occupational">Occupational Health</a>
-                <a href="#" class="mobile-menu-item mobile-nav-acupuncture">Five Elements Acupuncture</a>
-                <a href="#" class="mobile-menu-item mobile-nav-wellness">Wellness Center</a>
-                <a href="#" class="mobile-menu-item mobile-nav-sports">Sports Medicine</a>
-                <a href="#" class="mobile-menu-item mobile-nav-about">About</a>
-                <a href="#" class="mobile-menu-item mobile-nav-insurance">Insurance</a>
-                <a href="#" class="mobile-menu-item contact-trigger" data-contact-trigger>Contact</a>
-                <a href="https://15259-6.portal.athenahealth.com/" target="_blank" class="mobile-menu-item mobile-menu-portal sm:hidden">
+                <a href="#" class="mobile-menu-item mobile-nav-home" data-en="Home" data-es="Inicio">Home</a>
+                <a href="#" class="mobile-menu-item mobile-nav-urgent" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</a>
+                <a href="#" class="mobile-menu-item mobile-nav-derma" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</a>
+                <a href="#" class="mobile-menu-item mobile-nav-occupational" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</a>
+                <a href="#" class="mobile-menu-item mobile-nav-acupuncture" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</a>
+                <a href="#" class="mobile-menu-item mobile-nav-wellness" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</a>
+                <a href="#" class="mobile-menu-item mobile-nav-sports" data-en="Sports Medicine" data-es="Medicina Deportiva">Sports Medicine</a>
+                <a href="#" class="mobile-menu-item mobile-nav-about" data-en="About" data-es="Nosotros">About</a>
+                <a href="#" class="mobile-menu-item mobile-nav-insurance" data-en="Insurance" data-es="Seguros">Insurance</a>
+                <a href="#" class="mobile-menu-item contact-trigger" data-contact-trigger data-en="Contact" data-es="Contacto">Contact</a>
+                <a href="https://15259-6.portal.athenahealth.com/" target="_blank" class="mobile-menu-item mobile-menu-portal sm:hidden" data-en="Patient Portal" data-es="Portal del Paciente">
                     Patient Portal
+                </a>
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="mobile-menu-item mobile-menu-schedule" data-en="Schedule Appointment" data-es="Programar Cita">
+                    Schedule Appointment
                 </a>
             </div>
         </div>
@@ -126,8 +139,8 @@
             </svg>
         </button>
 
-        <h2 id="contact-modal-title" class="contact-modal-title">Contact Montgomery Medical Clinic</h2>
-        <p class="contact-intro">Reach out in the way that fits you best. Our care team responds quickly during office hours and actively monitors urgent messages after hours.</p>
+        <h2 id="contact-modal-title" class="contact-modal-title" data-en="Contact Montgomery Medical Clinic" data-es="Contactar Montgomery Medical Clinic">Contact Montgomery Medical Clinic</h2>
+        <p class="contact-intro" data-en="Reach out in the way that fits you best. Our care team responds quickly during office hours and actively monitors urgent messages after hours." data-es="Cont&aacute;ctenos de la manera que m&aacute;s le convenga. Nuestro equipo de atenci&oacute;n responde r&aacute;pidamente durante el horario de oficina y monitorea mensajes urgentes fuera de horario.">Reach out in the way that fits you best. Our care team responds quickly during office hours and actively monitors urgent messages after hours.</p>
 
         <div class="contact-modal-body">
             <!-- Contact Methods Row -->
@@ -138,9 +151,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
                     <div class="contact-text">
-                        <span class="contact-label">Call Us</span>
+                        <span class="contact-label" data-en="Call Us" data-es="Ll&aacute;menos">Call Us</span>
                         <span class="contact-value">(301) 208-2273</span>
-                        <span class="contact-subtext">Speak with care coordinators</span>
+                        <span class="contact-subtext" data-en="Speak with care coordinators" data-es="Hable con coordinadores de atenci&oacute;n">Speak with care coordinators</span>
                     </div>
                 </a>
 
@@ -150,9 +163,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                     </svg>
                     <div class="contact-text">
-                        <span class="contact-label">Text Us</span>
+                        <span class="contact-label" data-en="Text Us" data-es="Env&iacute;e Texto">Text Us</span>
                         <span class="contact-value">(301) 205-2293</span>
-                        <span class="contact-subtext">Quick questions & updates</span>
+                        <span class="contact-subtext" data-en="Quick questions &amp; updates" data-es="Preguntas r&aacute;pidas y actualizaciones">Quick questions & updates</span>
                     </div>
                 </a>
 
@@ -162,9 +175,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
                     <div class="contact-text">
-                        <span class="contact-label">Email Us</span>
+                        <span class="contact-label" data-en="Email Us" data-es="Env&iacute;e Correo">Email Us</span>
                         <span class="contact-value">providers@mmccare.com</span>
-                        <span class="contact-subtext">Reply within one business day</span>
+                        <span class="contact-subtext" data-en="Reply within one business day" data-es="Respuesta en un d&iacute;a h&aacute;bil">Reply within one business day</span>
                     </div>
                 </a>
             </div>
@@ -177,13 +190,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <div class="contact-text">
-                        <span class="contact-label">Office Hours</span>
+                        <span class="contact-label" data-en="Office Hours" data-es="Horario de Oficina">Office Hours</span>
                         <ul class="contact-hours-list">
-                            <li><span>Mon – Thu</span><span>8 AM – 7 PM</span></li>
-                            <li><span>Friday</span><span>8 AM – 6 PM</span></li>
-                            <li><span>Sat/Sun</span><span>8 AM – 1 PM</span></li>
+                            <li><span data-en="Mon – Thu" data-es="Lun – Jue">Mon – Thu</span><span>8 AM – 7 PM</span></li>
+                            <li><span data-en="Friday" data-es="Viernes">Friday</span><span>8 AM – 6 PM</span></li>
+                            <li><span data-en="Sat/Sun" data-es="S&aacute;b/Dom">Sat/Sun</span><span>8 AM – 1 PM</span></li>
                         </ul>
-                        <span class="contact-note">Live answers during hours. Urgent messages monitored 24/7.</span>
+                        <span class="contact-note" data-en="Live answers during hours. Urgent messages monitored 24/7." data-es="Respuestas en vivo durante el horario. Mensajes urgentes monitoreados 24/7.">Live answers during hours. Urgent messages monitored 24/7.</span>
                     </div>
                 </div>
 
@@ -194,13 +207,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
                     <div class="contact-text">
-                        <span class="contact-label">Visit Us</span>
+                        <span class="contact-label" data-en="Visit Us" data-es="Vis&iacute;tenos">Visit Us</span>
                         <span class="contact-value">
                             800 S Frederick Ave, Suite 110<br>
                             Gaithersburg, MD 20877
                         </span>
-                        <span class="contact-directions">Get Directions →</span>
-                        <span class="contact-note">Walk-ins welcome. Schedule for guaranteed same-day care.</span>
+                        <span class="contact-directions" data-en="Get Directions →" data-es="Obtener Direcciones →">Get Directions →</span>
+                        <span class="contact-note" data-en="Walk-ins welcome. Schedule for guaranteed same-day care." data-es="Se aceptan pacientes sin cita. Programe para atenci&oacute;n garantizada el mismo d&iacute;a.">Walk-ins welcome. Schedule for guaranteed same-day care.</span>
                     </div>
                 </a>
             </div>
@@ -208,7 +221,6 @@
     </div>
 </div>
 
-<script>
 // CRITICAL FAILSAFE: Force header to stay fixed at all times
 (function enforceFixedHeader() {
     const stickyHeader = document.querySelector('.site-sticky-header');

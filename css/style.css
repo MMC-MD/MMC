@@ -577,6 +577,29 @@ body.mobile-menu-open {
         color: #fff;
     }
 
+    #mobile-menu .mobile-menu-schedule {
+        margin-top: 0.35rem;
+        margin-inline: 0.6rem;
+        background: #ff8f00;
+        color: #fff;
+        border-radius: 999px;
+        justify-content: center;
+        font-weight: 700;
+        padding: 0.75rem 0.85rem;
+        letter-spacing: 0.01em;
+    }
+
+    #mobile-menu .mobile-menu-schedule:hover,
+    #mobile-menu .mobile-menu-schedule:focus-visible {
+        background: #e67e00;
+        color: #fff;
+    }
+
+    #mobile-menu .mobile-menu-schedule:active {
+        background: #cc7000;
+        color: #fff;
+    }
+
 }
 
 @media (max-width: 640px) {

@@ -16,11 +16,16 @@
     <link rel="stylesheet" href="css/dropdown-fix.css">
     <link rel="stylesheet" href="css/header-fix.css">
     <link rel="stylesheet" href="css/contact-modal.css">
+    <link rel="stylesheet" href="css/lang-toggle.css">
     <link rel="preload" href="includes/header.html" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="js/header-footer-loader.js" as="script">
     <link rel="preload" href="js/critical-header.js" as="script">
+    <script>
+        // Set lang attribute early to avoid flash of wrong language
+        try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}
+    </script>
     <link rel="preload" href="images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
-    <link rel="preload" href="images/PhotoWide.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="images/NewImage.webp" as="image" type="image/webp" fetchpriority="high">
 
     <script>
         tailwind.config = {
@@ -60,412 +65,269 @@
             min-width: 44px;
         }
 
-        /* Critical: Only show one slide at a time */
-        .slideshow-container .slide {
-            display: none !important;
-            animation: fadeIn 1.5s;
-        }
-        .slideshow-container .slide.active {
-            display: flex !important;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
         /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
-            /* Prevent text from being too small */
-            body {
-                font-size: 16px;
-            }
-
-            /* Hero section mobile optimization */
-            .page-header h1 {
-                font-size: 2rem !important;
-                line-height: 1.2 !important;
-            }
-
-            /* Slideshow mobile adjustments */
-            .slideshow-container {
-                padding: 0.75rem !important;
-                margin: 0 -1rem;
-            }
-            
-            .slide {
-                padding: 1rem !important;
-                min-height: 180px !important;
-                flex-direction: column;
-            }
-            
-            .slide h3 {
-                font-size: 1.125rem !important;
-                line-height: 1.3 !important;
-                text-align: center;
-            }
-            
-            .slide .inline-flex {
-                font-size: 0.75rem !important;
-                padding: 0.5rem 0.75rem !important;
-                white-space: normal;
-                text-align: center;
-            }
-            
-            /* Navigation arrows mobile */
-            .slideshow-container button {
-                width: 36px;
-                height: 36px;
-                padding: 0.5rem;
-            }
-            
-            .slideshow-container button svg {
-                width: 16px;
-                height: 16px;
-            }
-            
-            /* Better touch targets */
-            .btn {
-                min-height: 48px;
-                touch-action: manipulation;
-                padding: 0.875rem 1.5rem;
-                font-size: 1rem;
-            }
-            
-            /* Service cards mobile spacing */
-            #services .grid {
-                gap: 1rem;
-                grid-template-columns: 1fr;
-            }
-
-            /* Stats section mobile */
-            .stat-number {
-                font-size: 2.5rem !important;
-            }
-
-            /* Cards on mobile */
-            .card {
-                padding: 1.5rem !important;
-            }
+            body { font-size: 16px; }
+            .page-header h1 { font-size: 2rem !important; line-height: 1.2 !important; }
+            .btn { min-height: 48px; touch-action: manipulation; padding: 0.875rem 1.5rem; font-size: 1rem; }
+            #services .grid { gap: 1rem; grid-template-columns: 1fr; }
+            .stat-number { font-size: 2.5rem !important; }
+            .card { padding: 1.5rem !important; }
         }
-        
-        @media (max-width: 640px) {
-            /* Mobile Banner Container - Clean Apple-Style Design */
-            .slideshow-container {
-                padding: 0 1rem !important;
-                margin: 0 auto;
-                border: none !important;
-                box-shadow: none !important;
-                background: transparent !important;
-                max-width: 100%;
-            }
 
-            /* Hide navigation arrows on mobile */
-            .slideshow-container button {
-                display: none;
-            }
-
-            /* Mobile Slide Card - Clean & Simple */
-            .slideshow-container .slide {
-                position: relative;
-                padding: 2rem 1.5rem !important;
-                border-radius: 18px;
-                align-items: center !important;
-                justify-content: center;
-                flex-direction: column !important;
-                gap: 1rem;
-                text-align: center !important;
-
-                /* Simple solid gradient - no complex effects */
-                background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
-
-                /* Clean, minimal shadow */
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-
-                min-height: 360px !important;
-                overflow: hidden;
-            }
-
-            /* No ambient effects - keep it clean */
-
-            /* Simple gradient variations per slide */
-            .slideshow-container .slide:nth-of-type(1) {
-                background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
-            }
-
-            .slideshow-container .slide:nth-of-type(2) {
-                background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
-            }
-
-            .slideshow-container .slide:nth-of-type(3) {
-                background: linear-gradient(135deg, #0d47a1 0%, #1e88e5 100%);
-            }
-
-            .slideshow-container .slide:nth-of-type(4) {
-                background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
-            }
-
-            /* Icon Container - Centered Above Content */
-            .slideshow-container .slide .shrink-0.relative {
-                position: relative;
-                top: auto;
-                right: auto;
-                width: 64px;
-                height: 64px;
-                border-radius: 16px;
-                background: rgba(255, 255, 255, 0.2);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: none;
-                box-shadow: none;
-                margin: 0 auto 1rem auto;
-            }
-
-            /* Hide gradient blur background behind icon */
-            .slideshow-container .slide .shrink-0.relative > .absolute {
-                display: none;
-            }
-
-            /* Inner icon container - simplified */
-            .slideshow-container .slide .shrink-0.relative > div:last-child {
-                width: 48px !important;
-                height: 48px !important;
-                border-radius: 12px;
-                background: rgba(255, 255, 255, 0.25);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                box-shadow: none;
-            }
-
-            /* Icon sizing */
-            .slideshow-container .slide .shrink-0.relative svg,
-            .slideshow-container .slide .shrink-0.relative img {
-                width: 28px !important;
-                height: 28px !important;
-                color: #ffffff;
-                filter: none;
-            }
-
-            /* Badge/Label Styling - Cleaner */
-            .slideshow-container .slide span.inline-flex {
-                background: rgba(255, 255, 255, 0.2);
-                border: none;
-                color: #ffffff;
-                font-size: 0.6875rem;
-                font-weight: 600;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-                padding: 0.4rem 0.85rem;
-                border-radius: 100px;
-                box-shadow: none;
-                backdrop-filter: none;
-                display: inline-block;
-                margin: 0 auto;
-            }
-
-            /* Heading Styling - Better Typography */
-            .slideshow-container .slide h3 {
-                font-size: 1.5rem !important;
-                line-height: 1.3 !important;
-                font-weight: 700 !important;
-                color: #ffffff;
-                margin-top: 0.5rem;
-                margin-bottom: 0.75rem;
-                letter-spacing: -0.01em;
-                text-shadow: none;
-                text-align: center !important;
-            }
-
-            /* Accent text in headings - Softer color */
-            .slideshow-container .slide h3 span {
-                color: rgba(255, 255, 255, 0.95);
-                background: none;
-                font-weight: 700;
-            }
-
-            /* Description text - Better readability */
-            .slideshow-container .slide p {
-                color: rgba(255, 255, 255, 0.85) !important;
-                font-size: 0.9375rem !important;
-                line-height: 1.5 !important;
-                margin-bottom: 1.25rem !important;
-                font-weight: 400;
-                text-align: center !important;
-            }
-
-            /* Content wrapper adjustments */
-            .slideshow-container .slide .flex.items-center {
-                width: 100%;
-                justify-content: center !important;
-                flex-direction: column !important;
-            }
-
-            /* Feature list styling */
-            .slideshow-container .slide .flex.items-center.flex-wrap {
-                flex-direction: column !important;
-                align-items: center !important;
-                gap: 0.75rem !important;
-                margin-bottom: 0.5rem !important;
-            }
-
-            /* Individual feature items with checkmarks */
-            .slideshow-container .slide .flex.items-center.flex-wrap > div {
-                display: flex !important;
-                flex-direction: row !important;
-                align-items: center !important;
-                gap: 0.5rem !important;
-                justify-content: center !important;
-            }
-
-            .slideshow-container .slide .flex.items-center.flex-wrap svg {
-                flex-shrink: 0 !important;
-                width: 18px !important;
-                height: 18px !important;
-            }
-
-            .slideshow-container .slide .flex.items-center.flex-wrap span {
-                color: rgba(255, 255, 255, 0.85) !important;
-                font-size: 0.875rem !important;
-                text-align: left !important;
-                line-height: 1.4 !important;
-                flex: 1 !important;
-            }
-
-            /* CTA Button - Clean iOS Style */
-            .slideshow-container .slide .flex.items-center a,
-            .slideshow-container .slide a {
-                width: 100%;
-                justify-content: center;
-                align-items: center;
-                display: inline-flex;
-                gap: 0.5rem;
-
-                border-radius: 12px !important;
-                background: #ffffff !important;
-                color: #0d47a1 !important;
-                border: none !important;
-
-                font-size: 0.9375rem !important;
-                font-weight: 600 !important;
-                padding: 0.875rem 1.25rem !important;
-
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-
-                transition: all 0.2s ease;
-            }
-
-            /* Button icon */
-            .slideshow-container .slide a svg {
-                width: 16px !important;
-                height: 16px !important;
-            }
-
-            /* Slideshow dots - Clean minimal design */
-            .slideshow-dots {
-                display: flex !important;
-                justify-content: center !important;
-                align-items: center !important;
-                gap: 8px !important;
-                margin-top: 1.5rem !important;
-                padding: 0.5rem 1rem !important;
-                position: relative !important;
-                z-index: 10 !important;
-            }
-
-            .slideshow-dot {
-                width: 8px !important;
-                height: 8px !important;
-                border-radius: 50% !important;
-                background: rgba(13, 71, 161, 0.3) !important;
-                cursor: pointer !important;
-                transition: all 0.2s ease !important;
-                min-width: 8px !important;
-                min-height: 8px !important;
-                flex-shrink: 0 !important;
-            }
-
-            .slideshow-dot.active {
-                background: #0d47a1 !important;
-                transform: scale(1.25) !important;
-                box-shadow: none !important;
-            }
-
-            /* Breadcrumb text sizing */
-            .breadcrumb {
-                font-size: 0.875rem;
-            }
-
-            /* Slide content wrapper for proper spacing */
-            .slideshow-container .slide .flex-1 {
-                padding-right: 0;
-                max-width: 100%;
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            /* Center all child divs in flex-1 */
-            .slideshow-container .slide .flex-1 > * {
-                text-align: center;
-                width: 100%;
-            }
+        /* ── Slideshow ── */
+        .slideshow-section {
+            background: #f5f5f7;
+            padding: 72px 24px 80px;
         }
-        
-        /* Clean & Aesthetic Slideshow Container */
-        .slideshow-container {
-            background: white;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            max-width: 100%;
+        .slideshow-wrapper {
+            max-width: 1060px;
+            margin: 0 auto;
+            border-radius: 24px;
+            box-shadow:
+                0 0 0 0.5px rgba(0,0,0,0.04),
+                0 4px 12px rgba(0,0,0,0.03),
+                0 16px 40px rgba(0,0,0,0.06);
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 24px;
             overflow: hidden;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        /* Slideshow Navigation Dots */
-        .slideshow-dots {
+
+        .slide-track {
+            position: relative;
+            width: 100%;
+            min-height: 340px;
+        }
+
+        /* ── Cards ── */
+        .slide-card {
+            position: absolute;
+            inset: 0;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            gap: 6px;
-            margin-top: 1rem;
+            text-align: center;
+            padding: 56px 48px 56px;
+            box-sizing: border-box;
+            background: #ffffff;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(6px);
+            transition:
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0.5s;
+            z-index: 1;
         }
-        
-        @media (min-width: 768px) {
-            .slideshow-dots {
-                gap: 8px;
-            }
+        .slide-card.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition:
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0s linear 0s;
+            z-index: 2;
         }
-        
-        .slideshow-dot {
-            width: 10px;
-            height: 10px;
+
+        /* Accent stripe at top of each card */
+        .slide-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72px;
+            height: 3px;
+            border-radius: 0 0 3px 3px;
+            background: var(--accent, #0d47a1);
+        }
+
+        /* ── Pill ── */
+        .slide-pill {
+            display: inline-flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 100px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            min-height: auto;
+            min-width: auto;
+            margin-bottom: 18px;
+            color: var(--accent, #0d47a1);
+            background: var(--accent-bg, rgba(13,71,161,0.06));
+        }
+
+        /* ── Title ── */
+        .slide-title {
+            font-size: clamp(24px, 3.2vw, 36px);
+            font-weight: 700;
+            color: #1d1d1f;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            margin: 0 0 12px 0;
+        }
+        .slide-title .accent {
+            color: var(--accent, #0d47a1);
+        }
+
+        /* ── Subtext ── */
+        .slide-sub {
+            font-size: 16px;
+            color: #86868b;
+            line-height: 1.5;
+            margin: 0 0 28px 0;
+            max-width: 520px;
+            font-weight: 400;
+        }
+
+        /* ── CTA Button ── */
+        .slide-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent, #0d47a1);
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 13px 34px;
+            border-radius: 980px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: auto;
+            min-width: auto;
+            letter-spacing: 0;
+        }
+        .slide-btn:hover {
+            filter: brightness(1.1);
+            transform: scale(1.03);
+            color: #fff;
+        }
+        .slide-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ── Credential list ── */
+        .slide-creds {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 8px 0 0 0;
+        }
+        .slide-cred {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1d1d1f;
+            background: var(--accent-bg, rgba(13,71,161,0.06));
+            padding: 10px 20px;
+            border-radius: 980px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .slide-cred-icon {
+            width: auto;
+            height: auto;
+            min-width: auto;
+            min-height: auto;
+            font-size: 14px;
+            color: var(--accent, #0d47a1);
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        /* ── Breathing kicker ── */
+        .slide-kicker {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #86868b;
+            margin: 0 0 28px 0;
+        }
+
+        /* ── Controls bar ── */
+        .slide-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 16px 0 20px;
+            border-top: 1px solid rgba(0,0,0,0.04);
+            background: #fff;
+        }
+
+        .s-nav {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            min-height: 36px;
             border-radius: 50%;
-            background: #d1d5db;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: #fff;
             cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 10px;
-            min-height: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d1d1f;
+            transition: all 0.2s ease;
+            outline: none;
+            padding: 0;
+            position: relative;
         }
-        
-        @media (min-width: 768px) {
-            .slideshow-dot {
-                width: 12px;
-                height: 12px;
-                min-width: 12px;
-                min-height: 12px;
-            }
+        .s-nav::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-top: 1.5px solid currentColor;
+            border-right: 1.5px solid currentColor;
+            position: absolute;
         }
-        
-        .slideshow-dot.active {
-            background: #0d47a1;
-            transform: scale(1.2);
+        .s-prev::before { transform: rotate(-135deg); left: 14px; }
+        .s-next::before { transform: rotate(45deg); right: 14px; }
+        .s-nav:hover { background: #f5f5f7; border-color: rgba(0,0,0,0.12); }
+
+        .s-dots { display: flex; gap: 6px; align-items: center; }
+        .s-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 7px;
+            background: rgba(0,0,0,0.12);
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 7px;
+            min-height: 7px;
+            outline: none;
         }
-        
-        .slideshow-dot:hover {
-            background: #1976d2;
+        .s-dot:hover { background: rgba(0,0,0,0.25); }
+        .s-dot.active { width: 24px; background: #1d1d1f; }
+
+        @media (max-width: 600px) {
+            .slideshow-section { padding: 40px 16px 48px; }
+            .slideshow-wrapper { border-radius: 20px; }
+            .slide-container { border-radius: 20px; }
+            .slide-track { min-height: 290px; }
+            .slide-card { padding: 44px 24px 48px; }
+            .slide-title { font-size: 21px; }
+            .slide-sub { font-size: 14px; }
         }
-        
-        /* Fix service cards hover cutoff */
+
+
+                /* Fix service cards hover cutoff */
         #services {
             overflow: visible;
         }
@@ -504,9 +366,9 @@
 
     <section class="relative text-white flex items-center" style="z-index: 1; position: relative; isolation: isolate; aspect-ratio: 19.81 / 9.14; width: 100%; min-height: 500px; overflow: hidden;" data-aos="fade-in">
         <picture class="absolute inset-0 z-0 block">
-            <source srcset="images/PhotoWide.webp" type="image/webp">
-            <source srcset="images/PhotoWide.jpeg" type="image/jpeg">
-            <img src="images/PhotoWide.jpeg"
+            <source srcset="images/NewImage.webp" type="image/webp">
+            <source srcset="images/NewImage.jpeg" type="image/jpeg">
+            <img src="images/NewImage.jpeg"
                  alt="Expert doctors and primary care providers at Montgomery Medical Clinic urgent care center"
                  class="w-full h-full block"
                  style="object-fit: cover; object-position: center;"
@@ -521,22 +383,22 @@
 
         <div class="relative z-20 w-full h-full flex items-center justify-start" style="padding: clamp(2.5rem, 6vh, 4rem) clamp(1rem, 5vw, 4rem) clamp(2.5rem, 6vh, 4rem) clamp(1rem, 5vw, 4rem);">
             <div class="text-left" style="max-width: clamp(300px, 45%, 600px);">
-                <h1 style="font-size: clamp(1.5rem, 3.5vw, 3.5rem); line-height: 1.15; font-weight: 900; letter-spacing: -0.02em; margin-bottom: clamp(0.5rem, 1.5vw, 1rem);">
+                <h1 style="font-size: clamp(1.5rem, 3.5vw, 3.5rem); line-height: 1.15; font-weight: 900; letter-spacing: -0.02em; margin-bottom: clamp(0.5rem, 1.5vw, 1rem);" data-en="Compassionate, &lt;span class='text-brand-orange'&gt;Personalized&lt;/span&gt; Healthcare." data-es="Atenci&oacute;n M&eacute;dica &lt;span class='text-brand-orange'&gt;Personalizada&lt;/span&gt; y Compasiva.">
                     Compassionate,
                     <span class="text-brand-orange">Personalized</span>
                     Healthcare.
                 </h1>
-                <p style="color: rgba(229, 231, 235, 1); line-height: 1.5; font-size: clamp(0.875rem, 1.8vw, 1.125rem); margin-bottom: clamp(0.4rem, 1vw, 0.75rem);">
+                <p style="color: rgba(229, 231, 235, 1); line-height: 1.5; font-size: clamp(0.875rem, 1.8vw, 1.125rem); margin-bottom: clamp(0.4rem, 1vw, 0.75rem);" data-en="Our medical center provides comprehensive services with experienced doctors and primary care providers committed to patient-centered care. Visit our urgent care center for immediate medical attention or schedule an appointment at our clinic in Gaithersburg." data-es="Nuestro centro m&eacute;dico ofrece servicios integrales con m&eacute;dicos experimentados y proveedores de atenci&oacute;n primaria comprometidos con el cuidado centrado en el paciente. Visite nuestro centro de atenci&oacute;n urgente o programe una cita en nuestra cl&iacute;nica en Gaithersburg.">
                     Our medical center provides comprehensive services with experienced doctors and primary care providers committed to patient-centered care. Visit our urgent care center for immediate medical attention or schedule an appointment at our clinic in Gaithersburg.
                 </p>
-                <p style="color: rgba(255, 255, 255, 0.9); font-size: clamp(0.875rem, 1.8vw, 1.125rem); font-weight: 600; margin-bottom: clamp(0.75rem, 2vw, 1.5rem);">
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: clamp(0.875rem, 1.8vw, 1.125rem); font-weight: 600; margin-bottom: clamp(0.75rem, 2vw, 1.5rem);" data-en="Proudly serving Gaithersburg, Montgomery County, and the surrounding areas." data-es="Orgullosamente sirviendo a Gaithersburg, el Condado de Montgomery y las &aacute;reas circundantes.">
                     Proudly serving Gaithersburg, Montgomery County, and the surrounding areas.
                 </p>
                 <div class="flex flex-col sm:flex-row" style="gap: clamp(0.5rem, 1.2vw, 0.75rem);">
-                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary text-center" style="padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(1rem, 2.2vw, 1.75rem); font-size: clamp(0.75rem, 1.3vw, 1rem);">
+                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary text-center" style="padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(1rem, 2.2vw, 1.75rem); font-size: clamp(0.75rem, 1.3vw, 1rem);" data-en="Schedule Your Visit" data-es="Programe Su Visita">
                         Schedule Your Visit
                     </a>
-                    <a href="#services" class="btn btn-outline border-2 border-white text-white hover:bg-white hover:text-dark-gray text-center" style="padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(1rem, 2.2vw, 1.75rem); font-size: clamp(0.75rem, 1.3vw, 1rem);">
+                    <a href="#services" class="btn btn-outline border-2 border-white text-white hover:bg-white hover:text-dark-gray text-center" style="padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(1rem, 2.2vw, 1.75rem); font-size: clamp(0.75rem, 1.3vw, 1rem);" data-en="Explore Services" data-es="Explorar Servicios">
                         Explore Services
                     </a>
                 </div>
@@ -545,130 +407,49 @@
         </div>
     </section>
 
-    <section class="py-12 bg-gradient-to-b from-white to-light-blue-bg">
-        <div class="container mx-auto px-6 lg:px-8" data-aos="fade-up">
-            <div class="slideshow-container relative overflow-hidden rounded-2xl p-8 lg:p-12 max-w-6xl mx-auto">
-                
-                <!-- Navigation Arrows -->
-                <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-brand-blue/80 hover:bg-brand-blue text-white rounded-full p-2.5 shadow-md transition-all hover:scale-105" aria-label="Previous slide">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-brand-blue/80 hover:bg-brand-blue text-white rounded-full p-2.5 shadow-md transition-all hover:scale-105" aria-label="Next slide">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-                
-                <div class="slide active flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-10 relative z-10 text-center lg:text-left min-h-[200px] px-4 sm:px-8 lg:px-12">
-                    <div class="shrink-0 relative">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-300 to-purple-300 rounded-full blur-lg opacity-50"></div>
-                        <div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center shadow-md">
-                            <img src="icons/syringe.png" class="h-8 w-8 sm:h-10 sm:w-10" alt="Flu vaccination services at urgent care center"/>
+    <section class="slideshow-section">
+        <div class="slideshow-wrapper" data-aos="fade-up">
+            <div class="slide-container" id="slideshow">
+
+                <div class="slide-track" id="slideTrack">
+
+                    <div class="slide-card active" style="--accent: #e67e22; --accent-bg: rgba(230,126,34,0.08);">
+                        <span class="slide-pill" data-en="Available Today" data-es="Disponible Hoy">Available Today</span>
+                        <h2 class="slide-title" data-en="Seasonal &lt;span class='accent'&gt;Flu Shots&lt;/span&gt; Are Here" data-es="Las &lt;span class='accent'&gt;Vacunas contra la Gripe&lt;/span&gt; Est&aacute;n Aqu&iacute;">Seasonal <span class="accent">Flu Shots</span> Are Here</h2>
+                        <p class="slide-kicker" data-en="Protect yourself this season" data-es="Prot&eacute;jase esta temporada">Protect yourself this season</p>
+                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="slide-btn" data-en="Walk-Ins Welcome" data-es="Sin Cita Previa">Walk-Ins Welcome</a>
+                    </div>
+
+                    <div class="slide-card" style="--accent: #0d47a1; --accent-bg: rgba(13,71,161,0.06);">
+                        <span class="slide-pill" data-en="Specialized Services" data-es="Servicios Especializados">Specialized Services</span>
+                        <h2 class="slide-title" data-en="FAA &amp; Immigration &lt;span class='accent'&gt;Physicals&lt;/span&gt;" data-es="Ex&aacute;menes F&iacute;sicos de &lt;span class='accent'&gt;FAA e Inmigraci&oacute;n&lt;/span&gt;">FAA &amp; Immigration <span class="accent">Physicals</span></h2>
+                        <div class="slide-creds">
+                            <div class="slide-cred" data-en="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;Authorized Aviation Medical Examiner" data-es="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;Examinador M&eacute;dico de Aviaci&oacute;n Autorizado"><span class="slide-cred-icon">&#10003;</span>Authorized Aviation Medical Examiner</div>
+                            <div class="slide-cred" data-en="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;USCIS-Authorized Civil Surgeon" data-es="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;Cirujano Civil Autorizado por USCIS"><span class="slide-cred-icon">&#10003;</span>USCIS-Authorized Civil Surgeon</div>
                         </div>
                     </div>
-                    <div class="flex-1">
-                        <span class="inline-flex items-center gap-2 bg-gradient-to-r from-brand-orange to-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 shadow-md">Available Today</span>
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark-gray mb-2 sm:mb-3 leading-tight">
-                            Seasonal <span class="text-brand-blue">Flu Shots</span> Are Here
-                        </h3>
-                        <div class="flex items-center justify-center lg:justify-start gap-2 sm:gap-3 flex-wrap">
-                            <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm shadow-md hover:bg-deep-blue transition-all cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                Walk-ins Welcome at Our Clinic
-                            </a>
-                            <span class="text-medium-gray font-medium text-xs sm:text-sm">Protect yourself this season</span>
-                        </div>
+
+                    <div class="slide-card" style="--accent: #1976d2; --accent-bg: rgba(25,118,210,0.07);">
+                        <span class="slide-pill" data-en="Available Today" data-es="Disponible Hoy">Available Today</span>
+                        <h2 class="slide-title" data-en="Same Day &lt;span class='accent'&gt;Urgent Care&lt;/span&gt;" data-es="&lt;span class='accent'&gt;Atenci&oacute;n Urgente&lt;/span&gt; el Mismo D&iacute;a">Same Day <span class="accent">Urgent Care</span></h2>
+                        <p class="slide-sub" data-en="No appointment needed &bull; Walk-in basis at our medical center" data-es="Sin cita previa &bull; Atenci&oacute;n sin reserva en nuestro centro m&eacute;dico">No appointment needed &bull; Walk-in basis at our medical center</p>
+                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="slide-btn" data-en="Schedule Appointment" data-es="Programar Cita">Schedule Appointment</a>
                     </div>
+
+                    <div class="slide-card" style="--accent: #0d47a1; --accent-bg: rgba(13,71,161,0.06);">
+                        <h2 class="slide-title" data-en="&lt;span class='accent'&gt;One Stop&lt;/span&gt; For All Your Medical Needs" data-es="&lt;span class='accent'&gt;Todo en Un Solo Lugar&lt;/span&gt; Para Sus Necesidades M&eacute;dicas"><span class="accent">One Stop</span> For All Your Medical Needs</h2>
+                        <p class="slide-sub" data-en="Comprehensive multi-specialty care with expert doctors under one roof." data-es="Atenci&oacute;n integral multiespecialidad con m&eacute;dicos expertos bajo un mismo techo.">Comprehensive multi-specialty care with expert doctors under one roof.</p>
+                        <a href="#our-departments" class="slide-btn" data-en="Explore Our Services" data-es="Explorar Nuestros Servicios">Explore Our Services</a>
+                    </div>
+
                 </div>
 
-                <div class="slide flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-10 relative z-10 text-center lg:text-left min-h-[200px] px-4 sm:px-8 lg:px-12">
-                    <div class="shrink-0 relative">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-green-300 to-teal-300 rounded-full blur-lg opacity-50"></div>
-                        <div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center shadow-md p-3 sm:p-4">
-                            <img src="icons/OccupationalHealth.png" class="h-10 w-10 sm:h-12 sm:w-12 object-contain" alt="Specialized medical services at medical center"/>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <span class="inline-flex items-center gap-2 bg-gradient-to-r from-brand-orange to-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 shadow-md">Specialized Services</span>
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark-gray mb-2 sm:mb-3 leading-tight">
-                            <span class="text-brand-blue">FAA Physical Examinations</span> & Immigration Physicals
-                        </h3>
-                        <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-3 flex-wrap">
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-brand-blue" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-medium-gray font-medium text-xs sm:text-sm">Authorized Aviation Medical Examiner - All Three Classes</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-brand-blue" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-medium-gray font-medium text-xs sm:text-sm">USCIS-Authorized Civil Surgeon</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="slide-controls">
+                    <button class="s-nav s-prev" onclick="slideMove(-1)" type="button" aria-label="Previous"></button>
+                    <div class="s-dots" id="slideDots"></div>
+                    <button class="s-nav s-next" onclick="slideMove(1)" type="button" aria-label="Next"></button>
                 </div>
 
-                <div class="slide flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-10 relative z-10 text-center lg:text-left min-h-[200px] px-4 sm:px-8 lg:px-12">
-                    <div class="shrink-0 relative">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-sky-300 to-indigo-300 rounded-full blur-lg opacity-50"></div>
-                        <div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-full flex items-center justify-center shadow-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM7 11h5v5H7z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <span class="inline-flex items-center gap-2 bg-gradient-to-r from-brand-orange to-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2 shadow-md">Available Today</span>
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark-gray mb-2 sm:mb-3 leading-tight">
-                            Same Day <span class="text-brand-blue">Urgent Care Center</span> Appointments
-                        </h3>
-                        <div class="flex items-center justify-center lg:justify-start gap-2 sm:gap-3 flex-wrap">
-                            <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm shadow-md hover:bg-deep-blue transition-all cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                Walk-In Basis
-                            </a>
-                            <span class="text-medium-gray font-medium text-xs sm:text-sm">No appointment needed at our medical center</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slide flex-col lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-10 relative z-10 text-center lg:text-left min-h-[200px] px-4 sm:px-8 lg:px-12">
-                    <div class="shrink-0 relative">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-300 to-amber-200 rounded-full blur-lg opacity-50"></div>
-                        <div class="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-500 to-deep-blue rounded-full flex items-center justify-center shadow-md">
-                            <img src="icons/hospital.png" class="h-8 w-8 sm:h-10 sm:w-10" alt="Comprehensive medical care at clinic and urgent care center"/>
-                        </div>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-dark-gray mb-2 sm:mb-3 leading-tight">
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-orange">One Stop</span> For All Your Medical Needs
-                        </h3>
-                        <p class="text-medium-gray font-medium text-sm sm:text-base mb-3 sm:mb-4">Our medical center offers comprehensive multi-specialty care with expert doctors and primary care providers under one roof.</p>
-                        <div class="flex items-center justify-center lg:justify-start">
-                            <a href="#services" class="inline-flex items-center gap-2 bg-white text-dark-gray font-bold px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm shadow-md border border-gray-300 hover:bg-gray-100 transition-all">
-                                Explore Our Services
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-                                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slideshow-dots relative z-10 mt-4">
-                    <span class="slideshow-dot active" onclick="currentSlide(1)"></span>
-                    <span class="slideshow-dot" onclick="currentSlide(2)"></span>
-                    <span class="slideshow-dot" onclick="currentSlide(3)"></span>
-                    <span class="slideshow-dot" onclick="currentSlide(4)"></span>
-                </div>
             </div>
         </div>
     </section>
@@ -677,16 +458,16 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center">
                 <div class="stat-card" data-aos="fade-up">
-                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl">70+</div>
-                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base">Patients Seen Daily at Our Medical Center</div>
+                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="18+" data-es="18+">18+</div>
+                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Insurances Accepted" data-es="Seguros Aceptados">Insurances Accepted</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl">7</div>
-                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base">Departments with Expert Doctors</div>
+                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="7" data-es="7">7</div>
+                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Departments with Expert Doctors" data-es="Departamentos con M&eacute;dicos Expertos">Departments with Expert Doctors</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl">10K+</div>
-                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base">Patients Served Annually</div>
+                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="10K+" data-es="10K+">10K+</div>
+                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Patients Served Annually" data-es="Pacientes Atendidos Anualmente">Patients Served Annually</div>
                 </div>
             </div>
         </div>
@@ -695,8 +476,8 @@
     <section id="services" class="py-16 sm:py-20 md:py-24 lg:py-32 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 sm:mb-16 md:mb-20 max-w-3xl mx-auto" data-aos="fade-up">
-                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl">Our Departments</h2>
-                <p class="section-subtitle text-sm sm:text-base">Comprehensive healthcare services delivered by board-certified doctors and primary care providers at our medical center and urgent care center.</p>
+                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl" data-en="Our Departments" data-es="Nuestros Departamentos">Our Departments</h2>
+                <p class="section-subtitle text-sm sm:text-base" data-en="Comprehensive healthcare services delivered by board-certified doctors and primary care providers at our medical center and urgent care center." data-es="Servicios de salud integrales proporcionados por m&eacute;dicos certificados y proveedores de atenci&oacute;n primaria en nuestro centro m&eacute;dico y centro de atenci&oacute;n urgente.">Comprehensive healthcare services delivered by board-certified doctors and primary care providers at our medical center and urgent care center.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
@@ -704,9 +485,9 @@
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
                         <img src="icons/PrimaryCare.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Urgent care center and primary care provider services"/>
                     </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Urgent & Primary Care</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed">Your foundation for lifelong health from our experienced primary care providers, with urgent care center services for immediate medical needs at our clinic.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</h3>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Your foundation for lifelong health from our experienced primary care providers, with urgent care center services for immediate medical needs at our clinic." data-es="Su base para una salud de por vida con nuestros proveedores de atenci&oacute;n primaria experimentados, con servicios de atenci&oacute;n urgente para necesidades m&eacute;dicas inmediatas.">Your foundation for lifelong health from our experienced primary care providers, with urgent care center services for immediate medical needs at our clinic.</p>
+                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Urgent Care" data-es="Explorar Cuidado Urgente">
                         Explore Urgent Care
                     </span>
                 </a>
@@ -715,9 +496,9 @@
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
                         <img src="icons/Dermatology.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Dermatology skin care services icon"/>
                     </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Dermatology</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed">Advanced solutions for skin health, from managing conditions to aesthetic treatments.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</h3>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Advanced solutions for skin health, from managing conditions to aesthetic treatments." data-es="Soluciones avanzadas para la salud de la piel, desde el manejo de condiciones hasta tratamientos est&eacute;ticos.">Advanced solutions for skin health, from managing conditions to aesthetic treatments.</p>
+                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Dermatology" data-es="Explorar Dermatolog&iacute;a">
                         Explore Dermatology
                     </span>
                 </a>
@@ -726,9 +507,9 @@
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
                         <img src="icons/OccupationalHealth.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Occupational Health and workplace safety services icon"/>
                     </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Occupational Health</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed">Partnering with businesses to ensure a safe, healthy and compliant workforce- offering expert occupational health and immigration medical services.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</h3>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Partnering with businesses to ensure a safe, healthy and compliant workforce- offering expert occupational health and immigration medical services." data-es="Colaborando con empresas para garantizar una fuerza laboral segura, saludable y en cumplimiento, ofreciendo servicios expertos de salud ocupacional y servicios m&eacute;dicos de inmigraci&oacute;n.">Partnering with businesses to ensure a safe, healthy and compliant workforce- offering expert occupational health and immigration medical services.</p>
+                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Occupational Health" data-es="Explorar Salud Ocupacional">
                         Explore Occupational Health
                     </span>
                 </a>
@@ -737,9 +518,9 @@
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
                         <img src="icons/Accupuncture.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Five Elements Acupuncture and wellness services icon"/>
                     </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Five Elements Acupuncture</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed">Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</h3>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health." data-es="Medicina tradicional china y acupuntura para sanaci&oacute;n hol&iacute;stica, manejo del dolor y salud de la mujer.">Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health.</p>
+                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Acupuncture" data-es="Explorar Acupuntura">
                         Explore Acupuncture
                     </span>
                 </a>
@@ -748,9 +529,9 @@
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
                         <img src="icons/Nutrition.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Nutrition and Wellness Center services icon"/>
                     </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Wellness Center</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed">Nutrition and personal training to fuel your body and mind for optimal performance.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</h3>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Nutrition and personal training to fuel your body and mind for optimal performance." data-es="Nutrici&oacute;n y entrenamiento personal para potenciar su cuerpo y mente para un rendimiento &oacute;ptimo.">Nutrition and personal training to fuel your body and mind for optimal performance.</p>
+                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Wellness" data-es="Explorar Bienestar">
                         Explore Wellness
                     </span>
                 </a>
@@ -759,9 +540,9 @@
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
                         <img src="icons/PhysicalTherapy.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Sports medicine doctors at medical center"/>
                     </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4">Sports Medicine & Physical Therapy</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed">Comprehensive rehabilitation and sports injury care from our specialized doctors to get you back in the game stronger than before.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</h3>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Comprehensive rehabilitation and sports injury care from our specialized doctors to get you back in the game stronger than before." data-es="Rehabilitaci&oacute;n integral y atenci&oacute;n de lesiones deportivas de nuestros m&eacute;dicos especializados para que regrese m&aacute;s fuerte que antes.">Comprehensive rehabilitation and sports injury care from our specialized doctors to get you back in the game stronger than before.</p>
+                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Sports Medicine" data-es="Explorar Medicina Deportiva">
                         Explore Sports Medicine
                     </span>
                 </a>
@@ -780,15 +561,15 @@
                          fetchpriority="high">
                 </div>
                 <div class="mt-8 sm:mt-10 lg:mt-0 space-y-3 sm:space-y-4 md:space-y-6" data-aos="fade-left">
-                    <span class="text-brand-blue font-bold uppercase tracking-widest text-xs sm:text-sm">WHO WE ARE</span>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight">About Our Medical Center</h2>
-                    <p class="text-sm sm:text-base md:text-lg text-medium-gray leading-relaxed">
+                    <span class="text-brand-blue font-bold uppercase tracking-widest text-xs sm:text-sm" data-en="WHO WE ARE" data-es="QUI&Eacute;NES SOMOS">WHO WE ARE</span>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-tight" data-en="About Our Medical Center" data-es="Sobre Nuestro Centro M&eacute;dico">About Our Medical Center</h2>
+                    <p class="text-sm sm:text-base md:text-lg text-medium-gray leading-relaxed" data-en="Our medical center and urgent care center serve the Gaithersburg community with compassionate, patient-focused healthcare. Our clinic houses modern diagnostic equipment, including radiology services and physical therapy facilities, allowing our doctors and primary care providers to deliver coordinated care conveniently under one roof." data-es="Nuestro centro m&eacute;dico y centro de atenci&oacute;n urgente sirven a la comunidad de Gaithersburg con atenci&oacute;n m&eacute;dica compasiva y centrada en el paciente. Nuestra cl&iacute;nica cuenta con equipos de diagn&oacute;stico modernos, incluyendo servicios de radiolog&iacute;a e instalaciones de terapia f&iacute;sica.">
                         Our medical center and urgent care center serve the Gaithersburg community with compassionate, patient-focused healthcare. Our clinic houses modern diagnostic equipment, including radiology services and physical therapy facilities, allowing our doctors and primary care providers to deliver coordinated care conveniently under one roof.
                     </p>
-                    <p class="text-sm sm:text-base md:text-lg text-medium-gray leading-relaxed">
+                    <p class="text-sm sm:text-base md:text-lg text-medium-gray leading-relaxed" data-en="With decades of combined medical experience, our board-certified doctors and primary care physicians are dedicated to building trusted, long-term relationships with patients at our urgent care center and medical center. Every patient receives personalized attention from our primary care providers who truly understand your health journey." data-es="Con d&eacute;cadas de experiencia m&eacute;dica combinada, nuestros m&eacute;dicos certificados y m&eacute;dicos de atenci&oacute;n primaria est&aacute;n dedicados a construir relaciones de confianza a largo plazo con los pacientes. Cada paciente recibe atenci&oacute;n personalizada de proveedores que realmente entienden su camino de salud.">
                         With decades of combined medical experience, our board-certified doctors and primary care physicians are dedicated to building trusted, long-term relationships with patients at our urgent care center and medical center. Every patient receives personalized attention from our primary care providers who truly understand your health journey.
                     </p>
-                    <a href="pages/about.html" class="btn btn-primary inline-flex mt-4 sm:mt-6 text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3">Learn More About Our Clinic</a>
+                    <a href="pages/about.html" class="btn btn-primary inline-flex mt-4 sm:mt-6 text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3" data-en="Learn More About Our Clinic" data-es="Conozca M&aacute;s Sobre Nuestra Cl&iacute;nica">Learn More About Our Clinic</a>
                 </div>
             </div>
         </div>
@@ -797,9 +578,9 @@
     <section id="insurance" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 sm:mb-12 md:mb-16 max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Insurance Information for Our Clinic</h2>
-                <p class="section-subtitle text-sm sm:text-base leading-relaxed">Our medical center and urgent care center accept a wide variety of insurance plans to make quality healthcare from our doctors and primary care providers accessible to everyone in our community.</p>
-                <a href="pages/insurance.html" class="btn btn-primary mt-6 sm:mt-8 inline-flex text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3">
+                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" data-en="Insurance Information for Our Clinic" data-es="Informaci&oacute;n de Seguros de Nuestra Cl&iacute;nica">Insurance Information for Our Clinic</h2>
+                <p class="section-subtitle text-sm sm:text-base leading-relaxed" data-en="Our medical center and urgent care center accept a wide variety of insurance plans to make quality healthcare from our doctors and primary care providers accessible to everyone in our community." data-es="Nuestro centro m&eacute;dico y centro de atenci&oacute;n urgente aceptan una amplia variedad de planes de seguro para hacer que la atenci&oacute;n m&eacute;dica de calidad sea accesible para todos en nuestra comunidad.">Our medical center and urgent care center accept a wide variety of insurance plans to make quality healthcare from our doctors and primary care providers accessible to everyone in our community.</p>
+                <a href="pages/insurance.html" class="btn btn-primary mt-6 sm:mt-8 inline-flex text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3" data-en="View All Accepted Insurance Plans at Our Medical Center" data-es="Ver Todos los Planes de Seguro Aceptados">
                     View All Accepted Insurance Plans at Our Medical Center
                 </a>
             </div>
@@ -808,9 +589,9 @@
     <section class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-light-blue-bg">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-blue text-white rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-16 xl:p-20 text-center shadow-2xl" data-aos="fade-up">
-                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-3 sm:mb-4 md:mb-6 leading-tight">Ready to Experience Quality Care at Our Medical Center?</h2>
-                <p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-5 sm:mb-6 md:mb-8 lg:mb-10 text-white/90 max-w-2xl mx-auto leading-relaxed">Join thousands of satisfied patients who trust our urgent care center, primary care providers, and doctors at Montgomery Medical Clinic for their healthcare needs. Our clinic offers comprehensive services from experienced primary care physicians at our medical center.</p>
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-5 sm:px-6 md:px-8 lg:px-12 py-2.5 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-base lg:text-lg inline-flex">
+                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-3 sm:mb-4 md:mb-6 leading-tight" data-en="Ready to Experience Quality Care at Our Medical Center?" data-es="&iquest;Listo Para Experimentar Atenci&oacute;n de Calidad en Nuestro Centro M&eacute;dico?">Ready to Experience Quality Care at Our Medical Center?</h2>
+                <p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-5 sm:mb-6 md:mb-8 lg:mb-10 text-white/90 max-w-2xl mx-auto leading-relaxed" data-en="Join thousands of satisfied patients who trust our urgent care center, primary care providers, and doctors at Montgomery Medical Clinic for their healthcare needs. Our clinic offers comprehensive services from experienced primary care physicians at our medical center." data-es="&Uacute;nase a miles de pacientes satisfechos que conf&iacute;an en nuestro centro de atenci&oacute;n urgente, proveedores de atenci&oacute;n primaria y m&eacute;dicos de Montgomery Medical Clinic para sus necesidades de salud.">Join thousands of satisfied patients who trust our urgent care center, primary care providers, and doctors at Montgomery Medical Clinic for their healthcare needs. Our clinic offers comprehensive services from experienced primary care physicians at our medical center.</p>
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-5 sm:px-6 md:px-8 lg:px-12 py-2.5 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-base lg:text-lg inline-flex" data-en="Schedule Appointment at Our Clinic" data-es="Programar Cita en Nuestra Cl&iacute;nica">
                     Schedule Appointment at Our Clinic
                 </a>
             </div>
@@ -823,6 +604,7 @@
 
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/lang-toggle.js"></script>
     <script src="js/header-footer-loader.js"></script>
     <script src="js/main-simple.js"></script>
     <script>
@@ -831,124 +613,67 @@
             once: true,
         });
 
-        // Enhanced Slideshow functionality with dots
-        const SLIDE_INTERVAL = 12000;
-        let slideIndex = 1; // Track currently visible slide (1-based)
-        let slideTimeout;
+        // ── Slideshow ──
+        let sIdx = 0, sInterval, sTimer;
 
-        function normalizeIndex(index, total) {
-            if (total === 0) {
-                return 0;
-            }
-            return (index % total + total) % total;
+        function initSlideshow() {
+            const cards = document.querySelectorAll('.slide-card');
+            const dotsWrap = document.getElementById('slideDots');
+            if (!cards.length || !dotsWrap) return;
+            dotsWrap.innerHTML = '';
+            cards.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 's-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                dot.onclick = () => slideJump(i);
+                dotsWrap.appendChild(dot);
+            });
+            showSlide(0);
+            startAuto();
         }
 
-        function setSlide(targetIndex, slides, dots) {
-            const totalSlides = slides.length;
-            if (!totalSlides) {
-                return;
-            }
-
-            const normalizedIndex = normalizeIndex(targetIndex, totalSlides);
-
-            for (let i = 0; i < totalSlides; i++) {
-                slides[i].classList.remove("active");
-            }
-            for (let i = 0; i < dots.length; i++) {
-                dots[i].classList.remove("active");
-            }
-
-            slides[normalizedIndex].classList.add("active");
-            if (dots[normalizedIndex]) {
-                dots[normalizedIndex].classList.add("active");
-            }
-
-            slideIndex = normalizedIndex + 1;
+        function showSlide(n) {
+            const cards = document.querySelectorAll('.slide-card');
+            const dots = document.querySelectorAll('#slideDots .s-dot');
+            cards[sIdx].classList.remove('active');
+            if (dots[sIdx]) dots[sIdx].classList.remove('active');
+            sIdx = (n + cards.length) % cards.length;
+            cards[sIdx].classList.add('active');
+            if (dots[sIdx]) dots[sIdx].classList.add('active');
         }
 
-        function getCurrentSlideIndex(slides) {
-            if (!slides.length) {
-                return -1;
-            }
-
-            const presumedIndex = slideIndex - 1;
-            if (presumedIndex >= 0 && presumedIndex < slides.length && slides[presumedIndex].classList.contains("active")) {
-                return presumedIndex;
-            }
-
-            for (let i = 0; i < slides.length; i++) {
-                if (slides[i].classList.contains("active")) {
-                    return i;
-                }
-            }
-
-            return -1;
+        function startAuto() {
+            clearInterval(sInterval);
+            sInterval = setInterval(() => showSlide(sIdx + 1), 6000);
         }
 
-        function showSlides() {
-            const slides = document.querySelectorAll(".slideshow-container .slide");
-            const dots = document.querySelectorAll(".slideshow-dot");
-
-            if (!slides.length) {
-                return;
-            }
-
-            clearTimeout(slideTimeout);
-
-            const currentIndex = getCurrentSlideIndex(slides);
-            const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % slides.length;
-
-            setSlide(nextIndex, slides, dots);
-
-            slideTimeout = setTimeout(showSlides, SLIDE_INTERVAL);
-        }
-        
-        function currentSlide(n) {
-            const slides = document.querySelectorAll(".slideshow-container .slide");
-            const dots = document.querySelectorAll(".slideshow-dot");
-
-            if (!slides.length) {
-                return;
-            }
-
-            clearTimeout(slideTimeout);
-            setSlide(n - 1, slides, dots);
-            slideTimeout = setTimeout(showSlides, SLIDE_INTERVAL);
-        }
-        
-        function changeSlide(direction) {
-            const slides = document.querySelectorAll(".slideshow-container .slide");
-            const dots = document.querySelectorAll(".slideshow-dot");
-
-            if (!slides.length) {
-                return;
-            }
-
-            clearTimeout(slideTimeout);
-
-            let currentIndex = getCurrentSlideIndex(slides);
-            if (currentIndex === -1) {
-                currentIndex = 0;
-            }
-
-            const targetIndex = normalizeIndex(currentIndex + direction, slides.length);
-
-            setSlide(targetIndex, slides, dots);
-
-            slideTimeout = setTimeout(showSlides, SLIDE_INTERVAL);
+        function slideMove(n) {
+            clearInterval(sInterval); clearTimeout(sTimer);
+            showSlide(sIdx + n);
+            sTimer = setTimeout(startAuto, 6000);
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize slideshow - show first slide immediately
-            let slides = document.querySelectorAll(".slideshow-container .slide");
-            let dots = document.querySelectorAll(".slideshow-dot");
-            
-            if (slides.length > 0) {
-                setSlide(0, slides, dots);
-            }
+        function slideJump(index) {
+            clearInterval(sInterval); clearTimeout(sTimer);
+            showSlide(index);
+            sTimer = setTimeout(startAuto, 6000);
+        }
 
-            clearTimeout(slideTimeout);
-            slideTimeout = setTimeout(showSlides, SLIDE_INTERVAL);
+        // ── Touch/swipe ──
+        (function() {
+            let startX = 0;
+            document.addEventListener('touchstart', e => {
+                if (e.target.closest('.slide-container')) startX = e.touches[0].clientX;
+            }, { passive: true });
+            document.addEventListener('touchend', e => {
+                if (!e.target.closest('.slide-container')) return;
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) slideMove(diff > 0 ? 1 : -1);
+            }, { passive: true });
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initSlideshow();
         });
     </script>
 
