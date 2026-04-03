@@ -1,7 +1,19 @@
 (() => {
     try {
+        function sanitizeInjectedPartial(html) {
+            return String(html || '')
+                .replace(/<!--\s*Code injected by live-server\s*-->[\s\S]*?<\/script>/gi, '')
+                .replace(/<script[^>]*>[\s\S]*?IsThisFirstTime_Log_From_LiveServer[\s\S]*?<\/script>/gi, '');
+        }
+
         const placeholder = document.getElementById('header-placeholder');
-        if (!placeholder || placeholder.dataset.mmcHeaderInserted === 'true') {
+        if (
+            !placeholder
+            || (
+                placeholder.dataset.mmcHeaderInserted === 'true'
+                && placeholder.querySelector('#siteEmergencyBanner')
+            )
+        ) {
             return;
         }
 
@@ -18,7 +30,7 @@
         request.send(null);
 
         if (request.status >= 200 && request.status < 300) {
-            placeholder.innerHTML = request.responseText;
+            placeholder.innerHTML = sanitizeInjectedPartial(request.responseText);
             placeholder.dataset.mmcHeaderInserted = 'true';
             placeholder.dataset.mmcHeaderBasePath = basePath;
 

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Internal slideshow management console for Montgomery Medical Clinic.">
+    <title>MMC Front Desk Briefing Room</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/admin-slideshow.css">
+</head>
+<body>
+    <section class="admin-lock-screen">
+        <div class="admin-lock-card">
+            <p class="admin-lock-kicker">Admin Sign In</p>
+            <h1>Website Front Page Manager</h1>
+            <p>
+                Sign in with the office admin email and password to update the urgent banner
+                and the homepage slides.
+            </p>
+
+            <form id="adminUnlockForm" class="admin-lock-form">
+                <label class="admin-field">
+                    <span class="admin-field-label">Admin Email</span>
+                    <input id="adminEmail" type="email" inputmode="email" autocomplete="username" placeholder="admin@mmccare.com">
+                </label>
+                <label class="admin-field">
+                    <span class="admin-field-label">Password</span>
+                    <input id="adminPassword" type="password" autocomplete="current-password" placeholder="Enter password">
+                </label>
+                <div class="admin-toolbar-group">
+                    <button type="submit" class="admin-btn admin-btn-primary">Sign In</button>
+                    <button id="adminResetPasswordButton" type="button" class="admin-btn admin-btn-secondary">Forgot Password</button>
+                </div>
+                <div id="adminLockMessage" class="admin-status">
+                    Use the office admin email and password here.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <main class="admin-shell">
+        <section class="admin-hero">
+            <div>
+                <p class="admin-hero-kicker">Website Manager</p>
+                <h1>Update the Urgent Banner and Homepage Slides</h1>
+                <p>
+                    Use the tabs below to work on one area at a time.
+                    This keeps the page simpler and easier to manage.
+                </p>
+                <p class="admin-note-inline">
+                    Signed in as <strong id="adminUserEmail">Not signed in</strong>.
+                </p>
+            </div>
+
+            <div class="admin-hero-actions">
+                <div class="admin-metrics">
+                    <div class="admin-metric">
+                        <span class="admin-metric-label">Slides Created</span>
+                        <span id="adminSlideCount" class="admin-metric-value">0</span>
+                    </div>
+                    <div class="admin-metric">
+                        <span class="admin-metric-label">Showing Now</span>
+                        <span id="adminLiveCount" class="admin-metric-value">0</span>
+                    </div>
+                </div>
+
+                <a class="admin-btn admin-btn-secondary" href="../index.html" target="_blank" rel="noopener noreferrer">Preview Homepage</a>
+            </div>
+        </section>
+
+        <div class="admin-note">
+            This page is private and not linked on the public website.
+            Changes you publish here will appear on the live website for visitors.
+        </div>
+
+        <section class="admin-switcher">
+            <div class="admin-switcher-tabs" role="tablist" aria-label="Website tools">
+                <button type="button" class="admin-switcher-tab is-active" data-admin-tab="banner" aria-selected="true">Urgent Banner</button>
+                <button type="button" class="admin-switcher-tab" data-admin-tab="slides" aria-selected="false">Homepage Slides</button>
+            </div>
+            <p class="admin-inline-hint">Choose one area at a time so the page stays easier to read and manage.</p>
+        </section>
+
+        <div class="admin-tab-panel is-active" data-admin-panel="banner">
+        <section class="admin-banner-shell">
+            <div class="admin-banner-header">
+                <div>
+                    <p class="admin-lock-kicker">Urgent Banner</p>
+                    <h2 class="admin-template-title">Show a Red Alert Bar Above Every Page</h2>
+                    <p class="admin-inline-hint">
+                        Use this for weather closures, delayed openings, power outages, or any urgent office-wide notice.
+                        When turned on, it appears above the header on every page of the website.
+                    </p>
+                </div>
+                <div class="admin-banner-actions">
+                    <div id="adminBannerStatus" class="admin-status">Sign in to manage the emergency banner.</div>
+                    <div class="admin-toolbar-group">
+                        <button id="adminBannerSaveButton" type="button" class="admin-btn admin-btn-primary">Publish Banner</button>
+                        <button id="adminBannerReloadButton" type="button" class="admin-btn admin-btn-secondary">Reload Saved Banner</button>
+                        <button id="adminBannerResetButton" type="button" class="admin-btn admin-btn-danger">Clear Banner</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-banner-layout">
+                <section class="admin-form-panel">
+                    <div class="admin-simple-strip">
+                        <div class="admin-simple-card">
+                            <span class="admin-simple-label">Banner Settings</span>
+                            <label class="admin-toggle admin-toggle-block">
+                                <input id="adminBannerEnabled" type="checkbox">
+                                <span>Show this urgent banner at the top of every page</span>
+                            </label>
+                            <label class="admin-checkbox admin-toggle-block">
+                                <input id="adminBannerNewTab" type="checkbox">
+                                <span>Open the banner button in a new tab</span>
+                            </label>
+                        </div>
+
+                        <div class="admin-simple-card">
+                            <span class="admin-simple-label">Quick Start Examples</span>
+                            <div id="adminBannerPresetGrid" class="admin-preset-grid"></div>
+                        </div>
+                    </div>
+
+                    <div class="admin-copy-columns">
+                        <section class="admin-copy-panel">
+                            <div class="admin-copy-header">
+                                <div>
+                                    <span class="admin-copy-badge">Step 1</span>
+                                    <h3 class="admin-copy-title">Write the banner in English</h3>
+                                </div>
+                                <p class="admin-inline-hint">Keep it short, direct, and easy to scan.</p>
+                            </div>
+
+                            <div class="admin-field-grid admin-field-grid-single">
+                                <label class="admin-field">
+                                    <span class="admin-field-label">Small Alert Label</span>
+                                    <input id="adminBannerPillEn" type="text" placeholder="Emergency Notice">
+                                </label>
+                                <label class="admin-field">
+                                    <span class="admin-field-label">Main Banner Message</span>
+                                    <textarea id="adminBannerMessageEn" placeholder="Due to inclement weather, Montgomery Medical Clinic will open at 10:00 AM today."></textarea>
+                                </label>
+                                <label class="admin-field">
+                                    <span class="admin-field-label">Button Text</span>
+                                    <input id="adminBannerCtaLabelEn" type="text" placeholder="Call the Office">
+                                    <span class="admin-field-note">Optional. Leave blank if no button is needed.</span>
+                                </label>
+                                <label class="admin-field">
+                                    <span class="admin-field-label">Button Link</span>
+                                    <input id="adminBannerCtaUrl" type="text" placeholder="tel:3012082273 or pages/contact.html">
+                                    <span class="admin-field-note">Use a phone link, website link, or page link.</span>
+                                </label>
+                            </div>
+                        </section>
+
+                        <section class="admin-copy-panel">
+                            <div class="admin-copy-header">
+                                <div>
+                                    <span class="admin-copy-badge">Step 2</span>
+                                    <h3 class="admin-copy-title">Check the Spanish version</h3>
+                                </div>
+                                <div class="admin-copy-actions">
+                                    <button id="adminBannerTranslateButton" type="button" class="admin-btn admin-btn-secondary admin-btn-small">Translate to Spanish</button>
+                                    <button id="adminBannerCopyButton" type="button" class="admin-btn admin-btn-secondary admin-btn-small">Copy English</button>
+                                </div>
+                            </div>
+
+                            <label class="admin-toggle admin-toggle-block admin-copy-toggle">
+                                <input id="adminBannerAutoTranslateToggle" type="checkbox" checked>
+                                <span>Automatically fill Spanish while typing English</span>
+                            </label>
+
+                            <div class="admin-field-grid admin-field-grid-single">
+                                <label class="admin-field">
+                                    <span class="admin-field-label">Etiqueta Pequena (ES)</span>
+                                    <input id="adminBannerPillEs" type="text" placeholder="Aviso Importante">
+                                </label>
+                                <label class="admin-field">
+                                    <span class="admin-field-label">Mensaje Principal (ES)</span>
+                                    <textarea id="adminBannerMessageEs" placeholder="Revise o ajuste aqui la traduccion al espanol."></textarea>
+                                </label>
+                                <label class="admin-field">
+                                    <span class="admin-field-label">Texto del Boton (ES)</span>
+                                    <input id="adminBannerCtaLabelEs" type="text" placeholder="Llamar a la Oficina">
+                                </label>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <div class="admin-side-column">
+                    <section class="admin-side-panel">
+                        <h3 class="admin-panel-title">Banner Preview</h3>
+                        <div class="admin-banner-preview-frame">
+                            <div id="adminBannerPreview" class="admin-banner-preview"></div>
+                        </div>
+                        <p class="admin-inline-hint">This preview shows how the alert bar will look at the top of the website.</p>
+                    </section>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <div class="admin-tab-panel" data-admin-panel="slides" hidden>
+        <section class="admin-guide-shell">
+            <div class="admin-guide-card">
+                <p class="admin-lock-kicker">How To Use This</p>
+                <div class="admin-guide-steps">
+                    <div class="admin-guide-step">
+                        <span class="admin-guide-number">1</span>
+                        <div>
+                            <strong>Pick a template</strong>
+                            <p>Choose a ready-made slide style below instead of starting from scratch.</p>
+                        </div>
+                    </div>
+                    <div class="admin-guide-step">
+                        <span class="admin-guide-number">2</span>
+                        <div>
+                            <strong>Type in English first</strong>
+                            <p>Spanish can fill in automatically while you type.</p>
+                        </div>
+                    </div>
+                    <div class="admin-guide-step">
+                        <span class="admin-guide-number">3</span>
+                        <div>
+                            <strong>Preview, then save</strong>
+                            <p>Open the homepage preview anytime, then click save when you are ready.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-guide-card admin-guide-card-tools">
+                <p class="admin-lock-kicker">Spanish Helper</p>
+                <label class="admin-toggle admin-toggle-block">
+                    <input id="adminAutoTranslateToggle" type="checkbox" checked>
+                    <span>Automatically fill Spanish while typing English</span>
+                </label>
+                <button id="adminTranslateAllButton" type="button" class="admin-btn admin-btn-secondary">Fill All Spanish</button>
+                <p class="admin-inline-hint">Automatic translations should still be reviewed before publishing.</p>
+            </div>
+        </section>
+
+        <section class="admin-template-section">
+            <div class="admin-template-header">
+                <div>
+                    <p class="admin-lock-kicker">Templates</p>
+                    <h2 class="admin-template-title">Start With a Ready-Made Slide</h2>
+                    <p class="admin-inline-hint">These templates are designed to make new slides much easier for staff who do not work with websites often.</p>
+                </div>
+            </div>
+            <div id="adminTemplateGrid" class="admin-template-grid"></div>
+        </section>
+
+        <section class="admin-toolbar">
+            <div class="admin-toolbar-group">
+                <div id="adminStatus" class="admin-status">Sign in to start updating the homepage slides.</div>
+            </div>
+
+            <div class="admin-toolbar-group">
+                <button id="adminSaveButton" type="button" class="admin-btn admin-btn-primary">Publish Slides</button>
+                <button id="adminAddButton" type="button" class="admin-btn admin-btn-secondary">Create Blank Slide</button>
+                <button id="adminReloadButton" type="button" class="admin-btn admin-btn-secondary">Reload Saved Slides</button>
+                <button id="adminResetButton" type="button" class="admin-btn admin-btn-danger">Restore Starter Slides</button>
+                <details class="admin-more-tools">
+                    <summary class="admin-more-tools-trigger">More Tools</summary>
+                    <div class="admin-more-tools-panel">
+                        <button id="adminExportButton" type="button" class="admin-btn admin-btn-secondary">Download Backup</button>
+                        <label class="admin-file-trigger admin-btn admin-btn-secondary" for="adminImportInput">Upload Backup</label>
+                        <input id="adminImportInput" class="admin-file-input" type="file" accept=".json,application/json">
+                        <button id="adminLogoutButton" type="button" class="admin-btn admin-btn-ghost">Sign Out</button>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section class="admin-panels">
+            <div id="slideEditorList"></div>
+        </section>
+        </div>
+    </main>
+
+    <script src="../js/slideshow-data.js"></script>
+    <script src="../js/slideshow.js"></script>
+    <script type="module" src="../js/admin-slideshow.js"></script>
+</body>
+</html>

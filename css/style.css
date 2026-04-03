@@ -84,6 +84,8 @@ html body div.site-sticky-header {
     --letter-spacing-normal: 0em;
     --letter-spacing-wide: 0.025em;
     --letter-spacing-wider: 0.05em;
+    --site-emergency-banner-height: 0px;
+    --site-sticky-header-height: 140px;
     --top-contact-bar-height: 56px;
 }
 
@@ -114,12 +116,12 @@ body {
     background: var(--off-white);
     font-size: 16px;
     position: relative;
-    padding-top: 140px; /* Space for fixed header (blue bar + white nav) */
+    padding-top: var(--site-sticky-header-height, 140px);
 }
 
 @media (max-width: 640px) {
     body {
-        padding-top: 120px; /* Smaller header on mobile */
+        padding-top: var(--site-sticky-header-height, 120px);
     }
 }
 
@@ -169,6 +171,97 @@ section[data-aos], div[data-aos] {
     will-change: transform;
     transform: translateZ(0); /* Force GPU acceleration */
     -webkit-transform: translateZ(0);
+}
+
+.site-emergency-banner[hidden] {
+    display: none !important;
+}
+
+.site-emergency-banner {
+    width: 100%;
+    background:
+        linear-gradient(135deg, rgba(128, 15, 26, 0.98), rgba(184, 28, 28, 0.96)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 24px rgba(113, 16, 24, 0.16);
+}
+
+.site-emergency-banner-inner {
+    width: min(1400px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.site-emergency-banner-copy {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.site-emergency-banner-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.site-emergency-banner-message {
+    font-size: 15px;
+    line-height: 1.45;
+    font-weight: 700;
+}
+
+.site-emergency-banner-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.site-emergency-banner-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .site-emergency-banner-inner {
+        width: min(100% - 24px, 100%);
+        padding: 10px 0;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .site-emergency-banner-copy {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .site-emergency-banner-message {
+        font-size: 14px;
+    }
 }
 
 /* ===== TOP CONTACT BAR ===== */

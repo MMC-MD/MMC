@@ -411,40 +411,9 @@
         <div class="slideshow-wrapper" data-aos="fade-up">
             <div class="slide-container" id="slideshow">
 
-                <div class="slide-track" id="slideTrack">
+                <div class="slide-track" id="slideTrack" aria-live="polite"></div>
 
-                    <div class="slide-card active" style="--accent: #e67e22; --accent-bg: rgba(230,126,34,0.08);">
-                        <span class="slide-pill" data-en="Available Today" data-es="Disponible Hoy">Available Today</span>
-                        <h2 class="slide-title" data-en="Seasonal &lt;span class='accent'&gt;Flu Shots&lt;/span&gt; Are Here" data-es="Las &lt;span class='accent'&gt;Vacunas contra la Gripe&lt;/span&gt; Est&aacute;n Aqu&iacute;">Seasonal <span class="accent">Flu Shots</span> Are Here</h2>
-                        <p class="slide-kicker" data-en="Protect yourself this season" data-es="Prot&eacute;jase esta temporada">Protect yourself this season</p>
-                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="slide-btn" data-en="Walk-Ins Welcome" data-es="Sin Cita Previa">Walk-Ins Welcome</a>
-                    </div>
-
-                    <div class="slide-card" style="--accent: #0d47a1; --accent-bg: rgba(13,71,161,0.06);">
-                        <span class="slide-pill" data-en="Specialized Services" data-es="Servicios Especializados">Specialized Services</span>
-                        <h2 class="slide-title" data-en="FAA &amp; Immigration &lt;span class='accent'&gt;Physicals&lt;/span&gt;" data-es="Ex&aacute;menes F&iacute;sicos de &lt;span class='accent'&gt;FAA e Inmigraci&oacute;n&lt;/span&gt;">FAA &amp; Immigration <span class="accent">Physicals</span></h2>
-                        <div class="slide-creds">
-                            <div class="slide-cred" data-en="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;Authorized Aviation Medical Examiner" data-es="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;Examinador M&eacute;dico de Aviaci&oacute;n Autorizado"><span class="slide-cred-icon">&#10003;</span>Authorized Aviation Medical Examiner</div>
-                            <div class="slide-cred" data-en="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;USCIS-Authorized Civil Surgeon" data-es="&lt;span class='slide-cred-icon'&gt;&amp;#10003;&lt;/span&gt;Cirujano Civil Autorizado por USCIS"><span class="slide-cred-icon">&#10003;</span>USCIS-Authorized Civil Surgeon</div>
-                        </div>
-                    </div>
-
-                    <div class="slide-card" style="--accent: #1976d2; --accent-bg: rgba(25,118,210,0.07);">
-                        <span class="slide-pill" data-en="Available Today" data-es="Disponible Hoy">Available Today</span>
-                        <h2 class="slide-title" data-en="Same Day &lt;span class='accent'&gt;Urgent Care&lt;/span&gt;" data-es="&lt;span class='accent'&gt;Atenci&oacute;n Urgente&lt;/span&gt; el Mismo D&iacute;a">Same Day <span class="accent">Urgent Care</span></h2>
-                        <p class="slide-sub" data-en="No appointment needed &bull; Walk-in basis at our medical center" data-es="Sin cita previa &bull; Atenci&oacute;n sin reserva en nuestro centro m&eacute;dico">No appointment needed &bull; Walk-in basis at our medical center</p>
-                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="slide-btn" data-en="Schedule Appointment" data-es="Programar Cita">Schedule Appointment</a>
-                    </div>
-
-                    <div class="slide-card" style="--accent: #0d47a1; --accent-bg: rgba(13,71,161,0.06);">
-                        <h2 class="slide-title" data-en="&lt;span class='accent'&gt;One Stop&lt;/span&gt; For All Your Medical Needs" data-es="&lt;span class='accent'&gt;Todo en Un Solo Lugar&lt;/span&gt; Para Sus Necesidades M&eacute;dicas"><span class="accent">One Stop</span> For All Your Medical Needs</h2>
-                        <p class="slide-sub" data-en="Comprehensive multi-specialty care with expert doctors under one roof." data-es="Atenci&oacute;n integral multiespecialidad con m&eacute;dicos expertos bajo un mismo techo.">Comprehensive multi-specialty care with expert doctors under one roof.</p>
-                        <a href="#our-departments" class="slide-btn" data-en="Explore Our Services" data-es="Explorar Nuestros Servicios">Explore Our Services</a>
-                    </div>
-
-                </div>
-
-                <div class="slide-controls">
+                <div class="slide-controls" id="slideControls" style="display: none;">
                     <button class="s-nav s-prev" onclick="slideMove(-1)" type="button" aria-label="Previous"></button>
                     <div class="s-dots" id="slideDots"></div>
                     <button class="s-nav s-next" onclick="slideMove(1)" type="button" aria-label="Next"></button>
@@ -607,73 +576,13 @@
     <script src="js/lang-toggle.js"></script>
     <script src="js/header-footer-loader.js"></script>
     <script src="js/main-simple.js"></script>
+    <script src="js/slideshow-data.js"></script>
+    <script src="js/slideshow.js"></script>
+    <script type="module" src="js/firebase-homepage.js"></script>
     <script>
         AOS.init({
             duration: 800,
             once: true,
-        });
-
-        // ── Slideshow ──
-        let sIdx = 0, sInterval, sTimer;
-
-        function initSlideshow() {
-            const cards = document.querySelectorAll('.slide-card');
-            const dotsWrap = document.getElementById('slideDots');
-            if (!cards.length || !dotsWrap) return;
-            dotsWrap.innerHTML = '';
-            cards.forEach((_, i) => {
-                const dot = document.createElement('button');
-                dot.className = 's-dot' + (i === 0 ? ' active' : '');
-                dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-                dot.onclick = () => slideJump(i);
-                dotsWrap.appendChild(dot);
-            });
-            showSlide(0);
-            startAuto();
-        }
-
-        function showSlide(n) {
-            const cards = document.querySelectorAll('.slide-card');
-            const dots = document.querySelectorAll('#slideDots .s-dot');
-            cards[sIdx].classList.remove('active');
-            if (dots[sIdx]) dots[sIdx].classList.remove('active');
-            sIdx = (n + cards.length) % cards.length;
-            cards[sIdx].classList.add('active');
-            if (dots[sIdx]) dots[sIdx].classList.add('active');
-        }
-
-        function startAuto() {
-            clearInterval(sInterval);
-            sInterval = setInterval(() => showSlide(sIdx + 1), 6000);
-        }
-
-        function slideMove(n) {
-            clearInterval(sInterval); clearTimeout(sTimer);
-            showSlide(sIdx + n);
-            sTimer = setTimeout(startAuto, 6000);
-        }
-
-        function slideJump(index) {
-            clearInterval(sInterval); clearTimeout(sTimer);
-            showSlide(index);
-            sTimer = setTimeout(startAuto, 6000);
-        }
-
-        // ── Touch/swipe ──
-        (function() {
-            let startX = 0;
-            document.addEventListener('touchstart', e => {
-                if (e.target.closest('.slide-container')) startX = e.touches[0].clientX;
-            }, { passive: true });
-            document.addEventListener('touchend', e => {
-                if (!e.target.closest('.slide-container')) return;
-                const diff = startX - e.changedTouches[0].clientX;
-                if (Math.abs(diff) > 40) slideMove(diff > 0 ? 1 : -1);
-            }, { passive: true });
-        })();
-
-        document.addEventListener('DOMContentLoaded', function() {
-            initSlideshow();
         });
     </script>
 

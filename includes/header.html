@@ -1,5 +1,15 @@
 <!-- Combined Sticky Header Wrapper -->
 <div class="site-sticky-header" style="position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; z-index: 999999 !important; width: 100% !important;">
+    <div id="siteEmergencyBanner" class="site-emergency-banner" hidden aria-hidden="true" aria-live="polite">
+        <div class="site-emergency-banner-inner">
+            <div class="site-emergency-banner-copy">
+                <span id="siteEmergencyBannerPill" class="site-emergency-banner-pill" hidden></span>
+                <span id="siteEmergencyBannerMessage" class="site-emergency-banner-message"></span>
+            </div>
+            <a id="siteEmergencyBannerLink" class="site-emergency-banner-link" hidden></a>
+        </div>
+    </div>
+
     <!-- Top Contact Bar -->
     <div class="top-contact-bar bg-brand-blue text-white py-1.5 sm:py-2.5 text-sm border-b-4 border-brand-orange overflow-hidden">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
@@ -220,172 +230,3 @@
         </div>
     </div>
 </div>
-
-// CRITICAL FAILSAFE: Force header to stay fixed at all times
-(function enforceFixedHeader() {
-    const stickyHeader = document.querySelector('.site-sticky-header');
-    if (stickyHeader) {
-        // Set position fixed with !important via inline style
-        stickyHeader.style.setProperty('position', 'fixed', 'important');
-        stickyHeader.style.setProperty('top', '0', 'important');
-        stickyHeader.style.setProperty('left', '0', 'important');
-        stickyHeader.style.setProperty('right', '0', 'important');
-        stickyHeader.style.setProperty('z-index', '999999', 'important');
-        stickyHeader.style.setProperty('width', '100%', 'important');
-        
-        // Create MutationObserver to prevent any changes
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-                    const currentPos = window.getComputedStyle(stickyHeader).position;
-                    if (currentPos !== 'fixed') {
-                        stickyHeader.style.setProperty('position', 'fixed', 'important');
-                        stickyHeader.style.setProperty('top', '0', 'important');
-                    }
-                }
-            });
-        });
-        
-        observer.observe(stickyHeader, {
-            attributes: true,
-            attributeFilter: ['style', 'class']
-        });
-    }
-})();
-
-document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const header = document.querySelector('header.glass-effect');
-
-    // Mobile menu functionality
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('is-open');
-        mobileMenuBtn.classList.remove('active');
-        mobileMenuBtn.setAttribute('aria-expanded', 'false');
-
-        const openMenu = () => {
-            mobileMenu.classList.remove('hidden');
-            mobileMenu.classList.add('is-open');
-            document.body.classList.add('mobile-menu-open');
-            mobileMenuBtn.classList.add('active');
-            mobileMenuBtn.setAttribute('aria-expanded', 'true');
-        };
-
-        const closeMenu = () => {
-            mobileMenu.classList.remove('is-open');
-            mobileMenu.classList.add('hidden');
-            document.body.classList.remove('mobile-menu-open');
-            mobileMenuBtn.classList.remove('active');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        };
-
-        mobileMenuBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            if (mobileMenu.classList.contains('hidden')) {
-                openMenu();
-            } else {
-                closeMenu();
-            }
-        });
-
-        mobileMenu.querySelectorAll('.mobile-menu-item').forEach(link => {
-            link.addEventListener('click', () => {
-                closeMenu();
-            });
-        });
-
-        document.addEventListener('click', (event) => {
-            const isMenuOpen = !mobileMenu.classList.contains('hidden');
-            if (!isMenuOpen) {
-                return;
-            }
-
-            if (mobileMenu.contains(event.target) || mobileMenuBtn.contains(event.target)) {
-                return;
-            }
-
-            closeMenu();
-        });
-
-        const handleViewportReset = () => {
-            if (window.innerWidth >= 1280) {
-                closeMenu();
-            }
-        };
-
-        window.addEventListener('resize', handleViewportReset);
-        window.addEventListener('orientationchange', handleViewportReset);
-    }
-
-    // Enhanced sticky header effect: only toggle visual state
-    // CRITICAL: Header must remain position: fixed at all times
-    if (header) {
-        const contactBar = document.querySelector('.top-contact-bar');
-        let ticking = false;
-
-        const updateHeader = () => {
-            const scrollY = window.scrollY;
-            const contactBarHeight = contactBar ? contactBar.offsetHeight : 56;
-            if (scrollY > contactBarHeight) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            ticking = false;
-        };
-
-        const onScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(updateHeader);
-                ticking = true;
-            }
-        };
-
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', updateHeader, { passive: true });
-        updateHeader();
-    }
-
-    // Contact Modal Functionality
-    const contactModal = document.getElementById('contact-modal');
-    const contactTriggers = document.querySelectorAll('[data-contact-trigger]');
-    const contactClose = document.querySelector('[data-contact-close]');
-
-    function openContactModal() {
-        contactModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeContactModal() {
-        contactModal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    contactTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function(e) {
-            e.preventDefault();
-            openContactModal();
-        });
-    });
-
-    if (contactClose) {
-        contactClose.addEventListener('click', closeContactModal);
-    }
-
-    contactModal.addEventListener('click', function(e) {
-        if (e.target === contactModal) {
-            closeContactModal();
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && contactModal.classList.contains('active')) {
-            closeContactModal();
-        }
-    });
-});
-</script>

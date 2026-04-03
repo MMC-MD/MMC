@@ -2,6 +2,12 @@ let contactBarResizeObserver = null;
 let resizeListenerAttached = false;
 let resizeDebounceTimer = null;
 
+function sanitizeInjectedPartial(html) {
+    return String(html || '')
+        .replace(/<!--\s*Code injected by live-server\s*-->[\s\S]*?<\/script>/gi, '')
+        .replace(/<script[^>]*>[\s\S]*?IsThisFirstTime_Log_From_LiveServer[\s\S]*?<\/script>/gi, '');
+}
+
 function initHeaderFooter() {
     const pathName = window.location.pathname;
     const pathSegments = pathName.split('/').filter(Boolean);
@@ -21,14 +27,15 @@ function initHeaderFooter() {
 
     const headerAlreadyInjected = !!(headerPlaceholder &&
         headerPlaceholder.dataset.mmcHeaderInserted === 'true' &&
-        headerPlaceholder.childElementCount > 0);
+        headerPlaceholder.childElementCount > 0 &&
+        headerPlaceholder.querySelector('#siteEmergencyBanner'));
 
     const headerPromise = (!headerPlaceholder || headerAlreadyInjected)
         ? Promise.resolve()
         : fetch(basePath + 'includes/header.html')
             .then(response => response.text())
             .then(data => {
-                headerPlaceholder.innerHTML = data;
+                headerPlaceholder.innerHTML = sanitizeInjectedPartial(data);
                 headerPlaceholder.dataset.mmcHeaderInserted = 'true';
             })
             .catch(error => {
@@ -44,6 +51,7 @@ function initHeaderFooter() {
         initializeMobileMenu();
         initializeServicesDropdown();
         initializeContactModal();
+        ensureGlobalBannerScript(basePath);
         updateContactBarOffset();
         observeContactBarHeight();
 
@@ -66,7 +74,7 @@ function initHeaderFooter() {
         fetch(basePath + 'includes/footer.html')
             .then(response => response.text())
             .then(data => {
-                footerPlaceholder.innerHTML = data;
+                footerPlaceholder.innerHTML = sanitizeInjectedPartial(data);
                 updateFooterLinks(basePath);
                 if (typeof window.mmcApplyLang === 'function') window.mmcApplyLang();
             })
@@ -308,6 +316,18 @@ function initializeMobileMenu() {
     }
 }
 
+function ensureGlobalBannerScript(basePath) {
+    if (document.querySelector('script[data-mmc-site-banner-script="true"]')) {
+        return;
+    }
+
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = basePath + 'js/firebase-site-banner.js';
+    script.dataset.mmcSiteBannerScript = 'true';
+    document.body.appendChild(script);
+}
+
         // Initialize services dropdown functionality
         function initializeServicesDropdown() {
             const servicesButton = document.getElementById('services-button');
@@ -521,11 +541,19 @@ function initializeContactModal() {
 }
 
 function updateContactBarOffset() {
+    const emergencyBanner = document.querySelector('.site-emergency-banner:not([hidden])');
     const topContactBar = document.querySelector('.top-contact-bar');
+    const stickyHeader = document.querySelector('.site-sticky-header');
     const root = document.documentElement;
+    const bannerHeight = emergencyBanner ? emergencyBanner.offsetHeight : 0;
+    const contactBarHeight = topContactBar ? topContactBar.offsetHeight : 0;
+    const stickyHeaderHeight = stickyHeader ? stickyHeader.offsetHeight : 0;
+
+    root.style.setProperty('--site-emergency-banner-height', `${bannerHeight}px`);
+    root.style.setProperty('--site-sticky-header-height', `${stickyHeaderHeight || (bannerHeight + contactBarHeight + 84)}px`);
 
     if (topContactBar) {
-        const height = topContactBar.offsetHeight;
+        const height = bannerHeight + contactBarHeight;
         root.style.setProperty('--top-contact-bar-height', `${height}px`);
     } else {
         root.style.removeProperty('--top-contact-bar-height');
@@ -538,7 +566,9 @@ function observeContactBarHeight() {
     }
 
     const topContactBar = document.querySelector('.top-contact-bar');
-    if (!topContactBar) {
+    const stickyHeader = document.querySelector('.site-sticky-header');
+
+    if (!topContactBar && !stickyHeader) {
         return;
     }
 
@@ -550,7 +580,13 @@ function observeContactBarHeight() {
         updateContactBarOffset();
     });
 
-    contactBarResizeObserver.observe(topContactBar);
+    if (topContactBar) {
+        contactBarResizeObserver.observe(topContactBar);
+    }
+
+    if (stickyHeader) {
+        contactBarResizeObserver.observe(stickyHeader);
+    }
 }
 
 function handleWindowResize() {
@@ -562,3 +598,5 @@ function handleWindowResize() {
         updateContactBarOffset();
     }, 150);
 }
+
+document.addEventListener('mmc:sticky-header-metrics', updateContactBarOffset);
