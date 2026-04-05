@@ -323,51 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Re-initialize on header load
 document.addEventListener('mmc:header-ready', initHeaderEnhancements);
 
-// Contact Modal Functionality
-function initContactModal() {
-    const modal = document.getElementById('contact-modal');
-    const triggers = document.querySelectorAll('[data-contact-trigger]');
-    const closeButtons = document.querySelectorAll('[data-contact-close]');
-    
-    if (!modal) return;
-    
-    // Open modal
-    triggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-    
-    // Close modal
-    function closeModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-    
-    closeButtons.forEach(button => {
-        button.addEventListener('click', closeModal);
-    });
-    
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-}
-
-// Initialize contact modal
-document.addEventListener('DOMContentLoaded', initContactModal);
-document.addEventListener('mmc:header-ready', initContactModal);
+// The shared header-footer loader owns contact modal setup so it only binds once.
 
 // Debug function for testing
 window.testDropdown = function() {

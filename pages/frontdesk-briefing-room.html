@@ -43,245 +43,223 @@
     </section>
 
     <main class="admin-shell">
-        <section class="admin-hero">
-            <div>
-                <p class="admin-hero-kicker">Website Manager</p>
-                <h1>Update the Urgent Banner and Homepage Slides</h1>
-                <p>
-                    Use the tabs below to work on one area at a time.
-                    This keeps the page simpler and easier to manage.
-                </p>
-                <p class="admin-note-inline">
-                    Signed in as <strong id="adminUserEmail">Not signed in</strong>.
-                </p>
-            </div>
 
-            <div class="admin-hero-actions">
-                <div class="admin-metrics">
-                    <div class="admin-metric">
-                        <span class="admin-metric-label">Slides Created</span>
-                        <span id="adminSlideCount" class="admin-metric-value">0</span>
-                    </div>
-                    <div class="admin-metric">
-                        <span class="admin-metric-label">Showing Now</span>
-                        <span id="adminLiveCount" class="admin-metric-value">0</span>
-                    </div>
+        <!-- Top bar -->
+        <header class="studio-topbar">
+            <div class="studio-topbar-left">
+                <span class="studio-logo">MMC Studio</span>
+                <span class="studio-divider"></span>
+                <span class="studio-user" id="adminUserEmail">Not signed in</span>
+            </div>
+            <div class="studio-topbar-right">
+                <div class="studio-stat">
+                    <span class="studio-stat-num" id="adminSlideCount">0</span>
+                    <span class="studio-stat-label">Slides</span>
                 </div>
-
-                <a class="admin-btn admin-btn-secondary" href="../index.html" target="_blank" rel="noopener noreferrer">Preview Homepage</a>
+                <div class="studio-stat">
+                    <span class="studio-stat-num" id="adminLiveCount">0</span>
+                    <span class="studio-stat-label">Live</span>
+                </div>
+                <a class="studio-preview-link" href="../index.html" target="_blank" rel="noopener noreferrer">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3H3v10h10v-3M9 2h5v5M14 2L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Preview Site
+                </a>
             </div>
-        </section>
+        </header>
 
-        <div class="admin-note">
-            This page is private and not linked on the public website.
-            Changes you publish here will appear on the live website for visitors.
-        </div>
+        <!-- Tab switcher -->
+        <nav class="studio-tabs" role="tablist" aria-label="Website tools">
+            <button type="button" class="studio-tab is-active" data-admin-tab="banner" aria-selected="true">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Urgent Banner
+            </button>
+            <button type="button" class="studio-tab" data-admin-tab="slides" aria-selected="false">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 15h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Homepage Slides
+            </button>
+        </nav>
 
-        <section class="admin-switcher">
-            <div class="admin-switcher-tabs" role="tablist" aria-label="Website tools">
-                <button type="button" class="admin-switcher-tab is-active" data-admin-tab="banner" aria-selected="true">Urgent Banner</button>
-                <button type="button" class="admin-switcher-tab" data-admin-tab="slides" aria-selected="false">Homepage Slides</button>
-            </div>
-            <p class="admin-inline-hint">Choose one area at a time so the page stays easier to read and manage.</p>
-        </section>
-
+        <!-- ============================================ -->
+        <!--  BANNER TAB                                  -->
+        <!-- ============================================ -->
         <div class="admin-tab-panel is-active" data-admin-panel="banner">
-        <section class="admin-banner-shell">
-            <div class="admin-banner-header">
-                <div>
-                    <p class="admin-lock-kicker">Urgent Banner</p>
-                    <h2 class="admin-template-title">Show a Red Alert Bar Above Every Page</h2>
-                    <p class="admin-inline-hint">
-                        Use this for weather closures, delayed openings, power outages, or any urgent office-wide notice.
-                        When turned on, it appears above the header on every page of the website.
-                    </p>
-                </div>
-                <div class="admin-banner-actions">
-                    <div id="adminBannerStatus" class="admin-status">Sign in to manage the urgent banner.</div>
-                    <div class="admin-toolbar-group">
-                        <button id="adminBannerSaveButton" type="button" class="admin-btn admin-btn-primary">Publish Banner</button>
-                        <button id="adminBannerReloadButton" type="button" class="admin-btn admin-btn-secondary">Reload Saved Banner</button>
-                        <button id="adminBannerResetButton" type="button" class="admin-btn admin-btn-danger">Clear Banner</button>
-                    </div>
-                </div>
-            </div>
+            <div class="studio-canvas">
 
-            <div class="admin-banner-layout">
-                <section class="admin-form-panel">
-                    <div class="admin-simple-strip">
-                        <div class="admin-simple-card">
-                            <span class="admin-simple-label">Banner Settings</span>
-                            <label class="admin-toggle admin-toggle-block">
+                <!-- Left: Controls -->
+                <div class="studio-sidebar">
+
+                    <!-- On/Off + Quick Actions -->
+                    <div class="studio-card">
+                        <div class="studio-card-row studio-card-row-between">
+                            <label class="studio-switch">
                                 <input id="adminBannerEnabled" type="checkbox">
-                                <span>Show this urgent banner at the top of every page</span>
+                                <span class="studio-switch-track"></span>
+                                <span class="studio-switch-label">Banner is ON</span>
                             </label>
-                            <label class="admin-checkbox admin-toggle-block">
+                            <label class="studio-mini-check">
                                 <input id="adminBannerNewTab" type="checkbox">
-                                <span>Open the banner button in a new tab</span>
+                                <span>Open link in new tab</span>
                             </label>
-                        </div>
-
-                        <div class="admin-simple-card">
-                            <span class="admin-simple-label">Quick Start Examples</span>
-                            <div id="adminBannerPresetGrid" class="admin-preset-grid"></div>
                         </div>
                     </div>
 
-                    <div class="admin-copy-columns">
-                        <section class="admin-copy-panel">
-                            <div class="admin-copy-header">
-                                <div>
-                                    <span class="admin-copy-badge">Step 1</span>
-                                    <h3 class="admin-copy-title">Write the banner in English</h3>
-                                </div>
-                                <p class="admin-inline-hint">Keep it short, direct, and easy to scan.</p>
-                            </div>
+                    <!-- Quick Start Presets -->
+                    <div class="studio-card">
+                        <h3 class="studio-section-title">Quick Start</h3>
+                        <div id="adminBannerPresetGrid" class="studio-preset-row"></div>
+                    </div>
 
-                            <div class="admin-field-grid admin-field-grid-single">
-                                <label class="admin-field">
-                                    <span class="admin-field-label">Small Alert Label</span>
-                                    <input id="adminBannerPillEn" type="text" placeholder="Emergency Notice">
-                                </label>
-                                <label class="admin-field">
-                                    <span class="admin-field-label">Main Banner Message</span>
-                                    <textarea id="adminBannerMessageEn" placeholder="Due to inclement weather, Montgomery Medical Clinic will open at 10:00 AM today."></textarea>
-                                </label>
-                                <label class="admin-field">
-                                    <span class="admin-field-label">Button Text</span>
-                                    <input id="adminBannerCtaLabelEn" type="text" placeholder="Call the Office">
-                                    <span class="admin-field-note">Optional. Leave blank if no button is needed.</span>
-                                </label>
-                                <label class="admin-field">
-                                    <span class="admin-field-label">Button Link</span>
-                                    <input id="adminBannerCtaUrl" type="text" placeholder="tel:3012082273 or pages/contact.html">
-                                    <span class="admin-field-note">Use a phone link, website link, or page link.</span>
-                                </label>
-                            </div>
-                        </section>
-
-                        <section class="admin-copy-panel">
-                            <div class="admin-copy-header">
-                                <div>
-                                    <span class="admin-copy-badge">Step 2</span>
-                                    <h3 class="admin-copy-title">Check the Spanish version</h3>
-                                </div>
-                                <div class="admin-copy-actions">
-                                    <button id="adminBannerTranslateButton" type="button" class="admin-btn admin-btn-secondary admin-btn-small">Translate to Spanish</button>
-                                    <button id="adminBannerCopyButton" type="button" class="admin-btn admin-btn-secondary admin-btn-small">Copy English</button>
-                                </div>
-                            </div>
-
-                            <label class="admin-toggle admin-toggle-block admin-copy-toggle">
-                                <input id="adminBannerAutoTranslateToggle" type="checkbox" checked>
-                                <span>Automatically fill Spanish while typing English</span>
+                    <!-- English Fields -->
+                    <div class="studio-card">
+                        <h3 class="studio-section-title">
+                            <span class="studio-lang-dot studio-lang-dot-en"></span>
+                            English
+                        </h3>
+                        <div class="studio-fields">
+                            <label class="studio-field">
+                                <span class="studio-field-label">Alert Label</span>
+                                <input id="adminBannerPillEn" type="text" placeholder="Emergency Notice">
                             </label>
+                            <label class="studio-field">
+                                <span class="studio-field-label">Message</span>
+                                <textarea id="adminBannerMessageEn" rows="3" placeholder="Due to inclement weather, Montgomery Medical Clinic will open at 10:00 AM today."></textarea>
+                            </label>
+                            <label class="studio-field">
+                                <span class="studio-field-label">Button Text <span class="studio-optional">optional</span></span>
+                                <input id="adminBannerCtaLabelEn" type="text" placeholder="Call the Office">
+                            </label>
+                            <label class="studio-field">
+                                <span class="studio-field-label">Button Link</span>
+                                <input id="adminBannerCtaUrl" type="text" placeholder="tel:3012082273 or pages/contact.html">
+                            </label>
+                        </div>
+                    </div>
 
-                            <div class="admin-field-grid admin-field-grid-single">
-                                <label class="admin-field">
-                                    <span class="admin-field-label">Etiqueta Pequena (ES)</span>
+                    <!-- Spanish Fields (collapsed by default feel) -->
+                    <details class="studio-card studio-card-details" open>
+                        <summary class="studio-details-trigger">
+                            <span class="studio-section-title">
+                                <span class="studio-lang-dot studio-lang-dot-es"></span>
+                                Spanish
+                            </span>
+                            <span class="studio-details-arrow"></span>
+                        </summary>
+                        <div class="studio-details-body">
+                            <div class="studio-card-row studio-card-row-tools">
+                                <label class="studio-mini-check">
+                                    <input id="adminBannerAutoTranslateToggle" type="checkbox" checked>
+                                    <span>Auto-translate</span>
+                                </label>
+                                <button id="adminBannerTranslateButton" type="button" class="studio-btn-sm">Translate</button>
+                                <button id="adminBannerCopyButton" type="button" class="studio-btn-sm">Copy English</button>
+                            </div>
+                            <div class="studio-fields">
+                                <label class="studio-field">
+                                    <span class="studio-field-label">Etiqueta (ES)</span>
                                     <input id="adminBannerPillEs" type="text" placeholder="Aviso Importante">
                                 </label>
-                                <label class="admin-field">
-                                    <span class="admin-field-label">Mensaje Principal (ES)</span>
-                                    <textarea id="adminBannerMessageEs" placeholder="Revise o ajuste aqui la traduccion al espanol."></textarea>
+                                <label class="studio-field">
+                                    <span class="studio-field-label">Mensaje (ES)</span>
+                                    <textarea id="adminBannerMessageEs" rows="3" placeholder="Revise o ajuste aqui la traduccion al espanol."></textarea>
                                 </label>
-                                <label class="admin-field">
-                                    <span class="admin-field-label">Texto del Boton (ES)</span>
+                                <label class="studio-field">
+                                    <span class="studio-field-label">Texto del Boton (ES)</span>
                                     <input id="adminBannerCtaLabelEs" type="text" placeholder="Llamar a la Oficina">
                                 </label>
                             </div>
-                        </section>
-                    </div>
-                </section>
-
-                <div class="admin-side-column">
-                    <section class="admin-side-panel">
-                        <h3 class="admin-panel-title">Banner Preview</h3>
-                        <div class="admin-banner-preview-frame">
-                            <div id="adminBannerPreview" class="admin-banner-preview"></div>
                         </div>
-                        <p class="admin-inline-hint">This preview shows how the alert bar will look at the top of the website.</p>
-                    </section>
+                    </details>
+
+                    <!-- Action bar -->
+                    <div class="studio-actions">
+                        <div id="adminBannerStatus" class="studio-status">Sign in to manage the urgent banner.</div>
+                        <div class="studio-actions-row">
+                            <button id="adminBannerSaveButton" type="button" class="studio-btn studio-btn-publish">Publish Banner</button>
+                            <button id="adminBannerReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
+                            <button id="adminBannerResetButton" type="button" class="studio-btn studio-btn-danger-outline">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Live Preview -->
+                <div class="studio-preview-pane">
+                    <div class="studio-preview-label">Live Preview</div>
+                    <div class="admin-banner-preview-frame">
+                        <div id="adminBannerPreview" class="admin-banner-preview"></div>
+                    </div>
                 </div>
             </div>
-        </section>
         </div>
 
+        <!-- ============================================ -->
+        <!--  SLIDES TAB                                  -->
+        <!-- ============================================ -->
         <div class="admin-tab-panel" data-admin-panel="slides" hidden>
-        <section class="admin-guide-shell">
-            <div class="admin-guide-card">
-                <p class="admin-lock-kicker">How To Use This</p>
-                <div class="admin-guide-steps">
-                    <div class="admin-guide-step">
-                        <span class="admin-guide-number">1</span>
-                        <div>
-                            <strong>Pick a template</strong>
-                            <p>Choose a ready-made slide style below instead of starting from scratch.</p>
-                        </div>
+
+            <!-- How-to strip -->
+            <div class="studio-how-to">
+                <div class="studio-how-to-step">
+                    <span class="studio-how-to-num">1</span>
+                    <div>
+                        <strong>Pick a template</strong>
+                        <p>Choose a ready-made slide below.</p>
                     </div>
-                    <div class="admin-guide-step">
-                        <span class="admin-guide-number">2</span>
-                        <div>
-                            <strong>Type in English first</strong>
-                            <p>Spanish can fill in automatically while you type.</p>
-                        </div>
+                </div>
+                <div class="studio-how-to-step">
+                    <span class="studio-how-to-num">2</span>
+                    <div>
+                        <strong>Type in English</strong>
+                        <p>Spanish fills in automatically.</p>
                     </div>
-                    <div class="admin-guide-step">
-                        <span class="admin-guide-number">3</span>
-                        <div>
-                            <strong>Preview, then save</strong>
-                            <p>Open the homepage preview anytime, then click save when you are ready.</p>
-                        </div>
+                </div>
+                <div class="studio-how-to-step">
+                    <span class="studio-how-to-num">3</span>
+                    <div>
+                        <strong>Preview & save</strong>
+                        <p>Check the preview, then publish.</p>
                     </div>
                 </div>
             </div>
-            <div class="admin-guide-card admin-guide-card-tools">
-                <p class="admin-lock-kicker">Spanish Helper</p>
-                <label class="admin-toggle admin-toggle-block">
-                    <input id="adminAutoTranslateToggle" type="checkbox" checked>
-                    <span>Automatically fill Spanish while typing English</span>
-                </label>
-                <button id="adminTranslateAllButton" type="button" class="admin-btn admin-btn-secondary">Fill All Spanish</button>
-                <p class="admin-inline-hint">Automatic translations should still be reviewed before publishing.</p>
-            </div>
-        </section>
 
-        <section class="admin-template-section">
-            <div class="admin-template-header">
-                <div>
-                    <p class="admin-lock-kicker">Templates</p>
-                    <h2 class="admin-template-title">Start With a Ready-Made Slide</h2>
-                    <p class="admin-inline-hint">These templates are designed to make new slides much easier for staff who do not work with websites often.</p>
-                </div>
-            </div>
-            <div id="adminTemplateGrid" class="admin-template-grid"></div>
-        </section>
-
-        <section class="admin-toolbar">
-            <div class="admin-toolbar-group">
-                <div id="adminStatus" class="admin-status">Sign in to start updating the homepage slides.</div>
-            </div>
-
-            <div class="admin-toolbar-group">
-                <button id="adminSaveButton" type="button" class="admin-btn admin-btn-primary">Publish Slides</button>
-                <button id="adminAddButton" type="button" class="admin-btn admin-btn-secondary">Create Blank Slide</button>
-                <button id="adminReloadButton" type="button" class="admin-btn admin-btn-secondary">Reload Saved Slides</button>
-                <button id="adminResetButton" type="button" class="admin-btn admin-btn-danger">Restore Starter Slides</button>
-                <details class="admin-more-tools">
-                    <summary class="admin-more-tools-trigger">More Tools</summary>
-                    <div class="admin-more-tools-panel">
-                        <button id="adminExportButton" type="button" class="admin-btn admin-btn-secondary">Download Backup</button>
-                        <label class="admin-file-trigger admin-btn admin-btn-secondary" for="adminImportInput">Upload Backup</label>
-                        <input id="adminImportInput" class="admin-file-input" type="file" accept=".json,application/json">
-                        <button id="adminLogoutButton" type="button" class="admin-btn admin-btn-ghost">Sign Out</button>
+            <!-- Template picker -->
+            <section class="studio-templates">
+                <div class="studio-templates-header">
+                    <h2 class="studio-templates-title">Choose a Slide Template</h2>
+                    <div class="studio-templates-tools">
+                        <label class="studio-mini-check">
+                            <input id="adminAutoTranslateToggle" type="checkbox" checked>
+                            <span>Auto-translate Spanish</span>
+                        </label>
+                        <button id="adminTranslateAllButton" type="button" class="studio-btn-sm">Fill All Spanish</button>
                     </div>
-                </details>
-            </div>
-        </section>
+                </div>
+                <div id="adminTemplateGrid" class="studio-template-grid"></div>
+            </section>
 
-        <section class="admin-panels">
-            <div id="slideEditorList"></div>
-        </section>
+            <!-- Sticky toolbar -->
+            <section class="studio-toolbar">
+                <div id="adminStatus" class="studio-status">Sign in to manage slides.</div>
+                <div class="studio-toolbar-actions">
+                    <button id="adminSaveButton" type="button" class="studio-btn studio-btn-publish">Publish Slides</button>
+                    <button id="adminAddButton" type="button" class="studio-btn studio-btn-outline">+ Add Blank Slide</button>
+                    <button id="adminReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
+                    <button id="adminResetButton" type="button" class="studio-btn studio-btn-danger-outline">Reset</button>
+                    <details class="studio-more-menu">
+                        <summary class="studio-btn studio-btn-outline">More</summary>
+                        <div class="studio-more-panel">
+                            <button id="adminExportButton" type="button" class="studio-more-item">Download Backup</button>
+                            <label class="studio-more-item" for="adminImportInput">Upload Backup</label>
+                            <input id="adminImportInput" class="admin-file-input" type="file" accept=".json,application/json">
+                            <button id="adminLogoutButton" type="button" class="studio-more-item studio-more-item-muted">Sign Out</button>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Slide editors -->
+            <section class="admin-panels">
+                <div id="slideEditorList"></div>
+            </section>
         </div>
     </main>
 

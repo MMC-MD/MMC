@@ -3,13 +3,13 @@
 /* Main navigation container */
 #page-nav {
     position: fixed;
-    top: 50%;
+    top: calc(50% + var(--site-emergency-banner-height, 0px) / 2);
     left: 0;
     transform: translateY(-50%);
     z-index: 999;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease, top 0.3s ease;
     max-height: 70vh;
 }
 

@@ -1,11 +1,29 @@
 let contactBarResizeObserver = null;
 let resizeListenerAttached = false;
 let resizeDebounceTimer = null;
+const contactOptionSelector = '[data-contact-option], .contact-method, .contact-address-card';
 
 function sanitizeInjectedPartial(html) {
     return String(html || '')
         .replace(/<!--\s*Code injected by live-server\s*-->[\s\S]*?<\/script>/gi, '')
         .replace(/<script[^>]*>[\s\S]*?IsThisFirstTime_Log_From_LiveServer[\s\S]*?<\/script>/gi, '');
+}
+
+function ensureContactModalStyles(basePath) {
+    const existingStylesheet = document.querySelector(
+        'link[data-mmc-contact-modal-styles], link[href$="css/contact-modal.css"], link[href*="/css/contact-modal.css"]'
+    );
+
+    if (existingStylesheet) {
+        existingStylesheet.setAttribute('data-mmc-contact-modal-styles', 'true');
+        return;
+    }
+
+    const stylesheet = document.createElement('link');
+    stylesheet.rel = 'stylesheet';
+    stylesheet.href = basePath + 'css/contact-modal.css';
+    stylesheet.setAttribute('data-mmc-contact-modal-styles', 'true');
+    document.head.appendChild(stylesheet);
 }
 
 function initHeaderFooter() {
@@ -50,6 +68,7 @@ function initHeaderFooter() {
         updateHeaderLinks(basePath, isHomePage);
         initializeMobileMenu();
         initializeServicesDropdown();
+        ensureContactModalStyles(basePath);
         initializeContactModal();
         ensureGlobalBannerScript(basePath);
         updateContactBarOffset();
@@ -479,9 +498,10 @@ function initializeContactModal() {
     }
 
     modal.dataset.modalInitialized = 'true';
+    modal.setAttribute('aria-hidden', 'true');
 
     const closeButton = modal.querySelector('[data-contact-close]');
-    const contactOptions = modal.querySelectorAll('[data-contact-option]');
+    const contactOptions = modal.querySelectorAll(contactOptionSelector);
     const body = document.body;
     const mobileMenu = document.getElementById('mobile-menu');
     let lastFocusedElement = null;
@@ -490,13 +510,14 @@ function initializeContactModal() {
         event.preventDefault();
         lastFocusedElement = document.activeElement;
         modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
         body.classList.add('modal-open');
 
         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
         }
 
-        const focusTarget = closeButton || modal.querySelector('[data-contact-option]');
+        const focusTarget = closeButton || modal.querySelector(contactOptionSelector);
         if (focusTarget && typeof focusTarget.focus === 'function') {
             focusTarget.focus();
         }
@@ -508,6 +529,7 @@ function initializeContactModal() {
         }
 
         modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
         body.classList.remove('modal-open');
 
         if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {

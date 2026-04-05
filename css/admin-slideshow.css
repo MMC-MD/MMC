@@ -125,6 +125,16 @@ body.admin-authenticated .admin-shell {
     box-shadow: 0 28px 72px rgba(13, 71, 161, 0.24);
 }
 
+.admin-hero.admin-hero-compact {
+    padding: 22px 28px;
+    align-items: center;
+}
+
+.admin-hero.admin-hero-compact h1 {
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    margin-bottom: 0;
+}
+
 .admin-hero p,
 .admin-hero .admin-note-inline {
     color: rgba(255, 255, 255, 0.84);
@@ -1192,6 +1202,180 @@ body.admin-authenticated .admin-shell {
     line-height: 1.5;
 }
 
+/* ── Clean banner redesign ── */
+
+.admin-banner-shell-clean {
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.admin-banner-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid var(--admin-border);
+    box-shadow: 0 12px 32px rgba(13, 71, 161, 0.08);
+    backdrop-filter: blur(18px);
+}
+
+.admin-toggle-prominent {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--admin-ink);
+}
+
+.admin-toggle-prominent input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--admin-blue);
+}
+
+.admin-checkbox-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--admin-muted);
+}
+
+.admin-checkbox-inline input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--admin-blue);
+}
+
+.admin-banner-quick-start {
+    margin-top: 14px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--admin-border);
+}
+
+.admin-banner-quick-start .admin-simple-label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.admin-banner-quick-start .admin-preset-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.admin-banner-layout-clean {
+    margin-top: 14px;
+}
+
+.admin-copy-columns-clean {
+    gap: 14px;
+}
+
+.admin-field-optional {
+    font-weight: 400;
+    color: var(--admin-muted);
+    font-size: 12px;
+}
+
+.admin-guide-shell-compact .admin-guide-step {
+    padding: 12px 14px;
+}
+
+.admin-guide-shell-compact .admin-guide-step p {
+    font-size: 13px;
+}
+
+/* ── Clean slide card redesign ── */
+
+.admin-slide-header-clean {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+}
+
+.admin-slide-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.admin-slide-number {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--admin-blue), #1c63d4);
+    box-shadow: 0 8px 18px rgba(13, 71, 161, 0.18);
+}
+
+.admin-slide-header-clean .admin-slide-name {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: 2px;
+}
+
+.admin-slide-header-clean .admin-slide-header-meta {
+    margin-top: 4px;
+}
+
+.admin-btn-icon {
+    min-width: 36px;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.admin-slide-settings-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 18px;
+    margin: 18px 0;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(13, 71, 161, 0.04), rgba(13, 71, 161, 0.02));
+    border: 1px solid rgba(13, 71, 161, 0.08);
+}
+
+.admin-color-picker-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.admin-color-picker-inline input[type="color"] {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.admin-color-picker-inline .admin-color-presets {
+    margin-top: 0;
+}
+
 @media (max-width: 1120px) {
     .admin-banner-layout,
     .admin-guide-shell,
@@ -1229,6 +1413,11 @@ body.admin-authenticated .admin-shell {
         padding: 20px;
     }
 
+    .admin-hero.admin-hero-compact {
+        padding: 18px 20px;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     .admin-preset-grid,
     .admin-simple-strip,
     .admin-copy-columns,
@@ -1244,6 +1433,16 @@ body.admin-authenticated .admin-shell {
     .admin-toolbar {
         top: 10px;
         padding: 14px;
+    }
+
+    .admin-banner-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .admin-banner-toolbar .admin-toolbar-group {
+        justify-content: center;
     }
 
     .admin-copy-header,
@@ -1297,5 +1496,28 @@ body.admin-authenticated .admin-shell {
 
     .admin-slide-preview-frame .slide-sub {
         font-size: 14px;
+    }
+
+    .admin-banner-quick-start .admin-preset-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-slide-header-clean {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-slide-actions {
+        justify-content: flex-start;
+    }
+
+    .admin-slide-settings-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .admin-color-picker-inline {
+        margin-left: 0;
     }
 }

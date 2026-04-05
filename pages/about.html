@@ -357,40 +357,35 @@
 
             <!-- Image and Benefits Section -->
             <div class="mt-10 sm:mt-12 md:mt-14 lg:mt-16 max-w-6xl mx-auto">
-                <div class="grid lg:grid-cols-5 gap-8 sm:gap-10 md:gap-12 items-center">
+                <div class="grid lg:grid-cols-5 gap-8 sm:gap-10 md:gap-12 items-stretch">
                     <!-- Image Column -->
                     <div class="lg:col-span-2" data-aos="fade-right" data-aos-delay="200">
-                        <img src="../images/Clinic.jpeg" alt="Team of doctors at Montgomery Medical Clinic" class="rounded-2xl sm:rounded-3xl shadow-2xl w-full h-auto">
+                        <img src="../images/Clinic.jpeg" alt="Team of doctors at Montgomery Medical Clinic" class="rounded-2xl sm:rounded-3xl shadow-2xl w-full h-full object-cover object-left">
                     </div>
 
                     <!-- Benefits Column -->
-                    <div class="lg:col-span-3 flex flex-col justify-center mt-8 lg:mt-0" data-aos="fade-left" data-aos-delay="200">
-                        <p class="text-base sm:text-lg text-medium-gray leading-relaxed font-semibold mb-4">
+                    <div class="lg:col-span-3 flex flex-col mt-8 lg:mt-0" data-aos="fade-left" data-aos-delay="200">
+                        <p class="text-base sm:text-lg md:text-xl text-dark-gray leading-relaxed font-bold mb-5">
                             By choosing one of our physicians as your primary care provider, you'll benefit from:
                         </p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-sm sm:text-base text-dark-gray font-medium">Personalized attention and continuity of care</span>
+                        <ul class="space-y-3 flex-1">
+                            <li class="bg-light-blue-bg p-4 sm:p-5 rounded-xl border border-blue-100 hover:border-brand-blue/25 hover:shadow-md transition-all duration-300">
+                                <span class="text-sm sm:text-base text-dark-gray font-semibold">Personalized attention and continuity of care</span>
                             </li>
-                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-sm sm:text-base text-dark-gray font-medium">Advanced treatments using the latest medical technology</span>
+                            <li class="bg-light-blue-bg p-4 sm:p-5 rounded-xl border border-blue-100 hover:border-brand-blue/25 hover:shadow-md transition-all duration-300">
+                                <span class="text-sm sm:text-base text-dark-gray font-semibold">Advanced treatments using the latest medical technology</span>
                             </li>
-                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-sm sm:text-base text-dark-gray font-medium">Expert dermatology care for all your skin health needs</span>
+                            <li class="bg-light-blue-bg p-4 sm:p-5 rounded-xl border border-blue-100 hover:border-brand-blue/25 hover:shadow-md transition-all duration-300">
+                                <span class="text-sm sm:text-base text-dark-gray font-semibold">Expert dermatology care for all your skin health needs</span>
                             </li>
-                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-sm sm:text-base text-dark-gray font-medium">A lasting relationship with trusted healthcare professionals</span>
+                            <li class="bg-light-blue-bg p-4 sm:p-5 rounded-xl border border-blue-100 hover:border-brand-blue/25 hover:shadow-md transition-all duration-300">
+                                <span class="text-sm sm:text-base text-dark-gray font-semibold">A lasting relationship with trusted healthcare professionals</span>
                             </li>
-                            <li class="flex items-start gap-2.5 sm:gap-3 bg-light-blue-bg p-3 sm:p-4 rounded-xl transition-all hover:shadow-md">
-                                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-brand-orange shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="text-sm sm:text-base text-dark-gray font-medium">Convenient access to a full range of medical services</span>
+                            <li class="bg-light-blue-bg p-4 sm:p-5 rounded-xl border border-blue-100 hover:border-brand-blue/25 hover:shadow-md transition-all duration-300">
+                                <span class="text-sm sm:text-base text-dark-gray font-semibold">Convenient access to a full range of medical services</span>
                             </li>
                         </ul>
-                        <div class="mt-5 sm:mt-6 p-4 sm:p-5 bg-gradient-to-r from-brand-blue to-blue-600 rounded-xl sm:rounded-2xl">
+                        <div class="mt-5 sm:mt-6 p-4 sm:p-5 bg-gradient-to-r from-brand-blue to-blue-700 rounded-xl sm:rounded-2xl">
                             <p class="text-base sm:text-lg text-white font-bold text-center">
                                 At Montgomery Medical Clinic, your health—and your confidence—are our top priorities.
                             </p>
