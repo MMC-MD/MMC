@@ -566,7 +566,7 @@ header nav {
 
 /* ===== MOBILE NAVIGATION ENHANCEMENTS ===== */
 .mobile-menu-button {
-    display: inline-flex;
+    /* display is controlled by Tailwind: xl:hidden */
     align-items: center;
     justify-content: center;
     width: 48px;
