@@ -266,6 +266,7 @@ const elements = {
     bannerCopyButton: document.getElementById('adminBannerCopyButton'),
     bannerAutoTranslateToggle: document.getElementById('adminBannerAutoTranslateToggle'),
     bannerPresetGrid: document.getElementById('adminBannerPresetGrid'),
+    bannerColorPicker: document.getElementById('adminBannerColorPicker'),
     tabButtons: Array.from(document.querySelectorAll('[data-admin-tab]')),
     tabPanels: Array.from(document.querySelectorAll('[data-admin-panel]'))
 };
@@ -473,7 +474,7 @@ function buildBannerPreviewMarkup(banner) {
     }
 
     return [
-        '<div class="site-emergency-banner">',
+        '<div class="site-emergency-banner" data-color="' + escapeHtml(previewBanner.color || 'red') + '">',
         '<div class="site-emergency-banner-inner">',
         '<div class="site-emergency-banner-copy">',
         pillText ? '<span class="site-emergency-banner-pill">' + escapeHtml(pillText) + '</span>' : '',
@@ -916,9 +917,30 @@ function renderEditors() {
     refreshMetrics();
 }
 
+function getSelectedBannerColor() {
+    if (!elements.bannerColorPicker) {
+        return 'red';
+    }
+
+    var active = elements.bannerColorPicker.querySelector('.banner-color-btn.is-active');
+    return active ? (active.dataset.bannerColor || 'red') : 'red';
+}
+
+function setSelectedBannerColor(color) {
+    if (!elements.bannerColorPicker) {
+        return;
+    }
+
+    var buttons = elements.bannerColorPicker.querySelectorAll('.banner-color-btn');
+    buttons.forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.dataset.bannerColor === color);
+    });
+}
+
 function readBannerFromForm() {
     return normalizeEmergencyBanner({
         enabled: !!(elements.bannerEnabled && elements.bannerEnabled.checked),
+        color: getSelectedBannerColor(),
         pill: {
             en: elements.bannerPillEn ? elements.bannerPillEn.value : '',
             es: elements.bannerPillEs ? elements.bannerPillEs.value : ''
@@ -955,6 +977,7 @@ function applyBannerToForm(banner) {
     if (elements.bannerNewTab) {
         elements.bannerNewTab.checked = nextBanner.ctaNewTab;
     }
+    setSelectedBannerColor(nextBanner.color);
     if (elements.bannerPillEn) {
         elements.bannerPillEn.value = nextBanner.pill.en;
     }
@@ -1322,6 +1345,7 @@ async function buildTranslatedBanner(banner) {
 function copyBannerEnglishToSpanishData(banner) {
     return normalizeEmergencyBanner({
         enabled: banner.enabled,
+        color: banner.color,
         pill: { en: banner.pill.en, es: banner.pill.en },
         message: { en: banner.message.en, es: banner.message.en },
         ctaLabel: { en: banner.ctaLabel.en, es: banner.ctaLabel.en },
@@ -1350,6 +1374,7 @@ async function translateBannerToSpanish(options) {
         const latestBanner = readBannerFromForm();
         emergencyBanner = normalizeEmergencyBanner({
             enabled: latestBanner.enabled,
+            color: latestBanner.color,
             pill: {
                 en: latestBanner.pill.en,
                 es: translatedBanner.pill.es
@@ -2244,6 +2269,18 @@ function initEvents() {
     }
     if (elements.bannerPresetGrid) {
         elements.bannerPresetGrid.addEventListener('click', handleBannerClick);
+    }
+    if (elements.bannerColorPicker) {
+        elements.bannerColorPicker.addEventListener('click', function (event) {
+            var btn = event.target.closest('[data-banner-color]');
+            if (!btn) {
+                return;
+            }
+            setSelectedBannerColor(btn.dataset.bannerColor);
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('Banner color updated. Publish when ready.');
+        });
     }
     elements.tabButtons.forEach(function (button) {
         button.addEventListener('click', function () {

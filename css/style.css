@@ -187,6 +187,52 @@ section[data-aos], div[data-aos] {
     box-shadow: 0 14px 28px rgba(113, 16, 24, 0.18);
 }
 
+/* Banner color themes */
+.site-emergency-banner[data-color="orange"] {
+    background:
+        radial-gradient(circle at top center, rgba(255, 255, 255, 0.16), transparent 44%),
+        linear-gradient(135deg, #9a3412, #ea580c 50%, #f97316);
+    box-shadow: 0 14px 28px rgba(154, 52, 18, 0.18);
+}
+
+.site-emergency-banner[data-color="yellow"] {
+    background:
+        radial-gradient(circle at top center, rgba(255, 255, 255, 0.14), transparent 44%),
+        linear-gradient(135deg, #854d0e, #ca8a04 50%, #eab308);
+    color: #1e293b;
+    box-shadow: 0 14px 28px rgba(133, 77, 14, 0.18);
+}
+
+.site-emergency-banner[data-color="yellow"] .site-emergency-banner-pill {
+    background: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.site-emergency-banner[data-color="yellow"] .site-emergency-banner-link {
+    color: #854d0e;
+}
+
+.site-emergency-banner[data-color="yellow"] .site-emergency-banner-link:hover {
+    color: #713f12;
+    background: #fef9c3;
+}
+
+.site-emergency-banner[data-color="green"] {
+    background:
+        radial-gradient(circle at top center, rgba(255, 255, 255, 0.16), transparent 44%),
+        linear-gradient(135deg, #166534, #16a34a 50%, #22c55e);
+    box-shadow: 0 14px 28px rgba(22, 101, 52, 0.18);
+}
+
+.site-emergency-banner[data-color="green"] .site-emergency-banner-link {
+    color: #166534;
+}
+
+.site-emergency-banner[data-color="green"] .site-emergency-banner-link:hover {
+    color: #14532d;
+    background: #f0fdf4;
+}
+
 .site-emergency-banner-inner {
     width: min(1280px, calc(100% - 28px));
     margin: 0 auto;
@@ -227,6 +273,10 @@ section[data-aos], div[data-aos] {
     font-weight: 800;
     letter-spacing: -0.01em;
     text-wrap: balance;
+}
+
+.site-emergency-banner-link[hidden] {
+    display: none !important;
 }
 
 .site-emergency-banner-link {

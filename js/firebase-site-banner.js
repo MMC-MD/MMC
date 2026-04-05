@@ -89,6 +89,7 @@ function renderBanner(banner) {
 
     root.hidden = false;
     root.setAttribute('aria-hidden', 'false');
+    root.dataset.color = banner.color || 'red';
 
     pill.dataset.en = pillEn;
     pill.dataset.es = pillEs;

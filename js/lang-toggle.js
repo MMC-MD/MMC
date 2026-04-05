@@ -1059,7 +1059,7 @@
     function updateToggleUI(lang) {
         var label = document.getElementById('lang-label');
         var btn = document.getElementById('lang-toggle');
-        if (label) label.textContent = (lang === 'en') ? 'ES' : 'EN';
+        if (label) label.textContent = (lang === 'en') ? 'Español' : 'English';
         if (btn) {
             btn.setAttribute('aria-label', (lang === 'en') ? 'Cambiar a Español' : 'Switch to English');
             btn.setAttribute('title', (lang === 'en') ? 'Español' : 'English');

@@ -64,6 +64,7 @@ function normalizeCopy(value) {
 function createDefaultEmergencyBanner() {
     return {
         enabled: false,
+        color: 'red',
         pill: {
             en: 'Emergency Notice',
             es: 'Aviso Importante'
@@ -81,12 +82,19 @@ function createDefaultEmergencyBanner() {
     };
 }
 
+var BANNER_COLORS = ['red', 'orange', 'yellow', 'green'];
+
+function normalizeBannerColor(value) {
+    return BANNER_COLORS.indexOf(value) >= 0 ? value : 'red';
+}
+
 function normalizeEmergencyBanner(value) {
     const source = value && typeof value === 'object' ? value : {};
     const defaults = createDefaultEmergencyBanner();
 
     return {
         enabled: source.enabled === true,
+        color: normalizeBannerColor(source.color),
         pill: {
             en: cleanText(source.pill && source.pill.en) || defaults.pill.en,
             es: cleanText(source.pill && source.pill.es) || defaults.pill.es
