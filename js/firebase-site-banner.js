@@ -50,6 +50,37 @@ function sanitizeUrl(value) {
     return '';
 }
 
+function sanitizeBannerHtml(raw) {
+    if (typeof raw !== 'string') return '';
+    var temp = document.createElement('div');
+    temp.innerHTML = raw;
+    var ALLOWED = { B: 1, STRONG: 1, I: 1, EM: 1, U: 1, SPAN: 1, BR: 1 };
+    function walk(parent) {
+        var nodes = Array.from(parent.childNodes);
+        for (var i = 0; i < nodes.length; i++) {
+            var n = nodes[i];
+            if (n.nodeType === 3) continue;
+            if (n.nodeType !== 1 || !ALLOWED[n.tagName]) {
+                while (n.firstChild) n.parentNode.insertBefore(n.firstChild, n);
+                n.parentNode.removeChild(n);
+                continue;
+            }
+            if (n.tagName === 'SPAN') {
+                var color = n.style.color;
+                var attrs = Array.from(n.attributes);
+                for (var a = 0; a < attrs.length; a++) n.removeAttribute(attrs[a].name);
+                if (color) n.style.color = color;
+            } else {
+                var attrs2 = Array.from(n.attributes);
+                for (var a2 = 0; a2 < attrs2.length; a2++) n.removeAttribute(attrs2[a2].name);
+            }
+            walk(n);
+        }
+    }
+    walk(temp);
+    return temp.innerHTML.trim();
+}
+
 function syncStickyHeaderMetrics() {
     window.requestAnimationFrame(function () {
         document.dispatchEvent(new CustomEvent('mmc:sticky-header-metrics'));
@@ -77,8 +108,15 @@ function renderBanner(banner) {
     const activeMessage = locale === 'es' ? messageEs || messageEn : messageEn || messageEs;
     const activePill = locale === 'es' ? pillEs || pillEn : pillEn || pillEs;
     const activeLink = locale === 'es' ? linkEs || linkEn : linkEn || linkEs;
+    var showPill = banner.showPill !== false;
+    var showButton = banner.showButton !== false;
 
-    if (!banner.enabled || !activeMessage) {
+    /* Check if message has actual visible text (strip tags for the check) */
+    var tempDiv = document.createElement('div');
+    tempDiv.innerHTML = activeMessage;
+    var plainMessage = (tempDiv.textContent || tempDiv.innerText || '').trim();
+
+    if (!banner.enabled || !plainMessage) {
         root.hidden = true;
         root.setAttribute('aria-hidden', 'true');
         pill.hidden = true;
@@ -91,16 +129,25 @@ function renderBanner(banner) {
     root.setAttribute('aria-hidden', 'false');
     root.dataset.color = banner.color || 'red';
 
-    pill.dataset.en = pillEn;
-    pill.dataset.es = pillEs;
-    pill.innerHTML = activePill;
-    pill.hidden = !activePill;
+    if (showPill && activePill) {
+        pill.dataset.en = pillEn;
+        pill.dataset.es = pillEs;
+        pill.textContent = activePill;
+        pill.hidden = false;
+        pill.style.display = '';
+    } else {
+        pill.removeAttribute('data-en');
+        pill.removeAttribute('data-es');
+        pill.textContent = '';
+        pill.hidden = true;
+        pill.style.display = 'none';
+    }
 
-    message.dataset.en = messageEn;
-    message.dataset.es = messageEs;
-    message.innerHTML = activeMessage;
+    message.dataset.en = sanitizeBannerHtml(messageEn);
+    message.dataset.es = sanitizeBannerHtml(messageEs);
+    message.innerHTML = sanitizeBannerHtml(activeMessage);
 
-    if (activeLink && href) {
+    if (showButton && activeLink && href) {
         link.dataset.en = linkEn;
         link.dataset.es = linkEs;
         link.textContent = activeLink;
@@ -108,8 +155,13 @@ function renderBanner(banner) {
         link.target = banner.ctaNewTab ? '_blank' : '';
         link.rel = banner.ctaNewTab ? 'noopener noreferrer' : '';
         link.hidden = false;
+        link.style.display = '';
     } else {
+        link.removeAttribute('data-en');
+        link.removeAttribute('data-es');
+        link.textContent = '';
         link.hidden = true;
+        link.style.display = 'none';
         link.removeAttribute('href');
         link.removeAttribute('target');
         link.removeAttribute('rel');

@@ -726,6 +726,12 @@ body.admin-authenticated .admin-shell { display: block; }
     font-weight: 700;
 }
 
+.admin-banner-preview .site-emergency-banner-message b,
+.admin-banner-preview .site-emergency-banner-message strong { font-weight: 900; }
+.admin-banner-preview .site-emergency-banner-message i,
+.admin-banner-preview .site-emergency-banner-message em { font-style: italic; }
+.admin-banner-preview .site-emergency-banner-message u { text-decoration: underline; }
+
 .admin-banner-preview .site-emergency-banner-link {
     display: inline-flex;
     align-items: center;
@@ -1599,6 +1605,122 @@ body.admin-authenticated .admin-shell { display: block; }
     flex-shrink: 0;
     border: 1.5px solid rgba(0,0,0,0.1);
 }
+
+/* ── Field row (label + toggle side by side) ── */
+
+.studio-field-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+/* ── Rich text editor ── */
+
+.studio-richtext-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 6px;
+    background: var(--s-bg);
+    border: 1px solid var(--s-border);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+}
+
+.studio-rt-btn {
+    width: 30px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--s-ink);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.studio-rt-btn:hover {
+    background: var(--s-blue-light);
+    color: var(--s-blue);
+}
+
+.studio-rt-btn.is-active {
+    background: var(--s-blue);
+    color: #fff;
+}
+
+.studio-rt-sep {
+    width: 1px;
+    height: 18px;
+    background: var(--s-border);
+    margin: 0 4px;
+    flex-shrink: 0;
+}
+
+.studio-rt-color {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    position: relative;
+}
+
+.studio-rt-color-icon {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--s-ink);
+    border-bottom: 3px solid currentColor;
+    line-height: 1;
+    padding-bottom: 1px;
+}
+
+.studio-rt-color input[type="color"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.studio-richtext {
+    width: 100%;
+    min-height: 72px;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid var(--s-border);
+    background: var(--s-bg);
+    padding: 10px 12px;
+    font: inherit;
+    font-size: 14px;
+    color: var(--s-ink);
+    resize: vertical;
+    overflow: auto;
+    outline: none;
+    transition: border-color var(--s-transition), box-shadow var(--s-transition);
+    line-height: 1.5;
+}
+
+.studio-richtext:focus {
+    border-color: var(--s-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    background: #fff;
+}
+
+.studio-richtext:empty::before {
+    content: attr(data-placeholder);
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.studio-richtext b, .studio-richtext strong { font-weight: 700; }
+.studio-richtext i, .studio-richtext em { font-style: italic; }
+.studio-richtext u { text-decoration: underline; }
 
 /* ── Admin preview banner color themes ── */
 

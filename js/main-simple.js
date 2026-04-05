@@ -277,8 +277,6 @@ function initHeaderEnhancements() {
 
 // Initialize everything on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('MMC Website Loaded');
-    
     // Initialize contact modal
     initContactModal();
     
@@ -325,22 +323,3 @@ document.addEventListener('mmc:header-ready', initHeaderEnhancements);
 
 // The shared header-footer loader owns contact modal setup so it only binds once.
 
-// Debug function for testing
-window.testDropdown = function() {
-    const dropdown = document.getElementById('services-dropdown');
-    if (dropdown) {
-        console.log('Testing dropdown visibility...');
-        dropdown.classList.add('show');
-        dropdown.style.display = 'block';
-        dropdown.style.opacity = '1';
-        dropdown.style.visibility = 'visible';
-        dropdown.style.pointerEvents = 'auto';
-        console.log('Dropdown should now be visible');
-        
-        const links = dropdown.querySelectorAll('.dropdown-link');
-        console.log(`Found ${links.length} dropdown links:`);
-        links.forEach(link => console.log('- ' + link.textContent.trim()));
-    } else {
-        console.error('Dropdown element not found!');
-    }
-};

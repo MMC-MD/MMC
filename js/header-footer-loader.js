@@ -478,7 +478,7 @@ function ensureGlobalBannerScript(basePath) {
                 }
             });
             
-            console.log('Services dropdown initialized successfully');
+            /* dropdown ready */
         }
 
 function initializeContactModal() {

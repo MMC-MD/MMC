@@ -9,9 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../vendor/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tailwind.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/contact-modal.css">
     <link rel="stylesheet" href="../css/dropdown-fix.css">
@@ -22,24 +21,6 @@
     <link rel="preload" href="../js/critical-header.js" as="script">
     <script>try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}</script>
     <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: {
-                        'brand-blue': '#0d47a1',
-                        'brand-orange': '#ff8f00',
-                        'light-gray': '#fafafa',
-                        'dark-gray': '#212121',
-                        'medium-gray': '#616161',
-                        'light-blue-bg': '#f5f9ff',
-                    }
-                }
-            }
-        }
-    </script>
     <script src="../js/in-page-nav.js" defer></script>
 </head>
 <body class="bg-light-gray text-dark-gray">
@@ -146,7 +127,7 @@
         <!-- Footer Placeholder -->
     <div id="footer-placeholder" data-page-nav-stop="footer"></div>
     
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../vendor/aos.js"></script>
     <script src="../js/lang-toggle.js"></script>
     <script src="../js/header-footer-loader.js"></script>
     <script src="../js/main.js"></script>

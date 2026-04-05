@@ -1,0 +1,16 @@
+{
+  "name": "mmc-main",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.css --minify",
+    "watch:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

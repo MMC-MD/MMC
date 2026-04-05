@@ -125,18 +125,40 @@
                             English
                         </h3>
                         <div class="studio-fields">
-                            <label class="studio-field">
-                                <span class="studio-field-label">Alert Label</span>
+                            <div class="studio-field">
+                                <div class="studio-field-row">
+                                    <span class="studio-field-label">Alert Label</span>
+                                    <label class="studio-mini-check">
+                                        <input id="adminBannerShowPill" type="checkbox" checked>
+                                        <span>Show label</span>
+                                    </label>
+                                </div>
                                 <input id="adminBannerPillEn" type="text" placeholder="Emergency Notice">
-                            </label>
-                            <label class="studio-field">
+                            </div>
+                            <div class="studio-field">
                                 <span class="studio-field-label">Message</span>
-                                <textarea id="adminBannerMessageEn" rows="3" placeholder="Due to inclement weather, Montgomery Medical Clinic will open at 10:00 AM today."></textarea>
-                            </label>
-                            <label class="studio-field">
-                                <span class="studio-field-label">Button Text <span class="studio-optional">optional</span></span>
+                                <div class="studio-richtext-toolbar" id="adminBannerToolbarEn">
+                                    <button type="button" class="studio-rt-btn" data-rt-cmd="bold" title="Bold"><b>B</b></button>
+                                    <button type="button" class="studio-rt-btn" data-rt-cmd="italic" title="Italic"><i>I</i></button>
+                                    <button type="button" class="studio-rt-btn" data-rt-cmd="underline" title="Underline"><u>U</u></button>
+                                    <span class="studio-rt-sep"></span>
+                                    <label class="studio-rt-color" title="Text Color">
+                                        <span class="studio-rt-color-icon">A</span>
+                                        <input type="color" id="adminBannerTextColorEn" value="#ffffff" data-rt-cmd="foreColor">
+                                    </label>
+                                </div>
+                                <div id="adminBannerMessageEn" class="studio-richtext" contenteditable="true" data-placeholder="Due to inclement weather, Montgomery Medical Clinic will open at 10:00 AM today."></div>
+                            </div>
+                            <div class="studio-field">
+                                <div class="studio-field-row">
+                                    <span class="studio-field-label">Button Text <span class="studio-optional">optional</span></span>
+                                    <label class="studio-mini-check">
+                                        <input id="adminBannerShowButton" type="checkbox" checked>
+                                        <span>Show button</span>
+                                    </label>
+                                </div>
                                 <input id="adminBannerCtaLabelEn" type="text" placeholder="Call the Office">
-                            </label>
+                            </div>
                             <label class="studio-field">
                                 <span class="studio-field-label">Button Link</span>
                                 <input id="adminBannerCtaUrl" type="text" placeholder="tel:3012082273 or pages/contact.html">
@@ -167,10 +189,20 @@
                                     <span class="studio-field-label">Etiqueta (ES)</span>
                                     <input id="adminBannerPillEs" type="text" placeholder="Aviso Importante">
                                 </label>
-                                <label class="studio-field">
+                                <div class="studio-field">
                                     <span class="studio-field-label">Mensaje (ES)</span>
-                                    <textarea id="adminBannerMessageEs" rows="3" placeholder="Revise o ajuste aqui la traduccion al espanol."></textarea>
-                                </label>
+                                    <div class="studio-richtext-toolbar" id="adminBannerToolbarEs">
+                                        <button type="button" class="studio-rt-btn" data-rt-cmd="bold" title="Bold"><b>B</b></button>
+                                        <button type="button" class="studio-rt-btn" data-rt-cmd="italic" title="Italic"><i>I</i></button>
+                                        <button type="button" class="studio-rt-btn" data-rt-cmd="underline" title="Underline"><u>U</u></button>
+                                        <span class="studio-rt-sep"></span>
+                                        <label class="studio-rt-color" title="Text Color">
+                                            <span class="studio-rt-color-icon">A</span>
+                                            <input type="color" id="adminBannerTextColorEs" value="#ffffff" data-rt-cmd="foreColor">
+                                        </label>
+                                    </div>
+                                    <div id="adminBannerMessageEs" class="studio-richtext" contenteditable="true" data-placeholder="Revise o ajuste aqui la traduccion al espanol."></div>
+                                </div>
                                 <label class="studio-field">
                                     <span class="studio-field-label">Texto del Boton (ES)</span>
                                     <input id="adminBannerCtaLabelEs" type="text" placeholder="Llamar a la Oficina">

@@ -65,6 +65,8 @@ function createDefaultEmergencyBanner() {
     return {
         enabled: false,
         color: 'red',
+        showPill: true,
+        showButton: true,
         pill: {
             en: 'Emergency Notice',
             es: 'Aviso Importante'
@@ -95,6 +97,8 @@ function normalizeEmergencyBanner(value) {
     return {
         enabled: source.enabled === true,
         color: normalizeBannerColor(source.color),
+        showPill: source.showPill !== false,
+        showButton: source.showButton !== false,
         pill: {
             en: cleanText(source.pill && source.pill.en) || defaults.pill.en,
             es: cleanText(source.pill && source.pill.es) || defaults.pill.es

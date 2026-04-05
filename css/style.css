@@ -267,6 +267,10 @@ section[data-aos], div[data-aos] {
     text-align: center;
 }
 
+.site-emergency-banner-pill[hidden] {
+    display: none !important;
+}
+
 .site-emergency-banner-message {
     font-size: clamp(15px, 1.7vw, 18px);
     line-height: 1.45;
@@ -274,6 +278,12 @@ section[data-aos], div[data-aos] {
     letter-spacing: -0.01em;
     text-wrap: balance;
 }
+
+.site-emergency-banner-message b,
+.site-emergency-banner-message strong { font-weight: 900; }
+.site-emergency-banner-message i,
+.site-emergency-banner-message em { font-style: italic; }
+.site-emergency-banner-message u { text-decoration: underline; }
 
 .site-emergency-banner-link[hidden] {
     display: none !important;

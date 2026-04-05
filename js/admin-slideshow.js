@@ -251,6 +251,8 @@ const elements = {
     bannerStatus: document.getElementById('adminBannerStatus'),
     bannerEnabled: document.getElementById('adminBannerEnabled'),
     bannerNewTab: document.getElementById('adminBannerNewTab'),
+    bannerShowPill: document.getElementById('adminBannerShowPill'),
+    bannerShowButton: document.getElementById('adminBannerShowButton'),
     bannerPillEn: document.getElementById('adminBannerPillEn'),
     bannerPillEs: document.getElementById('adminBannerPillEs'),
     bannerMessageEn: document.getElementById('adminBannerMessageEn'),
@@ -449,6 +451,55 @@ function sanitizeBannerUrl(value) {
     return '';
 }
 
+function sanitizeBannerHtml(raw) {
+    if (typeof raw !== 'string') return '';
+    var temp = document.createElement('div');
+    temp.innerHTML = raw;
+    var ALLOWED = { B: 1, STRONG: 1, I: 1, EM: 1, U: 1, SPAN: 1, BR: 1 };
+    function walk(parent) {
+        var nodes = Array.from(parent.childNodes);
+        for (var i = 0; i < nodes.length; i++) {
+            var n = nodes[i];
+            if (n.nodeType === 3) continue;
+            if (n.nodeType !== 1 || !ALLOWED[n.tagName]) {
+                while (n.firstChild) n.parentNode.insertBefore(n.firstChild, n);
+                n.parentNode.removeChild(n);
+                continue;
+            }
+            if (n.tagName === 'SPAN') {
+                var color = n.style.color;
+                var attrs = Array.from(n.attributes);
+                for (var a = 0; a < attrs.length; a++) n.removeAttribute(attrs[a].name);
+                if (color) n.style.color = color;
+            } else {
+                var attrs2 = Array.from(n.attributes);
+                for (var a2 = 0; a2 < attrs2.length; a2++) n.removeAttribute(attrs2[a2].name);
+            }
+            walk(n);
+        }
+    }
+    walk(temp);
+    return temp.innerHTML.trim();
+}
+
+function stripHtmlTags(html) {
+    if (typeof html !== 'string') return '';
+    var temp = document.createElement('div');
+    temp.innerHTML = html;
+    return (temp.textContent || temp.innerText || '').trim();
+}
+
+function updateRichToolbarState(toolbar) {
+    toolbar.querySelectorAll('[data-rt-cmd]').forEach(function (btn) {
+        if (btn.tagName === 'INPUT') return;
+        var cmd = btn.dataset.rtCmd;
+        if (cmd === 'foreColor') return;
+        try {
+            btn.classList.toggle('is-active', document.queryCommandState(cmd));
+        } catch (e) { /* ignore */ }
+    });
+}
+
 function getLocalizedBannerText(copy, locale) {
     const source = copy && typeof copy === 'object' ? copy : {};
     const primary = typeof source[locale] === 'string' ? source[locale].trim() : '';
@@ -461,11 +512,12 @@ function getLocalizedBannerText(copy, locale) {
 function buildBannerPreviewMarkup(banner) {
     const previewBanner = normalizeEmergencyBanner(banner);
     const pillText = getLocalizedBannerText(previewBanner.pill, 'en');
-    const messageText = getLocalizedBannerText(previewBanner.message, 'en');
+    const messageHtml = sanitizeBannerHtml(getLocalizedBannerText(previewBanner.message, 'en'));
+    const messagePlain = stripHtmlTags(messageHtml);
     const linkText = getLocalizedBannerText(previewBanner.ctaLabel, 'en');
     const linkUrl = sanitizeBannerUrl(previewBanner.ctaUrl);
 
-    if (!previewBanner.enabled || !messageText) {
+    if (!previewBanner.enabled || !messagePlain) {
         return [
             '<div class="admin-empty-state">',
             '<p>Turn the banner on and add a message to preview it here.</p>',
@@ -473,16 +525,19 @@ function buildBannerPreviewMarkup(banner) {
         ].join('');
     }
 
+    var showPill = previewBanner.showPill !== false && !!pillText;
+    var showButton = previewBanner.showButton !== false && !!linkText && !!linkUrl;
+
     return [
         '<div class="site-emergency-banner" data-color="' + escapeHtml(previewBanner.color || 'red') + '">',
         '<div class="site-emergency-banner-inner">',
         '<div class="site-emergency-banner-copy">',
-        pillText ? '<span class="site-emergency-banner-pill">' + escapeHtml(pillText) + '</span>' : '',
+        showPill ? '<span class="site-emergency-banner-pill">' + escapeHtml(pillText) + '</span>' : '',
         '<span class="site-emergency-banner-message">',
-        escapeHtml(messageText),
+        messageHtml,
         '</span>',
         '</div>',
-        linkText && linkUrl
+        showButton
             ? '<a class="site-emergency-banner-link" href="' + escapeHtml(linkUrl) + '">' + escapeHtml(linkText) + '</a>'
             : '',
         '</div>',
@@ -941,13 +996,15 @@ function readBannerFromForm() {
     return normalizeEmergencyBanner({
         enabled: !!(elements.bannerEnabled && elements.bannerEnabled.checked),
         color: getSelectedBannerColor(),
+        showPill: !elements.bannerShowPill || elements.bannerShowPill.checked,
+        showButton: !elements.bannerShowButton || elements.bannerShowButton.checked,
         pill: {
             en: elements.bannerPillEn ? elements.bannerPillEn.value : '',
             es: elements.bannerPillEs ? elements.bannerPillEs.value : ''
         },
         message: {
-            en: elements.bannerMessageEn ? elements.bannerMessageEn.value : '',
-            es: elements.bannerMessageEs ? elements.bannerMessageEs.value : ''
+            en: elements.bannerMessageEn ? sanitizeBannerHtml(elements.bannerMessageEn.innerHTML) : '',
+            es: elements.bannerMessageEs ? sanitizeBannerHtml(elements.bannerMessageEs.innerHTML) : ''
         },
         ctaLabel: {
             en: elements.bannerCtaLabelEn ? elements.bannerCtaLabelEn.value : '',
@@ -977,6 +1034,12 @@ function applyBannerToForm(banner) {
     if (elements.bannerNewTab) {
         elements.bannerNewTab.checked = nextBanner.ctaNewTab;
     }
+    if (elements.bannerShowPill) {
+        elements.bannerShowPill.checked = nextBanner.showPill !== false;
+    }
+    if (elements.bannerShowButton) {
+        elements.bannerShowButton.checked = nextBanner.showButton !== false;
+    }
     setSelectedBannerColor(nextBanner.color);
     if (elements.bannerPillEn) {
         elements.bannerPillEn.value = nextBanner.pill.en;
@@ -985,10 +1048,10 @@ function applyBannerToForm(banner) {
         elements.bannerPillEs.value = nextBanner.pill.es;
     }
     if (elements.bannerMessageEn) {
-        elements.bannerMessageEn.value = nextBanner.message.en;
+        elements.bannerMessageEn.innerHTML = sanitizeBannerHtml(nextBanner.message.en);
     }
     if (elements.bannerMessageEs) {
-        elements.bannerMessageEs.value = nextBanner.message.es;
+        elements.bannerMessageEs.innerHTML = sanitizeBannerHtml(nextBanner.message.es);
     }
     if (elements.bannerCtaLabelEn) {
         elements.bannerCtaLabelEn.value = nextBanner.ctaLabel.en;
@@ -1207,6 +1270,7 @@ function clearBannerEditorState() {
     hasUnsavedBannerChanges = false;
     setBannerAutoTranslateEnabled(true);
     applyBannerToForm(createDefaultEmergencyBanner());
+    translationCache.clear();
 }
 
 function applyRemoteSlides(nextSlides, message, force) {
@@ -1332,7 +1396,7 @@ async function buildTranslatedBanner(banner) {
     const translatedBanner = normalizeEmergencyBanner(banner);
     const translations = await Promise.all([
         translateTextToSpanish(translatedBanner.pill.en),
-        translateTextToSpanish(translatedBanner.message.en),
+        translateTextToSpanish(stripHtmlTags(translatedBanner.message.en)),
         translateTextToSpanish(translatedBanner.ctaLabel.en)
     ]);
 
@@ -1346,6 +1410,8 @@ function copyBannerEnglishToSpanishData(banner) {
     return normalizeEmergencyBanner({
         enabled: banner.enabled,
         color: banner.color,
+        showPill: banner.showPill,
+        showButton: banner.showButton,
         pill: { en: banner.pill.en, es: banner.pill.en },
         message: { en: banner.message.en, es: banner.message.en },
         ctaLabel: { en: banner.ctaLabel.en, es: banner.ctaLabel.en },
@@ -1375,6 +1441,8 @@ async function translateBannerToSpanish(options) {
         emergencyBanner = normalizeEmergencyBanner({
             enabled: latestBanner.enabled,
             color: latestBanner.color,
+            showPill: latestBanner.showPill,
+            showButton: latestBanner.showButton,
             pill: {
                 en: latestBanner.pill.en,
                 es: translatedBanner.pill.es
@@ -1823,6 +1891,11 @@ function importSlides(event) {
         }
     };
 
+    reader.onerror = function () {
+        setStatus('That backup file could not be read.', 'danger');
+        event.target.value = '';
+    };
+
     reader.readAsText(file);
 }
 
@@ -2087,10 +2160,9 @@ function handleBannerInput(event) {
     const bannerFieldIds = new Set([
         'adminBannerEnabled',
         'adminBannerNewTab',
+        'adminBannerShowPill',
         'adminBannerPillEn',
         'adminBannerPillEs',
-        'adminBannerMessageEn',
-        'adminBannerMessageEs',
         'adminBannerCtaLabelEn',
         'adminBannerCtaLabelEs',
         'adminBannerCtaUrl',
@@ -2113,7 +2185,6 @@ function handleBannerInput(event) {
 
     if (
         target.id === 'adminBannerPillEs'
-        || target.id === 'adminBannerMessageEs'
         || target.id === 'adminBannerCtaLabelEs'
     ) {
         turnOffBannerAutoTranslate();
@@ -2125,7 +2196,6 @@ function handleBannerInput(event) {
 
     if (
         target.id === 'adminBannerPillEn'
-        || target.id === 'adminBannerMessageEn'
         || target.id === 'adminBannerCtaLabelEn'
     ) {
         scheduleBannerAutoTranslate();
@@ -2256,20 +2326,22 @@ async function handleLogout() {
     }
 }
 
+function safeListen(el, event, handler) {
+    if (el) {
+        el.addEventListener(event, handler);
+    }
+}
+
 function initEvents() {
-    elements.lockForm.addEventListener('submit', handleLogin);
-    elements.resetPasswordButton.addEventListener('click', handlePasswordReset);
-    elements.editorList.addEventListener('input', handleEditorInput);
-    elements.editorList.addEventListener('change', handleEditorInput);
-    elements.editorList.addEventListener('click', handleEditorClick);
+    safeListen(elements.lockForm, 'submit', handleLogin);
+    safeListen(elements.resetPasswordButton, 'click', handlePasswordReset);
+    safeListen(elements.editorList, 'input', handleEditorInput);
+    safeListen(elements.editorList, 'change', handleEditorInput);
+    safeListen(elements.editorList, 'click', handleEditorClick);
     document.addEventListener('input', handleBannerInput);
     document.addEventListener('change', handleBannerInput);
-    if (elements.templateGrid) {
-        elements.templateGrid.addEventListener('click', handleEditorClick);
-    }
-    if (elements.bannerPresetGrid) {
-        elements.bannerPresetGrid.addEventListener('click', handleBannerClick);
-    }
+    safeListen(elements.templateGrid, 'click', handleEditorClick);
+    safeListen(elements.bannerPresetGrid, 'click', handleBannerClick);
     if (elements.bannerColorPicker) {
         elements.bannerColorPicker.addEventListener('click', function (event) {
             var btn = event.target.closest('[data-banner-color]');
@@ -2287,15 +2359,15 @@ function initEvents() {
             setActiveAdminTab(button.dataset.adminTab);
         });
     });
-    elements.saveButton.addEventListener('click', saveSlides);
-    elements.addButton.addEventListener('click', function () {
+    safeListen(elements.saveButton, 'click', saveSlides);
+    safeListen(elements.addButton, 'click', function () {
         addSlide(store.createSlideTemplate(), 'Blank slide added. Publish when ready.');
     });
-    elements.reloadButton.addEventListener('click', reloadFromFirebase);
-    elements.resetButton.addEventListener('click', resetSlidesToDefault);
-    elements.exportButton.addEventListener('click', exportSlides);
-    elements.importInput.addEventListener('change', importSlides);
-    elements.logoutButton.addEventListener('click', handleLogout);
+    safeListen(elements.reloadButton, 'click', reloadFromFirebase);
+    safeListen(elements.resetButton, 'click', resetSlidesToDefault);
+    safeListen(elements.exportButton, 'click', exportSlides);
+    safeListen(elements.importInput, 'change', importSlides);
+    safeListen(elements.logoutButton, 'click', handleLogout);
     if (elements.bannerSaveButton) {
         elements.bannerSaveButton.addEventListener('click', saveBanner);
     }
@@ -2313,6 +2385,74 @@ function initEvents() {
     if (elements.bannerCopyButton) {
         elements.bannerCopyButton.addEventListener('click', copyBannerEnglishToSpanish);
     }
+
+    /* Rich text toolbar buttons */
+    document.querySelectorAll('.studio-richtext-toolbar').forEach(function (toolbar) {
+        toolbar.addEventListener('click', function (event) {
+            var btn = event.target.closest('[data-rt-cmd]');
+            if (!btn || btn.tagName === 'INPUT') return;
+            event.preventDefault();
+            var cmd = btn.dataset.rtCmd;
+            document.execCommand(cmd, false, null);
+            updateRichToolbarState(toolbar);
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('You have unpublished banner changes.');
+        });
+    });
+
+    /* Rich text color pickers */
+    document.querySelectorAll('.studio-rt-color input[type="color"]').forEach(function (picker) {
+        picker.addEventListener('input', function () {
+            document.execCommand('foreColor', false, picker.value);
+            var icon = picker.parentElement.querySelector('.studio-rt-color-icon');
+            if (icon) icon.style.borderBottomColor = picker.value;
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('You have unpublished banner changes.');
+        });
+    });
+
+    /* Contenteditable input tracking */
+    document.querySelectorAll('.studio-richtext').forEach(function (el) {
+        el.addEventListener('input', function () {
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('You have unpublished banner changes.');
+            if (el.id === 'adminBannerMessageEn') {
+                scheduleBannerAutoTranslate();
+            }
+            if (el.id === 'adminBannerMessageEs') {
+                turnOffBannerAutoTranslate();
+            }
+        });
+        el.addEventListener('keyup', function () {
+            var toolbar = el.previousElementSibling;
+            if (toolbar && toolbar.classList.contains('studio-richtext-toolbar')) {
+                updateRichToolbarState(toolbar);
+            }
+        });
+        el.addEventListener('mouseup', function () {
+            var toolbar = el.previousElementSibling;
+            if (toolbar && toolbar.classList.contains('studio-richtext-toolbar')) {
+                updateRichToolbarState(toolbar);
+            }
+        });
+    });
+
+    /* Show Pill toggle */
+    safeListen(elements.bannerShowPill, 'change', function () {
+        emergencyBanner = readBannerFromForm();
+        renderBannerPreview();
+        markBannerDirty('You have unpublished banner changes.');
+    });
+
+    /* Show Button toggle */
+    safeListen(elements.bannerShowButton, 'change', function () {
+        emergencyBanner = readBannerFromForm();
+        renderBannerPreview();
+        markBannerDirty('You have unpublished banner changes.');
+    });
 
     if (elements.translateAllButton) {
         elements.translateAllButton.addEventListener('click', translateAllSlides);
