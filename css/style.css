@@ -426,7 +426,7 @@ header nav {
 
 .main-header-links {
     justify-self: center;
-    display: flex;
+    /* display is controlled by Tailwind: hidden xl:flex */
     align-items: center;
     justify-content: center;
     gap: clamp(0.5rem, 1.5vw, 1.5rem);
