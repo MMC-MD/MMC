@@ -1354,7 +1354,6 @@ footer a:hover {
 /* ===== RESPONSIVE CONTAINER FIX ===== */
 .container {
     width: 100%;
-    max-width: 100vw;
     margin-left: auto;
     margin-right: auto;
 }
