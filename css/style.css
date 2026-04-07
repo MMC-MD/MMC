@@ -1001,11 +1001,6 @@ body.mobile-menu-open {
     min-height: 44px; /* Touch target size for mobile */
 }
 
-/* Respect Tailwind's hidden class — do not override with .btn display */
-.btn.hidden {
-    display: none;
-}
-
 /* Hide header action buttons below xl (1280px) — they live in the mobile menu */
 @media (max-width: 1279px) {
     .main-header-actions .btn {
