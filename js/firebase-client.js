@@ -9,10 +9,16 @@ import {
     signOut
 } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js';
 import {
+    addDoc,
+    collection,
+    deleteDoc,
     doc,
     getDoc,
+    getDocs,
     getFirestore,
     onSnapshot,
+    orderBy,
+    query,
     serverTimestamp,
     setDoc
 } from 'https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js';
@@ -22,6 +28,7 @@ const slideshowCollection = 'siteContent';
 const slideshowDocument = 'homepageSlideshow';
 const emergencyBannerCollection = 'siteContent';
 const emergencyBannerDocument = 'globalEmergencyBanner';
+const scheduledBannersCollection = 'scheduledBanners';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyApTW8VY94FYUzqqliUkaqwJQI9742_5b4',
@@ -37,6 +44,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const slideshowRef = doc(db, slideshowCollection, slideshowDocument);
 const emergencyBannerRef = doc(db, emergencyBannerCollection, emergencyBannerDocument);
+const scheduledBannersRef = collection(db, scheduledBannersCollection);
 
 setPersistence(auth, browserLocalPersistence).catch(function () {
     return null;
@@ -262,26 +270,128 @@ async function sendAdminPasswordReset(email) {
     await sendPasswordResetEmail(auth, email);
 }
 
+function normalizeScheduledBanner(value, id) {
+    const source = value && typeof value === 'object' ? value : {};
+    const banner = normalizeEmergencyBanner(source.banner || source);
+
+    return {
+        id: id || source.id || '',
+        label: cleanText(source.label) || 'Scheduled Banner',
+        startDate: cleanText(source.startDate),
+        endDate: cleanText(source.endDate),
+        banner: banner,
+        createdAt: source.createdAt || null,
+        updatedAt: source.updatedAt || null,
+        updatedByEmail: cleanText(source.updatedByEmail)
+    };
+}
+
+async function fetchScheduledBanners() {
+    const q = query(scheduledBannersRef, orderBy('startDate', 'asc'));
+    const snapshot = await getDocs(q);
+    var results = [];
+
+    snapshot.forEach(function (docSnap) {
+        results.push(normalizeScheduledBanner(docSnap.data(), docSnap.id));
+    });
+
+    return results;
+}
+
+function subscribeToScheduledBanners(onData, onError) {
+    const q = query(scheduledBannersRef, orderBy('startDate', 'asc'));
+
+    return onSnapshot(
+        q,
+        function (snapshot) {
+            var results = [];
+            snapshot.forEach(function (docSnap) {
+                results.push(normalizeScheduledBanner(docSnap.data(), docSnap.id));
+            });
+            onData(results);
+        },
+        function (error) {
+            if (typeof onError === 'function') {
+                onError(error);
+            }
+        }
+    );
+}
+
+async function saveScheduledBanner(entry, currentUser) {
+    const data = {
+        label: cleanText(entry.label) || 'Scheduled Banner',
+        startDate: cleanText(entry.startDate),
+        endDate: cleanText(entry.endDate),
+        banner: normalizeEmergencyBanner(entry.banner),
+        updatedAt: serverTimestamp(),
+        updatedByUid: currentUser && currentUser.uid ? currentUser.uid : null,
+        updatedByEmail: currentUser && currentUser.email ? currentUser.email : null
+    };
+
+    if (entry.id) {
+        var ref = doc(db, scheduledBannersCollection, entry.id);
+        await setDoc(ref, data, { merge: true });
+        return normalizeScheduledBanner(data, entry.id);
+    }
+
+    data.createdAt = serverTimestamp();
+    var newRef = await addDoc(scheduledBannersRef, data);
+    return normalizeScheduledBanner(data, newRef.id);
+}
+
+async function deleteScheduledBanner(id) {
+    if (!id) return;
+    var ref = doc(db, scheduledBannersCollection, id);
+    await deleteDoc(ref);
+}
+
+function getActiveScheduledBanner(scheduledBanners) {
+    if (!Array.isArray(scheduledBanners) || !scheduledBanners.length) {
+        return null;
+    }
+
+    var now = new Date();
+    var todayStr = now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0');
+
+    for (var i = 0; i < scheduledBanners.length; i++) {
+        var entry = scheduledBanners[i];
+        if (entry.startDate && entry.endDate && entry.startDate <= todayStr && entry.endDate >= todayStr) {
+            return entry;
+        }
+    }
+
+    return null;
+}
+
 export {
     app,
     auth,
     createDefaultEmergencyBanner,
     db,
+    deleteScheduledBanner,
     emergencyBannerCollection,
     emergencyBannerDocument,
     fetchHomepageSlides,
     fetchEmergencyBanner,
+    fetchScheduledBanners,
     firebaseConfig,
+    getActiveScheduledBanner,
     getFriendlyFirebaseError,
     normalizeEmergencyBanner,
+    normalizeScheduledBanner,
     observeAuthState,
     saveEmergencyBanner,
     saveHomepageSlides,
+    saveScheduledBanner,
     sendAdminPasswordReset,
     signInAdmin,
     signOutAdmin,
     slideshowCollection,
     slideshowDocument,
     subscribeToEmergencyBanner,
-    subscribeToHomepageSlides
+    subscribeToHomepageSlides,
+    subscribeToScheduledBanners
 };

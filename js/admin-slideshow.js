@@ -1,18 +1,22 @@
 import {
     auth,
     createDefaultEmergencyBanner,
+    deleteScheduledBanner,
     fetchEmergencyBanner,
     fetchHomepageSlides,
+    fetchScheduledBanners,
     getFriendlyFirebaseError,
     normalizeEmergencyBanner,
     observeAuthState,
     saveEmergencyBanner,
     saveHomepageSlides,
+    saveScheduledBanner,
     sendAdminPasswordReset,
     signInAdmin,
     signOutAdmin,
     subscribeToEmergencyBanner,
-    subscribeToHomepageSlides
+    subscribeToHomepageSlides,
+    subscribeToScheduledBanners
 } from './firebase-client.js';
 
 const store = window.MMCSlideshowStore;
@@ -269,6 +273,11 @@ const elements = {
     bannerAutoTranslateToggle: document.getElementById('adminBannerAutoTranslateToggle'),
     bannerPresetGrid: document.getElementById('adminBannerPresetGrid'),
     bannerColorPicker: document.getElementById('adminBannerColorPicker'),
+    scheduleStatus: document.getElementById('adminScheduleStatus'),
+    scheduleAddButton: document.getElementById('adminScheduleAddButton'),
+    scheduleReloadButton: document.getElementById('adminScheduleReloadButton'),
+    scheduledBannerList: document.getElementById('scheduledBannerList'),
+    scheduledBannerEmpty: document.getElementById('scheduledBannerEmpty'),
     tabButtons: Array.from(document.querySelectorAll('[data-admin-tab]')),
     tabPanels: Array.from(document.querySelectorAll('[data-admin-panel]'))
 };
@@ -283,6 +292,8 @@ let hasUnsavedBannerChanges = false;
 let unsubscribeBanner = null;
 let bannerTranslateTimer = null;
 let bannerTranslateRun = 0;
+let scheduledBanners = [];
+let unsubscribeScheduled = null;
 let expandedSlideId = null;
 let activeAdminTab = 'banner';
 
@@ -374,7 +385,8 @@ function hasPendingChanges() {
 }
 
 function setActiveAdminTab(tabId) {
-    activeAdminTab = tabId === 'slides' ? 'slides' : 'banner';
+    var validTabs = ['banner', 'slides', 'schedule'];
+    activeAdminTab = validTabs.indexOf(tabId) >= 0 ? tabId : 'banner';
 
     elements.tabButtons.forEach(function (button) {
         const isActive = button.dataset.adminTab === activeAdminTab;
@@ -2150,6 +2162,339 @@ function turnOffBannerAutoTranslate() {
     setBannerStatus('Automatic Spanish fill was turned off for the banner so your manual Spanish edits stay in place.', 'info');
 }
 
+/* ═══════════════════════════════════════════════════
+   Scheduled Banners
+   ═══════════════════════════════════════════════════ */
+
+function setScheduleStatus(message, tone) {
+    if (!elements.scheduleStatus) return;
+    elements.scheduleStatus.textContent = message;
+    elements.scheduleStatus.dataset.tone = tone || 'info';
+}
+
+function formatDateDisplay(dateStr) {
+    if (!dateStr) return '';
+    var parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var m = parseInt(parts[1], 10);
+    var d = parseInt(parts[2], 10);
+    var y = parts[0];
+    return months[m - 1] + ' ' + d + ', ' + y;
+}
+
+function getScheduledBannerStatus(entry) {
+    if (!entry.startDate || !entry.endDate) return { label: 'Incomplete', tone: 'muted' };
+    var now = new Date();
+    var todayStr = now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0');
+
+    if (todayStr > entry.endDate) return { label: 'Expired', tone: 'muted' };
+    if (todayStr >= entry.startDate && todayStr <= entry.endDate) return { label: 'Active Now', tone: 'success' };
+    return { label: 'Upcoming', tone: 'info' };
+}
+
+function renderScheduledBannerCard(entry) {
+    var status = getScheduledBannerStatus(entry);
+    var messageText = stripHtmlTags(getLocalizedBannerText(entry.banner.message, 'en'));
+    var pillText = getLocalizedBannerText(entry.banner.pill, 'en');
+    var color = entry.banner.color || 'green';
+    var truncatedMessage = messageText.length > 120 ? messageText.substring(0, 120) + '...' : messageText;
+
+    return [
+        '<div class="sched-card" data-sched-id="' + escapeHtml(entry.id) + '">',
+        '  <div class="sched-card-header">',
+        '    <div class="sched-card-header-left">',
+        '      <span class="sched-status sched-status-' + status.tone + '">' + status.label + '</span>',
+        '      <span class="sched-label">' + escapeHtml(entry.label) + '</span>',
+        '    </div>',
+        '    <div class="sched-card-header-right">',
+        '      <button type="button" class="sched-action sched-action-delete" data-sched-delete="' + escapeHtml(entry.id) + '" title="Delete">',
+        '        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+        '      </button>',
+        '    </div>',
+        '  </div>',
+        '  <div class="sched-card-body">',
+        '    <div class="sched-dates">',
+        '      <span class="sched-date-range">',
+        '        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;margin-right:4px;"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 5h11M5 1.5v3M9 1.5v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>',
+        '        ' + formatDateDisplay(entry.startDate) + ' &mdash; ' + formatDateDisplay(entry.endDate),
+        '      </span>',
+        '    </div>',
+        '    <div class="sched-banner-preview-mini">',
+        '      <span class="sched-color-dot" style="background:' + (color === 'red' ? '#dc2626' : color === 'orange' ? '#ea580c' : color === 'yellow' ? '#ca8a04' : '#16a34a') + '"></span>',
+        (pillText ? '<span class="sched-pill-text">' + escapeHtml(pillText) + '</span>' : ''),
+        '      <span class="sched-message-text">' + escapeHtml(truncatedMessage) + '</span>',
+        '    </div>',
+        '  </div>',
+        '  <details class="sched-card-edit">',
+        '    <summary class="sched-edit-trigger">Edit Banner Details</summary>',
+        '    <div class="sched-edit-body">',
+        '      <div class="sched-field-row">',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Label (for your reference)</span>',
+        '          <input type="text" class="sched-input" data-sched-field="label" value="' + escapeHtml(entry.label) + '">',
+        '        </label>',
+        '      </div>',
+        '      <div class="sched-field-row sched-field-row-2col">',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Start Date</span>',
+        '          <input type="date" class="sched-input" data-sched-field="startDate" value="' + escapeHtml(entry.startDate) + '">',
+        '        </label>',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">End Date</span>',
+        '          <input type="date" class="sched-input" data-sched-field="endDate" value="' + escapeHtml(entry.endDate) + '">',
+        '        </label>',
+        '      </div>',
+        '      <div class="sched-field-row">',
+        '        <span class="studio-field-label">Banner Color</span>',
+        '        <div class="sched-color-picker">',
+        '          <button type="button" class="banner-color-btn' + (color === 'red' ? ' is-active' : '') + '" data-sched-color="red"><span class="banner-color-swatch" style="background:#dc2626;"></span>Red</button>',
+        '          <button type="button" class="banner-color-btn' + (color === 'orange' ? ' is-active' : '') + '" data-sched-color="orange"><span class="banner-color-swatch" style="background:#ea580c;"></span>Orange</button>',
+        '          <button type="button" class="banner-color-btn' + (color === 'yellow' ? ' is-active' : '') + '" data-sched-color="yellow"><span class="banner-color-swatch" style="background:#ca8a04;"></span>Yellow</button>',
+        '          <button type="button" class="banner-color-btn' + (color === 'green' ? ' is-active' : '') + '" data-sched-color="green"><span class="banner-color-swatch" style="background:#16a34a;"></span>Green</button>',
+        '        </div>',
+        '      </div>',
+        '      <div class="sched-field-row">',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Alert Label (EN)</span>',
+        '          <input type="text" class="sched-input" data-sched-field="pillEn" value="' + escapeHtml(getLocalizedBannerText(entry.banner.pill, 'en')) + '">',
+        '        </label>',
+        '      </div>',
+        '      <div class="sched-field-row">',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Message (EN)</span>',
+        '          <input type="text" class="sched-input sched-input-wide" data-sched-field="messageEn" value="' + escapeHtml(getLocalizedBannerText(entry.banner.message, 'en')) + '">',
+        '        </label>',
+        '      </div>',
+        '      <div class="sched-field-row">',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Alert Label (ES)</span>',
+        '          <input type="text" class="sched-input" data-sched-field="pillEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.pill, 'es')) + '">',
+        '        </label>',
+        '      </div>',
+        '      <div class="sched-field-row">',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Message (ES)</span>',
+        '          <input type="text" class="sched-input sched-input-wide" data-sched-field="messageEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.message, 'es')) + '">',
+        '        </label>',
+        '      </div>',
+        '      <div class="sched-field-row sched-field-row-2col">',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Button Text (EN) <span class="studio-optional">optional</span></span>',
+        '          <input type="text" class="sched-input" data-sched-field="ctaLabelEn" value="' + escapeHtml(getLocalizedBannerText(entry.banner.ctaLabel, 'en')) + '">',
+        '        </label>',
+        '        <label class="sched-field">',
+        '          <span class="studio-field-label">Button Link</span>',
+        '          <input type="text" class="sched-input" data-sched-field="ctaUrl" value="' + escapeHtml(entry.banner.ctaUrl || '') + '">',
+        '        </label>',
+        '      </div>',
+        '      <div class="sched-field-row">',
+        '        <button type="button" class="studio-btn studio-btn-publish sched-save-btn" data-sched-save="' + escapeHtml(entry.id) + '">Save Changes</button>',
+        '      </div>',
+        '    </div>',
+        '  </details>',
+        '</div>'
+    ].join('\n');
+}
+
+function renderScheduledBanners() {
+    if (!elements.scheduledBannerList) return;
+
+    if (!scheduledBanners.length) {
+        elements.scheduledBannerList.innerHTML = '';
+        if (elements.scheduledBannerEmpty) elements.scheduledBannerEmpty.hidden = false;
+        return;
+    }
+
+    if (elements.scheduledBannerEmpty) elements.scheduledBannerEmpty.hidden = true;
+    elements.scheduledBannerList.innerHTML = scheduledBanners.map(renderScheduledBannerCard).join('');
+}
+
+function readScheduledBannerFromCard(card) {
+    var id = card.dataset.schedId || '';
+    var label = (card.querySelector('[data-sched-field="label"]') || {}).value || '';
+    var startDate = (card.querySelector('[data-sched-field="startDate"]') || {}).value || '';
+    var endDate = (card.querySelector('[data-sched-field="endDate"]') || {}).value || '';
+    var pillEn = (card.querySelector('[data-sched-field="pillEn"]') || {}).value || '';
+    var pillEs = (card.querySelector('[data-sched-field="pillEs"]') || {}).value || '';
+    var messageEn = (card.querySelector('[data-sched-field="messageEn"]') || {}).value || '';
+    var messageEs = (card.querySelector('[data-sched-field="messageEs"]') || {}).value || '';
+    var ctaLabelEn = (card.querySelector('[data-sched-field="ctaLabelEn"]') || {}).value || '';
+    var ctaUrl = (card.querySelector('[data-sched-field="ctaUrl"]') || {}).value || '';
+    var activeColorBtn = card.querySelector('.sched-color-picker .banner-color-btn.is-active');
+    var color = activeColorBtn ? activeColorBtn.dataset.schedColor : 'green';
+
+    return {
+        id: id,
+        label: label,
+        startDate: startDate,
+        endDate: endDate,
+        banner: {
+            enabled: true,
+            color: color,
+            showPill: true,
+            showButton: !!(ctaLabelEn && ctaUrl),
+            pill: { en: pillEn, es: pillEs },
+            message: { en: messageEn, es: messageEs },
+            ctaLabel: { en: ctaLabelEn, es: '' },
+            ctaUrl: ctaUrl,
+            ctaNewTab: false
+        }
+    };
+}
+
+async function addScheduledBanner() {
+    var currentUser = auth.currentUser;
+    if (!currentUser) {
+        setScheduleStatus('Sign in before adding a scheduled banner.', 'danger');
+        return;
+    }
+
+    var now = new Date();
+    var todayStr = now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0');
+
+    var newEntry = {
+        label: 'Weekend Hours Banner',
+        startDate: todayStr,
+        endDate: todayStr,
+        banner: {
+            enabled: true,
+            color: 'green',
+            showPill: true,
+            showButton: true,
+            pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+            message: { en: 'We are open today from 8:00 AM - 1:00 PM.', es: 'Estamos abiertos hoy de 8:00 AM a 1:00 PM.' },
+            ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+            ctaUrl: 'tel:3012082273',
+            ctaNewTab: false
+        }
+    };
+
+    try {
+        await saveScheduledBanner(newEntry, currentUser);
+        setScheduleStatus('New scheduled banner added. Edit the details and date range below.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function handleScheduleSave(schedId) {
+    var currentUser = auth.currentUser;
+    if (!currentUser) {
+        setScheduleStatus('Sign in before saving.', 'danger');
+        return;
+    }
+
+    var card = elements.scheduledBannerList.querySelector('[data-sched-id="' + schedId + '"]');
+    if (!card) return;
+
+    var entry = readScheduledBannerFromCard(card);
+
+    if (!entry.startDate || !entry.endDate) {
+        setScheduleStatus('Please set both a start date and end date.', 'danger');
+        return;
+    }
+
+    if (entry.startDate > entry.endDate) {
+        setScheduleStatus('Start date must be on or before the end date.', 'danger');
+        return;
+    }
+
+    var messageText = (entry.banner.message.en || '').trim();
+    if (!messageText) {
+        setScheduleStatus('Please add a banner message.', 'danger');
+        return;
+    }
+
+    try {
+        await saveScheduledBanner(entry, currentUser);
+        setScheduleStatus('Scheduled banner saved.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function handleScheduleDelete(schedId) {
+    if (!window.confirm('Delete this scheduled banner? This cannot be undone.')) return;
+
+    try {
+        await deleteScheduledBanner(schedId);
+        setScheduleStatus('Scheduled banner deleted.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function reloadScheduledBanners() {
+    try {
+        setScheduleStatus('Reloading scheduled banners...', 'info');
+        scheduledBanners = await fetchScheduledBanners();
+        renderScheduledBanners();
+        setScheduleStatus('Scheduled banners reloaded.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+function handleScheduleListClick(event) {
+    var deleteBtn = event.target.closest('[data-sched-delete]');
+    if (deleteBtn) {
+        handleScheduleDelete(deleteBtn.dataset.schedDelete);
+        return;
+    }
+
+    var saveBtn = event.target.closest('[data-sched-save]');
+    if (saveBtn) {
+        handleScheduleSave(saveBtn.dataset.schedSave);
+        return;
+    }
+
+    var colorBtn = event.target.closest('[data-sched-color]');
+    if (colorBtn) {
+        var picker = colorBtn.closest('.sched-color-picker');
+        if (picker) {
+            picker.querySelectorAll('.banner-color-btn').forEach(function (btn) {
+                btn.classList.remove('is-active');
+            });
+            colorBtn.classList.add('is-active');
+        }
+    }
+}
+
+function disconnectScheduledListener() {
+    if (typeof unsubscribeScheduled === 'function') {
+        unsubscribeScheduled();
+    }
+    unsubscribeScheduled = null;
+}
+
+async function connectScheduledListener() {
+    disconnectScheduledListener();
+    setScheduleStatus('Loading scheduled banners...', 'info');
+
+    try {
+        scheduledBanners = await fetchScheduledBanners();
+        renderScheduledBanners();
+        setScheduleStatus('Scheduled banners loaded.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+
+    unsubscribeScheduled = subscribeToScheduledBanners(
+        function (liveBanners) {
+            scheduledBanners = liveBanners;
+            renderScheduledBanners();
+        },
+        function (error) {
+            setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+        }
+    );
+}
+
 function handleBannerInput(event) {
     const target = event.target;
 
@@ -2386,6 +2731,11 @@ function initEvents() {
         elements.bannerCopyButton.addEventListener('click', copyBannerEnglishToSpanish);
     }
 
+    /* Scheduled banner events */
+    safeListen(elements.scheduleAddButton, 'click', addScheduledBanner);
+    safeListen(elements.scheduleReloadButton, 'click', reloadScheduledBanners);
+    safeListen(elements.scheduledBannerList, 'click', handleScheduleListClick);
+
     /* Rich text toolbar buttons */
     document.querySelectorAll('.studio-richtext-toolbar').forEach(function (toolbar) {
         toolbar.addEventListener('click', function (event) {
@@ -2487,10 +2837,12 @@ function initAuthObserver() {
         if (!user) {
             disconnectSlidesListener();
             disconnectBannerListener();
+            disconnectScheduledListener();
             clearEditorState();
             clearBannerEditorState();
             setStatus('Sign in to edit the homepage slides.', 'info');
             setBannerStatus('Sign in to edit the urgent banner.', 'info');
+            setScheduleStatus('Sign in to manage scheduled banners.', 'info');
             setLockMessage('Sign in with the office admin email and password.', 'info');
             if (elements.emailInput) {
                 elements.emailInput.focus();
@@ -2501,7 +2853,8 @@ function initAuthObserver() {
         setLockMessage('Signed in as ' + (user.email || 'admin user') + '.', 'success');
         await Promise.all([
             connectSlidesListener(),
-            connectBannerListener()
+            connectBannerListener(),
+            connectScheduledListener()
         ]);
     });
 }

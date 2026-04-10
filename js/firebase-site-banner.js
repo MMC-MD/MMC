@@ -1,7 +1,10 @@
 import {
     fetchEmergencyBanner,
+    fetchScheduledBanners,
+    getActiveScheduledBanner,
     getFriendlyFirebaseError,
-    subscribeToEmergencyBanner
+    subscribeToEmergencyBanner,
+    subscribeToScheduledBanners
 } from './firebase-client.js';
 
 function cleanText(value) {
@@ -170,6 +173,33 @@ function renderBanner(banner) {
     syncStickyHeaderMetrics();
 }
 
+var currentMainBanner = null;
+var currentScheduledBanners = [];
+
+function resolveAndRender() {
+    var banner = currentMainBanner;
+
+    if (banner && banner.enabled) {
+        renderBanner(banner);
+        return;
+    }
+
+    var activeSched = getActiveScheduledBanner(currentScheduledBanners);
+    if (activeSched && activeSched.banner) {
+        renderBanner(activeSched.banner);
+        return;
+    }
+
+    renderBanner(banner || {
+        enabled: false,
+        pill: { en: '', es: '' },
+        message: { en: '', es: '' },
+        ctaLabel: { en: '', es: '' },
+        ctaUrl: '',
+        ctaNewTab: false
+    });
+}
+
 function initSiteBanner() {
     const root = document.getElementById('siteEmergencyBanner');
 
@@ -178,25 +208,36 @@ function initSiteBanner() {
     }
 
     fetchEmergencyBanner()
-        .then(renderBanner)
+        .then(function (banner) {
+            currentMainBanner = banner;
+            return fetchScheduledBanners().catch(function () { return []; });
+        })
+        .then(function (scheduled) {
+            currentScheduledBanners = scheduled || [];
+            resolveAndRender();
+        })
         .catch(function (error) {
             console.warn('MMC emergency banner fallback:', getFriendlyFirebaseError(error));
-            renderBanner({
-                enabled: false,
-                pill: { en: '', es: '' },
-                message: { en: '', es: '' },
-                ctaLabel: { en: '', es: '' },
-                ctaUrl: '',
-                ctaNewTab: false
-            });
+            resolveAndRender();
         });
 
     subscribeToEmergencyBanner(
         function (banner) {
-            renderBanner(banner);
+            currentMainBanner = banner;
+            resolveAndRender();
         },
         function (error) {
             console.warn('MMC emergency banner live sync error:', getFriendlyFirebaseError(error));
+        }
+    );
+
+    subscribeToScheduledBanners(
+        function (scheduled) {
+            currentScheduledBanners = scheduled;
+            resolveAndRender();
+        },
+        function (error) {
+            console.warn('MMC scheduled banners sync error:', getFriendlyFirebaseError(error));
         }
     );
 }

@@ -15,7 +15,31 @@
 /* Individual service cards */
 #services .card {
     margin: 0.75rem;
-}/*
+}
+
+#services .service-card {
+    padding: 1.5rem 1.25rem 3rem;
+}
+
+@media (min-width: 640px) {
+    #services .service-card {
+        padding: 1.75rem 1.5rem 3.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #services .service-card {
+        padding: 2rem 1.75rem 3.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #services .service-card {
+        padding: 2.25rem 2rem 3.75rem;
+    }
+}
+
+/*
     Montgomery Medical Clinic - Medical Professional Stylesheet
     Hospital-Grade Design with Brand Colors (Blue & Orange)
 */
@@ -846,7 +870,7 @@ body.mobile-menu-open {
 
 @media (hover: hover) {
     .card:hover {
-        transform: translateY(-6px) scale(1.01);
+        transform: translateY(-3px) scale(1.005);
         box-shadow: var(--shadow-strong);
         border-top-color: var(--medical-orange);
         z-index: 10; /* Ensure hover state appears above siblings */
@@ -928,8 +952,8 @@ body.mobile-menu-open {
 
 @media (hover: hover) {
     .card:hover .icon-wrap-new {
-        transform: translateY(-4px) scale(1.05);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
         border-color: var(--medical-blue);
     }
 }
@@ -1129,6 +1153,313 @@ body.mobile-menu-open {
     margin: 0 auto;
     line-height: 1.7;
     font-weight: 400;
+}
+
+/* ===== ABOUT SECTION ===== */
+#about {
+    background:
+        radial-gradient(circle at top right, rgba(13, 71, 161, 0.1), transparent 34%),
+        radial-gradient(circle at bottom left, rgba(25, 118, 210, 0.08), transparent 30%),
+        linear-gradient(180deg, #f4f8fc 0%, #edf3f9 100%);
+}
+
+#about .about-shell {
+    position: relative;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 2vw + 1rem, 3.25rem);
+    border: 1px solid rgba(13, 71, 161, 0.1);
+    border-radius: 2rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 251, 255, 0.92) 100%);
+    box-shadow: 0 24px 60px rgba(13, 71, 161, 0.1);
+}
+
+#about .about-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        linear-gradient(135deg, rgba(13, 71, 161, 0.05), transparent 38%),
+        linear-gradient(315deg, rgba(255, 143, 0, 0.04), transparent 32%);
+    pointer-events: none;
+}
+
+#about .about-layout {
+    position: relative;
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    #about .about-layout {
+        grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+        gap: 4rem;
+        align-items: stretch;
+    }
+}
+
+#about .about-media {
+    position: relative;
+}
+
+#about .about-media::after {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    right: -1rem;
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 1.75rem;
+    background: linear-gradient(135deg, rgba(13, 71, 161, 0.16) 0%, rgba(255, 143, 0, 0.12) 100%);
+    z-index: 0;
+}
+
+#about .about-image-frame {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    min-height: 320px;
+    border: 1px solid rgba(13, 71, 161, 0.12);
+    border-radius: 1.75rem;
+    background: #dfe8f3;
+    box-shadow: 0 28px 50px -28px rgba(13, 71, 161, 0.4);
+}
+
+#about .about-image-frame::before {
+    content: '';
+    display: block;
+    padding-top: 78%;
+}
+
+#about .about-image-frame picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+#about .about-image-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 18%;
+}
+
+#about .about-badge {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 2;
+    padding: 1rem 1.125rem;
+    border: 1px solid rgba(13, 71, 161, 0.1);
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 20px 40px -24px rgba(0, 33, 113, 0.35);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+#about .about-badge-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--medical-blue);
+}
+
+#about .about-badge-text {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--dark-gray);
+}
+
+#about .about-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+}
+
+#about .about-kicker-line {
+    width: 3.5rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--medical-blue) 0%, rgba(13, 71, 161, 0.12) 100%);
+}
+
+#about .about-kicker-text {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--medical-blue);
+}
+
+#about .about-title {
+    margin-bottom: 0;
+    max-width: 11ch;
+    font-size: clamp(2rem, 3.2vw, 3.6rem);
+    line-height: 1.08;
+}
+
+#about .about-lead {
+    max-width: 36rem;
+    margin-top: 1.1rem;
+    font-size: clamp(1rem, 1.15vw, 1.12rem);
+    line-height: 1.72;
+    color: var(--medium-gray);
+}
+
+#about .about-body {
+    display: grid;
+    gap: 0.875rem;
+    margin-top: 1.2rem;
+}
+
+#about .about-body p {
+    max-width: 38rem;
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--medium-gray);
+}
+
+#about .about-highlights {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+    #about .about-highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    #about .about-highlights {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+#about .about-highlight {
+    position: relative;
+    display: block;
+    min-height: 100%;
+    padding: 1.25rem 1rem 1.1rem;
+    border: 1px solid rgba(13, 71, 161, 0.1);
+    border-radius: 1.125rem;
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(13, 71, 161, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+#about .about-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: 1.125rem 1.125rem 0 0;
+    background: linear-gradient(90deg, var(--medical-blue) 0%, rgba(25, 118, 210, 0.18) 100%);
+}
+
+@media (hover: hover) {
+    #about .about-highlight:hover {
+        transform: translateY(-4px);
+        border-color: rgba(13, 71, 161, 0.18);
+        box-shadow: 0 18px 36px rgba(13, 71, 161, 0.1);
+    }
+}
+
+#about .about-highlight-title {
+    font-size: 0.98rem;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--dark-gray);
+}
+
+#about .about-highlight-text {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--medium-gray);
+}
+
+#about .about-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.25rem;
+}
+
+#about .about-cta {
+    width: auto;
+    box-shadow: none;
+    min-width: 17.5rem;
+}
+
+@media (min-width: 640px) {
+    #about .about-badge {
+        left: 1.5rem;
+        right: auto;
+        max-width: 21rem;
+        padding: 1.125rem 1.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #about .about-media {
+        min-height: 100%;
+    }
+
+    #about .about-image-frame {
+        height: 100%;
+        min-height: 100%;
+    }
+
+    #about .about-image-frame::before {
+        display: none;
+    }
+
+    #about .about-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100%;
+    }
+}
+
+@media (max-width: 1023px) {
+    #about .about-media::after {
+        width: 6rem;
+        height: 6rem;
+    }
+}
+
+@media (max-width: 639px) {
+    #about .about-shell {
+        border-radius: 1.5rem;
+    }
+
+    #about .about-image-frame {
+        border-radius: 1.4rem;
+    }
+
+    #about .about-badge {
+        padding: 0.95rem 1rem;
+        border-radius: 1rem;
+    }
+
+    #about .about-highlight {
+        padding: 1rem;
+    }
 }
 
 /* ===== STATS SECTION - HOSPITAL STYLE ===== */
