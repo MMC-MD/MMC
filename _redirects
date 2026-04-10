@@ -1,0 +1,85 @@
+# =====================================================
+# Cloudflare Pages Redirect Rules for mmccare.com
+# =====================================================
+# Format: [source] [destination] [status code]
+# 301 = permanent redirect (SEO-friendly)
+# 302 = temporary redirect
+
+# ----- Old pages/*.html → new clean URLs -----
+/pages/about.html /about/ 301
+/pages/urgent-primary-care.html /urgent-primary-care/ 301
+/pages/dermatology.html /dermatology/ 301
+/pages/sports-medicine.html /sports-medicine/ 301
+/pages/five-elements-acupuncture.html /five-elements-acupuncture/ 301
+/pages/nutrition-wellness.html /nutrition-wellness/ 301
+/pages/occupational-health.html /occupational-health/ 301
+/pages/insurance.html /insurance/ 301
+/pages/careers.html /careers/ 301
+/pages/privacy-policy.html /privacy-policy/ 301
+/pages/terms-of-service.html /terms-of-service/ 301
+/pages/immigration-physicals.html /immigration-physicals/ 301
+/pages/faa-physicals.html /faa-physicals/ 301
+/pages/frontdesk-briefing-room.html /frontdesk-briefing-room/ 301
+
+# ----- Old WordPress content pages → best match -----
+/covid-19 / 301
+/covid-19/ / 301
+/dermatology-services-review-medical-cosmetic/ /dermatology/ 301
+/dermatology-services-review-medical-cosmetic /dermatology/ 301
+/nutrition-wellness-staff/ /nutrition-wellness/ 301
+/nutrition-wellness-staff /nutrition-wellness/ 301
+/sports-injury-post/ / 301
+/sports-injury-post /sports-medicine/ 301
+/treat-that-fracture/ / 301
+/treat-that-fracture /sports-medicine/ 301
+
+# ----- Old WordPress blog/author/category pages → home -----
+/author/wisy/ / 301
+/author/wisy / 301
+/category/posts/ / 301
+/category/posts / 301
+/author/* / 301
+/category/* / 301
+
+# ----- Old WordPress query string pages → home -----
+# Cloudflare Pages _redirects don't match query strings,
+# but these catch the base path just in case
+/?p=340 / 301
+/?p=642 / 301
+/?p=656 / 301
+/?p=684 / 301
+/?p=730 / 301
+/?p=742 / 301
+/?p=764 / 301
+/?p=814 / 301
+/?p=816 / 301
+/?p=818 / 301
+
+# ----- Old WordPress assets → home (404 prevention) -----
+/wp-content/* / 301
+/wp-includes/* / 301
+/wp-admin/* / 301
+/wp-login.php / 301
+/wp-login.php/ / 301
+/xmlrpc.php / 301
+/wp-cron.php / 301
+/feed/ / 301
+/feed / 301
+/*/feed/ / 301
+/*/feed / 301
+
+# ----- Bare .html file access → clean URL -----
+/index.html / 301
+/about.html /about/ 301
+/urgent-primary-care.html /urgent-primary-care/ 301
+/dermatology.html /dermatology/ 301
+/sports-medicine.html /sports-medicine/ 301
+/five-elements-acupuncture.html /five-elements-acupuncture/ 301
+/nutrition-wellness.html /nutrition-wellness/ 301
+/occupational-health.html /occupational-health/ 301
+/insurance.html /insurance/ 301
+/careers.html /careers/ 301
+/privacy-policy.html /privacy-policy/ 301
+/terms-of-service.html /terms-of-service/ 301
+/immigration-physicals.html /immigration-physicals/ 301
+/faa-physicals.html /faa-physicals/ 301

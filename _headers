@@ -1,0 +1,35 @@
+# =====================================================
+# Cloudflare Pages HTTP Headers for mmccare.com
+# =====================================================
+
+# All pages
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Cache static assets aggressively (1 year)
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# JS files - cache but allow revalidation
+/js/*
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+# HTML pages - always revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Favicon
+/images/favicon.ico
+  Cache-Control: public, max-age=604800
