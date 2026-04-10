@@ -137,6 +137,7 @@
     <link rel="stylesheet" href="css/header-fix.css">
     <link rel="stylesheet" href="css/contact-modal.css">
     <link rel="stylesheet" href="css/lang-toggle.css">
+    <link rel="stylesheet" href="css/in-page-nav.css">
     <link rel="preload" href="includes/header.html" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="js/header-footer-loader.js" as="script">
     <link rel="preload" href="js/critical-header.js" as="script">
@@ -144,6 +145,7 @@
         // Set lang attribute early to avoid flash of wrong language
         try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}
     </script>
+    <script src="js/in-page-nav.js" defer></script>
     <link rel="preload" href="images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
     <link rel="preload" href="images/NewImage.webp" as="image" type="image/webp" fetchpriority="high">
     <style>
@@ -507,7 +509,7 @@
         </div>
     </section>
 
-    <section class="slideshow-section">
+    <section id="updates" data-page-nav data-page-nav-title="Updates" class="slideshow-section">
         <div class="slideshow-wrapper" data-aos="fade-up">
             <div class="slide-container" id="slideshow">
 
@@ -523,7 +525,7 @@
         </div>
     </section>
 
-    <section class="bg-gradient-blue text-white py-12 sm:py-16">
+    <section id="stats" class="bg-gradient-blue text-white py-12 sm:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center">
                 <div class="stat-card" data-aos="fade-up">
@@ -542,7 +544,7 @@
         </div>
     </section>
 
-    <section id="services" class="py-16 sm:py-20 md:py-24 lg:py-32 bg-white">
+    <section id="services" data-page-nav data-page-nav-title="Services" class="py-16 sm:py-20 md:py-24 lg:py-32 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 sm:mb-16 md:mb-20 max-w-3xl mx-auto" data-aos="fade-up">
                 <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl" data-en="Our Departments" data-es="Nuestros Departamentos">Our Departments</h2>
@@ -619,7 +621,7 @@
         </div>
     </section>
 
-    <section id="about" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-light-blue-bg">
+    <section id="about" data-page-nav data-page-nav-title="About Us" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-light-blue-bg">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-20 lg:items-center">
                 <div class="floating" data-aos="fade-right">
@@ -644,7 +646,7 @@
         </div>
     </section>
 
-    <section id="insurance" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-white">
+    <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 sm:mb-12 md:mb-16 max-w-4xl mx-auto" data-aos="fade-up">
                 <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" data-en="Insurance Information for Our Clinic" data-es="Informaci&oacute;n de Seguros de Nuestra Cl&iacute;nica">Insurance Information for Our Clinic</h2>
@@ -655,7 +657,7 @@
             </div>
         </div>
     </section>
-    <section class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-light-blue-bg">
+    <section class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-light-blue-bg" data-page-nav-stop="cta">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-blue text-white rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-16 xl:p-20 text-center shadow-2xl" data-aos="fade-up">
                 <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-3 sm:mb-4 md:mb-6 leading-tight" data-en="Ready to Experience Quality Care at Our Medical Center?" data-es="&iquest;Listo Para Experimentar Atenci&oacute;n de Calidad en Nuestro Centro M&eacute;dico?">Ready to Experience Quality Care at Our Medical Center?</h2>
@@ -668,7 +670,7 @@
     </section>
 
             <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
+    <div id="footer-placeholder" data-page-nav-stop="footer"></div>
 
 
 
