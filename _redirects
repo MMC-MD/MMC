@@ -3,7 +3,6 @@
 # =====================================================
 # Format: [source] [destination] [status code]
 # 301 = permanent redirect (SEO-friendly)
-# 302 = temporary redirect
 
 # ----- Old pages/*.html → new clean URLs -----
 /pages/about.html /about/ 301
@@ -21,52 +20,54 @@
 /pages/faa-physicals.html /faa-physicals/ 301
 /pages/frontdesk-briefing-room.html /frontdesk-briefing-room/ 301
 
-# ----- Old WordPress content pages → best match -----
+# ----- Old WordPress legitimate pages → new equivalents -----
 /covid-19 / 301
 /covid-19/ / 301
-/dermatology-services-review-medical-cosmetic/ /dermatology/ 301
 /dermatology-services-review-medical-cosmetic /dermatology/ 301
-/nutrition-wellness-staff/ /nutrition-wellness/ 301
+/dermatology-services-review-medical-cosmetic/ /dermatology/ 301
 /nutrition-wellness-staff /nutrition-wellness/ 301
-/sports-injury-post/ / 301
+/nutrition-wellness-staff/ /nutrition-wellness/ 301
 /sports-injury-post /sports-medicine/ 301
-/treat-that-fracture/ / 301
+/sports-injury-post/ /sports-medicine/ 301
 /treat-that-fracture /sports-medicine/ 301
+/treat-that-fracture/ /sports-medicine/ 301
+/sprain-care-in-gaithersburg /urgent-primary-care/ 301
+/sprain-care-in-gaithersburg/ /urgent-primary-care/ 301
+/urgent-care-primary-care /urgent-primary-care/ 301
+/urgent-care-primary-care/ /urgent-primary-care/ 301
+/blog / 301
+/blog/ / 301
 
-# ----- Old WordPress blog/author/category pages → home -----
-/author/wisy/ / 301
-/author/wisy / 301
-/category/posts/ / 301
-/category/posts / 301
+# ----- Old WordPress blog/author/category → home -----
 /author/* / 301
 /category/* / 301
+/tag/* / 301
 
-# ----- Old WordPress query string pages → home -----
-# Cloudflare Pages _redirects don't match query strings,
-# but these catch the base path just in case
-/?p=340 / 301
-/?p=642 / 301
-/?p=656 / 301
-/?p=684 / 301
-/?p=730 / 301
-/?p=742 / 301
-/?p=764 / 301
-/?p=814 / 301
-/?p=816 / 301
-/?p=818 / 301
+# ----- Hacked spam pages → redirect to home -----
+# Old site was compromised with pirated plugin/theme pages
+/boutique/* / 301
+/shop/* / 301
+/shop / 301
 
-# ----- Old WordPress assets → home (404 prevention) -----
+# ----- Old WordPress infrastructure → home -----
 /wp-content/* / 301
 /wp-includes/* / 301
 /wp-admin/* / 301
 /wp-login.php / 301
 /wp-login.php/ / 301
+/wp-json/* / 301
 /xmlrpc.php / 301
 /wp-cron.php / 301
-/feed/ / 301
+/wp-sitemap.xml /sitemap.xml 301
+/wp-sitemap-posts-post-1.xml /sitemap.xml 301
+/wp-sitemap-posts-page-1.xml /sitemap.xml 301
+/wp-sitemap-taxonomies-category-1.xml /sitemap.xml 301
 /feed / 301
-/*/feed/ / 301
+/feed/ / 301
 /*/feed / 301
+/*/feed/ / 301
+/comments/feed / 301
+/comments/feed/ / 301
 
 # ----- Bare .html file access → clean URL -----
 /index.html / 301
