@@ -33,13 +33,15 @@ function initHeaderFooter() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     const footerPlaceholder = document.getElementById('footer-placeholder');
 
-    // Detect homepage: it's at root level (e.g., /MMC/ or /MMC/index.html or just /index.html)
-    // Subpages are one level deep (e.g., /MMC/about/ or /about/index.html)
-    const nonIndexSegments = pathSegments.filter(s => s !== 'index.html');
-    const depth = nonIndexSegments.length;
-    // Homepage has 0 depth (bare domain) or 1 depth (just the repo folder like /MMC/)
-    const isHomePage = depth <= 1 || (depth === 1 && nonIndexSegments[0] === 'MMC');
-    const inferredBasePath = isHomePage ? '' : '../';
+    // Detect if we're on a subpage by checking if stylesheets use '../' paths
+    let isSubpage = false;
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"], link[rel="preload"]');
+    for (let i = 0; i < stylesheets.length; i++) {
+        const href = stylesheets[i].getAttribute('href') || '';
+        if (href.startsWith('../')) { isSubpage = true; break; }
+    }
+    const isHomePage = !isSubpage;
+    const inferredBasePath = isSubpage ? '../' : '';
     const basePath = (headerPlaceholder && typeof headerPlaceholder.dataset.mmcHeaderBasePath === 'string')
         ? headerPlaceholder.dataset.mmcHeaderBasePath
         : inferredBasePath;

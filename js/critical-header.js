@@ -17,13 +17,14 @@
             return;
         }
 
-        const pathName = window.location.pathname;
-        const pathSegments = pathName.split('/').filter(Boolean);
-        const currentFile = pathSegments[pathSegments.length - 1] || 'index.html';
-
-        const isHomePage = currentFile === 'index.html';
-        const isInPagesDirectory = pathSegments.includes('pages');
-        const basePath = isHomePage ? '' : (isInPagesDirectory ? '../' : '');
+        // Detect if we're on a subpage by checking if stylesheets use '../' paths
+        const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+        let isSubpage = false;
+        for (let i = 0; i < stylesheets.length; i++) {
+            const href = stylesheets[i].getAttribute('href') || '';
+            if (href.startsWith('../')) { isSubpage = true; break; }
+        }
+        const basePath = isSubpage ? '../' : '';
 
         const request = new XMLHttpRequest();
         request.open('GET', basePath + 'includes/header.html', false);
