@@ -23,7 +23,6 @@
         readingGuide: false
     };
 
-    // Load saved preferences
     function loadPrefs() {
         try {
             var saved = localStorage.getItem(STORAGE_KEY);
@@ -38,14 +37,25 @@
 
     var prefs = loadPrefs() || Object.assign({}, defaults);
 
-    // ── Build the DOM ──────────────────────────────────────
+    // ── Wrap page content so filters don't affect the widget ───
+    // Move every direct child of <body> into a wrapper div,
+    // then append the widget elements OUTSIDE the wrapper.
+    var wrapper = document.createElement('div');
+    wrapper.id = 'a11y-page-wrapper';
+    // Move existing body children into wrapper
+    while (document.body.firstChild) {
+        wrapper.appendChild(document.body.firstChild);
+    }
+    document.body.appendChild(wrapper);
+
+    // ── Build widget DOM (outside the wrapper) ────────────────
 
     // Skip-to-content link
     var skipLink = document.createElement('a');
     skipLink.className = 'a11y-skip-link';
     skipLink.href = '#main-content';
     skipLink.textContent = 'Skip to main content';
-    document.body.insertBefore(skipLink, document.body.firstChild);
+    document.body.appendChild(skipLink);
 
     // Reading guide bar
     var guideBar = document.createElement('div');
@@ -126,27 +136,27 @@
         stmtLink.href = isSubpage ? 'terms-of-service.html' : 'pages/terms-of-service.html';
     }
 
+    // ── Dynamic style sheet for font scaling ──────────────────
+    var fontScaleStyleEl = document.createElement('style');
+    fontScaleStyleEl.id = 'a11y-font-scale';
+    document.head.appendChild(fontScaleStyleEl);
+
     // ── Apply preferences ──────────────────────────────────
 
     function applyAll() {
         var root = document.documentElement;
 
-        // Font size — use a CSS custom property + data attribute so the
-        // CSS can scale text with !important, beating inline px sizes.
+        // Font size — use CSS zoom on the wrapper so it scales
+        // all fixed-px sizes, and counter-zoom the widget
         if (prefs.fontSize !== 100) {
-            var scale = prefs.fontSize / 100;
-            root.setAttribute('data-a11y-font', prefs.fontSize);
-            root.style.setProperty('--a11y-fs', (scale) + 'rem');
-            // Also directly scale common text containers so the effect
-            // is visible even when CSS uses fixed px/rem sizes
-            root.style.setProperty('--a11y-scale', scale);
+            var s = prefs.fontSize / 100;
+            fontScaleStyleEl.textContent =
+                '#a11y-page-wrapper { zoom: ' + s + '; }';
         } else {
-            root.removeAttribute('data-a11y-font');
-            root.style.removeProperty('--a11y-fs');
-            root.style.removeProperty('--a11y-scale');
+            fontScaleStyleEl.textContent = '';
         }
 
-        // Toggle classes
+        // Toggle classes on <html> — CSS targets #a11y-page-wrapper
         var classMap = {
             highContrast:    'a11y-high-contrast',
             largeCursor:     'a11y-large-cursor',
@@ -171,36 +181,6 @@
         }
 
         savePrefs(prefs);
-
-        // Font-size: walk all relevant text nodes and apply inline scale
-        applyFontScale();
-    }
-
-    // Directly scale text elements so the change is visible even
-    // when CSS uses fixed px / rem values
-    var fontScaleStyleEl = null;
-    function applyFontScale() {
-        if (!fontScaleStyleEl) {
-            fontScaleStyleEl = document.createElement('style');
-            fontScaleStyleEl.id = 'a11y-font-scale';
-            document.head.appendChild(fontScaleStyleEl);
-        }
-
-        if (prefs.fontSize === 100) {
-            fontScaleStyleEl.textContent = '';
-            return;
-        }
-
-        var s = prefs.fontSize / 100;
-
-        // Build a stylesheet that scales everything except the widget itself.
-        // We use the CSS zoom property where supported (all modern browsers),
-        // which scales the entire visual rendering including fixed px values.
-        // For elements inside the widget we undo the zoom.
-        fontScaleStyleEl.textContent =
-            '/* a11y text-scale */' +
-            'body { zoom: ' + s + ' !important; }' +
-            '.a11y-trigger, .a11y-panel, .a11y-overlay, .a11y-reading-guide-bar, .a11y-skip-link, #cookie-consent-banner { zoom: ' + (1/s) + ' !important; }';
     }
 
     // Apply on load
@@ -212,7 +192,6 @@
         panel.classList.add('a11y-open');
         overlay.classList.add('a11y-open');
         trigger.setAttribute('aria-expanded', 'true');
-        // Short delay so the display:block takes effect before focus
         setTimeout(function () {
             panel.querySelector('.a11y-close').focus();
         }, 50);
@@ -234,10 +213,8 @@
     });
 
     overlay.addEventListener('click', closePanel);
-
     panel.querySelector('.a11y-close').addEventListener('click', closePanel);
 
-    // Escape key closes panel
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && panel.classList.contains('a11y-open')) {
             closePanel();
@@ -259,10 +236,10 @@
 
     // Font size slider
     var slider = panel.querySelector('#a11y-font-slider');
-    var fontValue = panel.querySelector('#a11y-font-value');
+    var fontValueEl = panel.querySelector('#a11y-font-value');
     slider.addEventListener('input', function () {
         prefs.fontSize = parseInt(this.value, 10);
-        fontValue.textContent = prefs.fontSize + '%';
+        fontValueEl.textContent = prefs.fontSize + '%';
         applyAll();
     });
 
@@ -270,7 +247,6 @@
     panel.querySelector('.a11y-reset').addEventListener('click', function () {
         prefs = Object.assign({}, defaults);
         applyAll();
-        // Reset UI
         var allBtns = panel.querySelectorAll('.a11y-option');
         for (var r = 0; r < allBtns.length; r++) {
             allBtns[r].classList.remove('a11y-active');
@@ -278,7 +254,7 @@
             allBtns[r].querySelector('.a11y-option-status').textContent = 'Off';
         }
         slider.value = 100;
-        fontValue.textContent = '100%';
+        fontValueEl.textContent = '100%';
     });
 
     // Reading guide follows mouse
