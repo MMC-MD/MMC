@@ -124,7 +124,7 @@
     html += '<button class="a11y-reset" aria-label="Reset all accessibility settings">' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 109-9"/><polyline points="3 3 3 9 9 9" fill="none"/></svg>' +
         ' Reset All Settings</button></div>' +
-        '<div class="a11y-panel-footer"><a href="pages/terms-of-service.html" class="a11y-statement-link">Accessibility Statement</a></div>';
+        '<div class="a11y-panel-footer"><a href="terms-of-service/" class="a11y-statement-link">Accessibility Statement</a></div>';
 
     panel.innerHTML = html;
     document.body.appendChild(panel);
@@ -132,8 +132,9 @@
     // Fix the accessibility statement link based on current page location
     var stmtLink = panel.querySelector('.a11y-statement-link');
     if (stmtLink) {
-        var isSubpage = window.location.pathname.indexOf('/pages/') !== -1;
-        stmtLink.href = isSubpage ? 'terms-of-service.html' : 'pages/terms-of-service.html';
+        var basePath = (document.querySelector('#header-placeholder') || {}).dataset;
+        basePath = basePath && basePath.mmcHeaderBasePath || '';
+        stmtLink.href = basePath + 'terms-of-service/';
     }
 
     // ── Dynamic style sheet for font scaling ──────────────────

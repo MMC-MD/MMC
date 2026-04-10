@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Disallow: /pages/frontdesk-briefing-room.html
+Disallow: /frontdesk-briefing-room/
 Disallow: /includes/
 Disallow: /js/
 Disallow: /node_modules/

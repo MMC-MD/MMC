@@ -6,63 +6,68 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/about.html</loc>
+    <loc>https://www.mmccare.com/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/urgent-primary-care.html</loc>
+    <loc>https://www.mmccare.com/urgent-primary-care/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/dermatology.html</loc>
+    <loc>https://www.mmccare.com/dermatology/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/occupational-health.html</loc>
+    <loc>https://www.mmccare.com/occupational-health/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/immigration-physicals.html</loc>
+    <loc>https://www.mmccare.com/immigration-physicals/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/faa-physicals.html</loc>
+    <loc>https://www.mmccare.com/faa-physicals/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/nutrition-wellness.html</loc>
+    <loc>https://www.mmccare.com/nutrition-wellness/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/five-elements-acupuncture.html</loc>
+    <loc>https://www.mmccare.com/five-elements-acupuncture/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/insurance.html</loc>
+    <loc>https://www.mmccare.com/insurance/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/careers.html</loc>
+    <loc>https://www.mmccare.com/careers/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/privacy-policy.html</loc>
+    <loc>https://www.mmccare.com/privacy-policy/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.mmccare.com/pages/terms-of-service.html</loc>
+    <loc>https://www.mmccare.com/terms-of-service/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.mmccare.com/sports-medicine/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

@@ -74,7 +74,7 @@ const SLIDE_TEMPLATES = [
                     es: ''
                 },
                 ctaLabel: { en: 'Learn More', es: '' },
-                ctaUrl: 'pages/dermatology.html',
+                ctaUrl: 'dermatology/',
                 ctaNewTab: false,
                 credentials: []
             };

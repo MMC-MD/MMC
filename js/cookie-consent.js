@@ -22,7 +22,7 @@
             '<p class="cookie-consent-text">' +
                 'This website uses browser local storage to remember your language preference and third-party services (such as Google Fonts) that may set cookies. ' +
                 'By continuing to use this site, you consent to these technologies. ' +
-                '<a href="' + (window.location.pathname.indexOf('/pages/') !== -1 ? 'privacy-policy.html' : 'pages/privacy-policy.html') + '" class="cookie-consent-link">Learn more in our Privacy Policy</a>.' +
+                '<a href="' + ((document.querySelector('#header-placeholder') || {}).dataset && document.querySelector('#header-placeholder').dataset.mmcHeaderBasePath || '') + 'privacy-policy/" class="cookie-consent-link">Learn more in our Privacy Policy</a>.' +
             '</p>' +
             '<div class="cookie-consent-actions">' +
                 '<button id="cookie-accept" class="cookie-consent-accept" aria-label="Accept cookies and dismiss this notice">Accept</button>' +

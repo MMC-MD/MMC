@@ -33,8 +33,13 @@ function initHeaderFooter() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     const footerPlaceholder = document.getElementById('footer-placeholder');
 
-    const isHomePage = currentFile === 'index.html';
-    const inferredBasePath = isHomePage ? '' : (pathSegments.includes('pages') ? '../' : '');
+    // Detect homepage: it's at root level (e.g., /MMC/ or /MMC/index.html or just /index.html)
+    // Subpages are one level deep (e.g., /MMC/about/ or /about/index.html)
+    const nonIndexSegments = pathSegments.filter(s => s !== 'index.html');
+    const depth = nonIndexSegments.length;
+    // Homepage has 0 depth (bare domain) or 1 depth (just the repo folder like /MMC/)
+    const isHomePage = depth <= 1 || (depth === 1 && nonIndexSegments[0] === 'MMC');
+    const inferredBasePath = isHomePage ? '' : '../';
     const basePath = (headerPlaceholder && typeof headerPlaceholder.dataset.mmcHeaderBasePath === 'string')
         ? headerPlaceholder.dataset.mmcHeaderBasePath
         : inferredBasePath;
@@ -158,14 +163,14 @@ function updateHeaderLinks(basePath, isHomePage) {
     // Define page mappings
     const pages = {
         'nav-home': 'index.html',
-        'nav-urgent': 'pages/urgent-primary-care.html',
-        'nav-sports': 'pages/sports-medicine.html',
-        'nav-derma': 'pages/dermatology.html',
-        'nav-acupuncture': 'pages/five-elements-acupuncture.html',
-        'nav-wellness': 'pages/nutrition-wellness.html',
-        'nav-occupational': 'pages/occupational-health.html',
-        'nav-about': 'pages/about.html',
-        'nav-insurance': 'pages/insurance.html'
+        'nav-urgent': 'urgent-primary-care/',
+        'nav-sports': 'sports-medicine/',
+        'nav-derma': 'dermatology/',
+        'nav-acupuncture': 'five-elements-acupuncture/',
+        'nav-wellness': 'nutrition-wellness/',
+        'nav-occupational': 'occupational-health/',
+        'nav-about': 'about/',
+        'nav-insurance': 'insurance/'
     };
     
     // Update desktop navigation links
@@ -214,14 +219,14 @@ function updateFooterLinks(basePath) {
     
     // Define page mappings for footer
     const footerPages = {
-        'footer-nav-urgent': 'pages/urgent-primary-care.html',
-        'footer-nav-sports': 'pages/sports-medicine.html',
-        'footer-nav-derma': 'pages/dermatology.html',
-        'footer-nav-wellness': 'pages/nutrition-wellness.html',
-        'footer-nav-occupational': 'pages/occupational-health.html',
-        'footer-nav-careers': 'pages/careers.html',
-        'footer-nav-privacy': 'pages/privacy-policy.html',
-        'footer-nav-terms': 'pages/terms-of-service.html'
+        'footer-nav-urgent': 'urgent-primary-care/',
+        'footer-nav-sports': 'sports-medicine/',
+        'footer-nav-derma': 'dermatology/',
+        'footer-nav-wellness': 'nutrition-wellness/',
+        'footer-nav-occupational': 'occupational-health/',
+        'footer-nav-careers': 'careers/',
+        'footer-nav-privacy': 'privacy-policy/',
+        'footer-nav-terms': 'terms-of-service/'
     };
     
     // Update footer navigation links
@@ -235,27 +240,30 @@ function updateFooterLinks(basePath) {
 
 // Set active class on current page navigation link
 function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    // Get the folder name (e.g., 'about' from '/MMC/about/' or '/about/index.html')
+    const lastMeaningful = pathSegments.filter(s => s !== 'index.html').pop() || '';
+
     // Remove all active classes first
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
     });
-    
-    // Map current page to navigation class
+
+    // Map folder name to navigation class
     const pageToNavClass = {
+        '': 'nav-home',
         'index.html': 'nav-home',
-        'urgent-primary-care.html': 'nav-urgent',
-        'sports-medicine.html': 'nav-sports',
-        'dermatology.html': 'nav-derma',
-        'five-elements-acupuncture.html': 'nav-acupuncture',
-        'nutrition-wellness.html': 'nav-wellness',
-        'occupational-health.html': 'nav-occupational',
-        'about.html': 'nav-about',
-        'insurance.html': 'nav-insurance'
+        'urgent-primary-care': 'nav-urgent',
+        'sports-medicine': 'nav-sports',
+        'dermatology': 'nav-derma',
+        'five-elements-acupuncture': 'nav-acupuncture',
+        'nutrition-wellness': 'nav-wellness',
+        'occupational-health': 'nav-occupational',
+        'about': 'nav-about',
+        'insurance': 'nav-insurance'
     };
-    
-    const navClass = pageToNavClass[currentPage];
+
+    const navClass = pageToNavClass[lastMeaningful];
     if (navClass) {
         const activeLink = document.querySelector('.' + navClass);
         if (activeLink) {
