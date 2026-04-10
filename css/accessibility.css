@@ -1,0 +1,580 @@
+/* ===== ACCESSIBILITY WIDGET ===== */
+
+/* Floating Accessibility Button - must sit above the header (z-index 999999) */
+.a11y-trigger {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 10000001;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #0d47a1;
+    color: #fff;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, background 0.2s;
+    padding: 0;
+}
+
+.a11y-trigger:hover,
+.a11y-trigger:focus-visible {
+    transform: scale(1.1);
+    background: #1565c0;
+    outline: 3px solid #ff8f00;
+    outline-offset: 2px;
+}
+
+.a11y-trigger svg {
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+}
+
+/* Panel Overlay */
+.a11y-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000002;
+    background: rgba(0,0,0,0.4);
+}
+
+.a11y-overlay.a11y-open {
+    display: block;
+}
+
+/* Panel - above everything including header and contact modal */
+.a11y-panel {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    left: 24px;
+    z-index: 10000003;
+    width: 340px;
+    max-width: calc(100vw - 48px);
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+    border: 2px solid #0d47a1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.a11y-panel.a11y-open {
+    display: block;
+}
+
+/* Panel Header */
+.a11y-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #0d47a1;
+    border-radius: 14px 14px 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.a11y-panel-header h2 {
+    color: #fff;
+    font-size: 1rem !important;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.a11y-panel-header h2 svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.a11y-close {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.4);
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    min-width: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+    padding: 0;
+}
+
+.a11y-close:hover,
+.a11y-close:focus-visible {
+    background: rgba(255,255,255,0.2);
+    outline: 2px solid #fff;
+}
+
+.a11y-close svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Panel Body */
+.a11y-panel-body {
+    padding: 16px 20px 20px;
+}
+
+/* Section headings */
+.a11y-section-label {
+    font-size: 0.7rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #757575;
+    margin: 16px 0 8px;
+    padding: 0;
+}
+
+.a11y-section-label:first-child {
+    margin-top: 0;
+}
+
+/* Toggle Buttons */
+.a11y-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    background: #f5f5f5;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    font-size: 0.875rem !important;
+    color: #212121;
+    min-height: 44px;
+    text-align: left;
+}
+
+.a11y-option:hover {
+    background: #e3f2fd;
+    border-color: #90caf9;
+}
+
+.a11y-option:focus-visible {
+    outline: 3px solid #ff8f00;
+    outline-offset: 1px;
+}
+
+.a11y-option.a11y-active {
+    background: #e3f2fd;
+    border-color: #0d47a1;
+    color: #0d47a1;
+    font-weight: 600;
+}
+
+.a11y-option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    pointer-events: none;
+}
+
+.a11y-option-label svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.a11y-active .a11y-option-label svg {
+    opacity: 1;
+}
+
+.a11y-option-status {
+    font-size: 0.7rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 999px;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.a11y-option:not(.a11y-active) .a11y-option-status {
+    background: #e0e0e0;
+    color: #757575;
+}
+
+.a11y-active .a11y-option-status {
+    background: #0d47a1;
+    color: #fff;
+}
+
+/* Font size slider */
+.a11y-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    background: #f5f5f5;
+    border-radius: 10px;
+}
+
+.a11y-slider-row label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem !important;
+    color: #212121;
+    white-space: nowrap;
+    min-height: auto;
+    min-width: auto;
+}
+
+.a11y-slider-row label svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.a11y-slider-row input[type="range"] {
+    flex: 1;
+    min-height: 20px;
+    min-width: 0;
+    accent-color: #0d47a1;
+    cursor: pointer;
+}
+
+.a11y-slider-row .a11y-font-value {
+    font-size: 0.8rem !important;
+    font-weight: 700;
+    color: #0d47a1;
+    min-width: 40px;
+    text-align: right;
+}
+
+/* Reset Button */
+.a11y-reset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    background: transparent;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    color: #757575;
+    font-size: 0.8rem !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    min-height: 44px;
+}
+
+.a11y-reset:hover {
+    background: #ffebee;
+    border-color: #ef5350;
+    color: #c62828;
+}
+
+.a11y-reset:focus-visible {
+    outline: 3px solid #ff8f00;
+    outline-offset: 1px;
+}
+
+.a11y-reset svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Footer link */
+.a11y-panel-footer {
+    padding: 12px 20px;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.a11y-panel-footer a {
+    font-size: 0.75rem !important;
+    color: #0d47a1;
+    text-decoration: underline;
+    min-height: auto;
+    min-width: auto;
+}
+
+/* ===== Protect widget from its own accessibility overrides ===== */
+.a11y-panel,
+.a11y-panel *,
+.a11y-trigger,
+.a11y-overlay {
+    font-size: revert;
+    line-height: revert;
+    letter-spacing: revert;
+    word-spacing: revert;
+    filter: none !important;
+}
+
+/* Re-apply the specific sizes after the revert */
+.a11y-panel-header h2 { font-size: 1rem !important; }
+.a11y-section-label { font-size: 0.7rem !important; }
+.a11y-option { font-size: 0.875rem !important; }
+.a11y-option-status { font-size: 0.7rem !important; }
+.a11y-slider-row label { font-size: 0.875rem !important; }
+.a11y-slider-row .a11y-font-value { font-size: 0.8rem !important; }
+.a11y-reset { font-size: 0.8rem !important; }
+.a11y-panel-footer a { font-size: 0.75rem !important; }
+.a11y-panel { line-height: 1.5 !important; letter-spacing: normal !important; word-spacing: normal !important; }
+.a11y-trigger { line-height: 1 !important; letter-spacing: normal !important; }
+
+/* ===== APPLIED ACCESSIBILITY STYLES ===== */
+
+/* ── Text Size ─────────────────────────────────────────── */
+/* Uses a CSS custom property set by JS on <html>, then
+   every text element scales via em/rem. We target the
+   elements whose size is normally set in px/rem so the
+   change is actually visible. */
+html[data-a11y-font] body {
+    font-size: var(--a11y-fs) !important;
+}
+html[data-a11y-font] p,
+html[data-a11y-font] li,
+html[data-a11y-font] span:not(.a11y-option-status):not(.a11y-font-value):not(.a11y-section-label),
+html[data-a11y-font] td,
+html[data-a11y-font] th,
+html[data-a11y-font] label:not(.a11y-slider-row label),
+html[data-a11y-font] a:not(.a11y-panel a):not(.a11y-trigger):not(.a11y-skip-link),
+html[data-a11y-font] div:not(.a11y-panel):not(.a11y-panel *):not(.a11y-overlay) {
+    font-size: inherit;
+}
+html[data-a11y-font] h1 { font-size: clamp(1.8rem, 5vw, 3.5rem) !important; }
+html[data-a11y-font] h2 { font-size: clamp(1.5rem, 4vw, 2.5rem) !important; }
+html[data-a11y-font] h3 { font-size: clamp(1.2rem, 3vw, 1.8rem) !important; }
+html[data-a11y-font] h4 { font-size: clamp(1.05rem, 2.5vw, 1.4rem) !important; }
+
+/* High Contrast */
+html.a11y-high-contrast *:not(.a11y-panel):not(.a11y-panel *):not(.a11y-trigger):not(.a11y-overlay) {
+    border-color: #000 !important;
+}
+html.a11y-high-contrast body {
+    background: #fff !important;
+    color: #000 !important;
+}
+html.a11y-high-contrast p,
+html.a11y-high-contrast li,
+html.a11y-high-contrast span:not(.a11y-option-status):not(.a11y-font-value),
+html.a11y-high-contrast div:not(.a11y-panel):not(.a11y-panel *):not(.a11y-overlay),
+html.a11y-high-contrast td,
+html.a11y-high-contrast th,
+html.a11y-high-contrast label:not(.a11y-slider-row label) {
+    color: #000 !important;
+}
+html.a11y-high-contrast a:not(.a11y-panel a):not(.a11y-trigger) {
+    color: #0000EE !important;
+    text-decoration: underline !important;
+}
+html.a11y-high-contrast a:visited:not(.a11y-panel a) {
+    color: #551A8B !important;
+}
+html.a11y-high-contrast button:not(.a11y-option):not(.a11y-close):not(.a11y-reset):not(.a11y-trigger),
+html.a11y-high-contrast .btn {
+    border: 2px solid #000 !important;
+}
+html.a11y-high-contrast img {
+    filter: contrast(1.2) !important;
+}
+
+/* Larger Cursor */
+html.a11y-large-cursor,
+html.a11y-large-cursor *:not(.a11y-panel):not(.a11y-panel *) {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath d='M8 4l28 20H20l-4 16z' fill='%23000' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") 8 4, auto !important;
+}
+
+/* Highlight Links */
+html.a11y-highlight-links a:not(.a11y-panel a):not(.a11y-trigger) {
+    outline: 3px solid #ff8f00 !important;
+    outline-offset: 2px !important;
+    background: #fff3e0 !important;
+    text-decoration: underline !important;
+}
+
+/* Dyslexia-Friendly Font */
+html.a11y-dyslexia-font body,
+html.a11y-dyslexia-font p,
+html.a11y-dyslexia-font li,
+html.a11y-dyslexia-font span:not(.a11y-panel span),
+html.a11y-dyslexia-font div:not(.a11y-panel):not(.a11y-panel *),
+html.a11y-dyslexia-font a:not(.a11y-panel a),
+html.a11y-dyslexia-font td,
+html.a11y-dyslexia-font th,
+html.a11y-dyslexia-font input:not(.a11y-panel input),
+html.a11y-dyslexia-font button:not(.a11y-option):not(.a11y-close):not(.a11y-reset):not(.a11y-trigger),
+html.a11y-dyslexia-font textarea,
+html.a11y-dyslexia-font select,
+html.a11y-dyslexia-font label:not(.a11y-slider-row label),
+html.a11y-dyslexia-font h1,
+html.a11y-dyslexia-font h2:not(.a11y-panel-header h2),
+html.a11y-dyslexia-font h3,
+html.a11y-dyslexia-font h4,
+html.a11y-dyslexia-font h5,
+html.a11y-dyslexia-font h6 {
+    font-family: "OpenDyslexic", "Comic Sans MS", "Verdana", sans-serif !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.12em !important;
+}
+
+/* Line Height Increase */
+html.a11y-line-height p,
+html.a11y-line-height li,
+html.a11y-line-height span:not(.a11y-panel span),
+html.a11y-line-height div:not(.a11y-panel):not(.a11y-panel *):not(.a11y-overlay),
+html.a11y-line-height td,
+html.a11y-line-height th {
+    line-height: 2.2 !important;
+}
+
+/* Letter Spacing */
+html.a11y-letter-spacing p,
+html.a11y-letter-spacing li,
+html.a11y-letter-spacing span:not(.a11y-panel span),
+html.a11y-letter-spacing div:not(.a11y-panel):not(.a11y-panel *):not(.a11y-overlay),
+html.a11y-letter-spacing a:not(.a11y-panel a),
+html.a11y-letter-spacing td,
+html.a11y-letter-spacing th {
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.16em !important;
+}
+
+/* Pause Animations */
+html.a11y-pause-animations *:not(.a11y-panel):not(.a11y-panel *):not(.a11y-trigger):not(.a11y-overlay),
+html.a11y-pause-animations *:not(.a11y-panel):not(.a11y-panel *)::before,
+html.a11y-pause-animations *:not(.a11y-panel):not(.a11y-panel *)::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+}
+
+/* Focus Indicator Enhancement */
+html.a11y-focus-indicator *:not(.a11y-panel *):not(.a11y-trigger):focus,
+html.a11y-focus-indicator *:not(.a11y-panel *):not(.a11y-trigger):focus-visible {
+    outline: 4px solid #ff8f00 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 6px rgba(255, 143, 0, 0.3) !important;
+}
+
+/* Hide Images */
+html.a11y-hide-images img:not(.a11y-panel img),
+html.a11y-hide-images picture {
+    opacity: 0.05 !important;
+}
+
+/* Saturation - Monochrome — exclude the widget */
+html.a11y-monochrome body {
+    filter: grayscale(100%) !important;
+}
+/* Un-filter the widget */
+html.a11y-monochrome .a11y-trigger,
+html.a11y-monochrome .a11y-panel,
+html.a11y-monochrome .a11y-overlay {
+    filter: none !important;
+}
+
+/* Invert Colors — exclude the widget */
+html.a11y-invert body {
+    filter: invert(100%) hue-rotate(180deg) !important;
+}
+html.a11y-invert img,
+html.a11y-invert picture,
+html.a11y-invert video {
+    filter: invert(100%) hue-rotate(180deg) !important;
+}
+html.a11y-invert .a11y-trigger,
+html.a11y-invert .a11y-panel,
+html.a11y-invert .a11y-overlay {
+    filter: none !important;
+}
+
+/* Reading Guide (horizontal line that follows mouse) */
+.a11y-reading-guide-bar {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: rgba(255, 143, 0, 0.35);
+    border-top: 2px solid #ff8f00;
+    border-bottom: 2px solid #ff8f00;
+    z-index: 10000000;
+    pointer-events: none;
+    transition: top 0.05s linear;
+}
+
+html.a11y-reading-guide .a11y-reading-guide-bar {
+    display: block;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    .a11y-trigger {
+        bottom: 16px;
+        left: 16px;
+        width: 48px;
+        height: 48px;
+    }
+    .a11y-trigger svg {
+        width: 24px;
+        height: 24px;
+    }
+    .a11y-panel {
+        bottom: 74px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        max-width: none;
+        max-height: calc(100vh - 100px);
+    }
+}
+
+/* Skip-to-content link for keyboard users */
+.a11y-skip-link {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000010;
+    background: #0d47a1;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 0 0 8px 8px;
+    font-size: 1rem !important;
+    font-weight: 700;
+    text-decoration: none;
+    transition: top 0.2s;
+    min-height: auto;
+    min-width: auto;
+}
+
+.a11y-skip-link:focus {
+    top: 0;
+    outline: 3px solid #ff8f00;
+    outline-offset: 2px;
+}

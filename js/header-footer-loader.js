@@ -99,6 +99,25 @@ function initHeaderFooter() {
             })
             .catch(error => console.error('Error loading footer:', error));
     }
+
+    // Load accessibility widget CSS + JS and cookie consent
+    if (!document.querySelector('[data-mmc-a11y-loaded]')) {
+        var a11yCss = document.createElement('link');
+        a11yCss.rel = 'stylesheet';
+        a11yCss.href = basePath + 'css/accessibility.css';
+        a11yCss.setAttribute('data-mmc-a11y-loaded', 'true');
+        document.head.appendChild(a11yCss);
+
+        var a11yJs = document.createElement('script');
+        a11yJs.src = basePath + 'js/accessibility.js';
+        a11yJs.defer = true;
+        document.body.appendChild(a11yJs);
+
+        var cookieJs = document.createElement('script');
+        cookieJs.src = basePath + 'js/cookie-consent.js';
+        cookieJs.defer = true;
+        document.body.appendChild(cookieJs);
+    }
 }
 
 if (document.readyState === 'loading') {
@@ -200,7 +219,9 @@ function updateFooterLinks(basePath) {
         'footer-nav-derma': 'pages/dermatology.html',
         'footer-nav-wellness': 'pages/nutrition-wellness.html',
         'footer-nav-occupational': 'pages/occupational-health.html',
-        'footer-nav-careers': 'pages/careers.html'
+        'footer-nav-careers': 'pages/careers.html',
+        'footer-nav-privacy': 'pages/privacy-policy.html',
+        'footer-nav-terms': 'pages/terms-of-service.html'
     };
     
     // Update footer navigation links

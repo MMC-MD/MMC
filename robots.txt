@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /pages/frontdesk-briefing-room.html
+Disallow: /includes/
+Disallow: /js/
+Disallow: /node_modules/
+Disallow: /test-results/
+
+Sitemap: https://www.mmccare.com/sitemap.xml
