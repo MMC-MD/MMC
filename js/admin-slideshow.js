@@ -17,7 +17,7 @@ import {
     subscribeToEmergencyBanner,
     subscribeToHomepageSlides,
     subscribeToScheduledBanners
-} from './firebase-client.js?v=2026041102';
+} from './firebase-client.js?v=2026041103';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;
@@ -2259,6 +2259,7 @@ function renderScheduledBannerCard(entry) {
     var messageText = stripHtmlTags(getLocalizedBannerText(entry.banner.message, 'en'));
     var pillText = getLocalizedBannerText(entry.banner.pill, 'en');
     var color = entry.banner.color || 'green';
+    var showPill = entry.banner.showPill !== false;
     var truncatedMessage = messageText.length > 100 ? messageText.substring(0, 100) + '...' : messageText;
     var recurrence = entry.recurrence || { mode: 'dates', days: [] };
     var isWeekly = recurrence.mode === 'weekly';
@@ -2305,7 +2306,7 @@ function renderScheduledBannerCard(entry) {
         '    </div>',
         '  </div>',
         '  <details class="sched-card-edit">',
-        '    <summary class="sched-edit-trigger">Edit Details</summary>',
+        '    <summary class="sched-edit-trigger"></summary>',
         '    <div class="sched-edit-body">',
 
         '      <div class="sched-section">',
@@ -2354,20 +2355,29 @@ function renderScheduledBannerCard(entry) {
         '      <div class="sched-section">',
         '        <p class="sched-section-title">Content</p>',
         '        <div class="sched-grid">',
-        '          <label class="sched-field">',
+        '          <div class="sched-field sched-field-full">',
+        '            <div class="sched-toggle-row">',
+        '              <span class="sched-label-text">Show Alert Label (Pill)</span>',
+        '              <label class="sched-switch">',
+        '                <input type="checkbox" data-sched-field="showPill"' + (showPill ? ' checked' : '') + '>',
+        '                <span class="sched-switch-track"></span>',
+        '              </label>',
+        '            </div>',
+        '          </div>',
+        '          <label class="sched-field' + (showPill ? '' : ' sched-field-hidden') + ' sched-pill-en-field">',
         '            <span class="sched-label-text">Alert Label <span class="sched-lang-badge">EN</span></span>',
-        '            <input type="text" class="sched-input" data-sched-field="pillEn" value="' + escapeHtml(getLocalizedBannerText(entry.banner.pill, 'en')) + '">',
+        '            <input type="text" class="sched-input" data-sched-field="pillEn" data-sched-translate="pillEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.pill, 'en')) + '">',
         '          </label>',
-        '          <label class="sched-field">',
-        '            <span class="sched-label-text">Alert Label <span class="sched-lang-badge sched-lang-badge-es">ES</span></span>',
+        '          <label class="sched-field' + (showPill ? '' : ' sched-field-hidden') + ' sched-pill-es-field">',
+        '            <span class="sched-label-text">Alert Label <span class="sched-lang-badge sched-lang-badge-es">ES</span> <span class="sched-auto-badge">Auto</span></span>',
         '            <input type="text" class="sched-input" data-sched-field="pillEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.pill, 'es')) + '">',
         '          </label>',
         '          <label class="sched-field sched-field-full">',
         '            <span class="sched-label-text">Message <span class="sched-lang-badge">EN</span></span>',
-        '            <input type="text" class="sched-input" data-sched-field="messageEn" value="' + escapeHtml(getLocalizedBannerText(entry.banner.message, 'en')) + '">',
+        '            <input type="text" class="sched-input" data-sched-field="messageEn" data-sched-translate="messageEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.message, 'en')) + '">',
         '          </label>',
         '          <label class="sched-field sched-field-full">',
-        '            <span class="sched-label-text">Message <span class="sched-lang-badge sched-lang-badge-es">ES</span></span>',
+        '            <span class="sched-label-text">Message <span class="sched-lang-badge sched-lang-badge-es">ES</span> <span class="sched-auto-badge">Auto</span></span>',
         '            <input type="text" class="sched-input" data-sched-field="messageEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.message, 'es')) + '">',
         '          </label>',
         '        </div>',
@@ -2422,6 +2432,8 @@ function readScheduledBannerFromCard(card) {
     var ctaUrl = (card.querySelector('[data-sched-field="ctaUrl"]') || {}).value || '';
     var activeColorBtn = card.querySelector('.sched-color-picker .banner-color-btn.is-active');
     var color = activeColorBtn ? activeColorBtn.dataset.schedColor : 'green';
+    var showPillCheckbox = card.querySelector('[data-sched-field="showPill"]');
+    var showPill = showPillCheckbox ? showPillCheckbox.checked : true;
 
     var activeModeBtn = card.querySelector('.sched-mode-btn.is-active');
     var mode = activeModeBtn ? activeModeBtn.dataset.schedMode : 'dates';
@@ -2440,7 +2452,7 @@ function readScheduledBannerFromCard(card) {
         banner: {
             enabled: true,
             color: color,
-            showPill: true,
+            showPill: showPill,
             showButton: !!(ctaLabelEn && ctaUrl),
             pill: { en: pillEn, es: pillEs },
             message: { en: messageEn, es: messageEs },
@@ -2624,6 +2636,52 @@ function handleScheduleListClick(event) {
         dayBtn.classList.toggle('is-active');
         return;
     }
+}
+
+function handleScheduleListChange(event) {
+    var toggle = event.target.closest('[data-sched-field="showPill"]');
+    if (toggle) {
+        var card = toggle.closest('.sched-card');
+        if (!card) return;
+        var pillEnField = card.querySelector('.sched-pill-en-field');
+        var pillEsField = card.querySelector('.sched-pill-es-field');
+        if (pillEnField) pillEnField.classList.toggle('sched-field-hidden', !toggle.checked);
+        if (pillEsField) pillEsField.classList.toggle('sched-field-hidden', !toggle.checked);
+    }
+}
+
+var schedTranslateTimers = {};
+
+function handleScheduleListInput(event) {
+    var input = event.target;
+    var targetField = input.dataset.schedTranslate;
+    if (!targetField) return;
+
+    var card = input.closest('.sched-card');
+    if (!card) return;
+    var schedId = card.dataset.schedId || '';
+    var timerKey = schedId + ':' + targetField;
+
+    if (schedTranslateTimers[timerKey]) {
+        window.clearTimeout(schedTranslateTimers[timerKey]);
+    }
+
+    schedTranslateTimers[timerKey] = window.setTimeout(function () {
+        delete schedTranslateTimers[timerKey];
+        var enText = input.value.trim();
+        var esInput = card.querySelector('[data-sched-field="' + targetField + '"]');
+        if (!esInput || !enText) return;
+
+        translateTextToSpanish(enText)
+            .then(function (translated) {
+                if (card.dataset.schedId === schedId) {
+                    esInput.value = translated;
+                }
+            })
+            .catch(function () {
+                /* translation failed silently */
+            });
+    }, 600);
 }
 
 function handleSchedTemplateClick(event) {
@@ -2902,6 +2960,8 @@ function initEvents() {
     safeListen(elements.scheduleAddButton, 'click', function () { addScheduledBanner(); });
     safeListen(elements.scheduleReloadButton, 'click', reloadScheduledBanners);
     safeListen(elements.scheduledBannerList, 'click', handleScheduleListClick);
+    safeListen(elements.scheduledBannerList, 'change', handleScheduleListChange);
+    safeListen(elements.scheduledBannerList, 'input', handleScheduleListInput);
 
     /* Scheduled banner template bar */
     var schedTemplateBar = document.getElementById('schedTemplateBar');

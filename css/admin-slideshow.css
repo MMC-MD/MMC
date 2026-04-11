@@ -2303,6 +2303,81 @@ body.admin-authenticated .admin-shell { display: block; }
     align-self: flex-start;
 }
 
+/* Toggle row — label left, switch right */
+.sched-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+/* iOS-style toggle switch */
+.sched-switch {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 22px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.sched-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.sched-switch-track {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background: #d1d1d6;
+    transition: background 0.25s ease;
+}
+
+.sched-switch-track::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    transition: transform 0.25s ease;
+}
+
+.sched-switch input:checked + .sched-switch-track {
+    background: var(--s-blue);
+}
+
+.sched-switch input:checked + .sched-switch-track::after {
+    transform: translateX(16px);
+}
+
+/* Hidden field (pill fields when showPill is off) */
+.sched-field-hidden {
+    display: none !important;
+}
+
+/* Auto-translate badge */
+.sched-auto-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 15px;
+    padding: 0 5px;
+    border-radius: 4px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
 @media (max-width: 640px) {
     .sched-banner-list {
         padding: 0 16px 16px;
