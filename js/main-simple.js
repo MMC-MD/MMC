@@ -277,9 +277,6 @@ function initHeaderEnhancements() {
 
 // Initialize everything on DOM ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize contact modal
-    initContactModal();
-    
     // Initialize AOS animations
     if (typeof AOS !== 'undefined') {
         setTimeout(() => {
