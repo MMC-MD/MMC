@@ -17,7 +17,7 @@ import {
     subscribeToEmergencyBanner,
     subscribeToHomepageSlides,
     subscribeToScheduledBanners
-} from './firebase-client.js?v=2026041101';
+} from './firebase-client.js?v=2026041102';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;

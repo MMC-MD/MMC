@@ -373,7 +373,7 @@ function ensureGlobalBannerScript(basePath) {
 
     const script = document.createElement('script');
     script.type = 'module';
-    script.src = basePath + 'js/firebase-site-banner.js?v=2026041101';
+    script.src = basePath + 'js/firebase-site-banner.js?v=2026041102';
     script.dataset.mmcSiteBannerScript = 'true';
     document.body.appendChild(script);
 }
