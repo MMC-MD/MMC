@@ -171,6 +171,11 @@
             min-height: 44px;
             min-width: 44px;
         }
+        /* Undo touch-target sizing inside in-page nav */
+        #page-nav a, #page-nav button {
+            min-height: 0;
+            min-width: 0;
+        }
 
         /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
