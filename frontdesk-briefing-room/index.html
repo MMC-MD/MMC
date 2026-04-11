@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Internal slideshow management console for Montgomery Medical Clinic.">
-    <title>MMC Front Desk Briefing Room</title>
+    <title>MMC Studio | Front Desk Briefing Room</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
@@ -16,9 +16,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../css/admin-slideshow.css">
+    <style>
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        .sidebar-link.active { background-color: #e2e8f0; color: #1e40af; border-right: 3px solid #2563eb; }
+        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* Override admin-shell for sidebar layout */
+        body.admin-authenticated .admin-shell {
+            display: flex !important;
+            max-width: none;
+            padding: 0;
+            height: 100vh;
+        }
+
+        /* Override tab panels to not use hidden attribute styling */
+        body.admin-authenticated .admin-tab-panel { display: none; }
+        body.admin-authenticated .admin-tab-panel.is-active { display: block; }
+
+        /* Hide old top bar and tab switcher */
+        body.admin-authenticated .studio-topbar { display: none !important; }
+        body.admin-authenticated .studio-tabs { display: none !important; }
+
+        /* Make content area scrollable */
+        .studio-main-scroll { overflow-y: auto; flex: 1; }
+
+        /* Fix canvas layout for sidebar mode */
+        body.admin-authenticated .studio-canvas {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Fix toolbar to not be sticky in sidebar mode */
+        body.admin-authenticated .studio-toolbar {
+            position: relative;
+        }
+    </style>
 </head>
-<body>
+<body class="text-slate-900 antialiased overflow-hidden bg-slate-50">
+    <!-- ============================== -->
+    <!-- AUTH GATE (unchanged IDs)      -->
+    <!-- ============================== -->
     <section class="admin-lock-screen">
         <div class="admin-lock-card">
             <p class="admin-lock-kicker">Admin Sign In</p>
@@ -48,324 +88,421 @@
         </div>
     </section>
 
+    <!-- ============================== -->
+    <!-- MAIN APP (sidebar layout)      -->
+    <!-- ============================== -->
     <main class="admin-shell">
 
-        <!-- Top bar -->
-        <header class="studio-topbar">
-            <div class="studio-topbar-left">
-                <span class="studio-logo">MMC Studio</span>
-                <span class="studio-divider"></span>
-                <span class="studio-user" id="adminUserEmail">Not signed in</span>
-            </div>
-            <div class="studio-topbar-right">
-                <div class="studio-stat">
-                    <span class="studio-stat-num" id="adminSlideCount">0</span>
-                    <span class="studio-stat-label">Slides</span>
+        <!-- SIDEBAR -->
+        <aside class="w-60 bg-white border-r border-slate-200 flex flex-col shrink-0 h-screen">
+            <!-- Logo -->
+            <div class="p-5 border-b border-slate-100 flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white">
+                    <i data-lucide="layout-template" class="w-5 h-5"></i>
                 </div>
-                <div class="studio-stat">
-                    <span class="studio-stat-num" id="adminLiveCount">0</span>
-                    <span class="studio-stat-label">Live</span>
+                <div>
+                    <h1 class="font-black text-lg tracking-tighter leading-none">MMC STUDIO</h1>
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-widest leading-none mt-0.5">Management</p>
                 </div>
-                <a class="studio-preview-link" href="../index.html" target="_blank" rel="noopener noreferrer">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3H3v10h10v-3M9 2h5v5M14 2L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    Preview Site
-                </a>
             </div>
-        </header>
 
-        <!-- Tab switcher -->
-        <nav class="studio-tabs" role="tablist" aria-label="Website tools">
-            <button type="button" class="studio-tab is-active" data-admin-tab="banner" aria-selected="true">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4h14M2 9h14M2 14h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Urgent Banner
-            </button>
-            <button type="button" class="studio-tab" data-admin-tab="slides" aria-selected="false">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6 15h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Homepage Slides
-            </button>
-            <button type="button" class="studio-tab" data-admin-tab="schedule" aria-selected="false">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 6h14M6 2v4M12 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="11" r="1.5" fill="currentColor"/></svg>
-                Scheduled Banners
-            </button>
-        </nav>
+            <!-- Nav links -->
+            <nav class="flex-1 py-4 overflow-y-auto custom-scrollbar">
+                <div class="px-3 mb-4">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-2">Website Content</p>
+                    <button type="button" data-admin-tab="banner" aria-selected="true" class="sidebar-link active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all mb-1 text-left">
+                        <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i> Urgent Banner
+                    </button>
+                    <button type="button" data-admin-tab="slides" aria-selected="false" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all mb-1 text-left">
+                        <i data-lucide="gallery-horizontal" class="w-4 h-4 shrink-0"></i> Homepage Slides
+                    </button>
+                    <button type="button" data-admin-tab="schedule" aria-selected="false" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all mb-1 text-left">
+                        <i data-lucide="calendar-clock" class="w-4 h-4 shrink-0"></i> Scheduled Banners
+                    </button>
+                </div>
 
-        <!-- ============================================ -->
-        <!--  BANNER TAB                                  -->
-        <!-- ============================================ -->
-        <div class="admin-tab-panel is-active" data-admin-panel="banner">
-            <div class="studio-canvas">
-
-                <!-- Left: Controls -->
-                <div class="studio-sidebar">
-
-                    <!-- On/Off + Color + Options -->
-                    <div class="studio-card">
-                        <div class="studio-card-row studio-card-row-between">
-                            <label class="studio-switch">
-                                <input id="adminBannerEnabled" type="checkbox">
-                                <span class="studio-switch-track"></span>
-                                <span class="studio-switch-label">Banner is ON</span>
-                            </label>
-                            <label class="studio-mini-check">
-                                <input id="adminBannerNewTab" type="checkbox">
-                                <span>Open link in new tab</span>
-                            </label>
+                <div class="px-3 border-t border-slate-100 pt-5">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 mb-2">Stats</p>
+                    <div class="space-y-2.5 px-2">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-500">Total Slides</span>
+                            <span id="adminSlideCount" class="font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">0</span>
                         </div>
-                        <div class="banner-color-picker" style="margin-top:14px;">
-                            <span class="studio-field-label" style="margin-bottom:8px;display:block;">Banner Color</span>
-                            <div id="adminBannerColorPicker" class="banner-color-options">
-                                <button type="button" class="banner-color-btn is-active" data-banner-color="red" title="Red"><span class="banner-color-swatch" style="background:#dc2626;"></span>Red</button>
-                                <button type="button" class="banner-color-btn" data-banner-color="orange" title="Orange"><span class="banner-color-swatch" style="background:#ea580c;"></span>Orange</button>
-                                <button type="button" class="banner-color-btn" data-banner-color="yellow" title="Yellow"><span class="banner-color-swatch" style="background:#ca8a04;"></span>Yellow</button>
-                                <button type="button" class="banner-color-btn" data-banner-color="green" title="Green"><span class="banner-color-swatch" style="background:#16a34a;"></span>Green</button>
-                            </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-500">Live Slides</span>
+                            <span id="adminLiveCount" class="font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">0</span>
                         </div>
                     </div>
+                </div>
+            </nav>
 
-                    <!-- Quick Start Presets -->
-                    <div class="studio-card">
-                        <h3 class="studio-section-title">Quick Start</h3>
-                        <div id="adminBannerPresetGrid" class="studio-preset-row"></div>
+            <!-- User footer -->
+            <div class="p-4 bg-slate-50 border-t border-slate-200">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                        <i data-lucide="user" class="w-4 h-4"></i>
                     </div>
+                    <div class="flex-1 min-w-0">
+                        <p id="adminUserEmail" class="text-xs font-bold truncate">Not signed in</p>
+                        <p class="text-[10px] text-slate-500">Administrator</p>
+                    </div>
+                </div>
+                <button id="adminLogoutButton" type="button" class="w-full py-2 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 flex items-center justify-center gap-2 cursor-pointer">
+                    <i data-lucide="log-out" class="w-3 h-3"></i> Sign Out
+                </button>
+            </div>
+        </aside>
 
-                    <!-- English Fields -->
-                    <div class="studio-card">
-                        <h3 class="studio-section-title">
-                            <span class="studio-lang-dot studio-lang-dot-en"></span>
-                            English
-                        </h3>
-                        <div class="studio-fields">
-                            <div class="studio-field">
-                                <div class="studio-field-row">
-                                    <span class="studio-field-label">Alert Label</span>
+        <!-- MAIN CONTENT -->
+        <div class="flex-1 flex flex-col min-w-0 h-screen">
+
+            <!-- Top bar -->
+            <header class="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-6 shrink-0">
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <span>Website Content</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    <span id="studio-breadcrumb" class="font-bold text-slate-900">Urgent Banner</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="../index.html" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-slate-500 hover:text-blue-600 flex items-center gap-2 px-3 py-2">
+                        <i data-lucide="eye" class="w-4 h-4"></i> Preview Site
+                    </a>
+                </div>
+            </header>
+
+            <!-- Scrollable content area -->
+            <div class="studio-main-scroll custom-scrollbar">
+
+                <!-- ============================================ -->
+                <!--  BANNER TAB                                  -->
+                <!-- ============================================ -->
+                <div class="admin-tab-panel is-active" data-admin-panel="banner">
+                    <div class="studio-canvas">
+
+                        <!-- Left: Controls -->
+                        <div class="studio-sidebar">
+
+                            <!-- On/Off + Color + Options -->
+                            <div class="studio-card">
+                                <div class="studio-card-row studio-card-row-between">
+                                    <label class="studio-switch">
+                                        <input id="adminBannerEnabled" type="checkbox">
+                                        <span class="studio-switch-track"></span>
+                                        <span class="studio-switch-label">Banner is ON</span>
+                                    </label>
                                     <label class="studio-mini-check">
-                                        <input id="adminBannerShowPill" type="checkbox" checked>
-                                        <span>Show label</span>
+                                        <input id="adminBannerNewTab" type="checkbox">
+                                        <span>Open link in new tab</span>
                                     </label>
                                 </div>
-                                <input id="adminBannerPillEn" type="text" placeholder="Emergency Notice">
-                            </div>
-                            <div class="studio-field">
-                                <span class="studio-field-label">Message</span>
-                                <div class="studio-richtext-toolbar" id="adminBannerToolbarEn">
-                                    <button type="button" class="studio-rt-btn" data-rt-cmd="bold" title="Bold"><b>B</b></button>
-                                    <button type="button" class="studio-rt-btn" data-rt-cmd="italic" title="Italic"><i>I</i></button>
-                                    <button type="button" class="studio-rt-btn" data-rt-cmd="underline" title="Underline"><u>U</u></button>
-                                    <span class="studio-rt-sep"></span>
-                                    <label class="studio-rt-color" title="Text Color">
-                                        <span class="studio-rt-color-icon">A</span>
-                                        <input type="color" id="adminBannerTextColorEn" value="#ffffff" data-rt-cmd="foreColor">
-                                    </label>
+                                <div class="banner-color-picker" style="margin-top:14px;">
+                                    <span class="studio-field-label" style="margin-bottom:8px;display:block;">Banner Color</span>
+                                    <div id="adminBannerColorPicker" class="banner-color-options">
+                                        <button type="button" class="banner-color-btn is-active" data-banner-color="red" title="Red"><span class="banner-color-swatch" style="background:#dc2626;"></span>Red</button>
+                                        <button type="button" class="banner-color-btn" data-banner-color="orange" title="Orange"><span class="banner-color-swatch" style="background:#ea580c;"></span>Orange</button>
+                                        <button type="button" class="banner-color-btn" data-banner-color="yellow" title="Yellow"><span class="banner-color-swatch" style="background:#ca8a04;"></span>Yellow</button>
+                                        <button type="button" class="banner-color-btn" data-banner-color="green" title="Green"><span class="banner-color-swatch" style="background:#16a34a;"></span>Green</button>
+                                    </div>
                                 </div>
-                                <div id="adminBannerMessageEn" class="studio-richtext" contenteditable="true" data-placeholder="Due to inclement weather, Montgomery Medical Clinic will open at 10:00 AM today."></div>
                             </div>
-                            <div class="studio-field">
-                                <div class="studio-field-row">
-                                    <span class="studio-field-label">Button Text <span class="studio-optional">optional</span></span>
-                                    <label class="studio-mini-check">
-                                        <input id="adminBannerShowButton" type="checkbox" checked>
-                                        <span>Show button</span>
-                                    </label>
-                                </div>
-                                <input id="adminBannerCtaLabelEn" type="text" placeholder="Call the Office">
-                            </div>
-                            <label class="studio-field">
-                                <span class="studio-field-label">Button Link</span>
-                                <input id="adminBannerCtaUrl" type="text" placeholder="tel:3012082273 or pages/contact.html">
-                            </label>
-                        </div>
-                    </div>
 
-                    <!-- Spanish Fields (collapsed by default feel) -->
-                    <details class="studio-card studio-card-details" open>
-                        <summary class="studio-details-trigger">
-                            <span class="studio-section-title">
-                                <span class="studio-lang-dot studio-lang-dot-es"></span>
-                                Spanish
-                            </span>
-                            <span class="studio-details-arrow"></span>
-                        </summary>
-                        <div class="studio-details-body">
-                            <div class="studio-card-row studio-card-row-tools">
-                                <label class="studio-mini-check">
-                                    <input id="adminBannerAutoTranslateToggle" type="checkbox" checked>
-                                    <span>Auto-translate</span>
-                                </label>
-                                <button id="adminBannerTranslateButton" type="button" class="studio-btn-sm">Translate</button>
-                                <button id="adminBannerCopyButton" type="button" class="studio-btn-sm">Copy English</button>
+                            <!-- Quick Start Presets -->
+                            <div class="studio-card">
+                                <h3 class="studio-section-title">Quick Start</h3>
+                                <div id="adminBannerPresetGrid" class="studio-preset-row"></div>
                             </div>
-                            <div class="studio-fields">
-                                <label class="studio-field">
-                                    <span class="studio-field-label">Etiqueta (ES)</span>
-                                    <input id="adminBannerPillEs" type="text" placeholder="Aviso Importante">
-                                </label>
-                                <div class="studio-field">
-                                    <span class="studio-field-label">Mensaje (ES)</span>
-                                    <div class="studio-richtext-toolbar" id="adminBannerToolbarEs">
-                                        <button type="button" class="studio-rt-btn" data-rt-cmd="bold" title="Bold"><b>B</b></button>
-                                        <button type="button" class="studio-rt-btn" data-rt-cmd="italic" title="Italic"><i>I</i></button>
-                                        <button type="button" class="studio-rt-btn" data-rt-cmd="underline" title="Underline"><u>U</u></button>
-                                        <span class="studio-rt-sep"></span>
-                                        <label class="studio-rt-color" title="Text Color">
-                                            <span class="studio-rt-color-icon">A</span>
-                                            <input type="color" id="adminBannerTextColorEs" value="#ffffff" data-rt-cmd="foreColor">
+
+                            <!-- English Fields -->
+                            <div class="studio-card">
+                                <h3 class="studio-section-title">
+                                    <span class="studio-lang-dot studio-lang-dot-en"></span>
+                                    English
+                                </h3>
+                                <div class="studio-fields">
+                                    <div class="studio-field">
+                                        <div class="studio-field-row">
+                                            <span class="studio-field-label">Alert Label</span>
+                                            <label class="studio-mini-check">
+                                                <input id="adminBannerShowPill" type="checkbox" checked>
+                                                <span>Show label</span>
+                                            </label>
+                                        </div>
+                                        <input id="adminBannerPillEn" type="text" placeholder="Emergency Notice">
+                                    </div>
+                                    <div class="studio-field">
+                                        <span class="studio-field-label">Message</span>
+                                        <div class="studio-richtext-toolbar" id="adminBannerToolbarEn">
+                                            <button type="button" class="studio-rt-btn" data-rt-cmd="bold" title="Bold"><b>B</b></button>
+                                            <button type="button" class="studio-rt-btn" data-rt-cmd="italic" title="Italic"><i>I</i></button>
+                                            <button type="button" class="studio-rt-btn" data-rt-cmd="underline" title="Underline"><u>U</u></button>
+                                            <span class="studio-rt-sep"></span>
+                                            <label class="studio-rt-color" title="Text Color">
+                                                <span class="studio-rt-color-icon">A</span>
+                                                <input type="color" id="adminBannerTextColorEn" value="#ffffff" data-rt-cmd="foreColor">
+                                            </label>
+                                        </div>
+                                        <div id="adminBannerMessageEn" class="studio-richtext" contenteditable="true" data-placeholder="Due to inclement weather, Montgomery Medical Clinic will open at 10:00 AM today."></div>
+                                    </div>
+                                    <div class="studio-field">
+                                        <div class="studio-field-row">
+                                            <span class="studio-field-label">Button Text <span class="studio-optional">optional</span></span>
+                                            <label class="studio-mini-check">
+                                                <input id="adminBannerShowButton" type="checkbox" checked>
+                                                <span>Show button</span>
+                                            </label>
+                                        </div>
+                                        <input id="adminBannerCtaLabelEn" type="text" placeholder="Call the Office">
+                                    </div>
+                                    <label class="studio-field">
+                                        <span class="studio-field-label">Button Link</span>
+                                        <input id="adminBannerCtaUrl" type="text" placeholder="tel:3012082273 or pages/contact.html">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Spanish Fields -->
+                            <details class="studio-card studio-card-details" open>
+                                <summary class="studio-details-trigger">
+                                    <span class="studio-section-title">
+                                        <span class="studio-lang-dot studio-lang-dot-es"></span>
+                                        Spanish
+                                    </span>
+                                    <span class="studio-details-arrow"></span>
+                                </summary>
+                                <div class="studio-details-body">
+                                    <div class="studio-card-row studio-card-row-tools">
+                                        <label class="studio-mini-check">
+                                            <input id="adminBannerAutoTranslateToggle" type="checkbox" checked>
+                                            <span>Auto-translate</span>
+                                        </label>
+                                        <button id="adminBannerTranslateButton" type="button" class="studio-btn-sm">Translate</button>
+                                        <button id="adminBannerCopyButton" type="button" class="studio-btn-sm">Copy English</button>
+                                    </div>
+                                    <div class="studio-fields">
+                                        <label class="studio-field">
+                                            <span class="studio-field-label">Etiqueta (ES)</span>
+                                            <input id="adminBannerPillEs" type="text" placeholder="Aviso Importante">
+                                        </label>
+                                        <div class="studio-field">
+                                            <span class="studio-field-label">Mensaje (ES)</span>
+                                            <div class="studio-richtext-toolbar" id="adminBannerToolbarEs">
+                                                <button type="button" class="studio-rt-btn" data-rt-cmd="bold" title="Bold"><b>B</b></button>
+                                                <button type="button" class="studio-rt-btn" data-rt-cmd="italic" title="Italic"><i>I</i></button>
+                                                <button type="button" class="studio-rt-btn" data-rt-cmd="underline" title="Underline"><u>U</u></button>
+                                                <span class="studio-rt-sep"></span>
+                                                <label class="studio-rt-color" title="Text Color">
+                                                    <span class="studio-rt-color-icon">A</span>
+                                                    <input type="color" id="adminBannerTextColorEs" value="#ffffff" data-rt-cmd="foreColor">
+                                                </label>
+                                            </div>
+                                            <div id="adminBannerMessageEs" class="studio-richtext" contenteditable="true" data-placeholder="Revise o ajuste aqui la traduccion al espanol."></div>
+                                        </div>
+                                        <label class="studio-field">
+                                            <span class="studio-field-label">Texto del Boton (ES)</span>
+                                            <input id="adminBannerCtaLabelEs" type="text" placeholder="Llamar a la Oficina">
                                         </label>
                                     </div>
-                                    <div id="adminBannerMessageEs" class="studio-richtext" contenteditable="true" data-placeholder="Revise o ajuste aqui la traduccion al espanol."></div>
                                 </div>
-                                <label class="studio-field">
-                                    <span class="studio-field-label">Texto del Boton (ES)</span>
-                                    <input id="adminBannerCtaLabelEs" type="text" placeholder="Llamar a la Oficina">
-                                </label>
+                            </details>
+
+                            <!-- Action bar -->
+                            <div class="studio-actions">
+                                <div id="adminBannerStatus" class="studio-status">Sign in to manage the urgent banner.</div>
+                                <div class="studio-actions-row">
+                                    <button id="adminBannerSaveButton" type="button" class="studio-btn studio-btn-publish">Publish Banner</button>
+                                    <button id="adminBannerReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
+                                    <button id="adminBannerResetButton" type="button" class="studio-btn studio-btn-danger-outline">Clear</button>
+                                </div>
                             </div>
                         </div>
-                    </details>
 
-                    <!-- Action bar -->
-                    <div class="studio-actions">
-                        <div id="adminBannerStatus" class="studio-status">Sign in to manage the urgent banner.</div>
-                        <div class="studio-actions-row">
-                            <button id="adminBannerSaveButton" type="button" class="studio-btn studio-btn-publish">Publish Banner</button>
-                            <button id="adminBannerReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
-                            <button id="adminBannerResetButton" type="button" class="studio-btn studio-btn-danger-outline">Clear</button>
+                        <!-- Right: Live Preview -->
+                        <div class="studio-preview-pane">
+                            <div class="studio-preview-label">Live Preview</div>
+                            <div class="admin-banner-preview-frame">
+                                <div id="adminBannerPreview" class="admin-banner-preview"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Live Preview -->
-                <div class="studio-preview-pane">
-                    <div class="studio-preview-label">Live Preview</div>
-                    <div class="admin-banner-preview-frame">
-                        <div id="adminBannerPreview" class="admin-banner-preview"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <!-- ============================================ -->
+                <!--  SLIDES TAB                                  -->
+                <!-- ============================================ -->
+                <div class="admin-tab-panel" data-admin-panel="slides" hidden>
 
-        <!-- ============================================ -->
-        <!--  SLIDES TAB                                  -->
-        <!-- ============================================ -->
-        <div class="admin-tab-panel" data-admin-panel="slides" hidden>
-
-            <!-- How-to strip -->
-            <div class="studio-how-to">
-                <div class="studio-how-to-step">
-                    <span class="studio-how-to-num">1</span>
-                    <div>
-                        <strong>Pick a template</strong>
-                        <p>Choose a ready-made slide below.</p>
-                    </div>
-                </div>
-                <div class="studio-how-to-step">
-                    <span class="studio-how-to-num">2</span>
-                    <div>
-                        <strong>Type in English</strong>
-                        <p>Spanish fills in automatically.</p>
-                    </div>
-                </div>
-                <div class="studio-how-to-step">
-                    <span class="studio-how-to-num">3</span>
-                    <div>
-                        <strong>Preview & save</strong>
-                        <p>Check the preview, then publish.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Template picker -->
-            <section class="studio-templates">
-                <div class="studio-templates-header">
-                    <h2 class="studio-templates-title">Choose a Slide Template</h2>
-                    <div class="studio-templates-tools">
-                        <label class="studio-mini-check">
-                            <input id="adminAutoTranslateToggle" type="checkbox" checked>
-                            <span>Auto-translate Spanish</span>
-                        </label>
-                        <button id="adminTranslateAllButton" type="button" class="studio-btn-sm">Fill All Spanish</button>
-                    </div>
-                </div>
-                <div id="adminTemplateGrid" class="studio-template-grid"></div>
-            </section>
-
-            <!-- Sticky toolbar -->
-            <section class="studio-toolbar">
-                <div id="adminStatus" class="studio-status">Sign in to manage slides.</div>
-                <div class="studio-toolbar-actions">
-                    <button id="adminSaveButton" type="button" class="studio-btn studio-btn-publish">Publish Slides</button>
-                    <button id="adminAddButton" type="button" class="studio-btn studio-btn-outline">+ Add Blank Slide</button>
-                    <button id="adminReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
-                    <button id="adminResetButton" type="button" class="studio-btn studio-btn-danger-outline">Reset</button>
-                    <details class="studio-more-menu">
-                        <summary class="studio-btn studio-btn-outline">More</summary>
-                        <div class="studio-more-panel">
-                            <button id="adminExportButton" type="button" class="studio-more-item">Download Backup</button>
-                            <label class="studio-more-item" for="adminImportInput">Upload Backup</label>
-                            <input id="adminImportInput" class="admin-file-input" type="file" accept=".json,application/json">
-                            <button id="adminLogoutButton" type="button" class="studio-more-item studio-more-item-muted">Sign Out</button>
+                    <!-- How-to strip -->
+                    <div class="studio-how-to">
+                        <div class="studio-how-to-step">
+                            <span class="studio-how-to-num">1</span>
+                            <div>
+                                <strong>Pick a template</strong>
+                                <p>Choose a ready-made slide below.</p>
+                            </div>
                         </div>
-                    </details>
-                </div>
-            </section>
-
-            <!-- Slide editors -->
-            <section class="admin-panels">
-                <div id="slideEditorList"></div>
-            </section>
-        </div>
-
-        <!-- ============================================ -->
-        <!--  SCHEDULED BANNERS TAB                       -->
-        <!-- ============================================ -->
-        <div class="admin-tab-panel" data-admin-panel="schedule" hidden>
-
-            <!-- How-to strip -->
-            <div class="studio-how-to">
-                <div class="studio-how-to-step">
-                    <span class="studio-how-to-num">1</span>
-                    <div>
-                        <strong>Create a scheduled banner</strong>
-                        <p>Set the date range and banner content.</p>
+                        <div class="studio-how-to-step">
+                            <span class="studio-how-to-num">2</span>
+                            <div>
+                                <strong>Type in English</strong>
+                                <p>Spanish fills in automatically.</p>
+                            </div>
+                        </div>
+                        <div class="studio-how-to-step">
+                            <span class="studio-how-to-num">3</span>
+                            <div>
+                                <strong>Preview & save</strong>
+                                <p>Check the preview, then publish.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="studio-how-to-step">
-                    <span class="studio-how-to-num">2</span>
-                    <div>
-                        <strong>Banner goes live automatically</strong>
-                        <p>On the start date, the banner appears on the website.</p>
-                    </div>
-                </div>
-                <div class="studio-how-to-step">
-                    <span class="studio-how-to-num">3</span>
-                    <div>
-                        <strong>It turns off automatically</strong>
-                        <p>After the end date, the banner disappears.</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Toolbar -->
-            <section class="studio-toolbar">
-                <div id="adminScheduleStatus" class="studio-status">Sign in to manage scheduled banners.</div>
-                <div class="studio-toolbar-actions">
-                    <button id="adminScheduleAddButton" type="button" class="studio-btn studio-btn-publish">+ Add Scheduled Banner</button>
-                    <button id="adminScheduleReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
-                </div>
-            </section>
+                    <!-- Template picker -->
+                    <section class="studio-templates">
+                        <div class="studio-templates-header">
+                            <h2 class="studio-templates-title">Choose a Slide Template</h2>
+                            <div class="studio-templates-tools">
+                                <label class="studio-mini-check">
+                                    <input id="adminAutoTranslateToggle" type="checkbox" checked>
+                                    <span>Auto-translate Spanish</span>
+                                </label>
+                                <button id="adminTranslateAllButton" type="button" class="studio-btn-sm">Fill All Spanish</button>
+                            </div>
+                        </div>
+                        <div id="adminTemplateGrid" class="studio-template-grid"></div>
+                    </section>
 
-            <!-- Scheduled banner list -->
-            <section class="admin-panels">
-                <div id="scheduledBannerList" class="sched-banner-list"></div>
-                <div id="scheduledBannerEmpty" class="sched-banner-empty" hidden>
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:16px;opacity:0.4;"><rect x="6" y="6" width="36" height="36" rx="6" stroke="currentColor" stroke-width="2.5"/><path d="M6 16h36M16 6v10M32 6v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="29" r="4" stroke="currentColor" stroke-width="2"/></svg>
-                    <p><strong>No scheduled banners yet.</strong></p>
-                    <p>Click <em>+ Add Scheduled Banner</em> above to schedule your first banner.</p>
+                    <!-- Sticky toolbar -->
+                    <section class="studio-toolbar">
+                        <div id="adminStatus" class="studio-status">Sign in to manage slides.</div>
+                        <div class="studio-toolbar-actions">
+                            <button id="adminSaveButton" type="button" class="studio-btn studio-btn-publish">Publish Slides</button>
+                            <button id="adminAddButton" type="button" class="studio-btn studio-btn-outline">+ Add Blank Slide</button>
+                            <button id="adminReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
+                            <button id="adminResetButton" type="button" class="studio-btn studio-btn-danger-outline">Reset</button>
+                            <details class="studio-more-menu">
+                                <summary class="studio-btn studio-btn-outline">More</summary>
+                                <div class="studio-more-panel">
+                                    <button id="adminExportButton" type="button" class="studio-more-item">Download Backup</button>
+                                    <label class="studio-more-item" for="adminImportInput">Upload Backup</label>
+                                    <input id="adminImportInput" class="admin-file-input" type="file" accept=".json,application/json">
+                                </div>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- Slide editors -->
+                    <section class="admin-panels">
+                        <div id="slideEditorList"></div>
+                    </section>
                 </div>
-            </section>
-        </div>
+
+                <!-- ============================================ -->
+                <!--  SCHEDULED BANNERS TAB                       -->
+                <!-- ============================================ -->
+                <div class="admin-tab-panel" data-admin-panel="schedule" hidden>
+
+                    <!-- How-to strip -->
+                    <div class="studio-how-to">
+                        <div class="studio-how-to-step">
+                            <span class="studio-how-to-num">1</span>
+                            <div>
+                                <strong>Create a scheduled banner</strong>
+                                <p>Set the date range and banner content.</p>
+                            </div>
+                        </div>
+                        <div class="studio-how-to-step">
+                            <span class="studio-how-to-num">2</span>
+                            <div>
+                                <strong>Banner goes live automatically</strong>
+                                <p>On the start date, the banner appears on the website.</p>
+                            </div>
+                        </div>
+                        <div class="studio-how-to-step">
+                            <span class="studio-how-to-num">3</span>
+                            <div>
+                                <strong>It turns off automatically</strong>
+                                <p>After the end date, the banner disappears.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <section class="studio-toolbar">
+                        <div id="adminScheduleStatus" class="studio-status">Sign in to manage scheduled banners.</div>
+                        <div class="studio-toolbar-actions">
+                            <button id="adminScheduleAddButton" type="button" class="studio-btn studio-btn-publish">+ Add Scheduled Banner</button>
+                            <button id="adminScheduleReloadButton" type="button" class="studio-btn studio-btn-outline">Reload</button>
+                        </div>
+                    </section>
+
+                    <!-- Scheduled banner list -->
+                    <section class="admin-panels">
+                        <div id="scheduledBannerList" class="sched-banner-list"></div>
+                        <div id="scheduledBannerEmpty" class="sched-banner-empty" hidden>
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:16px;opacity:0.4;"><rect x="6" y="6" width="36" height="36" rx="6" stroke="currentColor" stroke-width="2.5"/><path d="M6 16h36M16 6v10M32 6v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="29" r="4" stroke="currentColor" stroke-width="2"/></svg>
+                            <p><strong>No scheduled banners yet.</strong></p>
+                            <p>Click <em>+ Add Scheduled Banner</em> above to schedule your first banner.</p>
+                        </div>
+                    </section>
+                </div>
+
+            </div><!-- /studio-main-scroll -->
+        </div><!-- /flex-1 -->
     </main>
 
     <script src="../js/slideshow-data.js"></script>
     <script src="../js/slideshow.js"></script>
     <script type="module" src="../js/admin-slideshow.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        // Sidebar tab switching — hooks into the existing data-admin-tab system
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('aside .sidebar-link[data-admin-tab]');
+            const breadcrumb = document.getElementById('studio-breadcrumb');
+
+            const tabLabels = {
+                banner: 'Urgent Banner',
+                slides: 'Homepage Slides',
+                schedule: 'Scheduled Banners'
+            };
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const tab = link.getAttribute('data-admin-tab');
+
+                    // Update sidebar active state
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // Update breadcrumb
+                    if (breadcrumb) breadcrumb.textContent = tabLabels[tab] || tab;
+
+                    // Switch panels — same logic the existing JS uses
+                    document.querySelectorAll('[data-admin-panel]').forEach(p => {
+                        p.hidden = true;
+                        p.classList.remove('is-active');
+                    });
+                    const target = document.querySelector(`[data-admin-panel="${tab}"]`);
+                    if (target) {
+                        target.hidden = false;
+                        target.classList.add('is-active');
+                    }
+
+                    // Also update old tab buttons so JS state stays in sync
+                    document.querySelectorAll('.studio-tabs [data-admin-tab]').forEach(t => {
+                        t.classList.remove('is-active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    const oldTab = document.querySelector(`.studio-tabs [data-admin-tab="${tab}"]`);
+                    if (oldTab) {
+                        oldTab.classList.add('is-active');
+                        oldTab.setAttribute('aria-selected', 'true');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
