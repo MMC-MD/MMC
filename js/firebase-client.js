@@ -270,6 +270,18 @@ async function sendAdminPasswordReset(email) {
     await sendPasswordResetEmail(auth, email);
 }
 
+function normalizeScheduledRecurrence(value) {
+    const source = value && typeof value === 'object' ? value : {};
+    const mode = source.mode === 'weekly' ? 'weekly' : 'dates';
+    var days = [];
+    if (Array.isArray(source.days)) {
+        days = source.days
+            .map(function (d) { return typeof d === 'number' ? d : parseInt(d, 10); })
+            .filter(function (d) { return !isNaN(d) && d >= 0 && d <= 6; });
+    }
+    return { mode: mode, days: days };
+}
+
 function normalizeScheduledBanner(value, id) {
     const source = value && typeof value === 'object' ? value : {};
     const banner = normalizeEmergencyBanner(source.banner || source);
@@ -279,6 +291,7 @@ function normalizeScheduledBanner(value, id) {
         label: cleanText(source.label) || 'Scheduled Banner',
         startDate: cleanText(source.startDate),
         endDate: cleanText(source.endDate),
+        recurrence: normalizeScheduledRecurrence(source.recurrence),
         banner: banner,
         createdAt: source.createdAt || null,
         updatedAt: source.updatedAt || null,
@@ -323,6 +336,7 @@ async function saveScheduledBanner(entry, currentUser) {
         label: cleanText(entry.label) || 'Scheduled Banner',
         startDate: cleanText(entry.startDate),
         endDate: cleanText(entry.endDate),
+        recurrence: normalizeScheduledRecurrence(entry.recurrence),
         banner: normalizeEmergencyBanner(entry.banner),
         updatedAt: serverTimestamp(),
         updatedByUid: currentUser && currentUser.uid ? currentUser.uid : null,
@@ -355,9 +369,19 @@ function getActiveScheduledBanner(scheduledBanners) {
     var todayStr = now.getFullYear() + '-' +
         String(now.getMonth() + 1).padStart(2, '0') + '-' +
         String(now.getDate()).padStart(2, '0');
+    var todayDow = now.getDay(); // 0 = Sun, 6 = Sat
 
     for (var i = 0; i < scheduledBanners.length; i++) {
         var entry = scheduledBanners[i];
+        var recurrence = entry.recurrence || { mode: 'dates', days: [] };
+
+        if (recurrence.mode === 'weekly') {
+            if (Array.isArray(recurrence.days) && recurrence.days.indexOf(todayDow) !== -1) {
+                return entry;
+            }
+            continue;
+        }
+
         if (entry.startDate && entry.endDate && entry.startDate <= todayStr && entry.endDate >= todayStr) {
             return entry;
         }
