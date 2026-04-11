@@ -46,22 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton.setAttribute('aria-label', 'Collapse in-page navigation');
     toggleButton.setAttribute('aria-expanded', 'true');
 
-    const toggleSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    toggleSvg.setAttribute('width', '10');
-    toggleSvg.setAttribute('height', '10');
-    toggleSvg.setAttribute('viewBox', '0 0 24 24');
-    toggleSvg.setAttribute('fill', 'none');
-    toggleSvg.setAttribute('stroke', 'currentColor');
-    toggleSvg.setAttribute('stroke-width', '2.5');
-    toggleSvg.setAttribute('stroke-linecap', 'round');
-    toggleSvg.setAttribute('stroke-linejoin', 'round');
-    toggleSvg.setAttribute('aria-hidden', 'true');
-    toggleSvg.classList.add('toggle-icon');
-    const chevronPath = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-    chevronPath.setAttribute('points', '18 15 12 9 6 15');
-    toggleSvg.appendChild(chevronPath);
+    const toggleIcon = document.createElement('span');
+    toggleIcon.className = 'toggle-icon';
+    toggleIcon.setAttribute('aria-hidden', 'true');
+    toggleIcon.textContent = '›';
 
-    toggleButton.appendChild(toggleSvg);
+    toggleButton.appendChild(toggleIcon);
 
     navInner.appendChild(list);
 
