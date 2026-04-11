@@ -17,7 +17,7 @@ import {
     subscribeToEmergencyBanner,
     subscribeToHomepageSlides,
     subscribeToScheduledBanners
-} from './firebase-client.js?v=2026041103';
+} from './firebase-client.js?v=2026041104';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;
@@ -341,6 +341,56 @@ const SCHED_TEMPLATES = {
             ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
             ctaUrl: 'tel:3012082273', ctaNewTab: false
         }
+    },
+    'alternating-open-sat': {
+        label: 'Alternating Sat Open',
+        isGroup: true,
+        entries: [
+            {
+                label: 'Week A \u2013 Saturday Open',
+                recurrence: { mode: 'biweekly', days: [6], weekParity: 0, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'green', showPill: true, showButton: true,
+                    pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+                    message: { en: 'The clinic is open today from 8:00 AM \u2013 1:00 PM.', es: 'La cl\u00EDnica est\u00E1 abierta hoy de 8:00 AM a 1:00 PM.' },
+                    ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+                    ctaUrl: 'tel:3012082273', ctaNewTab: false
+                }
+            },
+            {
+                label: 'Week A \u2013 Sunday Closed',
+                recurrence: { mode: 'biweekly', days: [0], weekParity: 0, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'red', showPill: true, showButton: false,
+                    pill: { en: 'Closed Today', es: 'Cerrado Hoy' },
+                    message: { en: 'The clinic is closed today. Enjoy your weekend!', es: '\u00A1La cl\u00EDnica est\u00E1 cerrada hoy. Disfrute su fin de semana!' },
+                    ctaLabel: { en: '', es: '' },
+                    ctaUrl: '', ctaNewTab: false
+                }
+            },
+            {
+                label: 'Week B \u2013 Saturday Closed',
+                recurrence: { mode: 'biweekly', days: [6], weekParity: 1, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'red', showPill: true, showButton: false,
+                    pill: { en: 'Closed Today', es: 'Cerrado Hoy' },
+                    message: { en: 'Our clinic is closed today, but will be open tomorrow.', es: 'Nuestra cl\u00EDnica est\u00E1 cerrada hoy, pero abrir\u00E1 ma\u00F1ana.' },
+                    ctaLabel: { en: '', es: '' },
+                    ctaUrl: '', ctaNewTab: false
+                }
+            },
+            {
+                label: 'Week B \u2013 Sunday Open',
+                recurrence: { mode: 'biweekly', days: [0], weekParity: 1, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'green', showPill: true, showButton: true,
+                    pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+                    message: { en: 'The clinic is open today from 8:00 AM \u2013 1:00 PM.', es: 'La cl\u00EDnica est\u00E1 abierta hoy de 8:00 AM a 1:00 PM.' },
+                    ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+                    ctaUrl: 'tel:3012082273', ctaNewTab: false
+                }
+            }
+        ]
     }
 };
 
@@ -733,28 +783,26 @@ function renderTemplateGrid() {
     }
 
     elements.templateGrid.innerHTML = SLIDE_TEMPLATES.map(function (template) {
+        var icon = '';
+        switch (template.id) {
+            case 'appointment': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 5h11M4.5 1.5v2M9.5 1.5v2M4.5 8h2M4.5 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'; break;
+            case 'service': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'; break;
+            case 'announcement': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 2L5 5H2.5a.5.5 0 00-.5.5v3a.5.5 0 00.5.5H5l6 3V2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>'; break;
+            case 'credentials': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 7l1.5 1.5L9.5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/></svg>'; break;
+            case 'seasonal': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v1M7 11.5v1M1.5 7h1M11.5 7h1M3.1 3.1l.7.7M10.2 10.2l.7.7M10.2 3.1l-.7.7M3.1 10.2l.7.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.2"/></svg>'; break;
+            case 'blank': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'; break;
+        }
         return [
-            '<article class="admin-template-card" data-template-id="',
+            '<button class="studio-template-pill" type="button" data-action="use-template" data-template-id="',
             escapeHtml(template.id),
-            '" style="--template-accent: ',
-            escapeHtml(template.accent),
-            ';">',
-            '<div class="admin-template-top">',
-            '<span class="admin-template-tag">',
-            escapeHtml(template.tag),
-            '</span>',
-            '<span class="admin-template-dot"></span>',
-            '</div>',
-            '<h3 class="admin-template-name">',
-            escapeHtml(template.name),
-            '</h3>',
-            '<p class="admin-template-text">',
+            '" title="',
             escapeHtml(template.description),
-            '</p>',
-            '<button class="admin-btn admin-btn-primary admin-template-button" type="button" data-action="use-template" data-template-id="',
-            escapeHtml(template.id),
-            '">Use This Template</button>',
-            '</article>'
+            '">',
+            icon,
+            '<span>',
+            escapeHtml(template.name),
+            '</span>',
+            '</button>'
         ].join('');
     }).join('');
 }
@@ -2244,6 +2292,27 @@ function getScheduledBannerStatus(entry) {
         return { label: 'Recurring', tone: 'info' };
     }
 
+    if (recurrence.mode === 'biweekly') {
+        if (!Array.isArray(recurrence.days) || recurrence.days.length === 0 || !recurrence.anchorDate) {
+            return { label: 'Incomplete', tone: 'muted' };
+        }
+        var todayDow = now.getDay();
+        if (recurrence.days.indexOf(todayDow) !== -1) {
+            // Check if this is the correct parity week
+            var anchorParts = recurrence.anchorDate.split('-');
+            var anchorMs = new Date(parseInt(anchorParts[0], 10), parseInt(anchorParts[1], 10) - 1, parseInt(anchorParts[2], 10)).getTime();
+            var todayMs = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+            var diffDays = Math.floor((todayMs - anchorMs) / 86400000);
+            var currentWeekIndex = Math.floor(diffDays / 7);
+            var currentParity = ((currentWeekIndex % 2) + 2) % 2;
+            if (currentParity === (recurrence.weekParity || 0)) {
+                return { label: 'Active Now', tone: 'success' };
+            }
+        }
+        var parityLabel = recurrence.weekParity === 1 ? 'Week B' : 'Week A';
+        return { label: 'Alternating \u00B7 ' + parityLabel, tone: 'info' };
+    }
+
     if (!entry.startDate || !entry.endDate) return { label: 'Incomplete', tone: 'muted' };
     var todayStr = now.getFullYear() + '-' +
         String(now.getMonth() + 1).padStart(2, '0') + '-' +
@@ -2263,17 +2332,21 @@ function renderScheduledBannerCard(entry) {
     var truncatedMessage = messageText.length > 100 ? messageText.substring(0, 100) + '...' : messageText;
     var recurrence = entry.recurrence || { mode: 'dates', days: [] };
     var isWeekly = recurrence.mode === 'weekly';
+    var isBiweekly = recurrence.mode === 'biweekly';
     var activeDays = Array.isArray(recurrence.days) ? recurrence.days : [];
     var dayLabels = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
     var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     var recurrenceLabel = '';
-    if (isWeekly && activeDays.length > 0) {
+    if ((isWeekly || isBiweekly) && activeDays.length > 0) {
         recurrenceLabel = activeDays.map(function(d) { return dayNames[d]; }).join(', ');
     }
 
     var dateDisplay = '';
-    if (isWeekly) {
+    if (isBiweekly) {
+        var weekLabel = (recurrence.weekParity === 1) ? 'Week B' : 'Week A';
+        dateDisplay = '<span class="sched-recurrence-tag sched-recurrence-biweekly"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px"><path d="M1 6a5 5 0 019.33-2.5M11 6a5 5 0 01-9.33 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M10 1v2.5H7.5M2 11V8.5h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> ' + weekLabel + ' &middot; ' + recurrenceLabel + '</span>';
+    } else if (isWeekly) {
         dateDisplay = '<span class="sched-recurrence-tag"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px"><path d="M1 6a5 5 0 019.33-2.5M11 6a5 5 0 01-9.33 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M10 1v2.5H7.5M2 11V8.5h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Every ' + recurrenceLabel + '</span>';
     } else {
         dateDisplay = '<span class="sched-date-range"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px;margin-right:3px;"><rect x="1.5" y="1.5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1"/><path d="M1.5 4.5h9M4 1.5v2M8 1.5v2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>' + formatDateDisplay(entry.startDate) + ' &mdash; ' + formatDateDisplay(entry.endDate) + '</span>';
@@ -2331,10 +2404,11 @@ function renderScheduledBannerCard(entry) {
         '      <div class="sched-section">',
         '        <p class="sched-section-title">Schedule</p>',
         '        <div class="sched-mode-toggle">',
-        '          <button type="button" class="sched-mode-btn' + (!isWeekly ? ' is-active' : '') + '" data-sched-mode="dates">Date Range</button>',
-        '          <button type="button" class="sched-mode-btn' + (isWeekly ? ' is-active' : '') + '" data-sched-mode="weekly">Recurring Weekly</button>',
+        '          <button type="button" class="sched-mode-btn' + (!isWeekly && !isBiweekly ? ' is-active' : '') + '" data-sched-mode="dates">Date Range</button>',
+        '          <button type="button" class="sched-mode-btn' + (isWeekly ? ' is-active' : '') + '" data-sched-mode="weekly">Every Week</button>',
+        '          <button type="button" class="sched-mode-btn' + (isBiweekly ? ' is-active' : '') + '" data-sched-mode="biweekly">Alternating Weeks</button>',
         '        </div>',
-        '        <div class="sched-dates-row" ' + (isWeekly ? 'style="display:none;"' : '') + '>',
+        '        <div class="sched-dates-row" ' + (isWeekly || isBiweekly ? 'style="display:none;"' : '') + '>',
         '          <div class="sched-grid">',
         '            <label class="sched-field">',
         '              <span class="sched-label-text">Start Date</span>',
@@ -2346,9 +2420,25 @@ function renderScheduledBannerCard(entry) {
         '            </label>',
         '          </div>',
         '        </div>',
-        '        <div class="sched-weekly-row" ' + (!isWeekly ? 'style="display:none;"' : '') + '>',
+        '        <div class="sched-weekly-row" ' + (!isWeekly && !isBiweekly ? 'style="display:none;"' : '') + '>',
         '          <span class="sched-label-text" style="margin-bottom:6px;display:block;">Active Days</span>',
         '          <div class="sched-day-picker">' + dayPickerHtml + '</div>',
+        '        </div>',
+        '        <div class="sched-biweekly-row" ' + (!isBiweekly ? 'style="display:none;"' : '') + '>',
+        '          <div class="sched-grid" style="margin-top:10px;">',
+        '            <div class="sched-field">',
+        '              <span class="sched-label-text">Which week?</span>',
+        '              <div class="sched-parity-toggle">',
+        '                <button type="button" class="sched-parity-btn' + ((recurrence.weekParity || 0) === 0 ? ' is-active' : '') + '" data-sched-parity="0">Week A</button>',
+        '                <button type="button" class="sched-parity-btn' + (recurrence.weekParity === 1 ? ' is-active' : '') + '" data-sched-parity="1">Week B</button>',
+        '              </div>',
+        '            </div>',
+        '            <label class="sched-field">',
+        '              <span class="sched-label-text">Anchor Monday <span class="sched-section-optional">defines week A/B</span></span>',
+        '              <input type="date" class="sched-input" data-sched-field="anchorDate" value="' + escapeHtml(recurrence.anchorDate || '') + '">',
+        '            </label>',
+        '          </div>',
+        '          <p class="sched-biweekly-hint">Pick any Monday as "Week A start." All entries that share the same anchor date will alternate together.</p>',
         '        </div>',
         '      </div>',
 
@@ -2440,15 +2530,20 @@ function readScheduledBannerFromCard(card) {
     var activeDayBtns = card.querySelectorAll('.sched-day-btn.is-active');
     var days = Array.from(activeDayBtns).map(function(btn) { return parseInt(btn.dataset.schedDay, 10); }).filter(function(d) { return !isNaN(d); });
 
+    var recurrenceObj = { mode: mode, days: days };
+    if (mode === 'biweekly') {
+        var anchorInput = card.querySelector('[data-sched-field="anchorDate"]');
+        recurrenceObj.anchorDate = anchorInput ? anchorInput.value : '';
+        var activeParityBtn = card.querySelector('.sched-parity-btn.is-active');
+        recurrenceObj.weekParity = activeParityBtn ? parseInt(activeParityBtn.dataset.schedParity, 10) : 0;
+    }
+
     return {
         id: id,
         label: label,
         startDate: startDate,
         endDate: endDate,
-        recurrence: {
-            mode: mode,
-            days: days
-        },
+        recurrence: recurrenceObj,
         banner: {
             enabled: true,
             color: color,
@@ -2461,6 +2556,17 @@ function readScheduledBannerFromCard(card) {
             ctaNewTab: false
         }
     };
+}
+
+function computeAnchorDate() {
+    // Find the Monday of the current week as the default anchor
+    var now = new Date();
+    var day = now.getDay(); // 0=Sun
+    var diff = (day === 0 ? -6 : 1 - day); // shift to Monday
+    var monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + diff);
+    return monday.getFullYear() + '-' +
+        String(monday.getMonth() + 1).padStart(2, '0') + '-' +
+        String(monday.getDate()).padStart(2, '0');
 }
 
 async function addScheduledBanner(templateId) {
@@ -2476,6 +2582,34 @@ async function addScheduledBanner(templateId) {
         String(now.getDate()).padStart(2, '0');
 
     var template = templateId && SCHED_TEMPLATES[templateId];
+
+    // Group templates create multiple entries at once (e.g. alternating weeks)
+    if (template && template.isGroup && Array.isArray(template.entries)) {
+        var anchor = computeAnchorDate();
+        try {
+            for (var g = 0; g < template.entries.length; g++) {
+                var tpl = template.entries[g];
+                var groupEntry = {
+                    label: tpl.label,
+                    startDate: todayStr,
+                    endDate: todayStr,
+                    recurrence: {
+                        mode: tpl.recurrence.mode,
+                        days: Array.isArray(tpl.recurrence.days) ? tpl.recurrence.days.slice() : [],
+                        anchorDate: tpl.recurrence.anchorDate || anchor,
+                        weekParity: tpl.recurrence.weekParity || 0
+                    },
+                    banner: JSON.parse(JSON.stringify(tpl.banner))
+                };
+                await saveScheduledBanner(groupEntry, currentUser);
+            }
+            setScheduleStatus('Alternating-week banners created (' + template.entries.length + ' entries). Edit each one below.', 'success');
+        } catch (error) {
+            setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+        }
+        return;
+    }
+
     var newEntry;
 
     if (template) {
@@ -2529,9 +2663,13 @@ async function handleScheduleSave(schedId) {
 
     var entry = readScheduledBannerFromCard(card);
 
-    if (entry.recurrence && entry.recurrence.mode === 'weekly') {
+    if (entry.recurrence && (entry.recurrence.mode === 'weekly' || entry.recurrence.mode === 'biweekly')) {
         if (!Array.isArray(entry.recurrence.days) || entry.recurrence.days.length === 0) {
             setScheduleStatus('Please select at least one day of the week.', 'danger');
+            return;
+        }
+        if (entry.recurrence.mode === 'biweekly' && !entry.recurrence.anchorDate) {
+            setScheduleStatus('Please set an anchor Monday so the system knows which week is A and which is B.', 'danger');
             return;
         }
     } else {
@@ -2618,15 +2756,25 @@ function handleScheduleListClick(event) {
         }
         var card = modeBtn.closest('.sched-card');
         if (card) {
+            var selectedMode = modeBtn.dataset.schedMode;
             var datesRow = card.querySelector('.sched-dates-row');
             var weeklyRow = card.querySelector('.sched-weekly-row');
-            if (modeBtn.dataset.schedMode === 'weekly') {
-                if (datesRow) datesRow.style.display = 'none';
-                if (weeklyRow) weeklyRow.style.display = '';
-            } else {
-                if (datesRow) datesRow.style.display = '';
-                if (weeklyRow) weeklyRow.style.display = 'none';
-            }
+            var biweeklyRow = card.querySelector('.sched-biweekly-row');
+            if (datesRow) datesRow.style.display = selectedMode === 'dates' ? '' : 'none';
+            if (weeklyRow) weeklyRow.style.display = (selectedMode === 'weekly' || selectedMode === 'biweekly') ? '' : 'none';
+            if (biweeklyRow) biweeklyRow.style.display = selectedMode === 'biweekly' ? '' : 'none';
+        }
+        return;
+    }
+
+    var parityBtn = event.target.closest('[data-sched-parity]');
+    if (parityBtn) {
+        var parityToggle = parityBtn.closest('.sched-parity-toggle');
+        if (parityToggle) {
+            parityToggle.querySelectorAll('.sched-parity-btn').forEach(function (btn) {
+                btn.classList.remove('is-active');
+            });
+            parityBtn.classList.add('is-active');
         }
         return;
     }

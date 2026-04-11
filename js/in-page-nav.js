@@ -205,27 +205,52 @@ document.addEventListener('DOMContentLoaded', () => {
         stopSections.forEach((section) => stopObserver.observe(section));
     }
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -70% 0px',
-        threshold: 0,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const id = entry.target.id;
-                navLinks.forEach((link) => link.classList.remove('active'));
-
-                const activeLink = pageNav.querySelector(`a[href="#${id}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
+    const setActiveLink = (id) => {
+        let changed = false;
+        navLinks.forEach((link) => {
+            const isTarget = link.getAttribute('href') === `#${id}`;
+            if (isTarget && !link.classList.contains('active')) {
+                link.classList.add('active');
+                changed = true;
+            } else if (!isTarget && link.classList.contains('active')) {
+                link.classList.remove('active');
+                changed = true;
             }
         });
-    }, observerOptions);
+        return changed;
+    };
 
-    navTargets.forEach((target) => observer.observe(target));
+    const updateActiveSection = () => {
+        const triggerLine = window.innerHeight * 0.35;
+        let currentId = navTargets[0] ? navTargets[0].id : null;
+
+        for (const target of navTargets) {
+            const top = target.getBoundingClientRect().top;
+            if (top - triggerLine <= 0) {
+                currentId = target.id;
+            } else {
+                break;
+            }
+        }
+
+        if (currentId) {
+            setActiveLink(currentId);
+        }
+    };
+
+    let activeTicking = false;
+    const requestActiveUpdate = () => {
+        if (activeTicking) return;
+        activeTicking = true;
+        window.requestAnimationFrame(() => {
+            updateActiveSection();
+            activeTicking = false;
+        });
+    };
+
+    window.addEventListener('scroll', requestActiveUpdate, { passive: true });
+    window.addEventListener('resize', requestActiveUpdate);
+    updateActiveSection();
 
     navLinks.forEach((link) => {
         link.addEventListener('click', (event) => {

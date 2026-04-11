@@ -141,7 +141,7 @@
     <link rel="stylesheet" href="css/header-fix.css">
     <link rel="stylesheet" href="css/contact-modal.css">
     <link rel="stylesheet" href="css/lang-toggle.css">
-    <link rel="stylesheet" href="css/in-page-nav.css?v=4">
+    <link rel="stylesheet" href="css/in-page-nav.css?v=6">
     <link rel="preload" href="includes/header.html" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="js/header-footer-loader.js?v=2026041103" as="script">
     <link rel="preload" href="js/critical-header.js" as="script">
@@ -149,7 +149,7 @@
         // Set lang attribute early to avoid flash of wrong language
         try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}
     </script>
-    <script src="js/in-page-nav.js?v=4" defer></script>
+    <script src="js/in-page-nav.js?v=6" defer></script>
     <link rel="preload" href="images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
     <link rel="preload" href="images/welcome.jpeg" as="image" type="image/jpeg">
     <link rel="preload" href="images/NewImage.webp" as="image" type="image/webp" fetchpriority="high">
@@ -500,8 +500,8 @@
                     <span class="text-brand-orange">Personalized</span>
                     Healthcare.
                 </h1>
-                <p style="color: rgba(229, 231, 235, 1); line-height: 1.5; font-size: clamp(0.875rem, 1.8vw, 1.125rem); margin-bottom: clamp(0.4rem, 1vw, 0.75rem);" data-en="Our medical center provides comprehensive services with experienced doctors and primary care providers committed to patient-centered care. Visit our urgent care center for immediate medical attention or schedule an appointment at our clinic in Gaithersburg." data-es="Nuestro centro m&eacute;dico ofrece servicios integrales con m&eacute;dicos experimentados y proveedores de atenci&oacute;n primaria comprometidos con el cuidado centrado en el paciente. Visite nuestro centro de atenci&oacute;n urgente o programe una cita en nuestra cl&iacute;nica en Gaithersburg.">
-                    Our medical center provides comprehensive services with experienced doctors and primary care providers committed to patient-centered care. Visit our urgent care center for immediate medical attention or schedule an appointment at our clinic in Gaithersburg.
+                <p style="color: rgba(229, 231, 235, 1); line-height: 1.5; font-size: clamp(0.875rem, 1.8vw, 1.125rem); margin-bottom: clamp(0.4rem, 1vw, 0.75rem);" data-en="Comprehensive healthcare services from experienced physicians committed to patient-centered care. Walk in for immediate attention or schedule an appointment at our clinic in Gaithersburg." data-es="Servicios de salud integrales de m&eacute;dicos experimentados comprometidos con el cuidado centrado en el paciente. Visite sin cita o programe una cita en nuestra cl&iacute;nica en Gaithersburg.">
+                    Comprehensive healthcare services from experienced physicians committed to patient-centered care. Walk in for immediate attention or schedule an appointment at our clinic in Gaithersburg.
                 </p>
                 <p style="color: rgba(255, 255, 255, 0.9); font-size: clamp(0.875rem, 1.8vw, 1.125rem); font-weight: 600; margin-bottom: clamp(0.75rem, 2vw, 1.5rem);" data-en="Proudly serving Gaithersburg, Montgomery County, and the surrounding areas." data-es="Orgullosamente sirviendo a Gaithersburg, el Condado de Montgomery y las &aacute;reas circundantes.">
                     Proudly serving Gaithersburg, Montgomery County, and the surrounding areas.
@@ -544,7 +544,7 @@
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="7" data-es="7">7</div>
-                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Departments with Expert Doctors" data-es="Departamentos con M&eacute;dicos Expertos">Departments with Expert Doctors</div>
+                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Specialized Departments" data-es="Departamentos Especializados">Specialized Departments</div>
                 </div>
                 <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="10K+" data-es="10K+">10K+</div>
@@ -558,7 +558,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 sm:mb-16 md:mb-20 max-w-3xl mx-auto" data-aos="fade-up">
                 <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl" data-en="Our Departments" data-es="Nuestros Departamentos">Our Departments</h2>
-                <p class="section-subtitle text-sm sm:text-base" data-en="Comprehensive healthcare services delivered by board-certified doctors and primary care providers at our medical center and urgent care center." data-es="Servicios de salud integrales proporcionados por m&eacute;dicos certificados y proveedores de atenci&oacute;n primaria en nuestro centro m&eacute;dico y centro de atenci&oacute;n urgente.">Comprehensive healthcare services delivered by board-certified doctors and primary care providers at our medical center and urgent care center.</p>
+                <p class="section-subtitle text-sm sm:text-base" data-en="Comprehensive healthcare services delivered by board-certified physicians." data-es="Servicios de salud integrales proporcionados por m&eacute;dicos certificados.">Comprehensive healthcare services delivered by board-certified physicians.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
@@ -567,7 +567,7 @@
                         <img src="icons/PrimaryCare.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Urgent care center and primary care provider services"/>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Your foundation for lifelong health from our experienced primary care providers, with urgent care center services for immediate medical needs at our clinic." data-es="Su base para una salud de por vida con nuestros proveedores de atenci&oacute;n primaria experimentados, con servicios de atenci&oacute;n urgente para necesidades m&eacute;dicas inmediatas.">Your foundation for lifelong health from our experienced primary care providers, with urgent care center services for immediate medical needs at our clinic.</p>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family." data-es="Su base para una salud de por vida, con atenci&oacute;n urgente sin cita y atenci&oacute;n primaria programada para toda su familia.">Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family.</p>
                     <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Urgent Care" data-es="Explorar Cuidado Urgente">
                         Explore Urgent Care
                     </span>
@@ -589,7 +589,7 @@
                         <img src="icons/OccupationalHealth.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Occupational Health and workplace safety services icon"/>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Partnering with businesses to ensure a safe, healthy and compliant workforce- offering expert occupational health and immigration medical services." data-es="Colaborando con empresas para garantizar una fuerza laboral segura, saludable y en cumplimiento, ofreciendo servicios expertos de salud ocupacional y servicios m&eacute;dicos de inmigraci&oacute;n.">Partnering with businesses to ensure a safe, healthy and compliant workforce- offering expert occupational health and immigration medical services.</p>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services." data-es="Colaborando con empresas para garantizar una fuerza laboral segura, saludable y en cumplimiento con servicios expertos de salud ocupacional y m&eacute;dicos de inmigraci&oacute;n.">Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services.</p>
                     <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Occupational Health" data-es="Explorar Salud Ocupacional">
                         Explore Occupational Health
                     </span>
@@ -622,7 +622,7 @@
                         <img src="icons/PhysicalTherapy.png" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Sports medicine doctors at medical center"/>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Comprehensive rehabilitation and sports injury care from our specialized doctors to get you back in the game stronger than before." data-es="Rehabilitaci&oacute;n integral y atenci&oacute;n de lesiones deportivas de nuestros m&eacute;dicos especializados para que regrese m&aacute;s fuerte que antes.">Comprehensive rehabilitation and sports injury care from our specialized doctors to get you back in the game stronger than before.</p>
+                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before." data-es="Rehabilitaci&oacute;n integral y atenci&oacute;n de lesiones deportivas para que regrese m&aacute;s fuerte que antes.">Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before.</p>
                     <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Sports Medicine" data-es="Explorar Medicina Deportiva">
                         Explore Sports Medicine
                     </span>
@@ -712,10 +712,10 @@
     <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 sm:mb-12 md:mb-16 max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" data-en="Insurance Information for Our Clinic" data-es="Informaci&oacute;n de Seguros de Nuestra Cl&iacute;nica">Insurance Information for Our Clinic</h2>
-                <p class="section-subtitle text-sm sm:text-base leading-relaxed" data-en="Our medical center and urgent care center accept a wide variety of insurance plans to make quality healthcare from our doctors and primary care providers accessible to everyone in our community." data-es="Nuestro centro m&eacute;dico y centro de atenci&oacute;n urgente aceptan una amplia variedad de planes de seguro para hacer que la atenci&oacute;n m&eacute;dica de calidad sea accesible para todos en nuestra comunidad.">Our medical center and urgent care center accept a wide variety of insurance plans to make quality healthcare from our doctors and primary care providers accessible to everyone in our community.</p>
-                <a href="insurance/" class="btn btn-primary mt-6 sm:mt-8 block sm:inline-flex text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3 text-center leading-snug" style="white-space: normal; word-break: break-word;" data-en="View All Accepted Insurance Plans at Our Medical Center" data-es="Ver Todos los Planes de Seguro Aceptados">
-                    View All Accepted Insurance Plans at Our Medical Center
+                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" data-en="Insurance Information" data-es="Informaci&oacute;n de Seguros">Insurance Information</h2>
+                <p class="section-subtitle text-sm sm:text-base leading-relaxed" data-en="We accept a wide variety of insurance plans to make quality healthcare accessible to everyone in our community." data-es="Aceptamos una amplia variedad de planes de seguro para hacer que la atenci&oacute;n m&eacute;dica de calidad sea accesible para todos en nuestra comunidad.">We accept a wide variety of insurance plans to make quality healthcare accessible to everyone in our community.</p>
+                <a href="insurance/" class="btn btn-primary mt-6 sm:mt-8 block sm:inline-flex text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3 text-center leading-snug" style="white-space: normal; word-break: break-word;" data-en="View All Accepted Insurance Plans" data-es="Ver Todos los Planes de Seguro Aceptados">
+                    View All Accepted Insurance Plans
                 </a>
             </div>
         </div>
@@ -723,10 +723,10 @@
     <section class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-light-blue-bg" data-page-nav-stop="cta">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-blue text-white rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-16 xl:p-20 text-center shadow-2xl" data-aos="fade-up">
-                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-3 sm:mb-4 md:mb-6 leading-tight" data-en="Ready to Experience Quality Care at Our Medical Center?" data-es="&iquest;Listo Para Experimentar Atenci&oacute;n de Calidad en Nuestro Centro M&eacute;dico?">Ready to Experience Quality Care at Our Medical Center?</h2>
-                <p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-5 sm:mb-6 md:mb-8 lg:mb-10 text-white/90 max-w-2xl mx-auto leading-relaxed" data-en="Join thousands of satisfied patients who trust our urgent care center, primary care providers, and doctors at Montgomery Medical Clinic for their healthcare needs. Our clinic offers comprehensive services from experienced primary care physicians at our medical center." data-es="&Uacute;nase a miles de pacientes satisfechos que conf&iacute;an en nuestro centro de atenci&oacute;n urgente, proveedores de atenci&oacute;n primaria y m&eacute;dicos de Montgomery Medical Clinic para sus necesidades de salud.">Join thousands of satisfied patients who trust our urgent care center, primary care providers, and doctors at Montgomery Medical Clinic for their healthcare needs. Our clinic offers comprehensive services from experienced primary care physicians at our medical center.</p>
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-5 sm:px-6 md:px-8 lg:px-12 py-2.5 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-base lg:text-lg inline-flex" data-en="Schedule Appointment at Our Clinic" data-es="Programar Cita en Nuestra Cl&iacute;nica">
-                    Schedule Appointment at Our Clinic
+                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-3 sm:mb-4 md:mb-6 leading-tight" data-en="Ready to Experience Quality Care?" data-es="&iquest;Listo Para Experimentar Atenci&oacute;n de Calidad?">Ready to Experience Quality Care?</h2>
+                <p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-5 sm:mb-6 md:mb-8 lg:mb-10 text-white/90 max-w-2xl mx-auto leading-relaxed" data-en="Join thousands of satisfied patients who trust Montgomery Medical Clinic for their healthcare needs." data-es="&Uacute;nase a miles de pacientes satisfechos que conf&iacute;an en Montgomery Medical Clinic para sus necesidades de salud.">Join thousands of satisfied patients who trust Montgomery Medical Clinic for their healthcare needs.</p>
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-5 sm:px-6 md:px-8 lg:px-12 py-2.5 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-base lg:text-lg inline-flex" data-en="Schedule Appointment" data-es="Programar Cita">
+                    Schedule Appointment
                 </a>
             </div>
         </div>

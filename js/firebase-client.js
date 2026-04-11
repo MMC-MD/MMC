@@ -272,14 +272,22 @@ async function sendAdminPasswordReset(email) {
 
 function normalizeScheduledRecurrence(value) {
     const source = value && typeof value === 'object' ? value : {};
-    const mode = source.mode === 'weekly' ? 'weekly' : 'dates';
+    var mode = source.mode;
+    if (mode !== 'weekly' && mode !== 'biweekly') mode = 'dates';
     var days = [];
     if (Array.isArray(source.days)) {
         days = source.days
             .map(function (d) { return typeof d === 'number' ? d : parseInt(d, 10); })
             .filter(function (d) { return !isNaN(d) && d >= 0 && d <= 6; });
     }
-    return { mode: mode, days: days };
+    var result = { mode: mode, days: days };
+    // biweekly mode: anchorDate is a YYYY-MM-DD string marking a "Week A" start (Monday)
+    // weekParity: 0 = this banner shows on Week A, 1 = Week B
+    if (mode === 'biweekly') {
+        result.anchorDate = typeof source.anchorDate === 'string' ? source.anchorDate : '';
+        result.weekParity = source.weekParity === 1 ? 1 : 0;
+    }
+    return result;
 }
 
 function normalizeScheduledBanner(value, id) {
@@ -377,6 +385,27 @@ function getActiveScheduledBanner(scheduledBanners) {
 
         if (recurrence.mode === 'weekly') {
             if (Array.isArray(recurrence.days) && recurrence.days.indexOf(todayDow) !== -1) {
+                return entry;
+            }
+            continue;
+        }
+
+        if (recurrence.mode === 'biweekly') {
+            // Check if today's day-of-week is in the active days list
+            if (!Array.isArray(recurrence.days) || recurrence.days.indexOf(todayDow) === -1) {
+                continue;
+            }
+            // Determine which week we're in (A=0, B=1) relative to the anchor date
+            var anchor = recurrence.anchorDate;
+            if (!anchor) continue;
+            var anchorParts = anchor.split('-');
+            var anchorMs = new Date(parseInt(anchorParts[0], 10), parseInt(anchorParts[1], 10) - 1, parseInt(anchorParts[2], 10)).getTime();
+            var todayMs = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+            var diffDays = Math.floor((todayMs - anchorMs) / 86400000);
+            var currentWeekIndex = Math.floor(diffDays / 7);
+            // Even weeks from anchor = Week A (parity 0), Odd = Week B (parity 1)
+            var currentParity = ((currentWeekIndex % 2) + 2) % 2; // safe modulo for negatives
+            if (currentParity === (recurrence.weekParity || 0)) {
                 return entry;
             }
             continue;

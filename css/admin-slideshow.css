@@ -910,6 +910,80 @@ body.admin-authenticated .admin-shell { display: block; }
     margin-top: 4px;
 }
 
+/* ── Compact template bar ── */
+
+.studio-template-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 20px;
+    background: var(--s-bg);
+    border-bottom: 1px solid var(--s-border);
+    flex-wrap: wrap;
+}
+
+.studio-template-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.studio-template-bar-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--s-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.studio-template-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.studio-template-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.studio-template-pill {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 980px;
+    border: 1px solid var(--s-border);
+    background: var(--s-card);
+    color: var(--s-ink);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--s-transition);
+    white-space: nowrap;
+}
+
+.studio-template-pill:hover {
+    border-color: var(--s-blue);
+    color: var(--s-blue);
+    background: var(--s-blue-light);
+}
+
+.studio-template-pill svg {
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+.studio-template-pill:hover svg {
+    opacity: 1;
+}
+
 /* ── Sticky toolbar ── */
 
 .studio-toolbar,
@@ -2402,4 +2476,66 @@ body.admin-authenticated .admin-shell { display: block; }
     .sched-edit-body {
         padding: 16px 16px 16px;
     }
+
+    .studio-template-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ── Biweekly / Alternating week UI ── */
+
+.sched-recurrence-biweekly {
+    background: #f0e6ff;
+    color: #7c3aed;
+}
+
+.sched-parity-toggle {
+    display: flex;
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--s-border);
+}
+
+.sched-parity-btn {
+    appearance: none;
+    border: none;
+    padding: 6px 16px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    background: var(--s-bg);
+    color: var(--s-muted);
+    transition: all var(--s-transition);
+}
+
+.sched-parity-btn + .sched-parity-btn {
+    border-left: 1px solid var(--s-border);
+}
+
+.sched-parity-btn.is-active {
+    background: #7c3aed;
+    color: #fff;
+    font-weight: 600;
+}
+
+.sched-biweekly-hint {
+    margin: 8px 0 0;
+    font-size: 11px;
+    color: var(--s-muted);
+    line-height: 1.45;
+}
+
+.sched-template-btn-featured {
+    background: linear-gradient(135deg, #f0e6ff 0%, #ede9fe 100%);
+    border-color: #c4b5fd;
+    color: #7c3aed;
+    font-weight: 600;
+}
+
+.sched-template-btn-featured:hover {
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+    border-color: #a78bfa;
 }

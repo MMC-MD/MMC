@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="../css/admin-slideshow.css?v=2026041103">
+    <link rel="stylesheet" href="../css/admin-slideshow.css?v=2026041104">
     <style>
         body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         .sidebar-link.active { background-color: rgba(0,0,0,0.06); color: #1d1d1f; font-weight: 600; }
@@ -334,44 +334,19 @@
                 <!-- ============================================ -->
                 <div class="admin-tab-panel" data-admin-panel="slides" hidden>
 
-                    <!-- How-to strip -->
-                    <div class="studio-how-to">
-                        <div class="studio-how-to-step">
-                            <span class="studio-how-to-num">1</span>
-                            <div>
-                                <strong>Pick a template</strong>
-                                <p>Choose a ready-made slide below.</p>
-                            </div>
+                    <!-- Compact template picker bar -->
+                    <section class="studio-template-bar">
+                        <div class="studio-template-bar-left">
+                            <span class="studio-template-bar-label">Add a slide</span>
+                            <div id="adminTemplateGrid" class="studio-template-pills"></div>
                         </div>
-                        <div class="studio-how-to-step">
-                            <span class="studio-how-to-num">2</span>
-                            <div>
-                                <strong>Type in English</strong>
-                                <p>Spanish fills in automatically.</p>
-                            </div>
+                        <div class="studio-template-bar-right">
+                            <label class="studio-mini-check">
+                                <input id="adminAutoTranslateToggle" type="checkbox" checked>
+                                <span>Auto-translate Spanish</span>
+                            </label>
+                            <button id="adminTranslateAllButton" type="button" class="studio-btn-sm">Fill All Spanish</button>
                         </div>
-                        <div class="studio-how-to-step">
-                            <span class="studio-how-to-num">3</span>
-                            <div>
-                                <strong>Preview & save</strong>
-                                <p>Check the preview, then publish.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Template picker -->
-                    <section class="studio-templates">
-                        <div class="studio-templates-header">
-                            <h2 class="studio-templates-title">Choose a Slide Template</h2>
-                            <div class="studio-templates-tools">
-                                <label class="studio-mini-check">
-                                    <input id="adminAutoTranslateToggle" type="checkbox" checked>
-                                    <span>Auto-translate Spanish</span>
-                                </label>
-                                <button id="adminTranslateAllButton" type="button" class="studio-btn-sm">Fill All Spanish</button>
-                            </div>
-                        </div>
-                        <div id="adminTemplateGrid" class="studio-template-grid"></div>
                     </section>
 
                     <!-- Sticky toolbar -->
@@ -425,6 +400,7 @@
                                 <button type="button" class="sched-template-btn" data-sched-template="closed-weekend">Closed Weekend</button>
                                 <button type="button" class="sched-template-btn" data-sched-template="holiday-closed">Holiday Closure</button>
                                 <button type="button" class="sched-template-btn" data-sched-template="early-close">Early Close</button>
+                                <button type="button" class="sched-template-btn sched-template-btn-featured" data-sched-template="alternating-open-sat">Alternating Sat/Sun</button>
                             </div>
                         </div>
 
@@ -448,9 +424,9 @@
         </div><!-- /flex-1 -->
     </main>
 
-    <script src="../js/slideshow-data.js?v=2026041103"></script>
-    <script src="../js/slideshow.js?v=2026041103"></script>
-    <script type="module" src="../js/admin-slideshow.js?v=2026041103"></script>
+    <script src="../js/slideshow-data.js?v=2026041104"></script>
+    <script src="../js/slideshow.js?v=2026041104"></script>
+    <script type="module" src="../js/admin-slideshow.js?v=2026041104"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') lucide.createIcons();
