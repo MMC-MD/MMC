@@ -626,78 +626,84 @@
         </div>
     </section>
 
-    <section id="about" data-page-nav data-page-nav-title="About Us" class="relative py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 overflow-hidden">
+    <section id="about" data-page-nav data-page-nav-title="About Us" class="relative py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 overflow-hidden" style="background: radial-gradient(circle at top right, rgba(13,71,161,0.1), transparent 34%), radial-gradient(circle at bottom left, rgba(25,118,210,0.08), transparent 30%), linear-gradient(180deg, #f4f8fc 0%, #edf3f9 100%);">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="about-shell">
-                <div class="about-layout lg:grid lg:grid-cols-2 lg:gap-16 lg:items-stretch">
-                    <div class="about-media" data-aos="fade-right">
-                        <div class="about-image-frame">
-                            <picture>
+            <div class="relative mx-auto rounded-2xl sm:rounded-3xl" style="max-width: 1240px; padding: clamp(1.5rem, 2vw + 1rem, 3.25rem); border: 1px solid rgba(13,71,161,0.1); background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,251,255,0.92) 100%); box-shadow: 0 24px 60px rgba(13,71,161,0.1);">
+                <div class="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center lg:items-stretch">
+                    <div class="relative" data-aos="fade-right">
+                        <div class="relative overflow-hidden rounded-2xl" style="min-height: 320px; border: 1px solid rgba(13,71,161,0.12); background: #dfe8f3; box-shadow: 0 28px 50px -28px rgba(13,71,161,0.4);">
+                            <div style="padding-top: 78%;"></div>
+                            <picture class="absolute inset-0 block">
                                 <source srcset="images/office.webp" type="image/webp">
                                 <img src="images/office.jpeg"
                                      alt="Montgomery Medical Clinic office interior and reception area in Gaithersburg"
                                      width="1856"
                                      height="2298"
-                                     loading="lazy">
+                                     loading="lazy"
+                                     class="absolute inset-0 w-full h-full object-cover"
+                                     style="object-position: 52% 18%;">
                             </picture>
-                        </div>
-                        <div class="about-badge">
-                            <span class="about-badge-label" data-en="Comprehensive Care" data-es="Atenci&oacute;n Integral">Comprehensive Care</span>
-                            <p class="about-badge-text" data-en="Urgent care, primary care, radiology, and physical therapy designed to work together in one location." data-es="Atenci&oacute;n urgente, atenci&oacute;n primaria, radiolog&iacute;a y terapia f&iacute;sica dise&ntilde;adas para trabajar juntas en un solo lugar.">
-                                Urgent care, primary care, radiology, and physical therapy designed to work together in one location.
-                            </p>
+                            <div class="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-xs z-10 rounded-xl p-4 backdrop-blur-sm" style="border: 1px solid rgba(13,71,161,0.1); background: rgba(255,255,255,0.92); box-shadow: 0 20px 40px -24px rgba(0,33,113,0.35);">
+                                <span class="block mb-1 text-xs font-extrabold uppercase tracking-widest" style="color: var(--medical-blue, #0d47a1);" data-en="Comprehensive Care" data-es="Atenci&oacute;n Integral">Comprehensive Care</span>
+                                <p class="text-sm leading-relaxed" style="color: var(--dark-gray, #333);" data-en="Urgent care, primary care, radiology, and physical therapy designed to work together in one location." data-es="Atenci&oacute;n urgente, atenci&oacute;n primaria, radiolog&iacute;a y terapia f&iacute;sica dise&ntilde;adas para trabajar juntas en un solo lugar.">
+                                    Urgent care, primary care, radiology, and physical therapy designed to work together in one location.
+                                </p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="about-copy" data-aos="fade-left">
-                        <div class="about-kicker">
-                            <span class="about-kicker-line"></span>
-                            <span class="about-kicker-text" data-en="Who We Are" data-es="Qui&eacute;nes Somos">Who We Are</span>
+                    <div class="flex flex-col justify-center" data-aos="fade-left">
+                        <div class="flex items-center gap-3 mb-5">
+                            <span class="block rounded-full" style="width: 3.5rem; height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(13,71,161,0.12) 100%);"></span>
+                            <span class="text-xs font-extrabold uppercase tracking-widest" style="color: var(--medical-blue, #0d47a1);" data-en="Who We Are" data-es="Qui&eacute;nes Somos">Who We Are</span>
                         </div>
 
-                        <h2 class="about-title section-title" data-en="About Our Medical Center" data-es="Sobre Nuestro Centro M&eacute;dico">About Our Medical Center</h2>
+                        <h2 class="section-title font-black leading-tight" style="font-size: clamp(2rem, 3.2vw, 3.6rem); line-height: 1.08; max-width: 11ch;" data-en="About Our Medical Center" data-es="Sobre Nuestro Centro M&eacute;dico">About Our Medical Center</h2>
 
-                        <p class="about-lead" data-en="Montgomery Medical Clinic serves Gaithersburg with compassionate, patient-focused care in a modern, coordinated clinic setting." data-es="Montgomery Medical Clinic sirve a Gaithersburg con atenci&oacute;n compasiva y centrada en el paciente en un entorno cl&iacute;nico moderno y coordinado.">
+                        <p class="mt-4 max-w-lg leading-relaxed" style="font-size: clamp(1rem, 1.15vw, 1.12rem); line-height: 1.72; color: var(--medium-gray, #666);" data-en="Montgomery Medical Clinic serves Gaithersburg with compassionate, patient-focused care in a modern, coordinated clinic setting." data-es="Montgomery Medical Clinic sirve a Gaithersburg con atenci&oacute;n compasiva y centrada en el paciente en un entorno cl&iacute;nico moderno y coordinado.">
                             Montgomery Medical Clinic serves Gaithersburg with compassionate, patient-focused care in a modern, coordinated clinic setting.
                         </p>
 
-                        <div class="about-body">
-                            <p data-en="Urgent care, primary care, radiology, and physical therapy work together under one roof, supported by board-certified providers focused on clear communication and long-term care." data-es="La atenci&oacute;n urgente, la atenci&oacute;n primaria, la radiolog&iacute;a y la terapia f&iacute;sica trabajan juntas bajo un mismo techo, respaldadas por proveedores certificados enfocados en la comunicaci&oacute;n clara y la atenci&oacute;n a largo plazo.">
+                        <div class="mt-4">
+                            <p class="max-w-lg leading-relaxed" style="font-size: 1rem; line-height: 1.72; color: var(--medium-gray, #666);" data-en="Urgent care, primary care, radiology, and physical therapy work together under one roof, supported by board-certified providers focused on clear communication and long-term care." data-es="La atenci&oacute;n urgente, la atenci&oacute;n primaria, la radiolog&iacute;a y la terapia f&iacute;sica trabajan juntas bajo un mismo techo, respaldadas por proveedores certificados enfocados en la comunicaci&oacute;n clara y la atenci&oacute;n a largo plazo.">
                                 Urgent care, primary care, radiology, and physical therapy work together under one roof, supported by board-certified providers focused on clear communication and long-term care.
                             </p>
                         </div>
 
-                        <div class="about-highlights">
-                            <div class="about-highlight">
+                        <div class="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="relative rounded-2xl bg-white p-4 sm:p-5 transition-transform duration-300 hover:-translate-y-1" style="border: 1px solid rgba(13,71,161,0.1); box-shadow: 0 12px 28px rgba(13,71,161,0.06);">
+                                <div class="absolute top-0 left-0 right-0 rounded-t-2xl" style="height: 3px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.18) 100%);"></div>
                                 <div>
-                                    <p class="about-highlight-title" data-en="Open 7 Days" data-es="Abierto 7 D&iacute;as">Open 7 Days</p>
-                                    <p class="about-highlight-text" data-en="Evening and weekend availability for urgent needs and routine follow-up care." data-es="Disponibilidad por las tardes y fines de semana para necesidades urgentes y atenci&oacute;n de seguimiento.">
+                                    <p class="font-extrabold" style="font-size: 0.98rem; color: var(--dark-gray, #333);" data-en="Open 7 Days" data-es="Abierto 7 D&iacute;as">Open 7 Days</p>
+                                    <p class="mt-1 text-sm leading-relaxed" style="color: var(--medium-gray, #666);" data-en="Evening and weekend availability for urgent needs and routine follow-up care." data-es="Disponibilidad por las tardes y fines de semana para necesidades urgentes y atenci&oacute;n de seguimiento.">
                                         Evening and weekend availability for urgent needs and routine follow-up care.
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="about-highlight">
+                            <div class="relative rounded-2xl bg-white p-4 sm:p-5 transition-transform duration-300 hover:-translate-y-1" style="border: 1px solid rgba(13,71,161,0.1); box-shadow: 0 12px 28px rgba(13,71,161,0.06);">
+                                <div class="absolute top-0 left-0 right-0 rounded-t-2xl" style="height: 3px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.18) 100%);"></div>
                                 <div>
-                                    <p class="about-highlight-title" data-en="Gaithersburg, MD" data-es="Gaithersburg, MD">Gaithersburg, MD</p>
-                                    <p class="about-highlight-text" data-en="Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking." data-es="Ubicados convenientemente en 800 S Frederick Ave, Suite 110 con acceso y estacionamiento f&aacute;ciles.">
+                                    <p class="font-extrabold" style="font-size: 0.98rem; color: var(--dark-gray, #333);" data-en="Gaithersburg, MD" data-es="Gaithersburg, MD">Gaithersburg, MD</p>
+                                    <p class="mt-1 text-sm leading-relaxed" style="color: var(--medium-gray, #666);" data-en="Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking." data-es="Ubicados convenientemente en 800 S Frederick Ave, Suite 110 con acceso y estacionamiento f&aacute;ciles.">
                                         Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking.
                                     </p>
                                 </div>
                             </div>
 
-                            <div class="about-highlight">
+                            <div class="relative rounded-2xl bg-white p-4 sm:p-5 transition-transform duration-300 hover:-translate-y-1" style="border: 1px solid rgba(13,71,161,0.1); box-shadow: 0 12px 28px rgba(13,71,161,0.06);">
+                                <div class="absolute top-0 left-0 right-0 rounded-t-2xl" style="height: 3px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.18) 100%);"></div>
                                 <div>
-                                    <p class="about-highlight-title" data-en="Board-Certified Team" data-es="Equipo Certificado">Board-Certified Team</p>
-                                    <p class="about-highlight-text" data-en="Experienced physicians and primary care providers focused on trusted, personalized care." data-es="M&eacute;dicos y proveedores de atenci&oacute;n primaria con experiencia, enfocados en una atenci&oacute;n confiable y personalizada.">
+                                    <p class="font-extrabold" style="font-size: 0.98rem; color: var(--dark-gray, #333);" data-en="Board-Certified Team" data-es="Equipo Certificado">Board-Certified Team</p>
+                                    <p class="mt-1 text-sm leading-relaxed" style="color: var(--medium-gray, #666);" data-en="Experienced physicians and primary care providers focused on trusted, personalized care." data-es="M&eacute;dicos y proveedores de atenci&oacute;n primaria con experiencia, enfocados en una atenci&oacute;n confiable y personalizada.">
                                         Experienced physicians and primary care providers focused on trusted, personalized care.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="about-actions">
-                            <a href="about/" class="btn btn-primary about-cta text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5" data-en="Learn More About Our Clinic" data-es="Conozca M&aacute;s Sobre Nuestra Cl&iacute;nica">Learn More About Our Clinic</a>
+                        <div class="flex justify-center mt-8">
+                            <a href="about/" class="btn btn-primary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5" style="min-width: 17.5rem;" data-en="Learn More About Our Clinic" data-es="Conozca M&aacute;s Sobre Nuestra Cl&iacute;nica">Learn More About Our Clinic</a>
                         </div>
                     </div>
                 </div>
