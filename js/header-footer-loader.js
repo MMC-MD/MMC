@@ -173,6 +173,7 @@ function updateHeaderLinks(basePath, isHomePage) {
         'nav-occupational': 'occupational-health/',
         'nav-faa': 'faa-physicals/pilot-resources/',
         'nav-immigration': 'immigration-physicals/',
+        'nav-corporate-health': 'occupational-health/corporate-health/',
         'nav-about': 'about/',
         'nav-insurance': 'insurance/'
     };
@@ -264,6 +265,7 @@ function setActiveNavLink() {
         'faa-physicals': 'nav-occupational',
         'pilot-resources': 'nav-occupational',
         'immigration-physicals': 'nav-occupational',
+        'corporate-health': 'nav-occupational',
         'about': 'nav-about',
         'insurance': 'nav-insurance'
     };
