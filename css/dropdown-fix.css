@@ -548,9 +548,9 @@ section[class*="hero"],
     border-radius: 10px;
     box-shadow: 0 12px 40px rgba(13, 71, 161, 0.15), 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 0.5rem 0;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
     transform: translateX(-6px);
     transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
     z-index: 99999;
@@ -567,13 +567,7 @@ section[class*="hero"],
     z-index: 10001;
 }
 
-/* Show flyout on hover */
-.dropdown-flyout-wrapper:hover > .dropdown-flyout {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateX(0);
-}
+/* Flyout show/hide is controlled by JS in header-footer-loader.js */
 
 /* Highlight the parent link while flyout is visible */
 .dropdown-flyout-wrapper:hover > .dropdown-link.has-flyout {

@@ -554,16 +554,16 @@ function ensureGlobalBannerScript(basePath) {
                 flyoutWrapper.addEventListener('mouseenter', function() {
                     if (window.innerWidth >= 1280) {
                         positionFlyout();
-                        flyoutPanel.style.opacity = '1';
-                        flyoutPanel.style.visibility = 'visible';
-                        flyoutPanel.style.pointerEvents = 'auto';
-                        flyoutPanel.style.transform = 'translateX(0)';
+                        flyoutPanel.style.setProperty('opacity', '1', 'important');
+                        flyoutPanel.style.setProperty('visibility', 'visible', 'important');
+                        flyoutPanel.style.setProperty('pointer-events', 'auto', 'important');
+                        flyoutPanel.style.setProperty('transform', 'translateX(0)', 'important');
                     }
                 });
                 flyoutWrapper.addEventListener('mouseleave', function() {
-                    flyoutPanel.style.opacity = '0';
-                    flyoutPanel.style.visibility = 'hidden';
-                    flyoutPanel.style.pointerEvents = 'none';
+                    flyoutPanel.style.setProperty('opacity', '0', 'important');
+                    flyoutPanel.style.setProperty('visibility', 'hidden', 'important');
+                    flyoutPanel.style.setProperty('pointer-events', 'none', 'important');
                 });
             }
         }
