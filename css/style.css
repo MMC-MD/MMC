@@ -161,24 +161,12 @@ a {
     transition: all 0.3s ease;
 }
 
-/* Prevent horizontal overflow on all containers */
-section, div, footer {
+/* Prevent horizontal overflow on page-level containers.
+   DO NOT apply to div — overflow-x:clip cannot be overridden by children
+   and it breaks the dropdown flyout sub-menu in the header. */
+section, footer {
     max-width: 100%;
-    overflow-x: clip; /* Use clip instead of hidden */
-}
-
-/* Exception: every element inside the header must allow dropdown/flyout overflow.
-   The global div { overflow-x: clip } above would otherwise clip the flyout
-   sub-menu that renders outside its parent via position:absolute + left:100%. */
-.site-sticky-header,
-.site-sticky-header div,
-.site-sticky-header nav,
-header,
-header.glass-effect,
-header div,
-header nav {
-    overflow: visible !important;
-    overflow-x: visible !important;
+    overflow-x: clip;
 }
 
 /* Specifically target sections with AOS animations */
