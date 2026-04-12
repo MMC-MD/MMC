@@ -1,48 +1,20 @@
 /* ===================================================================
-   PERFECT DROPDOWN - POLISHED, AESTHETIC, CONSISTENT POSITIONING
+   SERVICES DROPDOWN — Clean, Modern, Apple-Inspired
    =================================================================== */
 
 :root {
-    /* Perfect centering for all screen sizes */
-    --dropdown-offset: 50px;
-    --dropdown-width: 320px;
-    --dropdown-border-radius: 12px;
-    --dropdown-shadow: 0 12px 40px rgba(13, 71, 161, 0.15), 0 4px 20px rgba(0, 0, 0, 0.08);
-    --dropdown-border: 1px solid rgba(13, 71, 161, 0.12);
-    --dropdown-bg: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+    --dropdown-width: 280px;
+    --dropdown-radius: 14px;
 }
 
 /* ===============================
-   1. HEADER FOUNDATION - BULLETPROOF
+   1. HEADER OVERFLOW — allow dropdown to escape
    =============================== */
-header.glass-effect {
-    position: sticky !important;
-    top: var(--top-contact-bar-height, 56px) !important;
-    z-index: 11000 !important;
-    overflow: visible !important;
-    isolation: isolate;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    width: 100%;
-    max-width: 100vw;
-}
-
-/* Unified sticky wrapper to keep blue bar + white nav together */
+header.glass-effect,
 .site-sticky-header {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 11000 !important;
-    width: 100%;
-    max-width: 100vw;
     overflow: visible !important;
-    isolation: isolate;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
 }
 
-/* Inside the unified wrapper, use static positioning for children */
 .site-sticky-header .top-contact-bar,
 .site-sticky-header header.glass-effect {
     position: static !important;
@@ -50,34 +22,23 @@ header.glass-effect {
     z-index: auto !important;
 }
 
-/* Ensure all header containers allow dropdown overflow */
 #header-placeholder,
 header.glass-effect .container,
-header.glass-effect .container > nav {
-    overflow: visible !important;
-    position: relative;
-}
-
-/* Navigation container maintains dropdown context */
+header.glass-effect .container > nav,
 header nav {
-    position: relative;
-    z-index: 9999;
     overflow: visible !important;
+    position: relative;
 }
 
 /* ===============================
-   2. DROPDOWN WRAPPER - PERFECT POSITIONING
+   2. WRAPPER
    =============================== */
 .services-dropdown-wrapper {
     position: relative !important;
     overflow: visible !important;
     z-index: 10000 !important;
-    isolation: isolate;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
 }
 
-/* Services button styling */
 #services-button {
     position: relative;
     background: none;
@@ -93,211 +54,204 @@ header nav {
     gap: 0.5rem;
 }
 
-#services-button:focus {
+#services-button:focus-visible {
     outline: 2px solid #0d47a1;
     outline-offset: 2px;
 }
 
 /* ===============================
-   3. DROPDOWN MENU - PERFECTED DESIGN
+   3. DROPDOWN PANEL
    =============================== */
 #services-dropdown {
-    /* Positioning */
     position: absolute !important;
-    top: 100% !important;
+    top: calc(100% + 8px) !important;
     left: 50% !important;
-    transform: translate(-50%, 0) scale(0.98) !important;
-    -webkit-transform: translate(-50%, 0) scale(0.98) !important;
+    transform: translate(-50%, 6px) !important;
     transform-origin: top center;
-    -webkit-transform-origin: top center;
-    
-    /* Dimensions */
     width: var(--dropdown-width);
     max-width: calc(100vw - 2rem);
-    
-    /* Appearance */
-    background: var(--dropdown-bg);
-    border: var(--dropdown-border);
-    border-radius: var(--dropdown-border-radius);
-    box-shadow: var(--dropdown-shadow);
-    
-    /* Critical z-index - above everything */
+
+    /* Apple-style: frosted glass, strong opacity for readability */
+    background: rgba(255, 255, 255, 0.97);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--dropdown-radius);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.04),
+        0 12px 28px rgba(0, 0, 0, 0.10),
+        0 0 0 0.5px rgba(0, 0, 0, 0.04);
+
+    padding: 6px;
     z-index: 10001 !important;
-    
-    /* Structure */
-    padding: 0.5rem 0;
-    overflow: visible !important;
-    
-    /* Hidden state */
+
+    /* Hidden */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    
-    /* Smooth transitions */
-    transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1), transform 0.24s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.24s ease;
-    
-    /* Performance */
+
+    /* Smooth open/close */
+    transition:
+        opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+        transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+        visibility 0.2s;
+
     will-change: transform, opacity;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dropdown arrow pointer */
+/* Tiny top arrow */
 #services-dropdown::before {
     content: '';
     position: absolute;
-    top: -6px;
+    top: -5px;
     left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 6px solid #ffffff;
-    filter: drop-shadow(0 -2px 2px rgba(13, 71, 161, 0.08));
+    transform: translateX(-50%) rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
 /* ===============================
-   4. SHOW/HIDE STATES - SMOOTH INTERACTIONS
+   4. SHOW / HIDE
    =============================== */
-
-/* Show dropdown on hover (desktop) */
-.services-dropdown-wrapper:hover #services-dropdown {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transform: translate(-50%, 0) scale(1) !important;
-    -webkit-transform: translate(-50%, 0) scale(1) !important;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/* Keep dropdown open when hovering dropdown itself */
-#services-dropdown:hover {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-}
-
-/* Show dropdown when active (mobile/click) */
+.services-dropdown-wrapper:hover #services-dropdown,
+#services-dropdown:hover,
 #services-dropdown.active {
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-    transform: translate(-50%, 0) scale(1) !important;
-    -webkit-transform: translate(-50%, 0) scale(1) !important;
-}
-
-/* Hide transition timing */
-.services-dropdown-wrapper #services-dropdown {
-    transition-delay: 0s;
+    transform: translate(-50%, 0) !important;
 }
 
 /* ===============================
-   5. DROPDOWN LINKS - ELEGANT & ACCESSIBLE
+   5. DROPDOWN LINKS
    =============================== */
 #services-dropdown .dropdown-link {
     display: block;
-    padding: 0.875rem 1.5rem;
-    color: #1f2937;
-    font-weight: 600;
-    font-size: 0.9375rem;
+    padding: 10px 14px;
+    color: #1d1d1f;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.4;
     text-decoration: none;
-    border-left: 3px solid transparent;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-    
+    letter-spacing: -0.01em;
+    border-radius: calc(var(--dropdown-radius) - 4px);
+    transition: background 0.15s ease;
     position: relative;
-    background: transparent;
-    
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    border: none;
 }
 
-/* Link separators */
-#services-dropdown .dropdown-link:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 1.5rem;
-    right: 1.5rem;
-    height: 1px;
-    background: linear-gradient(
-        to right, 
-        transparent, 
-        rgba(13, 71, 161, 0.08) 20%, 
-        rgba(13, 71, 161, 0.08) 80%, 
-        transparent
-    );
+/* No heavy separators — clean spacing only */
+#services-dropdown .dropdown-link + .dropdown-link,
+#services-dropdown .dropdown-sublinks + .dropdown-link {
+    margin-top: 1px;
 }
 
-/* Hover state - beautiful animation */
+/* Hover — soft gray fill like Apple menus */
 #services-dropdown .dropdown-link:hover {
-    background: linear-gradient(to right, #f8faff, #ffffff);
+    background: rgba(0, 0, 0, 0.04);
     color: #0d47a1;
-    border-left-color: #ff8f00;
-    box-shadow: inset 3px 0 0 rgba(255, 143, 0, 0.25);
-    transform: none;
 }
 
-/* Focus state for accessibility */
-#services-dropdown .dropdown-link:focus {
+#services-dropdown .dropdown-link:active {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+#services-dropdown .dropdown-link:focus-visible {
     outline: 2px solid #0d47a1;
     outline-offset: -2px;
-    background: #f8faff;
-    color: #0d47a1;
-}
-
-/* Active state */
-#services-dropdown .dropdown-link:active {
-    transform: none;
-}
-
-/* First and last direct dropdown links get rounded corners to match container */
-#services-dropdown > .dropdown-link:first-child {
-    border-top-left-radius: calc(var(--dropdown-border-radius) - 2px);
-    border-top-right-radius: calc(var(--dropdown-border-radius) - 2px);
-}
-
-#services-dropdown > .dropdown-link:last-child {
-    border-bottom-left-radius: calc(var(--dropdown-border-radius) - 2px);
-    border-bottom-right-radius: calc(var(--dropdown-border-radius) - 2px);
-}
-
-/* Occupational link inside the flyout wrapper is a middle item — no border-radius */
-.dropdown-flyout-wrapper .dropdown-link {
-    border-radius: 0 !important;
 }
 
 /* ===============================
-   6. ARROW ROTATION - SMOOTH ANIMATION
+   6. OCCUPATIONAL HEALTH SUB-LINKS
    =============================== */
-#services-arrow {
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    color: inherit;
+.dropdown-sublinks {
+    display: none;
+    padding: 2px 0 2px 12px;
+    margin: 0;
 }
 
-.services-dropdown-wrapper:hover #services-arrow {
+/* Show on hover of Occupational Health or the sub-links container */
+.nav-occupational:hover + .dropdown-sublinks,
+.dropdown-sublinks:hover {
+    display: block;
+}
+
+.dropdown-sublink {
+    display: block;
+    padding: 7px 14px 7px 18px;
+    color: #6e6e73;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    border-radius: 8px;
+    transition: background 0.15s ease, color 0.15s ease;
+    position: relative;
+}
+
+.dropdown-sublink::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #c7c7cc;
+    transition: background 0.15s ease;
+}
+
+.dropdown-sublink:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #0d47a1;
+}
+
+.dropdown-sublink:hover::before {
+    background: #0d47a1;
+}
+
+/* ===============================
+   6b. OCCUPATIONAL HEALTH CHEVRON
+   =============================== */
+.sublink-chevron {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    vertical-align: -1px;
+    margin-left: 4px;
+    opacity: 0.35;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+}
+
+.nav-occupational:hover .sublink-chevron {
+    opacity: 0.7;
     transform: rotate(180deg);
 }
 
-#services-dropdown.active ~ #services-button #services-arrow,
+/* ===============================
+   7. ARROW ROTATION
+   =============================== */
+#services-arrow {
+    transition: transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    color: inherit;
+}
+
+.services-dropdown-wrapper:hover #services-arrow,
 #services-arrow.rotate-180 {
     transform: rotate(180deg);
 }
 
 /* ===============================
-   7. Z-INDEX MANAGEMENT - LAYER CONTROL
+   8. Z-INDEX — page content below dropdown
    =============================== */
-
-/* Force page headers below dropdown */
 section.page-header,
 section.relative.text-white,
 section[class*="hero"],
@@ -305,111 +259,47 @@ section[class*="hero"],
 .page-header {
     position: relative;
     z-index: 1 !important;
-    isolation: isolate;
 }
 
-/* Ensure page header content stays below */
 .page-header *,
 .hero-bg * {
     z-index: 1 !important;
 }
 
 /* ===============================
-   8. RESPONSIVE DESIGN - PERFECT ON ALL DEVICES
+   9. RESPONSIVE
    =============================== */
-
-/* Large screens */
 @media (min-width: 1280px) {
-    :root {
-        --dropdown-width: 340px;
-    }
+    :root { --dropdown-width: 300px; }
 }
 
-/* Medium screens */
-@media (max-width: 1024px) {
-    :root {
-        --dropdown-width: 320px;
-    }
-    
-    #services-dropdown .dropdown-link {
-        padding: 0.8125rem 1.375rem;
-        font-size: 0.875rem;
-    }
-}
-
-/* Tablets */
-@media (max-width: 768px) {
-    :root {
-        --dropdown-width: 300px;
-    }
-    
-    #services-dropdown {
-        max-width: calc(100vw - 1.5rem);
-    }
-}
-
-/* Mobile phones */
 @media (max-width: 640px) {
-    :root {
-        --dropdown-width: calc(100vw - 2rem);
-    }
-    
     #services-dropdown {
         left: 1rem !important;
         right: 1rem !important;
-        transform: translateY(-8px) !important;
-        -webkit-transform: translateY(-8px) !important;
+        transform: translateY(6px) !important;
         width: auto !important;
     }
-    
+
     .services-dropdown-wrapper:hover #services-dropdown,
     #services-dropdown.active {
         transform: translateY(0) !important;
-        -webkit-transform: translateY(0) !important;
     }
-    
+
     #services-dropdown::before {
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) rotate(45deg);
     }
-    
-    #services-dropdown .dropdown-link {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.875rem;
-        line-height: 1.4;
-    }
-}
 
-/* Very small screens */
-@media (max-width: 480px) {
-    #services-dropdown {
-        left: 0.75rem !important;
-        right: 0.75rem !important;
-    }
-    
     #services-dropdown .dropdown-link {
-        padding: 0.6875rem 1rem;
+        padding: 10px 12px;
         font-size: 0.8125rem;
     }
 }
 
 /* ===============================
-   9. ACCESSIBILITY & PERFORMANCE
+   10. ACCESSIBILITY
    =============================== */
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-    #services-dropdown {
-        border-width: 2px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    #services-dropdown .dropdown-link {
-        border-left-width: 4px;
-    }
-}
-
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     #services-dropdown,
     #services-dropdown .dropdown-link,
@@ -418,124 +308,18 @@ section[class*="hero"],
     }
 }
 
-/* Print styles */
 @media print {
-    #services-dropdown {
-        display: none !important;
-    }
+    #services-dropdown { display: none !important; }
 }
 
-/* ===============================
-   10. BROWSER COMPATIBILITY
-   =============================== */
-
-/* Webkit specific optimizations */
-@supports (-webkit-backdrop-filter: blur(1px)) {
-    #services-dropdown {
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-    }
-}
-
-/* Firefox specific fixes */
-@-moz-document url-prefix() {
-    #services-dropdown {
-        transform: translateX(-50%) translateY(-8px) !important;
-    }
-    
-    .services-dropdown-wrapper:hover #services-dropdown,
-    #services-dropdown.active {
-        transform: translateX(-50%) translateY(0) !important;
-    }
-}
-
-/* Prevent any content overflow */
 #services-dropdown,
 #services-dropdown * {
     box-sizing: border-box;
 }
 
 /* ===============================
-   11. FINAL POLISH - PERFECT DETAILS
+   11. MOBILE MENU SUB-LINKS
    =============================== */
-
-/* Loading state protection */
-#services-dropdown:not(.loaded) {
-    opacity: 0 !important;
-    visibility: hidden !important;
-}
-
-/* Ensure dropdown always appears above modals and overlays */
-#services-dropdown {
-    z-index: 10001 !important;
-    /* Higher than most modals (usually 1000-9999) */
-}
-
-/* Perfect centering for active/shown states */
-.services-dropdown-wrapper:hover #services-dropdown,
-#services-dropdown.active {
-    transform: translateX(calc(-50% + var(--dropdown-offset))) translateY(0) !important;
-    -webkit-transform: translateX(calc(-50% + var(--dropdown-offset))) translateY(0) !important;
-}
-
-/* Mobile override for perfect centering */
-@media (max-width: 640px) {
-    .services-dropdown-wrapper:hover #services-dropdown,
-    #services-dropdown.active {
-        transform: translateY(0) !important;
-        -webkit-transform: translateY(0) !important;
-    }
-}
-
-/* ===============================
-   12. OCCUPATIONAL HEALTH SUB-LINKS (inline nested)
-   =============================== */
-
-/* Container for sub-links — hidden by default, shown on hover */
-.dropdown-sublinks {
-    display: none;
-    padding: 0;
-    background: rgba(13, 71, 161, 0.03);
-}
-
-/* Show sub-links when hovering the Occupational Health link or the sub-links themselves */
-.nav-occupational:hover + .dropdown-sublinks,
-.dropdown-sublinks:hover {
-    display: block;
-}
-
-/* Individual sub-link styling */
-.dropdown-sublink {
-    display: block;
-    padding: 0.5rem 1.5rem 0.5rem 2.5rem;
-    color: #6b7280;
-    font-weight: 500;
-    font-size: 0.8125rem;
-    text-decoration: none;
-    transition: all 0.15s ease;
-    border-left: 3px solid transparent;
-    position: relative;
-}
-
-.dropdown-sublink::before {
-    content: '\2192';
-    position: absolute;
-    left: 1.25rem;
-    opacity: 0.4;
-    font-size: 0.75rem;
-}
-
-.dropdown-sublink:hover {
-    background: linear-gradient(to right, #f0f5ff, #ffffff);
-    color: #0d47a1;
-    border-left-color: #ff8f00;
-}
-
-.dropdown-sublink:not(:last-child) {
-    border-bottom: 1px solid rgba(13, 71, 161, 0.04);
-}
-
-/* Mobile menu sub-links — indent and lighter style */
 .mobile-menu-sublink {
     font-size: 0.875rem !important;
     color: #475569 !important;
