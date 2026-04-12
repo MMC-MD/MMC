@@ -528,6 +528,44 @@ function ensureGlobalBannerScript(basePath) {
             });
             
             /* dropdown ready */
+
+            // Flyout sub-menu: position via JS to bypass any CSS clipping issues
+            var flyoutWrapper = servicesDropdown.querySelector('.dropdown-flyout-wrapper');
+            var flyoutPanel  = flyoutWrapper && flyoutWrapper.querySelector('.dropdown-flyout');
+            if (flyoutWrapper && flyoutPanel) {
+                function positionFlyout() {
+                    var wrapperRect = flyoutWrapper.getBoundingClientRect();
+                    var vpWidth = window.innerWidth;
+                    // Place flyout to the right; if it would overflow viewport, place to the left
+                    var flyoutWidth = 240;
+                    if (wrapperRect.right + flyoutWidth + 8 > vpWidth) {
+                        flyoutPanel.style.left = 'auto';
+                        flyoutPanel.style.right = '100%';
+                        flyoutPanel.style.marginLeft = '0';
+                        flyoutPanel.style.marginRight = '4px';
+                    } else {
+                        flyoutPanel.style.left = '100%';
+                        flyoutPanel.style.right = 'auto';
+                        flyoutPanel.style.marginLeft = '4px';
+                        flyoutPanel.style.marginRight = '0';
+                    }
+                }
+
+                flyoutWrapper.addEventListener('mouseenter', function() {
+                    if (window.innerWidth >= 1280) {
+                        positionFlyout();
+                        flyoutPanel.style.opacity = '1';
+                        flyoutPanel.style.visibility = 'visible';
+                        flyoutPanel.style.pointerEvents = 'auto';
+                        flyoutPanel.style.transform = 'translateX(0)';
+                    }
+                });
+                flyoutWrapper.addEventListener('mouseleave', function() {
+                    flyoutPanel.style.opacity = '0';
+                    flyoutPanel.style.visibility = 'hidden';
+                    flyoutPanel.style.pointerEvents = 'none';
+                });
+            }
         }
 
 function initializeContactModal() {
