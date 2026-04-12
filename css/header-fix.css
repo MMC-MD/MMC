@@ -64,11 +64,10 @@ div.site-sticky-header,
     top: 0 !important;
 }
 
-/* Force GPU acceleration for smooth performance */
-.site-sticky-header,
-.site-sticky-header * {
+/* Force GPU acceleration for smooth performance — only on the wrapper,
+   NOT on children (*), because perspective on every child breaks
+   position:absolute flyout sub-menus in the dropdown. */
+.site-sticky-header {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
 }
