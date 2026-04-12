@@ -61,6 +61,21 @@
         } else {
             console.error('Critical header load failed with status:', request.status);
         }
+        // Safety-net: if the async header-footer-loader fails to inject the
+        // banner script (e.g. due to a cached/broken JS file), ensure the
+        // banner module is loaded after a short grace period.
+        setTimeout(function () {
+            if (!document.querySelector('script[data-mmc-site-banner-script="true"]')) {
+                var s = document.createElement('script');
+                s.type = 'module';
+                s.src = basePath + 'js/firebase-site-banner.js?v=2026041201';
+                s.dataset.mmcSiteBannerScript = 'true';
+                s.onerror = function () {
+                    console.warn('MMC banner safety-net script also failed to load');
+                };
+                document.body.appendChild(s);
+            }
+        }, 4000);
     } catch (error) {
         console.error('Critical header load error:', error);
     }

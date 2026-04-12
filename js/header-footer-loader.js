@@ -371,11 +371,24 @@ function ensureGlobalBannerScript(basePath) {
         return;
     }
 
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src = basePath + 'js/firebase-site-banner.js?v=2026041103';
-    script.dataset.mmcSiteBannerScript = 'true';
-    document.body.appendChild(script);
+    function injectBannerScript(attempt) {
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.src = basePath + 'js/firebase-site-banner.js?v=2026041201';
+        script.dataset.mmcSiteBannerScript = 'true';
+
+        script.onerror = function () {
+            console.warn('MMC banner script failed to load (attempt ' + attempt + ')');
+            script.remove();
+            if (attempt < 2) {
+                setTimeout(function () { injectBannerScript(attempt + 1); }, 2000);
+            }
+        };
+
+        document.body.appendChild(script);
+    }
+
+    injectBannerScript(1);
 }
 
         // Initialize services dropdown functionality

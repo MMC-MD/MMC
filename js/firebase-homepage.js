@@ -2,7 +2,7 @@ import {
     fetchHomepageSlides,
     getFriendlyFirebaseError,
     subscribeToHomepageSlides
-} from './firebase-client.js?v=2026041103';
+} from './firebase-client.js?v=2026041201';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;
