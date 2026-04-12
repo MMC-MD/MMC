@@ -167,6 +167,14 @@ section, div, footer {
     overflow-x: clip; /* Use clip instead of hidden */
 }
 
+/* Exception: dropdown elements must allow flyout to overflow */
+.services-dropdown-wrapper,
+#services-dropdown,
+.dropdown-flyout-wrapper {
+    overflow: visible !important;
+    overflow-x: visible !important;
+}
+
 /* Exception: header must allow dropdown to overflow */
 header {
     max-width: 100%;
