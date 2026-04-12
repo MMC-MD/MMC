@@ -167,23 +167,18 @@ section, div, footer {
     overflow-x: clip; /* Use clip instead of hidden */
 }
 
-/* Exception: dropdown elements must allow flyout to overflow */
-.services-dropdown-wrapper,
-#services-dropdown,
-.dropdown-flyout-wrapper {
+/* Exception: every element inside the header must allow dropdown/flyout overflow.
+   The global div { overflow-x: clip } above would otherwise clip the flyout
+   sub-menu that renders outside its parent via position:absolute + left:100%. */
+.site-sticky-header,
+.site-sticky-header div,
+.site-sticky-header nav,
+header,
+header.glass-effect,
+header div,
+header nav {
     overflow: visible !important;
     overflow-x: visible !important;
-}
-
-/* Exception: header must allow dropdown to overflow */
-header {
-    max-width: 100%;
-    overflow: visible !important; /* Critical: Prevents dropdown clipping */
-}
-
-/* Ensure header tag specifically allows overflow */
-header.glass-effect {
-    overflow: visible !important;
 }
 
 /* Specifically target sections with AOS animations */
