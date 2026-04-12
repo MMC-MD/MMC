@@ -17,14 +17,20 @@
             return;
         }
 
-        // Detect if we're on a subpage by checking if stylesheets use '../' paths
-        const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-        let isSubpage = false;
-        for (let i = 0; i < stylesheets.length; i++) {
-            const href = stylesheets[i].getAttribute('href') || '';
-            if (href.startsWith('../')) { isSubpage = true; break; }
+        // Use explicit base path if provided, otherwise detect from stylesheet paths
+        const explicitBase = placeholder.dataset.mmcHeaderBasePath;
+        let basePath;
+        if (typeof explicitBase === 'string' && explicitBase !== '') {
+            basePath = explicitBase;
+        } else {
+            const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+            let isSubpage = false;
+            for (let i = 0; i < stylesheets.length; i++) {
+                const href = stylesheets[i].getAttribute('href') || '';
+                if (href.startsWith('../')) { isSubpage = true; break; }
+            }
+            basePath = isSubpage ? '../' : '';
         }
-        const basePath = isSubpage ? '../' : '';
 
         const request = new XMLHttpRequest();
         request.open('GET', basePath + 'includes/header.html', false);
