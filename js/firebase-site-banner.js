@@ -176,10 +176,22 @@ function renderBanner(banner) {
 var currentMainBanner = null;
 var currentScheduledBanners = [];
 
+function bannerHasVisibleMessage(banner) {
+    if (!banner || !banner.enabled) return false;
+    var locale = getCurrentLanguage();
+    var msg = localizedText(banner.message, locale);
+    var temp = document.createElement('div');
+    temp.innerHTML = msg;
+    return !!((temp.textContent || temp.innerText || '').trim());
+}
+
 function resolveAndRender() {
     var banner = currentMainBanner;
 
-    if (banner && banner.enabled) {
+    // Global emergency banner takes priority ONLY when it is enabled
+    // AND has a visible message. Otherwise fall through to scheduled banners
+    // so a disabled/empty emergency banner doesn't block them.
+    if (bannerHasVisibleMessage(banner)) {
         renderBanner(banner);
         return;
     }
