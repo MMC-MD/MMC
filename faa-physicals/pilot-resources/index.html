@@ -246,7 +246,7 @@
             letter-spacing: 0.05em; margin-top: 0.75rem;
         }
 
-        /* ── Medication search (compact) ── */
+        /* ── Medication tool — clean card-based results ── */
         .med-resource-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.25rem;
@@ -254,146 +254,175 @@
         .med-card {
             display: flex; flex-direction: column;
             background: white; border-radius: 1rem;
-            padding: 1.5rem 1.75rem;
-            border: 1px solid #e5e7eb;
+            padding: 1.5rem 1.75rem; border: 1px solid #e5e7eb;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
             text-decoration: none; color: inherit;
         }
-        .med-card:hover {
-            box-shadow: 0 6px 20px rgba(16,24,40,0.1);
-            transform: translateY(-2px);
-        }
+        .med-card:hover { box-shadow: 0 6px 20px rgba(16,24,40,0.1); transform: translateY(-2px); }
         .med-card .med-icon { display: none; }
         .med-card h4 { font-size: 1.0625rem; font-weight: 700; color: #0a0e27; margin: 0 0 0.5rem; }
         .med-card p { font-size: 0.875rem; color: #6b7280; line-height: 1.6; margin: 0; flex-grow: 1; }
-        .med-card .arrow {
-            margin-top: 1rem; font-size: 0.8125rem; font-weight: 700;
-            color: var(--medical-blue, #0d47a1);
+        .med-card .arrow { margin-top: 1rem; font-size: 0.8125rem; font-weight: 700; color: var(--medical-blue, #0d47a1); }
+
+        /* Search tool wrapper — prominent card */
+        .med-tool-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #f0f7ff 100%);
+            border: 2px solid #bfdbfe;
+            border-radius: 1.25rem;
+            padding: 2rem 2rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(13,71,161,0.08);
         }
+        .med-tool-title {
+            display: flex; align-items: center; gap: 0.625rem;
+            font-size: 1.125rem; font-weight: 800; color: var(--medical-blue, #0d47a1);
+            margin-bottom: 1rem;
+        }
+        .med-tool-title svg { width: 24px; height: 24px; flex-shrink: 0; }
+
+        /* Search box */
+        .med-search-box {
+            position: relative;
+        }
+        .med-search-box input {
+            width: 100%; padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid #93c5fd; border-radius: 0.875rem;
+            font-size: 1.0625rem; color: #1e293b; background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+        }
+        .med-search-box input:focus {
+            border-color: var(--medical-blue, #0d47a1);
+            box-shadow: 0 0 0 4px rgba(13,71,161,0.12);
+        }
+        .med-search-box input::placeholder { color: #64748b; }
+        .med-search-icon {
+            position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+            width: 22px; height: 22px; color: #64748b; pointer-events: none;
+        }
+        .med-filters {
+            display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap;
+        }
+        .med-filters select {
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            border: 1.5px solid #e2e8f0; border-radius: 0.625rem;
+            font-size: 0.8125rem; font-weight: 500; color: #475569;
+            background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 0.6rem center;
+            -webkit-appearance: none; appearance: none; cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .med-filters select:focus { border-color: var(--medical-blue, #0d47a1); outline: none; }
+
+        /* Results — card style per medication */
         #med-results-scroll {
-            max-height: 420px; overflow-y: auto; border: 1px solid #e5e7eb;
-            border-radius: 0.625rem;
+            max-height: 480px; overflow-y: auto; margin-top: 1rem;
+            background: #fff; border-radius: 0.75rem;
         }
-        #med-results-scroll::-webkit-scrollbar { width: 6px; }
-        #med-results-scroll::-webkit-scrollbar-track { background: #f9fafb; border-radius: 6px; }
-        #med-results-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 6px; }
-        #med-results-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        .med-row { display: grid; grid-template-columns: 1fr 0.5fr; gap: 0; padding: 0.625rem 0.75rem; border-bottom: 1px solid #f0f2f5; align-items: start; font-size: 0.8125rem; }
-        .med-row:last-child { border-bottom: none; }
-        .med-row:nth-child(even) { background: #f8fafc; }
-        .med-row-name { font-weight: 600; color: #0a0e27; line-height: 1.3; }
-        .med-row-generic { font-weight: 400; color: #6b7280; font-size: 0.75rem; }
-        .med-row-notes { color: #52606d; font-size: 0.7rem; line-height: 1.45; margin-top: 0.2rem; }
-        .med-status-pill { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.6875rem; font-weight: 700; white-space: nowrap; }
+        #med-results-scroll::-webkit-scrollbar { width: 5px; }
+        #med-results-scroll::-webkit-scrollbar-track { background: transparent; }
+        #med-results-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+        .med-item {
+            display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+            padding: 0.875rem 1rem; border-radius: 0.75rem;
+            transition: background 0.15s;
+        }
+        .med-item:hover { background: #f8fafc; }
+        .med-item + .med-item { border-top: 1px solid #f1f5f9; }
+        .med-item-info { min-width: 0; flex: 1; }
+        .med-item-name { font-weight: 700; font-size: 0.9375rem; color: #0f172a; line-height: 1.3; }
+        .med-item-generic { font-weight: 400; color: #64748b; font-size: 0.8125rem; margin-left: 0.35rem; }
+        .med-item-notes {
+            color: #475569; font-size: 0.8125rem; line-height: 1.55; margin-top: 0.35rem;
+            padding: 0.4rem 0.65rem; background: #f8fafc; border-left: 3px solid #93c5fd;
+            border-radius: 0 0.375rem 0.375rem 0;
+        }
+        .med-badge {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            padding: 0.3rem 0.75rem; border-radius: 9999px;
+            font-size: 0.75rem; font-weight: 700; white-space: nowrap;
+            flex-shrink: 0; margin-top: 0.1rem;
+        }
+        .med-badge-allowed { background: #ecfdf5; color: #059669; }
+        .med-badge-denied  { background: #fef2f2; color: #dc2626; }
+        .med-badge-dot {
+            width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+        }
+        .med-badge-allowed .med-badge-dot { background: #059669; }
+        .med-badge-denied  .med-badge-dot { background: #dc2626; }
         @media (max-width: 640px) {
-            .med-row { font-size: 0.75rem; padding: 0.5rem; }
+            .med-item { flex-direction: column; gap: 0.5rem; }
         }
 
-        /* ── Sidebar layout wrapper ── */
-        .pilot-layout {
-            --pilot-sidebar-width: 300px;
-            position: relative;
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) var(--pilot-sidebar-width);
-            grid-template-areas: "main sidebar";
-            gap: clamp(1.5rem, 2.25vw, 2.75rem);
-            align-items: start;
-            max-width: 1480px;
-            margin: 0 auto;
-            padding: 1.5rem clamp(1rem, 2vw, 2rem) 0;
-        }
-        .pilot-layout-main {
-            grid-area: main;
-            min-width: 0;
-            position: relative;
-        }
-        .pilot-layout-main > section > .container {
-            margin-left: 0;
-            margin-right: auto;
-        }
-        .pilot-layout-main > section {
-            position: relative;
-            z-index: 0;
-            overflow: visible;
-        }
-        .pilot-layout-main > section::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 100%;
-            width: 100vw;
-            background: inherit;
-            pointer-events: none;
-            z-index: -1;
+        /* ── Sidebar layout ──
+           Sidebar is position:fixed on the RIGHT.
+           Sections are full-width (backgrounds edge-to-edge).
+           On desktop, every section gets extra right-padding so
+           its *content* never sits under the sidebar. */
+        .pilot-layout { position: relative; }
+        .pilot-layout-main > section { position: relative; }
+        @media (min-width: 1280px) {
+            .pilot-layout-main > section {
+                padding-right: 340px;   /* 300px sidebar + 40px gap */
+            }
         }
         .pilot-layout-main section[id],
         #official-resources {
             scroll-margin-top: calc(var(--site-sticky-header-height, 140px) + 24px);
         }
 
-        /* ── Sidebar TOC (sticky inside layout) ── */
+        /* ── Sidebar card ── */
         .pilot-sidebar {
-            grid-area: sidebar;
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: var(--pilot-sidebar-width);
-            background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
-            border: 1px solid rgba(148, 163, 184, 0.24);
+            position: fixed;
+            right: 20px;
+            width: 300px;
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(148,163,184,0.18);
             border-radius: 1.25rem;
             padding: 1rem 0;
-            box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
-            height: fit-content;
-            z-index: 5;
-            transition: opacity 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 24px rgba(15,23,42,0.07);
+            z-index: 40;
+            transition: opacity 0.3s ease, background 0.35s ease;
         }
-        .pilot-sidebar::-webkit-scrollbar { width: 4px; }
-        .pilot-sidebar::-webkit-scrollbar-thumb { background: rgba(13,71,161,0.15); border-radius: 4px; }
         .pilot-sidebar-title {
             padding: 0 1.4rem 0.85rem; font-size: 0.6875rem; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.08em;
-            color: #64748b; border-bottom: 1px solid #e2e8f0; margin-bottom: 0.35rem;
+            color: #64748b; border-bottom: 1px solid rgba(148,163,184,0.2); margin-bottom: 0.35rem;
         }
         .pilot-sidebar-list { list-style: none; margin: 0; padding: 0; }
         .pilot-sidebar-list li { margin: 0; }
         .pilot-sidebar-link {
             display: flex; align-items: flex-start; gap: 0.625rem;
-            margin: 0.2rem 0.7rem;
-            padding: 0.75rem 0.9rem; text-decoration: none;
-            font-size: 0.875rem; line-height: 1.35; font-weight: 600; color: #475569;
-            border: 1px solid transparent;
-            border-radius: 0.95rem;
+            margin: 0.2rem 0.7rem; padding: 0.7rem 0.85rem;
+            text-decoration: none; font-size: 0.8125rem; line-height: 1.35;
+            font-weight: 600; color: #475569;
+            border: 1px solid transparent; border-radius: 0.85rem;
             transition: all 0.2s ease;
         }
         .pilot-sidebar-link:hover {
             color: var(--medical-blue, #0d47a1);
-            background: #f8fbff;
-            border-color: rgba(13,71,161,0.12);
-            transform: translateX(-2px);
+            background: rgba(13,71,161,0.06);
+            border-color: rgba(13,71,161,0.1);
         }
         .pilot-sidebar-link.active {
-            color: var(--medical-blue, #0d47a1);
-            font-weight: 700;
-            background: #eff6ff;
-            border-color: rgba(13,71,161,0.18);
-            box-shadow: inset 0 0 0 1px rgba(13,71,161,0.04);
+            color: var(--medical-blue, #0d47a1); font-weight: 700;
+            background: rgba(13,71,161,0.09);
+            border-color: rgba(13,71,161,0.16);
         }
-        .pilot-sidebar-icon { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.5; margin-top: 0.05rem; }
+        .pilot-sidebar-icon { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.45; margin-top: 0.1rem; }
         .pilot-sidebar-link:hover .pilot-sidebar-icon,
         .pilot-sidebar-link.active .pilot-sidebar-icon { opacity: 1; }
         .pilot-sidebar-cta {
-            margin: 0.85rem 0.7rem 0; padding: 0.85rem 1rem;
+            margin: 0.75rem 0.7rem 0; padding: 0.75rem 1rem;
             display: block; text-align: center; font-size: 0.8125rem; font-weight: 800;
             color: white; background: var(--medical-blue, #0d47a1);
-            border-radius: 0.95rem; text-decoration: none; transition: background 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 12px 22px rgba(13, 71, 161, 0.18);
+            border-radius: 0.85rem; text-decoration: none;
+            transition: background 0.2s ease;
+            box-shadow: 0 8px 18px rgba(13,71,161,0.16);
         }
-        .pilot-sidebar-cta:hover { background: #093a8a; transform: translateY(-1px); }
+        .pilot-sidebar-cta:hover { background: #093a8a; }
         @media (max-width: 1279px) {
-            .pilot-layout { display: block; max-width: none; padding: 0; }
-            .pilot-layout-main > section > .container { margin-left: auto; }
-            .pilot-sidebar { display: none; }
+            .pilot-sidebar { display: none !important; }
+            .pilot-layout-main > section { padding-right: 0 !important; }
         }
 
         /* ── Tab system ── */
@@ -508,6 +537,7 @@
                 <a href="#checklist" class="jump-link">Checklist</a>
                 <a href="#medications" class="jump-link">Medications</a>
                 <a href="#caci" class="jump-link">CACI</a>
+                <a href="#official-resources" class="jump-link">Official Resources</a>
                 <a href="#faq" class="jump-link">FAQ</a>
             </nav>
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="150">
@@ -741,7 +771,7 @@
          3. PRE-VISIT CHECKLIST
          ════════════════════════════════════════════ -->
     <section id="checklist" class="py-20 lg:py-24 bg-light-blue-bg">
-        <div class="container mx-auto px-6 lg:px-8 max-w-4xl">
+        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
                 <h2 class="text-3xl lg:text-4xl font-black text-dark-gray mb-3">Flight Physical Pre-Visit Checklist</h2>
@@ -808,122 +838,67 @@
                 </p>
             </div>
 
-            <!-- ── Interactive Medication Search Tool (compact) ── -->
-            <div class="bg-white rounded-2xl border-2 border-gray-200 p-5 lg:p-6 mb-12" data-aos="fade-up" data-aos-delay="50" style="box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
+            <!-- ── Medication Search Tool ── -->
+            <div class="med-tool-card" data-aos="fade-up" data-aos-delay="50" style="margin-bottom: 3rem;">
 
-                <div class="flex flex-col sm:flex-row gap-3 mb-4">
-                    <div class="flex-1">
-                        <label for="med-search" class="block text-sm font-bold text-dark-gray mb-1">Search by Drug Name</label>
-                        <input type="text" id="med-search" placeholder="Type a medication name (e.g. Lisinopril, Benadryl, Adderall)..." autocomplete="off"
-                            style="width: 100%; padding: 0.625rem 0.875rem; border: 1.5px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; transition: border-color 0.2s; outline: none;"
-                            onfocus="this.style.borderColor='#0d47a1'" onblur="this.style.borderColor='#d1d5db'">
-                    </div>
-                    <div style="min-width: 180px;">
-                        <label for="med-category" class="block text-sm font-bold text-dark-gray mb-1">Category</label>
-                        <select id="med-category" style="width: 100%; padding: 0.625rem 0.875rem; border: 1.5px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; background: white; cursor: pointer;">
-                            <option value="">All Categories</option>
-                        </select>
-                    </div>
-                    <div style="min-width: 140px;">
-                        <label for="med-status-filter" class="block text-sm font-bold text-dark-gray mb-1">FAA Status</label>
-                        <select id="med-status-filter" style="width: 100%; padding: 0.625rem 0.875rem; border: 1.5px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; background: white; cursor: pointer;">
-                            <option value="">All Statuses</option>
-                            <option value="Y">Allowed</option>
-                            <option value="N">Not Allowed</option>
-                        </select>
-                    </div>
+                <div class="med-tool-title">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    Quick Medication Search
                 </div>
 
-                <!-- Compact header -->
-                <div class="med-row" style="background: var(--medical-blue, #0d47a1); color: white; font-weight: 700; font-size: 0.75rem; border-radius: 0.5rem 0.5rem 0 0; border-bottom: none;">
-                    <div>Medication &amp; Notes</div>
-                    <div>FAA Status</div>
+                <!-- Search input -->
+                <div class="med-search-box">
+                    <svg class="med-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <input type="text" id="med-search" placeholder="Type a medication name (e.g. Lisinopril, Benadryl, Adderall)..." autocomplete="off">
                 </div>
 
-                <!-- Scrollable results container -->
+                <!-- Filters row -->
+                <div class="med-filters">
+                    <select id="med-category">
+                        <option value="">All Categories</option>
+                    </select>
+                    <select id="med-status-filter">
+                        <option value="">All Statuses</option>
+                        <option value="Y">Allowed</option>
+                        <option value="N">Not Allowed</option>
+                    </select>
+                    <span id="med-count" style="font-size: 0.8125rem; color: #64748b; margin-left: auto; display: flex; align-items: center;"></span>
+                </div>
+
+                <!-- Results -->
                 <div id="med-results-scroll">
                     <div id="med-results-list">
-                        <div style="padding: 2rem 1rem; text-align: center; color: #9ca3af; font-size: 0.875rem;">Loading medications...</div>
+                        <div style="padding: 2.5rem 1rem; text-align: center; color: #94a3b8; font-size: 0.9375rem;">Loading medications&hellip;</div>
                     </div>
                 </div>
 
-                <p id="med-count" style="font-size: 0.75rem; color: #9ca3af; margin-top: 0.5rem;"></p>
-
-                <div style="margin-top: 0.75rem; padding: 0.625rem 0.875rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
-                    <p style="font-size: 0.6875rem; color: #6b7280; line-height: 1.5; margin: 0;">
-                        <strong style="color: #374151;">Disclaimer:</strong> For informational purposes only. Based on publicly available FAA guidance. Always verify or call <a href="tel:3012082273" class="text-link">(301) 208-2273</a>.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Resource Links -->
-            <div id="official-resources"></div>
-            <h3 class="text-2xl font-bold text-dark-gray mb-6" data-aos="fade-up">Official FAA Medication Resources</h3>
-            <div class="med-resource-grid mb-12" data-aos="fade-up" data-aos-delay="50">
-                <a href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener" class="med-card">
-                    <div class="med-icon" style="background: #eff6ff; color: #2563eb;">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    </div>
-                    <h4>AMAS Medication Database</h4>
-                    <p>The most comprehensive aviation medication resource. Search by trade name, generic name, category, or purpose.</p>
-                    <span class="arrow">Search full database &rarr;</span>
-                </a>
-                <a href="https://www.faa.gov/ame_guide/pharm" target="_blank" rel="noopener" class="med-card">
-                    <div class="med-icon" style="background: #fef3c7; color: #d97706;">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-                    </div>
-                    <h4>FAA Pharmaceuticals Guide</h4>
-                    <p>Official AME Guide drug-by-drug reference covering approved, conditional, and prohibited medications.</p>
-                    <span class="arrow">View guide &rarr;</span>
-                </a>
-                <a href="https://www.faa.gov/ame_guide/pharm/dni_dnf" target="_blank" rel="noopener" class="med-card">
-                    <div class="med-icon" style="background: #fef2f2; color: #dc2626;">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
-                    </div>
-                    <h4>Do Not Issue / Do Not Fly List</h4>
-                    <p>Medications that <strong>automatically disqualify</strong> you from certification.</p>
-                    <span class="arrow">View DNI/DNF list &rarr;</span>
-                </a>
-                <a href="https://www.faa.gov/ame_guide/pharm/otc" target="_blank" rel="noopener" class="med-card">
-                    <div class="med-icon" style="background: #ecfdf5; color: #059669;">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-                    </div>
-                    <h4>OTC Medications Reference</h4>
-                    <p>Over-the-counter meds that are generally allowed, with required wait times.</p>
-                    <span class="arrow">View OTC guide &rarr;</span>
-                </a>
-                <a href="https://www.faa.gov/pilots/safety/pilotsafetybrochures/media/Meds_brochure.pdf" target="_blank" rel="noopener" class="med-card">
-                    <div class="med-icon" style="background: #f0fdf4; color: #16a34a;">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                    </div>
-                    <h4>Pilot Medication Brochure</h4>
-                    <p>Quick-reference PDF on common medications, wait times, and AME discussion points.</p>
-                    <span class="arrow">Download PDF &rarr;</span>
-                </a>
-                <a href="https://www.faa.gov/newsroom/safety-briefing/pilots-and-medication" target="_blank" rel="noopener" class="med-card">
-                    <div class="med-icon" style="background: #faf5ff; color: #7c3aed;">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                    </div>
-                    <h4>Pilots &amp; Medication Safety Briefing</h4>
-                    <p>FAA article on the relationship between medications, flying, and your medical certificate.</p>
-                    <span class="arrow">Read article &rarr;</span>
-                </a>
-            </div>
-
-            <div class="callout callout-amber" data-aos="fade-up">
-                <h4 class="text-lg font-bold text-dark-gray mb-2">Common OTC Wait Times</h4>
-                <p class="text-medium-gray leading-relaxed mb-3">
-                    Even common over-the-counter medications may require a "no-fly" waiting period:
+                <!-- Disclaimer -->
+                <p style="font-size: 0.6875rem; color: #94a3b8; margin-top: 0.75rem; line-height: 1.5;">
+                    For informational purposes only. Based on publicly available FAA guidance.
+                    Always verify with official sources or call <a href="tel:3012082273" class="text-link">(301) 208-2273</a>.
                 </p>
-                <ul class="space-y-2 text-medium-gray text-[0.9375rem] leading-relaxed pl-5 list-disc marker:text-amber-500">
-                    <li><strong class="text-gray-800">Diphenhydramine (Benadryl)</strong> &mdash; 60-hour wait</li>
-                    <li><strong class="text-gray-800">Doxylamine (Unisom, NyQuil)</strong> &mdash; 60-hour wait</li>
-                    <li><strong class="text-gray-800">Melatonin</strong> &mdash; not within 24 hours of flying</li>
-                    <li><strong class="text-gray-800">Pseudoephedrine (Sudafed)</strong> &mdash; generally allowed after ground trial</li>
-                    <li><strong class="text-gray-800">Ibuprofen, Acetaminophen</strong> &mdash; generally allowed after ground trial</li>
-                    <li><strong class="text-gray-800">Loratadine (Claritin), Cetirizine (Zyrtec), Fexofenadine (Allegra)</strong> &mdash; allowed, no wait required</li>
-                </ul>
             </div>
+
+            <!-- OTC Wait Times — collapsible -->
+            <details class="group rounded-2xl overflow-hidden border border-amber-200 bg-amber-50/60 mb-8" data-aos="fade-up">
+                <summary class="flex items-center justify-between cursor-pointer p-5 font-bold text-dark-gray hover:bg-amber-100/40 transition-colors">
+                    Common OTC Wait Times
+                    <svg class="w-5 h-5 shrink-0 ml-3 text-amber-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-5 pb-5 -mt-1">
+                    <p class="text-medium-gray text-sm leading-relaxed mb-3">Even common over-the-counter medications may require a "no-fly" waiting period:</p>
+                    <div class="space-y-2 text-sm text-medium-gray">
+                        <div class="flex justify-between items-baseline"><span><strong class="text-gray-800">Diphenhydramine (Benadryl)</strong></span><span class="text-amber-600 font-semibold whitespace-nowrap ml-4">60-hour wait</span></div>
+                        <div class="flex justify-between items-baseline"><span><strong class="text-gray-800">Doxylamine (Unisom, NyQuil)</strong></span><span class="text-amber-600 font-semibold whitespace-nowrap ml-4">60-hour wait</span></div>
+                        <div class="flex justify-between items-baseline"><span><strong class="text-gray-800">Melatonin</strong></span><span class="text-amber-600 font-semibold whitespace-nowrap ml-4">24-hour wait</span></div>
+                        <div class="flex justify-between items-baseline"><span><strong class="text-gray-800">Pseudoephedrine (Sudafed)</strong></span><span class="text-emerald-600 font-semibold whitespace-nowrap ml-4">Ground trial</span></div>
+                        <div class="flex justify-between items-baseline"><span><strong class="text-gray-800">Ibuprofen, Acetaminophen</strong></span><span class="text-emerald-600 font-semibold whitespace-nowrap ml-4">Ground trial</span></div>
+                        <div class="flex justify-between items-baseline"><span><strong class="text-gray-800">Loratadine, Cetirizine, Fexofenadine</strong></span><span class="text-emerald-600 font-semibold whitespace-nowrap ml-4">No wait</span></div>
+                    </div>
+                </div>
+            </details>
+
+
         </div>
     </section>
 
@@ -1132,9 +1107,71 @@
     </section>
 
     <!-- ════════════════════════════════════════════
+         OFFICIAL FAA MEDICATION RESOURCES
+         ════════════════════════════════════════════ -->
+    <section class="py-20 lg:py-24 bg-white">
+        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
+            <!-- Resource Links -->
+            <div id="official-resources"></div>
+            <div class="section-rule mb-5" data-aos="fade-up"></div>
+            <h2 class="text-3xl lg:text-4xl font-black text-dark-gray mb-6" data-aos="fade-up">Official FAA Medication Resources</h2>
+            <div class="med-resource-grid mb-12" data-aos="fade-up" data-aos-delay="50">
+                <a href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener" class="med-card">
+                    <div class="med-icon" style="background: #eff6ff; color: #2563eb;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <h4>AMAS Medication Database</h4>
+                    <p>The most comprehensive aviation medication resource. Search by trade name, generic name, category, or purpose.</p>
+                    <span class="arrow">Search full database &rarr;</span>
+                </a>
+                <a href="https://www.faa.gov/ame_guide/pharm" target="_blank" rel="noopener" class="med-card">
+                    <div class="med-icon" style="background: #fef3c7; color: #d97706;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <h4>FAA Pharmaceuticals Guide</h4>
+                    <p>Official AME Guide drug-by-drug reference covering approved, conditional, and prohibited medications.</p>
+                    <span class="arrow">View guide &rarr;</span>
+                </a>
+                <a href="https://www.faa.gov/ame_guide/pharm/dni_dnf" target="_blank" rel="noopener" class="med-card">
+                    <div class="med-icon" style="background: #fef2f2; color: #dc2626;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                    </div>
+                    <h4>Do Not Issue / Do Not Fly List</h4>
+                    <p>Medications that <strong>automatically disqualify</strong> you from certification.</p>
+                    <span class="arrow">View DNI/DNF list &rarr;</span>
+                </a>
+                <a href="https://www.faa.gov/ame_guide/pharm/otc" target="_blank" rel="noopener" class="med-card">
+                    <div class="med-icon" style="background: #ecfdf5; color: #059669;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    </div>
+                    <h4>OTC Medications Reference</h4>
+                    <p>Over-the-counter meds that are generally allowed, with required wait times.</p>
+                    <span class="arrow">View OTC guide &rarr;</span>
+                </a>
+                <a href="https://www.faa.gov/pilots/safety/pilotsafetybrochures/media/Meds_brochure.pdf" target="_blank" rel="noopener" class="med-card">
+                    <div class="med-icon" style="background: #f0fdf4; color: #16a34a;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4>Pilot Medication Brochure</h4>
+                    <p>Quick-reference PDF on common medications, wait times, and AME discussion points.</p>
+                    <span class="arrow">Download PDF &rarr;</span>
+                </a>
+                <a href="https://www.faa.gov/newsroom/safety-briefing/pilots-and-medication" target="_blank" rel="noopener" class="med-card">
+                    <div class="med-icon" style="background: #faf5ff; color: #7c3aed;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                    </div>
+                    <h4>Pilots &amp; Medication Safety Briefing</h4>
+                    <p>FAA article on the relationship between medications, flying, and your medical certificate.</p>
+                    <span class="arrow">Read article &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
          6. FAQ
          ════════════════════════════════════════════ -->
-    <section id="faq" class="py-20 lg:py-24 bg-white">
+    <section id="faq" class="py-20 lg:py-24 bg-light-blue-bg">
         <div class="container mx-auto px-6 lg:px-8 max-w-4xl">
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="text-4xl lg:text-5xl font-black text-brand-blue mb-4">Frequently Asked Questions</h2>
@@ -1297,9 +1334,12 @@
         document.querySelectorAll('.jump-link, a[href^="#"]').forEach(function(link) {
             if (!link.getAttribute('href') || !link.getAttribute('href').startsWith('#')) return;
             link.addEventListener('click', function(e) {
-                e.preventDefault();
-                var target = document.querySelector(this.getAttribute('href'));
+                var href = this.getAttribute('href');
+                // Only smooth-scroll real in-page anchors (e.g. #section-id), not bare "#" or updated nav links
+                if (!href || href === '#' || !href.startsWith('#') || href.length < 2) return;
+                var target = document.querySelector(href);
                 if (target) {
+                    e.preventDefault();
                     var offset = getStickyScrollOffset();
                     var pos = target.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({ top: pos, behavior: 'smooth' });
@@ -1331,45 +1371,53 @@
             var statusFilter = document.getElementById('med-status-filter');
             var countEl = document.getElementById('med-count');
 
-            var STATUS_COLOR = { Y: '#059669', N: '#dc2626' };
-            var STATUS_BG    = { Y: '#f0fdf4', N: '#fef2f2' };
-            var STATUS_LABEL = { Y: 'Allowed', N: 'Not Allowed' };
-
             function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
             function render(list) {
                 if (!list.length) {
-                    listEl.innerHTML = '<div style="padding:1.5rem 1rem; text-align:center; color:#6b7280; font-size:0.8125rem;">No medications found. Try the <a href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener" style="color:#0d47a1;font-weight:600;text-decoration:underline;">AMAS Database</a> for a comprehensive search.</div>';
+                    listEl.innerHTML = '<div style="padding:2.5rem 1rem;text-align:center;color:#94a3b8;font-size:0.9375rem;">No medications found. Try the <a href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener" style="color:#0d47a1;font-weight:600;text-decoration:underline;">AMAS Database</a>.</div>';
                     countEl.textContent = '';
                     return;
                 }
-                var max = 150;
+                var max = 100;
                 var showing = list.slice(0, max);
                 var html = '';
                 for (var i = 0; i < showing.length; i++) {
                     var m = showing[i];
-                    var allowed = (m.faa_allowed === 'Y' || m.faa_allowed === 'N') ? m.faa_allowed : null;
-                    var label = allowed ? STATUS_LABEL[allowed] : 'See Notes';
-                    var color = allowed ? STATUS_COLOR[allowed] : '#6b7280';
-                    var bg = allowed ? STATUS_BG[allowed] : '#f9fafb';
-                    var notes = m.notes || '';
-                    html += '<div class="med-row">' +
-                        '<div><span class="med-row-name">' + esc(m.trade_name) + '</span> <span class="med-row-generic">(' + esc(m.generic_name) + ')</span>' +
-                        (notes ? '<div class="med-row-notes">' + esc(notes) + '</div>' : '') +
+                    var isAllowed = m.faa_allowed === 'Y';
+                    var badgeClass = isAllowed ? 'med-badge-allowed' : 'med-badge-denied';
+                    var label = isAllowed ? 'Allowed' : 'Not Allowed';
+                    var rawNotes = (m.notes || '').trim();
+                    // Skip notes that just repeat the status
+                    var skipNotes = ['ALLOWED', 'NOT ALLOWED', 'ALLOWED.', 'NOT ALLOWED.'];
+                    var notes = skipNotes.indexOf(rawNotes.toUpperCase()) === -1 ? rawNotes : '';
+                    html += '<div class="med-item">' +
+                        '<div class="med-item-info">' +
+                            '<span class="med-item-name">' + esc(m.trade_name) + '</span>' +
+                            '<span class="med-item-generic">(' + esc(m.generic_name) + ')</span>' +
+                            (notes ? '<div class="med-item-notes">' + esc(notes) + '</div>' : '') +
                         '</div>' +
-                        '<div><span class="med-status-pill" style="color:' + color + ';background:' + bg + ';">' + label + '</span></div>' +
+                        '<span class="med-badge ' + badgeClass + '"><span class="med-badge-dot"></span>' + label + '</span>' +
                         '</div>';
                 }
                 listEl.innerHTML = html;
-                var extra = list.length > max ? ' (showing first ' + max + ')' : '';
-                countEl.textContent = list.length + ' of ' + MEDS.length + ' medications' + extra;
+                var extra = list.length > max ? ' (first ' + max + ' shown)' : '';
+                countEl.textContent = list.length + ' results' + extra;
             }
 
             function filter() {
                 var q = searchInput.value.toLowerCase().trim();
                 var cat = categorySelect.value;
                 var st = statusFilter.value;
-                if (!q && !cat && !st) { render([]); countEl.textContent = MEDS.length + ' medications available — type a name to search'; listEl.innerHTML = '<div style="padding:1.5rem 1rem;text-align:center;color:#9ca3af;font-size:0.8125rem;">Start typing a medication name above to search ' + MEDS.length.toLocaleString() + ' medications.</div>'; return; }
+                if (!q && !cat && !st) {
+                    render([]);
+                    countEl.textContent = MEDS.length.toLocaleString() + ' medications';
+                    listEl.innerHTML = '<div style="padding:3rem 1rem;text-align:center;">' +
+                        '<svg style="width:40px;height:40px;color:#cbd5e1;margin:0 auto 0.75rem" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>' +
+                        '<p style="color:#94a3b8;font-size:0.9375rem;margin:0;">Type a medication name to check FAA status</p>' +
+                        '</div>';
+                    return;
+                }
                 var results = MEDS.filter(function(m) {
                     var matchName = !q || m.trade_name.toLowerCase().indexOf(q) !== -1 || m.generic_name.toLowerCase().indexOf(q) !== -1 || (m.purpose && m.purpose.toLowerCase().indexOf(q) !== -1);
                     var matchCat = !cat || m.category === cat;
@@ -1404,25 +1452,54 @@
                         categorySelect.appendChild(opt);
                     });
 
-                    // Show idle state
-                    listEl.innerHTML = '<div style="padding:1.5rem 1rem;text-align:center;color:#9ca3af;font-size:0.8125rem;">Start typing a medication name above to search ' + MEDS.length.toLocaleString() + ' medications.</div>';
-                    countEl.textContent = MEDS.length + ' medications available — type a name to search';
+                    // Show idle state — trigger the filter function to display the nice idle card
+                    filter();
                 })
                 .catch(function() {
                     listEl.innerHTML = '<div style="padding:1.5rem 1rem;text-align:center;color:#dc2626;font-size:0.8125rem;">Failed to load medication database. Please try <a href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener" style="color:#0d47a1;font-weight:600;">AMAS Database</a> instead.</div>';
                 });
         })();
 
-        // ── Sidebar active section tracking ──
+        // ── Sidebar positioning & active section tracking ──
         (function() {
             var sidebar = document.getElementById('pilot-sidebar');
             var layout = document.querySelector('.pilot-layout');
             if (!sidebar || !layout) return;
             var links = Array.from(sidebar.querySelectorAll('.pilot-sidebar-link'));
             var sections = links.map(function(l) { return document.getElementById(l.dataset.target); }).filter(Boolean);
-            var desktopMq = window.matchMedia('(max-width: 1279px)');
+            var allMainSections = Array.from(document.querySelectorAll('.pilot-layout-main > section'));
+            var desktopMq = window.matchMedia('(min-width: 1280px)');
+
+            // Semi-transparent bg tints for white / blue sections
+            var BG_WHITE = 'rgba(255, 255, 255, 0.7)';
+            var BG_BLUE  = 'rgba(245, 249, 255, 0.75)';
+
+            function getSidebarRight() {
+                // Pin sidebar to the right with a comfortable margin
+                var viewW = window.innerWidth;
+                var maxContent = 1480;
+                if (viewW > maxContent) {
+                    // On very wide screens, align with the content max-width edge
+                    return Math.round((viewW - maxContent) / 2 + 16);
+                }
+                return 20; // On smaller desktop, just use a small right margin
+            }
+
+            function updateSidebarBg() {
+                var sidebarRect = sidebar.getBoundingClientRect();
+                var probe = sidebarRect.top + sidebarRect.height * 0.5;
+                var matched = null;
+                for (var i = 0; i < allMainSections.length; i++) {
+                    var r = allMainSections[i].getBoundingClientRect();
+                    if (r.top <= probe && r.bottom > probe) { matched = allMainSections[i]; break; }
+                }
+                if (matched) {
+                    sidebar.style.background = matched.classList.contains('bg-light-blue-bg') ? BG_BLUE : BG_WHITE;
+                }
+            }
 
             function update() {
+                // Active link tracking
                 var trigger = window.innerHeight * 0.35;
                 var current = null;
                 sections.forEach(function(s) {
@@ -1432,28 +1509,17 @@
                     l.classList.toggle('active', l.dataset.target === current);
                 });
 
-                if (desktopMq.matches) {
-                    sidebar.style.position = '';
-                    sidebar.style.top = '';
-                    sidebar.style.left = '';
-                    sidebar.style.right = '';
-                    sidebar.style.width = '';
-                    sidebar.style.opacity = '';
-                    sidebar.style.pointerEvents = '';
-                    return;
-                }
+                if (!desktopMq.matches) return;  // hidden on mobile via CSS
 
+                // Show / hide based on scroll position within layout
                 var layoutRect = layout.getBoundingClientRect();
                 var layoutTop = layoutRect.top + window.pageYOffset;
                 var layoutHeight = layout.offsetHeight;
-                var sidebarWidth = parseFloat(getComputedStyle(layout).getPropertyValue('--pilot-sidebar-width')) || sidebar.offsetWidth;
-                var sidebarHeight = sidebar.offsetHeight;
                 var topOffset = getStickyScrollOffset();
-                var start = layoutTop - topOffset;
-                var end = layoutTop + layoutHeight - topOffset - sidebarHeight;
+                var showStart = layoutTop - topOffset;
                 var hideAt = layoutTop + layoutHeight - window.innerHeight + 40;
 
-                if (window.pageYOffset >= hideAt) {
+                if (window.pageYOffset < showStart || window.pageYOffset >= hideAt) {
                     sidebar.style.opacity = '0';
                     sidebar.style.pointerEvents = 'none';
                 } else {
@@ -1461,29 +1527,12 @@
                     sidebar.style.pointerEvents = 'auto';
                 }
 
-                if (window.pageYOffset <= start || end <= start) {
-                    sidebar.style.position = 'absolute';
-                    sidebar.style.top = '0';
-                    sidebar.style.left = 'auto';
-                    sidebar.style.right = '0';
-                    sidebar.style.width = sidebarWidth + 'px';
-                    return;
-                }
-
-                if (window.pageYOffset >= end) {
-                    sidebar.style.position = 'absolute';
-                    sidebar.style.top = Math.max(0, layoutHeight - sidebarHeight) + 'px';
-                    sidebar.style.left = 'auto';
-                    sidebar.style.right = '0';
-                    sidebar.style.width = sidebarWidth + 'px';
-                    return;
-                }
-
-                sidebar.style.position = 'fixed';
+                // Fixed position — pinned to right
                 sidebar.style.top = topOffset + 'px';
-                sidebar.style.left = Math.round(layoutRect.right - sidebarWidth) + 'px';
-                sidebar.style.right = 'auto';
-                sidebar.style.width = sidebarWidth + 'px';
+                sidebar.style.right = getSidebarRight() + 'px';
+                sidebar.style.left = 'auto';
+
+                updateSidebarBg();
             }
 
             var ticking = false;

@@ -126,7 +126,7 @@ header nav {
     
     /* Structure */
     padding: 0.5rem 0;
-    overflow: hidden;
+    overflow: visible !important;
     
     /* Hidden state */
     opacity: 0;
@@ -260,15 +260,20 @@ header nav {
     transform: none;
 }
 
-/* First and last link rounded corners */
-#services-dropdown .dropdown-link:first-child {
+/* First and last direct dropdown links get rounded corners to match container */
+#services-dropdown > .dropdown-link:first-child {
     border-top-left-radius: calc(var(--dropdown-border-radius) - 2px);
     border-top-right-radius: calc(var(--dropdown-border-radius) - 2px);
 }
 
-#services-dropdown .dropdown-link:last-child {
+#services-dropdown > .dropdown-link:last-child {
     border-bottom-left-radius: calc(var(--dropdown-border-radius) - 2px);
     border-bottom-right-radius: calc(var(--dropdown-border-radius) - 2px);
+}
+
+/* Occupational link inside the flyout wrapper is a middle item — no border-radius */
+.dropdown-flyout-wrapper .dropdown-link {
+    border-radius: 0 !important;
 }
 
 /* ===============================
@@ -480,4 +485,141 @@ section[class*="hero"],
         transform: translateY(0) !important;
         -webkit-transform: translateY(0) !important;
     }
+}
+
+/* ===============================
+   12. FLYOUT SUB-MENU (Occupational Health → sub-pages)
+   =============================== */
+
+/* Wrapper keeps hover zone continuous between parent link and flyout */
+.dropdown-flyout-wrapper {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 10003 !important;
+}
+
+/* Separator between flyout wrapper and the next dropdown item */
+.dropdown-flyout-wrapper::after {
+    content: '';
+    display: block;
+    height: 1px;
+    margin: 0 1.5rem;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(13, 71, 161, 0.08) 20%,
+        rgba(13, 71, 161, 0.08) 80%,
+        transparent
+    );
+}
+
+/* Hide the auto-separator on the occupational link inside wrapper */
+.dropdown-flyout-wrapper .nav-occupational::after {
+    display: none !important;
+}
+
+/* The parent link gets a small chevron arrow on the right */
+.flyout-arrow {
+    width: 11px;
+    height: 11px;
+    display: inline-block;
+    vertical-align: -1px;
+    margin-left: 0.375rem;
+    opacity: 0.35;
+    transition: opacity 0.2s, transform 0.2s;
+}
+.dropdown-flyout-wrapper:hover .flyout-arrow {
+    opacity: 0.8;
+    transform: translateX(2px);
+}
+
+/* The flyout panel — appears to the right of the dropdown */
+.dropdown-flyout {
+    position: absolute !important;
+    top: -0.5rem;
+    left: 100%;
+    margin-left: 4px;
+    width: 240px;
+    background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+    border: 1px solid rgba(13, 71, 161, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(13, 71, 161, 0.15), 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 0.5rem 0;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateX(-6px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 10001 !important;
+}
+
+/* Bridge the gap between dropdown edge and flyout so hover doesn't break */
+.dropdown-flyout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -16px;
+    width: 16px;
+    height: 100%;
+    z-index: 10001;
+}
+
+/* Show flyout on hover — !important to beat hidden state */
+.dropdown-flyout-wrapper:hover > .dropdown-flyout {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateX(0) !important;
+}
+
+/* Highlight the parent link while flyout is visible */
+.dropdown-flyout-wrapper:hover > .dropdown-link.has-flyout {
+    background: linear-gradient(to right, #f8faff, #ffffff);
+    color: #0d47a1;
+}
+
+/* Flyout links */
+.dropdown-flyout .flyout-link {
+    display: block;
+    padding: 0.75rem 1.125rem;
+    color: #374151;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.15s ease;
+    border-left: 3px solid transparent;
+}
+.dropdown-flyout .flyout-link:not(:last-child) {
+    border-bottom: 1px solid rgba(13, 71, 161, 0.06);
+}
+.dropdown-flyout .flyout-link:hover {
+    background: linear-gradient(to right, #f0f5ff, #ffffff);
+    color: #0d47a1;
+    border-left-color: #ff8f00;
+}
+.dropdown-flyout .flyout-link:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.dropdown-flyout .flyout-link:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* On mobile/tablet: hide the flyout entirely — mobile menu has its own sub-links */
+@media (max-width: 1279px) {
+    .dropdown-flyout {
+        display: none !important;
+    }
+    .flyout-arrow {
+        display: none !important;
+    }
+}
+
+/* Mobile menu sub-links — indent and lighter style */
+.mobile-menu-sublink {
+    font-size: 0.875rem !important;
+    color: #475569 !important;
+    padding-left: 1.5rem !important;
 }

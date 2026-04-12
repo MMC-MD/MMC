@@ -171,24 +171,24 @@ function updateHeaderLinks(basePath, isHomePage) {
         'nav-acupuncture': 'five-elements-acupuncture/',
         'nav-wellness': 'nutrition-wellness/',
         'nav-occupational': 'occupational-health/',
+        'nav-faa': 'faa-physicals/pilot-resources/',
+        'nav-immigration': 'immigration-physicals/',
         'nav-about': 'about/',
         'nav-insurance': 'insurance/'
     };
     
-    // Update desktop navigation links
+    // Update desktop navigation links (querySelectorAll to catch flyout + dropdown duplicates)
     Object.keys(pages).forEach(className => {
-        const link = document.querySelector('.' + className);
-        if (link) {
+        document.querySelectorAll('.' + className).forEach(link => {
             link.href = basePath + pages[className];
-        }
+        });
     });
-    
+
     // Update mobile navigation links
     Object.keys(pages).forEach(className => {
-        const mobileLink = document.querySelector('.mobile-' + className);
-        if (mobileLink) {
-            mobileLink.href = basePath + pages[className];
-        }
+        document.querySelectorAll('.mobile-' + className).forEach(link => {
+            link.href = basePath + pages[className];
+        });
     });
     
     // Set active class based on current page
@@ -261,6 +261,9 @@ function setActiveNavLink() {
         'five-elements-acupuncture': 'nav-acupuncture',
         'nutrition-wellness': 'nav-wellness',
         'occupational-health': 'nav-occupational',
+        'faa-physicals': 'nav-occupational',
+        'pilot-resources': 'nav-occupational',
+        'immigration-physicals': 'nav-occupational',
         'about': 'nav-about',
         'insurance': 'nav-insurance'
     };
