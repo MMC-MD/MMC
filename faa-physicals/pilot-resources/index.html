@@ -263,11 +263,7 @@
             box-shadow: 0 6px 20px rgba(16,24,40,0.1);
             transform: translateY(-2px);
         }
-        .med-card .med-icon {
-            width: 2.5rem; height: 2.5rem; border-radius: 0.625rem;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1rem; font-size: 1.25rem;
-        }
+        .med-card .med-icon { display: none; }
         .med-card h4 { font-size: 1.0625rem; font-weight: 700; color: #0a0e27; margin: 0 0 0.5rem; }
         .med-card p { font-size: 0.875rem; color: #6b7280; line-height: 1.6; margin: 0; flex-grow: 1; }
         .med-card .arrow {
@@ -294,48 +290,110 @@
         }
 
         /* ── Sidebar layout wrapper ── */
-        .pilot-layout { display: flex; gap: 0; }
-        .pilot-layout-main { flex: 1; min-width: 0; }
+        .pilot-layout {
+            --pilot-sidebar-width: 300px;
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) var(--pilot-sidebar-width);
+            grid-template-areas: "main sidebar";
+            gap: clamp(1.5rem, 2.25vw, 2.75rem);
+            align-items: start;
+            max-width: 1480px;
+            margin: 0 auto;
+            padding: 1.5rem clamp(1rem, 2vw, 2rem) 0;
+        }
+        .pilot-layout-main {
+            grid-area: main;
+            min-width: 0;
+            position: relative;
+        }
+        .pilot-layout-main > section > .container {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        .pilot-layout-main > section {
+            position: relative;
+            z-index: 0;
+            overflow: visible;
+        }
+        .pilot-layout-main > section::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 100%;
+            width: 100vw;
+            background: inherit;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .pilot-layout-main section[id],
+        #official-resources {
+            scroll-margin-top: calc(var(--site-sticky-header-height, 140px) + 24px);
+        }
 
         /* ── Sidebar TOC (sticky inside layout) ── */
         .pilot-sidebar {
-            position: sticky; top: 90px; align-self: flex-start;
-            width: 230px; flex-shrink: 0;
-            background: white; border-right: 1px solid #e5e7eb;
-            padding: 1.5rem 0;
-            max-height: calc(100vh - 100px); overflow-y: auto;
+            grid-area: sidebar;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: var(--pilot-sidebar-width);
+            background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+            border: 1px solid rgba(148, 163, 184, 0.24);
+            border-radius: 1.25rem;
+            padding: 1rem 0;
+            box-shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+            height: fit-content;
+            z-index: 5;
+            transition: opacity 0.2s ease, box-shadow 0.2s ease;
         }
         .pilot-sidebar::-webkit-scrollbar { width: 4px; }
         .pilot-sidebar::-webkit-scrollbar-thumb { background: rgba(13,71,161,0.15); border-radius: 4px; }
         .pilot-sidebar-title {
-            padding: 0 1.25rem 0.75rem; font-size: 0.6875rem; font-weight: 800;
+            padding: 0 1.4rem 0.85rem; font-size: 0.6875rem; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.08em;
-            color: #9ca3af; border-bottom: 1px solid #f0f2f5; margin-bottom: 0.5rem;
+            color: #64748b; border-bottom: 1px solid #e2e8f0; margin-bottom: 0.35rem;
         }
         .pilot-sidebar-list { list-style: none; margin: 0; padding: 0; }
         .pilot-sidebar-list li { margin: 0; }
         .pilot-sidebar-link {
-            display: flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1.25rem; text-decoration: none;
-            font-size: 0.8125rem; font-weight: 500; color: #6b7280;
-            border-left: 3px solid transparent;
+            display: flex; align-items: flex-start; gap: 0.625rem;
+            margin: 0.2rem 0.7rem;
+            padding: 0.75rem 0.9rem; text-decoration: none;
+            font-size: 0.875rem; line-height: 1.35; font-weight: 600; color: #475569;
+            border: 1px solid transparent;
+            border-radius: 0.95rem;
             transition: all 0.2s ease;
         }
-        .pilot-sidebar-link:hover { color: var(--medical-blue, #0d47a1); background: #f0f7ff; border-left-color: rgba(13,71,161,0.3); }
-        .pilot-sidebar-link.active { color: var(--medical-blue, #0d47a1); font-weight: 700; background: #eff6ff; border-left-color: var(--medical-blue, #0d47a1); }
-        .pilot-sidebar-icon { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.5; }
+        .pilot-sidebar-link:hover {
+            color: var(--medical-blue, #0d47a1);
+            background: #f8fbff;
+            border-color: rgba(13,71,161,0.12);
+            transform: translateX(-2px);
+        }
+        .pilot-sidebar-link.active {
+            color: var(--medical-blue, #0d47a1);
+            font-weight: 700;
+            background: #eff6ff;
+            border-color: rgba(13,71,161,0.18);
+            box-shadow: inset 0 0 0 1px rgba(13,71,161,0.04);
+        }
+        .pilot-sidebar-icon { width: 18px; height: 18px; flex-shrink: 0; opacity: 0.5; margin-top: 0.05rem; }
         .pilot-sidebar-link:hover .pilot-sidebar-icon,
         .pilot-sidebar-link.active .pilot-sidebar-icon { opacity: 1; }
         .pilot-sidebar-cta {
-            margin: 0.75rem 1rem 0; padding: 0.625rem 1rem;
-            display: block; text-align: center; font-size: 0.75rem; font-weight: 700;
+            margin: 0.85rem 0.7rem 0; padding: 0.85rem 1rem;
+            display: block; text-align: center; font-size: 0.8125rem; font-weight: 800;
             color: white; background: var(--medical-blue, #0d47a1);
-            border-radius: 0.5rem; text-decoration: none; transition: background 0.2s;
+            border-radius: 0.95rem; text-decoration: none; transition: background 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 12px 22px rgba(13, 71, 161, 0.18);
         }
-        .pilot-sidebar-cta:hover { background: #093a8a; }
+        .pilot-sidebar-cta:hover { background: #093a8a; transform: translateY(-1px); }
         @media (max-width: 1279px) {
+            .pilot-layout { display: block; max-width: none; padding: 0; }
+            .pilot-layout-main > section > .container { margin-left: auto; }
             .pilot-sidebar { display: none; }
-            .pilot-layout { display: block; }
         }
 
         /* ── Tab system ── */
@@ -390,37 +448,6 @@
     </section>
 
     <!-- ════════════════════════════════════════════
-         INTRO + CTA (visible on all sizes)
-         ════════════════════════════════════════════ -->
-    <section class="py-12 lg:py-16 bg-white" id="overview">
-        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
-            <div class="text-center mb-8" data-aos="fade-up">
-                <p class="text-lg lg:text-xl text-medium-gray leading-relaxed max-w-3xl mx-auto">
-                    Dr. Efraim Kessous is an FAA-authorized <strong class="text-gray-800">Senior Aviation Medical Examiner (AME)</strong> performing Class 1, 2, and 3 medical exams. Use the resources below to prepare for your visit and avoid unnecessary deferrals.
-                </p>
-            </div>
-            <!-- Mobile-only jump nav (sidebar replaces this on desktop) -->
-            <nav class="jump-nav mb-8 xl:hidden" data-aos="fade-up" data-aos-delay="100" aria-label="Jump to section">
-                <a href="#classes" class="jump-link">Medical Classes</a>
-                <a href="#new-vs-returning" class="jump-link">New vs. Returning</a>
-                <a href="#checklist" class="jump-link">Checklist</a>
-                <a href="#medications" class="jump-link">Medications</a>
-                <a href="#caci" class="jump-link">CACI</a>
-                <a href="#faq" class="jump-link">FAQ</a>
-            </nav>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="150">
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all inline-flex items-center justify-center gap-2">
-                    Book Your FAA Physical
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-                <a href="tel:3012082273" class="btn bg-brand-orange text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-all inline-flex items-center justify-center gap-2">
-                    Call (301) 208-2273
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ════════════════════════════════════════════
          SIDEBAR + CONTENT LAYOUT
          ════════════════════════════════════════════ -->
     <div class="pilot-layout">
@@ -463,6 +490,37 @@
 
     <!-- ── Main Content ── -->
     <div class="pilot-layout-main">
+
+    <!-- ════════════════════════════════════════════
+         INTRO + CTA (visible on all sizes)
+         ════════════════════════════════════════════ -->
+    <section class="py-12 lg:py-16 bg-white" id="overview">
+        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
+            <div class="text-center mb-8" data-aos="fade-up">
+                <p class="text-lg lg:text-xl text-medium-gray leading-relaxed max-w-3xl mx-auto">
+                    Dr. Efraim Kessous is an FAA-authorized <strong class="text-gray-800">Senior Aviation Medical Examiner (AME)</strong> performing Class 1, 2, and 3 medical exams. Use the resources below to prepare for your visit and avoid unnecessary deferrals.
+                </p>
+            </div>
+            <!-- Mobile-only jump nav (sidebar replaces this on desktop) -->
+            <nav class="jump-nav mb-8 xl:hidden" data-aos="fade-up" data-aos-delay="100" aria-label="Jump to section">
+                <a href="#classes" class="jump-link">Medical Classes</a>
+                <a href="#new-vs-returning" class="jump-link">New vs. Returning</a>
+                <a href="#checklist" class="jump-link">Checklist</a>
+                <a href="#medications" class="jump-link">Medications</a>
+                <a href="#caci" class="jump-link">CACI</a>
+                <a href="#faq" class="jump-link">FAQ</a>
+            </nav>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="150">
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all inline-flex items-center justify-center gap-2">
+                    Book Your FAA Physical
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <a href="tel:3012082273" class="btn bg-brand-orange text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-all inline-flex items-center justify-center gap-2">
+                    Call (301) 208-2273
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- ════════════════════════════════════════════
          1. MEDICAL CERTIFICATE CLASSES
@@ -793,7 +851,7 @@
 
                 <div style="margin-top: 0.75rem; padding: 0.625rem 0.875rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                     <p style="font-size: 0.6875rem; color: #6b7280; line-height: 1.5; margin: 0;">
-                        <strong style="color: #374151;">Disclaimer:</strong> For informational purposes only. Based on publicly available FAA guidance. Always verify with the official <a href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener" class="text-link">AMAS Database</a> or call <a href="tel:3012082273" class="text-link">(301) 208-2273</a>.
+                        <strong style="color: #374151;">Disclaimer:</strong> For informational purposes only. Based on publicly available FAA guidance. Always verify or call <a href="tel:3012082273" class="text-link">(301) 208-2273</a>.
                     </p>
                 </div>
             </div>
@@ -1230,13 +1288,19 @@
         AOS.init({ duration: 800, once: true });
 
         // Smooth scroll for jump links
+        function getStickyScrollOffset() {
+            var raw = getComputedStyle(document.documentElement).getPropertyValue('--site-sticky-header-height');
+            var headerHeight = parseInt(raw, 10);
+            return (isNaN(headerHeight) ? 140 : headerHeight) + 24;
+        }
+
         document.querySelectorAll('.jump-link, a[href^="#"]').forEach(function(link) {
             if (!link.getAttribute('href') || !link.getAttribute('href').startsWith('#')) return;
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 var target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    var offset = 120;
+                    var offset = getStickyScrollOffset();
                     var pos = target.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({ top: pos, behavior: 'smooth' });
                 }
@@ -1352,9 +1416,11 @@
         // ── Sidebar active section tracking ──
         (function() {
             var sidebar = document.getElementById('pilot-sidebar');
-            if (!sidebar) return;
+            var layout = document.querySelector('.pilot-layout');
+            if (!sidebar || !layout) return;
             var links = Array.from(sidebar.querySelectorAll('.pilot-sidebar-link'));
             var sections = links.map(function(l) { return document.getElementById(l.dataset.target); }).filter(Boolean);
+            var desktopMq = window.matchMedia('(max-width: 1279px)');
 
             function update() {
                 var trigger = window.innerHeight * 0.35;
@@ -1365,12 +1431,75 @@
                 links.forEach(function(l) {
                     l.classList.toggle('active', l.dataset.target === current);
                 });
+
+                if (desktopMq.matches) {
+                    sidebar.style.position = '';
+                    sidebar.style.top = '';
+                    sidebar.style.left = '';
+                    sidebar.style.right = '';
+                    sidebar.style.width = '';
+                    sidebar.style.opacity = '';
+                    sidebar.style.pointerEvents = '';
+                    return;
+                }
+
+                var layoutRect = layout.getBoundingClientRect();
+                var layoutTop = layoutRect.top + window.pageYOffset;
+                var layoutHeight = layout.offsetHeight;
+                var sidebarWidth = parseFloat(getComputedStyle(layout).getPropertyValue('--pilot-sidebar-width')) || sidebar.offsetWidth;
+                var sidebarHeight = sidebar.offsetHeight;
+                var topOffset = getStickyScrollOffset();
+                var start = layoutTop - topOffset;
+                var end = layoutTop + layoutHeight - topOffset - sidebarHeight;
+                var hideAt = layoutTop + layoutHeight - window.innerHeight + 40;
+
+                if (window.pageYOffset >= hideAt) {
+                    sidebar.style.opacity = '0';
+                    sidebar.style.pointerEvents = 'none';
+                } else {
+                    sidebar.style.opacity = '1';
+                    sidebar.style.pointerEvents = 'auto';
+                }
+
+                if (window.pageYOffset <= start || end <= start) {
+                    sidebar.style.position = 'absolute';
+                    sidebar.style.top = '0';
+                    sidebar.style.left = 'auto';
+                    sidebar.style.right = '0';
+                    sidebar.style.width = sidebarWidth + 'px';
+                    return;
+                }
+
+                if (window.pageYOffset >= end) {
+                    sidebar.style.position = 'absolute';
+                    sidebar.style.top = Math.max(0, layoutHeight - sidebarHeight) + 'px';
+                    sidebar.style.left = 'auto';
+                    sidebar.style.right = '0';
+                    sidebar.style.width = sidebarWidth + 'px';
+                    return;
+                }
+
+                sidebar.style.position = 'fixed';
+                sidebar.style.top = topOffset + 'px';
+                sidebar.style.left = Math.round(layoutRect.right - sidebarWidth) + 'px';
+                sidebar.style.right = 'auto';
+                sidebar.style.width = sidebarWidth + 'px';
             }
 
             var ticking = false;
-            window.addEventListener('scroll', function() {
-                if (!ticking) { ticking = true; requestAnimationFrame(function() { update(); ticking = false; }); }
-            }, { passive: true });
+            function scheduleUpdate() {
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(function() {
+                        update();
+                        ticking = false;
+                    });
+                }
+            }
+
+            window.addEventListener('scroll', scheduleUpdate, { passive: true });
+            window.addEventListener('resize', scheduleUpdate);
+            document.addEventListener('mmc:sticky-header-metrics', scheduleUpdate);
             update();
 
             // Smooth scroll for sidebar links
@@ -1379,7 +1508,7 @@
                     e.preventDefault();
                     var dest = document.getElementById(this.dataset.target);
                     if (dest) {
-                        var y = dest.getBoundingClientRect().top + window.pageYOffset - 90;
+                        var y = dest.getBoundingClientRect().top + window.pageYOffset - getStickyScrollOffset();
                         window.scrollTo({ top: y, behavior: 'smooth' });
                     }
                 });
