@@ -538,7 +538,7 @@ section[class*="hero"],
 
 /* The flyout panel — appears to the right of the dropdown */
 .dropdown-flyout {
-    position: absolute !important;
+    position: absolute;
     top: -0.5rem;
     left: 100%;
     margin-left: 4px;
@@ -548,12 +548,12 @@ section[class*="hero"],
     border-radius: 10px;
     box-shadow: 0 12px 40px rgba(13, 71, 161, 0.15), 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 0.5rem 0;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transform: translateX(-6px);
     transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-    z-index: 10001 !important;
+    z-index: 99999;
 }
 
 /* Bridge the gap between dropdown edge and flyout so hover doesn't break */
@@ -567,12 +567,12 @@ section[class*="hero"],
     z-index: 10001;
 }
 
-/* Show flyout on hover — !important to beat hidden state */
+/* Show flyout on hover */
 .dropdown-flyout-wrapper:hover > .dropdown-flyout {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transform: translateX(0) !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
 /* Highlight the parent link while flyout is visible */
