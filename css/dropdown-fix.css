@@ -520,13 +520,16 @@ section[class*="hero"],
 
 /* The parent link gets a small chevron arrow on the right */
 .flyout-arrow {
-    width: 11px;
-    height: 11px;
+    width: 11px !important;
+    height: 11px !important;
+    max-width: 11px;
+    max-height: 11px;
     display: inline-block;
     vertical-align: -1px;
     margin-left: 0.375rem;
     opacity: 0.35;
     transition: opacity 0.2s, transform 0.2s;
+    flex-shrink: 0;
 }
 .dropdown-flyout-wrapper:hover .flyout-arrow {
     opacity: 0.8;

@@ -1952,16 +1952,7 @@ html {
     overflow: visible;
 }
 
-/* Ensure dropdown stays on top of everything */
-.services-dropdown {
-    z-index: 9999999 !important;
-}
-
-/* Ensure wrapper allows dropdown to extend beyond */
-.services-dropdown-wrapper {
-    position: relative;
-    z-index: auto; /* Don't create new stacking context */
-}
+/* Dropdown positioning handled by dropdown-fix.css */
 
 /* ===== CONTACT MODAL - SIMPLE & COMPACT ===== */
 .contact-modal {
