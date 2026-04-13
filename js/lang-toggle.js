@@ -432,14 +432,11 @@
         "We provide a full suite of occupational health services for individuals and employers in the Gaithersburg, MD area:":
             "Ofrecemos una gama completa de servicios de salud ocupacional para individuos y empleadores en el área de Gaithersburg, MD:",
         "I-693 USCIS immigration medical exams": "Exámenes médicos de inmigración I-693 USCIS",
-        "DOT physicals and FAA aviation medical exams": "Exámenes físicos DOT y exámenes médicos de aviación FAA",
+        "FAA aviation medical exams": "Exámenes médicos de aviación FAA",
         "Pre-employment physicals and drug testing": "Exámenes físicos previos al empleo y pruebas de drogas",
         "Workplace health screenings": "Evaluaciones de salud en el lugar de trabajo",
 
-        "Does Montgomery Medical Clinic do DOT physicals?":
-            "¿Montgomery Medical Clinic realiza exámenes físicos DOT?",
-        "We perform DOT (Department of Transportation) physical examinations required for commercial motor vehicle operators.":
-            "Realizamos exámenes físicos DOT (Departamento de Transporte) requeridos para operadores de vehículos motorizados comerciales.",
+        "Workers' compensation and return-to-work evaluations": "Compensación laboral y evaluaciones de regreso al trabajo",
 
         "Do you offer drug testing for employers?": "¿Ofrecen pruebas de drogas para empleadores?",
         "we provide workplace drug testing including:": "proporcionamos pruebas de drogas en el lugar de trabajo que incluyen:",
@@ -1136,7 +1133,6 @@
         "Workers Compensation": "Compensación de Trabajadores",
         "Workplace Injury": "Lesión en el Trabajo",
         "OSHA Compliance": "Cumplimiento de OSHA",
-        "DOT Physicals": "Exámenes Físicos DOT",
         "Pre-Employment Screening": "Detección Previa al Empleo",
         "On-Site Wellness Programs": "Programas de Bienestar en el Lugar",
         "Return-to-Work Evaluations": "Evaluaciones de Regreso al Trabajo",

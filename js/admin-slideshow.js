@@ -2936,6 +2936,7 @@ async function connectScheduledListener() {
     try {
         scheduledBanners = await fetchScheduledBanners();
         renderScheduledBanners();
+        syncWeekendStateFromBanners();
         setScheduleStatus('Scheduled banners loaded.', 'success');
     } catch (error) {
         setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
@@ -3462,6 +3463,42 @@ async function applyWeekendSchedule() {
     } catch (error) {
         if (statusEl) statusEl.innerHTML = '<span style="color:#ff3b30;">' + escapeHtml(getFriendlyFirebaseError(error)) + '</span>';
     }
+}
+
+function syncWeekendStateFromBanners() {
+    // Rebuild weekendDateState from existing scheduled banners in Firestore
+    // so the calendar shows the same open/closed selections after refresh
+    var months = getWeekendCalendarMonths();
+    var calendarDates = {};
+
+    // Build a set of all weekend dates in the visible 3-month window
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            if (isWeekendDay(dow)) {
+                calendarDates[dateKey(year, month, day)] = true;
+            }
+        }
+    }
+
+    // Scan existing scheduled banners for weekend-calendar entries
+    for (var i = 0; i < scheduledBanners.length; i++) {
+        var entry = scheduledBanners[i];
+        if (!isWeekendBannerLabel(entry.label)) continue;
+        var d = entry.startDate;
+        if (!d || !calendarDates[d]) continue;
+
+        // Parse state from the label: "Saturday Open – …" or "Sunday Closed – …"
+        var match = entry.label.match(/^(?:Saturday|Sunday)\s+(Open|Closed)/);
+        if (match) {
+            weekendDateState[d] = match[1].toLowerCase();
+        }
+    }
+
+    renderWeekendCalendar();
 }
 
 function initWeekendCalendar() {
