@@ -5,7 +5,7 @@ import {
     getFriendlyFirebaseError,
     subscribeToEmergencyBanner,
     subscribeToScheduledBanners
-} from './firebase-client.js?v=2026041201';
+} from './firebase-client.js?v=2026041202';
 
 function cleanText(value) {
     return typeof value === 'string' ? value.trim() : '';

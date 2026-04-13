@@ -379,7 +379,7 @@ function ensureGlobalBannerScript(basePath) {
     function injectBannerScript(attempt) {
         var script = document.createElement('script');
         script.type = 'module';
-        script.src = basePath + 'js/firebase-site-banner.js?v=2026041201';
+        script.src = basePath + 'js/firebase-site-banner.js?v=2026041202';
         script.dataset.mmcSiteBannerScript = 'true';
 
         script.onerror = function () {

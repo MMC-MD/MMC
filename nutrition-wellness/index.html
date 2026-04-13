@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wellness center in Gaithersburg, MD offering nutrition counseling, personal training, and holistic health programs. Montgomery Medical Clinic combines functional medicine with customized nutrition plans and fitness programs for whole-body wellness.">
-    <title>Nutrition & Wellness Center in Gaithersburg, MD - Holistic Health | Montgomery Medical Clinic</title>
+    <meta name="description" content="Wellness center in Gaithersburg, MD offering nutrition counseling, personal training, medical weight management with GLP-1 medications, and holistic health programs. Montgomery Medical Clinic combines functional medicine with customized nutrition plans and fitness programs for whole-body wellness.">
+    <title>Nutrition, Wellness & Weight Management in Gaithersburg, MD | Montgomery Medical Clinic</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
@@ -16,7 +16,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.mmccare.com/nutrition-wellness/">
     <meta property="og:title" content="Nutrition & Wellness Center in Gaithersburg, MD | Montgomery Medical Clinic">
-    <meta property="og:description" content="Nutrition counseling, personal training, and holistic health programs. Customized wellness plans for whole-body health in Gaithersburg, MD.">
+    <meta property="og:description" content="Nutrition counseling, personal training, medical weight management with GLP-1 medications, and holistic health programs. Customized wellness plans in Gaithersburg, MD.">
     <meta property="og:image" content="https://www.mmccare.com/images/welcome.jpg?v=20260410">
     <meta property="og:image:secure_url" content="https://www.mmccare.com/images/welcome.jpg?v=20260410">
     <meta property="og:image:type" content="image/jpeg">
@@ -26,7 +26,7 @@
     <meta property="og:site_name" content="Montgomery Medical Clinic">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Nutrition & Wellness Center | Montgomery Medical Clinic">
-    <meta name="twitter:description" content="Nutrition counseling, personal training, and holistic wellness programs in Gaithersburg, MD.">
+    <meta name="twitter:description" content="Nutrition counseling, personal training, medical weight management with GLP-1 medications, and holistic wellness programs in Gaithersburg, MD.">
     <meta name="twitter:image" content="https://www.mmccare.com/images/welcome.jpg?v=20260410">
     <meta name="twitter:image:alt" content="Montgomery Medical Clinic welcome card showing available healthcare services.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -45,7 +45,9 @@
           {"@type": "MedicalProcedure", "name": "Nutrition Counseling"},
           {"@type": "MedicalProcedure", "name": "Personal Training"},
           {"@type": "MedicalProcedure", "name": "Holistic Wellness Programs"},
-          {"@type": "MedicalProcedure", "name": "Weight Management"}
+          {"@type": "MedicalProcedure", "name": "Weight Management"},
+          {"@type": "MedicalProcedure", "name": "Medical Weight Loss with GLP-1 Medications"},
+          {"@type": "MedicalProcedure", "name": "Semaglutide Weight Management Program"}
         ],
         "telephone": "+1-301-208-2273",
         "address": {
@@ -111,6 +113,22 @@
             "@type": "Answer",
             "text": "Yes! We have a certified personal trainer who designs individualized training programs to improve strength, mobility, and stamina. Training can be paired with nutrition counseling for a comprehensive wellness plan."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the Medical Weight Management Program at Montgomery Medical Clinic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our Medical Weight Management Program combines weekly in-clinic visits with your nutritionist and physician, personalized meal plans, lifestyle coaching, and FDA-approved GLP-1 medications such as semaglutide. This physician-supervised approach ensures safe, sustainable weight loss with ongoing accountability and medical support."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you prescribe GLP-1 or semaglutide medications for weight loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. As part of our Medical Weight Management Program, our physicians can prescribe FDA-approved GLP-1 receptor agonist medications including semaglutide. We also offer these medications for purchase directly through the clinic for added convenience. All prescriptions are paired with nutrition counseling and regular physician check-ins to maximize results."
+          }
         }
       ]
     }
@@ -127,8 +145,8 @@
     <link rel="stylesheet" href="../css/in-page-nav.css?v=6">
     <link rel="stylesheet" href="../css/lang-toggle.css">
     <link rel="preload" href="../includes/header.html" as="fetch" crossorigin="anonymous">
-    <link rel="preload" href="../js/header-footer-loader.js?v=2026041201" as="script">
-    <link rel="preload" href="../js/critical-header.js?v=2026041201" as="script">
+    <link rel="preload" href="../js/header-footer-loader.js?v=2026041202" as="script">
+    <link rel="preload" href="../js/critical-header.js?v=2026041202" as="script">
     <script>try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}</script>
     <link rel="preload" href="../images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
     <script src="../js/in-page-nav.js?v=6" defer></script>
@@ -166,6 +184,7 @@
 
         .division-card.nutrition-card { --accent: #2e7d32; }
         .division-card.training-card  { --accent: #ef6c00; }
+        .division-card.weight-card    { --accent: #7b1fa2; }
 
         .division-card:hover {
             transform: translateY(-4px);
@@ -327,7 +346,7 @@
 
     <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
-    <script src="../js/critical-header.js?v=2026041201"></script>
+    <script src="../js/critical-header.js?v=2026041202"></script>
 
     <!-- PAGE HEADER -->
     <section id="main-content" class="page-header">
@@ -476,8 +495,91 @@
         </div>
     </section>
 
+    <!-- WEIGHT MANAGEMENT PROGRAM -->
+    <section id="weight-management" data-page-nav data-page-nav-title="Weight Management" class="py-20 lg:py-24 bg-light-blue-bg">
+        <div class="container mx-auto px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto">
+
+                <!-- Section Header -->
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span style="display:inline-flex;align-items:center;gap:0.75rem;font-size:0.72rem;font-weight:700;color:#7b1fa2;text-transform:uppercase;letter-spacing:0.22em;margin-bottom:1.25rem;">
+                        <span style="width:24px;height:1px;background:#ce93d8;"></span>
+                        New Program
+                        <span style="width:24px;height:1px;background:#ce93d8;"></span>
+                    </span>
+                    <h2 style="font-size:clamp(1.85rem,3.4vw,2.65rem);font-weight:700;color:#0a0e27;letter-spacing:-0.028em;line-height:1.2;margin-bottom:1.25rem;">Medical Weight Management Program</h2>
+                    <p style="font-size:1.1rem;line-height:1.7;color:#52606d;max-width:42rem;margin:0 auto;">A physician-supervised weight loss program that combines weekly clinical visits, personalized nutrition coaching, and FDA-approved GLP-1 medications for safe, lasting results.</p>
+                </div>
+
+                <!-- Program Card -->
+                <article class="division-card weight-card" data-aos="fade-up" style="max-width:54rem;margin:0 auto;">
+                    <div class="p-8 lg:p-10">
+                        <span class="division-eyebrow">Physician-Supervised</span>
+                        <h3 class="division-title">How the Program Works</h3>
+                        <p class="division-lede">
+                            Sustainable weight loss requires more than medication alone. Our program pairs GLP-1 therapy with the hands-on guidance of your nutritionist and physician &mdash; so every pound you lose stays off.
+                        </p>
+
+                        <!-- Weekly Visit Steps -->
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-bottom:2rem;">
+                            <div style="background:#faf5fc;border:1px solid #e1bee7;border-radius:16px;padding:1.5rem;text-align:center;">
+                                <div style="width:48px;height:48px;border-radius:50%;background:#7b1fa2;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;margin-bottom:0.75rem;">1</div>
+                                <h4 style="font-size:1rem;font-weight:700;color:#0a0e27;margin-bottom:0.4rem;">Weekly Check-In</h4>
+                                <p style="font-size:0.9rem;line-height:1.55;color:#52606d;margin:0;">Visit the clinic each week to meet with your nutritionist and review your progress, habits, and goals.</p>
+                            </div>
+                            <div style="background:#faf5fc;border:1px solid #e1bee7;border-radius:16px;padding:1.5rem;text-align:center;">
+                                <div style="width:48px;height:48px;border-radius:50%;background:#7b1fa2;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;margin-bottom:0.75rem;">2</div>
+                                <h4 style="font-size:1rem;font-weight:700;color:#0a0e27;margin-bottom:0.4rem;">Physician Review</h4>
+                                <p style="font-size:0.9rem;line-height:1.55;color:#52606d;margin:0;">Your doctor monitors your health, adjusts medication dosing, and ensures the plan is safe and effective.</p>
+                            </div>
+                            <div style="background:#faf5fc;border:1px solid #e1bee7;border-radius:16px;padding:1.5rem;text-align:center;">
+                                <div style="width:48px;height:48px;border-radius:50%;background:#7b1fa2;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;margin-bottom:0.75rem;">3</div>
+                                <h4 style="font-size:1rem;font-weight:700;color:#0a0e27;margin-bottom:0.4rem;">Ongoing Support</h4>
+                                <p style="font-size:0.9rem;line-height:1.55;color:#52606d;margin:0;">Receive updated meal plans, lifestyle coaching, and accountability to keep you on track week after week.</p>
+                            </div>
+                        </div>
+
+                        <span class="division-offer-label">What&rsquo;s included</span>
+                        <ul class="service-list" style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.7rem 2rem;">
+                            <li>Weekly in-clinic nutritionist visits</li>
+                            <li>Regular physician consultations</li>
+                            <li>GLP-1 medication management (semaglutide)</li>
+                            <li>Personalized meal &amp; nutrition plans</li>
+                            <li>Habit &amp; lifestyle coaching</li>
+                            <li>Body composition tracking</li>
+                            <li>Ongoing progress monitoring</li>
+                            <li>Medication available for purchase on-site</li>
+                        </ul>
+
+                        <!-- GLP-1 Highlight Box -->
+                        <div style="background:linear-gradient(135deg,#f3e5f5 0%,#ede7f6 100%);border:1px solid #ce93d8;border-radius:16px;padding:1.75rem 1.75rem;margin-bottom:1.75rem;">
+                            <h4 style="font-size:0.95rem;font-weight:700;color:#7b1fa2;margin-bottom:0.6rem;">About GLP-1 Medications</h4>
+                            <p style="font-size:0.95rem;line-height:1.65;color:#52606d;margin:0 0 0.75rem;">
+                                GLP-1 receptor agonists, including <strong style="color:#4a148c;">semaglutide</strong>, are FDA-approved medications clinically proven to support significant weight loss by reducing appetite and improving metabolic health. When combined with nutrition counseling and regular physician oversight, patients achieve better and more sustainable outcomes than with medication or lifestyle changes alone.
+                            </p>
+                            <p style="font-size:0.95rem;line-height:1.65;color:#52606d;margin:0;">
+                                We prescribe and dispense these medications directly at our clinic, making it easy and convenient for you to stay on your treatment plan.
+                            </p>
+                        </div>
+
+                        <div class="provider-highlight" style="min-height:auto;">
+                            <p>Why It Works</p>
+                            <p>The most effective approach to weight loss combines medical treatment with professional guidance. Working alongside your nutritionist and doctor each week gives you the accountability, clinical oversight, and personalized adjustments that medication alone cannot provide &mdash; helping you build habits that last well beyond the program.</p>
+                        </div>
+
+                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="division-cta">
+                            <span>Get Started &mdash; Book a Consultation</span>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
     <!-- WELLNESS TEAM -->
-    <section id="wellness-team" data-page-nav data-page-nav-title="Our Team" class="py-20 lg:py-24 bg-light-blue-bg">
+    <section id="wellness-team" data-page-nav data-page-nav-title="Our Team" class="py-20 lg:py-24 bg-white">
         <div class="container mx-auto px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center mb-16" data-aos="fade-up">
                 <h2 class="text-4xl lg:text-5xl font-black mb-5 text-brand-blue">Meet Our Wellness Team</h2>
@@ -513,14 +615,14 @@
     </section>
 
     <!-- FAQ SECTION -->
-    <section id="faq" data-page-nav data-page-nav-title="FAQ" class="py-20 lg:py-24 bg-white">
+    <section id="faq" data-page-nav data-page-nav-title="FAQ" class="py-20 lg:py-24 bg-light-blue-bg">
         <div class="container mx-auto px-6 lg:px-8 max-w-4xl">
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="text-4xl lg:text-5xl font-black text-brand-blue mb-4">Frequently Asked Questions</h2>
                 <p class="text-lg text-medium-gray">Common questions about our nutrition and wellness programs.</p>
             </div>
             <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
-                <details class="group bg-light-blue-bg rounded-2xl overflow-hidden">
+                <details class="group bg-white rounded-2xl overflow-hidden">
                     <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg text-brand-blue hover:bg-blue-100/50 transition-colors">
                         What wellness services does Montgomery Medical Clinic offer?
                         <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -540,7 +642,7 @@
                             </p>
                     </div>
                 </details>
-                <details class="group bg-light-blue-bg rounded-2xl overflow-hidden">
+                <details class="group bg-white rounded-2xl overflow-hidden">
                     <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg text-brand-blue hover:bg-blue-100/50 transition-colors">
                         Do I need a referral for nutrition counseling?
                         <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -554,7 +656,7 @@
                             </p>
                     </div>
                 </details>
-                <details class="group bg-light-blue-bg rounded-2xl overflow-hidden">
+                <details class="group bg-white rounded-2xl overflow-hidden">
                     <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg text-brand-blue hover:bg-blue-100/50 transition-colors">
                         Does insurance cover nutrition and wellness visits?
                         <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -568,7 +670,7 @@
                             </p>
                     </div>
                 </details>
-                <details class="group bg-light-blue-bg rounded-2xl overflow-hidden">
+                <details class="group bg-white rounded-2xl overflow-hidden">
                     <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg text-brand-blue hover:bg-blue-100/50 transition-colors">
                         Can I combine nutrition counseling with other services at the clinic?
                         <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -582,7 +684,7 @@
                             </p>
                     </div>
                 </details>
-                <details class="group bg-light-blue-bg rounded-2xl overflow-hidden">
+                <details class="group bg-white rounded-2xl overflow-hidden">
                     <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg text-brand-blue hover:bg-blue-100/50 transition-colors">
                         Do you offer personal training at Montgomery Medical Clinic?
                         <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -596,12 +698,40 @@
                             </p>
                     </div>
                 </details>
+                <details class="group bg-white rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg text-brand-blue hover:bg-blue-100/50 transition-colors">
+                        What is the Medical Weight Management Program?
+                        <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="px-6 sm:px-8 pb-8 -mt-1">
+                        <p class="text-gray-600 leading-[1.8] text-[15px]">
+                                Our <strong class="text-gray-800">Medical Weight Management Program</strong> is a physician-supervised weight loss program that combines weekly in-clinic visits with your nutritionist and doctor, personalized meal plans, lifestyle coaching, and FDA-approved GLP-1 medications such as semaglutide.
+                            </p>
+                            <p class="text-gray-600 leading-[1.8] text-[15px] mt-5">
+                                Each week you meet with your care team to review progress, adjust your plan, and ensure you are on the safest and most effective path to your weight loss goals.
+                            </p>
+                    </div>
+                </details>
+                <details class="group bg-white rounded-2xl overflow-hidden">
+                    <summary class="flex items-center justify-between cursor-pointer p-6 font-bold text-lg text-brand-blue hover:bg-blue-100/50 transition-colors">
+                        Do you prescribe GLP-1 or semaglutide medications for weight loss?
+                        <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="px-6 sm:px-8 pb-8 -mt-1">
+                        <p class="text-gray-600 leading-[1.8] text-[15px]">
+                                <strong class="text-gray-800">Yes.</strong> As part of our Medical Weight Management Program, our physicians can prescribe FDA-approved GLP-1 receptor agonist medications including semaglutide.
+                            </p>
+                            <p class="text-gray-600 leading-[1.8] text-[15px] mt-5">
+                                We also offer these medications for purchase directly through the clinic for added convenience. All prescriptions are paired with nutrition counseling and regular physician check-ins to maximize results safely.
+                            </p>
+                    </div>
+                </details>
             </div>
         </div>
     </section>
 
     <!-- CTA SECTION -->
-    <section class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav-stop="cta">
+    <section class="py-20 lg:py-24 bg-white" data-page-nav-stop="cta">
         <div class="container mx-auto px-6 lg:px-8">
             <div class="bg-gradient-blue text-white rounded-3xl p-12 lg:p-16 text-center shadow-2xl max-w-4xl mx-auto" data-aos="fade-up">
                 <h2 class="text-3xl lg:text-4xl font-black mb-6">Ready to Transform Your Health?</h2>
@@ -623,8 +753,8 @@
     
     <script src="../vendor/aos.js"></script>
     <script src="../js/lang-toggle.js"></script>
-    <script src="../js/header-footer-loader.js?v=2026041201"></script>
-    <script src="../js/main.js?v=2026041201"></script>
+    <script src="../js/header-footer-loader.js?v=2026041202"></script>
+    <script src="../js/main.js?v=2026041202"></script>
     <script>
         AOS.init({
             duration: 800,
