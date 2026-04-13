@@ -30,9 +30,17 @@ function initHeaderEnhancements() {
         isDropdownOpen = true;
     }
 
-    function hideDropdown() {
-        servicesDropdown.classList.remove('active');
-        isDropdownOpen = false;
+    function hideDropdown(immediate) {
+        clearTimeout(closeTimer);
+        if (immediate) {
+            servicesDropdown.classList.remove('active');
+            isDropdownOpen = false;
+        } else {
+            closeTimer = setTimeout(() => {
+                servicesDropdown.classList.remove('active');
+                isDropdownOpen = false;
+            }, 250);
+        }
     }
 
     // Desktop: Show on hover
@@ -43,12 +51,9 @@ function initHeaderEnhancements() {
             }
         });
 
-        dropdownWrapper.addEventListener('mouseleave', (event) => {
+        dropdownWrapper.addEventListener('mouseleave', () => {
             if (window.innerWidth >= 1280) {
-                const related = event.relatedTarget;
-                if (!servicesDropdown.contains(related)) {
-                    hideDropdown();
-                }
+                hideDropdown();
             }
         });
     }
@@ -57,16 +62,13 @@ function initHeaderEnhancements() {
     servicesDropdown.addEventListener('mouseenter', () => {
         if (window.innerWidth >= 1280) {
             clearTimeout(closeTimer);
-            isDropdownOpen = true;
+            showDropdown();
         }
     });
 
-    servicesDropdown.addEventListener('mouseleave', (event) => {
+    servicesDropdown.addEventListener('mouseleave', () => {
         if (window.innerWidth >= 1280) {
-            const related = event.relatedTarget;
-            if (!dropdownWrapper.contains(related)) {
-                hideDropdown();
-            }
+            hideDropdown();
         }
     });
 

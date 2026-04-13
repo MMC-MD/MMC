@@ -54,6 +54,19 @@ header nav {
     gap: 0.5rem;
 }
 
+/* Invisible bridge: fills the gap between button and dropdown panel
+   so the mouse doesn't leave the hover zone while moving down */
+.services-dropdown-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    right: -20px;
+    height: 20px;
+    background: transparent;
+    pointer-events: auto;
+}
+
 #services-button:focus-visible {
     outline: 2px solid #0d47a1;
     outline-offset: 2px;
