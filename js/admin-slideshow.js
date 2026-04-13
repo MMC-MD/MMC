@@ -482,7 +482,7 @@ function hasPendingChanges() {
 }
 
 function setActiveAdminTab(tabId) {
-    var validTabs = ['banner', 'slides', 'schedule'];
+    var validTabs = ['banner', 'slides', 'schedule', 'weekend'];
     activeAdminTab = validTabs.indexOf(tabId) >= 0 ? tabId : 'banner';
 
     elements.tabButtons.forEach(function (button) {
@@ -805,6 +805,90 @@ function renderTemplateGrid() {
             '</button>'
         ].join('');
     }).join('');
+
+    // Attach hover preview listeners after rendering pills
+    attachTemplatePreviewListeners();
+}
+
+/* ── Template hover preview ── */
+
+var templatePreviewTooltip = null;
+var templatePreviewTimer = null;
+
+function getOrCreatePreviewTooltip() {
+    if (!templatePreviewTooltip) {
+        templatePreviewTooltip = document.createElement('div');
+        templatePreviewTooltip.className = 'template-preview-tooltip';
+        document.body.appendChild(templatePreviewTooltip);
+    }
+    return templatePreviewTooltip;
+}
+
+function showTemplatePreview(pill, template) {
+    var tooltip = getOrCreatePreviewTooltip();
+    var previewSlide = template.buildSlide();
+    var previewHtml = slideshow.buildPreviewMarkup(previewSlide, 'en');
+
+    tooltip.innerHTML = [
+        '<div class="template-preview-header">',
+        '<p class="template-preview-name">', escapeHtml(template.name), '</p>',
+        '<p class="template-preview-desc">', escapeHtml(template.description), '</p>',
+        '</div>',
+        '<div class="template-preview-body">',
+        previewHtml,
+        '</div>',
+        '<div class="template-preview-footer">',
+        '<span>Click to add this slide</span>',
+        '</div>'
+    ].join('');
+
+    // Position below the pill button
+    var rect = pill.getBoundingClientRect();
+    var tooltipWidth = 340;
+    var left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+
+    // Keep within viewport
+    if (left < 12) left = 12;
+    if (left + tooltipWidth > window.innerWidth - 12) {
+        left = window.innerWidth - tooltipWidth - 12;
+    }
+
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = (rect.bottom + 8) + 'px';
+
+    // Force reflow then show
+    void tooltip.offsetWidth;
+    tooltip.classList.add('is-visible');
+}
+
+function hideTemplatePreview() {
+    clearTimeout(templatePreviewTimer);
+    templatePreviewTimer = null;
+    if (templatePreviewTooltip) {
+        templatePreviewTooltip.classList.remove('is-visible');
+    }
+}
+
+function attachTemplatePreviewListeners() {
+    if (!elements.templateGrid) return;
+
+    var pills = elements.templateGrid.querySelectorAll('.studio-template-pill');
+    pills.forEach(function (pill) {
+        pill.addEventListener('mouseenter', function () {
+            var templateId = pill.dataset.templateId;
+            var template = SLIDE_TEMPLATES.find(function (t) { return t.id === templateId; });
+            if (!template) return;
+
+            clearTimeout(templatePreviewTimer);
+            templatePreviewTimer = setTimeout(function () {
+                showTemplatePreview(pill, template);
+            }, 250);
+        });
+
+        pill.addEventListener('mouseleave', function () {
+            hideTemplatePreview();
+        });
+    });
 }
 
 function buildColorPresetButtons() {
@@ -3050,6 +3134,365 @@ function safeListen(el, event, handler) {
     }
 }
 
+/* ── Weekend Hours Calendar (3-month, rolling) ── */
+
+// Tracks each weekend date: 'open', 'closed', or undefined (unselected)
+var weekendDateState = {};
+
+// Current cursor mode: 'open' or 'closed'
+var weekendCursorMode = 'open';
+
+var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+var DOW_LABELS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+function dateKey(year, month, day) {
+    return year + '-' + String(month + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+}
+
+function parseDateKey(key) {
+    var parts = key.split('-');
+    return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+}
+
+function isWeekendDay(dayOfWeek) {
+    return dayOfWeek === 0 || dayOfWeek === 6;
+}
+
+function getWeekendCalendarMonths() {
+    // Always show current month + next 2 months (rolling window)
+    var now = new Date();
+    var months = [];
+    for (var m = 0; m < 3; m++) {
+        var target = new Date(now.getFullYear(), now.getMonth() + m, 1);
+        months.push({ year: target.getFullYear(), month: target.getMonth() });
+    }
+    return months;
+}
+
+function renderWeekendCalendar() {
+    var container = document.getElementById('weekendCalendarGrid');
+    if (!container) return;
+
+    var now = new Date();
+    var todayKey = dateKey(now.getFullYear(), now.getMonth(), now.getDate());
+    var months = getWeekendCalendarMonths();
+    var html = '';
+
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        var firstDow = new Date(year, month, 1).getDay();
+
+        html += '<div class="wkcal-month">';
+        html += '<h3 class="wkcal-month-title">' + MONTH_NAMES[month] + ' ' + year + '</h3>';
+
+        html += '<div class="wkcal-dow-row">';
+        for (var d = 0; d < 7; d++) {
+            html += '<span class="wkcal-dow">' + DOW_LABELS[d] + '</span>';
+        }
+        html += '</div>';
+
+        html += '<div class="wkcal-days">';
+
+        for (var e = 0; e < firstDow; e++) {
+            html += '<span class="wkcal-day wkcal-empty"></span>';
+        }
+
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            var key = dateKey(year, month, day);
+            var isToday = key === todayKey;
+            var isWknd = isWeekendDay(dow);
+            var state = weekendDateState[key]; // 'open', 'closed', or undefined
+
+            var classes = 'wkcal-day';
+            if (isWknd) {
+                classes += ' wkcal-weekend';
+                if (state === 'open') classes += ' wkcal-open';
+                else if (state === 'closed') classes += ' wkcal-closed';
+                // else: neutral — no open/closed class
+            } else {
+                classes += ' wkcal-weekday';
+            }
+            if (isToday) classes += ' wkcal-today';
+
+            if (isWknd) {
+                html += '<button type="button" class="' + classes + '" data-wkcal-date="' + key + '">' + day + '</button>';
+            } else {
+                html += '<span class="' + classes + '">' + day + '</span>';
+            }
+        }
+
+        html += '</div></div>';
+    }
+
+    container.innerHTML = html;
+    renderWeekendSummary();
+}
+
+function renderWeekendSummary() {
+    var container = document.getElementById('weekendSummary');
+    if (!container) return;
+
+    var months = getWeekendCalendarMonths();
+    var closedKeys = [];
+    var openKeys = [];
+
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            if (isWeekendDay(dow)) {
+                var key = dateKey(year, month, day);
+                var state = weekendDateState[key];
+                if (state === 'closed') closedKeys.push(key);
+                else if (state === 'open') openKeys.push(key);
+            }
+        }
+    }
+
+    if (closedKeys.length === 0 && openKeys.length === 0) {
+        container.innerHTML = [
+            '<div class="wkcal-summary">',
+            '<p class="wkcal-summary-empty">No days selected yet. Pick a cursor above, then click weekend days on the calendar.</p>',
+            '</div>'
+        ].join('');
+        return;
+    }
+
+    var dayAbbrs = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var monthAbbrs = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function formatChip(key) {
+        var d = parseDateKey(key);
+        return dayAbbrs[d.getDay()] + ', ' + monthAbbrs[d.getMonth()] + ' ' + d.getDate();
+    }
+
+    var html = '<div class="wkcal-summary">';
+
+    if (closedKeys.length > 0) {
+        html += '<p class="wkcal-summary-title">Closed (' + closedKeys.length + ')</p>';
+        html += '<div class="wkcal-summary-list" style="margin-bottom:' + (openKeys.length > 0 ? '12px' : '0') + ';">';
+        html += closedKeys.map(function (key) {
+            return '<span class="wkcal-summary-chip wkcal-chip-closed">' + formatChip(key) + '</span>';
+        }).join('');
+        html += '</div>';
+    }
+
+    if (openKeys.length > 0) {
+        html += '<p class="wkcal-summary-title">Open (' + openKeys.length + ')</p>';
+        html += '<div class="wkcal-summary-list">';
+        html += openKeys.map(function (key) {
+            return '<span class="wkcal-summary-chip wkcal-chip-open">' + formatChip(key) + '</span>';
+        }).join('');
+        html += '</div>';
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function handleWeekendDayClick(dateStr) {
+    var currentState = weekendDateState[dateStr];
+
+    // If clicking with the same cursor as current state, deselect (back to neutral)
+    if (currentState === weekendCursorMode) {
+        delete weekendDateState[dateStr];
+    } else {
+        weekendDateState[dateStr] = weekendCursorMode;
+    }
+
+    // Update just the clicked button
+    var btn = document.querySelector('[data-wkcal-date="' + dateStr + '"]');
+    if (btn) {
+        var newState = weekendDateState[dateStr];
+        btn.classList.remove('wkcal-open', 'wkcal-closed');
+        if (newState === 'open') btn.classList.add('wkcal-open');
+        else if (newState === 'closed') btn.classList.add('wkcal-closed');
+    }
+
+    renderWeekendSummary();
+}
+
+function setWeekendCursor(mode) {
+    weekendCursorMode = mode;
+    var buttons = document.querySelectorAll('.wkcal-cursor-btn');
+    buttons.forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.dataset.wkcalCursor === mode);
+    });
+}
+
+function getClosedMessage(dateStr) {
+    // Saturday closed: check if Sunday (next day) is open → "open tomorrow"
+    // Sunday closed: always "enjoy your weekend"
+    var d = parseDateKey(dateStr);
+    var dow = d.getDay();
+
+    if (dow === 6) {
+        // Saturday — check Sunday
+        var sun = new Date(d);
+        sun.setDate(sun.getDate() + 1);
+        var sunKey = dateKey(sun.getFullYear(), sun.getMonth(), sun.getDate());
+        if (weekendDateState[sunKey] === 'open') {
+            return {
+                en: 'We are closed today but will be open tomorrow.',
+                es: 'Estamos cerrados hoy, pero abriremos ma\u00F1ana.'
+            };
+        }
+    }
+
+    // Sunday, or Saturday where Sunday is also closed/unset
+    return {
+        en: 'The clinic is closed today. Enjoy your weekend!',
+        es: '\u00A1La cl\u00EDnica est\u00E1 cerrada hoy. Disfrute su fin de semana!'
+    };
+}
+
+function isWeekendBannerLabel(label) {
+    // Match labels created by the weekend calendar: "Saturday Open – 2026-04-18", "Sunday Closed – 2026-05-03", etc.
+    return /^(Saturday|Sunday)\s+(Open|Closed)\s+\u2013\s+\d{4}-\d{2}-\d{2}$/.test(label);
+}
+
+async function applyWeekendSchedule() {
+    var currentUser = auth.currentUser;
+    var statusEl = document.getElementById('weekendStatus');
+
+    if (!currentUser) {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ff3b30;">Sign in first.</span>';
+        return;
+    }
+
+    // Collect only explicitly selected weekend dates
+    var months = getWeekendCalendarMonths();
+    var allSelectedDates = {};
+    var closedDates = [];
+    var openDates = [];
+
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            if (isWeekendDay(dow)) {
+                var key = dateKey(year, month, day);
+                var state = weekendDateState[key];
+                if (state === 'closed') {
+                    closedDates.push({ date: key, dow: dow });
+                    allSelectedDates[key] = true;
+                } else if (state === 'open') {
+                    openDates.push({ date: key, dow: dow });
+                    allSelectedDates[key] = true;
+                }
+            }
+        }
+    }
+
+    if (closedDates.length === 0 && openDates.length === 0) {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ff3b30;">Select some weekend days first.</span>';
+        return;
+    }
+
+    if (statusEl) statusEl.innerHTML = '<span style="color:#86868b;">Removing old weekend banners...</span>';
+
+    try {
+        // Step 1: Delete any existing weekend-calendar banners for dates we're about to create
+        var toDelete = scheduledBanners.filter(function (entry) {
+            return isWeekendBannerLabel(entry.label) && allSelectedDates[entry.startDate];
+        });
+
+        for (var d = 0; d < toDelete.length; d++) {
+            await deleteScheduledBanner(toDelete[d].id);
+        }
+
+        if (statusEl) statusEl.innerHTML = '<span style="color:#86868b;">Creating ' + (closedDates.length + openDates.length) + ' banners...</span>';
+
+        // Step 2: Create fresh banners
+        var count = 0;
+
+        for (var i = 0; i < closedDates.length; i++) {
+            var cd = closedDates[i];
+            var dayLabel = cd.dow === 0 ? 'Sunday' : 'Saturday';
+            var closedMsg = getClosedMessage(cd.date);
+
+            await saveScheduledBanner({
+                label: dayLabel + ' Closed \u2013 ' + cd.date,
+                startDate: cd.date,
+                endDate: cd.date,
+                recurrence: { mode: 'dates', days: [] },
+                banner: {
+                    enabled: true, color: 'red', showPill: true, showButton: false,
+                    pill: { en: 'Closed Today', es: 'Cerrado Hoy' },
+                    message: closedMsg,
+                    ctaLabel: { en: '', es: '' },
+                    ctaUrl: '', ctaNewTab: false
+                }
+            }, currentUser);
+            count++;
+        }
+
+        for (var j = 0; j < openDates.length; j++) {
+            var od = openDates[j];
+            var odLabel = od.dow === 0 ? 'Sunday' : 'Saturday';
+            await saveScheduledBanner({
+                label: odLabel + ' Open \u2013 ' + od.date,
+                startDate: od.date,
+                endDate: od.date,
+                recurrence: { mode: 'dates', days: [] },
+                banner: {
+                    enabled: true, color: 'green', showPill: true, showButton: true,
+                    pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+                    message: { en: 'The clinic is open today from 8:00 AM \u2013 1:00 PM.', es: 'La cl\u00EDnica est\u00E1 abierta hoy de 8:00 AM a 1:00 PM.' },
+                    ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+                    ctaUrl: 'tel:3012082273', ctaNewTab: false
+                }
+            }, currentUser);
+            count++;
+        }
+
+        var deletedNote = toDelete.length > 0 ? ' (' + toDelete.length + ' old replaced)' : '';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#34c759;">Done! ' + count + ' weekend banners created.' + deletedNote + '</span>';
+        setTimeout(function () {
+            if (statusEl) statusEl.innerHTML = '';
+        }, 5000);
+    } catch (error) {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ff3b30;">' + escapeHtml(getFriendlyFirebaseError(error)) + '</span>';
+    }
+}
+
+function initWeekendCalendar() {
+    var grid = document.getElementById('weekendCalendarGrid');
+    if (!grid) return;
+
+    // Click handler for calendar day buttons
+    grid.addEventListener('click', function (event) {
+        var btn = event.target.closest('[data-wkcal-date]');
+        if (!btn) return;
+        handleWeekendDayClick(btn.dataset.wkcalDate);
+    });
+
+    // Cursor mode toggle
+    var cursorBar = document.querySelector('.wkcal-cursor-bar');
+    if (cursorBar) {
+        cursorBar.addEventListener('click', function (event) {
+            var btn = event.target.closest('[data-wkcal-cursor]');
+            if (!btn) return;
+            setWeekendCursor(btn.dataset.wkcalCursor);
+        });
+    }
+
+    var applyBtn = document.getElementById('weekendApplyButton');
+    if (applyBtn) {
+        applyBtn.addEventListener('click', applyWeekendSchedule);
+    }
+
+    renderWeekendCalendar();
+}
+
 function initEvents() {
     safeListen(elements.lockForm, 'submit', handleLogin);
     safeListen(elements.resetPasswordButton, 'click', handlePasswordReset);
@@ -3250,6 +3693,7 @@ function init() {
     applyBannerToForm(createDefaultEmergencyBanner());
     setActiveAdminTab(activeAdminTab);
     initEvents();
+    initWeekendCalendar();
     initAuthObserver();
 }
 

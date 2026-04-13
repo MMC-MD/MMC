@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="../css/admin-slideshow.css?v=2026041202">
+    <link rel="stylesheet" href="../css/admin-slideshow.css?v=2026041303">
     <style>
         body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         .sidebar-link.active { background-color: rgba(0,0,0,0.06); color: #1d1d1f; font-weight: 600; }
@@ -120,6 +120,13 @@
                     </button>
                     <button type="button" data-admin-tab="schedule" aria-selected="false" class="sidebar-link w-full flex items-center gap-2.5 px-2.5 py-[7px] rounded-lg text-[13px] font-medium transition-all mb-0.5 text-left">
                         <i data-lucide="calendar-clock" class="w-[15px] h-[15px] shrink-0 opacity-60"></i> Scheduled Banners
+                    </button>
+                </div>
+
+                <div class="px-3 border-t border-[#d2d2d7]/60 pt-4 mt-2">
+                    <p class="text-[10px] font-semibold text-[#86868b] uppercase tracking-wider px-2 mb-1.5">Quick Setup</p>
+                    <button type="button" data-admin-tab="weekend" aria-selected="false" class="sidebar-link w-full flex items-center gap-2.5 px-2.5 py-[7px] rounded-lg text-[13px] font-medium transition-all mb-0.5 text-left">
+                        <i data-lucide="calendar-days" class="w-[15px] h-[15px] shrink-0 opacity-60"></i> Weekend Hours
                     </button>
                 </div>
 
@@ -420,13 +427,51 @@
                     </section>
                 </div>
 
+                <!-- ============================================ -->
+                <!--  WEEKEND HOURS TAB                          -->
+                <!-- ============================================ -->
+                <div class="admin-tab-panel" data-admin-panel="weekend" hidden>
+                    <div style="padding:24px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                            <div>
+                                <h2 style="margin:0;font-size:20px;font-weight:600;letter-spacing:-0.02em;color:#1d1d1f;">Weekend Hours</h2>
+                                <p style="margin:4px 0 0;font-size:13px;color:#86868b;">Choose a cursor, then click Saturdays and Sundays to set them open or closed.</p>
+                            </div>
+                            <div style="display:flex;gap:8px;align-items:center;">
+                                <div id="weekendStatus" style="font-size:12px;color:#86868b;"></div>
+                                <button id="weekendApplyButton" type="button" class="studio-btn studio-btn-publish" style="min-height:36px;font-size:13px;padding:0 20px;">Apply Weekend Schedule</button>
+                            </div>
+                        </div>
+
+                        <!-- Cursor mode toggle -->
+                        <div class="wkcal-cursor-bar">
+                            <span style="font-size:12px;font-weight:600;color:#86868b;margin-right:4px;">Cursor:</span>
+                            <button type="button" class="wkcal-cursor-btn wkcal-cursor-open is-active" data-wkcal-cursor="open">
+                                <span style="width:10px;height:10px;border-radius:3px;background:#34c759;display:inline-block;"></span>
+                                Open
+                            </button>
+                            <button type="button" class="wkcal-cursor-btn wkcal-cursor-close" data-wkcal-cursor="closed">
+                                <span style="width:10px;height:10px;border-radius:3px;background:#ff3b30;display:inline-block;"></span>
+                                Closed
+                            </button>
+                            <span style="font-size:11px;color:#86868b;margin-left:8px;">Weekdays are not clickable</span>
+                        </div>
+
+                        <!-- 3-month calendar grid rendered by JS -->
+                        <div id="weekendCalendarGrid" class="wkcal-grid"></div>
+
+                        <!-- Summary of selected dates -->
+                        <div id="weekendSummary"></div>
+                    </div>
+                </div>
+
             </div><!-- /studio-main-scroll -->
         </div><!-- /flex-1 -->
     </main>
 
-    <script src="../js/slideshow-data.js?v=2026041202"></script>
-    <script src="../js/slideshow.js?v=2026041202"></script>
-    <script type="module" src="../js/admin-slideshow.js?v=2026041202"></script>
+    <script src="../js/slideshow-data.js?v=2026041303"></script>
+    <script src="../js/slideshow.js?v=2026041303"></script>
+    <script type="module" src="../js/admin-slideshow.js?v=2026041303"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -439,7 +484,8 @@
             const tabLabels = {
                 banner: 'Urgent Banner',
                 slides: 'Homepage Slides',
-                schedule: 'Scheduled Banners'
+                schedule: 'Scheduled Banners',
+                weekend: 'Weekend Hours'
             };
 
             sidebarLinks.forEach(link => {

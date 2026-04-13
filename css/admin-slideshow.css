@@ -984,6 +984,100 @@ body.admin-authenticated .admin-shell { display: block; }
     opacity: 1;
 }
 
+/* ── Template preview tooltip ── */
+
+.studio-template-pills {
+    position: relative;
+}
+
+.studio-template-pill {
+    position: relative;
+}
+
+.template-preview-tooltip {
+    position: fixed;
+    z-index: 9999;
+    width: 340px;
+    background: #fff;
+    border: 1px solid var(--s-border);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+    padding: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.template-preview-tooltip.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.template-preview-tooltip .template-preview-header {
+    padding: 12px 16px 8px;
+    border-bottom: 1px solid var(--s-border);
+}
+
+.template-preview-tooltip .template-preview-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--s-ink);
+    margin: 0 0 2px;
+}
+
+.template-preview-tooltip .template-preview-desc {
+    font-size: 11px;
+    color: var(--s-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.template-preview-tooltip .template-preview-body {
+    padding: 0;
+    overflow: hidden;
+}
+
+.template-preview-tooltip .template-preview-body .admin-slide-preview-frame .slide-container {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.template-preview-tooltip .template-preview-body .admin-slide-preview-frame .slide-track {
+    min-height: 220px;
+}
+
+.template-preview-tooltip .template-preview-body .admin-slide-preview-frame .slide-card {
+    padding: 24px 20px;
+}
+
+.template-preview-tooltip .template-preview-body .admin-slide-preview-frame .slide-title {
+    font-size: 18px;
+}
+
+.template-preview-tooltip .template-preview-body .admin-slide-preview-frame .slide-sub {
+    font-size: 12px;
+}
+
+.template-preview-tooltip .template-preview-body .admin-slide-preview-frame .slide-btn {
+    padding: 8px 20px;
+    font-size: 12px;
+}
+
+.template-preview-tooltip .template-preview-footer {
+    padding: 8px 16px 10px;
+    border-top: 1px solid var(--s-border);
+    background: var(--s-bg);
+    text-align: center;
+}
+
+.template-preview-tooltip .template-preview-footer span {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--s-muted);
+}
+
 /* ── Sticky toolbar ── */
 
 .studio-toolbar,
@@ -2538,4 +2632,206 @@ body.admin-authenticated .admin-shell { display: block; }
 .sched-template-btn-featured:hover {
     background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
     border-color: #a78bfa;
+}
+
+/* ── Weekend Hours Calendar ── */
+
+/* Cursor bar */
+.wkcal-cursor-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.wkcal-cursor-btn {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--s-border);
+    background: var(--s-card);
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--s-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.wkcal-cursor-btn:hover {
+    border-color: #999;
+}
+
+.wkcal-cursor-btn.wkcal-cursor-open.is-active {
+    border-color: #34c759;
+    background: #dcfce7;
+    color: #15803d;
+    box-shadow: 0 0 0 2px rgba(52,199,89,0.2);
+}
+
+.wkcal-cursor-btn.wkcal-cursor-close.is-active {
+    border-color: #ff3b30;
+    background: #fee2e2;
+    color: #b91c1c;
+    box-shadow: 0 0 0 2px rgba(255,59,48,0.2);
+}
+
+.wkcal-grid {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.wkcal-month {
+    flex: 1;
+    min-width: 220px;
+    max-width: 280px;
+}
+
+.wkcal-month-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--s-ink);
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+}
+
+.wkcal-dow-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+}
+
+.wkcal-dow {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--s-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 4px 0;
+}
+
+.wkcal-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.wkcal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    border: 1.5px solid transparent;
+    background: transparent;
+    color: var(--s-muted);
+    font-family: inherit;
+    cursor: default;
+    transition: all 0.15s ease;
+    padding: 0;
+    appearance: none;
+}
+
+/* Empty spacer cell */
+.wkcal-day.wkcal-empty {
+    visibility: hidden;
+}
+
+/* Weekday — not interactive */
+.wkcal-day.wkcal-weekday {
+    color: #c7c7cc;
+    font-weight: 400;
+}
+
+/* Weekend day — clickable, neutral (unselected) */
+.wkcal-day.wkcal-weekend {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--s-ink);
+    background: var(--s-bg);
+    border-color: var(--s-border);
+}
+
+.wkcal-day.wkcal-weekend:hover {
+    transform: scale(1.12);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1;
+    position: relative;
+}
+
+/* Weekend open state — green */
+.wkcal-day.wkcal-weekend.wkcal-open {
+    background: #dcfce7;
+    border-color: #34c759;
+    color: #15803d;
+}
+
+/* Weekend closed state — red */
+.wkcal-day.wkcal-weekend.wkcal-closed {
+    background: #fee2e2;
+    border-color: #ff3b30;
+    color: #b91c1c;
+}
+
+/* Today marker */
+.wkcal-day.wkcal-today {
+    box-shadow: 0 0 0 2px var(--s-blue);
+}
+
+/* Summary section */
+.wkcal-summary {
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid var(--s-border);
+    background: var(--s-bg);
+}
+
+.wkcal-summary-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--s-ink);
+    margin: 0 0 8px;
+}
+
+.wkcal-summary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.wkcal-summary-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.wkcal-summary-chip.wkcal-chip-closed {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.wkcal-summary-chip.wkcal-chip-open {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.wkcal-summary-empty {
+    font-size: 12px;
+    color: var(--s-muted);
+    font-style: italic;
 }
