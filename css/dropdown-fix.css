@@ -186,40 +186,52 @@ header nav {
     position: relative;
 }
 
+/* Highlight Occupational Health row on hover */
+.nav-occupational:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #0d47a1;
+}
+
 .dropdown-sublinks {
     position: absolute;
-    left: calc(100% + 6px);
-    top: -4px;
-    width: 200px;
+    /* Flush against the dropdown edge — no gap */
+    left: calc(100% - 2px);
+    top: -6px;
+    width: 210px;
     padding: 6px;
     margin: 0;
 
+    /* Match the main dropdown styling exactly */
     background: rgba(255, 255, 255, 0.97);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: var(--dropdown-radius);
     box-shadow:
         0 4px 6px rgba(0, 0, 0, 0.04),
-        0 10px 24px rgba(0, 0, 0, 0.09);
+        0 12px 28px rgba(0, 0, 0, 0.10),
+        0 0 0 0.5px rgba(0, 0, 0, 0.04);
 
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateX(4px);
-    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    transform: translateX(6px);
+    transition: opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+                visibility 0.2s;
     z-index: 10002;
 }
 
-/* Invisible bridge between main dropdown and side panel */
+/* Large invisible bridge — generous hover zone connecting dropdown to flyout */
 .dropdown-sublinks::before {
     content: '';
     position: absolute;
-    top: -4px;
-    bottom: -4px;
-    left: -12px;
-    width: 14px;
+    top: -10px;
+    bottom: -10px;
+    left: -20px;
+    width: 26px;
     background: transparent;
+    pointer-events: auto;
 }
 
 /* Show on hover of Occupational Health or the sub-links container */
@@ -233,14 +245,14 @@ header nav {
 
 .dropdown-sublink {
     display: block;
-    padding: 8px 12px;
-    color: #6e6e73;
+    padding: 10px 14px;
+    color: #1d1d1f;
     font-weight: 500;
-    font-size: 0.8125rem;
-    line-height: 1.35;
+    font-size: 0.875rem;
+    line-height: 1.4;
     text-decoration: none;
     letter-spacing: -0.01em;
-    border-radius: 7px;
+    border-radius: calc(var(--dropdown-radius) - 4px);
     transition: background 0.15s ease, color 0.15s ease;
     position: relative;
     white-space: nowrap;
