@@ -229,7 +229,7 @@
             transition: box-shadow 0.3s ease, transform 0.3s ease;
             text-decoration: none; color: inherit;
         }
-        .resource-card:hover { box-shadow: 0 6px 20px rgba(16,24,40,0.1); transform: translateY(-2px); }
+        .resource-card:hover { box-shadow: 0 4px 12px rgba(16,24,40,0.08); transform: translateY(-2px); }
         .resource-card h4 { font-size: 1.0625rem; font-weight: 700; color: #0a0e27; margin: 0 0 0.5rem; }
         .resource-card p { font-size: 0.875rem; color: #6b7280; line-height: 1.6; margin: 0; flex-grow: 1; }
         .resource-card .arrow { margin-top: 1rem; font-size: 0.8125rem; font-weight: 700; color: var(--medical-blue, #0d47a1); }
@@ -767,7 +767,8 @@
                     Official links to help you prepare for your immigration medical exam and understand the requirements.
                 </p>
             </div>
-            <div class="resource-grid" data-aos="fade-up" data-aos-delay="50">
+            <div data-aos="fade-up" data-aos-delay="50">
+            <div class="resource-grid">
                 <a href="https://my.uscis.gov/findadoctor" target="_blank" rel="noopener" class="resource-card">
                     <h4>USCIS Civil Surgeon Finder</h4>
                     <p>Find USCIS-designated civil surgeons near you using the official myUSCIS search tool.</p>
@@ -798,6 +799,7 @@
                     <p>CDC technical instructions for civil surgeons performing immigration medical exams.</p>
                     <span class="arrow">View CDC resources &rarr;</span>
                 </a>
+            </div>
             </div>
         </div>
     </section>
