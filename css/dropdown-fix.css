@@ -180,45 +180,74 @@ header nav {
 }
 
 /* ===============================
-   6. OCCUPATIONAL HEALTH SUB-LINKS
+   6. OCCUPATIONAL HEALTH SUB-LINKS (side flyout)
    =============================== */
+.nav-occupational {
+    position: relative;
+}
+
 .dropdown-sublinks {
-    display: none;
-    padding: 2px 0 2px 12px;
+    position: absolute;
+    left: calc(100% + 6px);
+    top: -4px;
+    width: 200px;
+    padding: 6px;
     margin: 0;
+
+    background: rgba(255, 255, 255, 0.97);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.04),
+        0 10px 24px rgba(0, 0, 0, 0.09);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 10002;
+}
+
+/* Invisible bridge between main dropdown and side panel */
+.dropdown-sublinks::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: -12px;
+    width: 14px;
+    background: transparent;
 }
 
 /* Show on hover of Occupational Health or the sub-links container */
 .nav-occupational:hover + .dropdown-sublinks,
 .dropdown-sublinks:hover {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
 .dropdown-sublink {
     display: block;
-    padding: 7px 14px 7px 18px;
+    padding: 8px 12px;
     color: #6e6e73;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 0.8125rem;
     line-height: 1.35;
     text-decoration: none;
     letter-spacing: -0.01em;
-    border-radius: 8px;
+    border-radius: 7px;
     transition: background 0.15s ease, color 0.15s ease;
     position: relative;
+    white-space: nowrap;
 }
 
-.dropdown-sublink::before {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #c7c7cc;
-    transition: background 0.15s ease;
+.dropdown-sublink + .dropdown-sublink {
+    margin-top: 1px;
 }
 
 .dropdown-sublink:hover {
@@ -226,12 +255,8 @@ header nav {
     color: #0d47a1;
 }
 
-.dropdown-sublink:hover::before {
-    background: #0d47a1;
-}
-
 /* ===============================
-   6b. OCCUPATIONAL HEALTH CHEVRON
+   6b. OCCUPATIONAL HEALTH CHEVRON (points right)
    =============================== */
 .sublink-chevron {
     width: 10px;
@@ -240,13 +265,13 @@ header nav {
     vertical-align: -1px;
     margin-left: 4px;
     opacity: 0.35;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transform: rotate(-90deg);
+    transition: opacity 0.2s ease;
     flex-shrink: 0;
 }
 
 .nav-occupational:hover .sublink-chevron {
     opacity: 0.7;
-    transform: rotate(180deg);
 }
 
 /* ===============================
@@ -308,6 +333,29 @@ section[class*="hero"],
         padding: 10px 12px;
         font-size: 0.8125rem;
     }
+
+    /* On small screens, sublinks go inline instead of side flyout */
+    .dropdown-sublinks {
+        position: static;
+        width: auto;
+        padding: 2px 0 2px 12px;
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        transform: none;
+    }
+
+    .dropdown-sublinks::before {
+        display: none;
+    }
+
+    .nav-occupational:hover + .dropdown-sublinks,
+    .dropdown-sublinks:hover {
+        transform: none;
+    }
 }
 
 /* ===============================
@@ -323,6 +371,10 @@ section[class*="hero"],
 
 @media print {
     #services-dropdown { display: none !important; }
+}
+
+#services-dropdown {
+    overflow: visible !important;
 }
 
 #services-dropdown,
