@@ -23,66 +23,15 @@ function initHeaderEnhancements() {
     let closeTimer = null;
     const dropdownWrapper = servicesButton.closest('.services-dropdown-wrapper');
 
-    // Position dropdown using fixed positioning for consistency
-    function positionDropdown() {
-        const buttonRect = servicesButton.getBoundingClientRect();
-        const dropdownWidth = servicesDropdown.offsetWidth || 360;
-        
-        // Calculate center position
-        const buttonCenter = buttonRect.left + (buttonRect.width / 2);
-        
-        // Calculate dropdown left position (centered under button)
-        let dropdownLeft = buttonCenter - (dropdownWidth / 2);
-        
-        // Ensure dropdown doesn't go off screen
-        const minLeft = 16; // 16px padding from edge
-        const maxLeft = window.innerWidth - dropdownWidth - 16;
-        dropdownLeft = Math.max(minLeft, Math.min(dropdownLeft, maxLeft));
-        
-        // Position directly below button
-        const dropdownTop = buttonRect.bottom + 8;
-        
-        // Apply positioning
-        servicesDropdown.style.left = `${dropdownLeft}px`;
-        servicesDropdown.style.top = `${dropdownTop}px`;
-        
-        // Center the arrow under the button
-        const arrowOffset = buttonCenter - dropdownLeft;
-        servicesDropdown.style.setProperty('--arrow-offset', `${arrowOffset}px`);
-    }
-
+    // Show/hide dropdown — positioning handled by CSS (dropdown-fix.css)
     function showDropdown() {
         clearTimeout(closeTimer);
-        
-        // Position first
-        positionDropdown();
-        
-        // Show dropdown
-        servicesDropdown.classList.add('show');
-        servicesDropdown.style.display = 'block';
-        
-        // Force reflow for smooth transition
-        servicesDropdown.offsetHeight;
-        
-        servicesDropdown.style.opacity = '1';
-        servicesDropdown.style.visibility = 'visible';
-        servicesDropdown.style.pointerEvents = 'auto';
-        
+        servicesDropdown.classList.add('active');
         isDropdownOpen = true;
     }
 
     function hideDropdown() {
-        servicesDropdown.classList.remove('show');
-        servicesDropdown.style.opacity = '0';
-        servicesDropdown.style.visibility = 'hidden';
-        servicesDropdown.style.pointerEvents = 'none';
-        
-        closeTimer = setTimeout(() => {
-            if (!isDropdownOpen) {
-                servicesDropdown.style.display = 'none';
-            }
-        }, 300);
-        
+        servicesDropdown.classList.remove('active');
         isDropdownOpen = false;
     }
 
@@ -151,17 +100,12 @@ function initHeaderEnhancements() {
         }
     });
 
-    // Reposition on scroll and resize
-    let repositionTimer;
-    function handleRepositioning() {
-        if (isDropdownOpen) {
-            clearTimeout(repositionTimer);
-            repositionTimer = setTimeout(positionDropdown, 10);
+    // Close dropdown on resize to mobile
+    window.addEventListener('resize', () => {
+        if (window.innerWidth < 1280 && isDropdownOpen) {
+            hideDropdown();
         }
-    }
-    
-    window.addEventListener('scroll', handleRepositioning, { passive: true });
-    window.addEventListener('resize', handleRepositioning);
+    });
 
     // Mobile menu functionality
     if (typeof mobileMenuButton.__mmcFallbackToggle__ === 'function') {
