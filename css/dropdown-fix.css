@@ -194,9 +194,9 @@ header nav {
 
 .dropdown-sublinks {
     position: absolute;
-    /* Flush against the dropdown edge — no gap */
+    /* Flush against the dropdown edge, vertically centered on the row */
     left: calc(100% - 2px);
-    top: -6px;
+    top: 50%;
     width: 210px;
     padding: 6px;
     margin: 0;
@@ -215,7 +215,7 @@ header nav {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateX(6px);
+    transform: translateX(6px) translateY(-31%);
     transition: opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
                 transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
                 visibility 0.2s;
@@ -240,7 +240,7 @@ header nav {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateX(0);
+    transform: translateX(0) translateY(-31%);
 }
 
 .dropdown-sublink {
