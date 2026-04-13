@@ -300,6 +300,273 @@
 
         "Call the office to schedule an appointment": "Llame a la oficina para programar una cita",
 
+        // ── Occupational Health page (additional) ──
+        "Immigration physicals, FAA exams, corporate wellness, and MVA physicals in Gaithersburg, MD.":
+            "Exámenes físicos de inmigración, exámenes FAA, bienestar corporativo y exámenes físicos MVA en Gaithersburg, MD.",
+
+        "Montgomery Medical Clinic provides a full range of occupational health services led by":
+            "Montgomery Medical Clinic ofrece una gama completa de servicios de salud ocupacional dirigidos por",
+
+        "a USCIS-authorized civil surgeon, FAA Senior Aviation Medical Examiner, and board-certified occupational medicine physician.":
+            "un cirujano civil autorizado por USCIS, Examinador Médico de Aviación Senior de la FAA y médico certificado en medicina ocupacional.",
+
+        "Immigration Physicals": "Exámenes Físicos de Inmigración",
+        "Corporate Wellness": "Bienestar Corporativo",
+
+        "i693 USCIS Medical Exam": "Examen Médico i693 USCIS",
+        "Dr. Efraim Kessous": "Dr. Efraim Kessous",
+        "USCIS Authorized Civil Surgeon": "Cirujano Civil Autorizado por USCIS",
+        "Senior Aviation Medical Examiner (AME)": "Examinador Médico de Aviación Senior (AME)",
+        "Licensed Physician": "Médico Licenciado",
+
+        "Book an Appointment": "Reservar una Cita",
+
+        "Before Your Visit": "Antes de Su Visita",
+        "What to Bring": "Qué Traer",
+        "Come prepared with the following to ensure a smooth appointment and timely I-693 form processing.":
+            "Venga preparado con lo siguiente para garantizar una cita fluida y un procesamiento oportuno del formulario I-693.",
+        "Government Photo ID": "Identificación con Foto del Gobierno",
+        "Vaccination Records": "Registros de Vacunación",
+        "Current Medications List": "Lista de Medicamentos Actuales",
+        "Prior TB/STI Records": "Registros Previos de TB/ETS",
+
+        "After Your Exam": "Después de Su Examen",
+        "Turnaround Time": "Tiempo de Procesamiento",
+        "Sealed & Signed": "Sellado y Firmado",
+        "1–2 Week Processing": "Procesamiento de 1–2 Semanas",
+
+        "Resources": "Recursos",
+        "Government Resources": "Recursos del Gobierno",
+        "Official links to help you prepare for your immigration medical exam and understand the requirements.":
+            "Enlaces oficiales para ayudarle a prepararse para su examen médico de inmigración y comprender los requisitos.",
+        "USCIS Civil Surgeon Finder": "Buscador de Cirujanos Civiles USCIS",
+        "CDC Vaccination Guide": "Guía de Vacunación del CDC",
+
+        "Authorization": "Autorización",
+        "Why Montgomery Medical Clinic": "Por Qué Montgomery Medical Clinic",
+        "USCIS Authorized": "Autorizado por USCIS",
+        "CDC Compliant": "Cumple con CDC",
+
+        "Immigration Physicals & I-693 Guide": "Guía de Exámenes Físicos de Inmigración e I-693",
+        "View Immigration Physicals Guide": "Ver Guía de Exámenes Físicos de Inmigración",
+        "Schedule Your Immigration Exam": "Programe Su Examen de Inmigración",
+
+        "Certificate Classes": "Clases de Certificado",
+        "Who Needs an FAA Physical": "Quién Necesita un Examen Físico de la FAA",
+        "All pilots need a valid FAA medical certificate. The class depends on how you fly.":
+            "Todos los pilotos necesitan un certificado médico FAA válido. La clase depende de cómo vuela.",
+        "1st Class — Airline Transport": "1ª Clase — Transporte Aéreo",
+        "2nd Class — Commercial": "2ª Clase — Comercial",
+        "3rd Class — Student & Recreational": "3ª Clase — Estudiante y Recreativo",
+
+        "How to Prepare": "Cómo Prepararse",
+        "AME Guide": "Guía AME",
+        "AMAS Medication Database": "Base de Datos de Medicamentos AMAS",
+
+        "Renewals": "Renovaciones",
+        "How Often to Renew": "Con Qué Frecuencia Renovar",
+        "6–60 Month Intervals": "Intervalos de 6–60 Meses",
+        "Age-Dependent": "Depende de la Edad",
+
+        "Partner program:": "Programa de asociación:",
+        "FAA Pilot Resource Center": "Centro de Recursos para Pilotos FAA",
+        "Open Pilot Resource Center": "Abrir Centro de Recursos para Pilotos",
+        "Schedule Your FAA Physical": "Programe Su Examen Físico FAA",
+
+        "Fit-for-Duty Physicals": "Exámenes de Aptitud para el Trabajo",
+        "Respirator Fit Testing": "Prueba de Ajuste de Respirador",
+        "Audiometric Testing": "Prueba Audiométrica",
+        "Lift & Strength": "Levantamiento y Fuerza",
+
+        "Workers' Compensation": "Compensación Laboral",
+        "Compassionate care for on-the-job injuries with a clear clinical path to recovery, following":
+            "Atención compasiva para lesiones en el trabajo con un camino clínico claro hacia la recuperación, siguiendo",
+        "guidelines.": "directrices.",
+        "Injury Evaluation": "Evaluación de Lesiones",
+        "Treatment Plans": "Planes de Tratamiento",
+        "Follow-Up Care": "Atención de Seguimiento",
+
+        "On-Site Services": "Servicios en el Lugar",
+        "Corporate Wellness Days": "Días de Bienestar Corporativo",
+        "Flu Shot Clinics": "Clínicas de Vacunas contra la Gripe",
+        "Blood Pressure": "Presión Arterial",
+        "Biometric Screening": "Examen Biométrico",
+
+        "Recovery": "Recuperación",
+        "Functional Capacity": "Capacidad Funcional",
+        "Medical Clearance": "Autorización Médica",
+        "Work Restrictions": "Restricciones Laborales",
+
+        "Compliance & Prevention": "Cumplimiento y Prevención",
+        "OSHA Surveillance & Vaccinations": "Vigilancia OSHA y Vacunas",
+        "Hepatitis B": "Hepatitis B",
+        "Tdap & Flu": "Tdap y Gripe",
+        "TB Screening": "Detección de TB",
+        "Bloodborne Pathogens": "Patógenos Transmitidos por Sangre",
+
+        "Why businesses choose us:": "Por qué las empresas nos eligen:",
+        "Flexible scheduling for teams of any size, clear and timely reporting for HR and insurers, and a single physician-led point of contact for all your workforce health needs.":
+            "Programación flexible para equipos de cualquier tamaño, informes claros y oportunos para RR.HH. y aseguradoras, y un único punto de contacto dirigido por un médico para todas sus necesidades de salud laboral.",
+
+        "Corporate Health Services": "Servicios de Salud Corporativa",
+        "View Corporate Health Services": "Ver Servicios de Salud Corporativa",
+        "Call to Discuss Corporate Programs": "Llame para Discutir Programas Corporativos",
+        "Request a Consultation": "Solicitar una Consulta",
+
+        "MVA Physicals for DUI": "Exámenes Físicos MVA para DUI",
+        "What to Expect": "Qué Esperar",
+        "Physical Examination": "Examen Físico",
+        "Medical History Review": "Revisión de Historial Médico",
+        "MVA Documentation": "Documentación MVA",
+
+        "How to Book": "Cómo Reservar",
+        "MVA physicals are scheduled by phone. Call our office and we'll find a time that works for you so you can get your paperwork completed and submitted promptly.":
+            "Los exámenes físicos MVA se programan por teléfono. Llame a nuestra oficina y encontraremos un horario que le convenga para que pueda completar y enviar su documentación de manera oportuna.",
+        "Same-Week Availability": "Disponibilidad en la Misma Semana",
+        "Quick Turnaround": "Respuesta Rápida",
+
+        "Frequently Asked Questions": "Preguntas Frecuentes",
+        "Common questions about our occupational health services.": "Preguntas comunes sobre nuestros servicios de salud ocupacional.",
+        "What occupational health services does Montgomery Medical Clinic offer?":
+            "¿Qué servicios de salud ocupacional ofrece Montgomery Medical Clinic?",
+        "We provide a full suite of occupational health services for individuals and employers in the Gaithersburg, MD area:":
+            "Ofrecemos una gama completa de servicios de salud ocupacional para individuos y empleadores en el área de Gaithersburg, MD:",
+        "I-693 USCIS immigration medical exams": "Exámenes médicos de inmigración I-693 USCIS",
+        "DOT physicals and FAA aviation medical exams": "Exámenes físicos DOT y exámenes médicos de aviación FAA",
+        "Pre-employment physicals and drug testing": "Exámenes físicos previos al empleo y pruebas de drogas",
+        "Workplace health screenings": "Evaluaciones de salud en el lugar de trabajo",
+
+        "Does Montgomery Medical Clinic do DOT physicals?":
+            "¿Montgomery Medical Clinic realiza exámenes físicos DOT?",
+        "We perform DOT (Department of Transportation) physical examinations required for commercial motor vehicle operators.":
+            "Realizamos exámenes físicos DOT (Departamento de Transporte) requeridos para operadores de vehículos motorizados comerciales.",
+
+        "Do you offer drug testing for employers?": "¿Ofrecen pruebas de drogas para empleadores?",
+        "we provide workplace drug testing including:": "proporcionamos pruebas de drogas en el lugar de trabajo que incluyen:",
+        "Pre-employment drug screens": "Pruebas de drogas previas al empleo",
+        "Random and post-accident testing": "Pruebas aleatorias y post-accidente",
+        "Corporate accounts for ongoing employer needs": "Cuentas corporativas para necesidades continuas del empleador",
+
+        "Do I need an appointment for a pre-employment physical?":
+            "¿Necesito una cita para un examen físico previo al empleo?",
+        "for the fastest service, but walk-ins are also accepted.":
+            "para el servicio más rápido, pero también se aceptan pacientes sin cita.",
+
+        "Does Montgomery Medical Clinic do FAA physicals?": "¿Montgomery Medical Clinic realiza exámenes físicos FAA?",
+        "We have an FAA-authorized Aviation Medical Examiner (AME) on staff who performs":
+            "Tenemos un Examinador Médico de Aviación (AME) autorizado por la FAA en nuestro personal que realiza",
+        "FAA medical exams for pilots and aviation professionals.":
+            "exámenes médicos FAA para pilotos y profesionales de la aviación.",
+
+        "Book online or call us to set up your appointment.": "Reserve en línea o llámenos para programar su cita.",
+
+        // ── Corporate Health page ──
+        "Corporate Health": "Salud Corporativa",
+
+        "Physician-led workplace health programs for Maryland businesses":
+            "Programas de salud laboral dirigidos por médicos para empresas de Maryland",
+        "from pre-employment physicals and OSHA surveillance to workers' comp care and on-site wellness.":
+            "desde exámenes físicos previos al empleo y vigilancia OSHA hasta atención de compensación laboral y bienestar en el sitio.",
+
+        "In This Page": "En Esta Página",
+        "Pre-Employment Exams": "Exámenes Previos al Empleo",
+        "OSHA Surveillance": "Vigilancia OSHA",
+        "Diagnostic Testing": "Pruebas Diagnósticas",
+        "Drug Testing Panels": "Paneles de Pruebas de Drogas",
+        "Workers' Comp & RTW": "Comp. Laboral y Regreso al Trabajo",
+        "Call to Discuss Programs": "Llame para Discutir Programas",
+        "FAQ": "Preguntas Frecuentes",
+
+        "Corporate Occupational Health Programs": "Programas de Salud Ocupacional Corporativa",
+        "Montgomery Medical Clinic offers a complete suite of employer-focused occupational health services. Each program is customized to your workforce, industry hazards, and regulatory obligations.":
+            "Montgomery Medical Clinic ofrece un conjunto completo de servicios de salud ocupacional enfocados en el empleador. Cada programa se personaliza según su fuerza laboral, los riesgos de la industria y las obligaciones regulatorias.",
+
+        "Pre-Employment": "Previo al Empleo",
+        "Workplace Injury": "Lesión en el Trabajo",
+        "Why Choose Us": "Por Qué Elegirnos",
+        "Physician-Led, Business-Ready": "Dirigido por Médicos, Listo para Empresas",
+
+        "Pre-Employment & Fit-for-Duty Physicals": "Exámenes Previos al Empleo y de Aptitud para el Trabajo",
+        "What's Included in a Standard Pre-Employment Physical": "Qué Incluye un Examen Físico Previo al Empleo Estándar",
+        "Role-Specific Add-On Components": "Componentes Adicionales Específicos del Puesto",
+        "Test / Evaluation": "Prueba / Evaluación",
+        "Who Typically Requires It": "Quién Normalmente lo Requiere",
+        "Standard Reference": "Referencia Estándar",
+        "What Employers Should Send Us": "Qué Deben Enviarnos los Empleadores",
+
+        "OSHA Medical Surveillance Programs": "Programas de Vigilancia Médica OSHA",
+        "Screening vs. Surveillance: An Important Distinction": "Detección vs. Vigilancia: Una Distinción Importante",
+        "Respiratory Protection Program": "Programa de Protección Respiratoria",
+        "Hearing Conservation Program": "Programa de Conservación Auditiva",
+        "Chemical & Hazardous Substance Exposure": "Exposición a Sustancias Químicas y Peligrosas",
+        "Ergonomic & Musculoskeletal Surveillance": "Vigilancia Ergonómica y Musculoesquelética",
+        "TB Surveillance (Healthcare & High-Risk Settings)": "Vigilancia de TB (Entornos de Salud y Alto Riesgo)",
+        "OSHA Documentation & Record-Keeping": "Documentación y Mantenimiento de Registros OSHA",
+
+        "Diagnostic Testing Capabilities": "Capacidades de Pruebas Diagnósticas",
+        "Test": "Prueba",
+        "What It Measures": "Qué Mide",
+        "Typical Use": "Uso Típico",
+        "Structured Reporting for Employers": "Informes Estructurados para Empleadores",
+
+        "5-Panel Screen": "Panel de 5 Pruebas",
+        "10-Panel Screen": "Panel de 10 Pruebas",
+        "16-Panel Screen": "Panel de 16 Pruebas",
+        "Testing Types We Perform": "Tipos de Pruebas que Realizamos",
+        "Random": "Aleatorio",
+        "Post-Accident": "Post-Accidente",
+        "Reasonable Suspicion": "Sospecha Razonable",
+
+        "Workers' Compensation & Return-to-Work": "Compensación Laboral y Regreso al Trabajo",
+        "Workplace Injury Care": "Atención de Lesiones Laborales",
+        "Return-to-Work Evaluations": "Evaluaciones de Regreso al Trabajo",
+        "Initial Injury Evaluation": "Evaluación Inicial de Lesión",
+        "Diagnosis & Treatment Plan": "Diagnóstico y Plan de Tratamiento",
+        "Work Status Documentation": "Documentación de Estado Laboral",
+        "Ongoing Follow-Up": "Seguimiento Continuo",
+        "Maryland WCC Compliance": "Cumplimiento con WCC de Maryland",
+        "Medical Record Review": "Revisión de Registros Médicos",
+        "Functional Capacity Assessment": "Evaluación de Capacidad Funcional",
+        "Work Restriction Determination": "Determinación de Restricciones Laborales",
+        "Medical Clearance Letter": "Carta de Autorización Médica",
+        "Modified Duty Planning": "Planificación de Deberes Modificados",
+        "Common Occupational Injuries We Treat": "Lesiones Ocupacionales Comunes que Tratamos",
+
+        "On-Site Corporate Wellness Programs": "Programas de Bienestar Corporativo en el Lugar",
+        "Seasonal Flu Shot Clinics": "Clínicas de Vacunas contra la Gripe Estacionales",
+        "Biometric Screenings": "Exámenes Biométricos",
+        "Blood Pressure & Cardiovascular Checks": "Controles de Presión Arterial y Cardiovasculares",
+        "TB & Infectious Disease Screening": "Detección de TB y Enfermedades Infecciosas",
+        "Health Education & Counseling": "Educación y Asesoría en Salud",
+        "Flexible Scheduling for Any Team Size": "Programación Flexible para Cualquier Tamaño de Equipo",
+        "Vaccination": "Vacunación",
+        "Screening": "Detección",
+        "Cardiovascular": "Cardiovascular",
+        "Infectious Disease": "Enfermedad Infecciosa",
+        "Education": "Educación",
+        "Logistics": "Logística",
+
+        "Occupational Vaccinations": "Vacunas Ocupacionales",
+        "Vaccine": "Vacuna",
+        "Schedule / Notes": "Horario / Notas",
+        "ACIP-Based Vaccination Guidance": "Guía de Vacunación Basada en ACIP",
+
+        "Ready to Build Your Corporate Health Program?": "¿Listo para Crear Su Programa de Salud Corporativa?",
+
+        "What is included in a pre-employment physical?": "¿Qué incluye un examen físico previo al empleo?",
+        "What OSHA surveillance programs do you support?": "¿Qué programas de vigilancia OSHA apoyan?",
+        "What is a respirator fit test and how often is it required?": "¿Qué es una prueba de ajuste de respirador y con qué frecuencia se requiere?",
+        "Do you handle workers' compensation cases?": "¿Manejan casos de compensación laboral?",
+        "What drug panels do you offer?": "¿Qué paneles de pruebas de drogas ofrecen?",
+        "Can you come to our workplace for wellness events?": "¿Pueden ir a nuestro lugar de trabajo para eventos de bienestar?",
+        "How do I set up a corporate account for ongoing occupational health services?":
+            "¿Cómo establezco una cuenta corporativa para servicios continuos de salud ocupacional?",
+        "What is the difference between medical screening and medical surveillance?":
+            "¿Cuál es la diferencia entre detección médica y vigilancia médica?",
+
+        "Answers to common questions from HR managers, safety officers, and business owners exploring occupational health programs.":
+            "Respuestas a preguntas comunes de gerentes de RR.HH., oficiales de seguridad y propietarios de negocios que exploran programas de salud ocupacional.",
+
         // ── Five Elements Acupuncture page ──
         "Five Elements Acupuncture & Wellness - Licensed Acupuncture in Gaithersburg, MD":
             "Acupuntura y Bienestar Cinco Elementos - Acupuntura Licenciada en Gaithersburg, MD",
@@ -982,6 +1249,159 @@
         "Integration": "Integración",
         "Insurance": "Seguros",
         "Preparation": "Preparación",
+
+        // ── Immigration Physicals page (dedicated) ──
+        "Immigration Physicals & I-693 Medical Exams": "Exámenes Físicos de Inmigración y Exámenes Médicos I-693",
+        "I-693 USCIS medical exams by an authorized civil surgeon — vaccinations, lab work, and sealed paperwork for green card applicants.":
+            "Exámenes médicos I-693 USCIS por un cirujano civil autorizado — vacunas, análisis de laboratorio y documentación sellada para solicitantes de tarjeta verde.",
+        "What Is an Immigration Physical?": "¿Qué Es un Examen Físico de Inmigración?",
+        "Purpose of the Exam": "Propósito del Examen",
+        "Who Needs This Exam?": "¿Quién Necesita Este Examen?",
+        "Dr. Kessous Is a USCIS-Authorized Civil Surgeon": "El Dr. Kessous Es un Cirujano Civil Autorizado por USCIS",
+        "What to Bring to Your Immigration Physical": "Qué Traer a Su Examen Físico de Inmigración",
+        "Passport, driver's license, or state ID": "Pasaporte, licencia de conducir o identificación estatal",
+        "Translated to English if needed": "Traducidos al inglés si es necesario",
+        "Names, dosages, and reasons": "Nombres, dosis y razones",
+        "Any previous test results": "Cualquier resultado de pruebas previas",
+        "Additional Items (If Applicable)": "Artículos Adicionales (Si Aplica)",
+        "The Exam Process — What to Expect": "El Proceso del Examen — Qué Esperar",
+        "First Visit — Lab Work & Records Review": "Primera Visita — Análisis de Laboratorio y Revisión de Registros",
+        "Second Visit — Physical Exam & I-693": "Segunda Visita — Examen Físico e I-693",
+        "Required Vaccinations for Immigration": "Vacunas Requeridas para Inmigración",
+        "Required For": "Requerido Para",
+        "Notes": "Notas",
+        "After the Exam — Turnaround & Next Steps": "Después del Examen — Procesamiento y Próximos Pasos",
+        "Do Not Open": "No Abrir",
+        "Submitting to USCIS": "Presentación ante USCIS",
+        "Official Government Resources": "Recursos Oficiales del Gobierno",
+        "Form I-693 Instructions": "Instrucciones del Formulario I-693",
+        "Form I-485 Instructions": "Instrucciones del Formulario I-485",
+        "USCIS: Finding a Medical Doctor": "USCIS: Encontrar un Médico",
+        "CDC Civil Surgeon Resources": "Recursos de Cirujanos Civiles del CDC",
+        "Common questions about immigration physicals and Form I-693.":
+            "Preguntas comunes sobre exámenes físicos de inmigración y el Formulario I-693.",
+        "What is a Form I-693 immigration physical?": "¿Qué es un examen físico de inmigración del Formulario I-693?",
+        "What does the immigration physical include?": "¿Qué incluye el examen físico de inmigración?",
+        "How many visits does the immigration physical require?": "¿Cuántas visitas requiere el examen físico de inmigración?",
+        "How long does it take to get the I-693 paperwork back?": "¿Cuánto tiempo tarda en obtener la documentación I-693?",
+        "What should I bring to my immigration physical?": "¿Qué debo llevar a mi examen físico de inmigración?",
+        "Can I open the sealed I-693 envelope?": "¿Puedo abrir el sobre sellado del I-693?",
+        "Does insurance cover the immigration physical?": "¿El seguro cubre el examen físico de inmigración?",
+        "How long is the I-693 valid?": "¿Cuánto tiempo es válido el I-693?",
+        "What if my exam reveals a medical problem?": "¿Qué pasa si mi examen revela un problema médico?",
+        "Contact us to book your USCIS immigration medical examination with Dr. Kessous.":
+            "Contáctenos para reservar su examen médico de inmigración USCIS con el Dr. Kessous.",
+        "Call to Schedule": "Llame para Programar",
+        "Search civil surgeons →": "Buscar cirujanos civiles →",
+        "View CDC guide →": "Ver guía del CDC →",
+        "View form →": "Ver formulario →",
+        "Read USCIS guide →": "Leer guía de USCIS →",
+        "View CDC resources →": "Ver recursos del CDC →",
+        "Bring Your Vaccination Records": "Traiga Sus Registros de Vacunación",
+
+        // ── FAA Pilot Resources page ──
+        "Everything you need to prepare for your FAA medical exam — certificate classes, medication lookup, CACI worksheets, and pre-visit checklists.":
+            "Todo lo que necesita para prepararse para su examen médico FAA — clases de certificados, búsqueda de medicamentos, hojas de trabajo CACI y listas de verificación previas a la visita.",
+        "Medical Certificate Classes": "Clases de Certificados Médicos",
+        "New vs. Returning Pilots": "Pilotos Nuevos vs. Pilotos que Regresan",
+        "Pre-Visit Checklist": "Lista de Verificación Previa a la Visita",
+        "Medication Lookup": "Búsqueda de Medicamentos",
+        "CACI Worksheets": "Hojas de Trabajo CACI",
+        "Official FAA Resources": "Recursos Oficiales de la FAA",
+        "Book FAA Physical": "Reservar Examen Físico FAA",
+        "Book Your FAA Physical": "Reserve Su Examen Físico FAA",
+        "FAA Medical Certificate Classes": "Clases de Certificados Médicos FAA",
+        "Airline Transport Pilot (ATP)": "Piloto de Transporte Aéreo (ATP)",
+        "Private & Student Pilot": "Piloto Privado y Estudiante",
+        "Validity Periods & Renewal Schedule": "Períodos de Validez y Calendario de Renovación",
+        "Medical Class": "Clase Médica",
+        "Privileges": "Privilegios",
+        "Under Age 40": "Menores de 40 Años",
+        "Age 40 & Older": "Mayores de 40 Años",
+        "Guidance for New & Returning Pilots": "Guía para Pilotos Nuevos y que Regresan",
+        "First-Time / Student Pilots": "Pilotos por Primera Vez / Estudiantes",
+        "Returning / Experienced Pilots": "Pilotos que Regresan / Experimentados",
+        "Getting Started": "Comenzar",
+        "What to Expect at Your First Exam": "Qué Esperar en Su Primer Examen",
+        "Certification Maintenance": "Mantenimiento de Certificación",
+        "Managing New Conditions": "Manejo de Nuevas Condiciones",
+        "Flight Physical Pre-Visit Checklist": "Lista de Verificación Previa al Examen Físico de Vuelo",
+        "Good to know:": "Bueno saber:",
+        "FAA Medication Lookup": "Búsqueda de Medicamentos FAA",
+        "Quick Medication Search": "Búsqueda Rápida de Medicamentos",
+        "All Categories": "Todas las Categorías",
+        "All Statuses": "Todos los Estados",
+        "Allowed": "Permitido",
+        "Not Allowed": "No Permitido",
+        "Loading medications…": "Cargando medicamentos…",
+        "For informational purposes only. Based on publicly available FAA guidance.":
+            "Solo con fines informativos. Basado en la guía FAA disponible públicamente.",
+        "Common OTC Wait Times": "Tiempos de Espera Comunes para Medicamentos de Venta Libre",
+        "CACI Condition Worksheets": "Hojas de Trabajo de Condiciones CACI",
+        "What Must a DCPN Include?": "¿Qué Debe Incluir un DCPN?",
+        "PDF Worksheet": "Hoja de Trabajo PDF",
+        "Official FAA Medication Resources": "Recursos Oficiales de Medicamentos FAA",
+        "FAA Pharmaceuticals Guide": "Guía de Fármacos FAA",
+        "Do Not Issue / Do Not Fly List": "Lista de No Emitir / No Volar",
+        "OTC Medications Reference": "Referencia de Medicamentos de Venta Libre",
+        "Pilot Medication Brochure": "Folleto de Medicamentos para Pilotos",
+        "Pilots & Medication Safety Briefing": "Sesión Informativa sobre Pilotos y Seguridad de Medicamentos",
+        "Search full database →": "Buscar base de datos completa →",
+        "View guide →": "Ver guía →",
+        "View DNI/DNF list →": "Ver lista DNI/DNF →",
+        "View OTC guide →": "Ver guía de venta libre →",
+        "Download PDF →": "Descargar PDF →",
+        "Read article →": "Leer artículo →",
+        "Common questions about FAA medical certification, medications, and CACI.":
+            "Preguntas comunes sobre certificación médica FAA, medicamentos y CACI.",
+        "What is a CACI condition?": "¿Qué es una condición CACI?",
+        "What happens if I don't renew my Class 1 medical on time?":
+            "¿Qué pasa si no renuevo mi certificado médico Clase 1 a tiempo?",
+        "Do I need to complete MedXPress before my exam?": "¿Necesito completar MedXPress antes de mi examen?",
+        "How do I know if my medication is approved for flying?":
+            "¿Cómo sé si mi medicamento está aprobado para volar?",
+        "What is BasicMed?": "¿Qué es BasicMed?",
+        "Does insurance cover FAA physicals?": "¿El seguro cubre los exámenes físicos FAA?",
+        "What if I don't meet medical criteria at the time of exam?":
+            "¿Qué pasa si no cumplo los criterios médicos al momento del examen?",
+        "Book online or call us to set up your aviation medical examination with Dr. Kessous.":
+            "Reserve en línea o llámenos para programar su examen médico de aviación con el Dr. Kessous.",
+
+        // ── Privacy Policy & Terms of Service ──
+        "Privacy Policy": "Política de Privacidad",
+        "How Montgomery Medical Clinic collects, uses, and protects your information.":
+            "Cómo Montgomery Medical Clinic recopila, utiliza y protege su información.",
+        "Last Updated:": "Última Actualización:",
+        "Terms of Service": "Términos de Servicio",
+        "Terms and conditions governing your use of the Montgomery Medical Clinic website.":
+            "Términos y condiciones que rigen el uso del sitio web de Montgomery Medical Clinic.",
+        "1. Information We Collect": "1. Información que Recopilamos",
+        "2. How We Use Your Information": "2. Cómo Usamos Su Información",
+        "3. Protected Health Information (PHI) & HIPAA": "3. Información de Salud Protegida (PHI) y HIPAA",
+        "4. Cookies and Local Storage": "4. Cookies y Almacenamiento Local",
+        "5. How We Share Your Information": "5. Cómo Compartimos Su Información",
+        "6. Data Security": "6. Seguridad de Datos",
+        "7. Children's Privacy": "7. Privacidad de los Niños",
+        "8. Your Rights and Choices": "8. Sus Derechos y Opciones",
+        "9. Third-Party Links": "9. Enlaces de Terceros",
+        "10. Changes to This Privacy Policy": "10. Cambios a Esta Política de Privacidad",
+        "11. Contact Us": "11. Contáctenos",
+        "12. Complaints": "12. Quejas",
+        "1. Acceptance of Terms": "1. Aceptación de los Términos",
+        "2. Website Purpose & Medical Disclaimer": "2. Propósito del Sitio Web y Descargo de Responsabilidad Médica",
+        "3. Use of the Website": "3. Uso del Sitio Web",
+        "4. Third-Party Services & Links": "4. Servicios y Enlaces de Terceros",
+        "5. Intellectual Property": "5. Propiedad Intelectual",
+        "6. Disclaimer of Warranties": "6. Descargo de Garantías",
+        "7. Limitation of Liability": "7. Limitación de Responsabilidad",
+        "8. Indemnification": "8. Indemnización",
+        "9. Appointment Scheduling & Cancellation": "9. Programación y Cancelación de Citas",
+        "10. Insurance & Payment": "10. Seguros y Pagos",
+        "11. Accessibility": "11. Accesibilidad",
+        "12. Governing Law & Jurisdiction": "12. Ley Aplicable y Jurisdicción",
+        "13. Severability": "13. Divisibilidad",
+        "14. Entire Agreement": "14. Acuerdo Completo",
+        "15. Contact Information": "15. Información de Contacto",
     };
 
     // Build reverse map for EN restore

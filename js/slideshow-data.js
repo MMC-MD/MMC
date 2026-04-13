@@ -10,9 +10,9 @@
             enabled: true,
             accent: '#e67e22',
             pill: { en: 'Available Today', es: 'Disponible Hoy' },
-            title: { en: 'Seasonal Flu Shots Are Here', es: 'Las Vacunas contra la Gripe Estan Aqui' },
+            title: { en: 'Seasonal Flu Shots Are Here', es: 'Las Vacunas contra la Gripe Están Aquí' },
             titleAccent: { en: 'Flu Shots', es: 'Vacunas contra la Gripe' },
-            kicker: { en: 'Protect yourself this season', es: 'Protejase esta temporada' },
+            kicker: { en: 'Protect yourself this season', es: 'Protéjase esta temporada' },
             subtext: { en: '', es: '' },
             ctaLabel: { en: 'Walk-Ins Welcome', es: 'Sin Cita Previa' },
             ctaUrl: 'https://nextpatient.co/p/montgomerymedclinic/schedule',
@@ -24,8 +24,8 @@
             enabled: true,
             accent: '#0d47a1',
             pill: { en: 'Specialized Services', es: 'Servicios Especializados' },
-            title: { en: 'FAA & Immigration Physicals', es: 'Examenes Fisicos de FAA e Inmigracion' },
-            titleAccent: { en: 'Physicals', es: 'FAA e Inmigracion' },
+            title: { en: 'FAA & Immigration Physicals', es: 'Exámenes Físicos de FAA e Inmigración' },
+            titleAccent: { en: 'Physicals', es: 'FAA e Inmigración' },
             kicker: { en: '', es: '' },
             subtext: { en: '', es: '' },
             ctaLabel: { en: '', es: '' },
@@ -34,7 +34,7 @@
             credentials: [
                 {
                     en: 'Authorized Aviation Medical Examiner',
-                    es: 'Examinador Medico de Aviacion Autorizado'
+                    es: 'Examinador Médico de Aviación Autorizado'
                 },
                 {
                     en: 'USCIS-Authorized Civil Surgeon',
@@ -47,12 +47,12 @@
             enabled: true,
             accent: '#1976d2',
             pill: { en: 'Available Today', es: 'Disponible Hoy' },
-            title: { en: 'Same Day Urgent Care', es: 'Atencion Urgente el Mismo Dia' },
-            titleAccent: { en: 'Urgent Care', es: 'Atencion Urgente' },
+            title: { en: 'Same Day Urgent Care', es: 'Atención Urgente el Mismo Día' },
+            titleAccent: { en: 'Urgent Care', es: 'Atención Urgente' },
             kicker: { en: '', es: '' },
             subtext: {
                 en: 'No appointment needed • Walk-in basis at our medical center',
-                es: 'Sin cita previa • Atencion sin reserva en nuestro centro medico'
+                es: 'Sin cita previa • Atención sin reserva en nuestro centro médico'
             },
             ctaLabel: { en: 'Schedule Appointment', es: 'Programar Cita' },
             ctaUrl: 'https://nextpatient.co/p/montgomerymedclinic/schedule',
@@ -72,7 +72,7 @@
             kicker: { en: '', es: '' },
             subtext: {
                 en: 'Comprehensive multi-specialty care with expert doctors under one roof.',
-                es: 'Atencion integral multiespecialidad con medicos expertos bajo un mismo techo.'
+                es: 'Atención integral multiespecialidad con médicos expertos bajo un mismo techo.'
             },
             ctaLabel: { en: 'Explore Our Services', es: 'Explorar Nuestros Servicios' },
             ctaUrl: '#services',
@@ -262,15 +262,15 @@
     function createSlideTemplate() {
         return normalizeSlide({
             accent: DEFAULT_ACCENT,
-            pill: { en: 'New Update', es: 'Nueva Actualizacion' },
-            title: { en: 'Add your new slide title', es: 'Agregue el titulo de la diapositiva' },
+            pill: { en: 'New Update', es: 'Nueva Actualización' },
+            title: { en: 'Add your new slide title', es: 'Agregue el título de la diapositiva' },
             titleAccent: { en: 'new slide', es: 'diapositiva' },
             kicker: { en: '', es: '' },
             subtext: {
                 en: 'Describe the update you want visitors to notice on the homepage.',
-                es: 'Describa la actualizacion que quiere mostrar en la pagina principal.'
+                es: 'Describa la actualización que quiere mostrar en la página principal.'
             },
-            ctaLabel: { en: 'Learn More', es: 'Mas Informacion' },
+            ctaLabel: { en: 'Learn More', es: 'Más Información' },
             ctaUrl: '#services',
             ctaNewTab: false,
             credentials: []
