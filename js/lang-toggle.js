@@ -956,6 +956,78 @@
         "MD, Board Certified Dermatologist": "MD, Dermatóloga Certificada",
         "MD, MPH, Board Certified Dermatologist": "MD, MPH, Dermatóloga Certificada",
 
+        // ── Dermatology page (exact HTML text) ──
+        "Welcome to Our Dermatology Practice": "Bienvenido a Nuestra Práctica de Dermatología",
+        "Comprehensive dermatology services for all your skin, hair, and nail concerns.":
+            "Servicios integrales de dermatología para todas sus preocupaciones de piel, cabello y uñas.",
+        "At Montgomery Medical Clinic, we offer comprehensive dermatology services. Whether you're concerned about acne, hair loss, or chronic skin disorders, our experts use the latest treatment techniques to address your needs.":
+            "En Montgomery Medical Clinic, ofrecemos servicios integrales de dermatología. Ya sea que le preocupe el acné, la pérdida de cabello o los trastornos crónicos de la piel, nuestros expertos utilizan las últimas técnicas de tratamiento para atender sus necesidades.",
+        "Getting a Diagnosis": "Obtener un Diagnóstico",
+        "This year alone, thousands of people will be diagnosed with skin cancer. Early detection is essential for your skin and overall health. We provide comprehensive screenings to catch potential issues early.":
+            "Solo este año, miles de personas serán diagnosticadas con cáncer de piel. La detección temprana es esencial para su piel y salud general. Proporcionamos exámenes integrales para detectar posibles problemas a tiempo.",
+        "Our highly experienced dermatologists have extensive expertise in detecting and treating skin cancers before they spread.":
+            "Nuestros dermatólogos con amplia experiencia tienen extensa pericia en la detección y tratamiento de cánceres de piel antes de que se propaguen.",
+        "Our Dermatology Services": "Nuestros Servicios de Dermatología",
+        "From medical treatments to aesthetic procedures, we offer complete skin care solutions":
+            "Desde tratamientos médicos hasta procedimientos estéticos, ofrecemos soluciones completas de cuidado de la piel",
+        "Common Conditions We Treat": "Condiciones Comunes que Tratamos",
+        "Expert diagnosis and treatment for a wide range of skin conditions":
+            "Diagnóstico experto y tratamiento para una amplia gama de condiciones de la piel",
+        "Skin Cancer Screenings & Prevention": "Detección de Cáncer de Piel y Prevención",
+        "Acne Treatment (All Ages)": "Tratamiento de Acné (Todas las Edades)",
+        "Our Dermatology Providers": "Nuestros Proveedores de Dermatología",
+        "Expert dermatology care from experienced, board-certified professionals.":
+            "Atención dermatológica experta de profesionales experimentados y certificados.",
+        "Common questions about our dermatology services in Gaithersburg, MD.":
+            "Preguntas comunes sobre nuestros servicios de dermatología en Gaithersburg, MD.",
+        "Do I need a referral to see a dermatologist at Montgomery Medical Clinic?":
+            "¿Necesito una referencia para ver a un dermatólogo en Montgomery Medical Clinic?",
+        "No referral is needed": "No se necesita referencia",
+        "for most patients. You can schedule a dermatology appointment directly by calling":
+            "para la mayoría de los pacientes. Puede programar una cita de dermatología directamente llamando al",
+        "or booking online.": "o reservando en línea.",
+        "booking online": "reservando en línea",
+        "Some insurance plans may require a referral, so we recommend checking with your provider first.":
+            "Algunos planes de seguro pueden requerir una referencia, por lo que recomendamos consultar primero con su proveedor.",
+        "What skin conditions do you treat?": "¿Qué condiciones de la piel tratan?",
+        "We treat a full range of": "Tratamos una gama completa de",
+        "skin, hair, and nail conditions": "condiciones de piel, cabello y uñas",
+        ", including:": ", incluyendo:",
+        "including:": "incluyendo:",
+        "Acne, eczema, psoriasis, and rosacea": "Acné, eczema, psoriasis y rosácea",
+        "Hair loss and fungal infections": "Pérdida de cabello e infecciones fúngicas",
+        "Warts, skin tags, and suspicious moles": "Verrugas, fibromas y lunares sospechosos",
+        "Skin cancer screenings and biopsies": "Detecciones de cáncer de piel y biopsias",
+        "Does Montgomery Medical Clinic offer skin cancer screenings?":
+            "¿Montgomery Medical Clinic ofrece detecciones de cáncer de piel?",
+        "Our dermatologists perform comprehensive full-body skin exams to check for melanoma and other skin cancers.":
+            "Nuestros dermatólogos realizan exámenes integrales de piel de cuerpo completo para detectar melanoma y otros cánceres de piel.",
+        "Early detection is critical": "La detección temprana es crítica",
+        "we recommend": "recomendamos",
+        "annual screenings": "exámenes anuales",
+        "especially if you have a family history of skin cancer or a large number of moles.":
+            "especialmente si tiene antecedentes familiares de cáncer de piel o una gran cantidad de lunares.",
+        ", especially if you have a family history of skin cancer or a large number of moles.":
+            ", especialmente si tiene antecedentes familiares de cáncer de piel o una gran cantidad de lunares.",
+        "Do you offer cosmetic dermatology services?": "¿Ofrecen servicios de dermatología cosmética?",
+        ", we offer cosmetic dermatology treatments.": ", ofrecemos tratamientos de dermatología cosmética.",
+        "Contact our office at": "Comuníquese con nuestra oficina al",
+        "for details about available cosmetic procedures and to schedule a consultation.":
+            "para obtener detalles sobre los procedimientos cosméticos disponibles y programar una consulta.",
+        "Does insurance cover dermatology visits?": "¿El seguro cubre las visitas de dermatología?",
+        "Most medical dermatology visits are covered": "La mayoría de las visitas de dermatología médica están cubiertas",
+        "by insurance. We accept Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid, and many more.":
+            "por el seguro. Aceptamos Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid y muchos más.",
+        "Cosmetic procedures are typically not covered. Call us to verify your specific plan.":
+            "Los procedimientos cosméticos generalmente no están cubiertos. Llámenos para verificar su plan específico.",
+        "Ready for Expert Skin Care?": "¿Listo para Atención Dermatológica Experta?",
+        "Schedule your consultation with our experienced dermatologists today.":
+            "Programe su consulta con nuestros dermatólogos experimentados hoy.",
+        "Dr. Mitchum completed her Dermatology Residency with the National Capital Consortium and a Fellowship in Cutaneous Oncology at the Dana-Farber Cancer Institute and Brigham and Women's Hospital, Harvard University. She also worked as a Medical Officer in the Division of Oncology at the U.S. Food and Drug Administration, where she contributed to national cancer drug evaluation and clinical research oversight.":
+            "La Dra. Mitchum completó su Residencia en Dermatología con el Consorcio de la Capital Nacional y una Beca en Oncología Cutánea en el Instituto de Cáncer Dana-Farber y el Hospital Brigham and Women's, Universidad de Harvard. También trabajó como Oficial Médica en la División de Oncología de la Administración de Alimentos y Medicamentos de los EE.UU., donde contribuyó a la evaluación nacional de medicamentos contra el cáncer y la supervisión de investigación clínica.",
+        "Her clinical interests include general medical dermatology, skin cancer diagnosis and treatment, and complex skin disorders. At Montgomery Medical Clinic Dermatology, Dr. Mitchum is dedicated to providing evidence-based, compassionate care—combining her background in medicine, oncology, and aviation to deliver precise, patient-centered treatment.":
+            "Sus intereses clínicos incluyen dermatología médica general, diagnóstico y tratamiento del cáncer de piel, y trastornos cutáneos complejos. En Montgomery Medical Clinic Dermatología, la Dra. Mitchum está dedicada a proporcionar atención basada en evidencia y compasiva, combinando su experiencia en medicina, oncología y aviación para brindar un tratamiento preciso y centrado en el paciente.",
+
         // ── Urgent & Primary Care page ──
         "Urgent Care Center & Primary Care": "Centro de Atención Urgente y Atención Primaria",
         "Comprehensive Urgent Care and Primary Care Services": "Servicios Integrales de Atención Urgente y Atención Primaria",
