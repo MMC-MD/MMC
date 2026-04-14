@@ -2426,7 +2426,7 @@ function renderScheduledBannerCard(entry) {
 
     var recurrenceLabel = '';
     if ((isWeekly || isBiweekly) && activeDays.length > 0) {
-        recurrenceLabel = activeDays.map(function(d) { return dayNames[d]; }).join(', ');
+        recurrenceLabel = activeDays.map(function (d) { return dayNames[d]; }).join(', ');
     }
 
     var dateDisplay = '';
@@ -2439,7 +2439,7 @@ function renderScheduledBannerCard(entry) {
         dateDisplay = '<span class="sched-date-range"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px;margin-right:3px;"><rect x="1.5" y="1.5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1"/><path d="M1.5 4.5h9M4 1.5v2M8 1.5v2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>' + formatDateDisplay(entry.startDate) + ' &mdash; ' + formatDateDisplay(entry.endDate) + '</span>';
     }
 
-    var dayPickerHtml = dayLabels.map(function(lbl, idx) {
+    var dayPickerHtml = dayLabels.map(function (lbl, idx) {
         var active = activeDays.indexOf(idx) !== -1 ? ' is-active' : '';
         return '<button type="button" class="sched-day-btn' + active + '" data-sched-day="' + idx + '">' + lbl + '</button>';
     }).join('');
@@ -2615,7 +2615,7 @@ function readScheduledBannerFromCard(card) {
     var activeModeBtn = card.querySelector('.sched-mode-btn.is-active');
     var mode = activeModeBtn ? activeModeBtn.dataset.schedMode : 'dates';
     var activeDayBtns = card.querySelectorAll('.sched-day-btn.is-active');
-    var days = Array.from(activeDayBtns).map(function(btn) { return parseInt(btn.dataset.schedDay, 10); }).filter(function(d) { return !isNaN(d); });
+    var days = Array.from(activeDayBtns).map(function (btn) { return parseInt(btn.dataset.schedDay, 10); }).filter(function (d) { return !isNaN(d); });
 
     var recurrenceObj = { mode: mode, days: days };
     if (mode === 'biweekly') {
@@ -3081,18 +3081,46 @@ async function handlePasswordReset() {
     const email = elements.emailInput ? elements.emailInput.value.trim() : '';
 
     if (!email) {
-        setLockMessage('Enter the admin email first, then request a reset link.', 'warning');
+        setLockMessage('Enter your admin email address above, then click Forgot Password.', 'warning');
         if (elements.emailInput) {
             elements.emailInput.focus();
         }
         return;
     }
 
+    // Basic email format check before hitting Firebase
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setLockMessage('Enter a valid email address.', 'warning');
+        if (elements.emailInput) {
+            elements.emailInput.focus();
+        }
+        return;
+    }
+
+    setLockMessage('Sending reset link…', 'info');
+
     try {
         await sendAdminPasswordReset(email);
-        setLockMessage('Password reset email sent.', 'success');
+        // Success — only authorized/registered users exist in Firebase,
+        // so reaching here confirms the email is a valid approved account.
+        setLockMessage(
+            '\u2713 Reset link sent to ' + email + '. ' +
+            'Check your inbox and your Spam/Junk folder. ' +
+            'The email will come from \u201Cmmcoffice\u201D at mmc@mmcblog-6573f.firebaseapp.com \u2014 ' +
+            'look for it there if you don\u2019t see it in your inbox.',
+            'success'
+        );
     } catch (error) {
-        setLockMessage(getFriendlyFirebaseError(error), 'danger');
+        const code = error && error.code ? error.code : '';
+        if (code === 'auth/user-not-found' || code === 'auth/invalid-email') {
+            setLockMessage(
+                'That email address is not registered as an authorized admin. ' +
+                'Only approved office accounts can reset their password here.',
+                'danger'
+            );
+        } else {
+            setLockMessage(getFriendlyFirebaseError(error), 'danger');
+        }
     }
 }
 
@@ -3760,10 +3788,10 @@ function buildSchedTemplateBannerHtml(tmpl) {
     var banner = tmpl.isGroup ? tmpl.entries[0].banner : tmpl.banner;
     var color = (banner && banner.color) || 'red';
     var pillText = (banner && banner.pill && banner.pill.en) ? escapeHtml(banner.pill.en) : '';
-    var msgText  = (banner && banner.message && banner.message.en) ? escapeHtml(banner.message.en) : '';
-    var ctaText  = (banner && banner.ctaLabel && banner.ctaLabel.en) ? escapeHtml(banner.ctaLabel.en) : '';
-    var ctaUrl   = (banner && banner.ctaUrl) ? escapeHtml(banner.ctaUrl) : '';
-    var showPill  = !!(banner && banner.showPill && pillText);
+    var msgText = (banner && banner.message && banner.message.en) ? escapeHtml(banner.message.en) : '';
+    var ctaText = (banner && banner.ctaLabel && banner.ctaLabel.en) ? escapeHtml(banner.ctaLabel.en) : '';
+    var ctaUrl = (banner && banner.ctaUrl) ? escapeHtml(banner.ctaUrl) : '';
+    var showPill = !!(banner && banner.showPill && pillText);
     var showButton = !!(banner && banner.showButton && ctaText && ctaUrl);
 
     return [
@@ -3803,7 +3831,7 @@ function buildTmplPreviewHtml(kind, id) {
         var recMode = tmpl.isGroup
             ? 'Alternating weeks'
             : (tmpl.recurrence && tmpl.recurrence.mode === 'weekly' ? 'Repeats weekly' :
-               tmpl.recurrence && tmpl.recurrence.mode === 'dates' ? 'Specific dates' : '');
+                tmpl.recurrence && tmpl.recurrence.mode === 'dates' ? 'Specific dates' : '');
         var entryCount = tmpl.isGroup ? tmpl.entries.length + ' banners created' : null;
         return {
             title: 'Template Preview',
@@ -3835,8 +3863,8 @@ function showTmplPreview(anchor, kind, id) {
 
     var metaHtml = data.metaChips.length
         ? '<div class="tmpl-preview-meta">' +
-          data.metaChips.map(function (c) { return '<span class="tmpl-preview-meta-chip">' + escapeHtml(c) + '</span>'; }).join('') +
-          '</div>'
+        data.metaChips.map(function (c) { return '<span class="tmpl-preview-meta-chip">' + escapeHtml(c) + '</span>'; }).join('') +
+        '</div>'
         : '';
 
     var groupNoteHtml = data.groupNote
@@ -3845,8 +3873,8 @@ function showTmplPreview(anchor, kind, id) {
 
     card.innerHTML =
         '<div class="tmpl-preview-header">' +
-            '<span class="tmpl-preview-title">' + escapeHtml(data.title) + '</span>' +
-            '<span class="tmpl-preview-name">' + escapeHtml(data.name) + '</span>' +
+        '<span class="tmpl-preview-title">' + escapeHtml(data.title) + '</span>' +
+        '<span class="tmpl-preview-name">' + escapeHtml(data.name) + '</span>' +
         '</div>' +
         bannerSection +
         metaHtml +
@@ -3880,7 +3908,7 @@ function showTmplPreview(anchor, kind, id) {
     // (We use a simpler approach: just center the arrow at popover center since we already centered on button)
 
     pop.style.left = left + 'px';
-    pop.style.top  = top + 'px';
+    pop.style.top = top + 'px';
 
     // Force a reflow so the transition fires
     void pop.offsetWidth;
