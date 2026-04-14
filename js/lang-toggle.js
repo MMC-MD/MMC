@@ -1185,11 +1185,39 @@
             "La Dra. Min Lu es una acupunturista licenciada dedicada a proporcionar excepcional atención de",
         "care tailored to your unique health needs, integrating traditional Chinese medicine with modern biomedical knowledge.":
             "adaptada a sus necesidades únicas de salud, integrando la medicina tradicional china con el conocimiento biomédico moderno.",
-        "Dr. Min Lu, L.Ac., DAOM (candidate)": "Dra. Min Lu, L.Ac., DAOM (candidata)",
-        "Licensed Acupuncturist | Doctor of Acupuncture and Oriental Medicine (DAOM) in progress":
-            "Acupunturista Licenciada | Doctora en Acupuntura y Medicina Oriental (DAOM) en progreso",
-        "Dr. Min Lu, a licensed acupuncturist in the State of Maryland, is currently pursuing her Doctor of Acupuncture and Oriental Medicine (DAOM) degree. She began to devote herself to acupuncture and integrative healing during the 2008 Olympic Games, when she witnessed the growing need for effective pain management—not only for athletes but also for the general public.":
-            "La Dra. Min Lu, una acupunturista licenciada en el Estado de Maryland, está cursando actualmente su Doctorado en Acupuntura y Medicina Oriental (DAOM). Comenzó a dedicarse a la acupuntura y a la curación integrativa durante los Juegos Olímpicos de 2008, cuando fue testigo de la creciente necesidad de un manejo eficaz del dolor, no solo para los atletas sino también para el público en general.",
+        "Licensed Acupuncturist · Maryland": "Acupunturista Licenciada · Maryland",
+        "Integrating traditional Chinese medicine with modern biomedical knowledge to deliver personalized, evidence-based care.":
+            "Integrando la medicina tradicional china con el conocimiento biomédico moderno para brindar atención personalizada basada en la evidencia.",
+        "Dr. Min Lu, L.Ac.": "Dra. Min Lu, L.Ac.",
+        "Doctor of Acupuncture and Oriental Medicine (DAOM)":
+            "Doctora en Acupuntura y Medicina Oriental (DAOM)",
+        "Dr. Min Lu is a licensed acupuncturist in the State of Maryland and holds a Doctor of Acupuncture and Oriental Medicine (DAOM). She began devoting herself to acupuncture and integrative healing during the 2008 Olympic Games, when she witnessed the growing need for effective pain management — not only for athletes but for the general public.":
+            "La Dra. Min Lu es una acupunturista licenciada en el Estado de Maryland y posee un Doctorado en Acupuntura y Medicina Oriental (DAOM). Comenzó a dedicarse a la acupuntura y a la curación integrativa durante los Juegos Olímpicos de 2008, cuando presenció la creciente necesidad de un manejo eficaz del dolor, no solo para los atletas sino también para el público en general.",
+        "With extensive clinical experience across both China and the United States, Dr. Lu holds a deep understanding of TCM philosophy — including Yin and Yang, the Five Elements, and the regulation of Qi, Blood, Jing, and Shen — and integrates these classical theories with modern anatomy, physiology, and pathology for safe, evidence-based care.":
+            "Con amplia experiencia clínica tanto en China como en los Estados Unidos, la Dra. Lu posee un profundo conocimiento de la filosofía de la MTC, incluidos el Yin y el Yang, los Cinco Elementos y la regulación del Qi, la Sangre, el Jing y el Shen, e integra estas teorías clásicas con la anatomía, fisiología y patología modernas para brindar una atención segura y basada en la evidencia.",
+        "Training & Lineage": "Formación y Linaje",
+        "She studied under Professor Biqin Wang, a renowned TCM gynecologist in Beijing, and Professor Guo Zhiqiang, a distinguished national TCM master. In the United States she apprenticed with Professor Guoping Zheng, the North American inheritor of the Lingnan Luo's Gynecology School. Drawing on her mentors' philosophy of \"treating the Kidney as the root,\" Dr. Lu applies the menstrual cycle regulation method (Tiao Zhou Fa) to fertility and reproductive health, with remarkable clinical outcomes in infertility, ovarian dysfunction, and menstrual disorders.":
+            "Estudió con la Profesora Biqin Wang, una reconocida ginecóloga de MTC en Beijing, y con el Profesor Guo Zhiqiang, un distinguido maestro nacional de MTC. En los Estados Unidos fue aprendiz del Profesor Guoping Zheng, heredero norteamericano de la Escuela de Ginecología Lingnan Luo. Basándose en la filosofía de sus mentores de \"tratar el Riñón como la raíz\", la Dra. Lu aplica el método de regulación del ciclo menstrual (Tiao Zhou Fa) a la fertilidad y la salud reproductiva, con resultados clínicos notables en infertilidad, disfunción ovárica y trastornos menstruales.",
+        "Prof. Biqin Wang — TCM Gynecology, Beijing": "Prof. Biqin Wang — Ginecología MTC, Beijing",
+        "Prof. Guo Zhiqiang — National TCM Master": "Prof. Guo Zhiqiang — Maestro Nacional de MTC",
+        "Prof. Guoping Zheng — Lingnan Luo's Gynecology, N.A. Inheritor":
+            "Prof. Guoping Zheng — Ginecología Lingnan Luo, heredero en Norteamérica",
+        "Professional Positions": "Cargos Profesionales",
+        "Board Member & Deputy Director of Academic Affairs, ATCMA-USA Youth Committee":
+            "Miembro de la Junta y Subdirectora de Asuntos Académicos, Comité Juvenil de ATCMA-USA",
+        "Council Member, Scalp Acupuncture Specialty Committee, WFCMS":
+            "Miembro del Consejo, Comité de Especialidad de Acupuntura del Cuero Cabelludo, WFCMS",
+        "Member, American Traditional Chinese Medicine Association":
+            "Miembro, Asociación Americana de Medicina Tradicional China",
+        "Member, American Society of Chinese Medicine & Acupuncture":
+            "Miembro, Sociedad Americana de Medicina China y Acupuntura",
+        "NCCAOM Clean Needle Technique (CNT)":
+            "Técnica de Aguja Limpia (CNT) de NCCAOM",
+        "Dr. Min Lu, L.Ac., DAOM": "Dra. Min Lu, L.Ac., DAOM",
+        "Licensed Acupuncturist | Doctor of Acupuncture and Oriental Medicine (DAOM)":
+            "Acupunturista Licenciada | Doctora en Acupuntura y Medicina Oriental (DAOM)",
+        "Dr. Min Lu, a licensed acupuncturist in the State of Maryland, holds a Doctor of Acupuncture and Oriental Medicine (DAOM). She began to devote herself to acupuncture and integrative healing during the 2008 Olympic Games, when she witnessed the growing need for effective pain management—not only for athletes but also for the general public.":
+            "La Dra. Min Lu, una acupunturista licenciada en el Estado de Maryland, posee un Doctorado en Acupuntura y Medicina Oriental (DAOM). Comenzó a dedicarse a la acupuntura y a la curación integrativa durante los Juegos Olímpicos de 2008, cuando fue testigo de la creciente necesidad de un manejo eficaz del dolor, no solo para los atletas sino también para el público en general.",
         "She has extensive clinical experience in both China and the United States, and possesses a deep understanding of Traditional Chinese Medicine (TCM) philosophy, including the principles of Yin and Yang, Five Elements, and the regulation of Qi, Blood, Jing, and Shen. In her clinical work, Dr. Lu integrates these classical theories with modern biomedical knowledge, including anatomy, physiology, and pathology, to provide safe and effective evidence-based care.":
             "Tiene una amplia experiencia clínica tanto en China como en los Estados Unidos, y posee un profundo conocimiento de la filosofía de la Medicina Tradicional China (MTC), incluyendo los principios del Yin y Yang, los Cinco Elementos, y la regulación del Qi, Sangre, Jing y Shen. En su trabajo clínico, la Dra. Lu integra estas teorías clásicas con el conocimiento biomédico moderno, incluyendo anatomía, fisiología y patología, para brindar atención segura y efectiva basada en la evidencia.",
         "Dr. Lu studied under Professor Biqin Wang, a renowned TCM gynecologist in Beijing, and Professor Guo Zhiqiang, a distinguished national TCM master. During her professional development in the United States, she also apprenticed with Professor Guoping Zheng, the North American inheritor of the Lingnan Luo's Gynecology School. Drawing upon her mentors' academic philosophy of \"treating the Kidney as the root,\" Dr. Lu applies the menstrual cycle regulation method (Tiao Zhou Fa) to infertility and reproductive health, achieving remarkable clinical outcomes in treating infertility, ovarian dysfunction, and menstrual disorders.":
@@ -1214,12 +1242,15 @@
             "Certificación NCCAOM de Técnica de Aguja Limpia (CNT)",
         "CPR Certification": "Certificación CPR",
         "Areas of Specialization": "Áreas de Especialización",
+        "Women's health, fertility support, ovarian dysfunction, PCOS, menstrual and menopausal disorders, pelvic inflammatory disease, vulva leukoplakia, postnatal care, pain management, and holistic wellness.":
+            "Salud de la mujer, apoyo a la fertilidad, disfunción ovárica, SOP, trastornos menstruales y menopáusicos, enfermedad inflamatoria pélvica, leucoplaquia vulvar, cuidado postnatal, manejo del dolor y bienestar holístico.",
         "Women's health, fertility support, infertility treatment, ovarian dysfunction, PCOS (Polycystic Ovary Syndrome), menstrual disorders, menopausal syndrome, pelvic inflammatory disease, vulva leukoplakia, postnatal care, pain management, and holistic wellness.":
             "Salud de la mujer, apoyo a la fertilidad, tratamiento de la infertilidad, disfunción ovárica, SOP (Síndrome de Ovario Poliquístico), trastornos menstruales, síndrome menopáusico, enfermedad inflamatoria pélvica, leucoplaquia de la vulva, cuidado postnatal, manejo del dolor y bienestar holístico.",
         "\"The essence of medicine is not only to treat illness, but to awaken the body's own power to heal and harmonize.\"":
             "\"La esencia de la medicina no es solo tratar la enfermedad, sino despertar el propio poder del cuerpo para curarse y armonizarse.\"",
         "— Dr. Min Lu": "— Dra. Min Lu",
         "View Chinese Version / 中文简介": "Ver Versión China / 中文简介",
+        "View English Version / English": "Ver Versión en Inglés / English",
         "Our Acupuncture Services": "Nuestros Servicios de Acupuntura",
         "At Five Elements Acupuncture & Wellness, Dr. Lu provides a wide range of":
             "En Acupuntura y Bienestar Cinco Elementos, la Dra. Lu proporciona una amplia gama de",
@@ -1935,7 +1966,7 @@
         "Cupping Therapy": "Terapia de Ventosas",
         "MD, Board Certified Dermatologist": "MD, Dermatóloga Certificada",
         "MD, MPH, Board Certified Dermatologist": "MD, MPH, Dermatóloga Certificada",
-        "L.Ac., DAOM (candidate)": "L.Ac., DAOM (candidata)",
+        "L.Ac., DAOM": "L.Ac., DAOM",
         "Nutrition Coach": "Entrenadora de Nutrición",
         "Personal Trainer": "Entrenador Personal",
         "His approach is unique in that he tries to focus on the origin of the clinical symptoms even for extremity overuse syndromes and acute injuries. This comes from his own treatment for the injuries he sustained while practicing martial arts and practicing manual therapy for diverse spinal patients. He has practiced martial arts in Taekwondo, Kickboxing, kendo, boxing and has seen various martial arts associated injuries. He also has worked on diverse scoliosis patients helping them relieve pain and lead their lives at their full strength.":
