@@ -2679,6 +2679,13 @@ body.admin-authenticated .admin-shell { display: block; }
     box-shadow: 0 0 0 2px rgba(255,59,48,0.2);
 }
 
+.wkcal-cursor-btn.wkcal-cursor-erase.is-active {
+    border-color: #86868b;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    box-shadow: 0 0 0 2px rgba(134,134,139,0.2);
+}
+
 .wkcal-grid {
     display: flex;
     gap: 24px;
@@ -2834,4 +2841,146 @@ body.admin-authenticated .admin-shell { display: block; }
     font-size: 12px;
     color: var(--s-muted);
     font-style: italic;
+}
+
+/* ── Template preview tooltip ── */
+
+#tmpl-preview-popover {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    width: 320px;
+}
+
+#tmpl-preview-popover.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tmpl-preview-card {
+    background: #fff;
+    border: 1px solid var(--s-border);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+}
+
+.tmpl-preview-header {
+    padding: 10px 14px 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tmpl-preview-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--s-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.tmpl-preview-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--s-ink);
+    margin-left: auto;
+}
+
+.tmpl-preview-banner-wrap {
+    padding: 12px;
+}
+
+/* Inherit the existing .admin-banner-preview color rules by reusing that class */
+.tmpl-preview-banner-wrap.admin-banner-preview {
+    padding: 12px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.tmpl-preview-banner-wrap .site-emergency-banner {
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.tmpl-preview-banner-wrap .site-emergency-banner-inner {
+    padding: 10px 14px;
+    gap: 10px;
+}
+
+.tmpl-preview-banner-wrap .site-emergency-banner-pill {
+    font-size: 10px;
+    padding: 2px 8px;
+}
+
+.tmpl-preview-banner-wrap .site-emergency-banner-message {
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.tmpl-preview-banner-wrap .site-emergency-banner-link {
+    font-size: 11px;
+    padding: 5px 12px;
+    white-space: nowrap;
+}
+
+.tmpl-preview-meta {
+    padding: 8px 14px 10px;
+    font-size: 11px;
+    color: var(--s-muted);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tmpl-preview-meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--s-bg);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--s-muted);
+}
+
+.tmpl-preview-group-note {
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--s-muted);
+    font-style: italic;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Arrow pointer */
+#tmpl-preview-popover::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 6px;
+    background: #fff;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    filter: drop-shadow(0 1px 0 var(--s-border));
+}
+
+#tmpl-preview-popover.arrow-bottom::after {
+    top: 100%;
+    bottom: auto;
+}
+
+#tmpl-preview-popover.arrow-top::after {
+    top: auto;
+    bottom: 100%;
+    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    filter: drop-shadow(0 -1px 0 var(--s-border));
 }

@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="../css/admin-slideshow.css?v=2026041304">
+    <link rel="stylesheet" href="../css/admin-slideshow.css?v=2026041402">
     <style>
         body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         .sidebar-link.active { background-color: rgba(0,0,0,0.06); color: #1d1d1f; font-weight: 600; }
@@ -403,11 +403,11 @@
                         <div style="margin-bottom:16px;">
                             <p style="margin:0 0 8px;font-size:11px;font-weight:600;color:#86868b;text-transform:uppercase;letter-spacing:0.04em;">Start from a template</p>
                             <div id="schedTemplateBar" style="display:flex;gap:8px;flex-wrap:wrap;">
-                                <button type="button" class="sched-template-btn" data-sched-template="weekend-hours">Weekend Hours</button>
-                                <button type="button" class="sched-template-btn" data-sched-template="closed-weekend">Closed Weekend</button>
-                                <button type="button" class="sched-template-btn" data-sched-template="holiday-closed">Holiday Closure</button>
-                                <button type="button" class="sched-template-btn" data-sched-template="early-close">Early Close</button>
-                                <button type="button" class="sched-template-btn sched-template-btn-featured" data-sched-template="alternating-open-sat">Alternating Sat/Sun</button>
+                                <button type="button" class="sched-template-btn" data-sched-template="weekend-hours" data-tmpl-preview="sched-template">Weekend Hours</button>
+                                <button type="button" class="sched-template-btn" data-sched-template="closed-weekend" data-tmpl-preview="sched-template">Closed Weekend</button>
+                                <button type="button" class="sched-template-btn" data-sched-template="holiday-closed" data-tmpl-preview="sched-template">Holiday Closure</button>
+                                <button type="button" class="sched-template-btn" data-sched-template="early-close" data-tmpl-preview="sched-template">Early Close</button>
+                                <button type="button" class="sched-template-btn sched-template-btn-featured" data-sched-template="alternating-open-sat" data-tmpl-preview="sched-template">Alternating Sat/Sun</button>
                             </div>
                         </div>
 
@@ -454,7 +454,11 @@
                                 <span style="width:10px;height:10px;border-radius:3px;background:#ff3b30;display:inline-block;"></span>
                                 Closed
                             </button>
-                            <span style="font-size:11px;color:#86868b;margin-left:8px;">Weekdays are not clickable</span>
+                            <button type="button" class="wkcal-cursor-btn wkcal-cursor-erase" data-wkcal-cursor="erase" title="Erase — click a colored day to reset it to unselected">
+                                <i data-lucide="eraser" style="width:11px;height:11px;"></i>
+                                Erase
+                            </button>
+                            <span style="font-size:11px;color:#86868b;margin-left:8px;">Tap an active cursor again to switch to Erase</span>
                         </div>
 
                         <!-- 3-month calendar grid rendered by JS -->
@@ -471,7 +475,7 @@
 
     <script src="../js/slideshow-data.js?v=2026041304"></script>
     <script src="../js/slideshow.js?v=2026041304"></script>
-    <script type="module" src="../js/admin-slideshow.js?v=2026041304"></script>
+    <script type="module" src="../js/admin-slideshow.js?v=2026041404"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') lucide.createIcons();

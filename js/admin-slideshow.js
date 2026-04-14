@@ -526,12 +526,15 @@ function buildBannerPresetGrid() {
         return [
             '<button class="admin-preset-button" type="button" data-banner-preset="',
             escapeHtml(preset.id),
+            '" data-tmpl-preview="banner-preset" data-tmpl-preset-id="',
+            escapeHtml(preset.id),
             '">',
             escapeHtml(preset.label),
             '</button>'
         ].join('');
     }).join('');
 }
+
 
 function sanitizeBannerUrl(value) {
     const url = typeof value === 'string' ? value.trim() : '';
@@ -3145,7 +3148,10 @@ var weekendCursorMode = 'open';
 
 var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'];
-var DOW_LABELS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+// Mon-first week: Mo Tu We Th Fr S(at) Su(n) — keeps Sat & Sun adjacent
+var DOW_LABELS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'S', 'Su'];
+// Converts JS getDay() (0=Sun … 6=Sat) → column index in Mon-first grid
+function dowToCol(dow) { return (dow + 6) % 7; }
 
 function dateKey(year, month, day) {
     return year + '-' + String(month + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
@@ -3184,7 +3190,7 @@ function renderWeekendCalendar() {
         var year = months[mi].year;
         var month = months[mi].month;
         var daysInMonth = new Date(year, month + 1, 0).getDate();
-        var firstDow = new Date(year, month, 1).getDay();
+        var firstDow = dowToCol(new Date(year, month, 1).getDay());
 
         html += '<div class="wkcal-month">';
         html += '<h3 class="wkcal-month-title">' + MONTH_NAMES[month] + ' ' + year + '</h3>';
@@ -3300,8 +3306,11 @@ function renderWeekendSummary() {
 function handleWeekendDayClick(dateStr) {
     var currentState = weekendDateState[dateStr];
 
-    // If clicking with the same cursor as current state, deselect (back to neutral)
-    if (currentState === weekendCursorMode) {
+    if (weekendCursorMode === 'erase') {
+        // Erase cursor: always reset to neutral regardless of current state
+        delete weekendDateState[dateStr];
+    } else if (currentState === weekendCursorMode) {
+        // Tapping the same state as the active cursor: deselect (back to neutral)
         delete weekendDateState[dateStr];
     } else {
         weekendDateState[dateStr] = weekendCursorMode;
@@ -3373,6 +3382,10 @@ async function applyWeekendSchedule() {
     var closedDates = [];
     var openDates = [];
 
+    // Also build a complete set of ALL weekend dates in the 3-month window
+    // so we can wipe every existing banner in that window (including erased ones)
+    var calendarWindowDates = {};
+
     for (var mi = 0; mi < months.length; mi++) {
         var year = months[mi].year;
         var month = months[mi].month;
@@ -3381,6 +3394,7 @@ async function applyWeekendSchedule() {
             var dow = new Date(year, month, day).getDay();
             if (isWeekendDay(dow)) {
                 var key = dateKey(year, month, day);
+                calendarWindowDates[key] = true; // track every visible weekend date
                 var state = weekendDateState[key];
                 if (state === 'closed') {
                     closedDates.push({ date: key, dow: dow });
@@ -3393,17 +3407,14 @@ async function applyWeekendSchedule() {
         }
     }
 
-    if (closedDates.length === 0 && openDates.length === 0) {
-        if (statusEl) statusEl.innerHTML = '<span style="color:#ff3b30;">Select some weekend days first.</span>';
-        return;
-    }
-
     if (statusEl) statusEl.innerHTML = '<span style="color:#86868b;">Removing old weekend banners...</span>';
 
     try {
-        // Step 1: Delete any existing weekend-calendar banners for dates we're about to create
+        // Step 1: Delete ALL existing weekend-calendar banners within the visible 3-month window.
+        // This ensures erased (gray) days have their old Firestore banners removed too,
+        // so they don't reappear on refresh.
         var toDelete = scheduledBanners.filter(function (entry) {
-            return isWeekendBannerLabel(entry.label) && allSelectedDates[entry.startDate];
+            return isWeekendBannerLabel(entry.label) && calendarWindowDates[entry.startDate];
         });
 
         for (var d = 0; d < toDelete.length; d++) {
@@ -3455,8 +3466,9 @@ async function applyWeekendSchedule() {
             count++;
         }
 
-        var deletedNote = toDelete.length > 0 ? ' (' + toDelete.length + ' old replaced)' : '';
-        if (statusEl) statusEl.innerHTML = '<span style="color:#34c759;">Done! ' + count + ' weekend banners created.' + deletedNote + '</span>';
+        var deletedNote = toDelete.length > 0 ? ' (' + toDelete.length + ' old removed)' : '';
+        var createdNote = count > 0 ? count + ' banner' + (count !== 1 ? 's' : '') + ' saved.' : 'All cleared — no banners for this window.';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#34c759;">' + createdNote + deletedNote + '</span>';
         setTimeout(function () {
             if (statusEl) statusEl.innerHTML = '';
         }, 5000);
@@ -3512,13 +3524,19 @@ function initWeekendCalendar() {
         handleWeekendDayClick(btn.dataset.wkcalDate);
     });
 
-    // Cursor mode toggle
+    // Cursor mode toggle — re-clicking the active cursor switches to erase mode
     var cursorBar = document.querySelector('.wkcal-cursor-bar');
     if (cursorBar) {
         cursorBar.addEventListener('click', function (event) {
             var btn = event.target.closest('[data-wkcal-cursor]');
             if (!btn) return;
-            setWeekendCursor(btn.dataset.wkcalCursor);
+            var tapped = btn.dataset.wkcalCursor;
+            // Toggle: clicking the already-active Open/Closed cursor deactivates it
+            if (tapped !== 'erase' && weekendCursorMode === tapped) {
+                setWeekendCursor('erase');
+            } else {
+                setWeekendCursor(tapped);
+            }
         });
     }
 
@@ -3720,6 +3738,183 @@ function initAuthObserver() {
     });
 }
 
+/* ══════════════════════════════════════════════════
+   Template preview tooltip
+   ══════════════════════════════════════════════════ */
+
+var _tmplPopover = null;
+var _tmplPopoverHideTimer = null;
+
+function getTmplPopover() {
+    if (!_tmplPopover) {
+        _tmplPopover = document.createElement('div');
+        _tmplPopover.id = 'tmpl-preview-popover';
+        _tmplPopover.innerHTML = '<div class="tmpl-preview-card"></div>';
+        document.body.appendChild(_tmplPopover);
+    }
+    return _tmplPopover;
+}
+
+function buildSchedTemplateBannerHtml(tmpl) {
+    // For group templates (alternating), preview the first entry
+    var banner = tmpl.isGroup ? tmpl.entries[0].banner : tmpl.banner;
+    var color = (banner && banner.color) || 'red';
+    var pillText = (banner && banner.pill && banner.pill.en) ? escapeHtml(banner.pill.en) : '';
+    var msgText  = (banner && banner.message && banner.message.en) ? escapeHtml(banner.message.en) : '';
+    var ctaText  = (banner && banner.ctaLabel && banner.ctaLabel.en) ? escapeHtml(banner.ctaLabel.en) : '';
+    var ctaUrl   = (banner && banner.ctaUrl) ? escapeHtml(banner.ctaUrl) : '';
+    var showPill  = !!(banner && banner.showPill && pillText);
+    var showButton = !!(banner && banner.showButton && ctaText && ctaUrl);
+
+    return [
+        '<div class="site-emergency-banner" data-color="' + color + '">',
+        '<div class="site-emergency-banner-inner">',
+        '<div class="site-emergency-banner-copy">',
+        showPill ? '<span class="site-emergency-banner-pill">' + pillText + '</span>' : '',
+        '<span class="site-emergency-banner-message">' + msgText + '</span>',
+        '</div>',
+        showButton ? '<a class="site-emergency-banner-link" href="#">' + ctaText + '</a>' : '',
+        '</div>',
+        '</div>'
+    ].join('');
+}
+
+function buildTmplPreviewHtml(kind, id) {
+    if (kind === 'banner-preset') {
+        var preset = BANNER_PRESETS.find(function (p) { return p.id === id; });
+        if (!preset) return null;
+        var fakeBanner = Object.assign({
+            enabled: true, color: 'red', showPill: true, showButton: true
+        }, preset.banner);
+        return {
+            title: 'Quick Start Preview',
+            name: preset.label,
+            bannerHtml: buildBannerPreviewMarkup(fakeBanner),
+            metaChips: [
+                preset.banner.ctaUrl ? '📞 Includes call button' : null
+            ].filter(Boolean),
+            groupNote: null
+        };
+    }
+
+    if (kind === 'sched-template') {
+        var tmpl = SCHED_TEMPLATES[id];
+        if (!tmpl) return null;
+        var recMode = tmpl.isGroup
+            ? 'Alternating weeks'
+            : (tmpl.recurrence && tmpl.recurrence.mode === 'weekly' ? 'Repeats weekly' :
+               tmpl.recurrence && tmpl.recurrence.mode === 'dates' ? 'Specific dates' : '');
+        var entryCount = tmpl.isGroup ? tmpl.entries.length + ' banners created' : null;
+        return {
+            title: 'Template Preview',
+            name: tmpl.label,
+            bannerHtml: '<div class="tmpl-preview-banner-wrap admin-banner-preview">' + buildSchedTemplateBannerHtml(tmpl) + '</div>',
+            metaChips: [recMode, entryCount].filter(Boolean),
+            groupNote: tmpl.isGroup ? 'Creates ' + tmpl.entries.length + ' banner entries (one per alternating week).' : null
+        };
+    }
+
+    return null;
+}
+
+function showTmplPreview(anchor, kind, id) {
+    if (_tmplPopoverHideTimer) {
+        clearTimeout(_tmplPopoverHideTimer);
+        _tmplPopoverHideTimer = null;
+    }
+
+    var data = buildTmplPreviewHtml(kind, id);
+    if (!data) return;
+
+    var pop = getTmplPopover();
+    var card = pop.querySelector('.tmpl-preview-card');
+
+    var bannerSection = kind === 'banner-preset'
+        ? '<div class="tmpl-preview-banner-wrap admin-banner-preview">' + data.bannerHtml + '</div>'
+        : data.bannerHtml;
+
+    var metaHtml = data.metaChips.length
+        ? '<div class="tmpl-preview-meta">' +
+          data.metaChips.map(function (c) { return '<span class="tmpl-preview-meta-chip">' + escapeHtml(c) + '</span>'; }).join('') +
+          '</div>'
+        : '';
+
+    var groupNoteHtml = data.groupNote
+        ? '<div class="tmpl-preview-group-note">' + escapeHtml(data.groupNote) + '</div>'
+        : '';
+
+    card.innerHTML =
+        '<div class="tmpl-preview-header">' +
+            '<span class="tmpl-preview-title">' + escapeHtml(data.title) + '</span>' +
+            '<span class="tmpl-preview-name">' + escapeHtml(data.name) + '</span>' +
+        '</div>' +
+        bannerSection +
+        metaHtml +
+        groupNoteHtml;
+
+    // Position: prefer above the button, fall back to below
+    pop.classList.remove('is-visible', 'arrow-top', 'arrow-bottom');
+
+    var rect = anchor.getBoundingClientRect();
+    var popW = 320;
+    var gap = 10;
+
+    // Horizontal: center on button, clamp to viewport
+    var left = rect.left + rect.width / 2 - popW / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - popW - 8));
+
+    // Vertical: above by default
+    var estimatedHeight = 220;
+    var topAbove = rect.top - estimatedHeight - gap;
+    var topBelow = rect.bottom + gap;
+
+    var useAbove = topAbove >= 8;
+    var top = useAbove ? topAbove : topBelow;
+    pop.classList.add(useAbove ? 'arrow-bottom' : 'arrow-top');
+
+    // Nudge the arrow to point at the button center
+    var arrowOffset = (rect.left + rect.width / 2) - left;
+    arrowOffset = Math.max(20, Math.min(arrowOffset, popW - 20));
+    pop.style.setProperty('--arrow-x', arrowOffset + 'px');
+    var afterEl = pop; // arrow via ::after pseudo, override left via custom prop if needed
+    // (We use a simpler approach: just center the arrow at popover center since we already centered on button)
+
+    pop.style.left = left + 'px';
+    pop.style.top  = top + 'px';
+
+    // Force a reflow so the transition fires
+    void pop.offsetWidth;
+    pop.classList.add('is-visible');
+}
+
+function hideTmplPreview() {
+    if (_tmplPopoverHideTimer) return;
+    _tmplPopoverHideTimer = setTimeout(function () {
+        _tmplPopoverHideTimer = null;
+        var pop = _tmplPopover;
+        if (pop) pop.classList.remove('is-visible');
+    }, 100);
+}
+
+function initTemplatePreviewTooltips() {
+    // Banner preset buttons (Quick Start)
+    document.addEventListener('mouseover', function (e) {
+        var btn = e.target.closest('[data-tmpl-preview]');
+        if (!btn) return;
+        showTmplPreview(btn, btn.dataset.tmplPreview, btn.dataset.tmplPresetId || btn.dataset.schedTemplate);
+    });
+
+    document.addEventListener('mouseout', function (e) {
+        var btn = e.target.closest('[data-tmpl-preview]');
+        if (!btn) return;
+        // Don't hide if moving into the popover itself (pointer-events:none so this won't trigger,
+        // but guard mouseout from child elements too)
+        var related = e.relatedTarget;
+        if (related && btn.contains(related)) return;
+        hideTmplPreview();
+    });
+}
+
 function init() {
     if (!elements.lockForm || !elements.editorList) {
         return;
@@ -3731,6 +3926,7 @@ function init() {
     setActiveAdminTab(activeAdminTab);
     initEvents();
     initWeekendCalendar();
+    initTemplatePreviewTooltips();
     initAuthObserver();
 }
 
