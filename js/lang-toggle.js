@@ -1807,6 +1807,1267 @@
         "13. Severability": "13. Divisibilidad",
         "14. Entire Agreement": "14. Acuerdo Completo",
         "15. Contact Information": "15. Información de Contacto",
+
+        // ═══════════════════════════════════════════════════════════════════
+        // Page-specific full-sentence coverage (added 2026-04-14)
+        // Every visible English string on insurance, about, urgent-primary-care,
+        // immigration-physicals, faa-physicals, occupational-health.
+        // ═══════════════════════════════════════════════════════════════════
+
+        // ── Insurance page (hero, coverage checker, plan list, FAQ) ──
+        "Search your plan in seconds. We work with most major commercial carriers, Medicare, Medicaid, Tricare, and Maryland state plans.":
+            "Busque su plan en segundos. Trabajamos con la mayoría de las principales aseguradoras comerciales, Medicare, Medicaid, Tricare y planes estatales de Maryland.",
+        "Coverage Checker": "Verificador de Cobertura",
+        "Is your insurance accepted?": "¿Aceptamos su seguro?",
+        "Type your carrier or plan name below to instantly check if it's in our network. We continually update our list — if you don't see yours, call us at":
+            "Escriba el nombre de su aseguradora o plan a continuación para verificar al instante si está en nuestra red. Actualizamos nuestra lista continuamente — si no ve el suyo, llámenos al",
+        "and we'll confirm.": "y se lo confirmaremos.",
+        "Check your plan": "Verifique su plan",
+        "e.g. Aetna, BlueCross, Medicare, Priority Partners…": "ej. Aetna, BlueCross, Medicare, Priority Partners…",
+        "Not sure? Call": "¿No está seguro? Llame al",
+        "or text": "o envíe un mensaje al",
+        "Full Plan List": "Lista Completa de Planes",
+        "Insurance plans we accept": "Planes de seguro que aceptamos",
+        "We're pleased to accept a wide variety of insurance providers. Please remember it's your responsibility to know your co-pay, deductible, and any limits that apply to your plan.":
+            "Nos complace aceptar una amplia variedad de proveedores de seguros. Por favor recuerde que es su responsabilidad conocer su copago, deducible y cualquier límite que aplique a su plan.",
+        "9 carriers": "9 aseguradoras",
+        "9 plans": "9 planes",
+        "Aetna commercial plans": "Planes comerciales de Aetna",
+        "Referral": "Referencia Requerida",
+        "Most PPO and HMO commercial plans are accepted for both primary care and walk-in urgent visits.":
+            "La mayoría de los planes comerciales PPO y HMO son aceptados tanto para atención primaria como para visitas de urgencia sin cita.",
+        "Maryland State & Medicaid": "Medicaid y Estado de Maryland",
+        "Serving Maryland residents with Medicare, Medicaid, and state-sponsored managed care plans across Montgomery County.":
+            "Servimos a residentes de Maryland con Medicare, Medicaid y planes de atención administrada patrocinados por el estado en todo el condado de Montgomery.",
+        "Self-Pay & Other": "Pago Directo y Otros",
+        "Affordable rates": "Tarifas asequibles",
+        "Self-pay — transparent upfront pricing": "Pago directo — precios transparentes por adelantado",
+        "Cash discounts for same-day visits": "Descuentos en efectivo para visitas del mismo día",
+        "Occupational health billing (employer direct)": "Facturación de salud ocupacional (directa al empleador)",
+        "Immigration & FAA exams (flat rate)": "Exámenes de Inmigración y FAA (tarifa fija)",
+        "Sports physicals (flat rate)": "Exámenes físicos deportivos (tarifa fija)",
+        "MVA physicals (flat rate)": "Exámenes físicos MVA (tarifa fija)",
+        "No insurance? No problem. Call for current self-pay pricing before your visit.":
+            "¿Sin seguro? No hay problema. Llame para conocer los precios actuales de pago directo antes de su visita.",
+        "What to bring": "Qué traer",
+        "A valid photo ID, your current insurance card, a medication list, and any referral paperwork if your plan requires it.":
+            "Una identificación con foto válida, su tarjeta de seguro actual, una lista de medicamentos y cualquier documento de referencia si su plan lo requiere.",
+        "Co-pays & billing": "Copagos y facturación",
+        "Co-pays are collected at check-in. We file claims directly with your carrier so you can focus on getting well, not paperwork.":
+            "Los copagos se cobran al registrarse. Presentamos las reclamaciones directamente a su aseguradora para que pueda concentrarse en recuperarse, no en el papeleo.",
+        "Still not sure?": "¿Aún no está seguro?",
+        "Our front desk will verify your plan before you come in.":
+            "Nuestra recepción verificará su plan antes de que venga.",
+        "Insurance FAQ": "Preguntas Frecuentes sobre Seguros",
+        "Common questions about coverage": "Preguntas comunes sobre cobertura",
+        "Answers to the most frequent insurance questions from our Gaithersburg patients.":
+            "Respuestas a las preguntas más frecuentes sobre seguros de nuestros pacientes de Gaithersburg.",
+        "Does Montgomery Medical Clinic accept my insurance?":
+            "¿Montgomery Medical Clinic acepta mi seguro?",
+        "We accept a wide range of commercial, Medicare, Medicaid, and Maryland state plans — including Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana, and Johns Hopkins US Family Health. Use the coverage checker above or call":
+            "Aceptamos una amplia variedad de planes comerciales, Medicare, Medicaid y estatales de Maryland — incluyendo Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana y Johns Hopkins US Family Health. Use el verificador de cobertura arriba o llame al",
+        "to confirm your specific plan.": "para confirmar su plan específico.",
+        "Do you accept Medicare and Medicaid in Gaithersburg, MD?":
+            "¿Aceptan Medicare y Medicaid en Gaithersburg, MD?",
+        "Yes. We accept Medicare and Maryland Medicaid, as well as Medicaid managed care plans such as Priority Partners, Amerigroup/Wellpoint, and Maryland Physicians Care.":
+            "Sí. Aceptamos Medicare y Medicaid de Maryland, así como planes de atención administrada de Medicaid como Priority Partners, Amerigroup/Wellpoint y Maryland Physicians Care.",
+        "What if I don't have insurance?": "¿Qué pasa si no tengo seguro?",
+        "We offer affordable self-pay rates for urgent care, primary care, and physical exams. Call":
+            "Ofrecemos tarifas asequibles de pago directo para atención urgente, atención primaria y exámenes físicos. Llame al",
+        "for current self-pay pricing before your visit — we'll give you a transparent quote upfront.":
+            "para conocer los precios actuales de pago directo antes de su visita — le daremos una cotización transparente por adelantado.",
+        "Do I need a referral to be seen?": "¿Necesito una referencia para ser atendido?",
+        "For HMO-style plans including UnitedHealthcare, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan, and Johns Hopkins US Family Health, a referral from your primary care physician may be required to see a specialty provider. Walk-in urgent care and primary care visits generally do not require a referral.":
+            "Para planes tipo HMO incluyendo UnitedHealthcare, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan y Johns Hopkins US Family Health, puede requerirse una referencia de su médico de atención primaria para ver a un proveedor especializado. Las visitas de atención urgente sin cita y de atención primaria generalmente no requieren referencia.",
+        "What should I bring to my appointment?": "¿Qué debo traer a mi cita?",
+        "Please bring a valid photo ID, your current insurance card, a list of current medications, and any referral paperwork if required by your plan.":
+            "Por favor traiga una identificación con foto válida, su tarjeta de seguro actual, una lista de medicamentos actuales y cualquier documento de referencia si lo requiere su plan.",
+        "Do you accept Tricare for military families?":
+            "¿Aceptan Tricare para familias militares?",
+        "Yes, we accept Tricare. A referral may be required depending on your Tricare plan — our front desk will verify before your visit.":
+            "Sí, aceptamos Tricare. Puede requerirse una referencia dependiendo de su plan Tricare — nuestra recepción verificará antes de su visita.",
+        "How are co-pays handled at check-in?": "¿Cómo se manejan los copagos al registrarse?",
+        "Co-pays are collected at the time of check-in. We accept cash, credit/debit cards, and HSA/FSA cards. We file insurance claims directly with your carrier after your visit.":
+            "Los copagos se cobran al momento del registro. Aceptamos efectivo, tarjetas de crédito/débito y tarjetas HSA/FSA. Presentamos las reclamaciones de seguro directamente a su aseguradora después de su visita.",
+        "Can my employer be billed directly for occupational health?":
+            "¿Mi empleador puede ser facturado directamente por salud ocupacional?",
+        "Yes — for pre-employment screenings, workers' compensation, drug testing, respirator fit tests, and corporate wellness programs, we bill your employer directly. See our":
+            "Sí — para exámenes previos al empleo, compensación laboral, pruebas de drogas, pruebas de ajuste de respirador y programas de bienestar corporativo, facturamos directamente a su empleador. Consulte nuestra",
+        "Occupational Health page": "página de Salud Ocupacional",
+        "for details.": "para más detalles.",
+
+        // ── About page ──
+        "Your trusted healthcare partner.": "Su socio de confianza en atención médica.",
+        "About Us": "Sobre Nosotros",
+        "When it comes to your health, you deserve exceptional care from a team you can trust. With over five decades of combined experience, our physicians provide compassionate, comprehensive care tailored to your unique needs.":
+            "Cuando se trata de su salud, merece atención excepcional de un equipo en el que puede confiar. Con más de cinco décadas de experiencia combinada, nuestros médicos brindan atención compasiva e integral adaptada a sus necesidades únicas.",
+        "Whether you need immediate medical attention, a routine vaccination, or your yearly annual, we're here when you need us most. Our Dermatology Department offers specialized expertise in diagnosing and treating a wide range of skin conditions.":
+            "Ya sea que necesite atención médica inmediata, una vacuna de rutina o su examen anual, estamos aquí cuando más nos necesita. Nuestro Departamento de Dermatología ofrece experiencia especializada en el diagnóstico y tratamiento de una amplia gama de afecciones de la piel.",
+        "Your health — and your confidence — are our top priorities.":
+            "Su salud — y su confianza — son nuestras principales prioridades.",
+        "We've designed our facility to provide convenient, comprehensive care. Our on-site services and experienced medical team ensure you receive prompt diagnosis and treatment without the need for multiple appointments or referrals.":
+            "Hemos diseñado nuestras instalaciones para brindar atención conveniente e integral. Nuestros servicios en el lugar y el equipo médico experimentado garantizan que reciba un diagnóstico y tratamiento rápidos sin necesidad de múltiples citas o referencias.",
+        "Quality healthcare should be accessible and efficient. That's why we've integrated essential medical services right here in our clinic, getting you on the path to wellness faster.":
+            "La atención médica de calidad debe ser accesible y eficiente. Por eso hemos integrado servicios médicos esenciales aquí mismo en nuestra clínica, llevándole al camino del bienestar más rápido.",
+        "Our Facility": "Nuestras Instalaciones",
+        // About page specialty badges
+        "Women's Health": "Salud de la Mujer",
+        "Urgent Care": "Atención Urgente",
+        "FAA Medical Examiner": "Examinador Médico FAA",
+        "OB/GYN": "Obstetricia y Ginecología",
+        "Orthopedics": "Ortopedia",
+        "MSK Ultrasound": "Ultrasonido Musculoesquelético",
+        "OMT": "Tratamiento Manipulativo Osteopático",
+        "Melanoma": "Melanoma",
+        "Cutaneous Oncology": "Oncología Cutánea",
+        "Physical Therapy": "Terapia Física",
+        "Orthopedic Conditions": "Condiciones Ortopédicas",
+        "Sports Injuries": "Lesiones Deportivas",
+        "Spinal Manipulation": "Manipulación Espinal",
+        "Dry Needling": "Punción Seca",
+        "Scoliosis Treatment": "Tratamiento de Escoliosis",
+        "Nutrition Coaching": "Asesoramiento Nutricional",
+        "Behavior Change Support": "Apoyo para Cambio de Conducta",
+        "Strength & Mobility": "Fuerza y Movilidad",
+        "Chinese Medicine": "Medicina China",
+        "Pain Management": "Manejo del Dolor",
+        "Fertility Treatment": "Tratamiento de Fertilidad",
+        "Cupping Therapy": "Terapia de Ventosas",
+        "MD, Board Certified Dermatologist": "MD, Dermatóloga Certificada",
+        "MD, MPH, Board Certified Dermatologist": "MD, MPH, Dermatóloga Certificada",
+        "L.Ac., DAOM (candidate)": "L.Ac., DAOM (candidata)",
+        "Nutrition Coach": "Entrenadora de Nutrición",
+        "Personal Trainer": "Entrenador Personal",
+        "His approach is unique in that he tries to focus on the origin of the clinical symptoms even for extremity overuse syndromes and acute injuries. This comes from his own treatment for the injuries he sustained while practicing martial arts and practicing manual therapy for diverse spinal patients. He has practiced martial arts in Taekwondo, Kickboxing, kendo, boxing and has seen various martial arts associated injuries. He also has worked on diverse scoliosis patients helping them relieve pain and lead their lives at their full strength.":
+            "Su enfoque es único en que intenta centrarse en el origen de los síntomas clínicos incluso para síndromes de uso excesivo de extremidades y lesiones agudas. Esto proviene de su propio tratamiento para las lesiones que sufrió practicando artes marciales y practicando terapia manual para diversos pacientes espinales. Ha practicado artes marciales en Taekwondo, Kickboxing, kendo, boxeo y ha visto varias lesiones asociadas a las artes marciales. También ha trabajado con diversos pacientes de escoliosis ayudándoles a aliviar el dolor y llevar sus vidas con plena fuerza.",
+
+        // ── Urgent & Primary Care page — detailed strings ──
+        "Comprehensive medical services for your whole family. Walk in for immediate care or schedule an appointment for ongoing health management.":
+            "Servicios médicos integrales para toda su familia. Entre sin cita para atención inmediata o programe una cita para el manejo continuo de su salud.",
+        "Our Approach to Care": "Nuestro Enfoque de Atención",
+        "A trusted physician for your family": "Un médico de confianza para su familia",
+        "whenever you need one.": "siempre que lo necesite.",
+        "From everyday wellness visits to same-day urgent needs, Montgomery Medical Clinic gives you a physician who knows your history — and the flexibility to walk in when life doesn't wait.":
+            "Desde visitas de bienestar diarias hasta necesidades urgentes del mismo día, Montgomery Medical Clinic le brinda un médico que conoce su historial — y la flexibilidad de entrar sin cita cuando la vida no espera.",
+        "Patients who see their doctor regularly": "Los pacientes que consultan a su médico regularmente",
+        "manage chronic conditions better, spend less on care, and report stronger satisfaction with their health":
+            "manejan mejor las condiciones crónicas, gastan menos en atención y reportan mayor satisfacción con su salud",
+        ". We make that easier for every member of your family.":
+            ". Hacemos que eso sea más fácil para cada miembro de su familia.",
+        "Walk-In Access": "Acceso sin Cita",
+        "No appointment, no problem.": "Sin cita, sin problema.",
+        "Our physicians are available without an appointment six days a week, with flexible hours and most holidays open — so you can see a doctor on your schedule, not the other way around.":
+            "Nuestros médicos están disponibles sin cita previa seis días a la semana, con horarios flexibles y la mayoría de los días festivos abiertos — para que pueda ver a un médico en su horario, no al revés.",
+        "Same-day visits": "Visitas el mismo día",
+        "Open 6 days": "Abierto 6 días",
+        "Most holidays": "La mayoría de los días festivos",
+        "Most major plans accepted.": "Se aceptan la mayoría de los planes principales.",
+        "We work with most major insurance carriers and file claims directly, so the focus stays on your care instead of the paperwork behind it.":
+            "Trabajamos con la mayoría de las principales aseguradoras y presentamos reclamaciones directamente, para que el enfoque se mantenga en su atención en lugar del papeleo detrás de ella.",
+        "View accepted providers": "Ver proveedores aceptados",
+        "On-Site Diagnostics": "Diagnóstico en el Lugar",
+        "Labs and imaging, under one roof.": "Laboratorio e imágenes, bajo un mismo techo.",
+        "In-house bloodwork, digital X-ray, and advanced imaging mean faster answers and fewer referrals — you leave with a plan, not a waitlist.":
+            "Análisis de sangre internos, rayos X digitales e imágenes avanzadas significan respuestas más rápidas y menos referencias — usted se va con un plan, no con una lista de espera.",
+        "Digital X-ray": "Rayos X Digitales",
+        "Lab work": "Trabajo de Laboratorio",
+        "Rapid results": "Resultados Rápidos",
+        "Our Services": "Nuestros Servicios",
+        "From preventive care and routine checkups to urgent visits for immediate needs, we provide complete healthcare services for your family.":
+            "Desde atención preventiva y revisiones de rutina hasta visitas urgentes por necesidades inmediatas, proporcionamos servicios de salud completos para su familia.",
+        "Preventive Care Services": "Servicios de Atención Preventiva",
+        "Urgent Care Services": "Servicios de Atención Urgente",
+        "Our Physicians": "Nuestros Médicos",
+        "Board-certified physicians specializing in family medicine, dedicated to your health and wellbeing.":
+            "Médicos certificados especializados en medicina familiar, dedicados a su salud y bienestar.",
+        "Dr. Efi Kessous is a board-certified family medicine physician at Montgomery Medical Clinic. He is also an Assistant Professor and faculty member at The George Washington University School of Medicine & Health Sciences.":
+            "El Dr. Efi Kessous es un médico certificado de medicina familiar en Montgomery Medical Clinic. También es Profesor Asistente y miembro del cuerpo docente de la Escuela de Medicina y Ciencias de la Salud de la Universidad George Washington.",
+        "His clinical interests include procedural family medicine, injury management, women's health, and occupational medicine. Dr. Kessous is committed to providing comprehensive care for individuals and families.":
+            "Sus intereses clínicos incluyen medicina familiar de procedimientos, manejo de lesiones, salud de la mujer y medicina ocupacional. El Dr. Kessous está comprometido a brindar atención integral para individuos y familias.",
+        "Dr. Bertha Velandia is an experienced family medicine physician who received her medical degree from the Universidad Nacional in Bogota, Colombia in 1983. She completed her residency in family medicine at the UAB Huntsville Medical Campus in 2009.":
+            "La Dra. Bertha Velandia es una médica experimentada de medicina familiar que recibió su título médico de la Universidad Nacional en Bogotá, Colombia en 1983. Completó su residencia en medicina familiar en el Campus Médico UAB Huntsville en 2009.",
+        "Dr. Velandia brings warmth and experience to every patient interaction, making healthcare accessible and compassionate for families in Gaithersburg.":
+            "La Dra. Velandia aporta calidez y experiencia a cada interacción con el paciente, haciendo que la atención médica sea accesible y compasiva para las familias en Gaithersburg.",
+        "Dr. Lawless is dual board-certified in family medicine and sports medicine. He completed his training at Northwell Plainview Hospital in Plainview, NY, and graduated from Lake Erie College of Osteopathic Medicine in 2012.":
+            "El Dr. Lawless tiene doble certificación en medicina familiar y medicina deportiva. Completó su entrenamiento en el Hospital Northwell Plainview en Plainview, NY, y se graduó del Colegio de Medicina Osteopática del lago Erie en 2012.",
+        "His training includes a traditional rotating internship at UPMC Mercy Hospital in Pittsburgh, PA. He was appointed as a teaching associate in family medicine at Hofstra Northwell School of Medicine during his sports medicine fellowship.":
+            "Su entrenamiento incluye una pasantía rotatoria tradicional en el Hospital UPMC Mercy en Pittsburgh, PA. Fue nombrado asociado docente en medicina familiar en la Escuela de Medicina Hofstra Northwell durante su beca de medicina deportiva.",
+        "Dr. Lawless' expertise includes musculoskeletal care, diagnostic ultrasound, ultrasound-guided injections, and osteopathic treatment. He provides comprehensive care for both acute and chronic conditions.":
+            "La experiencia del Dr. Lawless incluye atención musculoesquelética, ultrasonido diagnóstico, inyecciones guiadas por ultrasonido y tratamiento osteopático. Brinda atención integral tanto para condiciones agudas como crónicas.",
+        "Common questions about urgent care and primary care at Montgomery Medical Clinic.":
+            "Preguntas comunes sobre atención urgente y atención primaria en Montgomery Medical Clinic.",
+        "Do I need an appointment, or can I walk in?": "¿Necesito una cita o puedo entrar sin cita?",
+        "We accept walk-ins": "Aceptamos pacientes sin cita",
+        "7 days a week": "7 días a la semana",
+        "and also offer scheduled appointments.": "y también ofrecemos citas programadas.",
+        "Walk-ins are seen on a first-come, first-served basis. For the shortest wait, book same-day appointments online or call":
+            "Los pacientes sin cita se atienden por orden de llegada. Para la espera más corta, reserve citas del mismo día en línea o llame al",
+        "What are your hours? Are you open on weekends?":
+            "¿Cuál es su horario? ¿Están abiertos los fines de semana?",
+        "Yes, we are open": "Sí, estamos abiertos",
+        ", including weekends and most holidays.": ", incluyendo fines de semana y la mayoría de los días festivos.",
+        "Check our website or call": "Consulte nuestro sitio web o llame al",
+        "for current hours.": "para conocer el horario actual.",
+        "What conditions does your urgent care treat?": "¿Qué condiciones trata su atención urgente?",
+        "We treat a wide range of non-emergency conditions, including:":
+            "Tratamos una amplia gama de condiciones no urgentes, incluyendo:",
+        "Colds, flu, and respiratory infections": "Resfriados, gripe e infecciones respiratorias",
+        "Minor injuries, sprains, and cuts requiring stitches": "Lesiones menores, esguinces y cortes que requieren puntos",
+        "Allergic reactions, UTIs, ear infections, and rashes": "Reacciones alérgicas, infecciones urinarias, infecciones de oído y erupciones",
+        "Important:": "Importante:",
+        "For life-threatening emergencies such as chest pain, stroke symptoms, or severe bleeding, call":
+            "Para emergencias que amenazan la vida como dolor en el pecho, síntomas de derrame cerebral o sangrado severo, llame al",
+        "or go to the nearest emergency room.": "o vaya a la sala de emergencias más cercana.",
+        "Can I establish a primary care doctor at Montgomery Medical Clinic?":
+            "¿Puedo establecer un médico de atención primaria en Montgomery Medical Clinic?",
+        "Absolutely.": "Absolutamente.",
+        "We offer ongoing primary care including:": "Ofrecemos atención primaria continua incluyendo:",
+        "Annual physicals and wellness exams": "Exámenes físicos anuales y de bienestar",
+        "Chronic disease management (diabetes, hypertension, asthma)": "Manejo de enfermedades crónicas (diabetes, hipertensión, asma)",
+        "Preventive screenings and immunizations": "Evaluaciones preventivas e inmunizaciones",
+        "You can choose a provider and build a long-term relationship with your doctor.":
+            "Puede elegir un proveedor y establecer una relación a largo plazo con su médico.",
+        "What insurance plans do you accept for urgent care and primary care?":
+            "¿Qué planes de seguro aceptan para atención urgente y atención primaria?",
+        "We accept most major insurance plans, including:":
+            "Aceptamos la mayoría de los planes de seguro principales, incluyendo:",
+        "Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare":
+            "Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare",
+        "Medicare, Medicaid, Priority Partners, Amerigroup": "Medicare, Medicaid, Priority Partners, Amerigroup",
+        "Tricare, and many more": "Tricare y muchos más",
+        "Self-pay options are also available. Visit our": "Las opciones de pago directo también están disponibles. Visite nuestra",
+        "insurance page": "página de seguros",
+        "or call to verify your plan.": "o llame para verificar su plan.",
+
+        // ── Immigration Physicals page — detailed strings ──
+        "If you are applying for a green card (lawful permanent resident status), USCIS requires a medical examination documented on":
+            "Si está solicitando una tarjeta verde (estatus de residente permanente legal), USCIS requiere un examen médico documentado en el",
+        "— the Report of Medical Examination and Vaccination Record. This form must be completed and signed by a":
+            "— el Informe de Examen Médico y Registro de Vacunación. Este formulario debe ser completado y firmado por un",
+        "USCIS-designated civil surgeon": "cirujano civil designado por USCIS",
+        "Screen for communicable diseases (TB, syphilis, gonorrhea)":
+            "Detección de enfermedades transmisibles (TB, sífilis, gonorrea)",
+        "Verify vaccination records per CDC technical instructions":
+            "Verificación de registros de vacunación según las instrucciones técnicas del CDC",
+        "Assess physical and mental health conditions":
+            "Evaluación de condiciones de salud física y mental",
+        "Document findings on Form I-693 for USCIS review":
+            "Documentación de hallazgos en el Formulario I-693 para revisión de USCIS",
+        "Applicants filing": "Solicitantes que presentan el",
+        "(Adjustment of Status)": "(Ajuste de Estatus)",
+        "Green card applicants through": "Solicitantes de tarjeta verde a través de",
+        "family sponsorship": "patrocinio familiar",
+        "employment": "empleo",
+        "Applicants adjusting status through": "Solicitantes que ajustan su estatus a través de",
+        "other categories": "otras categorías",
+        "(asylum, diversity visa, etc.)": "(asilo, visa de diversidad, etc.)",
+        "Dr. Efraim Kessous is listed in the": "El Dr. Efraim Kessous está listado en el",
+        "official USCIS civil surgeon directory": "directorio oficial de cirujanos civiles de USCIS",
+        "and is fully authorized to conduct I-693 medical examinations in Maryland. All exams follow the latest CDC and USCIS protocols.":
+            "y está completamente autorizado para realizar exámenes médicos I-693 en Maryland. Todos los exámenes siguen los protocolos más recientes del CDC y USCIS.",
+        "Come prepared with the following to ensure a smooth appointment and timely I-693 processing.":
+            "Venga preparado con lo siguiente para garantizar una cita sin problemas y el procesamiento oportuno del I-693.",
+        "Government Photo ID": "Identificación con Foto del Gobierno",
+        "Passport, driver's license, or state ID": "Pasaporte, licencia de conducir o identificación estatal",
+        "Vaccination Records": "Registros de Vacunación",
+        "Translated to English if needed": "Traducidos al inglés si es necesario",
+        "Current Medications List": "Lista de Medicamentos Actuales",
+        "Names, dosages, and reasons": "Nombres, dosis y razones",
+        "Prior TB / STI Records": "Registros Previos de TB / ITS",
+        "Any previous test results": "Cualquier resultado de pruebas previas",
+        "Additional Items (If Applicable)": "Artículos Adicionales (Si Aplica)",
+        "USCIS appointment letter": "carta de cita de USCIS",
+        "or instructions referencing Form I-693": "o instrucciones que hagan referencia al Formulario I-693",
+        "with Part 1 completed (blank copies available at our office)":
+            "con la Parte 1 completada (copias en blanco disponibles en nuestra oficina)",
+        "For applicants under 14:": "Para solicitantes menores de 14 años:",
+        "Proof of identity with full name, date and place of birth, and parent information (e.g., birth certificate)":
+            "Prueba de identidad con nombre completo, fecha y lugar de nacimiento e información de los padres (por ejemplo, certificado de nacimiento)",
+        "The Exam Process — What to Expect": "El Proceso del Examen — Qué Esperar",
+        "The immigration physical typically requires": "El examen físico de inmigración típicamente requiere",
+        "two visits": "dos visitas",
+        ". We complete all lab work on your first visit so results are ready when you return.":
+            ". Completamos todo el trabajo de laboratorio en su primera visita para que los resultados estén listos cuando regrese.",
+        "First Visit — Lab Work & Records Review": "Primera Visita — Análisis y Revisión de Registros",
+        "Second Visit — Physical Exam & I-693": "Segunda Visita — Examen Físico e I-693",
+        "TB screening": "Detección de TB",
+        "— blood test (IGRA) for most patients; skin test (TST) for children under 2":
+            "— análisis de sangre (IGRA) para la mayoría de los pacientes; prueba cutánea (TST) para niños menores de 2 años",
+        "Syphilis blood test": "Análisis de sangre para sífilis",
+        "— required for ages 15 and older": "— requerido para edades de 15 años en adelante",
+        "Gonorrhea urine test": "Análisis de orina para gonorrea",
+        "Vaccination record review": "Revisión del registro de vacunación",
+        "— we identify which vaccines are needed": "— identificamos qué vacunas se necesitan",
+        "Medical history review": "Revisión del historial médico",
+        "— comprehensive health evaluation": "— evaluación integral de salud",
+        "Complete physical examination": "Examen físico completo",
+        "by Dr. Kessous (civil surgeon)": "por el Dr. Kessous (cirujano civil)",
+        "Lab results review": "Revisión de resultados de laboratorio",
+        "— all test results reviewed and documented": "— todos los resultados de las pruebas revisados y documentados",
+        "Required vaccinations": "Vacunas requeridas",
+        "administered if needed": "administradas si es necesario",
+        "Form I-693 completed, signed, and sealed": "Formulario I-693 completado, firmado y sellado",
+        "in a tamper-proof envelope": "en un sobre a prueba de manipulación",
+        "Personal copy provided": "Copia personal provista",
+        "for your records": "para sus registros",
+        "Bring Form I-693 to your second visit": "Traiga el Formulario I-693 a su segunda visita",
+        "with Part 1 completed. Do not sign it until Dr. Kessous instructs you to do so. Blank copies are available at our office if you don't have one.":
+            "con la Parte 1 completada. No lo firme hasta que el Dr. Kessous le indique hacerlo. Hay copias en blanco disponibles en nuestra oficina si no tiene una.",
+        "USCIS requires applicants to be vaccinated against certain diseases per":
+            "USCIS requiere que los solicitantes estén vacunados contra ciertas enfermedades según las",
+        "CDC technical instructions": "instrucciones técnicas del CDC",
+        ". If your vaccination records show you've already received them, you will not need to repeat them. If records are unavailable or incomplete, we can administer the required vaccines during your visit.":
+            ". Si sus registros de vacunación muestran que ya las ha recibido, no necesitará repetirlas. Si los registros no están disponibles o están incompletos, podemos administrar las vacunas requeridas durante su visita.",
+
+        // ── FAA Physicals page — detailed strings ──
+        "Dr. Efraim Kessous is an FAA-authorized": "El Dr. Efraim Kessous es un",
+        "Senior Aviation Medical Examiner (AME)": "Examinador Médico de Aviación Senior (AME) autorizado por la FAA",
+        "performing Class 1, 2, and 3 medical exams. Use the resources below to prepare for your visit and avoid unnecessary deferrals.":
+            "que realiza exámenes médicos de Clase 1, 2 y 3. Use los recursos a continuación para prepararse para su visita y evitar aplazamientos innecesarios.",
+        "Medical Classes": "Clases Médicas",
+        "New vs. Returning": "Nuevos vs. Que Regresan",
+        "Checklist": "Lista de Verificación",
+        "Medications": "Medicamentos",
+        "CACI": "CACI",
+        "Official Resources": "Recursos Oficiales",
+        "Book Your FAA Physical": "Reserve Su Examen Físico FAA",
+        "Call (301) 208-2273": "Llamar (301) 208-2273",
+        "The FAA issues three classes of medical certificates. The class you need depends on how you fly. Montgomery Medical Clinic performs all three classes.":
+            "La FAA emite tres clases de certificados médicos. La clase que necesita depende de cómo vuele. Montgomery Medical Clinic realiza las tres clases.",
+        "Guidance for New & Returning Pilots": "Guía para Pilotos Nuevos y que Regresan",
+        "Whether this is your first FAA medical or your twentieth renewal, the requirements are different. Select your situation below.":
+            "Ya sea que este sea su primer examen médico FAA o su vigésima renovación, los requisitos son diferentes. Seleccione su situación a continuación.",
+        "First-Time / Student Pilots": "Pilotos por Primera Vez / Estudiantes",
+        "Returning / Experienced Pilots": "Pilotos que Regresan / Experimentados",
+        "Getting Started": "Comenzar",
+        "Choose your class wisely. If you plan to pursue an airline career, consider applying for a Class 1 from the start. This identifies any disqualifying conditions early, before you invest heavily in flight training.":
+            "Elija su clase sabiamente. Si planea una carrera en aerolíneas, considere aplicar para la Clase 1 desde el principio. Esto identifica cualquier condición descalificante temprano, antes de invertir mucho en el entrenamiento de vuelo.",
+        "Create a MedXPress account. Go to medxpress.faa.gov and complete Form 8500-8 online. This is mandatory before your exam. Your application is valid for 60 days.":
+            "Cree una cuenta MedXPress. Vaya a medxpress.faa.gov y complete el Formulario 8500-8 en línea. Esto es obligatorio antes de su examen. Su solicitud es válida por 60 días.",
+        "Gather your records. You'll need your full medical history, a list of physician visits for the last 3 years, and a list of all current medications (including OTC and supplements).":
+            "Reúna sus registros. Necesitará su historial médico completo, una lista de visitas médicas de los últimos 3 años y una lista de todos los medicamentos actuales (incluyendo medicamentos de venta libre y suplementos).",
+        "Pre-check your color vision. First-time applicants will undergo a computerized color vision test. If you know you have color vision issues, discuss this with our office beforehand.":
+            "Verifique previamente su visión de color. Los solicitantes por primera vez se someterán a una prueba computarizada de visión de color. Si sabe que tiene problemas de visión de color, hable con nuestra oficina de antemano.",
+        "What to Expect at Your First Exam": "Qué Esperar en Su Primer Examen",
+        "Vision test": "Prueba de visión",
+        "— distance, near, and color vision": "— visión a distancia, cercana y de colores",
+        "Hearing test": "Prueba de audición",
+        "— conversational voice or audiometric": "— voz conversacional o audiométrica",
+        "Urine sample": "Muestra de orina",
+        "— screening for sugar and protein": "— detección de azúcar y proteína",
+        "Blood pressure & pulse": "Presión arterial y pulso",
+        "General physical exam": "Examen físico general",
+        "— heart, lungs, abdomen, neuro": "— corazón, pulmones, abdomen, neurológico",
+        "EKG": "EKG",
+        "— required for Class 1 at age 35 and annually after 40": "— requerido para Clase 1 a los 35 años y anualmente después de los 40",
+        "Medical history review": "Revisión del historial médico",
+        "— the AME reviews your 8500-8 with you": "— el AME revisa su 8500-8 con usted",
+        "Tip for parents:": "Consejo para padres:",
+        "If you accompany your child for their first student pilot exam, you cannot complete the MedXPress application on their behalf. The FAA requires the applicant to complete their own application.":
+            "Si acompaña a su hijo para su primer examen de piloto estudiante, no puede completar la solicitud MedXPress en su nombre. La FAA requiere que el solicitante complete su propia solicitud.",
+
+        // ── Occupational / Corporate Health page — detailed strings ──
+        "Dr. Efraim Kessous, MPH is a board-certified Occupational Medicine physician partnering with businesses across Maryland to deliver comprehensive occupational health and workplace wellness programs. Our services follow OSHA medical surveillance standards and are fully tailored to your industry's requirements.":
+            "El Dr. Efraim Kessous, MPH, es un médico certificado en Medicina Ocupacional que se asocia con empresas en todo Maryland para brindar programas integrales de salud ocupacional y bienestar en el lugar de trabajo. Nuestros servicios siguen los estándares de vigilancia médica de OSHA y están totalmente adaptados a los requisitos de su industria.",
+
+        // ── Batch 2: inline-split text-node fragments discovered in verification ──
+        // Page titles (<title> tags)
+        "Insurance Plans Accepted | Gaithersburg, MD — Aetna, BCBS, Cigna, Medicare & More | Montgomery Medical Clinic":
+            "Planes de Seguro Aceptados | Gaithersburg, MD — Aetna, BCBS, Cigna, Medicare y Más | Montgomery Medical Clinic",
+        "About Us - Our Doctors & Healthcare Team | Montgomery Medical Clinic Gaithersburg, MD":
+            "Sobre Nosotros - Nuestros Médicos y Equipo de Salud | Montgomery Medical Clinic Gaithersburg, MD",
+        "Urgent Care & Primary Care Physicians in Gaithersburg, MD | Montgomery Medical Clinic":
+            "Médicos de Atención Urgente y Primaria en Gaithersburg, MD | Montgomery Medical Clinic",
+        "Urgent Care & Primary Care": "Atención Urgente y Primaria",
+        "Immigration Physicals — I-693 USCIS Medical Exam by Authorized Civil Surgeon | Montgomery Medical Clinic":
+            "Exámenes Físicos de Inmigración — Examen Médico I-693 USCIS por Cirujano Civil Autorizado | Montgomery Medical Clinic",
+        "FAA Medical Exam & Aviation Physical - AME in Gaithersburg, MD | Montgomery Medical Clinic":
+            "Examen Médico FAA y Físico de Aviación - AME en Gaithersburg, MD | Montgomery Medical Clinic",
+        "FAA Medical Exams & Aviation Physicals": "Exámenes Médicos FAA y Físicos de Aviación",
+        "Occupational Health Services in Gaithersburg, MD — Pre-Employment, Drug Testing & Workplace Wellness | Montgomery Medical Clinic":
+            "Servicios de Salud Ocupacional en Gaithersburg, MD — Pre-Empleo, Pruebas de Drogas y Bienestar Laboral | Montgomery Medical Clinic",
+
+        // Insurance carrier names → keep brand, localize generic suffixes
+        "Blue Cross Blue Shield / CareFirst": "Blue Cross Blue Shield / CareFirst",
+        "Multiplan / PHCS": "Multiplan / PHCS",
+        "UnitedHealthcare": "UnitedHealthcare",
+        "Tricare (Military)": "Tricare (Militar)",
+        "Amerigroup / Wellpoint": "Amerigroup / Wellpoint",
+        "CareFirst Community Health Plan": "CareFirst Community Health Plan",
+        "Johns Hopkins US Family Health": "Johns Hopkins US Family Health",
+        "Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare":
+            "Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare",
+        "Medicare, Medicaid, Priority Partners, Amerigroup":
+            "Medicare, Medicaid, Priority Partners, Amerigroup",
+
+        // About page – physician name is a proper noun (keep), but leave translation present for round-trip safety
+        "Dr. Marsha D. Mitchum": "Dra. Marsha D. Mitchum",
+
+        // Immigration page fragments
+        "After the Exam": "Después del Examen",
+        "Dr. Efraim Kessous is a": "El Dr. Efraim Kessous es un",
+        "authorized to perform immigration medical examinations and complete Form I-693 for green card applicants.":
+            "autorizado para realizar exámenes médicos de inmigración y completar el Formulario I-693 para solicitantes de tarjeta verde.",
+        "(Measles, Mumps, Rubella)": "(Sarampión, Paperas, Rubéola)",
+        "All applicants born after 1957": "Todos los solicitantes nacidos después de 1957",
+        "Hepatitis B": "Hepatitis B",
+        "Hepatitis A": "Hepatitis A",
+        "All applicants": "Todos los solicitantes",
+        "(Chickenpox)": "(Varicela)",
+        "(Tetanus, Diphtheria, Pertussis)": "(Tétanos, Difteria, Tos ferina)",
+        "All applicants age 2+": "Todos los solicitantes mayores de 2 años",
+        "All applicants age 6 months+": "Todos los solicitantes mayores de 6 meses",
+        "Required during flu season (October&ndash;March)":
+            "Requerido durante la temporada de gripe (octubre–marzo)",
+        "Required during flu season (October–March)":
+            "Requerido durante la temporada de gripe (octubre–marzo)",
+        "Per current CDC recommendations": "Según las recomendaciones actuales de los CDC",
+        "Ages 2&ndash;4 and 65+": "Edades 2–4 y 65+",
+        "Ages 2–4 and 65+": "Edades 2–4 y 65+",
+        "Age-appropriate series": "Serie apropiada para la edad",
+        "Ages 2 months &ndash; 17 years": "De 2 meses a 17 años",
+        "Ages 2 months – 17 years": "De 2 meses a 17 años",
+        "Infants 6 weeks &ndash; 8 months": "Bebés de 6 semanas a 8 meses",
+        "Infants 6 weeks – 8 months": "Bebés de 6 semanas a 8 meses",
+        "(Haemophilus influenzae type b)": "(Haemophilus influenzae tipo b)",
+        "Ages 2 months &ndash; 4 years": "De 2 meses a 4 años",
+        "Ages 2 months – 4 years": "De 2 meses a 4 años",
+        "Ages 12 months &ndash; 23 months": "De 12 a 23 meses",
+        "Ages 12 months – 23 months": "De 12 a 23 meses",
+        "Requirements are age-dependent and may change. See the":
+            "Los requisitos dependen de la edad y pueden cambiar. Consulte las",
+        "CDC Vaccination Technical Instructions":
+            "Instrucciones Técnicas de Vacunación de los CDC",
+        "for full details.": "para obtener todos los detalles.",
+        "Having your vaccination records can help": "Tener sus registros de vacunación puede ayudar a",
+        "avoid unnecessary repeat vaccinations": "evitar vacunaciones repetidas innecesarias",
+        "and reduce costs. If your records are in a language other than English, they must be translated by a professional translator. We can help arrange translation if needed.":
+            "y reducir costos. Si sus registros están en un idioma distinto al inglés, deben ser traducidos por un traductor profesional. Podemos ayudar a organizar la traducción si es necesario.",
+        "Once your exam is complete, here's what to expect for receiving and submitting your I-693 paperwork.":
+            "Una vez completado su examen, esto es lo que puede esperar para recibir y presentar su documentación I-693.",
+        "If all test results come back normal, expect a call within":
+            "Si todos los resultados de las pruebas son normales, espere una llamada dentro de",
+        "to let you know the paperwork is ready to collect.":
+            "para informarle que la documentación está lista para recoger.",
+        "Your Form I-693 will be completed, signed, and sealed in a":
+            "Su Formulario I-693 será completado, firmado y sellado en un",
+        "tamper-proof envelope": "sobre a prueba de manipulaciones",
+        ". You'll receive a personal copy for your records.":
+            ". Recibirá una copia personal para sus registros.",
+        "USCIS will": "USCIS",
+        "not accept": "no aceptará",
+        "Form I-693 if the sealed envelope is opened, altered, or the seal is broken in any way.":
+            "el Formulario I-693 si el sobre sellado se abre, altera o el sello se rompe de alguna manera.",
+        "Submit the sealed I-693 envelope to USCIS along with your":
+            "Presente el sobre sellado I-693 a USCIS junto con su",
+        "(Application to Register Permanent Residence or Adjust Status). Form I-693 is valid for":
+            "(Solicitud para Registrar Residencia Permanente o Ajuste de Estatus). El Formulario I-693 es válido por",
+        "from the date the civil surgeon signs it. If your results require further evaluation or treatment, we will contact you with next steps before completing your I-693.":
+            "a partir de la fecha en que el cirujano civil lo firma. Si sus resultados requieren evaluación o tratamiento adicional, lo contactaremos con los próximos pasos antes de completar su I-693.",
+
+        // FAA page fragments
+        "Pre-visit checklist, medical certificate classes & validity table, medication lookup, CACI condition worksheets, and guidance for new and returning pilots.":
+            "Lista de verificación previa a la visita, clases de certificados médicos y tabla de validez, búsqueda de medicamentos, hojas de trabajo de condiciones CACI y orientación para pilotos nuevos y recurrentes.",
+        "Common questions about FAA medical exams at Montgomery Medical Clinic.":
+            "Preguntas comunes sobre los exámenes médicos de la FAA en Montgomery Medical Clinic.",
+        "Montgomery Medical Clinic has an FAA-authorized":
+            "Montgomery Medical Clinic cuenta con un",
+        "Aviation Medical Examiner (AME)": "Examinador Médico de Aviación (AME)",
+        "on staff.": "autorizado por la FAA en su personal.",
+        "We perform Class 1, Class 2, and Class 3 FAA medical examinations for pilots, student pilots, and aviation professionals in Gaithersburg, MD.":
+            "Realizamos exámenes médicos FAA de Clase 1, Clase 2 y Clase 3 para pilotos, estudiantes de piloto y profesionales de la aviación en Gaithersburg, MD.",
+        "What is the difference between Class 1, Class 2, and Class 3 FAA physicals?":
+            "¿Cuál es la diferencia entre los exámenes físicos FAA de Clase 1, Clase 2 y Clase 3?",
+        "Class 1": "Clase 1",
+        "Class 2": "Clase 2",
+        "Class 3": "Clase 3",
+        "— Required for airline transport pilots (ATPs)":
+            "— Requerido para pilotos de transporte aéreo (ATP)",
+        "— Required for commercial pilots": "— Requerido para pilotos comerciales",
+        "— Required for private and recreational pilots":
+            "— Requerido para pilotos privados y recreativos",
+        "Each class has different medical standards and renewal intervals. Our AME can guide you on which class you need.":
+            "Cada clase tiene diferentes estándares médicos e intervalos de renovación. Nuestro AME puede guiarlo sobre qué clase necesita.",
+        "What do I need to bring to my FAA physical?":
+            "¿Qué necesito traer a mi examen físico FAA?",
+        "Please bring the following to your appointment:":
+            "Por favor traiga lo siguiente a su cita:",
+        "Valid photo ID": "Identificación con foto válida",
+        "FAA MedXPress confirmation number (complete the application at":
+            "Número de confirmación de FAA MedXPress (complete la solicitud en",
+        "MedXPress.FAA.gov": "MedXPress.FAA.gov",
+        "before your visit)": "antes de su visita)",
+        "List of current medications": "Lista de medicamentos actuales",
+        "Any relevant medical records": "Cualquier registro médico relevante",
+        "Corrective lenses, if you wear them": "Lentes correctivos, si los usa",
+        "How long does an FAA medical exam take?":
+            "¿Cuánto dura un examen médico FAA?",
+        "A standard FAA medical exam typically takes":
+            "Un examen médico FAA estándar generalmente toma",
+        ", depending on the class of physical and your medical history.":
+            ", dependiendo de la clase de examen físico y su historial médico.",
+        "If additional testing is needed, it may take longer.":
+            "Si se necesitan pruebas adicionales, puede tomar más tiempo.",
+        "FAA medical exams are": "Los exámenes médicos FAA",
+        "generally not covered": "generalmente no están cubiertos",
+        "by insurance, as they are considered regulatory physicals rather than diagnostic medical visits.":
+            "por el seguro, ya que se consideran exámenes físicos regulatorios en lugar de visitas médicas diagnósticas.",
+        "We offer competitive self-pay pricing. Call":
+            "Ofrecemos precios competitivos para pago propio. Llame al",
+        "for current rates.": "para conocer las tarifas actuales.",
+
+        // Occupational health fragments
+        "Dr. Efraim Kessous, MPH": "Dr. Efraim Kessous, MPH",
+        "Dr. Efraim Kessous — USCIS Authorized Civil Surgeon":
+            "Dr. Efraim Kessous — Cirujano Civil Autorizado por USCIS",
+        "Dr. Efraim Kessous — Senior Aviation Medical Examiner (AME)":
+            "Dr. Efraim Kessous — Examinador Médico de Aviación Senior (AME)",
+        "Dr. Efraim Kessous — Licensed Physician":
+            "Dr. Efraim Kessous — Médico con Licencia",
+        "Dr. Efraim Kessous, MPH — Board-Certified Occupational Medicine Physician":
+            "Dr. Efraim Kessous, MPH — Médico de Medicina Ocupacional Certificado",
+        "If you're applying for a green card,": "Si está solicitando una tarjeta verde,",
+        "requires a medical examination and": "requiere un examen médico y",
+        "completed by an authorized civil surgeon. The exam screens for communicable diseases and verifies your vaccinations per":
+            "completado por un cirujano civil autorizado. El examen detecta enfermedades transmisibles y verifica sus vacunas según",
+        "If all test results come back normal, expect a call within":
+            "Si todos los resultados de las pruebas son normales, espere una llamada dentro de",
+        "to collect your signed and sealed I-693 paperwork. Submit the sealed envelope to USCIS with your":
+            "para recoger su documentación I-693 firmada y sellada. Presente el sobre sellado a USCIS con su",
+        "application.": "solicitud.",
+        "USCIS civil surgeon directory": "Directorio de cirujanos civiles de USCIS",
+        "Full I-693 exam process, required vaccinations, what to expect at each visit, and answers to common questions — all in one dedicated page.":
+            "Proceso completo del examen I-693, vacunas requeridas, qué esperar en cada visita y respuestas a preguntas comunes — todo en una página dedicada.",
+        "requires all pilots to pass a medical examination with an authorized":
+            "requiere que todos los pilotos aprueben un examen médico con un",
+        ". The exam evaluates your physical and mental fitness to operate an aircraft.":
+            ". El examen evalúa su aptitud física y mental para operar una aeronave.",
+        "Complete your": "Complete su",
+        "FAA MedXPress": "FAA MedXPress",
+        "form before your appointment. Expect hearing, vision, and urine tests, plus an ECG for first-class certificates.":
+            "formulario antes de su cita. Espere pruebas de audición, visión y orina, además de un ECG para certificados de primera clase.",
+        "Frequency depends on your certificate class and age — ranging from every 6 months to every 60 months. See the":
+            "La frecuencia depende de la clase de su certificado y su edad, que va desde cada 6 meses hasta cada 60 meses. Consulte las",
+        "FAA medical certification FAQ": "Preguntas frecuentes sobre la certificación médica FAA",
+        "Montgomery Medical Clinic is proud to work with the":
+            "Montgomery Medical Clinic se enorgullece de trabajar con",
+        "in Washington, DC — providing FAA physicals for their student and professional pilots.":
+            "en Washington, DC, proporcionando exámenes físicos FAA para sus pilotos estudiantes y profesionales.",
+        "Pre-visit checklist, medical certificate classes, medication lookup, CACI condition worksheets, and guidance for new & returning pilots — all in one place.":
+            "Lista de verificación previa a la visita, clases de certificados médicos, búsqueda de medicamentos, hojas de trabajo de condiciones CACI y orientación para pilotos nuevos y recurrentes — todo en un solo lugar.",
+        "Montgomery Medical Clinic partners with businesses across Maryland to deliver comprehensive occupational health and workplace wellness programs. Our services follow":
+            "Montgomery Medical Clinic se asocia con empresas en todo Maryland para brindar programas integrales de salud ocupacional y bienestar en el lugar de trabajo. Nuestros servicios siguen",
+        "OSHA medical surveillance standards": "los estándares de vigilancia médica de OSHA",
+        "and are fully tailored to your industry's requirements.":
+            "y están totalmente adaptados a los requisitos de su industria.",
+        "Thorough pre-hire examinations and drug testing that ensure new team members are ready for the demands of their specific roles — so every employee starts on solid footing.":
+            "Exámenes exhaustivos previos a la contratación y pruebas de drogas que aseguran que los nuevos miembros del equipo estén listos para las demandas de sus roles específicos, de modo que cada empleado comience con pie firme.",
+        "Maryland WCC": "Maryland WCC",
+        "Bring healthcare directly to your workplace with":
+            "Lleve la atención médica directamente a su lugar de trabajo con",
+        "seasonal flu shots": "vacunas estacionales contra la gripe",
+        ", health screenings, and quick check-ups — keeping your team healthy with minimal time away from work.":
+            ", evaluaciones de salud y chequeos rápidos, manteniendo a su equipo saludable con el mínimo tiempo fuera del trabajo.",
+        "Comprehensive evaluations confirming employees are physically ready to resume their duties after illness or injury, with clear documented clearance.":
+            "Evaluaciones integrales que confirman que los empleados están físicamente listos para reanudar sus funciones después de una enfermedad o lesión, con autorización claramente documentada.",
+        "OSHA-compliant surveillance protocols": "Protocolos de vigilancia que cumplen con OSHA",
+        "CDC-recommended vaccinations": "Vacunas recomendadas por los CDC",
+        "for corporate, laboratory, and pharmaceutical environments with biological or chemical hazards.":
+            "para entornos corporativos, de laboratorio y farmacéuticos con riesgos biológicos o químicos.",
+        "Pre-employment physicals, OSHA surveillance programs, workers' comp care, respirator fit testing, drug screening, and on-site wellness — everything your workforce needs.":
+            "Exámenes físicos previos al empleo, programas de vigilancia de OSHA, atención de compensación laboral, pruebas de ajuste de respiradores, detección de drogas y bienestar en el sitio — todo lo que su fuerza laboral necesita.",
+        "If you've been charged with a DUI, the": "Si ha sido acusado de DUI, el",
+
+        // ── Batch 3: immigration & occupational residual fragments ──
+        "from the date the civil surgeon signs it. If your results require further evaluation or treatment, we will contact you with next steps before completing the form.":
+            "a partir de la fecha en que el cirujano civil lo firma. Si sus resultados requieren evaluación o tratamiento adicional, lo contactaremos con los próximos pasos antes de completar el formulario.",
+        "Find USCIS-designated civil surgeons near you using the official myUSCIS search tool.":
+            "Encuentre cirujanos civiles designados por USCIS cerca de usted utilizando la herramienta oficial de búsqueda myUSCIS.",
+        "Technical instructions for vaccination requirements during the immigration medical examination.":
+            "Instrucciones técnicas para los requisitos de vacunación durante el examen médico de inmigración.",
+        "Official USCIS page for Form I-693 — Report of Medical Examination and Vaccination Record.":
+            "Página oficial de USCIS para el Formulario I-693 — Informe de Examen Médico y Registro de Vacunación.",
+        "Application to Register Permanent Residence or Adjust Status — where your sealed I-693 is submitted.":
+            "Solicitud para Registrar Residencia Permanente o Ajuste de Estatus — donde se presenta su I-693 sellado.",
+        "Official USCIS guidance on finding a designated civil surgeon and completing your medical forms.":
+            "Orientación oficial de USCIS sobre cómo encontrar un cirujano civil designado y completar sus formularios médicos.",
+        "CDC technical instructions for civil surgeons performing immigration medical exams.":
+            "Instrucciones técnicas de los CDC para cirujanos civiles que realizan exámenes médicos de inmigración.",
+        "is the Report of Medical Examination and Vaccination Record required by USCIS for green card (adjustment of status) applicants.":
+            "es el Informe de Examen Médico y Registro de Vacunación requerido por USCIS para solicitantes de tarjeta verde (ajuste de estatus).",
+        "It must be completed by a USCIS-designated civil surgeon. Dr. Efraim Kessous at Montgomery Medical Clinic is an":
+            "Debe ser completado por un cirujano civil designado por USCIS. El Dr. Efraim Kessous en Montgomery Medical Clinic es un",
+        "authorized civil surgeon": "cirujano civil autorizado",
+        "listed in the USCIS directory and fully qualified to perform these exams.":
+            "incluido en el directorio de USCIS y totalmente calificado para realizar estos exámenes.",
+        "The exam includes:": "El examen incluye:",
+        "Complete physical examination by a civil surgeon":
+            "Examen físico completo por un cirujano civil",
+        "Review of vaccination records against CDC requirements":
+            "Revisión de registros de vacunación según los requisitos de los CDC",
+        "Tuberculosis (TB) blood test (IGRA)":
+            "Análisis de sangre de tuberculosis (TB) (IGRA)",
+        "Syphilis blood test (ages 15+)":
+            "Análisis de sangre de sífilis (mayores de 15 años)",
+        "Gonorrhea urine test (ages 15+)":
+            "Análisis de orina de gonorrea (mayores de 15 años)",
+        "Any vaccinations needed to meet USCIS requirements":
+            "Cualquier vacuna necesaria para cumplir con los requisitos de USCIS",
+        "We complete all lab work during": "Completamos todo el trabajo de laboratorio durante",
+        "your first visit": "su primera visita",
+        "so results are ready for the physical exam on your second visit.":
+            "para que los resultados estén listos para el examen físico en su segunda visita.",
+        "The process typically requires": "El proceso generalmente requiere",
+        "First visit:": "Primera visita:",
+        "All lab work (blood tests, TB screening, urine tests) and vaccination records review":
+            "Todo el trabajo de laboratorio (análisis de sangre, detección de TB, análisis de orina) y revisión de registros de vacunación",
+        "Second visit:": "Segunda visita:",
+        "Physical examination, results review, vaccinations if needed, and completion of Form I-693":
+            "Examen físico, revisión de resultados, vacunaciones si es necesario y finalización del Formulario I-693",
+        "If all test results come back normal, you can typically expect a call within":
+            "Si todos los resultados de las pruebas son normales, normalmente puede esperar una llamada dentro de",
+        "Results that require additional follow-up or treatment may take longer. We will contact you promptly with next steps if this is the case.":
+            "Los resultados que requieren seguimiento o tratamiento adicional pueden tardar más. Lo contactaremos rápidamente con los próximos pasos si este es el caso.",
+        "Please bring the following:": "Por favor traiga lo siguiente:",
+        "Valid government-issued photo ID (passport, driver's license, or state ID)":
+            "Identificación con foto emitida por el gobierno válida (pasaporte, licencia de conducir o identificación estatal)",
+        "Vaccination records (translated into English if needed)":
+            "Registros de vacunación (traducidos al inglés si es necesario)",
+        "List of current medications with dosages":
+            "Lista de medicamentos actuales con dosis",
+        "Any previous TB test or STI screening results":
+            "Cualquier resultado previo de prueba de TB o detección de ITS",
+        "USCIS appointment letter or I-693 instructions (if applicable)":
+            "Carta de cita de USCIS o instrucciones I-693 (si aplica)",
+        "Having complete vaccination records can help":
+            "Tener registros de vacunación completos puede ayudar a",
+        "and reduce costs.": "y reducir costos.",
+        "USCIS will not accept Form I-693 if the envelope is opened, altered, or the seal is broken in any way. You will receive a":
+            "USCIS no aceptará el Formulario I-693 si el sobre se abre, altera o el sello se rompe de alguna manera. Recibirá una",
+        "personal copy": "copia personal",
+        "of your results for your records, but the official sealed envelope must be submitted intact with your I-485 application.":
+            "de sus resultados para sus registros, pero el sobre oficial sellado debe presentarse intacto con su solicitud I-485.",
+        "Immigration physicals are": "Los exámenes físicos de inmigración",
+        "by insurance, as they are classified as regulatory screening exams. Rates vary by civil surgeon. USCIS does not regulate fees.":
+            "por el seguro, ya que se clasifican como exámenes de detección regulatorios. Las tarifas varían según el cirujano civil. USCIS no regula las tarifas.",
+        "Montgomery Medical Clinic offers competitive self-pay pricing. Call":
+            "Montgomery Medical Clinic ofrece precios competitivos para pago propio. Llame al",
+        "for current pricing information.": "para obtener información actual sobre precios.",
+        "Form I-693 is valid for": "El Formulario I-693 es válido por",
+        "from the date the civil surgeon signs it. USCIS must receive the form within this window. If the form expires before your case is adjudicated, you may need to undergo a new medical examination.":
+            "a partir de la fecha en que el cirujano civil lo firma. USCIS debe recibir el formulario dentro de este plazo. Si el formulario caduca antes de que se adjudique su caso, es posible que deba someterse a un nuevo examen médico.",
+        "If your exam reveals a medical condition that could affect your admissibility — such as a communicable disease — you may be asked to provide additional documentation or undergo further evaluation. Some conditions may require treatment before the I-693 can be completed.":
+            "Si su examen revela una condición médica que podría afectar su admisibilidad — como una enfermedad transmisible — se le puede pedir que proporcione documentación adicional o que se someta a una evaluación adicional. Algunas condiciones pueden requerir tratamiento antes de que se pueda completar el I-693.",
+        "In certain cases, you may be eligible to apply for a":
+            "En ciertos casos, puede ser elegible para solicitar una",
+        "waiver of inadmissibility": "exención de inadmisibilidad",
+        ". Dr. Kessous will explain your options and help guide you through the process.":
+            ". El Dr. Kessous le explicará sus opciones y le ayudará a guiarlo a través del proceso.",
+
+        // Occupational health batch-3
+        "Thorough pre-hire examinations and drug testing that ensure new team members are ready for the demands of their specific roles — so every employee is safe and fit for duty from day one.":
+            "Exámenes exhaustivos previos a la contratación y pruebas de drogas que aseguran que los nuevos miembros del equipo estén listos para las demandas de sus roles específicos, de modo que cada empleado esté seguro y apto para el servicio desde el primer día.",
+        "Comprehensive evaluations confirming employees are physically ready to resume their duties after illness or injury, with clear documented clearance aligned with job requirements.":
+            "Evaluaciones integrales que confirman que los empleados están físicamente listos para reanudar sus funciones después de una enfermedad o lesión, con una autorización claramente documentada alineada con los requisitos del trabajo.",
+        "Pre-visit checklist, medical certificate classes, medication lookup, CACI condition worksheets, and guidance for new & returning pilots — all in one page.":
+            "Lista de verificación previa a la visita, clases de certificados médicos, búsqueda de medicamentos, hojas de trabajo de condiciones CACI y orientación para pilotos nuevos y recurrentes, todo en una sola página.",
+        "Pre-employment physicals, OSHA surveillance programs, workers' comp care, respirator fit testing, drug screening, and on-site wellness — everything your business needs in one dedicated page.":
+            "Exámenes físicos previos al empleo, programas de vigilancia de OSHA, atención de compensación laboral, pruebas de ajuste de respiradores, detección de drogas y bienestar en el sitio — todo lo que su negocio necesita en una página dedicada.",
+        "Maryland Motor Vehicle Administration (MVA)": "Administración de Vehículos Motorizados de Maryland (MVA)",
+        "may require a physical examination with a licensed physician before your driving privileges can be reinstated.":
+            "puede requerir un examen físico con un médico con licencia antes de que se puedan restablecer sus privilegios de conducir.",
+        "Dr. Kessous conducts DUI physical evaluations in accordance with":
+            "El Dr. Kessous realiza evaluaciones físicas por DUI de acuerdo con",
+        "Maryland MVA medical requirements": "los requisitos médicos de MVA de Maryland",
+        ". The exam reviews your physical and mental fitness to safely operate a motor vehicle.":
+            ". El examen revisa su aptitud física y mental para operar un vehículo motorizado de manera segura.",
+        ", we provide workplace drug testing including:":
+            ", proporcionamos pruebas de drogas en el lugar de trabajo, incluyendo:",
+        "Contact us at": "Contáctenos al",
+        "scheduling an appointment": "programar una cita",
+        "or book online to reserve your spot.": "o reserve en línea para asegurar su lugar.",
+        "Class 1, Class 2, and Class 3": "Clase 1, Clase 2 y Clase 3",
+        "Visit our": "Visite nuestra",
+        "FAA Physicals page": "página de Exámenes Físicos FAA",
+        "Pre-visit checklist, medical certificate classes & validity table, medication lookup, CACI condition worksheets, and guidance for new and returning pilots — everything in one place.":
+            "Lista de verificación previa a la visita, clases de certificados médicos y tabla de validez, búsqueda de medicamentos, hojas de trabajo de condiciones CACI y orientación para pilotos nuevos y recurrentes — todo en un solo lugar.",
+
+        // FAA pilot resources residual coverage
+        "Pilot Resources": "Recursos para Pilotos",
+        "The FAA issues three classes of medical certificates. The class you need depends on how you fly. Montgomery Medical Clinic performs":
+            "La FAA emite tres clases de certificados médicos. La clase que necesita depende de cómo vuele. Montgomery Medical Clinic realiza",
+        "all three classes": "las tres clases",
+        "Required for pilots exercising Airline Transport Pilot privileges - flying as pilot-in-command in scheduled air carrier operations. This is the":
+            "Requerido para pilotos que ejercen privilegios de Piloto de Transporte Aéreo - volando como piloto al mando en operaciones programadas de aerolíneas. Este es el",
+        "highest medical standard": "estándar médico más alto",
+        "Most comprehensive examination": "Examen más completo",
+        "Required for commercial operations outside of airline flying - flight instructors, charter pilots, crop dusters, and other commercial certificate holders.":
+            "Requerido para operaciones comerciales fuera del vuelo de aerolíneas - instructores de vuelo, pilotos chárter, aplicadores aéreos y otros titulares de certificados comerciales.",
+        "Moderate medical standards": "Estándares médicos moderados",
+        "No routine EKG requirement": "Sin requisito rutinario de EKG",
+        "Same validity period regardless of age": "Mismo período de validez independientemente de la edad",
+        "Required for private, recreational, and student pilots. This is the":
+            "Requerido para pilotos privados, recreativos y estudiantes. Este es el",
+        "lowest medical standard": "estándar médico más bajo",
+        "and the most common starting point for new pilots.":
+            "y el punto de partida más común para pilotos nuevos.",
+        "Basic physical & mental health screening": "Evaluación básica de salud física y mental",
+        "Longest validity period": "Período de validez más largo",
+        "Great starting point for student pilots": "Excelente punto de partida para pilotos estudiantes",
+        "Validity Table": "Tabla de Validez",
+        "Commercial Pilot": "Piloto Comercial",
+        "1st Class": "Clase 1",
+        "2nd Class": "Clase 2",
+        "3rd Class": "Clase 3",
+        "Private / Student Pilot": "Piloto Privado / Estudiante",
+        "12 months": "12 meses",
+        "6 months": "6 meses",
+        "60 months": "60 meses",
+        "(5 years)": "(5 años)",
+        "24 months": "24 meses",
+        "(2 years)": "(2 años)",
+        "The validity \"clock\" starts on the last day of the month the exam was performed.":
+            "El \"conteo\" de validez comienza el último día del mes en que se realizó el examen.",
+        "The \"Step-Down\" Rule - Don't Ground Yourself":
+            "La \"Regla de Reducción\" - No se deje en tierra",
+        "Choose your class wisely.": "Elija su clase sabiamente.",
+        "If you plan to pursue an airline career, consider applying for a Class 1 from the start. This identifies any disqualifying conditions early, before you invest heavily in flight training.":
+            "Si planea seguir una carrera en aerolíneas, considere solicitar una Clase 1 desde el principio. Esto identifica cualquier condición descalificante temprano, antes de invertir mucho en el entrenamiento de vuelo.",
+        "Create a MedXPress account.": "Cree una cuenta de MedXPress.",
+        "Go to": "Vaya a",
+        "and complete Form 8500-8 online. This is":
+            "y complete el Formulario 8500-8 en línea. Esto es",
+        "before your exam. Your application is valid for 60 days.":
+            "antes de su examen. Su solicitud es válida por 60 días.",
+        "Gather your records.": "Reúna sus registros.",
+        "You'll need your full medical history, a list of physician visits for the last 3 years, and a list of all current medications (including OTC and supplements).":
+            "Necesitará su historial médico completo, una lista de visitas médicas de los últimos 3 años y una lista de todos los medicamentos actuales (incluyendo medicamentos de venta libre y suplementos).",
+        "Pre-check your color vision.": "Verifique su visión de colores con anticipación.",
+        "First-time applicants will undergo a computerized color vision test. If you know you have color vision issues, discuss this with our office beforehand.":
+            "Los solicitantes por primera vez se someterán a una prueba computarizada de visión de colores. Si sabe que tiene problemas de visión de colores, hable con nuestra oficina de antemano.",
+        "Check your renewal date.": "Verifique su fecha de renovación.",
+        "Your certificate validity depends on your class and age (see the":
+            "La validez de su certificado depende de su clase y edad (vea la",
+        "validity table above": "tabla de validez arriba",
+        "). The clock starts the last day of the month of your exam.":
+            "). El conteo comienza el último día del mes de su examen.",
+        "Update MedXPress.": "Actualice MedXPress.",
+        "Report all physician visits since your last exam - this includes physicians, PAs, NPs, psychologists, and chiropractors. Include the date, name, address, and reason. Routine dental and standard eye exams (unless for a condition like glaucoma) can be omitted.":
+            "Informe todas las visitas médicas desde su último examen - esto incluye médicos, asistentes médicos, enfermeros practicantes, psicólogos y quiroprácticos. Incluya la fecha, el nombre, la dirección y el motivo. Los exámenes dentales de rutina y los exámenes oculares estándar (a menos que sean por una condición como glaucoma) pueden omitirse.",
+        "Complete these steps before your appointment to ensure a smooth exam and avoid unnecessary delays or deferrals.":
+            "Complete estos pasos antes de su cita para asegurar un examen sin contratiempos y evitar retrasos o aplazamientos innecesarios.",
+        "Complete MedXPress online (mandatory).": "Complete MedXPress en línea (obligatorio).",
+        "Fill out your FAA medical application (Form 8500-8) at":
+            "Complete su solicitud médica FAA (Formulario 8500-8) en",
+        "before your visit. Bring your": "antes de su visita. Traiga su",
+        "Confirmation Number": "Número de Confirmación",
+        "printed copy": "copia impresa",
+        "of the 8500-8. The application is valid for 60 days.":
+            "del 8500-8. La solicitud es válida por 60 días.",
+        "Bring required identification.": "Traiga la identificación requerida.",
+        "Government-issued photo ID, pilot's license (if renewal), and your previous medical certificate. If you have a Special Issuance letter or waiver, bring it along with all documentation outlined in the letter.":
+            "Identificación con foto emitida por el gobierno, licencia de piloto (si es renovación) y su certificado médico previo. Si tiene una carta o exención de Emisión Especial, tráigala junto con toda la documentación indicada en la carta.",
+        "Be at your best.": "Preséntese en su mejor estado.",
+        "Arrive well-rested and well-hydrated (you will need to provide a urine sample). Avoid alcohol, caffeine, excess sodium, sugar, and large portions of carbohydrates for at least":
+            "Llegue bien descansado y bien hidratado (necesitará proporcionar una muestra de orina). Evite alcohol, cafeína, exceso de sodio, azúcar y grandes porciones de carbohidratos por al menos",
+        "8 hours": "8 horas",
+        "before the exam.": "antes del examen.",
+        "Know your medications.": "Conozca sus medicamentos.",
+        "For every medication you take - prescription, over-the-counter, and supplements - know the brand or generic name, dosage, and reason. Check the":
+            "Para cada medicamento que tome - con receta, de venta libre y suplementos - conozca el nombre comercial o genérico, la dosis y el motivo. Revise la",
+        "in advance. Sedating antihistamines like Benadryl require a":
+            "con anticipación. Los antihistamínicos sedantes como Benadryl requieren un",
+        "60-hour wait time": "tiempo de espera de 60 horas",
+        "after the last dose.": "después de la última dosis.",
+        "Bring your vision correction.": "Traiga su corrección visual.",
+        "Bring all glasses and contact lenses you use for flying. Contacts may be kept in during the vision test. If you think you may need a new prescription, see your optometrist well in advance so your new lenses arrive before your exam.":
+            "Traiga todos los anteojos y lentes de contacto que use para volar. Los lentes de contacto pueden permanecer puestos durante la prueba de visión. Si cree que puede necesitar una nueva receta, consulte a su optometrista con suficiente anticipación para que sus nuevos lentes lleguen antes de su examen.",
+        "Check your blood pressure.": "Revise su presión arterial.",
+        "We recommend pre-testing your blood pressure. Readings above":
+            "Recomendamos revisar su presión arterial antes. Lecturas por encima de",
+        "155/95": "155/95",
+        "may prevent certification; ideally it should be below 150/90. Most blood pressure medications are FAA-approved.":
+            "pueden impedir la certificación; idealmente debe estar por debajo de 150/90. La mayoría de los medicamentos para la presión arterial están aprobados por la FAA.",
+        "Prepare your medical history.": "Prepare su historial médico.",
+        "Know the name, address, and date of": "Conozca el nombre, la dirección y la fecha de",
+        "all physician visits in the last 3 years": "todas las visitas médicas de los últimos 3 años",
+        ". This includes physicians, PAs, NPs, psychologists, and chiropractors. A record of DUI or substance abuse may affect certification. You can pre-fill this on":
+            ". Esto incluye médicos, asistentes médicos, enfermeros practicantes, psicólogos y quiroprácticos. Un historial de DUI o abuso de sustancias puede afectar la certificación. Puede completar esto con anticipación en",
+        "CACI documentation (if applicable).": "Documentación CACI (si aplica).",
+        "CACI-qualified condition": "condición calificada para CACI",
+        "from your treating physician dated within the last":
+            "de su médico tratante fechada dentro de los últimos",
+        "90 days": "90 días",
+        "One of the most common reasons for FAA medical deferrals is medication use. Search our database of over 1,000 medications to quickly check if your prescription is FAA-approved, conditionally allowed, or prohibited.":
+            "Una de las razones más comunes para los aplazamientos médicos de la FAA es el uso de medicamentos. Busque en nuestra base de datos de más de 1,000 medicamentos para verificar rápidamente si su receta está aprobada por la FAA, permitida condicionalmente o prohibida.",
+        "Always verify": "Siempre verifique",
+        "with the official sources linked below.": "con las fuentes oficiales enlazadas abajo.",
+        "1,058 medications": "1,058 medicamentos",
+        "Type a medication name to check FAA status":
+            "Escriba el nombre de un medicamento para verificar el estado FAA",
+        "Always verify with official sources or call (301) 208-2273.":
+            "Siempre verifique con fuentes oficiales o llame al (301) 208-2273.",
+        "stands for": "significa",
+        "Conditions AMEs Can Issue": "Condiciones que los AME Pueden Emitir",
+        ". These are specific medical conditions that Dr. Kessous can certify":
+            ". Estas son condiciones médicas específicas que el Dr. Kessous puede certificar",
+        "at the time of your exam": "al momento de su examen",
+        "- without deferring the decision to the FAA in Oklahoma City - provided you meet the criteria on the corresponding worksheet.":
+            "- sin aplazar la decisión a la FAA en Oklahoma City - siempre que cumpla con los criterios de la hoja de trabajo correspondiente.",
+        "To expedite your certification, download the appropriate worksheet and have your treating physician complete a":
+            "Para agilizar su certificación, descargue la hoja de trabajo correspondiente y pida a su médico tratante que complete una",
+        "dated within 90 days of your exam. Bring both to your appointment.":
+            "fechada dentro de los 90 días de su examen. Traiga ambos a su cita.",
+        "Summary of condition history": "Resumen del historial de la condición",
+        "Clinical exam findings": "Hallazgos del examen clínico",
+        "Lab / imaging results (per worksheet)": "Resultados de laboratorio / imágenes (según la hoja de trabajo)",
+        "Current medication & dosages": "Medicamentos actuales y dosis",
+        "Side effects statement": "Declaración de efectos secundarios",
+        "Arthritis": "Artritis",
+        "Covers stable osteoarthritis and certain autoimmune arthritis conditions managed with approved medications.":
+            "Cubre osteoartritis estable y ciertas condiciones de artritis autoinmune manejadas con medicamentos aprobados.",
+        "For well-controlled symptoms with limited rescue inhaler use. Requires pulmonary function testing documentation.":
+            "Para síntomas bien controlados con uso limitado de inhalador de rescate. Requiere documentación de pruebas de función pulmonar.",
+        "Bladder Cancer": "Cáncer de Vejiga",
+        "For applicants at least 5 years post-treatment or on specific maintenance therapy with stable monitoring.":
+            "Para solicitantes con al menos 5 años después del tratamiento o en terapia de mantenimiento específica con monitoreo estable.",
+        "Breast Cancer": "Cáncer de Mama",
+        "For treated or stable breast cancer with documentation of treatment completion and current monitoring status.":
+            "Para cáncer de mama tratado o estable con documentación de finalización del tratamiento y estado actual de monitoreo.",
+        "Carotid / Vertebral Artery Stenosis": "Estenosis de la Arteria Carótida / Vertebral",
+        "Requires documented stability with imaging and neurological evaluation confirming no acute events.":
+            "Requiere estabilidad documentada con imágenes y evaluación neurológica que confirme la ausencia de eventos agudos.",
+        "For stable platelet counts managed with approved therapy and documented hematology follow-up.":
+            "Para recuentos plaquetarios estables manejados con terapia aprobada y seguimiento hematológico documentado.",
+        "Requires specific lab values (GFR, creatinine) demonstrating stability. Staging criteria must be met.":
+            "Requiere valores específicos de laboratorio (GFR, creatinina) que demuestren estabilidad. Deben cumplirse los criterios de estadificación.",
+        "Chronic lymphocytic leukemia or SLL with documented stability and hematology/oncology follow-up.":
+            "Leucemia linfocítica crónica o SLL con estabilidad documentada y seguimiento por hematología/oncología.",
+        "Colitis (UC, Crohn's, IBS)": "Colitis (CU, Crohn, SII)",
+        "Includes ulcerative colitis, Crohn's disease, and IBS. Covers approved medications including GC-C agonists and selective abdominal modulators.":
+            "Incluye colitis ulcerosa, enfermedad de Crohn y SII. Cubre medicamentos aprobados incluyendo agonistas GC-C y moduladores abdominales selectivos.",
+        "Colon / Colorectal Cancer": "Cáncer de Colon / Colorrectal",
+        "For localized, treated, or stable monitored colorectal cancer with documentation of treatment and surveillance.":
+            "Para cáncer colorrectal localizado, tratado o estable bajo vigilancia con documentación del tratamiento y seguimiento.",
+        "Essential Tremor": "Temblor Esencial",
+        "Neurological evaluation required. Must demonstrate tremor does not interfere with safe aircraft operation.":
+            "Se requiere evaluación neurológica. Debe demostrar que el temblor no interfiere con la operación segura de la aeronave.",
+        "Requires specific visual field testing (Humphrey 24-2 or 30-2) and documentation of stable intraocular pressures.":
+            "Requiere pruebas específicas de campo visual (Humphrey 24-2 o 30-2) y documentación de presiones intraoculares estables.",
+        "For chronic hepatitis C with documented viral load, liver function testing, and treatment status.":
+            "Para hepatitis C crónica con carga viral documentada, pruebas de función hepática y estado del tratamiento.",
+        "Allows combinations of up to three approved medications. Must demonstrate blood pressure control within FAA limits.":
+            "Permite combinaciones de hasta tres medicamentos aprobados. Debe demostrar control de la presión arterial dentro de los límites de la FAA.",
+        "For stable conditions with a current TSH lab result within normal range. One of the most common CACI conditions.":
+            "Para condiciones estables con un resultado actual de TSH dentro del rango normal. Una de las condiciones CACI más comunes.",
+        "For testosterone replacement therapy with documented stable lab values and treatment plan.":
+            "Para terapia de reemplazo de testosterona con valores de laboratorio estables documentados y plan de tratamiento.",
+        "Metabolic-associated or non-alcoholic steatohepatitis with documented liver function stability and monitoring.":
+            "Esteatohepatitis metabólica o no alcohólica con estabilidad documentada de la función hepática y monitoreo.",
+        "Covers specific preventive and abortive treatments. Narcotics, Fiorinal, Fioricet, and Midrin are":
+            "Cubre tratamientos preventivos y abortivos específicos. Narcóticos, Fiorinal, Fioricet y Midrin no son",
+        "acceptable. Required \"no-fly\" wait times apply.":
+            "aceptables. Se aplican los tiempos de espera obligatorios de \"no volar\".",
+        "Mitral Valve Repair": "Reparación de la Válvula Mitral",
+        "Post-surgical cardiac evaluation required with echocardiogram and documentation of functional recovery.":
+            "Se requiere evaluación cardíaca postquirúrgica con ecocardiograma y documentación de la recuperación funcional.",
+        "Polycystic Ovarian Syndrome (PCOS)": "Síndrome de Ovario Poliquístico (SOP)",
+        "Requires documentation of condition stability, current treatment plan, and relevant lab values.":
+            "Requiere documentación de estabilidad de la condición, plan de tratamiento actual y valores de laboratorio relevantes.",
+        "Pre-Diabetes": "Prediabetes",
+        "For those managed by diet or Metformin with an A1C <= 6.5%. Requires current lab documentation of glycemic control.":
+            "Para quienes se controlan con dieta o Metformina con un A1C <= 6.5%. Requiere documentación actual de laboratorio del control glucémico.",
+        "Primary Hemochromatosis": "Hemocromatosis Primaria",
+        "Iron overload condition requiring documented ferritin levels, treatment history, and organ function monitoring.":
+            "Condición de sobrecarga de hierro que requiere niveles documentados de ferritina, historial de tratamiento y monitoreo de la función orgánica.",
+        "Prostate Cancer": "Cáncer de Próstata",
+        "For localized, treated, or stable monitored prostate cancer. Requires PSA levels and treatment documentation.":
+            "Para cáncer de próstata localizado, tratado o estable bajo vigilancia. Requiere niveles de PSA y documentación del tratamiento.",
+        "Psoriasis": "Psoriasis",
+        "Stable psoriasis managed with approved topical or systemic treatments. Dermatology documentation required.":
+            "Psoriasis estable manejada con tratamientos tópicos o sistémicos aprobados. Se requiere documentación dermatológica.",
+        "Renal Cancer": "Cáncer Renal",
+        "Treated or stable renal cancer with imaging surveillance and oncology documentation of remission status.":
+            "Cáncer renal tratado o estable con vigilancia por imágenes y documentación oncológica del estado de remisión.",
+        "Retained Kidney Stone(s)": "Cálculo(s) Renal(es) Retenido(s)",
+        "Requires imaging documentation showing stone size and location, plus clinical assessment of symptom stability.":
+            "Requiere documentación por imágenes que muestre el tamaño y la ubicación del cálculo, además de una evaluación clínica de la estabilidad de los síntomas.",
+        "Testicular Cancer": "Cáncer Testicular",
+        "For treated testicular cancer with documentation of treatment completion and surveillance monitoring.":
+            "Para cáncer testicular tratado con documentación de finalización del tratamiento y monitoreo de vigilancia.",
+        "Weight Loss Management (GLP-1)": "Manejo de Pérdida de Peso (GLP-1)",
+        "Covers the use of approved GLP-1 medications such as semaglutide (Ozempic, Wegovy) and tirzepatide (Mounjaro) for weight management.":
+            "Cubre el uso de medicamentos GLP-1 aprobados como semaglutida (Ozempic, Wegovy) y tirzepatida (Mounjaro) para el manejo del peso.",
+        "The most comprehensive aviation medication resource. Search by trade name, generic name, category, or purpose.":
+            "El recurso de medicamentos de aviación más completo. Busque por nombre comercial, nombre genérico, categoría o propósito.",
+        "Official AME Guide drug-by-drug reference covering approved, conditional, and prohibited medications.":
+            "Referencia oficial de la Guía AME medicamento por medicamento que cubre medicamentos aprobados, condicionales y prohibidos.",
+        "Medications that automatically disqualify you from certification.":
+            "Medicamentos que automáticamente lo descalifican de la certificación.",
+        "Over-the-counter meds that are generally allowed, with required wait times.":
+            "Medicamentos de venta libre que generalmente están permitidos, con tiempos de espera requeridos.",
+        "Quick-reference PDF on common medications, wait times, and AME discussion points.":
+            "PDF de referencia rápida sobre medicamentos comunes, tiempos de espera y puntos de discusión con el AME.",
+        "FAA article on the relationship between medications, flying, and your medical certificate.":
+            "Artículo de la FAA sobre la relación entre los medicamentos, volar y su certificado médico.",
+
+        // Immigration residual coverage
+        "The Exam Process": "El Proceso del Examen",
+        "Exam Process": "Proceso del Examen",
+        "Prior TB / STI Records": "Registros Previos de TB / ITS",
+        "First Visit - Lab Work & Records Review": "Primera Visita - Análisis y Revisión de Registros",
+        "- blood test (IGRA) for most patients; skin test (TST) for children under 2":
+            "- análisis de sangre (IGRA) para la mayoría de los pacientes; prueba cutánea (TST) para niños menores de 2 años",
+        "- required for ages 15 and older": "- requerido para edades de 15 años en adelante",
+        "- we identify which vaccines are needed": "- identificamos qué vacunas se necesitan",
+        "- comprehensive health evaluation": "- evaluación integral de salud",
+        "Second Visit - Physical Exam & I-693": "Segunda Visita - Examen Físico e I-693",
+        "- all test results reviewed and documented": "- todos los resultados de las pruebas revisados y documentados",
+        "Varicella": "Varicela",
+        "Tdap": "Tdap",
+        "Influenza": "Influenza",
+        "(Flu)": "(Gripe)",
+        "Pneumococcal": "Neumocócica",
+        "Polio": "Polio",
+        "(IPV)": "(IPV)",
+        "Hib": "Hib",
+        "2 doses required; or lab-confirmed immunity":
+            "2 dosis requeridas; o inmunidad confirmada por laboratorio",
+        "3-dose series; or lab-confirmed immunity":
+            "Serie de 3 dosis; o inmunidad confirmada por laboratorio",
+        "2 doses; or lab-confirmed immunity; or documented history of disease":
+            "2 dosis; o inmunidad confirmada por laboratorio; o historial documentado de la enfermedad",
+        "1 dose Tdap; plus Td booster every 10 years":
+            "1 dosis de Tdap; más refuerzo de Td cada 10 años",
+        "4-dose series": "Serie de 4 dosis",
+        "2 or 3 dose series depending on brand":
+            "Serie de 2 o 3 dosis según la marca",
+        "2-dose series": "Serie de 2 dosis",
+        "1-2 Week Processing": "Procesamiento de 1-2 Semanas",
+        "1-2 weeks": "1-2 semanas",
+        "2 years": "2 años",
+        "Official USCIS page for Form I-693 - Report of Medical Examination and Vaccination Record.":
+            "Página oficial de USCIS para el Formulario I-693 - Informe de Examen Médico y Registro de Vacunación.",
+        "Application to Register Permanent Residence or Adjust Status - where your sealed I-693 is submitted.":
+            "Solicitud para Registrar Residencia Permanente o Ajuste de Estatus - donde se presenta su I-693 sellado.",
+
+        // Corporate health residual coverage
+        "is a board-certified Occupational Medicine physician partnering with businesses across Maryland to deliver comprehensive occupational health and workplace wellness programs. Our services follow":
+            "es un médico certificado en Medicina Ocupacional que se asocia con empresas en todo Maryland para brindar programas integrales de salud ocupacional y bienestar en el lugar de trabajo. Nuestros servicios siguen",
+        "Testing": "Pruebas",
+        "Drug Panels": "Paneles de Drogas",
+        "Workers' Comp": "Compensación Laboral",
+        "Wellness": "Bienestar",
+        "Vaccines": "Vacunas",
+        "Maryland WCC guidelines.": "las pautas de la WCC de Maryland.",
+        "On-Site Wellness": "Bienestar en el Lugar",
+        "seasonal flu shots, health screenings, and quick check-ups - keeping your team healthy with minimal time away from work.":
+            "vacunas estacionales contra la gripe, evaluaciones de salud y chequeos rápidos - manteniendo a su equipo saludable con el mínimo tiempo fuera del trabajo.",
+        "Return-to-Work": "Regreso al Trabajo",
+        "OSHA-compliant surveillance protocols and CDC-recommended vaccinations":
+            "Protocolos de vigilancia que cumplen con OSHA y vacunas recomendadas por los CDC",
+        "Why Us": "Por Qué Nosotros",
+        "A pre-employment physical is more than a formality - it's the foundation of a safe workplace. Dr. Kessous designs each examination protocol around the physical and cognitive demands of the specific role, ensuring workers are genuinely ready for duty from their very first day.":
+            "Un examen físico previo al empleo es más que una formalidad - es la base de un lugar de trabajo seguro. El Dr. Kessous diseña cada protocolo de examen en función de las demandas físicas y cognitivas del puesto específico, asegurando que los trabajadores estén verdaderamente listos para el servicio desde su primer día.",
+        "Medical history & medication review": "Revisión del historial médico y medicamentos",
+        "Vital signs (BP, HR, height, weight, BMI)": "Signos vitales (PA, FC, altura, peso, IMC)",
+        "Distance & near vision (OD, OS, OU)": "Visión a distancia y cercana (OD, OS, OU)",
+        "Color vision (Ishihara plates)": "Visión de colores (placas de Ishihara)",
+        "Depth perception assessment": "Evaluación de la percepción de profundidad",
+        "Audiometric hearing test": "Prueba auditiva audiométrica",
+        "Urinalysis (glucose, protein, blood)": "Análisis de orina (glucosa, proteína, sangre)",
+        "Musculoskeletal & shoulder ROM": "Rango de movimiento musculoesquelético y de hombro",
+        "Repetitive motion & grip tests": "Pruebas de movimiento repetitivo y agarre",
+        "Role-specific add-ons": "Componentes adicionales específicos del puesto",
+        "Workers required to wear tight-fitting respirators (N95, half-face, full-face)":
+            "Trabajadores que deben usar respiradores ajustados (N95, media cara, cara completa)",
+        "Warehouse, construction, healthcare, field service, and any physically demanding role":
+            "Almacén, construcción, salud, servicio de campo y cualquier puesto físicamente exigente",
+        "Job-specific functional capacity": "Capacidad funcional específica del puesto",
+        "Employees who will be exposed to occupational noise at or above 85 dBA TWA":
+            "Empleados que estarán expuestos a ruido ocupacional de 85 dBA TWA o más",
+        "Healthcare workers, laboratory staff, correctional facilities, childcare workers":
+            "Trabajadores de la salud, personal de laboratorio, centros correccionales y trabajadores de cuidado infantil",
+        "Drivers, forklift operators, security personnel, first responders":
+            "Conductores, operadores de montacargas, personal de seguridad y socorristas",
+        "Role-specific requirement": "Requisito específico del puesto",
+        "Manufacturing, assembly, data entry, and other repetitive hand/wrist roles":
+            "Manufactura, ensamblaje, entrada de datos y otros puestos repetitivos de mano/muñeca",
+        "NIOSH ergonomic guidance": "Guía ergonómica de NIOSH",
+        "Most employers; panel selected based on industry, role, and employer drug-free workplace policy":
+            "La mayoría de los empleadores; el panel se selecciona según la industria, el puesto y la política del empleador de lugar de trabajo libre de drogas",
+        "Employer drug-free workplace policy": "Política del empleador de lugar de trabajo libre de drogas",
+        "Employees with potential respiratory hazard exposure; respirator users with medical concerns":
+            "Empleados con posible exposición a riesgos respiratorios; usuarios de respiradores con preocupaciones médicas",
+        "We work with your HR or EHS team to define the appropriate testing protocol for each job category. All results are documented in a structured report formatted for your records management system.":
+            "Trabajamos con su equipo de RR.HH. o EHS para definir el protocolo de pruebas apropiado para cada categoría de trabajo. Todos los resultados se documentan en un informe estructurado con formato para su sistema de gestión de registros.",
+        "OSHA requires medical surveillance for employees exposed to specific hazards above action levels or permissible exposure limits (PELs). These programs are distinct from pre-employment physicals - they are ongoing, triggered by exposure, and mandated by specific OSHA standards. Dr. Kessous designs and administers surveillance programs that keep your business in full compliance.":
+            "OSHA requiere vigilancia médica para empleados expuestos a peligros específicos por encima de los niveles de acción o límites permisibles de exposición (PEL). Estos programas son distintos de los exámenes físicos previos al empleo - son continuos, se activan por la exposición y están exigidos por normas específicas de OSHA. El Dr. Kessous diseña y administra programas de vigilancia que mantienen a su empresa en pleno cumplimiento.",
+        "Medical screening": "Detección médica",
+        "is a one-time clinical event focused on individual diagnosis - like a pre-employment exam.":
+            "es un evento clínico único enfocado en el diagnóstico individual - como un examen previo al empleo.",
+        "Medical surveillance": "Vigilancia médica",
+        "is an ongoing program designed to detect population-level trends in health outcomes related to workplace exposures, identify early signs of occupational disease, and eliminate underlying hazards. Both are important; only surveillance is mandated by OSHA exposure standards.":
+            "es un programa continuo diseñado para detectar tendencias a nivel poblacional en resultados de salud relacionados con exposiciones laborales, identificar signos tempranos de enfermedad ocupacional y eliminar peligros subyacentes. Ambos son importantes; solo la vigilancia está exigida por los estándares de exposición de OSHA.",
+        "Mandatory medical evaluation (questionnaire) before respirator use, with physician follow-up if indicated. Includes baseline and annual fit testing for tight-fitting facepieces. Covers N95, half-face, full-face respirators, and supplied-air respirators (SCBA).":
+            "Evaluación médica obligatoria (cuestionario) antes del uso de respirador, con seguimiento médico si está indicado. Incluye prueba de ajuste inicial y anual para mascarillas ajustadas. Cubre respiradores N95, de media cara, de cara completa y respiradores con suministro de aire (SCBA).",
+        "Baseline audiogram at hire (within 6 months of first exposure), annual audiograms for employees exposed to ≥85 dBA 8-hr TWA, and Standard Threshold Shift (STS) evaluation and notification. Covers manufacturing, construction, and industrial environments.":
+            "Audiograma inicial al contratar (dentro de los 6 meses de la primera exposición), audiogramas anuales para empleados expuestos a ≥85 dBA TWA de 8 horas, y evaluación y notificación de Cambio de Umbral Estándar (STS). Cubre entornos de manufactura, construcción e industriales.",
+        "Post-exposure evaluation and follow-up after potential exposure incidents. Hepatitis B vaccination and titer verification for employees with occupational exposure risk. Confidential medical records maintained per OSHA requirements. Required for healthcare, laboratory, and first-responder workforces.":
+            "Evaluación y seguimiento posterior a la exposición después de incidentes de exposición potencial. Vacunación contra Hepatitis B y verificación de títulos para empleados con riesgo de exposición ocupacional. Registros médicos confidenciales mantenidos según los requisitos de OSHA. Requerido para fuerzas laborales de salud, laboratorio y socorristas.",
+        "EKG required at age 35, then annually after 40":
+            "EKG requerido a los 35 años, luego anualmente después de los 40",
+        "Stricter vision and cardiovascular standards":
+            "Estándares más estrictos de visión y cardiovasculares",
+        "mandatory": "obligatorio",
+        "- distance, near, and color vision":
+            "- visión a distancia, cercana y de colores",
+        "- conversational voice or audiometric":
+            "- voz conversacional o audiométrica",
+        "- screening for sugar and protein":
+            "- detección de azúcar y proteína",
+        "- heart, lungs, abdomen, neuro":
+            "- corazón, pulmones, abdomen, neurológico",
+        "- required for Class 1 at age 35 and annually after 40":
+            "- requerido para Clase 1 a los 35 años y anualmente después de los 40",
+        "- the AME reviews your 8500-8 with you":
+            "- el AME revisa su 8500-8 con usted",
+        "EKG reminder (Class 1).": "Recordatorio de EKG (Clase 1).",
+        "If you're age 40+, you need an EKG annually. This is the most common reason pilots accidentally \"drop down\" a class.":
+            "Si tiene 40 años o más, necesita un EKG anualmente. Esta es la razón más común por la que los pilotos accidentalmente \"bajan\" de clase.",
+        "Aggregate repeat visits.": "Agrupe visitas repetidas.",
+        "If you see the same doctor multiple times for the same stable condition, you can list it as one entry using the most recent visit date.":
+            "Si ve al mismo médico varias veces por la misma condición estable, puede listarlo como una sola entrada usando la fecha de visita más reciente.",
+        "Check the CACI list.": "Revise la lista CACI.",
+        "If you've been diagnosed with a new condition since your last exam, check our":
+            "Si le han diagnosticado una nueva condición desde su último examen, revise nuestra",
+        "CACI worksheets section": "sección de hojas de trabajo CACI",
+        ". Many stable conditions can now be certified in-office without deferral to Oklahoma City.":
+            ". Muchas condiciones estables ahora pueden certificarse en la oficina sin aplazamiento a Oklahoma City.",
+        "Bring a DCPN.": "Traiga una DCPN.",
+        "For CACI conditions, bring a":
+            "Para condiciones CACI, traiga una",
+        "Current Detailed Clinical Progress Note":
+            "Nota de Progreso Clínico Detallada Actual",
+        "from your treating physician dated within 90 days of your exam. A standard \"After Visit Summary\" is not sufficient - it must include history, exam findings, lab results, assessment, and a side effects statement.":
+            "de su médico tratante fechada dentro de los 90 días de su examen. Un \"After Visit Summary\" estándar no es suficiente - debe incluir historial, hallazgos del examen, resultados de laboratorio, evaluación y una declaración de efectos secundarios.",
+        "Consider BasicMed.": "Considere BasicMed.",
+        "If you no longer need commercial privileges,":
+            "Si ya no necesita privilegios comerciales,",
+        "lets you fly with any state-licensed physician's exam plus an online course - no AME visit needed. You must have held a valid medical certificate after July 15, 2006.":
+            "le permite volar con el examen de cualquier médico con licencia estatal más un curso en línea - no se necesita visita con un AME. Debe haber tenido un certificado médico válido después del 15 de julio de 2006.",
+        "Special Issuance support.": "Apoyo para Emisión Especial.",
+        "If you don't meet CACI criteria, Dr. Kessous can help you through the Special Issuance (SI) process - gathering records and serving as your advocate with the FAA.":
+            "Si no cumple los criterios CACI, el Dr. Kessous puede ayudarle con el proceso de Emisión Especial (SI) - reuniendo registros y sirviendo como su defensor ante la FAA.",
+        "Always verify with official sources or call":
+            "Siempre verifique con fuentes oficiales o llame al",
+        "Even common over-the-counter medications may require a \"no-fly\" waiting period:":
+            "Incluso medicamentos comunes de venta libre pueden requerir un período de espera de \"no volar\":",
+        "Diphenhydramine (Benadryl)": "Difenhidramina (Benadryl)",
+        "60-hour wait": "Espera de 60 horas",
+        "Doxylamine (Unisom, NyQuil)": "Doxilamina (Unisom, NyQuil)",
+        "Melatonin": "Melatonina",
+        "24-hour wait": "Espera de 24 horas",
+        "Pseudoephedrine (Sudafed)": "Pseudoefedrina (Sudafed)",
+        "Ground trial": "Prueba en tierra",
+        "Ibuprofen, Acetaminophen": "Ibuprofeno, Acetaminofén",
+        "Loratadine, Cetirizine, Fexofenadine":
+            "Loratadina, Cetirizina, Fexofenadina",
+        "No wait": "Sin espera",
+        "Full list available at": "Lista completa disponible en",
+        ". Worksheets are official FAA documents (PDF).":
+            ". Las hojas de trabajo son documentos oficiales de la FAA (PDF).",
+        "automatically disqualify": "automáticamente descalifican",
+        ". These are specific medical conditions that your Aviation Medical Examiner can certify at the time of your exam without deferring the decision to the FAA in Oklahoma City.":
+            ". Estas son condiciones médicas específicas que su Examinador Médico de Aviación puede certificar al momento de su examen sin aplazar la decisión a la FAA en Oklahoma City.",
+        "You must meet the criteria on the corresponding worksheet and bring a Current Detailed Clinical Progress Note (DCPN) from your treating physician dated within 90 days. See the":
+            "Debe cumplir los criterios de la hoja de trabajo correspondiente y traer una Nota de Progreso Clínico Detallada Actual (DCPN) de su médico tratante fechada dentro de los 90 días. Vea la",
+        "full CACI list above": "lista completa de CACI arriba",
+        "Your certificate doesn't expire immediately - it":
+            "Su certificado no vence inmediatamente -",
+        "\"steps down\"": "\"desciende\"",
+        "to the next lower class. A Class 1 becomes a Class 2, then eventually a Class 3. You can continue flying under the lower privileges until the Class 3 validity period expires completely.":
+            "a la siguiente clase inferior. Una Clase 1 se convierte en Clase 2 y luego eventualmente en Clase 3. Puede continuar volando bajo los privilegios inferiores hasta que el período de validez de la Clase 3 expire por completo.",
+        "You do": "Usted no",
+        "need a new certificate for this to happen. See the":
+            "necesita un nuevo certificado para que esto suceda. Vea la",
+        "step-down rule": "regla de reducción",
+        "for a full example.": "para ver un ejemplo completo.",
+        "Yes, this is mandatory.": "Sí, esto es obligatorio.",
+        "Complete your application (Form 8500-8) at":
+            "Complete su solicitud (Formulario 8500-8) en",
+        "before your appointment. Bring your Confirmation Number and a printed copy. The application is valid for 60 days.":
+            "antes de su cita. Traiga su Número de Confirmación y una copia impresa. La solicitud es válida por 60 días.",
+        "Check these resources in order:": "Revise estos recursos en este orden:",
+        "- if your medication is on this list, you cannot be certified.":
+            "- si su medicamento está en esta lista, no puede ser certificado.",
+        "- search by drug name, category, or purpose.":
+            "- busque por nombre del medicamento, categoría o propósito.",
+        "- detailed drug-by-drug reference.":
+            "- referencia detallada medicamento por medicamento.",
+        "If you're unsure, call our office at":
+            "Si no está seguro, llame a nuestra oficina al",
+        "before your exam.": "antes de su examen.",
+        "is an alternative to traditional FAA medical certification for non-commercial pilots. If you held a valid medical certificate after July 15, 2006, you can fly under BasicMed by:":
+            "es una alternativa a la certificación médica FAA tradicional para pilotos no comerciales. Si tuvo un certificado médico válido después del 15 de julio de 2006, puede volar bajo BasicMed mediante:",
+        "Required during flu season (October-March)":
+            "Requerido durante la temporada de gripe (octubre-marzo)",
+        "Ages 2-4 and 65+": "Edades 2-4 y 65+",
+        "Ages 2 months - 17 years": "De 2 meses a 17 años",
+        "Infants 6 weeks - 8 months": "Bebés de 6 semanas a 8 meses",
+        "Ages 2 months - 4 years": "De 2 meses a 4 años",
+        "Ages 12 months - 23 months": "De 12 a 23 meses",
+        "Search civil surgeons →": "Buscar cirujanos civiles →",
+        "View CDC guide →": "Ver guía del CDC →",
+        "View form →": "Ver formulario →",
+        "Read USCIS guide →": "Leer guía de USCIS →",
+        "View CDC resources →": "Ver recursos del CDC →",
+        "Respirator Fit Test (QLFT/QNFT)": "Prueba de Ajuste de Respirador (QLFT/QNFT)",
+        "30 / 50 lb Lift Test": "Prueba de Levantamiento de 30 / 50 lb",
+        "Audiometric (Baseline) Test": "Prueba Audiométrica (Inicial)",
+        "TB Screening (TST / IGRA)": "Detección de TB (TST / IGRA)",
+        "Visual Field Assessment": "Evaluación del Campo Visual",
+        "Repetitive Motion (Tinel / Phalen / Finkelstein)":
+            "Movimiento Repetitivo (Tinel / Phalen / Finkelstein)",
+        "Drug Screen (5, 10, or 16 panel)":
+            "Prueba de Drogas (panel de 5, 10 o 16)",
+        "Spirometry (Pulmonary Function Test)":
+            "Espirometría (Prueba de Función Pulmonar)",
+        "To build the right protocol, share the employee's":
+            "Para construir el protocolo correcto, comparta la",
+        "job description": "descripción del puesto",
+        ", any known": ", cualquier",
+        "physical demands analysis (PDA)": "análisis conocido de demandas físicas (PDA)",
+        ", and your industry's": ", y los",
+        "applicable OSHA standards": "estándares OSHA aplicables de su industria",
+        ". This allows Dr. Kessous to ensure the exam is both medically appropriate and legally defensible.":
+            ". Esto permite al Dr. Kessous asegurar que el examen sea médicamente apropiado y legalmente defendible.",
+        "Medical surveillance for employees exposed to hazardous chemicals including lead, asbestos, benzene, formaldehyde, ethylene oxide, and others with specific OSHA standards. Includes exposure history review, targeted physical exam, and required biological monitoring labs.":
+            "Vigilancia médica para empleados expuestos a químicos peligrosos incluyendo plomo, asbesto, benceno, formaldehído, óxido de etileno y otros con estándares específicos de OSHA. Incluye revisión del historial de exposición, examen físico dirigido y laboratorios de monitoreo biológico requeridos.",
+        "Periodic evaluation of employees in high-repetition, high-force, or awkward-posture roles. Tinel, Phalen, and Finkelstein tests for cumulative trauma disorder detection. Early-intervention programs reduce lost work days and workers' compensation costs.":
+            "Evaluación periódica de empleados en puestos de alta repetición, alta fuerza o posturas incómodas. Pruebas de Tinel, Phalen y Finkelstein para detección de trastornos por trauma acumulativo. Los programas de intervención temprana reducen días de trabajo perdidos y costos de compensación laboral.",
+        "Baseline TB testing at hire with periodic testing based on risk classification. IGRA (QuantiFERON-Gold) or TST (tuberculin skin test) per CDC guidelines. Required for healthcare workers, laboratory personnel, correctional staff, and shelter/social service workers.":
+            "Prueba inicial de TB al contratar con pruebas periódicas según la clasificación de riesgo. IGRA (QuantiFERON-Gold) o TST (prueba cutánea de tuberculina) según las pautas de los CDC. Requerido para trabajadores de la salud, personal de laboratorio, personal correccional y trabajadores de refugios/servicios sociales.",
+        "(Access to Employee Exposure and Medical Records). Records must be preserved for the duration of employment plus 30 years for most hazardous substance exposure records. We provide employers with appropriately formatted documentation while maintaining individual employee privacy.":
+            "(Acceso a los Registros de Exposición y Médicos del Empleado). Los registros deben conservarse durante la duración del empleo más 30 años para la mayoría de los registros de exposición a sustancias peligrosas. Proporcionamos a los empleadores documentación con el formato adecuado mientras mantenemos la privacidad individual del empleado.",
+        "All diagnostic tests are performed on-site by trained staff under physician supervision. Results are delivered in structured reports formatted for HR, safety officers, and insurers.":
+            "Todas las pruebas diagnósticas se realizan en el lugar por personal capacitado bajo supervisión médica. Los resultados se entregan en informes estructurados con formato para RR.HH., oficiales de seguridad y aseguradoras.",
+        "Audiometric Exam": "Examen Audiométrico",
+        "500-8,000 Hz bilateral": "500-8,000 Hz bilateral",
+        "Hearing thresholds across speech and high frequencies; detects noise-induced hearing loss and STS":
+            "Umbrales auditivos a través del habla y frecuencias altas; detecta pérdida auditiva inducida por ruido y STS",
+        "Pre-employment baseline; annual OSHA surveillance; post-exposure evaluation":
+            "Línea base previa al empleo; vigilancia anual OSHA; evaluación post-exposición",
+        "Respirator Fit Test": "Prueba de Ajuste de Respirador",
+        "QLFT & QNFT": "QLFT y QNFT",
+        "Adequacy of respirator seal; verifies facepiece selection and donning technique":
+            "Adecuación del sello del respirador; verifica la selección de la mascarilla y la técnica de colocación",
+        "Required before initial respirator use; annually thereafter; after significant weight change or facial surgery":
+            "Requerido antes del uso inicial del respirador; anualmente después; después de un cambio significativo de peso o cirugía facial",
+        "Vision Testing": "Pruebas de Visión",
+        "Distance, Near, Color, Depth, Field": "Distancia, Cerca, Color, Profundidad, Campo",
+        "Distance acuity (20/20 standard), near acuity, color discrimination (Ishihara), depth perception (Sheppard/Fry), peripheral visual field":
+            "Agudeza visual a distancia (estándar 20/20), agudeza cercana, discriminación de colores (Ishihara), percepción de profundidad (Sheppard/Fry), campo visual periférico",
+        "Pre-employment; driver physicals; safety-sensitive roles; forklift and equipment operators":
+            "Previo al empleo; exámenes físicos de conductores; puestos sensibles a la seguridad; operadores de montacargas y equipos",
+        "Functional capacity for sustained lifting at specified weights; posture and technique observed":
+            "Capacidad funcional para levantamiento sostenido en pesos especificados; postura y técnica observadas",
+        "Pre-employment for physically demanding roles; return-to-work clearance":
+            "Previo al empleo para puestos físicamente exigentes; autorización de regreso al trabajo",
+        "Repetitive Motion Tests": "Pruebas de Movimiento Repetitivo",
+        "Tinel, Phalen, Finkelstein": "Tinel, Phalen, Finkelstein",
+        "Carpal tunnel syndrome indicators (Tinel, Phalen) and De Quervain tenosynovitis (Finkelstein)":
+            "Indicadores de síndrome del túnel carpiano (Tinel, Phalen) y tenosinovitis de De Quervain (Finkelstein)",
+        "Pre-employment for repetitive-motion roles; ergonomic surveillance; return-to-work":
+            "Previo al empleo para puestos de movimiento repetitivo; vigilancia ergonómica; regreso al trabajo",
+        "Shoulder Range of Motion": "Rango de Movimiento del Hombro",
+        "Active ROM in all planes; identifies restrictions relevant to overhead or reaching tasks":
+            "ROM activo en todos los planos; identifica restricciones relevantes para tareas por encima de la cabeza o de alcance",
+        "Pre-employment; return-to-work after upper extremity injury":
+            "Previo al empleo; regreso al trabajo después de lesión de extremidad superior",
+        "Reach Test": "Prueba de Alcance",
+        "Functional reaching ability (Trial 1 & 2); relevant for shelf-stocking, maintenance, and overhead work":
+            "Capacidad funcional de alcance (Prueba 1 y 2); relevante para surtido de estantes, mantenimiento y trabajo por encima de la cabeza",
+        "Pre-employment; return-to-work evaluations":
+            "Previo al empleo; evaluaciones de regreso al trabajo",
+        "Urinalysis": "Análisis de Orina",
+        "Glucose, Protein, Blood": "Glucosa, Proteína, Sangre",
+        "Renal function indicators, metabolic screening; chain-of-custody specimen for drug testing":
+            "Indicadores de función renal, evaluación metabólica; muestra con cadena de custodia para pruebas de drogas",
+        "Standard component of pre-employment and OSHA physicals":
+            "Componente estándar de exámenes físicos previos al empleo y de OSHA",
+        "TB Testing (TST / IGRA)": "Pruebas de TB (TST / IGRA)",
+        "Latent or active tuberculosis infection; IGRA (QuantiFERON-Gold) preferred for BCG-vaccinated individuals":
+            "Infección tuberculosa latente o activa; IGRA (QuantiFERON-Gold) preferido para personas vacunadas con BCG",
+        "Healthcare workers; laboratory staff; correctional and shelter employees; annual surveillance":
+            "Trabajadores de la salud; personal de laboratorio; empleados correccionales y de refugios; vigilancia anual",
+        "Visual Field Testing": "Pruebas de Campo Visual",
+        "Peripheral and central visual field integrity; relevant for driving and safety-sensitive roles":
+            "Integridad del campo visual periférico y central; relevante para conducción y puestos sensibles a la seguridad",
+        "Commercial driver physicals; security and law enforcement; forklift operators":
+            "Exámenes físicos para conductores comerciales; seguridad y fuerzas del orden; operadores de montacargas",
+        "Every exam generates a standardized report that includes vital signs, individual test results with reference ranges, pass/fail or normal/abnormal designations, work restriction recommendations if applicable, and physician signature. Reports are formatted for direct intake into HR information systems or insurer case management portals.":
+            "Cada examen genera un informe estandarizado que incluye signos vitales, resultados individuales de pruebas con rangos de referencia, designaciones de aprobado/reprobado o normal/anormal, recomendaciones de restricciones laborales si aplica, y firma del médico. Los informes están formateados para ingreso directo en sistemas de información de RR.HH. o portales de gestión de casos de aseguradoras.",
+        "We offer employer-grade drug testing with full chain-of-custody procedures for general employment screening. Panels are available for pre-employment, random, post-accident, and reasonable suspicion testing programs.":
+            "Ofrecemos pruebas de drogas de nivel empresarial con procedimientos completos de cadena de custodia para detección laboral general. Los paneles están disponibles para programas de pruebas previas al empleo, aleatorias, post-accidente y por sospecha razonable.",
+        "Standard workplace panel covering the most commonly tested substances in employment drug screening programs.":
+            "Panel laboral estándar que cubre las sustancias más comúnmente analizadas en programas de detección de drogas en el empleo.",
+        "Expanded panel covering additional prescription and illicit substances commonly tested in safety-sensitive roles.":
+            "Panel ampliado que cubre sustancias adicionales con receta e ilícitas comúnmente analizadas en puestos sensibles a la seguridad.",
+        "Our most comprehensive panel, covering modern synthetic opioids and prescription medications increasingly encountered in workplace testing programs.":
+            "Nuestro panel más completo, que cubre opioides sintéticos modernos y medicamentos con receta que se encuentran cada vez más en programas de pruebas laborales.",
+        "Conducted before a job offer is finalized or before start date. A negative result is a condition of hire.":
+            "Realizada antes de que se finalice una oferta de trabajo o antes de la fecha de inicio. Un resultado negativo es una condición de contratación.",
+        "Unannounced testing selected by computer-generated random process for ongoing workforce deterrence programs.":
+            "Pruebas no anunciadas seleccionadas por un proceso aleatorio generado por computadora para programas continuos de disuasión de la fuerza laboral.",
+        "After a workplace injury or near-miss incident, as required by employer policy or safety program guidelines.":
+            "Después de una lesión laboral o incidente de casi accidente, según lo requiera la política del empleador o las pautas del programa de seguridad.",
+        "When a trained supervisor observes specific signs and symptoms of impairment consistent with substance use.":
+            "Cuando un supervisor capacitado observa signos y síntomas específicos de deterioro consistentes con el uso de sustancias.",
+        "Workplace injuries disrupt operations and affect both the employee and the organization. Our goal is a safe, medically guided return to full function - with documentation structured to support smooth processing by HR, insurers, and the Maryland Workers' Compensation Commission (WCC).":
+            "Las lesiones laborales interrumpen las operaciones y afectan tanto al empleado como a la organización. Nuestro objetivo es un regreso seguro y médicamente guiado a la función completa - con documentación estructurada para apoyar un procesamiento fluido por parte de RR.HH., aseguradoras y la Comisión de Compensación Laboral de Maryland (WCC).",
+        "Injury care": "Atención de lesiones",
+        "Comprehensive assessment of the injury mechanism, anatomy affected, and functional limitations. Imaging orders placed when clinically indicated.":
+            "Evaluación integral del mecanismo de la lesión, la anatomía afectada y las limitaciones funcionales. Se solicitan estudios de imagen cuando está clínicamente indicado.",
+        "Clear ICD-10 coded diagnosis and a documented treatment plan including medications, physical therapy referrals, and specialist coordination if needed.":
+            "Diagnóstico claro codificado con ICD-10 y un plan de tratamiento documentado que incluye medicamentos, referencias a terapia física y coordinación con especialistas si es necesario.",
+        "Written work status notes specifying full duty, modified duty, or temporary total disability - updated at each visit and formatted for insurer case management.":
+            "Notas escritas del estado laboral que especifican servicio completo, servicio modificado o incapacidad total temporal - actualizadas en cada visita y formateadas para la gestión de casos de aseguradoras.",
+        "Regular progress evaluations to assess recovery, adjust treatment, and identify obstacles to return. Direct communication with HR and case managers.":
+            "Evaluaciones regulares de progreso para evaluar la recuperación, ajustar el tratamiento e identificar obstáculos para el regreso. Comunicación directa con RR.HH. y gestores de casos.",
+        "All documentation formatted for Maryland Workers' Compensation Commission requirements, reducing administrative burden on your team.":
+            "Toda la documentación está formateada según los requisitos de la Comisión de Compensación Laboral de Maryland, reduciendo la carga administrativa sobre su equipo.",
+        "Return to work": "Regreso al trabajo",
+        "Review of treatment records, imaging, specialist notes, and any functional capacity evaluation (FCE) results to establish current medical status.":
+            "Revisión de registros de tratamiento, estudios de imagen, notas de especialistas y cualquier resultado de evaluación de capacidad funcional (FCE) para establecer el estado médico actual.",
+        "Targeted physical examination including strength, ROM, endurance, and job-task simulation (lifting, reaching, gripping) matched to the employee's job description.":
+            "Examen físico dirigido que incluye fuerza, ROM, resistencia y simulación de tareas laborales (levantar, alcanzar, agarrar) ajustado a la descripción del puesto del empleado.",
+        "Clear, specific restrictions (e.g., \"no lifting >20 lbs,\" \"no overhead work,\" \"limited standing to 4 hours/day\") aligned with the employee's job demands.":
+            "Restricciones claras y específicas (por ejemplo, \"no levantar >20 lb\", \"no trabajo por encima de la cabeza\", \"estar de pie limitado a 4 horas/día\") alineadas con las demandas laborales del empleado.",
+        "Written clearance documenting the physician's determination that the employee can safely return, with or without restrictions. Appropriate for employer, insurer, and legal purposes.":
+            "Autorización escrita que documenta la determinación del médico de que el empleado puede regresar de forma segura, con o sin restricciones. Apropiada para propósitos del empleador, la aseguradora y legales.",
+        "Guidance to HR on structuring modified-duty assignments that comply with restrictions while keeping the employee productively engaged during recovery.":
+            "Orientación para RR.HH. sobre cómo estructurar asignaciones de servicio modificado que cumplan con las restricciones mientras mantienen al empleado productivamente involucrado durante la recuperación.",
+        "Back & neck injuries": "Lesiones de espalda y cuello",
+        "Lacerations & wounds": "Laceraciones y heridas",
+        "Fractures (non-surgical)": "Fracturas (no quirúrgicas)",
+        "Repetitive motion injuries": "Lesiones por movimiento repetitivo",
+        "Chemical exposures": "Exposiciones químicas",
+        "Eye injuries": "Lesiones oculares",
+        "Noise-induced hearing loss": "Pérdida auditiva inducida por ruido",
+        "Healthy employees are more productive, miss fewer days, and cost less to insure. Our corporate wellness days bring preventive healthcare directly to your workplace, minimizing disruption and maximizing participation.":
+            "Los empleados saludables son más productivos, faltan menos días y cuestan menos de asegurar. Nuestros días de bienestar corporativo llevan la atención preventiva directamente a su lugar de trabajo, minimizando la interrupción y maximizando la participación.",
+        "On-site administration of seasonal influenza vaccines for your entire workforce. We handle scheduling, consenting, and documentation. Available September through March. Accommodates large teams efficiently.":
+            "Administración en el lugar de vacunas estacionales contra la influenza para toda su fuerza laboral. Nos encargamos de la programación, consentimientos y documentación. Disponible de septiembre a marzo. Se adapta eficientemente a equipos grandes.",
+        "Rapid point-of-care measurement of key health indicators: blood pressure, BMI, cholesterol (total, HDL, LDL), fasting glucose, and waist circumference. Results are provided immediately with aggregate population reports available.":
+            "Medición rápida en el punto de atención de indicadores clave de salud: presión arterial, IMC, colesterol (total, HDL, LDL), glucosa en ayunas y circunferencia de cintura. Los resultados se proporcionan inmediatamente y hay informes poblacionales agregados disponibles.",
+        "Hypertension is the \"silent killer\" - millions of Americans are unaware they have it. Rapid blood pressure checks with physician-guided interpretation identify employees who need follow-up before serious events occur.":
+            "La hipertensión es el \"asesino silencioso\" - millones de estadounidenses no saben que la tienen. Los controles rápidos de presión arterial con interpretación guiada por el médico identifican a los empleados que necesitan seguimiento antes de que ocurran eventos graves.",
+        "On-site TB testing (TST placement and reading, or blood draw for IGRA) for healthcare and high-risk workforces. Supports annual healthcare worker health programs and new-employee clearance requirements.":
+            "Pruebas de TB en el lugar (colocación y lectura de TST, o extracción de sangre para IGRA) para fuerzas laborales de salud y alto riesgo. Apoya programas anuales de salud para trabajadores de la salud y requisitos de autorización para nuevos empleados.",
+        "Brief physician-led health counseling for employees with identified risk factors. Covers nutrition, physical activity, stress management, and medication adherence. Connects at-risk employees with appropriate follow-up resources.":
+            "Asesoría breve de salud dirigida por un médico para empleados con factores de riesgo identificados. Cubre nutrición, actividad física, manejo del estrés y adherencia a medicamentos. Conecta a empleados en riesgo con recursos apropiados de seguimiento.",
+
     };
 
     // Build reverse map for EN restore
@@ -1834,13 +3095,57 @@
     var SORTED_KEYS = Object.keys(DICT).sort(function (a, b) { return b.length - a.length; });
     var SORTED_REVERSE_KEYS = Object.keys(DICT_REVERSE).sort(function (a, b) { return b.length - a.length; });
 
+    // Short keys (≤ ~60 chars or ≤ 6 words) are treated as labels and only
+    // replace when they are the ENTIRE trimmed text of a node. Longer keys
+    // (full sentences / paragraphs) still work as substring replacements so
+    // rich-inline markup like <a>…</a> inside a paragraph continues to match.
+    // Rationale: prevents keys like "Insurance" → "Seguros" from corrupting
+    // untranslated English paragraphs into Spanglish.
+    function isShortKey(key) {
+        if (key.length > 60) return false;
+        var wordCount = key.split(/\s+/).filter(Boolean).length;
+        return wordCount <= 6;
+    }
+
+    function normalizeForTranslation(value) {
+        if (!value) return value;
+        return value
+            .replace(/[\u2018\u2019\u201B\u2032]/g, "'")
+            .replace(/[\u201C\u201D\u2033]/g, '"')
+            .replace(/[\u2010\u2011\u2012\u2013\u2014\u2212]/g, '-')
+            .replace(/\u00A0/g, ' ');
+    }
+
     function translateTextNode(node, dict, sortedKeys) {
         var text = node.nodeValue;
         if (!text || !text.trim()) return;
+        var trimmed = text.trim();
+        var trimmedLower = normalizeForTranslation(trimmed).toLowerCase();
         var changed = false;
         sortedKeys.forEach(function (key) {
             var val = dict[key];
-            var idx = text.toLowerCase().indexOf(key.toLowerCase());
+            var keyLower = normalizeForTranslation(key).toLowerCase();
+
+            if (isShortKey(key)) {
+                // Only replace when the entire trimmed text node equals the key.
+                if (trimmedLower === keyLower) {
+                    var leading = text.match(/^\s*/)[0];
+                    var trailing = text.match(/\s*$/)[0];
+                    var original = trimmed;
+                    var replacement = val;
+                    if (original === original.toUpperCase() && original !== original.toLowerCase()) {
+                        replacement = val.toUpperCase();
+                    }
+                    text = leading + replacement + trailing;
+                    trimmed = replacement;
+                    trimmedLower = normalizeForTranslation(replacement).toLowerCase();
+                    changed = true;
+                }
+                return;
+            }
+
+            var normalizedText = normalizeForTranslation(text).toLowerCase();
+            var idx = normalizedText.indexOf(keyLower);
             while (idx !== -1) {
                 var original = text.substr(idx, key.length);
                 var replacement = val;
@@ -1851,10 +3156,51 @@
                 }
                 text = text.substr(0, idx) + replacement + text.substr(idx + key.length);
                 changed = true;
-                idx = text.toLowerCase().indexOf(key.toLowerCase(), idx + replacement.length);
+                normalizedText = normalizeForTranslation(text).toLowerCase();
+                idx = normalizedText.indexOf(keyLower, idx + replacement.length);
             }
         });
         if (changed) node.nodeValue = text;
+    }
+
+    function applyHtmlOverride(selector, lang, esHtml) {
+        var el = document.querySelector(selector);
+        if (!el) return;
+        if (!el.dataset.langEnHtml) {
+            el.dataset.langEnHtml = el.innerHTML;
+        }
+        el.innerHTML = (lang === 'es') ? esHtml : el.dataset.langEnHtml;
+    }
+
+    function applyPageSpecificOverrides(lang) {
+        var path = window.location.pathname || '';
+        if (path.indexOf('/faa-physicals/pilot-resources') !== -1) {
+            applyHtmlOverride(
+                '#classes .callout.callout-amber h4',
+                lang,
+                'La &quot;Regla de Reducci&oacute;n&quot; &mdash; No se deje en tierra'
+            );
+            applyHtmlOverride(
+                '#classes .callout.callout-amber p:nth-of-type(1)',
+                lang,
+                'Su certificado m&eacute;dico FAA no simplemente vence &mdash; <strong class="text-gray-800">autom&aacute;ticamente desciende en privilegios</strong>. Cuando termina el per&iacute;odo de validez de su Clase 1, el mismo certificado se convierte en Clase 2. Cuando termina el per&iacute;odo de Clase 2, se convierte en Clase 3. Usted <em>no</em> necesita una nueva hoja de papel para que esto suceda.'
+            );
+            applyHtmlOverride(
+                '#classes .callout.callout-amber p:nth-of-type(2)',
+                lang,
+                '<strong class="text-gray-800">Ejemplo:</strong> Si es un piloto de Clase 1 mayor de 40 a&ntilde;os y pierde su renovaci&oacute;n de 6 meses, a&uacute;n puede volar bajo <strong>Comercial (Clase 2)</strong> por otros 6 meses, o como <strong>Piloto Privado (Clase 3)</strong> por hasta otros 18 meses &mdash; todo con el mismo certificado.'
+            );
+            applyHtmlOverride(
+                '#checklist .checklist-item:nth-child(8)',
+                lang,
+                '<span class="checklist-num">8</span><strong>Documentaci&oacute;n CACI (si aplica).</strong> Si tiene una <a href="#caci" class="text-link">condici&oacute;n calificada para CACI</a>, traiga una <strong>Nota de Progreso Cl&iacute;nico Detallada Actual (DCPN)</strong> de su m&eacute;dico tratante fechada dentro de los &uacute;ltimos <strong>90 d&iacute;as</strong>. La nota debe incluir: resumen del historial, hallazgos del examen cl&iacute;nico, resultados de pruebas, evaluaci&oacute;n y plan (con c&oacute;digos ICD-10), y una declaraci&oacute;n de efectos secundarios. Un &quot;After Visit Summary&quot; est&aacute;ndar <em>no</em> es suficiente.'
+            );
+            applyHtmlOverride(
+                '#checklist .callout.callout-green p',
+                lang,
+                '<strong class="text-gray-800">Bueno saber:</strong> Los solicitantes deben tener al menos 16 a&ntilde;os y poder leer, hablar, escribir y entender ingl&eacute;s. <em>No</em> necesita traer su bit&aacute;cora de piloto. El examen m&eacute;dico de aviador no sustituye un examen f&iacute;sico preventivo anual con su m&eacute;dico de atenci&oacute;n primaria. El examen generalmente toma de 30 a 60 minutos.'
+            );
+        }
     }
 
     var SKIP_TAGS = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, TEXTAREA: 1, CODE: 1, PRE: 1 };
@@ -1900,6 +3246,7 @@
         } else {
             walkAndTranslate(document.body, DICT_REVERSE, SORTED_REVERSE_KEYS);
         }
+        applyPageSpecificOverrides(lang);
         updateToggleUI(lang);
     }
 
@@ -1927,8 +3274,9 @@
         if (lang === 'es') {
             applyAttribLang('es');
             walkAndTranslate(document.body, DICT, SORTED_KEYS);
-            updateToggleUI('es');
         }
+        applyPageSpecificOverrides(lang);
+        updateToggleUI(lang);
     }
 
     if (document.readyState === 'loading') {
@@ -1945,6 +3293,7 @@
             applyAttribLang('es');
             walkAndTranslate(document.body, DICT, SORTED_KEYS);
         }
+        applyPageSpecificOverrides(lang);
     });
 
     // After footer injects → re-apply
@@ -1954,6 +3303,7 @@
             applyAttribLang('es');
             walkAndTranslate(document.body, DICT, SORTED_KEYS);
         }
+        applyPageSpecificOverrides(lang);
     };
 
 })();
