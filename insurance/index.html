@@ -73,7 +73,7 @@
           "name": "Does Montgomery Medical Clinic accept my insurance?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "We accept a wide range of commercial, Medicare, Medicaid, and Maryland state insurance plans including Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana, and Johns Hopkins US Family Health. You can use our coverage checker above or call (301) 208-2273 to confirm your specific plan."
+            "text": "We accept a wide range of commercial, Medicare, Medicaid, and Maryland state insurance plans including Aetna commercial plans, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare commercial plans, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana, and Johns Hopkins US Family Health. We do not accept Aetna Better Health or UnitedHealthcare Community Plan. You can use our coverage checker above or call (301) 208-2273 to confirm your specific plan."
           }
         },
         {
@@ -81,7 +81,7 @@
           "name": "Do you accept Medicare and Medicaid in Gaithersburg, MD?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Montgomery Medical Clinic accepts Medicare and Maryland Medicaid, as well as Medicaid managed care plans such as Priority Partners, Amerigroup/Wellpoint, and Maryland Physicians Care."
+            "text": "Yes. Montgomery Medical Clinic accepts Medicare and Maryland Medicaid, as well as Medicaid managed care plans such as Priority Partners, Amerigroup/Wellpoint, and Maryland Physicians Care. Aetna Better Health and UnitedHealthcare Community Plan are not accepted."
           }
         },
         {
@@ -97,7 +97,7 @@
           "name": "Do I need a referral to be seen?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For HMO-style plans including UnitedHealthcare, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, Carefirst Community Health Plan, and Johns Hopkins US Family Health, a referral from your primary care physician may be required to see a specialty provider. Walk-in urgent care and primary care visits generally do not require a referral."
+            "text": "For HMO-style plans including UnitedHealthcare commercial plans, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, Carefirst Community Health Plan, and Johns Hopkins US Family Health, a referral from your primary care physician may be required to see a specialty provider. Walk-in urgent care and primary care visits generally do not require a referral."
           }
         },
         {
@@ -285,7 +285,8 @@
             color: #92400e;
         }
 
-        .checker-result.not-found {
+        .checker-result.not-found,
+        .checker-result.not-accepted {
             background: #fef2f2;
             border: 1px solid #fecaca;
             color: #991b1b;
@@ -299,6 +300,17 @@
             color: inherit;
             text-decoration: underline;
             font-weight: 600;
+        }
+
+        .checker-inline-disclaimer {
+            margin-top: 0.85rem;
+            padding: 0.7rem 0.85rem;
+            border-radius: 10px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            font-size: 0.9rem;
+            line-height: 1.45;
         }
 
         .checker-hint {
@@ -631,7 +643,7 @@
                             <li>GEHA</li>
                             <li>Coresource</li>
                             <li>First Health</li>
-                            <li>UnitedHealthcare <span class="referral-badge">Referral</span></li>
+                            <li>UnitedHealthcare commercial plans <span class="referral-badge">Referral</span></li>
                             <li>Tricare (Military) <span class="referral-badge">Referral</span></li>
                         </ul>
                         <p class="plan-category-footnote">Most PPO and HMO commercial plans are accepted for both primary care and walk-in urgent visits.</p>
@@ -655,7 +667,7 @@
                             <li>Humana</li>
                             <li>Johns Hopkins US Family Health <span class="referral-badge">Referral</span></li>
                         </ul>
-                        <p class="plan-category-footnote">Serving Maryland residents with Medicare, Medicaid, and state-sponsored managed care plans across Montgomery County.</p>
+                        <p class="plan-category-footnote">Serving Maryland residents with Medicare, Medicaid, and state-sponsored managed care plans across Montgomery County. Aetna Better Health and UnitedHealthcare Community Plan are not accepted.</p>
                     </article>
 
                     <article class="plan-category">
@@ -707,13 +719,13 @@
                 <details class="faq-item">
                     <summary>Does Montgomery Medical Clinic accept my insurance?</summary>
                     <div class="faq-body">
-                        We accept a wide range of commercial, Medicare, Medicaid, and Maryland state plans — including Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana, and Johns Hopkins US Family Health. Use the coverage checker above or call <a href="tel:3012082273">(301) 208-2273</a> to confirm your specific plan.
+                        We accept a wide range of commercial, Medicare, Medicaid, and Maryland state plans — including Aetna commercial plans, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare commercial plans, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana, and Johns Hopkins US Family Health. We do not accept Aetna Better Health or UnitedHealthcare Community Plan. Use the coverage checker above or call <a href="tel:3012082273">(301) 208-2273</a> to confirm your specific plan.
                     </div>
                 </details>
                 <details class="faq-item">
                     <summary>Do you accept Medicare and Medicaid in Gaithersburg, MD?</summary>
                     <div class="faq-body">
-                        Yes. We accept Medicare and Maryland Medicaid, as well as Medicaid managed care plans such as Priority Partners, Amerigroup/Wellpoint, and Maryland Physicians Care.
+                        Yes. We accept Medicare and Maryland Medicaid, as well as Medicaid managed care plans such as Priority Partners, Amerigroup/Wellpoint, and Maryland Physicians Care. Aetna Better Health and UnitedHealthcare Community Plan are not accepted.
                     </div>
                 </details>
                 <details class="faq-item">
@@ -725,7 +737,7 @@
                 <details class="faq-item">
                     <summary>Do I need a referral to be seen?</summary>
                     <div class="faq-body">
-                        For HMO-style plans including UnitedHealthcare, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan, and Johns Hopkins US Family Health, a referral from your primary care physician may be required to see a specialty provider. Walk-in urgent care and primary care visits generally do not require a referral.
+                        For HMO-style plans including UnitedHealthcare commercial plans, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan, and Johns Hopkins US Family Health, a referral from your primary care physician may be required to see a specialty provider. Walk-in urgent care and primary care visits generally do not require a referral.
                     </div>
                 </details>
                 <details class="faq-item">
@@ -772,7 +784,7 @@
     <div id="footer-placeholder" data-page-nav-stop="footer"></div>
 
     <script src="../vendor/aos.js"></script>
-    <script src="../js/lang-toggle.js?v=2"></script>
+    <script src="../js/lang-toggle.js?v=3"></script>
     <script src="../js/header-footer-loader.js?v=2026041202"></script>
     <script src="../js/main.js?v=2026041202"></script>
     <script>
@@ -780,8 +792,13 @@
 
         // Insurance coverage checker
         (function() {
+            const excludedPlans = [
+                { names: ['aetna better health', 'aetna betterhealth', 'better health aetna', 'betterhealth aetna'], label: 'Aetna Better Health', acceptedAlternative: 'Aetna commercial plans' },
+                { names: ['unitedhealthcare community plan', 'united healthcare community plan', 'united health care community plan', 'uhc community plan', 'unitedhealthcare community', 'united healthcare community', 'united health care community', 'community plan unitedhealthcare', 'community plan united healthcare', 'community plan uhc', 'uhc community'], label: 'UnitedHealthcare Community Plan', acceptedAlternative: 'UnitedHealthcare commercial plans' }
+            ];
+
             const plans = [
-                // Commercial — accepted without referral
+                // Commercial
                 { names: ['aetna'], label: 'Aetna commercial plans', category: 'Commercial', referral: false },
                 { names: ['blue cross', 'bluecross', 'bcbs', 'carefirst', 'blue shield'], label: 'Blue Cross Blue Shield / CareFirst', category: 'Commercial', referral: false },
                 { names: ['cigna'], label: 'Cigna', category: 'Commercial', referral: false },
@@ -789,7 +806,7 @@
                 { names: ['geha'], label: 'GEHA', category: 'Commercial', referral: false },
                 { names: ['coresource'], label: 'Coresource', category: 'Commercial', referral: false },
                 { names: ['first health', 'firsthealth'], label: 'First Health', category: 'Commercial', referral: false },
-                { names: ['united', 'uhc', 'united healthcare', 'unitedhealthcare'], label: 'UnitedHealthcare', category: 'Commercial', referral: true },
+                { names: ['united', 'uhc', 'united healthcare', 'unitedhealthcare', 'united health care', 'united healtchare', 'united healthchare', 'united healtcare'], label: 'UnitedHealthcare commercial plans', category: 'Commercial', referral: true },
                 { names: ['tricare', 'military'], label: 'Tricare (Military)', category: 'Commercial', referral: true },
                 // Maryland / Medicare / Medicaid
                 { names: ['priority partners'], label: 'Priority Partners', category: 'Maryland State', referral: true },
@@ -823,10 +840,58 @@
                 resultEl.innerHTML = '';
             }
 
-            function findPlan(query) {
-                const q = query.toLowerCase().trim();
+            function getPlanDisclaimer(match) {
+                if (!match) return '';
+                if (match.label === 'Aetna commercial plans') {
+                    return '<div class="checker-inline-disclaimer"><strong>Disclaimer:</strong> Aetna Better Health is not accepted.</div>';
+                }
+                if (match.label === 'UnitedHealthcare commercial plans') {
+                    return '<div class="checker-inline-disclaimer"><strong>Disclaimer:</strong> UnitedHealthcare Community Plan is not accepted.</div>';
+                }
+                return '';
+            }
+
+            function normalize(value) {
+                return value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').replace(/\s+/g, ' ').trim();
+            }
+
+            function findExcludedPlan(query) {
+                const q = normalize(query);
                 if (!q) return null;
-                return plans.find(p => p.names.some(n => q.includes(n) || n.includes(q)));
+                let bestMatch = null;
+                let bestLength = -1;
+
+                excludedPlans.forEach(plan => {
+                    plan.names.forEach(name => {
+                        const alias = normalize(name);
+                        if (q.includes(alias) && alias.length > bestLength) {
+                            bestMatch = plan;
+                            bestLength = alias.length;
+                        }
+                    });
+                });
+
+                return bestMatch;
+            }
+
+            function findPlan(query) {
+                const q = normalize(query);
+                if (!q) return null;
+                let bestMatch = null;
+                let bestLength = -1;
+
+                plans.forEach(plan => {
+                    plan.names.forEach(name => {
+                        const alias = normalize(name);
+                        const isMatch = q.includes(alias) || (q.length >= 4 && alias.includes(q));
+                        if (isMatch && alias.length > bestLength) {
+                            bestMatch = plan;
+                            bestLength = alias.length;
+                        }
+                    });
+                });
+
+                return bestMatch;
             }
 
             let debounce;
@@ -835,6 +900,11 @@
                 const val = input.value;
                 if (!val.trim()) { hideResult(); return; }
                 debounce = setTimeout(function() {
+                    const excludedMatch = findExcludedPlan(val);
+                    if (excludedMatch) {
+                        showResult('not-accepted', iconWarn + '<div><strong>' + excludedMatch.label + ' is not accepted.</strong> We do accept ' + excludedMatch.acceptedAlternative + '. Please call <a href="tel:3012082273"><strong>(301) 208-2273</strong></a> if you want us to verify another plan.</div>');
+                        return;
+                    }
                     const match = findPlan(val);
                     if (!match) {
                         showResult('not-found', iconQuestion + '<div>We couldn\'t match that plan in our quick checker — but the list isn\'t exhaustive. Please call <a href="tel:3012082273"><strong>(301) 208-2273</strong></a> and our front desk will verify your coverage.</div>');
@@ -845,10 +915,10 @@
                         return;
                     }
                     if (match.referral) {
-                        showResult('referral', iconWarn + '<div><strong>' + match.label + ' is accepted</strong> — a referral from your primary care provider may be required to see a specialty provider. Walk-in urgent and primary care visits generally do not require one.</div>');
+                        showResult('referral', iconWarn + '<div><strong>' + match.label + ' is accepted</strong> — a referral from your primary care provider may be required to see a specialty provider. Walk-in urgent and primary care visits generally do not require one.' + getPlanDisclaimer(match) + '</div>');
                         return;
                     }
-                    showResult('accepted', iconCheck + '<div><strong>' + match.label + ' is accepted.</strong> You\'re good to walk in or schedule an appointment — no referral required.</div>');
+                    showResult('accepted', iconCheck + '<div><strong>' + match.label + ' is accepted.</strong> You\'re good to walk in or schedule an appointment — no referral required.' + getPlanDisclaimer(match) + '</div>');
                 }, 120);
             });
         })();

@@ -1864,12 +1864,13 @@
         "9 carriers": "9 aseguradoras",
         "9 plans": "9 planes",
         "Aetna commercial plans": "Planes comerciales de Aetna",
+        "UnitedHealthcare commercial plans": "Planes comerciales de UnitedHealthcare",
         "Referral": "Referencia Requerida",
         "Most PPO and HMO commercial plans are accepted for both primary care and walk-in urgent visits.":
             "La mayoría de los planes comerciales PPO y HMO son aceptados tanto para atención primaria como para visitas de urgencia sin cita.",
         "Maryland State & Medicaid": "Medicaid y Estado de Maryland",
-        "Serving Maryland residents with Medicare, Medicaid, and state-sponsored managed care plans across Montgomery County.":
-            "Servimos a residentes de Maryland con Medicare, Medicaid y planes de atención administrada patrocinados por el estado en todo el condado de Montgomery.",
+        "Serving Maryland residents with Medicare, Medicaid, and state-sponsored managed care plans across Montgomery County. Aetna Better Health and UnitedHealthcare Community Plan are not accepted.":
+            "Servimos a residentes de Maryland con Medicare, Medicaid y planes de atención administrada patrocinados por el estado en todo el condado de Montgomery. Aetna Better Health y UnitedHealthcare Community Plan no son aceptados.",
         "Self-Pay & Other": "Pago Directo y Otros",
         "Affordable rates": "Tarifas asequibles",
         "Self-pay — transparent upfront pricing": "Pago directo — precios transparentes por adelantado",
@@ -1895,21 +1896,21 @@
             "Respuestas a las preguntas más frecuentes sobre seguros de nuestros pacientes de Gaithersburg.",
         "Does Montgomery Medical Clinic accept my insurance?":
             "¿Montgomery Medical Clinic acepta mi seguro?",
-        "We accept a wide range of commercial, Medicare, Medicaid, and Maryland state plans — including Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana, and Johns Hopkins US Family Health. Use the coverage checker above or call":
-            "Aceptamos una amplia variedad de planes comerciales, Medicare, Medicaid y estatales de Maryland — incluyendo Aetna, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana y Johns Hopkins US Family Health. Use el verificador de cobertura arriba o llame al",
+        "We accept a wide range of commercial, Medicare, Medicaid, and Maryland state plans — including Aetna commercial plans, BlueCross BlueShield (CareFirst), Cigna, UnitedHealthcare commercial plans, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana, and Johns Hopkins US Family Health. We do not accept Aetna Better Health or UnitedHealthcare Community Plan. Use the coverage checker above or call":
+            "Aceptamos una amplia variedad de planes comerciales, Medicare, Medicaid y estatales de Maryland — incluyendo planes comerciales de Aetna, BlueCross BlueShield (CareFirst), Cigna, planes comerciales de UnitedHealthcare, Medicare, Medicaid, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Tricare, GEHA, Humana y Johns Hopkins US Family Health. No aceptamos Aetna Better Health ni UnitedHealthcare Community Plan. Use el verificador de cobertura arriba o llame al",
         "to confirm your specific plan.": "para confirmar su plan específico.",
         "Do you accept Medicare and Medicaid in Gaithersburg, MD?":
             "¿Aceptan Medicare y Medicaid en Gaithersburg, MD?",
-        "Yes. We accept Medicare and Maryland Medicaid, as well as Medicaid managed care plans such as Priority Partners, Amerigroup/Wellpoint, and Maryland Physicians Care.":
-            "Sí. Aceptamos Medicare y Medicaid de Maryland, así como planes de atención administrada de Medicaid como Priority Partners, Amerigroup/Wellpoint y Maryland Physicians Care.",
+        "Yes. We accept Medicare and Maryland Medicaid, as well as Medicaid managed care plans such as Priority Partners, Amerigroup/Wellpoint, and Maryland Physicians Care. Aetna Better Health and UnitedHealthcare Community Plan are not accepted.":
+            "Sí. Aceptamos Medicare y Medicaid de Maryland, así como planes de atención administrada de Medicaid como Priority Partners, Amerigroup/Wellpoint y Maryland Physicians Care. Aetna Better Health y UnitedHealthcare Community Plan no son aceptados.",
         "What if I don't have insurance?": "¿Qué pasa si no tengo seguro?",
         "We offer affordable self-pay rates for urgent care, primary care, and physical exams. Call":
             "Ofrecemos tarifas asequibles de pago directo para atención urgente, atención primaria y exámenes físicos. Llame al",
         "for current self-pay pricing before your visit — we'll give you a transparent quote upfront.":
             "para conocer los precios actuales de pago directo antes de su visita — le daremos una cotización transparente por adelantado.",
         "Do I need a referral to be seen?": "¿Necesito una referencia para ser atendido?",
-        "For HMO-style plans including UnitedHealthcare, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan, and Johns Hopkins US Family Health, a referral from your primary care physician may be required to see a specialty provider. Walk-in urgent care and primary care visits generally do not require a referral.":
-            "Para planes tipo HMO incluyendo UnitedHealthcare, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan y Johns Hopkins US Family Health, puede requerirse una referencia de su médico de atención primaria para ver a un proveedor especializado. Las visitas de atención urgente sin cita y de atención primaria generalmente no requieren referencia.",
+        "For HMO-style plans including UnitedHealthcare commercial plans, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan, and Johns Hopkins US Family Health, a referral from your primary care physician may be required to see a specialty provider. Walk-in urgent care and primary care visits generally do not require a referral.":
+            "Para planes tipo HMO incluyendo planes comerciales de UnitedHealthcare, Tricare, Priority Partners, Amerigroup/Wellpoint, Maryland Physicians Care, Medicaid, Medstar, CareFirst Community Health Plan y Johns Hopkins US Family Health, puede requerirse una referencia de su médico de atención primaria para ver a un proveedor especializado. Las visitas de atención urgente sin cita y de atención primaria generalmente no requieren referencia.",
         "What should I bring to my appointment?": "¿Qué debo traer a mi cita?",
         "Please bring a valid photo ID, your current insurance card, a list of current medications, and any referral paperwork if required by your plan.":
             "Por favor traiga una identificación con foto válida, su tarjeta de seguro actual, una lista de medicamentos actuales y cualquier documento de referencia si lo requiere su plan.",
