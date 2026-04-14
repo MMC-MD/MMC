@@ -238,6 +238,7 @@ body.admin-authenticated .admin-shell { display: block; }
     grid-template-columns: 420px minmax(0, 1fr);
     gap: 24px;
     align-items: start;
+    padding: 24px 28px;
 }
 
 .studio-sidebar {
