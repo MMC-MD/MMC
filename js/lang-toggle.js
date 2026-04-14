@@ -1173,12 +1173,346 @@
         "Ready to Begin Your Acupuncture Healing Journey?": "¿Listo para Comenzar Su Viaje de Curación de Acupuntura?",
         "Care Journey": "Viaje de Atención",
         "General Health Conditions": "Condiciones de Salud General",
+        "Licensed acupuncture, Chinese medicine, and pain management in Gaithersburg, MD.":
+            "Acupuntura licenciada, medicina china y manejo del dolor en Gaithersburg, MD.",
+        "Welcome To Five Elements Acupuncture & Wellness": "Bienvenido a Acupuntura y Bienestar Cinco Elementos",
+        "Experience the healing power of traditional Chinese medicine combined with modern functional health care. Dr. Min Lu provides personalized":
+            "Experimente el poder curativo de la medicina tradicional china combinada con la atención funcional moderna de la salud. La Dra. Min Lu proporciona",
+        "treatments and holistic wellness solutions to help you achieve optimal health.":
+            "tratamientos personalizados y soluciones de bienestar holístico para ayudarle a lograr una salud óptima.",
+        "Meet Dr. Min Lu | 路敏医师简介": "Conozca a la Dra. Min Lu | 路敏医师简介",
+        "Dr. Min Lu is a licensed acupuncturist dedicated to providing exceptional":
+            "La Dra. Min Lu es una acupunturista licenciada dedicada a proporcionar excepcional atención de",
+        "care tailored to your unique health needs, integrating traditional Chinese medicine with modern biomedical knowledge.":
+            "adaptada a sus necesidades únicas de salud, integrando la medicina tradicional china con el conocimiento biomédico moderno.",
+        "Dr. Min Lu, L.Ac., DAOM (candidate)": "Dra. Min Lu, L.Ac., DAOM (candidata)",
+        "Licensed Acupuncturist | Doctor of Acupuncture and Oriental Medicine (DAOM) in progress":
+            "Acupunturista Licenciada | Doctora en Acupuntura y Medicina Oriental (DAOM) en progreso",
+        "Dr. Min Lu, a licensed acupuncturist in the State of Maryland, is currently pursuing her Doctor of Acupuncture and Oriental Medicine (DAOM) degree. She began to devote herself to acupuncture and integrative healing during the 2008 Olympic Games, when she witnessed the growing need for effective pain management—not only for athletes but also for the general public.":
+            "La Dra. Min Lu, una acupunturista licenciada en el Estado de Maryland, está cursando actualmente su Doctorado en Acupuntura y Medicina Oriental (DAOM). Comenzó a dedicarse a la acupuntura y a la curación integrativa durante los Juegos Olímpicos de 2008, cuando fue testigo de la creciente necesidad de un manejo eficaz del dolor, no solo para los atletas sino también para el público en general.",
+        "She has extensive clinical experience in both China and the United States, and possesses a deep understanding of Traditional Chinese Medicine (TCM) philosophy, including the principles of Yin and Yang, Five Elements, and the regulation of Qi, Blood, Jing, and Shen. In her clinical work, Dr. Lu integrates these classical theories with modern biomedical knowledge, including anatomy, physiology, and pathology, to provide safe and effective evidence-based care.":
+            "Tiene una amplia experiencia clínica tanto en China como en los Estados Unidos, y posee un profundo conocimiento de la filosofía de la Medicina Tradicional China (MTC), incluyendo los principios del Yin y Yang, los Cinco Elementos, y la regulación del Qi, Sangre, Jing y Shen. En su trabajo clínico, la Dra. Lu integra estas teorías clásicas con el conocimiento biomédico moderno, incluyendo anatomía, fisiología y patología, para brindar atención segura y efectiva basada en la evidencia.",
+        "Dr. Lu studied under Professor Biqin Wang, a renowned TCM gynecologist in Beijing, and Professor Guo Zhiqiang, a distinguished national TCM master. During her professional development in the United States, she also apprenticed with Professor Guoping Zheng, the North American inheritor of the Lingnan Luo's Gynecology School. Drawing upon her mentors' academic philosophy of \"treating the Kidney as the root,\" Dr. Lu applies the menstrual cycle regulation method (Tiao Zhou Fa) to infertility and reproductive health, achieving remarkable clinical outcomes in treating infertility, ovarian dysfunction, and menstrual disorders.":
+            "La Dra. Lu estudió con el Profesor Biqin Wang, un renombrado ginecólogo de MTC en Beijing, y con el Profesor Guo Zhiqiang, un distinguido maestro nacional de MTC. Durante su desarrollo profesional en los Estados Unidos, también fue aprendiz del Profesor Guoping Zheng, el heredero norteamericano de la Escuela de Ginecología Lingnan Luo. Basándose en la filosofía académica de sus mentores de \"tratar el Riñón como la raíz,\" la Dra. Lu aplica el método de regulación del ciclo menstrual (Tiao Zhou Fa) a la infertilidad y la salud reproductiva, logrando notables resultados clínicos en el tratamiento de la infertilidad, disfunción ovárica y trastornos menstruales.",
+        "Professional Positions & Memberships": "Cargos Profesionales y Membresías",
+        "Board Member & Deputy Director of Academic Affairs, Youth Committee of the American Traditional Chinese Medicine Association (ATCMA-USA)":
+            "Miembro de la Junta y Subdirectora de Asuntos Académicos, Comité Juvenil de la Asociación Americana de Medicina Tradicional China (ATCMA-USA)",
+        "Council Member, Scalp Acupuncture Specialty Committee, World Federation of Chinese Medicine Societies (WFCMS)":
+            "Miembro del Consejo, Comité de Especialidad de Acupuntura del Cuero Cabelludo, Federación Mundial de Sociedades de Medicina China (WFCMS)",
+        "Member, American Traditional Chinese Medicine Association (ATCMA)":
+            "Miembro, Asociación Americana de Medicina Tradicional China (ATCMA)",
+        "Member, American Society of Chinese Medicine & Acupuncture (ASCMA)":
+            "Miembro, Sociedad Americana de Medicina China y Acupuntura (ASCMA)",
+        "Member, ATCMA Gynecology Academic Committee":
+            "Miembro, Comité Académico de Ginecología de ATCMA",
+        "Member, Global Dynamic Needling Association":
+            "Miembro, Asociación Global de Agujas Dinámicas",
+        "Apprentice Physician, First Inheritance Program under Master Dr. Guo Zhiqiang":
+            "Médica Aprendiz, Primer Programa de Herencia bajo el Maestro Dr. Guo Zhiqiang",
+        "Certifications": "Certificaciones",
+        "NCCAOM Clean Needle Technique (CNT) Certification":
+            "Certificación NCCAOM de Técnica de Aguja Limpia (CNT)",
+        "CPR Certification": "Certificación CPR",
+        "Areas of Specialization": "Áreas de Especialización",
+        "Women's health, fertility support, infertility treatment, ovarian dysfunction, PCOS (Polycystic Ovary Syndrome), menstrual disorders, menopausal syndrome, pelvic inflammatory disease, vulva leukoplakia, postnatal care, pain management, and holistic wellness.":
+            "Salud de la mujer, apoyo a la fertilidad, tratamiento de la infertilidad, disfunción ovárica, SOP (Síndrome de Ovario Poliquístico), trastornos menstruales, síndrome menopáusico, enfermedad inflamatoria pélvica, leucoplaquia de la vulva, cuidado postnatal, manejo del dolor y bienestar holístico.",
+        "\"The essence of medicine is not only to treat illness, but to awaken the body's own power to heal and harmonize.\"":
+            "\"La esencia de la medicina no es solo tratar la enfermedad, sino despertar el propio poder del cuerpo para curarse y armonizarse.\"",
+        "— Dr. Min Lu": "— Dra. Min Lu",
+        "View Chinese Version / 中文简介": "Ver Versión China / 中文简介",
+        "Our Acupuncture Services": "Nuestros Servicios de Acupuntura",
+        "At Five Elements Acupuncture & Wellness, Dr. Lu provides a wide range of":
+            "En Acupuntura y Bienestar Cinco Elementos, la Dra. Lu proporciona una amplia gama de",
+        "and Chinese medicine services, including cupping therapy, moxibustion, massage therapy, and stress management to help you achieve optimal wellness.":
+            "y servicios de medicina china, incluyendo terapia de ventosas, moxibustión, masoterapia y manejo del estrés para ayudarle a lograr el bienestar óptimo.",
+        "Pain Management": "Manejo del Dolor",
+        "Acupuncture therapy for chronic and acute pain relief":
+            "Terapia de acupuntura para alivio del dolor crónico y agudo",
+        "Massage Therapy": "Masoterapia",
+        "Therapeutic massage for relaxation and pain relief":
+            "Masaje terapéutico para relajación y alivio del dolor",
+        "Stress Management": "Manejo del Estrés",
+        "Acupuncture and holistic approaches to reduce stress":
+            "Acupuntura y enfoques holísticos para reducir el estrés",
+        "Digestive Health": "Salud Digestiva",
+        "Dr. Lu provides specialized care for a wide range of conditions, combining traditional Chinese medicine with modern functional health practices.":
+            "La Dra. Lu proporciona atención especializada para una amplia gama de condiciones, combinando la medicina tradicional china con las prácticas modernas de salud funcional.",
+        "Women's Health": "Salud de la Mujer",
+        "Infertility & Ovarian Dysfunction": "Infertilidad y Disfunción Ovárica",
+        "Polycystic Ovary Syndrome (PCOS)": "Síndrome de Ovario Poliquístico (SOP)",
+        "Menstrual Disease & Irregular Periods": "Enfermedad Menstrual y Períodos Irregulares",
+        "Menopausal Syndrome": "Síndrome Menopáusico",
+        "Pelvic Inflammatory Disease": "Enfermedad Inflamatoria Pélvica",
+        "Vulva Leukoplakia": "Leucoplaquia de la Vulva",
+        "Postnatal Care": "Cuidado Postnatal",
+        "Depression & Anxiety": "Depresión y Ansiedad",
+        "Insomnia & Sleep Disorders": "Insomnio y Trastornos del Sueño",
+        "Allergies & Respiratory Issues": "Alergias y Problemas Respiratorios",
+        "Pain Management (Chronic & Acute)": "Manejo del Dolor (Crónico y Agudo)",
+        "Digestive Disorders": "Trastornos Digestivos",
+        "Stress & Fatigue": "Estrés y Fatiga",
+        "To receive high-quality holistic health care in a warm and welcoming environment, partner with Dr. Lu. Make an appointment at Five Elements Acupuncture & Wellness for professional":
+            "Para recibir atención médica holística de alta calidad en un entorno cálido y acogedor, asóciese con la Dra. Lu. Haga una cita en Acupuntura y Bienestar Cinco Elementos para un profesional tratamiento de",
+        "treatment by calling the office or booking online today.":
+            "llamando a la oficina o reservando en línea hoy.",
+        "WE ACCEPT MOST INSURANCE PROVIDERS": "ACEPTAMOS LA MAYORÍA DE LOS PROVEEDORES DE SEGUROS",
+        "We also accept auto and personal injury insurance for":
+            "También aceptamos seguros de automóvil y por lesiones personales para",
+        "treatments.": "tratamientos.",
+        "Common questions about acupuncture at Montgomery Medical Clinic.":
+            "Preguntas comunes sobre la acupuntura en Montgomery Medical Clinic.",
+        "What conditions can acupuncture treat?": "¿Qué condiciones puede tratar la acupuntura?",
+        "Acupuncture is recognized by the": "La acupuntura es reconocida por la",
+        "as an effective treatment for a wide range of conditions, including:":
+            "como un tratamiento eficaz para una amplia gama de condiciones, que incluyen:",
+        "World Health Organization (WHO)": "Organización Mundial de la Salud (OMS)",
+        "National Institutes of Health (NIH)": "Institutos Nacionales de Salud (NIH)",
+        "Pain management": "Manejo del dolor",
+        "— chronic pain, migraines, tension headaches, sciatica, back pain, neck pain, and shoulder pain":
+            "— dolor crónico, migrañas, cefaleas tensionales, ciática, dolor de espalda, dolor de cuello y dolor de hombro",
+        "Musculoskeletal": "Musculoesquelético",
+        "— arthritis, joint stiffness, fibromyalgia, carpal tunnel syndrome, and sports injuries":
+            "— artritis, rigidez articular, fibromialgia, síndrome del túnel carpiano y lesiones deportivas",
+        "Mental health": "Salud mental",
+        "— stress, anxiety, depression, PTSD, and insomnia":
+            "— estrés, ansiedad, depresión, TEPT e insomnio",
+        "Digestive health": "Salud digestiva",
+        "— IBS, acid reflux, nausea, bloating, and appetite regulation":
+            "— SII, reflujo ácido, náuseas, hinchazón y regulación del apetito",
+        "Women\u2019s health": "Salud de la mujer",
+        "— fertility support, menstrual irregularities, menopause symptoms, and pregnancy-related discomfort":
+            "— apoyo a la fertilidad, irregularidades menstruales, síntomas de la menopausia y molestias relacionadas con el embarazo",
+        "Respiratory & allergies": "Respiratorio y alergias",
+        "— seasonal allergies, sinusitis, and asthma support":
+            "— alergias estacionales, sinusitis y apoyo para el asma",
+        "During your first visit, Dr. Min Lu will perform a comprehensive evaluation and create a":
+            "Durante su primera visita, la Dra. Min Lu realizará una evaluación integral y creará un",
+        "personalized treatment plan": "plan de tratamiento personalizado",
+        "tailored to your specific health goals.": "adaptado a sus objetivos de salud específicos.",
+        "Does acupuncture hurt?": "¿Duele la acupuntura?",
+        "Most patients feel little to no pain.": "La mayoría de los pacientes sienten poco o ningún dolor.",
+        "Acupuncture needles are hair-thin — about 0.2 mm in diameter, which is 25–50 times thinner than a standard hypodermic needle used for injections or blood draws.":
+            "Las agujas de acupuntura son finas como un cabello, de aproximadamente 0,2 mm de diámetro, 25 a 50 veces más delgadas que una aguja hipodérmica estándar utilizada para inyecciones o extracciones de sangre.",
+        "You may feel a slight tingling, warmth, or mild pressure at the insertion point — this is known as":
+            "Es posible que sienta un leve hormigueo, calor o una ligera presión en el punto de inserción — esto se conoce como",
+        "a sign that the treatment is activating your body's natural healing response. Many patients find the sessions so relaxing that they fall asleep during treatment.":
+            "una señal de que el tratamiento está activando la respuesta curativa natural de su cuerpo. Muchos pacientes encuentran las sesiones tan relajantes que se quedan dormidos durante el tratamiento.",
+        "Dr. Min Lu uses gentle, precise needle techniques refined over years of clinical practice to ensure your comfort throughout every session.":
+            "La Dra. Min Lu utiliza técnicas de aguja suaves y precisas perfeccionadas a lo largo de años de práctica clínica para garantizar su comodidad durante cada sesión.",
+        "Do I need an appointment, or do you accept walk-ins?":
+            "¿Necesito una cita o aceptan pacientes sin cita?",
+        "Both!": "¡Ambos!",
+        "Montgomery Medical Clinic accepts walk-ins": "Montgomery Medical Clinic acepta pacientes sin cita",
+        "7 days a week": "7 días a la semana",
+        "and also offers scheduled appointments for your convenience.":
+            "y también ofrece citas programadas para su comodidad.",
+        "Walk-ins welcome": "Sin cita bienvenidos",
+        "— seen on a first-come, first-served basis during regular clinic hours":
+            "— atendidos por orden de llegada durante el horario regular de la clínica",
+        "Same-day appointments": "Citas el mismo día",
+        "— book online for the shortest wait time":
+            "— reserve en línea para el tiempo de espera más corto",
+        "Scheduled appointments": "Citas programadas",
+        "— reserve your preferred date and time in advance":
+            "— reserve su fecha y hora preferida con anticipación",
+        "For the fastest service, we recommend booking a same-day appointment online or calling us at":
+            "Para un servicio más rápido, recomendamos reservar una cita el mismo día en línea o llamarnos al",
+        ". Our clinic is conveniently located in Gaithersburg, MD and serves patients throughout Montgomery County.":
+            ". Nuestra clínica está convenientemente ubicada en Gaithersburg, MD y sirve a pacientes en todo el Condado de Montgomery.",
+        "and serves patients throughout Montgomery County.":
+            "y sirve a pacientes en todo el Condado de Montgomery.",
+        "Does insurance cover acupuncture?": "¿El seguro cubre la acupuntura?",
+        "Many insurance plans now provide coverage for acupuncture, especially following":
+            "Muchos planes de seguro ahora ofrecen cobertura para la acupuntura, especialmente después de",
+        "Medicare's 2020 decision": "la decisión de 2020 de Medicare",
+        "to cover acupuncture for chronic low back pain. Private insurers including Aetna, Blue Cross Blue Shield, Cigna, and UnitedHealthcare increasingly cover acupuncture benefits as well.":
+            "de cubrir la acupuntura para el dolor lumbar crónico. Las aseguradoras privadas, incluyendo Aetna, Blue Cross Blue Shield, Cigna y UnitedHealthcare, también cubren cada vez más los beneficios de la acupuntura.",
+        "Coverage details vary by provider and plan, so we recommend verifying your benefits before your first visit. Our front desk team is happy to help — call":
+            "Los detalles de la cobertura varían según el proveedor y el plan, por lo que recomendamos verificar sus beneficios antes de su primera visita. Nuestro equipo de recepción está encantado de ayudar — llame al",
+        "and we can assist with insurance questions and out-of-pocket cost estimates.":
+            "y podemos ayudarle con preguntas sobre el seguro y estimaciones de costos directos.",
+        "How many acupuncture sessions will I need?":
+            "¿Cuántas sesiones de acupuntura necesitaré?",
+        "The number of sessions depends on your condition, its severity, and how your body responds to treatment:":
+            "El número de sesiones depende de su condición, su gravedad y cómo responda su cuerpo al tratamiento:",
+        "Acute issues": "Problemas agudos",
+        "(recent injuries, headaches, muscle tension) — may improve noticeably in 3–5 sessions":
+            "(lesiones recientes, dolores de cabeza, tensión muscular) — pueden mejorar notablemente en 3 a 5 sesiones",
+        "Chronic conditions": "Condiciones crónicas",
+        "(long-term pain, digestive disorders, anxiety) — typically benefit from 8–12 sessions":
+            "(dolor a largo plazo, trastornos digestivos, ansiedad) — típicamente se benefician de 8 a 12 sesiones",
+        "Wellness maintenance": "Mantenimiento del bienestar",
+        "(stress relief, immune support, preventive care) — monthly or bi-monthly sessions recommended":
+            "(alivio del estrés, apoyo inmunológico, atención preventiva) — se recomiendan sesiones mensuales o bimestrales",
+        "Many patients report feeling improvement after their very first session. Dr. Min Lu will create a personalized treatment schedule during your initial consultation and adjust it as your condition progresses.":
+            "Muchos pacientes informan sentir mejoría después de su primera sesión. La Dra. Min Lu creará un calendario de tratamiento personalizado durante su consulta inicial y lo ajustará a medida que su condición progrese.",
+        "What other services does Five Elements Acupuncture offer besides needling?":
+            "¿Qué otros servicios ofrece Acupuntura Cinco Elementos además de las agujas?",
+        "Five Elements Acupuncture at Montgomery Medical Clinic offers a full range of":
+            "Acupuntura Cinco Elementos en Montgomery Medical Clinic ofrece una gama completa de",
+        "traditional Chinese medicine (TCM)": "medicina tradicional china (MTC)",
+        "therapies, including:": "terapias, que incluyen:",
+        "Cupping therapy": "Terapia de ventosas",
+        "— uses suction cups to relieve muscle tension, improve blood flow, and reduce inflammation":
+            "— utiliza ventosas de succión para aliviar la tensión muscular, mejorar el flujo sanguíneo y reducir la inflamación",
+        "— a warming technique that stimulates acupuncture points to boost circulation and immunity":
+            "— una técnica de calentamiento que estimula los puntos de acupuntura para impulsar la circulación y la inmunidad",
+        "Herbal medicine consultations": "Consultas de medicina herbal",
+        "— custom herbal formulas prescribed to complement your acupuncture treatments":
+            "— fórmulas herbales personalizadas recetadas para complementar sus tratamientos de acupuntura",
+        "Fertility acupuncture": "Acupuntura para la fertilidad",
+        "— specialized protocols to support natural conception and IVF treatments":
+            "— protocolos especializados para apoyar la concepción natural y los tratamientos de FIV",
+        "Electroacupuncture": "Electroacupuntura",
+        "— gentle electrical stimulation paired with needles for enhanced pain relief and nerve regeneration":
+            "— estimulación eléctrica suave combinada con agujas para un mayor alivio del dolor y regeneración nerviosa",
+        "Dr. Min Lu may combine multiple modalities in a single session for a comprehensive, holistic treatment approach tailored to your needs.":
+            "La Dra. Min Lu puede combinar múltiples modalidades en una sola sesión para un enfoque de tratamiento integral y holístico adaptado a sus necesidades.",
+        "Schedule your": "Programe su",
+        "consultation with Dr. Min Lu today and experience the benefits of traditional Chinese medicine and professional":
+            "consulta con la Dra. Min Lu hoy y experimente los beneficios de la medicina tradicional china y la profesional",
+        "care in Gaithersburg, MD.": "atención en Gaithersburg, MD.",
+        "Book Online": "Reservar en Línea",
 
         // ── Nutrition & Wellness page ──
-        "Your Complete Wellness Journey at Our Wellness Center": "Su Viaje Completo de Bienestar en Nuestro Centro de Bienestar",
-        "Our Two Divisions at the Wellness Center": "Nuestras Dos Divisiones en el Centro de Bienestar",
+        "A holistic approach to your health — combining personalized nutrition counseling and guided fitness training to help you feel stronger, more energized, and in control of your well-being.":
+            "Un enfoque holístico para su salud — combinando asesoramiento nutricional personalizado y entrenamiento físico guiado para ayudarle a sentirse más fuerte, con más energía y en control de su bienestar.",
+        "We combine expert nutrition guidance with personalized fitness training to optimize your well-being. Whether you're managing a health condition or looking to improve your overall wellness, our integrated programs are designed to help you succeed.":
+            "Combinamos orientación experta en nutrición con entrenamiento físico personalizado para optimizar su bienestar. Ya sea que esté manejando una condición de salud o buscando mejorar su bienestar general, nuestros programas integrados están diseñados para ayudarle a tener éxito.",
+        "We combine nutrition and fitness to support your optimal health and wellness.":
+            "Combinamos nutrición y ejercicio para apoyar su óptima salud y bienestar.",
+        "Evidence-based nutrition counseling tailored to your health goals and medical needs.":
+            "Asesoramiento nutricional basado en evidencia adaptado a sus objetivos de salud y necesidades médicas.",
+        "Customized fitness programs designed to help you build strength, improve performance, and reach your goals.":
+            "Programas de ejercicio personalizados diseñados para ayudarle a desarrollar fuerza, mejorar el rendimiento y alcanzar sus objetivos.",
+        "Our nutritionist works alongside your physician to help patients — whether overweight, underweight, or managing a medical condition — build healthier habits and sustainable plans for long-term well-being.":
+            "Nuestra nutricionista trabaja junto a su médico para ayudar a los pacientes — ya sea con sobrepeso, bajo peso o que manejan una condición médica — a construir hábitos más saludables y planes sostenibles para el bienestar a largo plazo.",
+        "Our personal trainers work closely with each patient to understand their goals, assess physical limitations, and build safe, effective programs that strengthen the body while preventing injury.":
+            "Nuestros entrenadores personales trabajan estrechamente con cada paciente para comprender sus objetivos, evaluar las limitaciones físicas y crear programas seguros y efectivos que fortalecen el cuerpo y previenen lesiones.",
+        "When your meal plan and training program are designed as one, every part of your care reinforces the other.":
+            "Cuando su plan de alimentación y su programa de entrenamiento se diseñan como uno solo, cada parte de su atención refuerza a la otra.",
+        "Why nutrition and fitness belong together": "Por qué la nutrición y el ejercicio van juntos",
+        "Your nutritionist and trainer collaborate together, so your diet fuels your workouts and your workouts reinforce your nutrition goals.":
+            "Su nutricionista y entrenador colaboran juntos, para que su dieta alimente sus entrenamientos y sus entrenamientos refuercen sus objetivos nutricionales.",
+        "Pairing guided exercise with a structured meal plan accelerates progress — whether you're losing weight, managing a condition, or building strength.":
+            "Combinar el ejercicio guiado con un plan de comidas estructurado acelera el progreso — ya sea que esté perdiendo peso, manejando una condición o desarrollando fuerza.",
+        "Every wellness program is backed by the clinical team at Montgomery Medical Clinic, so your training and nutrition stay aligned with your medical care.":
+            "Cada programa de bienestar está respaldado por el equipo clínico en Montgomery Medical Clinic, por lo que su entrenamiento y nutrición se mantienen alineados con su atención médica.",
+        "A physician-supervised weight loss program that combines weekly clinical visits, personalized nutrition coaching, and FDA-approved GLP-1 medications for safe, lasting results.":
+            "Un programa de pérdida de peso supervisado por médicos que combina visitas clínicas semanales, asesoramiento nutricional personalizado y medicamentos GLP-1 aprobados por la FDA para resultados seguros y duraderos.",
+        "Sustainable weight loss requires more than medication alone. Our program pairs GLP-1 therapy with the hands-on guidance of your nutritionist and physician — so every pound you lose stays off.":
+            "La pérdida de peso sostenible requiere más que solo medicamentos. Nuestro programa combina la terapia GLP-1 con la guía práctica de su nutricionista y médico — para que cada libra que pierda se quede fuera.",
+        "Visit the clinic each week to meet with your nutritionist and review your progress, habits, and goals.":
+            "Visite la clínica cada semana para reunirse con su nutricionista y revisar su progreso, hábitos y objetivos.",
+        "Your doctor monitors your health, adjusts medication dosing, and ensures the plan is safe and effective.":
+            "Su médico monitorea su salud, ajusta la dosificación del medicamento y garantiza que el plan sea seguro y efectivo.",
+        "Receive updated meal plans, lifestyle coaching, and accountability to keep you on track week after week.":
+            "Reciba planes de comidas actualizados, asesoramiento sobre el estilo de vida y responsabilidad para mantenerlo en el camino correcto semana tras semana.",
+        "GLP-1 receptor agonists, including":
+            "Los agonistas del receptor GLP-1, incluyendo",
+        ", are FDA-approved medications clinically proven to support significant weight loss by reducing appetite and improving metabolic health. When combined with nutrition counseling and regular physician oversight, patients achieve better and more sustainable outcomes than with medication or lifestyle changes alone.":
+            ", son medicamentos aprobados por la FDA clínicamente probados para apoyar una pérdida de peso significativa al reducir el apetito y mejorar la salud metabólica. Cuando se combinan con asesoramiento nutricional y supervisión médica regular, los pacientes logran mejores resultados y más sostenibles que con medicamentos o cambios en el estilo de vida solos.",
+        "We prescribe and dispense these medications directly at our clinic, making it easy and convenient for you to stay on your treatment plan.":
+            "Recetamos y dispensamos estos medicamentos directamente en nuestra clínica, lo que le facilita y le conviene mantenerse en su plan de tratamiento.",
+        "The most effective approach to weight loss combines medical treatment with professional guidance. Working alongside your nutritionist and doctor each week gives you the accountability, clinical oversight, and personalized adjustments that medication alone cannot provide — helping you build habits that last well beyond the program.":
+            "El enfoque más efectivo para la pérdida de peso combina el tratamiento médico con la orientación profesional. Trabajar junto a su nutricionista y médico cada semana le brinda la responsabilidad, la supervisión clínica y los ajustes personalizados que los medicamentos por sí solos no pueden proporcionar — ayudándole a construir hábitos que duran mucho más allá del programa.",
+        "Our nutrition and fitness professionals collaborate with the clinical team to deliver practical guidance, approachable coaching, and the accountability you need to live well.":
+            "Nuestros profesionales de nutrición y ejercicio colaboran con el equipo clínico para brindar orientación práctica, asesoramiento accesible y la responsabilidad que necesita para vivir bien.",
+        "Hodaya partners with patients to translate medical recommendations into real-world nutrition habits. She focuses on sustainable meal planning, mindful eating strategies, and building confidence in the kitchen so every client can make consistent, nourishing choices.":
+            "Hodaya se asocia con los pacientes para traducir las recomendaciones médicas en hábitos de nutrición del mundo real. Se centra en la planificación de comidas sostenibles, estrategias de alimentación consciente y desarrollo de la confianza en la cocina para que cada cliente pueda tomar decisiones consistentes y nutritivas.",
+        "Kevin designs individualized training programs that improve strength, mobility, and overall stamina. He blends functional movement with steady coaching support, helping each person stay motivated, recover safely, and celebrate measurable progress.":
+            "Kevin diseña programas de entrenamiento individualizados que mejoran la fuerza, la movilidad y la resistencia general. Combina el movimiento funcional con un apoyo de entrenamiento constante, ayudando a cada persona a mantenerse motivada, recuperarse de manera segura y celebrar el progreso medible.",
+        "Common questions about our nutrition and wellness programs.":
+            "Preguntas comunes sobre nuestros programas de nutrición y bienestar.",
+        "Our Wellness Center offers a range of services, including:":
+            "Nuestro Centro de Bienestar ofrece una variedad de servicios, incluyendo:",
+        "Nutrition counseling and personalized meal planning":
+            "Asesoramiento nutricional y planificación de comidas personalizada",
+        "Personal training programs": "Programas de entrenamiento personal",
+        "Weight management programs": "Programas de control de peso",
+        "Holistic health consultations": "Consultas de salud holística",
+        "We combine functional medicine with customized plans for":
+            "Combinamos la medicina funcional con planes personalizados para",
+        "whole-body wellness": "bienestar integral",
+        "No referral is needed.": "No se necesita referencia.",
+        "You can schedule a nutrition consultation directly by calling":
+            "Puede programar una consulta nutricional directamente llamando al",
+        "or booking online.": "o reservando en línea.",
+        "Our team will work with you to create a personalized plan based on your health goals.":
+            "Nuestro equipo trabajará con usted para crear un plan personalizado basado en sus objetivos de salud.",
+        "Coverage varies by plan.": "La cobertura varía según el plan.",
+        "Some insurance plans cover nutrition counseling for medical conditions such as diabetes or obesity.":
+            "Algunos planes de seguro cubren el asesoramiento nutricional para condiciones médicas como diabetes u obesidad.",
+        "Personal training and general wellness programs are typically self-pay. Call us to check your specific coverage.":
+            "El entrenamiento personal y los programas generales de bienestar generalmente son de pago propio. Llámenos para verificar su cobertura específica.",
+        "Absolutely.": "Por supuesto.",
+        "Because our Wellness Center is part of Montgomery Medical Clinic, we can coordinate your nutrition plan with your primary care provider, dermatologist, or other specialists — all":
+            "Debido a que nuestro Centro de Bienestar es parte de Montgomery Medical Clinic, podemos coordinar su plan de nutrición con su proveedor de atención primaria, dermatólogo u otros especialistas — todo",
+        "under one roof": "bajo un mismo techo",
+        "This integrated approach means your whole care team is on the same page.":
+            "Este enfoque integrado significa que todo su equipo de atención está en la misma página.",
+        "Yes!": "¡Sí!",
+        "We have a certified personal trainer who designs individualized programs to improve strength, mobility, and stamina.":
+            "Tenemos un entrenador personal certificado que diseña programas individualizados para mejorar la fuerza, la movilidad y la resistencia.",
+        "Training can be paired with nutrition counseling for a comprehensive wellness plan.":
+            "El entrenamiento se puede combinar con el asesoramiento nutricional para un plan de bienestar integral.",
+        "What is the Medical Weight Management Program?":
+            "¿Qué es el Programa Médico de Control de Peso?",
+        "is a physician-supervised weight loss program that combines weekly in-clinic visits with your nutritionist and doctor, personalized meal plans, lifestyle coaching, and FDA-approved GLP-1 medications such as semaglutide.":
+            "es un programa de pérdida de peso supervisado por médicos que combina visitas semanales en la clínica con su nutricionista y médico, planes de comidas personalizados, asesoramiento sobre el estilo de vida y medicamentos GLP-1 aprobados por la FDA como semaglutida.",
+        "Each week you meet with your care team to review progress, adjust your plan, and ensure you are on the safest and most effective path to your weight loss goals.":
+            "Cada semana se reúne con su equipo de atención para revisar el progreso, ajustar su plan y garantizar que esté en el camino más seguro y eficaz hacia sus objetivos de pérdida de peso.",
+        "Do you prescribe GLP-1 or semaglutide medications for weight loss?":
+            "¿Receta medicamentos GLP-1 o semaglutida para la pérdida de peso?",
+        "Yes.": "Sí.",
+        "As part of our Medical Weight Management Program, our physicians can prescribe FDA-approved GLP-1 receptor agonist medications including semaglutide.":
+            "Como parte de nuestro Programa Médico de Control de Peso, nuestros médicos pueden recetar medicamentos agonistas del receptor GLP-1 aprobados por la FDA, incluyendo semaglutida.",
+        "We also offer these medications for purchase directly through the clinic for added convenience. All prescriptions are paired with nutrition counseling and regular physician check-ins to maximize results safely.":
+            "También ofrecemos estos medicamentos para su compra directamente a través de la clínica para mayor comodidad. Todas las recetas se combinan con asesoramiento nutricional y controles médicos regulares para maximizar los resultados de manera segura.",
+        "Start your personalized wellness journey with our team today.":
+            "Comience su viaje personalizado de bienestar con nuestro equipo hoy.",
+        "Your Complete Wellness Journey": "Su Viaje Completo de Bienestar",
+        "Our Two Divisions": "Nuestras Dos Divisiones",
+        "Our Approach": "Nuestro Enfoque",
+        "Coordinated Care": "Atención Coordinada",
+        "One team, one plan.": "Un equipo, un plan.",
+        "Faster Progress": "Progreso Más Rápido",
+        "Better results, together.": "Mejores resultados, juntos.",
+        "Physician-Backed": "Respaldado por Médicos",
+        "Guided by your doctor.": "Guiado por su médico.",
+        "New Program": "Nuevo Programa",
+        "Medical Weight Management Program": "Programa Médico de Control de Peso",
+        "Physician-Supervised": "Supervisado por Médicos",
+        "How the Program Works": "Cómo Funciona el Programa",
+        "Weekly Check-In": "Control Semanal",
+        "Physician Review": "Revisión Médica",
+        "Ongoing Support": "Apoyo Continuo",
+        "What's included": "Qué incluye",
+        "What\u2019s included": "Qué incluye",
+        "Weekly in-clinic nutritionist visits": "Visitas semanales de nutricionista en la clínica",
+        "Regular physician consultations": "Consultas médicas regulares",
+        "GLP-1 medication management (semaglutide)": "Manejo de medicamentos GLP-1 (semaglutida)",
+        "Personalized meal & nutrition plans": "Planes de comidas y nutrición personalizados",
+        "Habit & lifestyle coaching": "Asesoramiento de hábitos y estilo de vida",
+        "Body composition tracking": "Seguimiento de la composición corporal",
+        "Ongoing progress monitoring": "Monitoreo continuo del progreso",
+        "Medication available for purchase on-site": "Medicamento disponible para compra en el lugar",
+        "About GLP-1 Medications": "Acerca de los Medicamentos GLP-1",
+        "Why It Works": "Por Qué Funciona",
+        "Get Started — Book a Consultation": "Comience — Reserve una Consulta",
+        "Expert Wellness Guidance": "Orientación Experta en Bienestar",
+        "Personalized Training Approach": "Enfoque de Entrenamiento Personalizado",
+        "What we offer": "Lo que ofrecemos",
+        "Weight Management Programs": "Programas de Control de Peso",
+        "Diabetes & Disease Management": "Control de Diabetes y Enfermedades",
+        "Meal Planning & Education": "Planificación de Comidas y Educación",
+        "Heart Health & Cholesterol Support": "Apoyo a la Salud Cardíaca y Colesterol",
+        "Digestive & Gut Health Guidance": "Orientación sobre Salud Digestiva e Intestinal",
+        "Habit & Lifestyle Coaching": "Asesoramiento de Hábitos y Estilo de Vida",
+        "Ongoing Progress Check-Ins": "Seguimiento Continuo del Progreso",
         "The Power of Integration": "El Poder de la Integración",
         "Meet Our Wellness Team": "Conozca a Nuestro Equipo de Bienestar",
+        "Ready to Transform Your Health?": "¿Listo para Transformar Su Salud?",
         "Ready to Transform Your Health with Functional Medicine?": "¿Listo para Transformar Su Salud con Medicina Funcional?",
         "Book Nutrition Consultation": "Reservar Consulta de Nutrición",
         "Book Training Session": "Reservar Sesión de Entrenamiento",
@@ -1188,7 +1522,6 @@
         "Functional Medicine": "Medicina Funcional",
         "Weight Management": "Control de Peso",
         "Personalized Nutrition Counseling": "Asesoramiento Nutricional Personalizado",
-        "Weight Management Programs": "Programas de Control de Peso",
         "Meal Planning": "Planificación de Comidas",
         "Sports Nutrition": "Nutrición Deportiva",
         "Strength Training": "Entrenamiento de Fuerza",
@@ -1210,7 +1543,6 @@
         "Better Wellness Results": "Mejores Resultados de Bienestar",
         "Functional Medicine Support": "Apoyo de Medicina Funcional",
         "Diabetes Disease Management": "Manejo de la Enfermedad de Diabetes",
-        "Meal Planning & Education": "Planificación de Comidas y Educación",
         "EXPERT FUNCTIONAL MEDICINE & WELLNESS GUIDANCE": "GUÍA EXPERTA DE MEDICINA FUNCIONAL Y BIENESTAR",
         "PERSONALIZED TRAINING APPROACH": "ENFOQUE DE ENTRENAMIENTO PERSONALIZADO",
 
@@ -1317,6 +1649,11 @@
         "Integration": "Integración",
         "Insurance": "Seguros",
         "Preparation": "Preparación",
+        "Welcome": "Bienvenido",
+        "Provider": "Proveedor",
+        "FAQs": "Preguntas Frecuentes",
+        "Our Team": "Nuestro Equipo",
+        "Weight Management": "Control de Peso",
 
         // ── Immigration Physicals page (dedicated) ──
         "Immigration Physicals & I-693 Medical Exams": "Exámenes Físicos de Inmigración y Exámenes Médicos I-693",
