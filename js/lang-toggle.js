@@ -955,8 +955,8 @@
 
         // ── Dermatology page (exact HTML text) ──
         "Welcome to Our Dermatology Practice": "Bienvenido a Nuestra Práctica de Dermatología",
-        "Comprehensive dermatology services for all your skin, hair, and nail concerns.":
-            "Servicios integrales de dermatología para todas sus preocupaciones de piel, cabello y uñas.",
+        "Comprehensive dermatology services for all your skin, hair, and nail concerns — from acne and chronic conditions to skin cancer screenings and aesthetic care.":
+            "Servicios integrales de dermatología para todas sus preocupaciones de piel, cabello y uñas — desde acné y condiciones crónicas hasta exámenes de cáncer de piel y cuidado estético.",
         "At Montgomery Medical Clinic, we offer comprehensive dermatology services. Whether you're concerned about acne, hair loss, or chronic skin disorders, our experts use the latest treatment techniques to address your needs.":
             "En Montgomery Medical Clinic, ofrecemos servicios integrales de dermatología. Ya sea que le preocupe el acné, la pérdida de cabello o los trastornos crónicos de la piel, nuestros expertos utilizan las últimas técnicas de tratamiento para atender sus necesidades.",
         "Getting a Diagnosis": "Obtener un Diagnóstico",
@@ -1173,8 +1173,8 @@
         "Ready to Begin Your Acupuncture Healing Journey?": "¿Listo para Comenzar Su Viaje de Curación de Acupuntura?",
         "Care Journey": "Viaje de Atención",
         "General Health Conditions": "Condiciones de Salud General",
-        "Licensed acupuncture, Chinese medicine, and pain management in Gaithersburg, MD.":
-            "Acupuntura licenciada, medicina china y manejo del dolor en Gaithersburg, MD.",
+        "Licensed acupuncture, Chinese medicine, and pain management in Gaithersburg, MD — personalized care for pain, stress, fertility, and chronic conditions.":
+            "Acupuntura licenciada, medicina china y manejo del dolor en Gaithersburg, MD — atención personalizada para el dolor, el estrés, la fertilidad y las condiciones crónicas.",
         "Welcome To Five Elements Acupuncture & Wellness": "Bienvenido a Acupuntura y Bienestar Cinco Elementos",
         "Experience the healing power of traditional Chinese medicine combined with modern functional health care. Dr. Min Lu provides personalized":
             "Experimente el poder curativo de la medicina tradicional china combinada con la atención funcional moderna de la salud. La Dra. Min Lu proporciona",
