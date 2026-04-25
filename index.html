@@ -502,7 +502,7 @@
 
 
 
-    <section id="main-content" class="relative text-white flex items-center" style="z-index: 1; position: relative; isolation: isolate; aspect-ratio: 22 / 9; width: 100%; min-height: 420px; overflow: hidden;" data-aos="fade-in">
+    <section id="main-content" class="relative text-white flex items-center" style="z-index: 1; position: relative; isolation: isolate; aspect-ratio: 22 / 9; width: 100%; min-height: 420px; overflow: hidden;">
         <picture class="absolute inset-0 z-0 block">
             <source media="(max-width: 768px)" srcset="images/NewImage-800.webp" type="image/webp">
             <source media="(max-width: 768px)" srcset="images/NewImage-800.jpg" type="image/jpeg">
@@ -774,9 +774,17 @@
     <script type="module" src="js/firebase-homepage.js?v=2026041202"></script>
     <script>
         // Wait until deferred scripts (incl. AOS) have parsed before init.
+        // Disable AOS on small viewports to avoid CLS on mobile and to
+        // skip the extra paint work on slower devices. Respect user's
+        // reduced-motion preference.
         document.addEventListener('DOMContentLoaded', function () {
-            if (window.AOS) {
-                AOS.init({ duration: 800, once: true });
+            if (!window.AOS) return;
+            var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var smallScreen = window.matchMedia('(max-width: 768px)').matches;
+            if (prefersReduced || smallScreen) {
+                AOS.init({ disable: true });
+            } else {
+                AOS.init({ duration: 600, once: true, offset: 60 });
             }
         });
     </script>

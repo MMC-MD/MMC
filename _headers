@@ -2,34 +2,40 @@
 # Cloudflare Pages HTTP Headers for mmccare.com
 # =====================================================
 
-# All pages
+# Security + privacy defaults for every response
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-site
 
-# Cache static assets aggressively (1 year)
+# Cache static assets aggressively (1 year, immutable).
+# Versioned query strings (?v=...) handle cache busting.
 /images/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/css/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/vendor/*
   Cache-Control: public, max-age=31536000, immutable
 
 /icons/*
   Cache-Control: public, max-age=31536000, immutable
 
-# JS files - cache but allow revalidation
-/js/*
-  Cache-Control: public, max-age=2592000, must-revalidate
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
 
-# HTML pages - always revalidate
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages: always revalidate so deploys take effect immediately.
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
-# Favicon
-/images/favicon.ico
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Favicons / share images keep a shorter window.
+/images/favicon*
   Cache-Control: public, max-age=604800
