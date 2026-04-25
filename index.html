@@ -133,15 +133,29 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="vendor/aos.css" rel="stylesheet">
+    <!-- Load Google Fonts async to avoid render-blocking on slow connections -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
+
+    <!-- Critical CSS: blocks render -->
     <link rel="stylesheet" href="css/tailwind.css">
     <link rel="stylesheet" href="css/style.css?v=20260413">
-    <link rel="stylesheet" href="css/dropdown-fix.css?v=20260413g">
-    <link rel="stylesheet" href="css/header-fix.css">
-    <link rel="stylesheet" href="css/contact-modal.css">
-    <link rel="stylesheet" href="css/lang-toggle.css?v=2">
-    <link rel="stylesheet" href="css/in-page-nav.css?v=6">
+
+    <!-- Non-critical CSS: load async (for AOS, header tweaks, modal, in-page nav, etc.) -->
+    <link rel="preload" as="style" href="vendor/aos.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="css/dropdown-fix.css?v=20260413g" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="css/header-fix.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="css/contact-modal.css" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="css/lang-toggle.css?v=2" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" as="style" href="css/in-page-nav.css?v=6" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="vendor/aos.css">
+        <link rel="stylesheet" href="css/dropdown-fix.css?v=20260413g">
+        <link rel="stylesheet" href="css/header-fix.css">
+        <link rel="stylesheet" href="css/contact-modal.css">
+        <link rel="stylesheet" href="css/lang-toggle.css?v=2">
+        <link rel="stylesheet" href="css/in-page-nav.css?v=6">
+    </noscript>
     <link rel="preload" href="includes/header.html" as="fetch" crossorigin="anonymous">
     <link rel="preload" href="js/header-footer-loader.js?v=2026041202" as="script">
     <link rel="preload" href="js/critical-header.js?v=2026041202" as="script">
@@ -151,8 +165,11 @@
     </script>
     <script src="js/in-page-nav.js?v=6" defer></script>
     <link rel="preload" href="images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
-    <link rel="preload" href="images/welcome.jpeg" as="image" type="image/jpeg">
-    <link rel="preload" href="images/NewImage.webp" as="image" type="image/webp" fetchpriority="high">
+    <!-- Hero image preload, responsive: mobile gets the small variant -->
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high"
+          href="images/NewImage.webp"
+          imagesrcset="images/NewImage-800.webp 800w, images/NewImage.webp 1920w"
+          imagesizes="100vw">
     <style>
         /* Prevent horizontal overflow at all zoom levels */
         html, body {
@@ -164,6 +181,15 @@
         /* Mobile-first responsive design */
         * {
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Reserve vertical space for the deferred slideshow so it doesn't
+           cause layout shift when slides finally load. */
+        .slideshow-section .slide-container {
+            min-height: 360px;
+        }
+        @media (min-width: 768px) {
+            .slideshow-section .slide-container { min-height: 480px; }
         }
 
         /* Ensure touch targets are at least 44x44px */
@@ -478,6 +504,8 @@
 
     <section id="main-content" class="relative text-white flex items-center" style="z-index: 1; position: relative; isolation: isolate; aspect-ratio: 22 / 9; width: 100%; min-height: 420px; overflow: hidden;" data-aos="fade-in">
         <picture class="absolute inset-0 z-0 block">
+            <source media="(max-width: 768px)" srcset="images/NewImage-800.webp" type="image/webp">
+            <source media="(max-width: 768px)" srcset="images/NewImage-800.jpg" type="image/jpeg">
             <source srcset="images/NewImage.webp" type="image/webp">
             <source srcset="images/NewImage.jpeg" type="image/jpeg">
             <img src="images/NewImage.jpeg"

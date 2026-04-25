@@ -48,7 +48,10 @@
     display: block;
 }
 
-/* Panel - above everything including header and contact modal */
+/* Panel - above everything including header and contact modal.
+   `will-change: transform` promotes the panel to its own compositor
+   layer so toggling page-level filters (invert/monochrome) on mobile
+   can't cause a repaint that loses its viewport anchor. */
 .a11y-panel {
     display: none;
     position: fixed;
@@ -64,6 +67,14 @@
     box-shadow: 0 12px 48px rgba(0,0,0,0.25);
     border: 2px solid #0d47a1;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.a11y-trigger {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .a11y-panel.a11y-open {

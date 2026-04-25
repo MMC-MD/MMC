@@ -263,6 +263,14 @@
     overlay.addEventListener('click', closePanel);
     panel.querySelector('.a11y-close').addEventListener('click', closePanel);
 
+    // Stop panel clicks from bubbling. On mobile, applying a body filter
+    // (invert / monochrome) can trigger a layout shift that lets the
+    // synthesized click land on the overlay underneath, instantly closing
+    // the panel. Containing the click inside the panel prevents that.
+    panel.addEventListener('click', function (e) {
+        e.stopPropagation();
+    });
+
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && panel.classList.contains('a11y-open')) {
             closePanel();
@@ -272,7 +280,8 @@
     // Toggle buttons
     var buttons = panel.querySelectorAll('.a11y-option');
     for (var b = 0; b < buttons.length; b++) {
-        buttons[b].addEventListener('click', function () {
+        buttons[b].addEventListener('click', function (e) {
+            e.stopPropagation();
             var key = this.getAttribute('data-key');
             prefs[key] = !prefs[key];
             this.classList.toggle('a11y-active', prefs[key]);
