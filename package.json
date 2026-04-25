@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.css --minify",
-    "watch:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.css --watch"
+    "watch:css": "npx tailwindcss -i css/tailwind-input.css -o css/tailwind.css --watch",
+    "optimize:images": "bash scripts/optimize-images.sh"
   },
   "keywords": [],
   "author": "",

@@ -135,45 +135,45 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLinkAccessibility();
     };
 
+    // Hysteresis: once the nav appears, keep it visible until the user has
+    // scrolled clearly back into the hero region. This prevents the nav from
+    // vanishing when an in-page link (e.g. "Updates") lands the viewport
+    // just below the show threshold, and avoids flicker on small scrolls.
+    const HIDE_BUFFER = 220;
+
+    const makeScrollHandler = (getShowTrigger) => () => {
+        const showTrigger = getShowTrigger();
+        const hideTrigger = Math.max(showTrigger - HIDE_BUFFER, 0);
+        const y = window.scrollY;
+        if (y >= showTrigger) {
+            canShowNav = true;
+        } else if (y <= hideTrigger) {
+            canShowNav = false;
+        }
+        updateNavVisibility();
+    };
+
     if (headerSection) {
-        let headerTrigger = 0;
+        const getShowTrigger = () => Math.max(headerSection.offsetHeight - 90, 0);
+        const handleHeaderScroll = makeScrollHandler(getShowTrigger);
 
-        const recalcTrigger = () => {
-            headerTrigger = Math.max(headerSection.offsetHeight - 90, 0);
-        };
-
-        const handleHeaderScroll = () => {
-            canShowNav = window.scrollY >= headerTrigger;
-            updateNavVisibility();
-        };
-
-        recalcTrigger();
-
-        window.addEventListener('resize', () => {
-            recalcTrigger();
-            handleHeaderScroll();
-        });
-
+        window.addEventListener('resize', handleHeaderScroll);
         window.addEventListener('scroll', handleHeaderScroll, { passive: true });
         handleHeaderScroll();
     } else if (firstTarget) {
-        let fallbackTrigger = Math.max(firstTarget.offsetTop - 60, 0);
-
-        const recalcFallbackTrigger = () => {
-            fallbackTrigger = Math.max(firstTarget.offsetTop - 60, 0);
+        // No dedicated .page-header — show the nav once the user has scrolled
+        // past the first viewport (typically the hero). This is more forgiving
+        // than tying the threshold tightly to the first nav target, so smooth
+        // scrolling to a link doesn't drop the user just below the threshold.
+        const getShowTrigger = () => {
+            const targetTrigger = Math.max(firstTarget.offsetTop - 60, 0);
+            const heroTrigger = Math.max(window.innerHeight * 0.6, 0);
+            return Math.min(targetTrigger, heroTrigger);
         };
-
-        const handleScroll = () => {
-            canShowNav = window.scrollY >= fallbackTrigger;
-            updateNavVisibility();
-        };
+        const handleScroll = makeScrollHandler(getShowTrigger);
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-        window.addEventListener('resize', () => {
-            recalcFallbackTrigger();
-            handleScroll();
-        });
-
+        window.addEventListener('resize', handleScroll);
         handleScroll();
     }
 

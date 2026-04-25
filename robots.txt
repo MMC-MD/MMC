@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-
-# Internal / non-public
 Disallow: /frontdesk-briefing-room/
 Disallow: /includes/
 Disallow: /js/
@@ -9,19 +7,12 @@ Disallow: /css/
 Disallow: /vendor/
 Disallow: /node_modules/
 Disallow: /test-results/
-
-# Old WordPress infrastructure (no longer exists)
 Disallow: /wp-content/
 Disallow: /wp-includes/
 Disallow: /wp-admin/
 Disallow: /wp-json/
-
-# Hacked spam pages from previous site compromise
 Disallow: /boutique/
 Disallow: /shop/
-Disallow: /shop
-
-# Old WordPress paths
 Disallow: /author/
 Disallow: /category/
 Disallow: /tag/

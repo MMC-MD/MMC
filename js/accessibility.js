@@ -40,13 +40,56 @@
     // ── Wrap page content so filters don't affect the widget ───
     // Move every direct child of <body> into a wrapper div,
     // then append the widget elements OUTSIDE the wrapper.
+    //
+    // We deliberately never apply `zoom` or `transform` to this wrapper —
+    // only `filter` (monochrome / invert) — because zoom/transform would
+    // also break `position: fixed` for descendants we want to leave alone.
     var wrapper = document.createElement('div');
     wrapper.id = 'a11y-page-wrapper';
-    // Move existing body children into wrapper
     while (document.body.firstChild) {
         wrapper.appendChild(document.body.firstChild);
     }
     document.body.appendChild(wrapper);
+
+    // Any `position: fixed` element that ends up inside the wrapper loses
+    // its viewport anchor when the wrapper has a `filter` applied — the
+    // sticky header would scroll away with the page, the in-page side
+    // nav would jump to the bottom, etc. Hoist known fixed elements back
+    // out as direct children of <body>. A MutationObserver catches late
+    // insertions (header/footer placeholders are loaded asynchronously).
+    var FIXED_SELECTOR = [
+        '.site-sticky-header',
+        '#header-placeholder',
+        '#page-nav',
+        '.contact-modal',
+        '#cookie-consent-banner'
+    ].join(', ');
+
+    function hoistFixedFromWrapper() {
+        var nodes = wrapper.querySelectorAll(FIXED_SELECTOR);
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].parentNode !== document.body) {
+                document.body.appendChild(nodes[i]);
+            }
+        }
+    }
+    hoistFixedFromWrapper();
+
+    var hoistScheduled = false;
+    var hoistObserver = new MutationObserver(function (mutations) {
+        if (hoistScheduled) return;
+        for (var i = 0; i < mutations.length; i++) {
+            if (mutations[i].addedNodes.length) {
+                hoistScheduled = true;
+                requestAnimationFrame(function () {
+                    hoistScheduled = false;
+                    hoistFixedFromWrapper();
+                });
+                return;
+            }
+        }
+    });
+    hoistObserver.observe(wrapper, { childList: true, subtree: true });
 
     // ── Build widget DOM (outside the wrapper) ────────────────
 
@@ -147,17 +190,21 @@
     function applyAll() {
         var root = document.documentElement;
 
-        // Font size — use CSS zoom on the wrapper so it scales
-        // all fixed-px sizes, and counter-zoom the widget
+        // Font size — scale the root font-size so rem-based sizes flow.
+        // We avoid `zoom`/`transform` because they create a new containing
+        // block and break `position: fixed` descendants (the side nav).
+        // The widget itself is unscaled because all of its rules in
+        // accessibility.css use `!important` with explicit px values.
         if (prefs.fontSize !== 100) {
             var s = prefs.fontSize / 100;
             fontScaleStyleEl.textContent =
-                '#a11y-page-wrapper { zoom: ' + s + '; }';
+                ':root { font-size: ' + (16 * s) + 'px !important; }';
         } else {
             fontScaleStyleEl.textContent = '';
         }
 
-        // Toggle classes on <html> — CSS targets #a11y-page-wrapper
+        // Toggle classes on <html> — CSS rules in accessibility.css
+        // exclude widget elements via :not() selectors.
         var classMap = {
             highContrast:    'a11y-high-contrast',
             largeCursor:     'a11y-large-cursor',

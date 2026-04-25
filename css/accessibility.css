@@ -333,15 +333,17 @@
     filter: none !important;
 }
 
-/* Re-apply the specific sizes after the revert */
-.a11y-panel-header h2 { font-size: 1rem !important; }
-.a11y-section-label { font-size: 0.7rem !important; }
-.a11y-option { font-size: 0.875rem !important; }
-.a11y-option-status { font-size: 0.7rem !important; }
-.a11y-slider-row label { font-size: 0.875rem !important; }
-.a11y-slider-row .a11y-font-value { font-size: 0.8rem !important; }
-.a11y-reset { font-size: 0.8rem !important; }
-.a11y-panel-footer a { font-size: 0.75rem !important; }
+/* Re-apply the specific sizes after the revert.
+   Use px (not rem) so the widget stays a fixed size even when the
+   user-controlled root font-size scaler is applied to the page. */
+.a11y-panel-header h2 { font-size: 16px !important; }
+.a11y-section-label { font-size: 11px !important; }
+.a11y-option { font-size: 14px !important; }
+.a11y-option-status { font-size: 11px !important; }
+.a11y-slider-row label { font-size: 14px !important; }
+.a11y-slider-row .a11y-font-value { font-size: 13px !important; }
+.a11y-reset { font-size: 13px !important; }
+.a11y-panel-footer a { font-size: 12px !important; }
 .a11y-panel { line-height: 1.5 !important; letter-spacing: normal !important; word-spacing: normal !important; }
 .a11y-trigger { line-height: 1 !important; letter-spacing: normal !important; }
 
@@ -487,30 +489,31 @@ html.a11y-hide-images picture {
     opacity: 0.05 !important;
 }
 
-/* Saturation - Monochrome — exclude the widget */
-html.a11y-monochrome body {
+/* Saturation - Monochrome.
+   Filters are applied per-element (page wrapper + hoisted siblings)
+   rather than to <body>, so they never become a containing block for
+   the widget's position:fixed elements. */
+html.a11y-monochrome #a11y-page-wrapper,
+html.a11y-monochrome #header-placeholder,
+html.a11y-monochrome .site-sticky-header,
+html.a11y-monochrome #page-nav {
     filter: grayscale(100%) !important;
 }
-/* Un-filter the widget */
-html.a11y-monochrome .a11y-trigger,
-html.a11y-monochrome .a11y-panel,
-html.a11y-monochrome .a11y-overlay {
-    filter: none !important;
-}
 
-/* Invert Colors — exclude the widget */
-html.a11y-invert body {
+/* Invert Colors — same per-element approach. The widget trigger,
+   panel, and overlay are NOT in this list, so they stay readable. */
+html.a11y-invert #a11y-page-wrapper,
+html.a11y-invert #header-placeholder,
+html.a11y-invert .site-sticky-header,
+html.a11y-invert #page-nav {
     filter: invert(100%) hue-rotate(180deg) !important;
 }
-html.a11y-invert img,
-html.a11y-invert picture,
-html.a11y-invert video {
+html.a11y-invert #a11y-page-wrapper img,
+html.a11y-invert #a11y-page-wrapper picture,
+html.a11y-invert #a11y-page-wrapper video,
+html.a11y-invert #header-placeholder img,
+html.a11y-invert #header-placeholder picture {
     filter: invert(100%) hue-rotate(180deg) !important;
-}
-html.a11y-invert .a11y-trigger,
-html.a11y-invert .a11y-panel,
-html.a11y-invert .a11y-overlay {
-    filter: none !important;
 }
 
 /* Reading Guide (horizontal line that follows mouse) */
@@ -565,7 +568,7 @@ html.a11y-reading-guide .a11y-reading-guide-bar {
     color: #fff;
     padding: 12px 24px;
     border-radius: 0 0 8px 8px;
-    font-size: 1rem !important;
+    font-size: 16px !important;
     font-weight: 700;
     text-decoration: none;
     transition: top 0.2s;
