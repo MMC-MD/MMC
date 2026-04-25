@@ -3,3 +3,7 @@ node_modules/
 .claude/
 test-results/
 css/tailwind-input.css
+
+# Local-only image optimization workspace
+images/optimized/
+images/_backup_originals/
