@@ -164,11 +164,11 @@
         try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}
     </script>
     <script src="js/in-page-nav.js?v=6" defer></script>
-    <link rel="preload" href="images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high" imagesizes="(max-width:640px) 160px, (max-width:1024px) 200px, 240px">
     <!-- Hero image preload, responsive: mobile gets the small variant -->
     <link rel="preload" as="image" type="image/webp" fetchpriority="high"
           href="images/NewImage.webp"
-          imagesrcset="images/NewImage-800.webp 800w, images/NewImage.webp 1920w"
+          imagesrcset="images/NewImage-800.webp 800w, images/NewImage.webp 1600w"
           imagesizes="100vw">
     <style>
         /* Prevent horizontal overflow at all zoom levels */
@@ -345,7 +345,7 @@
         /* ── Subtext ── */
         .slide-sub {
             font-size: 16px;
-            color: #86868b;
+            color: #6b6b70;
             line-height: 1.5;
             margin: 0 0 28px 0;
             max-width: 520px;
@@ -415,7 +415,7 @@
             font-weight: 500;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #86868b;
+            color: #6b6b70;
             margin: 0 0 28px 0;
         }
 
@@ -541,10 +541,8 @@
 
     <section id="main-content" class="relative text-white flex items-center" style="z-index: 1; position: relative; isolation: isolate; aspect-ratio: 22 / 9; width: 100%; min-height: 420px; overflow: hidden;">
         <picture class="absolute inset-0 z-0 block">
-            <source media="(max-width: 768px)" srcset="images/NewImage-800.webp" type="image/webp">
-            <source media="(max-width: 768px)" srcset="images/NewImage-800.jpg" type="image/jpeg">
-            <source srcset="images/NewImage.webp" type="image/webp">
-            <source srcset="images/NewImage.jpeg" type="image/jpeg">
+            <source srcset="images/NewImage-800.webp 800w, images/NewImage.webp 1600w" type="image/webp" sizes="100vw">
+            <source srcset="images/NewImage-800.jpg 800w, images/NewImage.jpeg 1600w" type="image/jpeg" sizes="100vw">
             <img src="images/NewImage.jpeg"
                  alt="Expert doctors and primary care providers at Montgomery Medical Clinic urgent care center"
                  class="w-full h-full block"
@@ -629,7 +627,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
                 <a href="urgent-primary-care/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="primary" data-aos="fade-up">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <img src="icons/PrimaryCare.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Urgent care center and primary care provider services"/>
+                        <picture><source srcset="icons/PrimaryCare.webp" type="image/webp"><img src="icons/PrimaryCare.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Urgent care center and primary care provider services"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family." data-es="Su base para una salud de por vida, con atenci&oacute;n urgente sin cita y atenci&oacute;n primaria programada para toda su familia.">Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family.</p>
@@ -640,7 +638,7 @@
 
                 <a href="dermatology/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="derma" data-aos="fade-up" data-aos-delay="50">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <img src="icons/Dermatology.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Dermatology skin care services icon"/>
+                        <picture><source srcset="icons/Dermatology.webp" type="image/webp"><img src="icons/Dermatology.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Dermatology skin care services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Advanced solutions for skin health, from managing conditions to aesthetic treatments." data-es="Soluciones avanzadas para la salud de la piel, desde el manejo de condiciones hasta tratamientos est&eacute;ticos.">Advanced solutions for skin health, from managing conditions to aesthetic treatments.</p>
@@ -651,7 +649,7 @@
 
                 <a href="occupational-health/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="occupational" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <img src="icons/OccupationalHealth.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Occupational Health and workplace safety services icon"/>
+                        <picture><source srcset="icons/OccupationalHealth.webp" type="image/webp"><img src="icons/OccupationalHealth.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Occupational Health and workplace safety services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services." data-es="Colaborando con empresas para garantizar una fuerza laboral segura, saludable y en cumplimiento con servicios expertos de salud ocupacional y m&eacute;dicos de inmigraci&oacute;n.">Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services.</p>
@@ -662,7 +660,7 @@
 
                 <a href="five-elements-acupuncture/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="acupuncture" data-aos="fade-up" data-aos-delay="150">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <img src="icons/Accupuncture.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Five Elements Acupuncture and wellness services icon"/>
+                        <picture><source srcset="icons/Accupuncture.webp" type="image/webp"><img src="icons/Accupuncture.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Five Elements Acupuncture and wellness services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health." data-es="Medicina tradicional china y acupuntura para sanaci&oacute;n hol&iacute;stica, manejo del dolor y salud de la mujer.">Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health.</p>
@@ -673,7 +671,7 @@
 
                 <a href="nutrition-wellness/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="nutrition" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <img src="icons/Nutrition.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Nutrition and Wellness Center services icon"/>
+                        <picture><source srcset="icons/Nutrition.webp" type="image/webp"><img src="icons/Nutrition.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Nutrition and Wellness Center services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Nutrition and personal training to fuel your body and mind for optimal performance." data-es="Nutrici&oacute;n y entrenamiento personal para potenciar su cuerpo y mente para un rendimiento &oacute;ptimo.">Nutrition and personal training to fuel your body and mind for optimal performance.</p>
@@ -684,7 +682,7 @@
 
                 <a href="sports-medicine/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="sports" data-aos="fade-up" data-aos-delay="250">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <img src="icons/PhysicalTherapy.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Sports medicine doctors at medical center"/>
+                        <picture><source srcset="icons/PhysicalTherapy.webp" type="image/webp"><img src="icons/PhysicalTherapy.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Sports medicine doctors at medical center"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before." data-es="Rehabilitaci&oacute;n integral y atenci&oacute;n de lesiones deportivas para que regrese m&aacute;s fuerte que antes.">Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before.</p>
@@ -743,7 +741,7 @@
                             <div class="relative rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5" style="background: #f9fafb; border: 1px solid rgba(13,71,161,0.06);">
                                 <div class="absolute top-0 left-0 right-0 rounded-t-xl" style="height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.12) 100%);"></div>
                                 <p class="font-semibold" style="font-size: 0.82rem; letter-spacing: 0.01em; color: var(--dark-gray, #1d1d1f);" data-en="Open 7 Days" data-es="Abierto 7 D&iacute;as">Open 7 Days</p>
-                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #86868b;" data-en="Evening and weekend availability for urgent needs and routine follow-up care." data-es="Disponibilidad por las tardes y fines de semana para necesidades urgentes y atenci&oacute;n de seguimiento.">
+                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #6b6b70;" data-en="Evening and weekend availability for urgent needs and routine follow-up care." data-es="Disponibilidad por las tardes y fines de semana para necesidades urgentes y atenci&oacute;n de seguimiento.">
                                     Evening and weekend availability for urgent needs and routine follow-up care.
                                 </p>
                             </div>
@@ -751,7 +749,7 @@
                             <div class="relative rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5" style="background: #f9fafb; border: 1px solid rgba(13,71,161,0.06);">
                                 <div class="absolute top-0 left-0 right-0 rounded-t-xl" style="height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.12) 100%);"></div>
                                 <p class="font-semibold" style="font-size: 0.82rem; letter-spacing: 0.01em; color: var(--dark-gray, #1d1d1f);" data-en="Gaithersburg, MD" data-es="Gaithersburg, MD">Gaithersburg, MD</p>
-                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #86868b;" data-en="Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking." data-es="Ubicados convenientemente en 800 S Frederick Ave, Suite 110 con acceso y estacionamiento f&aacute;ciles.">
+                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #6b6b70;" data-en="Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking." data-es="Ubicados convenientemente en 800 S Frederick Ave, Suite 110 con acceso y estacionamiento f&aacute;ciles.">
                                     Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking.
                                 </p>
                             </div>
@@ -759,7 +757,7 @@
                             <div class="relative rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5" style="background: #f9fafb; border: 1px solid rgba(13,71,161,0.06);">
                                 <div class="absolute top-0 left-0 right-0 rounded-t-xl" style="height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.12) 100%);"></div>
                                 <p class="font-semibold" style="font-size: 0.82rem; letter-spacing: 0.01em; color: var(--dark-gray, #1d1d1f); white-space: nowrap;" data-en="Board-Certified Team" data-es="Equipo Certificado">Board-Certified Team</p>
-                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #86868b;" data-en="Experienced physicians and primary care providers focused on trusted, personalized care." data-es="M&eacute;dicos y proveedores de atenci&oacute;n primaria con experiencia, enfocados en una atenci&oacute;n confiable y personalizada.">
+                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #6b6b70;" data-en="Experienced physicians and primary care providers focused on trusted, personalized care." data-es="M&eacute;dicos y proveedores de atenci&oacute;n primaria con experiencia, enfocados en una atenci&oacute;n confiable y personalizada.">
                                     Experienced physicians and primary care providers focused on trusted, personalized care.
                                 </p>
                             </div>
