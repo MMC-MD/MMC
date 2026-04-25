@@ -192,6 +192,29 @@
             .slideshow-section .slide-container { min-height: 480px; }
         }
 
+        /* Pre-reserve header height so the async-loaded header doesn't
+           cause layout shift. Body's padding-top compensates for the
+           sticky header, and we reserve a matching min-height on the
+           placeholder so any rendered baseline matches the final state. */
+        #header-placeholder {
+            min-height: 140px;
+            display: block;
+        }
+        @media (max-width: 640px) {
+            #header-placeholder { min-height: 120px; }
+        }
+
+        /* Hero must paint at a known height immediately to register as LCP.
+           Use a viewport-stable height instead of aspect-ratio on small
+           screens, which can otherwise re-resolve and cause a layout shift. */
+        @media (max-width: 768px) {
+            #main-content {
+                aspect-ratio: auto !important;
+                height: 60vh;
+                min-height: 360px !important;
+            }
+        }
+
         /* Ensure touch targets are at least 44x44px */
         button, a, input, select, textarea {
             min-height: 44px;
@@ -437,22 +460,36 @@
         .s-next::before { transform: rotate(45deg); right: 14px; }
         .s-nav:hover { background: #f5f5f7; border-color: rgba(0,0,0,0.12); }
 
-        .s-dots { display: flex; gap: 6px; align-items: center; }
+        .s-dots { display: flex; gap: 0; align-items: center; }
+        /* Invisible 24x24 tap area; the visible dot is the inner pseudo-element. */
         .s-dot {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            outline: none;
+            min-width: 24px;
+            min-height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .s-dot::before {
+            content: "";
+            display: block;
             width: 7px;
             height: 7px;
             border-radius: 7px;
             background: rgba(0,0,0,0.12);
-            border: none;
-            padding: 0;
-            cursor: pointer;
             transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            min-width: 7px;
-            min-height: 7px;
-            outline: none;
         }
-        .s-dot:hover { background: rgba(0,0,0,0.25); }
-        .s-dot.active { width: 24px; background: #1d1d1f; }
+        .s-dot:hover::before { background: rgba(0,0,0,0.25); }
+        .s-dot.active::before { width: 24px; background: #1d1d1f; }
+        .s-dot:focus-visible::before { outline: 2px solid #0d47a1; outline-offset: 3px; }
 
         @media (max-width: 600px) {
             .slideshow-section { padding: 40px 16px 48px; }
@@ -771,7 +808,40 @@
     <script src="js/main-simple.js?v=20260413" defer></script>
     <script src="js/slideshow-data.js" defer></script>
     <script src="js/slideshow.js" defer></script>
-    <script type="module" src="js/firebase-homepage.js?v=2026041202"></script>
+    <!-- Lazy-load Firebase only when the user gets near the Updates slideshow.
+         Firebase + Firestore is ~180 KB of JS that's not needed for first paint
+         since it just hydrates the homepage updates slideshow with live data.
+         Falls back to immediate load on browsers without IntersectionObserver. -->
+    <script>
+        (function () {
+            var loaded = false;
+            function loadFirebase() {
+                if (loaded) return;
+                loaded = true;
+                var s = document.createElement('script');
+                s.type = 'module';
+                s.src = 'js/firebase-homepage.js?v=2026041202';
+                document.body.appendChild(s);
+            }
+            var target = document.getElementById('updates');
+            if (target && 'IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    if (entries.some(function (e) { return e.isIntersecting; })) {
+                        io.disconnect();
+                        loadFirebase();
+                    }
+                }, { rootMargin: '600px 0px' });
+                io.observe(target);
+                // Safety net: load after first user interaction or 8s idle.
+                ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(function (ev) {
+                    window.addEventListener(ev, loadFirebase, { once: true, passive: true });
+                });
+                setTimeout(loadFirebase, 8000);
+            } else {
+                loadFirebase();
+            }
+        })();
+    </script>
     <script>
         // Wait until deferred scripts (incl. AOS) have parsed before init.
         // Disable AOS on small viewports to avoid CLS on mobile and to
