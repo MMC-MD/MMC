@@ -2,13 +2,17 @@ name = "mmc-reminders"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
 
-# 9:00 AM America/New_York on Wed, Thu, Fri.
-# DST-aware option isn't free in Workers cron; we run two crons (EDT 13:00 UTC and EST 14:00 UTC)
-# and the Worker drops the wrong one based on the actual local time when it fires.
+# 9:00 AM America/New_York every day.
+# Cloudflare cron runs in UTC and isn't DST-aware. 13:00 UTC is 9 AM EDT (summer);
+# 14:00 UTC is 9 AM EST (winter). The Worker checks the actual local hour at fire
+# time and drops whichever schedule didn't land on local 9.
+# The handler then routes:
+#   - Wed/Thu/Fri → weekend-banner check (existing behavior)
+#   - Every day → holiday check (sends 2 days before each holiday)
 [triggers]
 crons = [
-  "0 13 * * 3,4,5",
-  "0 14 * * 3,4,5"
+  "0 13 * * *",
+  "0 14 * * *"
 ]
 
 # Allow manual testing from the dashboard's "Run" button or HTTP fetch.

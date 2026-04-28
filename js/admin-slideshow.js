@@ -6,6 +6,7 @@ import {
     fetchEmergencyBanner,
     fetchHomepageSlides,
     fetchScheduledBanners,
+    fetchUpcomingHolidays,
     getFriendlyFirebaseError,
     inviteUser,
     isAdminUser,
@@ -17,6 +18,7 @@ import {
     saveHomepageSlides,
     saveScheduledBanner,
     sendAdminPasswordReset,
+    sendHolidayReminder,
     sendManualReminder,
     sendUserPasswordReset,
     setUserDisabled,
@@ -28,7 +30,7 @@ import {
     subscribeToScheduledBanners,
     subscribeToUsers,
     unmuteRecipient
-} from './firebase-client.js?v=2026042805';
+} from './firebase-client.js?v=2026042806';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;
@@ -300,6 +302,11 @@ const elements = {
     sendReminderRecipients: document.getElementById('adminSendReminderRecipients'),
     sendReminderAllButton: document.getElementById('adminSendReminderAll'),
     sendReminderStatus: document.getElementById('adminSendReminderStatus'),
+    sendHolidayForm: document.getElementById('adminSendHolidayForm'),
+    sendHolidaySelect: document.getElementById('adminSendHolidaySelect'),
+    sendHolidayRecipients: document.getElementById('adminSendHolidayRecipients'),
+    sendHolidayAllButton: document.getElementById('adminSendHolidayAll'),
+    sendHolidayStatus: document.getElementById('adminSendHolidayStatus'),
     muteForm: document.getElementById('adminMuteForm'),
     muteEmail: document.getElementById('adminMuteEmail'),
     muteNote: document.getElementById('adminMuteNote'),
@@ -3817,6 +3824,8 @@ function connectAdminListeners() {
             }
         );
     }
+    // Lazy-load the holiday list for the dropdown.
+    loadUpcomingHolidaysIntoSelect();
 }
 
 /* ══════════════════════════════════════════════════
@@ -3839,6 +3848,46 @@ function setSendReminderStatus(message, tone) {
     if (!elements.sendReminderStatus) return;
     elements.sendReminderStatus.textContent = message;
     elements.sendReminderStatus.dataset.tone = tone || 'info';
+}
+
+function setSendHolidayStatus(message, tone) {
+    if (!elements.sendHolidayStatus) return;
+    elements.sendHolidayStatus.textContent = message;
+    elements.sendHolidayStatus.dataset.tone = tone || 'info';
+}
+
+function formatHolidayOption(h) {
+    var date = '';
+    try {
+        var parts = (h && h.date ? h.date : '').split('-').map(function (s) { return parseInt(s, 10); });
+        if (parts.length === 3 && !isNaN(parts[0])) {
+            date = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })
+                .format(new Date(Date.UTC(parts[0], parts[1] - 1, parts[2])));
+        }
+    } catch (e) { /* ignore */ }
+    var name = h && h.name ? h.name : 'Holiday';
+    return name + ' — ' + (date || (h && h.date) || '');
+}
+
+var upcomingHolidays = [];
+var holidaysLoaded = false;
+
+async function loadUpcomingHolidaysIntoSelect() {
+    if (!elements.sendHolidaySelect) return;
+    if (holidaysLoaded) return;
+    try {
+        var list = await fetchUpcomingHolidays(180);
+        upcomingHolidays = Array.isArray(list) ? list : [];
+        holidaysLoaded = true;
+        var html = '<option value="">Next upcoming holiday (auto)</option>';
+        for (var i = 0; i < upcomingHolidays.length; i++) {
+            var h = upcomingHolidays[i];
+            html += '<option value="' + escapeHtml(h.date) + '">' + escapeHtml(formatHolidayOption(h)) + '</option>';
+        }
+        elements.sendHolidaySelect.innerHTML = html;
+    } catch (e) {
+        elements.sendHolidaySelect.innerHTML = '<option value="">Could not load holidays — try again later</option>';
+    }
 }
 
 function formatTimestamp(ts) {
@@ -4113,6 +4162,56 @@ function bindAdminEvents() {
                 return;
             }
             await performSendReminder(list);
+        });
+    }
+
+    async function performSendHoliday(recipients) {
+        if (!isCurrentUserAdmin) {
+            setSendHolidayStatus('Only admins can send reminders.', 'error');
+            return;
+        }
+        if (!recipients || !recipients.length) {
+            setSendHolidayStatus('Add at least one valid email.', 'error');
+            return;
+        }
+        var pickedDate = elements.sendHolidaySelect ? elements.sendHolidaySelect.value : '';
+        setSendHolidayStatus('Sending holiday reminder to ' + recipients.length + ' recipient' + (recipients.length === 1 ? '' : 's') + '…', 'info');
+        try {
+            var result = await sendHolidayReminder(recipients, pickedDate, currentUser);
+            var name = result.holiday && result.holiday.name ? result.holiday.name : 'the holiday';
+            var coverNote = result.holiday && result.holiday.covered ? ' (a banner is already scheduled — the email confirms it)' : '';
+            setSendHolidayStatus('Sent reminder for ' + name + ' to ' + result.recipients.length + ' recipient' + (result.recipients.length === 1 ? '' : 's') + '.' + coverNote, 'success');
+        } catch (error) {
+            setSendHolidayStatus((error && error.message) || 'Could not send holiday reminder.', 'error');
+        }
+    }
+
+    if (elements.sendHolidayForm) {
+        elements.sendHolidayForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            var raw = elements.sendHolidayRecipients ? elements.sendHolidayRecipients.value : '';
+            var list = parseRecipientList(raw);
+            if (!list.length) {
+                setSendHolidayStatus('Enter one or more valid email addresses.', 'error');
+                return;
+            }
+            await performSendHoliday(list);
+        });
+    }
+
+    if (elements.sendHolidayAllButton) {
+        elements.sendHolidayAllButton.addEventListener('click', async function () {
+            var list = buildAllUsersRecipientList();
+            if (!list.length) {
+                setSendHolidayStatus('No active users in the roster (or all are muted).', 'error');
+                return;
+            }
+            var pickedOpt = elements.sendHolidaySelect ? elements.sendHolidaySelect.options[elements.sendHolidaySelect.selectedIndex] : null;
+            var pickedLabel = pickedOpt ? pickedOpt.text : 'the next upcoming holiday';
+            if (!window.confirm('Send a reminder for "' + pickedLabel + '" to ' + list.length + ' recipient' + (list.length === 1 ? '' : 's') + '?')) {
+                return;
+            }
+            await performSendHoliday(list);
         });
     }
 }

@@ -429,6 +429,52 @@ async function removeUserRecord(uid, currentUser) {
 const REMINDER_WORKER_URL = (typeof window !== 'undefined' && window.MMC_REMINDER_WORKER_URL)
     || 'https://mmc-reminders.efikess.workers.dev';
 
+async function fetchUpcomingHolidays(days) {
+    const url = REMINDER_WORKER_URL.replace(/\/+$/, '') + '/holidays?days=' + (days || 180);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Could not load upcoming holidays.');
+    const body = await res.json();
+    return Array.isArray(body && body.holidays) ? body.holidays : [];
+}
+
+async function sendHolidayReminder(recipients, dateOrEmpty, currentUser) {
+    if (!isAdminUser(currentUser)) throw new Error('Only admins can send reminders.');
+    if (!auth.currentUser) throw new Error('You are not signed in.');
+    if (!Array.isArray(recipients) || recipients.length === 0) {
+        throw new Error('Add at least one recipient.');
+    }
+
+    const cleanRecipients = recipients
+        .map(function (e) { return typeof e === 'string' ? e.trim().toLowerCase() : ''; })
+        .filter(function (e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e); });
+    if (cleanRecipients.length === 0) throw new Error('No valid email addresses provided.');
+
+    const idToken = await auth.currentUser.getIdToken(true);
+    const body = { recipients: cleanRecipients };
+    if (typeof dateOrEmpty === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(dateOrEmpty)) {
+        body.date = dateOrEmpty;
+    }
+
+    const res = await fetch(REMINDER_WORKER_URL.replace(/\/+$/, '') + '/admin/send-holiday-reminder', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + idToken
+        },
+        body: JSON.stringify(body)
+    });
+
+    if (!res.ok) {
+        let message = 'Could not send holiday reminder (HTTP ' + res.status + ').';
+        try {
+            const err = await res.json();
+            if (err && err.error) message = err.error;
+        } catch (e) { /* ignore */ }
+        throw new Error(message);
+    }
+    return await res.json();
+}
+
 async function sendManualReminder(recipients, currentUser) {
     if (!isAdminUser(currentUser)) throw new Error('Only admins can send reminders.');
     if (!auth.currentUser) throw new Error('You are not signed in.');
@@ -734,6 +780,7 @@ export {
     fetchEmergencyBanner,
     fetchMutedRecipients,
     fetchScheduledBanners,
+    fetchUpcomingHolidays,
     fetchUsers,
     firebaseConfig,
     getActiveScheduledBanner,
@@ -750,6 +797,7 @@ export {
     saveHomepageSlides,
     saveScheduledBanner,
     sendAdminPasswordReset,
+    sendHolidayReminder,
     sendManualReminder,
     sendUserPasswordReset,
     setUserDisabled,

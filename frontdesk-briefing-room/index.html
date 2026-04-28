@@ -513,7 +513,7 @@
                         </div>
 
                         <!-- Manual reminder send -->
-                        <div class="studio-card">
+                        <div class="studio-card" style="margin-bottom:20px;">
                             <h3 class="studio-section-title">Send a weekend-schedule reminder</h3>
                             <p style="margin:0 0 12px;font-size:13px;color:#86868b;line-height:1.5;">Force-send the weekend reminder right now. Useful for testing the email or pinging specific people. The email reflects the current weekend's coverage status.</p>
                             <form id="adminSendReminderForm" style="display:flex;flex-direction:column;gap:10px;">
@@ -527,6 +527,29 @@
                                 </div>
                             </form>
                             <div id="adminSendReminderStatus" class="studio-status" style="margin-top:12px;">Type one or more emails, or click "Send to all users" to email everyone in the roster (minus muted addresses).</div>
+                        </div>
+
+                        <!-- Holiday reminder send -->
+                        <div class="studio-card">
+                            <h3 class="studio-section-title">Send a holiday reminder</h3>
+                            <p style="margin:0 0 12px;font-size:13px;color:#86868b;line-height:1.5;">The bot already emails 2 days before each holiday automatically. Use this to send one out manually — pick which holiday and who should get it.</p>
+                            <form id="adminSendHolidayForm" style="display:flex;flex-direction:column;gap:10px;">
+                                <label class="studio-field" style="margin:0;">
+                                    <span class="studio-field-label">Holiday</span>
+                                    <select id="adminSendHolidaySelect" style="appearance:menulist;">
+                                        <option value="">Loading upcoming holidays…</option>
+                                    </select>
+                                </label>
+                                <label class="studio-field" style="margin:0;">
+                                    <span class="studio-field-label">Recipients <span class="studio-optional">comma- or space-separated</span></span>
+                                    <input id="adminSendHolidayRecipients" type="text" placeholder="alice@mmccare.com, bob@mmccare.com">
+                                </label>
+                                <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                                    <button type="submit" class="studio-btn studio-btn-publish" style="min-height:38px;">Send to recipients</button>
+                                    <button type="button" id="adminSendHolidayAll" class="studio-btn studio-btn-outline" style="min-height:38px;">Send to all users</button>
+                                </div>
+                            </form>
+                            <div id="adminSendHolidayStatus" class="studio-status" style="margin-top:12px;">Pick a holiday from the list (or leave on "Next upcoming") and choose who gets the reminder.</div>
                         </div>
                     </div>
                 </div>
@@ -572,9 +595,9 @@
         </div><!-- /flex-1 -->
     </main>
 
-    <script src="../js/slideshow-data.js?v=2026042805"></script>
-    <script src="../js/slideshow.js?v=2026042805"></script>
-    <script type="module" src="../js/admin-slideshow.js?v=2026042805"></script>
+    <script src="../js/slideshow-data.js?v=2026042806"></script>
+    <script src="../js/slideshow.js?v=2026042806"></script>
+    <script type="module" src="../js/admin-slideshow.js?v=2026042806"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') lucide.createIcons();
