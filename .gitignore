@@ -7,3 +7,10 @@ css/tailwind-input.css
 # Local-only image optimization workspace
 images/optimized/
 images/_backup_originals/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
