@@ -369,6 +369,27 @@ function formatNiceDate(ymdStr: string): string {
     }).format(date);
 }
 
+function buildDayCard(label: string, date: string, covered: boolean): string {
+    const accent = covered ? '#16a34a' : '#e67e22';
+    const accentSoft = covered ? '#dcfce7' : '#fff1e0';
+    const statusText = covered ? 'Covered' : 'Not set';
+    const dot = `<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${accent};margin-right:6px;vertical-align:middle;"></span>`;
+    return `
+        <td valign="top" width="50%" style="padding:0 6px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e6e8ee;border-radius:14px;background:#ffffff;">
+                <tr>
+                    <td style="padding:18px 18px 16px 18px;">
+                        <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#0d47a1;">${label}</p>
+                        <p style="margin:6px 0 0;font-size:18px;font-weight:700;letter-spacing:-0.01em;color:#0f172a;line-height:1.25;">${date}</p>
+                        <p style="margin:14px 0 0;">
+                            <span style="display:inline-block;background:${accentSoft};color:${accent};font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;padding:6px 10px;border-radius:999px;">${dot}${statusText}</span>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>`;
+}
+
 function buildEmailHtml(
     saturday: { date: string; covered: boolean },
     sunday: { date: string; covered: boolean },
@@ -381,40 +402,141 @@ function buildEmailHtml(
     const missingLine = missing.length === 2
         ? `${missing[0]} and ${missing[1]}`
         : missing[0];
+    const verb = missing.length === 2 ? 'have' : 'has';
+
+    const satNice = formatNiceDate(saturday.date);
+    const sunNice = formatNiceDate(sunday.date);
 
     return `<!doctype html>
 <html lang="en">
-<body style="margin:0;padding:0;background:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1d1d1f;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;padding:32px 12px;">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>MMC Briefing Room</title>
+<!--[if mso]>
+<style>
+  table, td, p, a, span { font-family: 'Segoe UI', Arial, sans-serif !important; }
+</style>
+<![endif]-->
+</head>
+<body style="margin:0;padding:0;background:#f3f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#0f172a;">
+  <div style="display:none;visibility:hidden;opacity:0;color:transparent;height:0;width:0;font-size:1px;line-height:1px;overflow:hidden;">
+    Heads up: ${missingLine} ${verb} no scheduled weekend banner yet. Open the Briefing Room to publish it.
+  </div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f3f5f9;padding:36px 12px;">
     <tr>
       <td align="center">
-        <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 18px 50px rgba(13,71,161,0.10);border:1px solid #e6e8ee;">
+
+          <!-- Hero -->
           <tr>
-            <td style="padding:28px 32px 8px;">
-              <p style="margin:0;font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:#0071e3;">MMC Briefing Room</p>
-              <h1 style="margin:8px 0 0;font-size:22px;font-weight:600;letter-spacing:-0.02em;line-height:1.25;">Weekend schedule needs to be set</h1>
+            <td style="background:#0d47a1;background-image:linear-gradient(140deg,#0d3b8c 0%,#1565c0 35%,#1976d2 60%,#0a6ebd 80%,#0d47a1 100%);padding:36px 36px 30px 36px;color:#ffffff;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td>
+                    <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#ffb347;">Montgomery Medical Clinic</p>
+                    <p style="margin:6px 0 0;font-size:13px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.78);">Briefing Room · Weekend Schedule</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top:20px;">
+                    <h1 style="margin:0;font-size:28px;line-height:1.18;font-weight:800;letter-spacing:-0.02em;color:#ffffff;">
+                      The weekend banner <span style="color:#ffb347;">still needs setting</span>.
+                    </h1>
+                    <p style="margin:14px 0 0;font-size:15px;line-height:1.55;color:rgba(255,255,255,0.92);max-width:480px;">
+                      Patients land on the homepage looking for weekend hours. Without a banner, they don't see them.
+                    </p>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
+
+          <!-- Status cards -->
           <tr>
-            <td style="padding:12px 32px 4px;font-size:15px;line-height:1.55;color:#1d1d1f;">
-              <p style="margin:0 0 12px;">Hi team —</p>
-              <p style="margin:0 0 12px;">Heads up: <strong>${missingLine}</strong> ${missing.length === 2 ? 'have' : 'has'} no scheduled banner yet. Patients visiting the website won't see the weekend hours until someone publishes one.</p>
-              <p style="margin:0 0 20px;">Please pop into the Briefing Room when you have a moment and add the weekend banner.</p>
+            <td style="padding:28px 30px 8px 30px;background:#ffffff;">
+              <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#64748b;">This weekend at a glance</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  ${buildDayCard('Saturday', satNice, saturday.covered)}
+                  ${buildDayCard('Sunday', sunNice, sunday.covered)}
+                </tr>
+              </table>
             </td>
           </tr>
+
+          <!-- Body copy -->
           <tr>
-            <td style="padding:0 32px 24px;">
-              <a href="${siteUrl}" style="display:inline-block;background:#0071e3;color:#ffffff;text-decoration:none;font-size:15px;font-weight:600;padding:12px 22px;border-radius:10px;">Open the Briefing Room</a>
+            <td style="padding:24px 36px 8px 36px;background:#ffffff;font-size:15px;line-height:1.6;color:#0f172a;">
+              <p style="margin:0 0 14px;">Hi team,</p>
+              <p style="margin:0 0 14px;">Heads up — <strong>${missingLine}</strong> ${verb} no scheduled weekend banner yet. When patients visit the website, they won't see weekend hours until someone publishes one in the Briefing Room.</p>
+              <p style="margin:0;">It only takes a minute. Tap the button below to open the editor.</p>
             </td>
           </tr>
+
+          <!-- CTA -->
           <tr>
-            <td style="padding:8px 32px 28px;font-size:13px;color:#86868b;line-height:1.55;border-top:1px solid #f0f0f3;">
-              <p style="margin:14px 0 4px;">You're receiving this because you have edit access to the MMC website.</p>
-              <p style="margin:0;">An admin can mute these reminders for you in the Briefing Room → <em>Email Mute List</em>.</p>
-              <p style="margin:14px 0 0;"><a href="${publicSiteUrl}" style="color:#0071e3;text-decoration:none;">${publicSiteUrl}</a></p>
+            <td align="center" style="padding:24px 36px 8px 36px;background:#ffffff;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
+                <tr>
+                  <td align="center" style="background:#e67e22;background-image:linear-gradient(135deg,#ff9a3c 0%,#ff8f00 50%,#e67e22 100%);border-radius:14px;box-shadow:0 8px 24px rgba(230,126,34,0.32);">
+                    <a href="${siteUrl}" style="display:inline-block;padding:15px 30px;font-size:15px;font-weight:700;letter-spacing:0.01em;color:#ffffff;text-decoration:none;border-radius:14px;">
+                      Open the Briefing Room  →
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:14px 0 0;font-size:12px;color:#64748b;">
+                Direct link: <a href="${siteUrl}" style="color:#0d47a1;text-decoration:none;border-bottom:1px solid rgba(13,71,161,0.25);">${siteUrl}</a>
+              </p>
             </td>
+          </tr>
+
+          <!-- Helper tip -->
+          <tr>
+            <td style="padding:28px 36px 4px 36px;background:#ffffff;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f8faff;border:1px solid #e1ebff;border-left:4px solid #ffb347;border-radius:12px;">
+                <tr>
+                  <td style="padding:16px 18px;font-size:13px;line-height:1.55;color:#334155;">
+                    <strong style="color:#0d47a1;">Tip:</strong> In the Briefing Room sidebar, open <em>Scheduled Banners</em> and pick the <em>Weekend Hours</em> template — it pre-fills the times and language for you.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:26px 36px 32px 36px;background:#ffffff;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #eef0f5;">
+                <tr>
+                  <td style="padding-top:20px;font-size:12px;line-height:1.6;color:#64748b;">
+                    You're receiving this because you have edit access to the MMC website. An admin can mute these reminders for you in the Briefing Room under <em>Email Mute List</em>.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top:14px;font-size:12px;color:#94a3b8;">
+                    <a href="${publicSiteUrl}" style="color:#0d47a1;text-decoration:none;font-weight:600;">mmccare.com</a>
+                    <span style="color:#cbd5e1;"> &nbsp;·&nbsp; </span>
+                    Montgomery Medical Clinic
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Brand bar -->
+          <tr>
+            <td style="height:6px;background:#0d47a1;background-image:linear-gradient(90deg,#0d3b8c 0%,#1565c0 50%,#ffb347 100%);font-size:0;line-height:0;">&nbsp;</td>
           </tr>
         </table>
+
+        <p style="margin:18px 0 0;font-size:11px;color:#94a3b8;">
+          Sent automatically by the MMC Briefing Room reminder bot.
+        </p>
       </td>
     </tr>
   </table>
