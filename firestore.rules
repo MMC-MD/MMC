@@ -3,22 +3,52 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && request.auth.token.email in ['efikess@gmail.com', 'bendoryair@gmail.com'];
+    }
+
+    function isActiveUser() {
+      return isSignedIn() && (
+        !exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        || get(/databases/$(database)/documents/users/$(request.auth.uid)).data.disabled != true
+      );
+    }
+
     // Homepage slideshow slides
     match /siteContent/homepageSlideshow {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow write: if isActiveUser();
     }
 
     // Global emergency banner
     match /siteContent/globalEmergencyBanner {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow write: if isActiveUser();
     }
 
     // Scheduled banners (includes weekend calendar banners)
     match /scheduledBanners/{bannerId} {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow write: if isActiveUser();
+    }
+
+    // Roster of users that admins have invited. Doc id = auth uid.
+    // Admins manage; each user can read their own record (so the client
+    // can show "you've been disabled" style messaging if needed).
+    match /users/{userId} {
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == userId);
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Email recipients muted from automated reminders. Doc id = email (lowercased).
+    match /mutedRecipients/{email} {
+      allow read: if isAdmin();
+      allow create, update, delete: if isAdmin();
     }
 
     // Deny everything else

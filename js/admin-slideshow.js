@@ -1,2 +1,4265 @@
-import{auth as ce,createDefaultEmergencyBanner as $,deleteScheduledBanner as Qe,fetchEmergencyBanner as Xe,fetchHomepageSlides as Ze,fetchScheduledBanners as et,getFriendlyFirebaseError as g,normalizeEmergencyBanner as Y,observeAuthState as xt,saveEmergencyBanner as Mt,saveHomepageSlides as Dt,saveScheduledBanner as ue,sendAdminPasswordReset as Nt,signInAdmin as It,signOutAdmin as Ut,subscribeToEmergencyBanner as Ht,subscribeToHomepageSlides as Ot,subscribeToScheduledBanners as qt}from"./firebase-client.js?v=2026041202";const L=window.MMCSlideshowStore,we=window.MMCSlideshow;if(!L||!we)throw new Error("MMC slideshow editor failed to initialize.");const Wt="https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=",Ft=[{label:"Clinic Blue",value:"#0d47a1"},{label:"Warm Orange",value:"#e67e22"},{label:"Light Blue",value:"#1976d2"},{label:"Fresh Green",value:"#2e7d32"},{label:"Berry Red",value:"#c62828"}],Ne=[{id:"appointment",name:"Appointment Push",tag:"Most useful",description:"Best for booking visits, flu shots, physicals, and same-day care.",accent:"#e67e22",buildSlide:function(){return{accent:"#e67e22",pill:{en:"Now Booking",es:""},title:{en:"Book Your Same-Week Visit",es:""},titleAccent:{en:"Same-Week Visit",es:""},kicker:{en:"Quick access to care",es:""},subtext:{en:"Use this slide to send patients to booking right away.",es:""},ctaLabel:{en:"Schedule Appointment",es:""},ctaUrl:"https://nextpatient.co/p/montgomerymedclinic/schedule",ctaNewTab:!0,credentials:[]}}},{id:"service",name:"Service Spotlight",tag:"Departments",description:"Highlight one department or service with a strong call to action.",accent:"#0d47a1",buildSlide:function(){return{accent:"#0d47a1",pill:{en:"Service Spotlight",es:""},title:{en:"Dermatology Appointments Available",es:""},titleAccent:{en:"Dermatology",es:""},kicker:{en:"Featured this week",es:""},subtext:{en:"Use this for dermatology, physical therapy, occupational health, or any featured department.",es:""},ctaLabel:{en:"Learn More",es:""},ctaUrl:"dermatology/",ctaNewTab:!1,credentials:[]}}},{id:"announcement",name:"Simple Announcement",tag:"Easy update",description:"Good for office updates, reminders, and quick clinic messages.",accent:"#1976d2",buildSlide:function(){return{accent:"#1976d2",pill:{en:"Clinic Update",es:""},title:{en:"New Hours This Month",es:""},titleAccent:{en:"New Hours",es:""},kicker:{en:"Important reminder",es:""},subtext:{en:"Use the supporting text area to explain the update in simple words.",es:""},ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1,credentials:[]}}},{id:"credentials",name:"Credentials / Highlights",tag:"Trust builder",description:"Best for FAA, immigration, certifications, and special qualifications.",accent:"#0d47a1",buildSlide:function(){return{accent:"#0d47a1",pill:{en:"Specialized Services",es:""},title:{en:"FAA & Immigration Physicals",es:""},titleAccent:{en:"Physicals",es:""},kicker:{en:"",es:""},subtext:{en:"",es:""},ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1,credentials:[{en:"Authorized Aviation Medical Examiner",es:""},{en:"USCIS-Authorized Civil Surgeon",es:""}]}}},{id:"seasonal",name:"Seasonal Promotion",tag:"Popular",description:"Great for flu shots, wellness campaigns, and time-sensitive promos.",accent:"#e67e22",buildSlide:function(){return{accent:"#e67e22",pill:{en:"Available Today",es:""},title:{en:"Flu Shots Available This Week",es:""},titleAccent:{en:"Flu Shots",es:""},kicker:{en:"Protect your family this season",es:""},subtext:{en:"Update this message whenever you want to promote a seasonal service or event.",es:""},ctaLabel:{en:"Book Now",es:""},ctaUrl:"https://nextpatient.co/p/montgomerymedclinic/schedule",ctaNewTab:!0,credentials:[]}}},{id:"blank",name:"Blank Slide",tag:"From scratch",description:"Start with an empty slide and fill in the details yourself.",accent:"#0d47a1",buildSlide:function(){return L.createSlideTemplate()}}],Ie=[{id:"weather-closed",label:"Weather Closure",banner:{enabled:!0,pill:{en:"Weather Alert",es:""},message:{en:"Due to inclement weather, Montgomery Medical Clinic is closed today.",es:""},ctaLabel:{en:"Call the Office",es:""},ctaUrl:"tel:3012082273",ctaNewTab:!1}},{id:"delayed-opening",label:"Delayed Opening",banner:{enabled:!0,pill:{en:"Office Update",es:""},message:{en:"Due to weather conditions, we will open later than usual today. Please check back for the updated opening time.",es:""},ctaLabel:{en:"Call for Updates",es:""},ctaUrl:"tel:3012082273",ctaNewTab:!1}},{id:"service-delay",label:"Service Delay",banner:{enabled:!0,pill:{en:"Important Notice",es:""},message:{en:"We are experiencing delays today. Thank you for your patience while our team assists scheduled and walk-in patients.",es:""},ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1}},{id:"power-outage",label:"Office Disruption",banner:{enabled:!0,pill:{en:"Urgent Office Update",es:""},message:{en:"Due to an unexpected office disruption, appointments may be delayed. Please call before arriving if you have questions.",es:""},ctaLabel:{en:"Call Now",es:""},ctaUrl:"tel:3012082273",ctaNewTab:!1}}],s={lockForm:document.getElementById("adminUnlockForm"),lockMessage:document.getElementById("adminLockMessage"),emailInput:document.getElementById("adminEmail"),passwordInput:document.getElementById("adminPassword"),resetPasswordButton:document.getElementById("adminResetPasswordButton"),userEmail:document.getElementById("adminUserEmail"),status:document.getElementById("adminStatus"),slideCount:document.getElementById("adminSlideCount"),liveCount:document.getElementById("adminLiveCount"),editorList:document.getElementById("slideEditorList"),saveButton:document.getElementById("adminSaveButton"),addButton:document.getElementById("adminAddButton"),reloadButton:document.getElementById("adminReloadButton"),resetButton:document.getElementById("adminResetButton"),exportButton:document.getElementById("adminExportButton"),importInput:document.getElementById("adminImportInput"),logoutButton:document.getElementById("adminLogoutButton"),translateAllButton:document.getElementById("adminTranslateAllButton"),autoTranslateToggle:document.getElementById("adminAutoTranslateToggle"),templateGrid:document.getElementById("adminTemplateGrid"),bannerStatus:document.getElementById("adminBannerStatus"),bannerEnabled:document.getElementById("adminBannerEnabled"),bannerNewTab:document.getElementById("adminBannerNewTab"),bannerShowPill:document.getElementById("adminBannerShowPill"),bannerShowButton:document.getElementById("adminBannerShowButton"),bannerPillEn:document.getElementById("adminBannerPillEn"),bannerPillEs:document.getElementById("adminBannerPillEs"),bannerMessageEn:document.getElementById("adminBannerMessageEn"),bannerMessageEs:document.getElementById("adminBannerMessageEs"),bannerCtaLabelEn:document.getElementById("adminBannerCtaLabelEn"),bannerCtaLabelEs:document.getElementById("adminBannerCtaLabelEs"),bannerCtaUrl:document.getElementById("adminBannerCtaUrl"),bannerPreview:document.getElementById("adminBannerPreview"),bannerSaveButton:document.getElementById("adminBannerSaveButton"),bannerReloadButton:document.getElementById("adminBannerReloadButton"),bannerResetButton:document.getElementById("adminBannerResetButton"),bannerTranslateButton:document.getElementById("adminBannerTranslateButton"),bannerCopyButton:document.getElementById("adminBannerCopyButton"),bannerAutoTranslateToggle:document.getElementById("adminBannerAutoTranslateToggle"),bannerPresetGrid:document.getElementById("adminBannerPresetGrid"),bannerColorPicker:document.getElementById("adminBannerColorPicker"),scheduleStatus:document.getElementById("adminScheduleStatus"),scheduleAddButton:document.getElementById("adminScheduleAddButton"),scheduleReloadButton:document.getElementById("adminScheduleReloadButton"),scheduledBannerList:document.getElementById("scheduledBannerList"),scheduledBannerEmpty:document.getElementById("scheduledBannerEmpty"),tabButtons:Array.from(document.querySelectorAll("[data-admin-tab]")),tabPanels:Array.from(document.querySelectorAll("[data-admin-panel]"))};let d=[],z=L.getSlides(),Q=!1,Se=null,C=$(),ke=$(),ae=!1,Be=null,ne=null,Ue=0,J=[],Ee=null,P=null,Te="banner";const tt={"weekend-hours":{label:"Weekend Hours",recurrence:{mode:"weekly",days:[6,0]},banner:{enabled:!0,color:"green",showPill:!0,showButton:!0,pill:{en:"Weekend Hours",es:"Horario de Fin de Semana"},message:{en:"We are open today from 8:00 AM - 1:00 PM.",es:"Estamos abiertos hoy de 8:00 AM a 1:00 PM."},ctaLabel:{en:"Call the Office",es:"Llamar a la Oficina"},ctaUrl:"tel:3012082273",ctaNewTab:!1}},"closed-weekend":{label:"Closed Weekend",recurrence:{mode:"weekly",days:[6,0]},banner:{enabled:!0,color:"green",showPill:!0,showButton:!1,pill:{en:"Weekend Notice",es:"Aviso de Fin de Semana"},message:{en:"We are closed today. Enjoy your weekend!",es:"Estamos cerrados hoy. \xA1Disfrute su fin de semana!"},ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1}},"holiday-closed":{label:"Holiday Closure",recurrence:{mode:"dates"},banner:{enabled:!0,color:"orange",showPill:!0,showButton:!0,pill:{en:"Holiday Notice",es:"Aviso de Feriado"},message:{en:"Our office is closed today in observance of the holiday. We will reopen on the next business day.",es:"Nuestra oficina est\xE1 cerrada hoy por el feriado. Reabriremos el pr\xF3ximo d\xEDa h\xE1bil."},ctaLabel:{en:"Call for Emergencies",es:"Llamar por Emergencias"},ctaUrl:"tel:3012082273",ctaNewTab:!1}},"early-close":{label:"Early Close",recurrence:{mode:"dates"},banner:{enabled:!0,color:"yellow",showPill:!0,showButton:!0,pill:{en:"Office Update",es:"Actualizaci\xF3n de la Oficina"},message:{en:"We will be closing early today at 3:00 PM. Please plan your visit accordingly.",es:"Cerraremos temprano hoy a las 3:00 PM. Por favor planifique su visita."},ctaLabel:{en:"Call the Office",es:"Llamar a la Oficina"},ctaUrl:"tel:3012082273",ctaNewTab:!1}},"alternating-open-sat":{label:"Alternating Sat Open",isGroup:!0,entries:[{label:"Week A \u2013 Saturday Open",recurrence:{mode:"biweekly",days:[6],weekParity:0,anchorDate:""},banner:{enabled:!0,color:"green",showPill:!0,showButton:!0,pill:{en:"Weekend Hours",es:"Horario de Fin de Semana"},message:{en:"The clinic is open today from 8:00 AM \u2013 1:00 PM.",es:"La cl\xEDnica est\xE1 abierta hoy de 8:00 AM a 1:00 PM."},ctaLabel:{en:"Call the Office",es:"Llamar a la Oficina"},ctaUrl:"tel:3012082273",ctaNewTab:!1}},{label:"Week A \u2013 Sunday Closed",recurrence:{mode:"biweekly",days:[0],weekParity:0,anchorDate:""},banner:{enabled:!0,color:"red",showPill:!0,showButton:!1,pill:{en:"Closed Today",es:"Cerrado Hoy"},message:{en:"The clinic is closed today. Enjoy your weekend!",es:"\xA1La cl\xEDnica est\xE1 cerrada hoy. Disfrute su fin de semana!"},ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1}},{label:"Week B \u2013 Saturday Closed",recurrence:{mode:"biweekly",days:[6],weekParity:1,anchorDate:""},banner:{enabled:!0,color:"red",showPill:!0,showButton:!1,pill:{en:"Closed Today",es:"Cerrado Hoy"},message:{en:"Our clinic is closed today, but will be open tomorrow.",es:"Nuestra cl\xEDnica est\xE1 cerrada hoy, pero abrir\xE1 ma\xF1ana."},ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1}},{label:"Week B \u2013 Sunday Open",recurrence:{mode:"biweekly",days:[0],weekParity:1,anchorDate:""},banner:{enabled:!0,color:"green",showPill:!0,showButton:!0,pill:{en:"Weekend Hours",es:"Horario de Fin de Semana"},message:{en:"The clinic is open today from 8:00 AM \u2013 1:00 PM.",es:"La cl\xEDnica est\xE1 abierta hoy de 8:00 AM a 1:00 PM."},ctaLabel:{en:"Call the Office",es:"Llamar a la Oficina"},ctaUrl:"tel:3012082273",ctaNewTab:!1}}]}},fe=new Map,re=new Map,he=new Map,U=new Map;function u(e){return String(e).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function V(e){return Array.isArray(e)?e.map(L.normalizeSlide):[]}function Rt(e,t){return JSON.stringify(V(e))===JSON.stringify(V(t))}function at(e,t){return(e&&e.title?e.title.en||e.title.es:"")||"Untitled Slide "+(t+1)}function v(e,t){s.status&&(s.status.textContent=e,s.status.dataset.tone=t||"info")}function I(e,t){s.lockMessage&&(s.lockMessage.textContent=e,s.lockMessage.dataset.tone=t||"info")}function jt(e){document.body.classList.toggle("admin-authenticated",e)}function Gt(e){s.userEmail&&(s.userEmail.textContent=e&&e.email?e.email:"Not signed in")}function X(){const e=d.filter(function(t){return t.enabled}).length;s.slideCount&&(s.slideCount.textContent=String(d.length)),s.liveCount&&(s.liveCount.textContent=String(e))}function H(e){Q=!0,v(e||"You have unpublished slide changes.","warning"),X()}function Yt(e){Q=!1,v(e||"Homepage slides are up to date.","success"),X()}function nt(){return Q||ae}function se(e){var t=["banner","slides","schedule","weekend"];Te=t.indexOf(e)>=0?e:"banner",s.tabButtons.forEach(function(a){const n=a.dataset.adminTab===Te;a.classList.toggle("is-active",n),a.setAttribute("aria-selected",n?"true":"false")}),s.tabPanels.forEach(function(a){const n=a.dataset.adminPanel===Te;a.classList.toggle("is-active",n),a.hidden=!n})}function A(e,t){s.bannerStatus&&(s.bannerStatus.textContent=e,s.bannerStatus.dataset.tone=t||"info")}function O(e){ae=!0,A(e||"You have unpublished banner changes.","warning")}function zt(e){ae=!1,A(e||"Urgent banner is up to date.","success")}function Jt(){s.bannerPresetGrid&&(s.bannerPresetGrid.innerHTML=Ie.map(function(e){return['<button class="admin-preset-button" type="button" data-banner-preset="',u(e.id),'" data-tmpl-preview="banner-preset" data-tmpl-preset-id="',u(e.id),'">',u(e.label),"</button>"].join("")}).join(""))}function Vt(e){const t=typeof e=="string"?e.trim():"";return t&&(t.startsWith("#")||t.startsWith("/")||t.startsWith("./")||t.startsWith("../")||/^(https?:|mailto:|tel:|sms:)/i.test(t)||/^[a-z0-9][a-z0-9/_\-.]*([?#].*)?$/i.test(t))?t:""}function pe(e){if(typeof e!="string")return"";var t=document.createElement("div");t.innerHTML=e;var a={B:1,STRONG:1,I:1,EM:1,U:1,SPAN:1,BR:1};function n(r){for(var l=Array.from(r.childNodes),o=0;o<l.length;o++){var i=l[o];if(i.nodeType!==3){if(i.nodeType!==1||!a[i.tagName]){for(;i.firstChild;)i.parentNode.insertBefore(i.firstChild,i);i.parentNode.removeChild(i);continue}if(i.tagName==="SPAN"){for(var c=i.style.color,f=Array.from(i.attributes),h=0;h<f.length;h++)i.removeAttribute(f[h].name);c&&(i.style.color=c)}else for(var p=Array.from(i.attributes),b=0;b<p.length;b++)i.removeAttribute(p[b].name);n(i)}}}return n(t),t.innerHTML.trim()}function He(e){if(typeof e!="string")return"";var t=document.createElement("div");return t.innerHTML=e,(t.textContent||t.innerText||"").trim()}function Oe(e){e.querySelectorAll("[data-rt-cmd]").forEach(function(t){if(t.tagName!=="INPUT"){var a=t.dataset.rtCmd;if(a!=="foreColor")try{t.classList.toggle("is-active",document.queryCommandState(a))}catch{}}})}function q(e,t){const a=e&&typeof e=="object"?e:{},n=typeof a[t]=="string"?a[t].trim():"",r=typeof a[t==="en"?"es":"en"]=="string"?a[t==="en"?"es":"en"].trim():"";return n||r}function rt(e){const t=Y(e),a=q(t.pill,"en"),n=pe(q(t.message,"en")),r=He(n),l=q(t.ctaLabel,"en"),o=Vt(t.ctaUrl);if(!t.enabled||!r)return['<div class="admin-empty-state">',"<p>Turn the banner on and add a message to preview it here.</p>","</div>"].join("");var i=t.showPill!==!1&&!!a,c=t.showButton!==!1&&!!l&&!!o;return['<div class="site-emergency-banner" data-color="'+u(t.color||"red")+'">','<div class="site-emergency-banner-inner">','<div class="site-emergency-banner-copy">',i?'<span class="site-emergency-banner-pill">'+u(a)+"</span>":"",'<span class="site-emergency-banner-message">',n,"</span>","</div>",c?'<a class="site-emergency-banner-link" href="'+u(o)+'">'+u(l)+"</a>":"","</div>","</div>"].join("")}function qe(){return!s.bannerAutoTranslateToggle||!!s.bannerAutoTranslateToggle.checked}function We(e){s.bannerAutoTranslateToggle&&(s.bannerAutoTranslateToggle.checked=!!e)}function _t(e){return!!e&&P===e}function yn(){d.some(function(t){return t.id===P})||(P=d.length?d[0].id:null)}function Kt(e){P=P===e?null:e,W()}function le(e){const t=fe.get(e);t&&(window.clearTimeout(t),fe.delete(e))}function Fe(e){e&&(le(e),re.set(e,_e(e)+1))}function me(){Array.from(fe.keys()).forEach(le)}function Re(e){return d.findIndex(function(t){return t.id===e})}function st(e){return!s.editorList||!e?null:Array.from(s.editorList.querySelectorAll(".admin-slide-card")).find(function(t){return t.dataset.slideId===e})||null}function $t(){const e=new Set(d.map(function(t){return t.id}));Array.from(U.keys()).forEach(function(t){e.has(t)||U.delete(t)}),Array.from(re.keys()).forEach(function(t){e.has(t)||re.delete(t)}),Array.from(fe.keys()).forEach(function(t){e.has(t)||le(t)}),d.forEach(function(t){U.has(t.id)||U.set(t.id,!0)})}function je(){return!s.autoTranslateToggle||!!s.autoTranslateToggle.checked}function Ge(e){return e?(U.has(e)||U.set(e,!0),U.get(e)&&je()):je()}function Ye(e,t){e&&U.set(e,!!t)}function Qt(){s.templateGrid&&(s.templateGrid.innerHTML=Ne.map(function(e){var t="";switch(e.id){case"appointment":t='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 5h11M4.5 1.5v2M9.5 1.5v2M4.5 8h2M4.5 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>';break;case"service":t='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';break;case"announcement":t='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 2L5 5H2.5a.5.5 0 00-.5.5v3a.5.5 0 00.5.5H5l6 3V2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>';break;case"credentials":t='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 7l1.5 1.5L9.5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/></svg>';break;case"seasonal":t='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v1M7 11.5v1M1.5 7h1M11.5 7h1M3.1 3.1l.7.7M10.2 10.2l.7.7M10.2 3.1l-.7.7M3.1 10.2l.7.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.2"/></svg>';break;case"blank":t='<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>';break}return['<button class="studio-template-pill" type="button" data-action="use-template" data-template-id="',u(e.id),'" title="',u(e.description),'">',t,"<span>",u(e.name),"</span>","</button>"].join("")}).join(""),ta())}var Z=null,Le=null;function Xt(){return Z||(Z=document.createElement("div"),Z.className="template-preview-tooltip",document.body.appendChild(Z)),Z}function Zt(e,t){var a=Xt(),n=t.buildSlide(),r=we.buildPreviewMarkup(n,"en");a.innerHTML=['<div class="template-preview-header">','<p class="template-preview-name">',u(t.name),"</p>",'<p class="template-preview-desc">',u(t.description),"</p>","</div>",'<div class="template-preview-body">',r,"</div>",'<div class="template-preview-footer">',"<span>Click to add this slide</span>","</div>"].join("");var l=e.getBoundingClientRect(),o=340,i=l.left+l.width/2-o/2;i<12&&(i=12),i+o>window.innerWidth-12&&(i=window.innerWidth-o-12),a.style.left=i+"px",a.style.top=l.bottom+8+"px",a.offsetWidth,a.classList.add("is-visible")}function ea(){clearTimeout(Le),Le=null,Z&&Z.classList.remove("is-visible")}function ta(){if(s.templateGrid){var e=s.templateGrid.querySelectorAll(".studio-template-pill");e.forEach(function(t){t.addEventListener("mouseenter",function(){var a=t.dataset.templateId,n=Ne.find(function(r){return r.id===a});n&&(clearTimeout(Le),Le=setTimeout(function(){Zt(t,n)},250))}),t.addEventListener("mouseleave",function(){ea()})})}}function aa(){return Ft.map(function(e){return['<button class="admin-color-preset" type="button" data-action="set-color" data-color="',u(e.value),'" title="',u(e.label),'">','<span class="admin-color-swatch" style="background:',u(e.value),';"></span>',"<span>",u(e.label),"</span>","</button>"].join("")}).join("")}function na(e){return e.credentials.length?e.credentials.map(function(t,a){return['<div class="admin-credential-row" data-credential-index="',a,'">','<label class="admin-field">','<span class="admin-field-label">Trust Point (EN)</span>','<input type="text" data-role="credential-en" value="',u(t.en||""),'" placeholder="Authorized Aviation Medical Examiner">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Trust Point (ES)</span>','<input type="text" data-role="credential-es" value="',u(t.es||""),'" placeholder="Examinador autorizado">',"</label>",'<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-credential">Delete</button>',"</div>"].join("")}).join(""):['<div class="admin-empty-state">',"<p>Add trust points only if this slide needs credentials, certifications, or other highlights.</p>","</div>"].join("")}function ra(e,t){const a=Ge(e.id)?" checked":"",n=_t(e.id),r=e.enabled?"Live":"Hidden",l=n?"Close":"Edit";return['<article class="admin-slide-card" data-slide-index="',t,'" data-slide-id="',u(e.id),'">','<div class="admin-slide-header admin-slide-header-clean">','<div class="admin-slide-header-left">','<span class="admin-slide-number">',t+1,"</span>","<div>",'<h2 class="admin-slide-name" data-role="slide-name">',u(at(e,t)),"</h2>",'<div class="admin-slide-header-meta">','<span class="admin-pill" data-role="slide-live-pill" data-state="',e.enabled?"live":"disabled",'">',r,"</span>",'<span class="admin-pill" data-role="slide-accent-pill" style="border-left:3px solid ',u(e.accent),'">',u(e.accent),"</span>","</div>","</div>","</div>",'<div class="admin-slide-actions">','<button class="admin-btn admin-btn-primary admin-btn-small" type="button" data-action="toggle-slide" aria-expanded="',n?"true":"false",'">',l,"</button>",'<button class="admin-btn admin-btn-secondary admin-btn-small admin-btn-icon" type="button" data-action="move-up" title="Move Earlier">\u2191</button>','<button class="admin-btn admin-btn-secondary admin-btn-small admin-btn-icon" type="button" data-action="move-down" title="Move Later">\u2193</button>','<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="duplicate-slide">Copy</button>','<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-slide">Delete</button>',"</div>","</div>",'<div class="admin-slide-body"',n?"":" hidden",">",'<div class="admin-slide-settings-bar">','<label class="admin-toggle admin-toggle-prominent">','<input type="checkbox" data-field="enabled"',e.enabled?" checked":"",">","<span>Show on homepage</span>","</label>",'<label class="admin-checkbox admin-checkbox-inline">','<input type="checkbox" data-field="ctaNewTab"',e.ctaNewTab?" checked":"",">","<span>Open link in new tab</span>","</label>",'<div class="admin-color-picker-inline">','<input type="color" data-field="accent" value="',u(e.accent),'">','<span class="admin-color-value" data-role="accent-value">',u(e.accent),"</span>",'<div class="admin-color-presets">',aa(),"</div>","</div>","</div>",'<div class="admin-slide-layout">','<section class="admin-form-panel">','<div class="admin-copy-columns admin-copy-columns-clean">','<section class="admin-copy-panel">','<div class="admin-copy-header">',"<div>",'<span class="admin-copy-badge">English</span>',"</div>","</div>",'<div class="admin-field-grid admin-field-grid-single">','<label class="admin-field">','<span class="admin-field-label">Top Label <span class="admin-field-optional">(optional)</span></span>','<input type="text" data-field="pill-en" value="',u(e.pill.en),'" placeholder="Available Today">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Main Title</span>','<input type="text" data-field="title-en" value="',u(e.title.en),'" placeholder="Seasonal Flu Shots Are Here">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Highlight Words <span class="admin-field-optional">(optional)</span></span>','<input type="text" data-field="titleAccent-en" value="',u(e.titleAccent.en),'" placeholder="Flu Shots">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Small Line</span>','<input type="text" data-field="kicker-en" value="',u(e.kicker.en),'" placeholder="Protect yourself this season">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Supporting Text</span>','<textarea data-field="subtext-en" placeholder="Tell visitors what this slide is about.">',u(e.subtext.en),"</textarea>","</label>",'<label class="admin-field">','<span class="admin-field-label">Button Text <span class="admin-field-optional">(optional)</span></span>','<input type="text" data-field="ctaLabel-en" value="',u(e.ctaLabel.en),'" placeholder="Schedule Appointment">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Button Link</span>','<input type="text" data-field="ctaUrl" value="',u(e.ctaUrl),'" placeholder="https://example.com or #services">',"</label>","</div>","</section>",'<section class="admin-copy-panel">','<div class="admin-copy-header">',"<div>",'<span class="admin-copy-badge">Spanish</span>',"</div>",'<div class="admin-copy-actions">','<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="translate-slide">Translate</button>','<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="copy-english">Copy English</button>',"</div>","</div>",'<label class="admin-toggle admin-toggle-block admin-copy-toggle">','<input type="checkbox" data-role="slide-auto-translate"',a,">","<span>Auto-translate while typing</span>","</label>",'<div class="admin-field-grid admin-field-grid-single">','<label class="admin-field">','<span class="admin-field-label">Etiqueta (ES)</span>','<input type="text" data-field="pill-es" value="',u(e.pill.es),'" placeholder="Disponible Hoy">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Titulo (ES)</span>','<input type="text" data-field="title-es" value="',u(e.title.es),'" placeholder="Las Vacunas contra la Gripe Estan Aqui">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Palabras en Color (ES)</span>','<input type="text" data-field="titleAccent-es" value="',u(e.titleAccent.es),'" placeholder="Vacunas contra la Gripe">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Linea Pequena (ES)</span>','<input type="text" data-field="kicker-es" value="',u(e.kicker.es),'" placeholder="Protejase esta temporada">',"</label>",'<label class="admin-field">','<span class="admin-field-label">Texto de Apoyo (ES)</span>','<textarea data-field="subtext-es" placeholder="Revise o ajuste la traduccion al espanol aqui.">',u(e.subtext.es),"</textarea>","</label>",'<label class="admin-field">','<span class="admin-field-label">Texto del Boton (ES)</span>','<input type="text" data-field="ctaLabel-es" value="',u(e.ctaLabel.es),'" placeholder="Programar Cita">',"</label>","</div>","</section>","</div>","</section>",'<div class="admin-side-column">','<section class="admin-side-panel">','<h3 class="admin-panel-title">Preview</h3>','<div class="admin-preview" data-role="slide-preview">',we.buildPreviewMarkup(e,"en"),"</div>","</section>",'<section class="admin-side-panel">','<div class="admin-credentials-head">',"<div>",'<h3 class="admin-panel-title">Trust Points</h3>',"</div>",'<button class="admin-btn admin-btn-ghost admin-btn-small" type="button" data-action="add-credential">Add</button>',"</div>",'<div class="admin-credential-list">',na(e),"</div>","</section>","</div>","</div>","</div>","</article>"].join("")}function W(){s.editorList&&($t(),s.editorList.innerHTML=d.map(ra).join(""),X())}function sa(){if(!s.bannerColorPicker)return"red";var e=s.bannerColorPicker.querySelector(".banner-color-btn.is-active");return e&&e.dataset.bannerColor||"red"}function lt(e){if(s.bannerColorPicker){var t=s.bannerColorPicker.querySelectorAll(".banner-color-btn");t.forEach(function(a){a.classList.toggle("is-active",a.dataset.bannerColor===e)})}}function F(){return Y({enabled:!!(s.bannerEnabled&&s.bannerEnabled.checked),color:sa(),showPill:!s.bannerShowPill||s.bannerShowPill.checked,showButton:!s.bannerShowButton||s.bannerShowButton.checked,pill:{en:s.bannerPillEn?s.bannerPillEn.value:"",es:s.bannerPillEs?s.bannerPillEs.value:""},message:{en:s.bannerMessageEn?pe(s.bannerMessageEn.innerHTML):"",es:s.bannerMessageEs?pe(s.bannerMessageEs.innerHTML):""},ctaLabel:{en:s.bannerCtaLabelEn?s.bannerCtaLabelEn.value:"",es:s.bannerCtaLabelEs?s.bannerCtaLabelEs.value:""},ctaUrl:s.bannerCtaUrl?s.bannerCtaUrl.value:"",ctaNewTab:!!(s.bannerNewTab&&s.bannerNewTab.checked)})}function G(){s.bannerPreview&&(s.bannerPreview.innerHTML=rt(C))}function _(e){const t=Y(e);C=t,s.bannerEnabled&&(s.bannerEnabled.checked=t.enabled),s.bannerNewTab&&(s.bannerNewTab.checked=t.ctaNewTab),s.bannerShowPill&&(s.bannerShowPill.checked=t.showPill!==!1),s.bannerShowButton&&(s.bannerShowButton.checked=t.showButton!==!1),lt(t.color),s.bannerPillEn&&(s.bannerPillEn.value=t.pill.en),s.bannerPillEs&&(s.bannerPillEs.value=t.pill.es),s.bannerMessageEn&&(s.bannerMessageEn.innerHTML=pe(t.message.en)),s.bannerMessageEs&&(s.bannerMessageEs.innerHTML=pe(t.message.es)),s.bannerCtaLabelEn&&(s.bannerCtaLabelEn.value=t.ctaLabel.en),s.bannerCtaLabelEs&&(s.bannerCtaLabelEs.value=t.ctaLabel.es),s.bannerCtaUrl&&(s.bannerCtaUrl.value=t.ctaUrl),G()}function x(e,t){const a=e.querySelector('[data-field="'+t+'"]');return a?a.value.trim():""}function it(e,t){const a=e.querySelector('[data-field="'+t+'"]');return!!(a&&a.checked)}function ze(e){const t=Array.from(e.querySelectorAll(".admin-credential-row")).map(function(a){const n=a.querySelector('[data-role="credential-en"]'),r=a.querySelector('[data-role="credential-es"]');return{en:n?n.value.trim():"",es:r?r.value.trim():""}}).filter(function(a){return a.en||a.es});return L.normalizeSlide({id:e.dataset.slideId||"",enabled:it(e,"enabled"),accent:x(e,"accent"),pill:{en:x(e,"pill-en"),es:x(e,"pill-es")},title:{en:x(e,"title-en"),es:x(e,"title-es")},titleAccent:{en:x(e,"titleAccent-en"),es:x(e,"titleAccent-es")},kicker:{en:x(e,"kicker-en"),es:x(e,"kicker-es")},subtext:{en:x(e,"subtext-en"),es:x(e,"subtext-es")},ctaLabel:{en:x(e,"ctaLabel-en"),es:x(e,"ctaLabel-es")},ctaUrl:x(e,"ctaUrl"),ctaNewTab:it(e,"ctaNewTab"),credentials:t})}function D(){const e=s.editorList?Array.from(s.editorList.querySelectorAll(".admin-slide-card")):[];return e.length&&(d=e.map(ze),e.forEach(function(t){const a=t.querySelector('[data-role="slide-auto-translate"]'),n=t.dataset.slideId;a&&n&&Ye(n,a.checked)}),X()),d}function M(e,t,a){const n=e.querySelector('[data-field="'+t+'"]');n&&(n.value=a||"")}function ot(e,t,a){const n=e.querySelector('[data-role="'+t+'"]');n&&(n.value=a||"")}function Je(e,t,a){const n=e.querySelector('[data-role="slide-name"]'),r=e.querySelector('[data-role="slide-live-pill"]'),l=e.querySelector('[data-role="slide-accent-pill"]'),o=e.querySelector('[data-role="slide-preview"]'),i=e.querySelector('[data-role="accent-value"]'),c=e.querySelector(".admin-slide-number");n&&(n.textContent=at(t,a)),c&&(c.textContent=a+1),r&&(r.textContent=t.enabled?"Live":"Hidden",r.dataset.state=t.enabled?"live":"disabled"),o&&(o.innerHTML=we.buildPreviewMarkup(t,"en")),i&&(i.textContent=t.accent),l&&(l.textContent=t.accent,l.style.borderLeft="3px solid "+t.accent)}function dt(e,t,a,n){const r=n||{},l=!!r.englishOnly,o=!!r.spanishOnly;o||(M(e,"pill-en",t.pill.en),M(e,"title-en",t.title.en),M(e,"titleAccent-en",t.titleAccent.en),M(e,"kicker-en",t.kicker.en),M(e,"subtext-en",t.subtext.en),M(e,"ctaLabel-en",t.ctaLabel.en),M(e,"ctaUrl",t.ctaUrl)),l||(M(e,"pill-es",t.pill.es),M(e,"title-es",t.title.es),M(e,"titleAccent-es",t.titleAccent.es),M(e,"kicker-es",t.kicker.es),M(e,"subtext-es",t.subtext.es),M(e,"ctaLabel-es",t.ctaLabel.es),Array.from(e.querySelectorAll(".admin-credential-row")).forEach(function(c,f){const h=t.credentials[f]||{en:"",es:""};ot(c,"credential-es",h.es),o||ot(c,"credential-en",h.en)})),Je(e,t,a)}function la(e){return e.length?e.filter(function(n){return n.enabled}).length?e.find(function(n){return!(n.title.en||n.title.es)})?"Every slide needs a title in at least one language.":"":"Leave at least one slide enabled for the homepage.":"Create at least one slide before saving."}function ia(){me(),d=[],z=L.getSlides(),Q=!1,P=null,U.clear(),re.clear(),W()}function oa(){ie(),ke=$(),ae=!1,We(!0),_($()),he.clear()}function Ae(e,t,a){if(me(),z=V(e),L.setRemoteSlides(z),(!P||!z.some(function(n){return n.id===P}))&&(P=z.length?z[0].id:null),!d.length||a||!Q){d=V(z),W(),Yt(t||"Homepage slides are up to date.");return}Rt(z,d)||v("A newer saved version of the homepage slides is available. Reload it or publish your current edits first.","warning")}function Ce(e,t,a){if(ke=Y(e),a||!ae){_(ke),zt(t||"Urgent banner is up to date.");return}JSON.stringify(ke)!==JSON.stringify(C)&&A("A newer saved version of the urgent banner is available. Reload it or publish your current edits first.","warning")}async function R(e){const t=typeof e=="string"?e.trim():"";if(!t)return"";if(he.has(t))return he.get(t);const a=fetch(Wt+encodeURIComponent(t)).then(function(n){if(!n.ok)throw new Error("Automatic Spanish translation is temporarily unavailable.");return n.json()}).then(function(n){const r=Array.isArray(n)?n[0]:null;if(!Array.isArray(r))throw new Error("Automatic Spanish translation returned an unexpected response.");return r.map(function(l){return Array.isArray(l)&&l[0]||""}).join("").trim()}).catch(function(n){throw he.delete(t),n});return he.set(t,a),a}async function da(e){const t=V([e])[0],a=await Promise.all([R(e.pill.en),R(e.title.en),R(e.titleAccent.en),R(e.kicker.en),R(e.subtext.en),R(e.ctaLabel.en)]);return t.pill.es=a[0],t.title.es=a[1],t.titleAccent.es=a[2],t.kicker.es=a[3],t.subtext.es=a[4],t.ctaLabel.es=a[5],t.credentials=await Promise.all(e.credentials.map(async function(n){return{en:n.en,es:await R(n.en)}})),L.normalizeSlide(t)}function ct(){return Ue+=1,Ue}function ie(){ne&&(window.clearTimeout(ne),ne=null),ct()}async function ca(e){const t=Y(e),a=await Promise.all([R(t.pill.en),R(He(t.message.en)),R(t.ctaLabel.en)]);return t.pill.es=a[0]||t.pill.es,t.message.es=a[1],t.ctaLabel.es=a[2],Y(t)}function ua(e){return Y({enabled:e.enabled,color:e.color,showPill:e.showPill,showButton:e.showButton,pill:{en:e.pill.en,es:e.pill.en},message:{en:e.message.en,es:e.message.en},ctaLabel:{en:e.ctaLabel.en,es:e.ctaLabel.en},ctaUrl:e.ctaUrl,ctaNewTab:e.ctaNewTab})}async function Ve(e){const a=!!(e||{}).silent,n=F(),r=ct();try{a||A("Translating the urgent banner into Spanish...","info");const l=await ca(n);if(Ue!==r)return!1;const o=F();return C=Y({enabled:o.enabled,color:o.color,showPill:o.showPill,showButton:o.showButton,pill:{en:o.pill.en,es:l.pill.es},message:{en:o.message.en,es:l.message.es},ctaLabel:{en:o.ctaLabel.en,es:l.ctaLabel.es},ctaUrl:o.ctaUrl,ctaNewTab:o.ctaNewTab}),_(C),ne=null,a?G():O("Spanish banner text updated. Publish when ready."),!0}catch(l){return ne=null,a?console.warn("MMC banner auto-translate:",l.message||g(l)):A(l.message||g(l),"danger"),!1}}function fa(){ie(),C=ua(F()),_(C),O("English banner text copied into the Spanish fields. Publish when ready.")}function ut(){qe()&&(ie(),ne=window.setTimeout(function(){Ve({silent:!0})},900))}function ha(e){return L.normalizeSlide({id:e.id,enabled:e.enabled,accent:e.accent,pill:{en:e.pill.en,es:e.pill.en},title:{en:e.title.en,es:e.title.en},titleAccent:{en:e.titleAccent.en,es:e.titleAccent.en},kicker:{en:e.kicker.en,es:e.kicker.en},subtext:{en:e.subtext.en,es:e.subtext.en},ctaLabel:{en:e.ctaLabel.en,es:e.ctaLabel.en},ctaUrl:e.ctaUrl,ctaNewTab:e.ctaNewTab,credentials:e.credentials.map(function(t){return{en:t.en,es:t.en}})})}function _e(e){return re.get(e)||0}function pa(e){const t=_e(e)+1;return re.set(e,t),t}async function Pe(e,t){const n=!!(t||{}).silent;D();let r=Re(e),l=st(e);if(r<0||!l)return;const o=d[r],i=pa(e);try{n||v("Translating slide "+(r+1)+" into Spanish...","info");const c=await da(o);return _e(e)!==i||(D(),r=Re(e),l=st(e),r<0||!l)?!1:(d[r]=L.normalizeSlide({id:e,enabled:d[r].enabled,accent:d[r].accent,pill:{en:d[r].pill.en,es:c.pill.es},title:{en:d[r].title.en,es:c.title.es},titleAccent:{en:d[r].titleAccent.en,es:c.titleAccent.es},kicker:{en:d[r].kicker.en,es:c.kicker.es},subtext:{en:d[r].subtext.en,es:c.subtext.es},ctaLabel:{en:d[r].ctaLabel.en,es:c.ctaLabel.es},ctaUrl:d[r].ctaUrl,ctaNewTab:d[r].ctaNewTab,credentials:d[r].credentials.map(function(f,h){return{en:f.en,es:c.credentials[h]?c.credentials[h].es:""}})}),dt(l,d[r],r,{spanishOnly:!0}),le(e),n?X():H("Spanish translation updated. Publish when ready."),!0)}catch(c){return le(e),n?console.warn("MMC auto-translate:",c.message||g(c)):v(c.message||g(c),"danger"),!1}}async function ma(e,t){return D(),e<0||e>=d.length?!1:Pe(d[e].id,t)}async function ba(){const e=D();if(!e.length){v("Add a slide first, then run automatic Spanish translation.","warning");return}v("Translating all slides into Spanish...","info");let t=0,a=0;for(const n of e)await Pe(n.id,{silent:!0})?t+=1:a+=1;if(!t){v("Automatic Spanish translation is temporarily unavailable. You can still edit the Spanish fields manually.","danger");return}Q=!0,v(a?"Translated "+t+" slides. "+a+" slide(s) still need manual Spanish review.":"Spanish translation updated for all slides. Publish when ready.",a?"warning":"success"),X()}function va(e){const a=(s.editorList?Array.from(s.editorList.querySelectorAll(".admin-slide-card")):[])[e];D(),!(e<0||e>=d.length||!a)&&(Fe(d[e].id),d[e]=ha(d[e]),dt(a,d[e],e,{spanishOnly:!0}),H("English text copied into the Spanish fields. Publish when ready."))}function ga(e){const t=Re(e),a=t>=0?d[t]:null;!a||!Ge(a.id)||(le(a.id),fe.set(a.id,window.setTimeout(function(){Pe(a.id,{silent:!0})},900)))}function ya(e){return e?(e.dataset.field||"").endsWith("-en")||e.dataset.role==="credential-en":!1}function wa(e){return e?(e.dataset.field||"").endsWith("-es")||e.dataset.role==="credential-es":!1}function Sa(e){if(!e)return;const t=e.dataset.slideId,a=e.querySelector('[data-role="slide-auto-translate"]');!t||!Ge(t)||(Fe(t),Ye(t,!1),a&&(a.checked=!1),v("Automatic Spanish fill was turned off for this slide so your manual Spanish edits stay in place.","info"))}function Ke(e,t){D();const a=L.normalizeSlide(e||L.createSlideTemplate());U.has(a.id)||U.set(a.id,!0),d.push(a),P=a.id,se("slides"),W(),H(t||"New slide added. Publish when ready.");const n=s.editorList?s.editorList.querySelectorAll(".admin-slide-card"):[],r=n[n.length-1];r&&r.scrollIntoView({behavior:"smooth",block:"start"}),je()&&window.setTimeout(function(){Pe(a.id,{silent:!0})},120)}function ka(e){const t=Ne.find(function(a){return a.id===e});t&&Ke(t.buildSlide(),t.name+" added. Publish when ready.")}async function Ba(){if(!(Q&&!window.confirm("Discard your current slide edits and reload the latest saved version?")))try{const e=await Ze();Ae(e,"Latest saved homepage slides loaded.",!0)}catch(e){v(g(e),"danger")}}async function Ea(){const e=ce.currentUser;if(!e){v("Sign in before publishing homepage slide changes.","danger");return}const t=D(),a=la(t);if(a){v(a,"danger");return}try{const n=await Dt(t,e);Ae(n,"Homepage slides published.",!0)}catch(n){v(g(n),"danger")}}function Ta(){window.confirm("Load the starter slides into the editor? You can review them, then publish when ready.")&&(me(),d=V(L.defaultSlides),P=d.length?d[0].id:null,se("slides"),W(),H("Starter slides loaded. Publish when ready."))}function La(){const e={version:3,exportedAt:new Date().toISOString(),slides:D()},t=new Blob([JSON.stringify(e,null,2)],{type:"application/json"}),a=window.URL.createObjectURL(t),n=document.createElement("a");n.href=a,n.download="mmc-homepage-slides.json",document.body.appendChild(n),n.click(),n.remove(),window.URL.revokeObjectURL(a),v("Backup downloaded.","success")}function Aa(e){const t=e.target.files&&e.target.files[0];if(!t)return;const a=new FileReader;a.onload=function(n){try{const r=JSON.parse(String(n.target.result||"")),l=Array.isArray(r)?r:r.slides;if(!Array.isArray(l)||!l.length)throw new Error("That backup file does not contain any slides.");me(),d=V(l),P=d.length?d[0].id:null,se("slides"),W(),H("Backup loaded. Publish when ready.")}catch(r){v(r.message||"That backup file could not be opened.","danger")}finally{e.target.value=""}},a.onerror=function(){v("That backup file could not be read.","danger"),e.target.value=""},a.readAsText(t)}function Ca(e){if(D(),e<0||e>=d.length)return;const t=JSON.parse(JSON.stringify(d[e]));t.id="",Ke(t,"Slide copied. Publish when ready.")}function ft(e,t){if(D(),e<0||e>=d.length)return;const a=e+t;if(a<0||a>=d.length)return;const n=d[e];d[e]=d[a],d[a]=n,W(),H("Slide order updated. Publish when ready.")}function Pa(e){if(D(),e<0||e>=d.length)return;if(d.length===1){v("Keep at least one slide in the slideshow.","danger");return}if(!window.confirm("Remove this slide from the editor?"))return;const t=d[e].id;d.splice(e,1),P===t&&(P=d[e]?d[e].id:d[e-1]?d[e-1].id:null),W(),H("Slide removed. Publish when ready.")}function xa(e){D(),!(e<0||e>=d.length)&&(d[e].credentials.push({en:"",es:""}),W(),H("Trust point added. Publish when ready."))}function Ma(e,t){D(),!(e<0||e>=d.length)&&(t<0||t>=d[e].credentials.length||(d[e].credentials.splice(t,1),W(),H("Trust point removed. Publish when ready.")))}function ht(e){const t=e.target.closest(".admin-slide-card");if(!t)return;const a=Number(t.dataset.slideIndex);if(!(Number.isNaN(a)||!d[a])){if(e.target.dataset.role==="slide-auto-translate"){Ye(t.dataset.slideId,e.target.checked),e.target.checked||Fe(t.dataset.slideId),v(e.target.checked?"Automatic Spanish fill turned on for this slide.":"Automatic Spanish fill turned off for this slide. Manual Spanish text will stay as written.","info"),X();return}wa(e.target)&&Sa(t),d[a]=ze(t),Je(t,d[a],a),H("You have unpublished slide changes."),ya(e.target)&&ga(t.dataset.slideId)}}function pt(e){const t=e.target.closest("[data-action]");if(!t)return;const a=t.dataset.action;if(a==="use-template"){ka(t.dataset.templateId);return}const n=t.closest(".admin-slide-card"),r=n?Number(n.dataset.slideIndex):-1;if(a==="toggle-slide")n&&n.dataset.slideId&&Kt(n.dataset.slideId);else if(a==="move-up")ft(r,-1);else if(a==="move-down")ft(r,1);else if(a==="duplicate-slide")Ca(r);else if(a==="remove-slide")Pa(r);else if(a==="add-credential")xa(r);else if(a==="remove-credential"){const l=t.closest(".admin-credential-row"),o=l?Number(l.dataset.credentialIndex):-1;!Number.isNaN(o)&&o>=0&&Ma(r,o)}else a==="translate-slide"?ma(r):a==="copy-english"?va(r):a==="set-color"&&n&&t.dataset.color&&(M(n,"accent",t.dataset.color),d[r]=ze(n),Je(n,d[r],r),H("Highlight color updated."))}function Da(e){const t=Ie.find(function(a){return a.id===e});t&&(_(t.banner),se("banner"),O(t.label+" example loaded. Publish when ready."),qe()&&window.setTimeout(function(){Ve({silent:!0})},120))}async function Na(){if(!(ae&&!window.confirm("Discard your current banner edits and reload the latest saved version?")))try{const e=await Xe();Ce(e,"Latest saved urgent banner loaded.",!0)}catch(e){A(g(e),"danger")}}async function Ia(){const e=ce.currentUser,t=F();if(!e){A("Sign in before publishing urgent banner changes.","danger");return}if(t.enabled&&!q(t.message,"en")){A("Add a banner message before turning the sitewide alert on.","danger");return}try{const a=await Mt(t,e);Ce(a,"Urgent banner published.",!0)}catch(a){A(g(a),"danger")}}function Ua(){window.confirm("Turn off the sitewide emergency banner and clear the current message?")&&(ie(),We(!0),_($()),O("Urgent banner cleared. Publish when ready."))}function mt(){qe()&&(ie(),We(!1),A("Automatic Spanish fill was turned off for the banner so your manual Spanish edits stay in place.","info"))}function y(e,t){s.scheduleStatus&&(s.scheduleStatus.textContent=e,s.scheduleStatus.dataset.tone=t||"info")}function bt(e){if(!e)return"";var t=e.split("-");if(t.length!==3)return e;var a=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],n=parseInt(t[1],10),r=parseInt(t[2],10),l=t[0];return a[n-1]+" "+r+", "+l}function Ha(e){var t=e.recurrence||{mode:"dates",days:[]},a=new Date;if(t.mode==="weekly")return!Array.isArray(t.days)||t.days.length===0?{label:"Incomplete",tone:"muted"}:t.days.indexOf(a.getDay())!==-1?{label:"Active Now",tone:"success"}:{label:"Recurring",tone:"info"};if(t.mode==="biweekly"){if(!Array.isArray(t.days)||t.days.length===0||!t.anchorDate)return{label:"Incomplete",tone:"muted"};var n=a.getDay();if(t.days.indexOf(n)!==-1){var r=t.anchorDate.split("-"),l=new Date(parseInt(r[0],10),parseInt(r[1],10)-1,parseInt(r[2],10)).getTime(),o=new Date(a.getFullYear(),a.getMonth(),a.getDate()).getTime(),i=Math.floor((o-l)/864e5),c=Math.floor(i/7),f=(c%2+2)%2;if(f===(t.weekParity||0))return{label:"Active Now",tone:"success"}}var h=t.weekParity===1?"Week B":"Week A";return{label:"Alternating \xB7 "+h,tone:"info"}}if(!e.startDate||!e.endDate)return{label:"Incomplete",tone:"muted"};var p=a.getFullYear()+"-"+String(a.getMonth()+1).padStart(2,"0")+"-"+String(a.getDate()).padStart(2,"0");return p>e.endDate?{label:"Expired",tone:"muted"}:p>=e.startDate&&p<=e.endDate?{label:"Active Now",tone:"success"}:{label:"Upcoming",tone:"info"}}function Oa(e){var t=Ha(e),a=He(q(e.banner.message,"en")),n=q(e.banner.pill,"en"),r=e.banner.color||"green",l=e.banner.showPill!==!1,o=a.length>100?a.substring(0,100)+"...":a,i=e.recurrence||{mode:"dates",days:[]},c=i.mode==="weekly",f=i.mode==="biweekly",h=Array.isArray(i.days)?i.days:[],p=["Su","Mo","Tu","We","Th","Fr","Sa"],b=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],w="";(c||f)&&h.length>0&&(w=h.map(function(E){return b[E]}).join(", "));var S="";if(f){var m=i.weekParity===1?"Week B":"Week A";S='<span class="sched-recurrence-tag sched-recurrence-biweekly"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px"><path d="M1 6a5 5 0 019.33-2.5M11 6a5 5 0 01-9.33 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M10 1v2.5H7.5M2 11V8.5h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> '+m+" &middot; "+w+"</span>"}else c?S='<span class="sched-recurrence-tag"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px"><path d="M1 6a5 5 0 019.33-2.5M11 6a5 5 0 01-9.33 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M10 1v2.5H7.5M2 11V8.5h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Every '+w+"</span>":S='<span class="sched-date-range"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px;margin-right:3px;"><rect x="1.5" y="1.5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1"/><path d="M1.5 4.5h9M4 1.5v2M8 1.5v2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>'+bt(e.startDate)+" &mdash; "+bt(e.endDate)+"</span>";var B=p.map(function(E,T){var N=h.indexOf(T)!==-1?" is-active":"";return'<button type="button" class="sched-day-btn'+N+'" data-sched-day="'+T+'">'+E+"</button>"}).join("");return['<div class="sched-card" data-sched-id="'+u(e.id)+'">','  <div class="sched-card-header">','    <div class="sched-card-header-left">','      <span class="sched-status sched-status-'+t.tone+'">'+t.label+"</span>",'      <span class="sched-label">'+u(e.label)+"</span>","    </div>",'    <div class="sched-card-header-right">','      <button type="button" class="sched-action sched-action-delete" data-sched-delete="'+u(e.id)+'" title="Delete">','        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',"      </button>","    </div>","  </div>",'  <div class="sched-card-body">','    <div class="sched-dates">'+S+"</div>",'    <div class="sched-banner-preview-mini">','      <span class="sched-color-dot" style="background:'+(r==="red"?"#ff3b30":r==="orange"?"#ff9500":r==="yellow"?"#ffcc00":"#34c759")+'"></span>',n?'<span class="sched-pill-text">'+u(n)+"</span>":"",'      <span class="sched-message-text">'+u(o)+"</span>","    </div>","  </div>",'  <details class="sched-card-edit">','    <summary class="sched-edit-trigger"></summary>','    <div class="sched-edit-body">','      <div class="sched-section">','        <p class="sched-section-title">General</p>','        <div class="sched-grid">','          <label class="sched-field sched-field-full">','            <span class="sched-label-text">Label</span>','            <input type="text" class="sched-input" data-sched-field="label" value="'+u(e.label)+'">',"          </label>",'          <div class="sched-field sched-field-full">','            <span class="sched-label-text">Color</span>','            <div class="sched-color-picker">','              <button type="button" class="banner-color-btn'+(r==="red"?" is-active":"")+'" data-sched-color="red"><span class="banner-color-swatch" style="background:#ff3b30;"></span>Red</button>','              <button type="button" class="banner-color-btn'+(r==="orange"?" is-active":"")+'" data-sched-color="orange"><span class="banner-color-swatch" style="background:#ff9500;"></span>Orange</button>','              <button type="button" class="banner-color-btn'+(r==="yellow"?" is-active":"")+'" data-sched-color="yellow"><span class="banner-color-swatch" style="background:#ffcc00;"></span>Yellow</button>','              <button type="button" class="banner-color-btn'+(r==="green"?" is-active":"")+'" data-sched-color="green"><span class="banner-color-swatch" style="background:#34c759;"></span>Green</button>',"            </div>","          </div>","        </div>","      </div>",'      <div class="sched-section">','        <p class="sched-section-title">Schedule</p>','        <div class="sched-mode-toggle">','          <button type="button" class="sched-mode-btn'+(!c&&!f?" is-active":"")+'" data-sched-mode="dates">Date Range</button>','          <button type="button" class="sched-mode-btn'+(c?" is-active":"")+'" data-sched-mode="weekly">Every Week</button>','          <button type="button" class="sched-mode-btn'+(f?" is-active":"")+'" data-sched-mode="biweekly">Alternating Weeks</button>',"        </div>",'        <div class="sched-dates-row" '+(c||f?'style="display:none;"':"")+">",'          <div class="sched-grid">','            <label class="sched-field">','              <span class="sched-label-text">Start Date</span>','              <input type="date" class="sched-input" data-sched-field="startDate" value="'+u(e.startDate)+'">',"            </label>",'            <label class="sched-field">','              <span class="sched-label-text">End Date</span>','              <input type="date" class="sched-input" data-sched-field="endDate" value="'+u(e.endDate)+'">',"            </label>","          </div>","        </div>",'        <div class="sched-weekly-row" '+(!c&&!f?'style="display:none;"':"")+">",'          <span class="sched-label-text" style="margin-bottom:6px;display:block;">Active Days</span>','          <div class="sched-day-picker">'+B+"</div>","        </div>",'        <div class="sched-biweekly-row" '+(f?"":'style="display:none;"')+">",'          <div class="sched-grid" style="margin-top:10px;">','            <div class="sched-field">','              <span class="sched-label-text">Which week?</span>','              <div class="sched-parity-toggle">','                <button type="button" class="sched-parity-btn'+((i.weekParity||0)===0?" is-active":"")+'" data-sched-parity="0">Week A</button>','                <button type="button" class="sched-parity-btn'+(i.weekParity===1?" is-active":"")+'" data-sched-parity="1">Week B</button>',"              </div>","            </div>",'            <label class="sched-field">','              <span class="sched-label-text">Anchor Monday <span class="sched-section-optional">defines week A/B</span></span>','              <input type="date" class="sched-input" data-sched-field="anchorDate" value="'+u(i.anchorDate||"")+'">',"            </label>","          </div>",'          <p class="sched-biweekly-hint">Pick any Monday as "Week A start." All entries that share the same anchor date will alternate together.</p>',"        </div>","      </div>",'      <div class="sched-section">','        <p class="sched-section-title">Content</p>','        <div class="sched-grid">','          <div class="sched-field sched-field-full">','            <div class="sched-toggle-row">','              <span class="sched-label-text">Show Alert Label (Pill)</span>','              <label class="sched-switch">','                <input type="checkbox" data-sched-field="showPill"'+(l?" checked":"")+">",'                <span class="sched-switch-track"></span>',"              </label>","            </div>","          </div>",'          <label class="sched-field'+(l?"":" sched-field-hidden")+' sched-pill-en-field">','            <span class="sched-label-text">Alert Label <span class="sched-lang-badge">EN</span></span>','            <input type="text" class="sched-input" data-sched-field="pillEn" data-sched-translate="pillEs" value="'+u(q(e.banner.pill,"en"))+'">',"          </label>",'          <label class="sched-field'+(l?"":" sched-field-hidden")+' sched-pill-es-field">','            <span class="sched-label-text">Alert Label <span class="sched-lang-badge sched-lang-badge-es">ES</span> <span class="sched-auto-badge">Auto</span></span>','            <input type="text" class="sched-input" data-sched-field="pillEs" value="'+u(q(e.banner.pill,"es"))+'">',"          </label>",'          <label class="sched-field sched-field-full">','            <span class="sched-label-text">Message <span class="sched-lang-badge">EN</span></span>','            <input type="text" class="sched-input" data-sched-field="messageEn" data-sched-translate="messageEs" value="'+u(q(e.banner.message,"en"))+'">',"          </label>",'          <label class="sched-field sched-field-full">','            <span class="sched-label-text">Message <span class="sched-lang-badge sched-lang-badge-es">ES</span> <span class="sched-auto-badge">Auto</span></span>','            <input type="text" class="sched-input" data-sched-field="messageEs" value="'+u(q(e.banner.message,"es"))+'">',"          </label>","        </div>","      </div>",'      <div class="sched-section">','        <p class="sched-section-title">Button <span class="sched-section-optional">Optional</span></p>','        <div class="sched-grid">','          <label class="sched-field">','            <span class="sched-label-text">Button Text</span>','            <input type="text" class="sched-input" data-sched-field="ctaLabelEn" value="'+u(q(e.banner.ctaLabel,"en"))+'">',"          </label>",'          <label class="sched-field">','            <span class="sched-label-text">Button Link</span>','            <input type="text" class="sched-input" data-sched-field="ctaUrl" value="'+u(e.banner.ctaUrl||"")+'">',"          </label>","        </div>","      </div>",'      <div class="sched-save-row">','        <button type="button" class="studio-btn studio-btn-publish sched-save-btn" data-sched-save="'+u(e.id)+'">Save Changes</button>',"      </div>","    </div>","  </details>","</div>"].join(`
-`)}function $e(){if(s.scheduledBannerList){if(!J.length){s.scheduledBannerList.innerHTML="",s.scheduledBannerEmpty&&(s.scheduledBannerEmpty.hidden=!1);return}s.scheduledBannerEmpty&&(s.scheduledBannerEmpty.hidden=!0),s.scheduledBannerList.innerHTML=J.map(Oa).join("")}}function qa(e){var t=e.dataset.schedId||"",a=(e.querySelector('[data-sched-field="label"]')||{}).value||"",n=(e.querySelector('[data-sched-field="startDate"]')||{}).value||"",r=(e.querySelector('[data-sched-field="endDate"]')||{}).value||"",l=(e.querySelector('[data-sched-field="pillEn"]')||{}).value||"",o=(e.querySelector('[data-sched-field="pillEs"]')||{}).value||"",i=(e.querySelector('[data-sched-field="messageEn"]')||{}).value||"",c=(e.querySelector('[data-sched-field="messageEs"]')||{}).value||"",f=(e.querySelector('[data-sched-field="ctaLabelEn"]')||{}).value||"",h=(e.querySelector('[data-sched-field="ctaUrl"]')||{}).value||"",p=e.querySelector(".sched-color-picker .banner-color-btn.is-active"),b=p?p.dataset.schedColor:"green",w=e.querySelector('[data-sched-field="showPill"]'),S=w?w.checked:!0,m=e.querySelector(".sched-mode-btn.is-active"),B=m?m.dataset.schedMode:"dates",E=e.querySelectorAll(".sched-day-btn.is-active"),T=Array.from(E).map(function(K){return parseInt(K.dataset.schedDay,10)}).filter(function(K){return!isNaN(K)}),N={mode:B,days:T};if(B==="biweekly"){var te=e.querySelector('[data-sched-field="anchorDate"]');N.anchorDate=te?te.value:"";var ve=e.querySelector(".sched-parity-btn.is-active");N.weekParity=ve?parseInt(ve.dataset.schedParity,10):0}return{id:t,label:a,startDate:n,endDate:r,recurrence:N,banner:{enabled:!0,color:b,showPill:S,showButton:!!(f&&h),pill:{en:l,es:o},message:{en:i,es:c},ctaLabel:{en:f,es:""},ctaUrl:h,ctaNewTab:!1}}}function Wa(){var e=new Date,t=e.getDay(),a=t===0?-6:1-t,n=new Date(e.getFullYear(),e.getMonth(),e.getDate()+a);return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0")}async function vt(e){var t=ce.currentUser;if(!t){y("Sign in before adding a scheduled banner.","danger");return}var a=new Date,n=a.getFullYear()+"-"+String(a.getMonth()+1).padStart(2,"0")+"-"+String(a.getDate()).padStart(2,"0"),r=e&&tt[e];if(r&&r.isGroup&&Array.isArray(r.entries)){var l=Wa();try{for(var o=0;o<r.entries.length;o++){var i=r.entries[o],c={label:i.label,startDate:n,endDate:n,recurrence:{mode:i.recurrence.mode,days:Array.isArray(i.recurrence.days)?i.recurrence.days.slice():[],anchorDate:i.recurrence.anchorDate||l,weekParity:i.recurrence.weekParity||0},banner:JSON.parse(JSON.stringify(i.banner))};await ue(c,t)}y("Alternating-week banners created ("+r.entries.length+" entries). Edit each one below.","success")}catch(h){y(g(h),"danger")}return}var f;r?f={label:r.label,startDate:n,endDate:n,recurrence:{mode:r.recurrence.mode,days:Array.isArray(r.recurrence.days)?r.recurrence.days.slice():[]},banner:JSON.parse(JSON.stringify(r.banner))}:f={label:"New Banner",startDate:n,endDate:n,recurrence:{mode:"dates",days:[]},banner:{enabled:!0,color:"green",showPill:!0,showButton:!0,pill:{en:"Notice",es:"Aviso"},message:{en:"Enter your message here.",es:"Ingrese su mensaje aqu\xED."},ctaLabel:{en:"Call the Office",es:"Llamar a la Oficina"},ctaUrl:"tel:3012082273",ctaNewTab:!1}};try{await ue(f,t),y(r?'"'+r.label+'" template added. Customize below.':"New scheduled banner added. Edit the details below.","success")}catch(h){y(g(h),"danger")}}async function Fa(e){var t=ce.currentUser;if(!t){y("Sign in before saving.","danger");return}var a=s.scheduledBannerList.querySelector('[data-sched-id="'+e+'"]');if(a){var n=qa(a);if(n.recurrence&&(n.recurrence.mode==="weekly"||n.recurrence.mode==="biweekly")){if(!Array.isArray(n.recurrence.days)||n.recurrence.days.length===0){y("Please select at least one day of the week.","danger");return}if(n.recurrence.mode==="biweekly"&&!n.recurrence.anchorDate){y("Please set an anchor Monday so the system knows which week is A and which is B.","danger");return}}else{if(!n.startDate||!n.endDate){y("Please set both a start date and end date.","danger");return}if(n.startDate>n.endDate){y("Start date must be on or before the end date.","danger");return}}var r=(n.banner.message.en||"").trim();if(!r){y("Please add a banner message.","danger");return}try{await ue(n,t),y("Scheduled banner saved.","success")}catch(l){y(g(l),"danger")}}}async function Ra(e){if(window.confirm("Delete this scheduled banner? This cannot be undone."))try{await Qe(e),y("Scheduled banner deleted.","success")}catch(t){y(g(t),"danger")}}async function ja(){try{y("Reloading scheduled banners...","info"),J=await et(),$e(),y("Scheduled banners reloaded.","success")}catch(e){y(g(e),"danger")}}function Ga(e){var t=e.target.closest("[data-sched-delete]");if(t){Ra(t.dataset.schedDelete);return}var a=e.target.closest("[data-sched-save]");if(a){Fa(a.dataset.schedSave);return}var n=e.target.closest("[data-sched-color]");if(n){var r=n.closest(".sched-color-picker");r&&(r.querySelectorAll(".banner-color-btn").forEach(function(m){m.classList.remove("is-active")}),n.classList.add("is-active"));return}var l=e.target.closest("[data-sched-mode]");if(l){var o=l.closest(".sched-mode-toggle");o&&(o.querySelectorAll(".sched-mode-btn").forEach(function(m){m.classList.remove("is-active")}),l.classList.add("is-active"));var i=l.closest(".sched-card");if(i){var c=l.dataset.schedMode,f=i.querySelector(".sched-dates-row"),h=i.querySelector(".sched-weekly-row"),p=i.querySelector(".sched-biweekly-row");f&&(f.style.display=c==="dates"?"":"none"),h&&(h.style.display=c==="weekly"||c==="biweekly"?"":"none"),p&&(p.style.display=c==="biweekly"?"":"none")}return}var b=e.target.closest("[data-sched-parity]");if(b){var w=b.closest(".sched-parity-toggle");w&&(w.querySelectorAll(".sched-parity-btn").forEach(function(m){m.classList.remove("is-active")}),b.classList.add("is-active"));return}var S=e.target.closest("[data-sched-day]");if(S){S.classList.toggle("is-active");return}}function Ya(e){var t=e.target.closest('[data-sched-field="showPill"]');if(t){var a=t.closest(".sched-card");if(!a)return;var n=a.querySelector(".sched-pill-en-field"),r=a.querySelector(".sched-pill-es-field");n&&n.classList.toggle("sched-field-hidden",!t.checked),r&&r.classList.toggle("sched-field-hidden",!t.checked)}}var xe={};function za(e){var t=e.target,a=t.dataset.schedTranslate;if(a){var n=t.closest(".sched-card");if(n){var r=n.dataset.schedId||"",l=r+":"+a;xe[l]&&window.clearTimeout(xe[l]),xe[l]=window.setTimeout(function(){delete xe[l];var o=t.value.trim(),i=n.querySelector('[data-sched-field="'+a+'"]');!i||!o||R(o).then(function(c){n.dataset.schedId===r&&(i.value=c)}).catch(function(){})},600)}}}function Ja(e){var t=e.target.closest("[data-sched-template]");t&&vt(t.dataset.schedTemplate)}function gt(){typeof Ee=="function"&&Ee(),Ee=null}async function Va(){gt(),y("Loading scheduled banners...","info");try{J=await et(),$e(),ln(),y("Scheduled banners loaded.","success")}catch(e){y(g(e),"danger")}Ee=qt(function(e){J=e,$e()},function(e){y(g(e),"danger")})}function yt(e){const t=e.target;if(!(!t||!t.id||!new Set(["adminBannerEnabled","adminBannerNewTab","adminBannerShowPill","adminBannerPillEn","adminBannerPillEs","adminBannerCtaLabelEn","adminBannerCtaLabelEs","adminBannerCtaUrl","adminBannerAutoTranslateToggle"]).has(t.id))){if(t.id==="adminBannerAutoTranslateToggle"){t.checked||ie(),A(t.checked?"Automatic Spanish fill is on for the banner.":"Automatic Spanish fill is off for the banner. Use the Translate button when needed.","info");return}(t.id==="adminBannerPillEs"||t.id==="adminBannerCtaLabelEs")&&mt(),C=F(),G(),O("You have unpublished banner changes."),(t.id==="adminBannerPillEn"||t.id==="adminBannerCtaLabelEn")&&ut()}}function _a(e){const t=e.target.closest("[data-banner-preset]");t&&Da(t.dataset.bannerPreset)}function wt(){typeof Se=="function"&&Se(),Se=null}function St(){typeof Be=="function"&&Be(),Be=null}async function Ka(){wt(),v("Loading homepage slides...","info");try{const e=await Ze();Ae(e,"Homepage slides loaded.",!0)}catch(e){v(g(e),"danger"),d=V(L.getSlides()),W()}Se=Ot(function(e){Ae(e,"Homepage slides updated.")},function(e){v(g(e),"danger")})}async function $a(){St(),A("Loading urgent banner...","info");try{const e=await Xe();Ce(e,"Urgent banner loaded.",!0)}catch(e){A(g(e),"danger"),_($())}Be=Ht(function(e){Ce(e,"Urgent banner updated.")},function(e){A(g(e),"danger")})}async function Qa(){const e=s.emailInput?s.emailInput.value.trim():"";if(!e){I("Enter your admin email address above, then click Forgot Password.","warning"),s.emailInput&&s.emailInput.focus();return}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)){I("Enter a valid email address.","warning"),s.emailInput&&s.emailInput.focus();return}I("Sending reset link\u2026","info");try{await Nt(e),I("\u2713 Reset link sent to "+e+". Check your inbox and your Spam/Junk folder. The email will come from \u201Cmmcoffice\u201D at mmc@mmcblog-6573f.firebaseapp.com \u2014 look for it there if you don\u2019t see it in your inbox.","success")}catch(t){const a=t&&t.code?t.code:"";I(a==="auth/user-not-found"||a==="auth/invalid-email"?"That email address is not registered as an authorized admin. Only approved office accounts can reset their password here.":g(t),"danger")}}async function Xa(e){e.preventDefault();const t=s.emailInput?s.emailInput.value.trim():"",a=s.passwordInput?s.passwordInput.value:"";if(!t||!a){I("Enter the admin email and password.","warning");return}I("Signing in...","info");try{await It(t,a),s.passwordInput&&(s.passwordInput.value=""),I("Signed in.","success")}catch(n){I(g(n),"danger")}}async function Za(){if(!(nt()&&!window.confirm("You have unsaved website changes. Sign out anyway?")))try{await Ut()}catch(e){v(g(e),"danger")}}function k(e,t,a){e&&e.addEventListener(t,a)}var j={},be="open",en=["January","February","March","April","May","June","July","August","September","October","November","December"],tn=["Mo","Tu","We","Th","Fr","S","Su"];function an(e){return(e+6)%7}function oe(e,t,a){return e+"-"+String(t+1).padStart(2,"0")+"-"+String(a).padStart(2,"0")}function kt(e){var t=e.split("-");return new Date(parseInt(t[0],10),parseInt(t[1],10)-1,parseInt(t[2],10))}function Me(e){return e===0||e===6}function De(){for(var e=new Date,t=[],a=0;a<3;a++){var n=new Date(e.getFullYear(),e.getMonth()+a,1);t.push({year:n.getFullYear(),month:n.getMonth()})}return t}function Bt(){var e=document.getElementById("weekendCalendarGrid");if(e){for(var t=new Date,a=oe(t.getFullYear(),t.getMonth(),t.getDate()),n=De(),r="",l=0;l<n.length;l++){var o=n[l].year,i=n[l].month,c=new Date(o,i+1,0).getDate(),f=an(new Date(o,i,1).getDay());r+='<div class="wkcal-month">',r+='<h3 class="wkcal-month-title">'+en[i]+" "+o+"</h3>",r+='<div class="wkcal-dow-row">';for(var h=0;h<7;h++)r+='<span class="wkcal-dow">'+tn[h]+"</span>";r+="</div>",r+='<div class="wkcal-days">';for(var p=0;p<f;p++)r+='<span class="wkcal-day wkcal-empty"></span>';for(var b=1;b<=c;b++){var w=new Date(o,i,b).getDay(),S=oe(o,i,b),m=S===a,B=Me(w),E=j[S],T="wkcal-day";B?(T+=" wkcal-weekend",E==="open"?T+=" wkcal-open":E==="closed"&&(T+=" wkcal-closed")):T+=" wkcal-weekday",m&&(T+=" wkcal-today"),B?r+='<button type="button" class="'+T+'" data-wkcal-date="'+S+'">'+b+"</button>":r+='<span class="'+T+'">'+b+"</span>"}r+="</div></div>"}e.innerHTML=r,Et()}}function Et(){var e=document.getElementById("weekendSummary");if(!e)return;for(var t=De(),a=[],n=[],r=0;r<t.length;r++)for(var l=t[r].year,o=t[r].month,i=new Date(l,o+1,0).getDate(),c=1;c<=i;c++){var f=new Date(l,o,c).getDay();if(Me(f)){var h=oe(l,o,c),p=j[h];p==="closed"?a.push(h):p==="open"&&n.push(h)}}if(a.length===0&&n.length===0){e.innerHTML=['<div class="wkcal-summary">','<p class="wkcal-summary-empty">No days selected yet. Pick a cursor above, then click weekend days on the calendar.</p>',"</div>"].join("");return}var b=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],w=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];function S(B){var E=kt(B);return b[E.getDay()]+", "+w[E.getMonth()]+" "+E.getDate()}var m='<div class="wkcal-summary">';a.length>0&&(m+='<p class="wkcal-summary-title">Closed ('+a.length+")</p>",m+='<div class="wkcal-summary-list" style="margin-bottom:'+(n.length>0?"12px":"0")+';">',m+=a.map(function(B){return'<span class="wkcal-summary-chip wkcal-chip-closed">'+S(B)+"</span>"}).join(""),m+="</div>"),n.length>0&&(m+='<p class="wkcal-summary-title">Open ('+n.length+")</p>",m+='<div class="wkcal-summary-list">',m+=n.map(function(B){return'<span class="wkcal-summary-chip wkcal-chip-open">'+S(B)+"</span>"}).join(""),m+="</div>"),m+="</div>",e.innerHTML=m}function nn(e){var t=j[e];be==="erase"||t===be?delete j[e]:j[e]=be;var a=document.querySelector('[data-wkcal-date="'+e+'"]');if(a){var n=j[e];a.classList.remove("wkcal-open","wkcal-closed"),n==="open"?a.classList.add("wkcal-open"):n==="closed"&&a.classList.add("wkcal-closed")}Et()}function Tt(e){be=e;var t=document.querySelectorAll(".wkcal-cursor-btn");t.forEach(function(a){a.classList.toggle("is-active",a.dataset.wkcalCursor===e)})}function rn(e){var t=kt(e),a=t.getDay();if(a===6){var n=new Date(t);n.setDate(n.getDate()+1);var r=oe(n.getFullYear(),n.getMonth(),n.getDate());if(j[r]==="open")return{en:"We are closed today but will be open tomorrow.",es:"Estamos cerrados hoy, pero abriremos ma\xF1ana."}}return{en:"The clinic is closed today. Enjoy your weekend!",es:"\xA1La cl\xEDnica est\xE1 cerrada hoy. Disfrute su fin de semana!"}}function Lt(e){return/^(Saturday|Sunday)\s+(Open|Closed)\s+\u2013\s+\d{4}-\d{2}-\d{2}$/.test(e)}async function sn(){var e=ce.currentUser,t=document.getElementById("weekendStatus");if(!e){t&&(t.innerHTML='<span style="color:#ff3b30;">Sign in first.</span>');return}for(var a=De(),n={},r=[],l=[],o={},i=0;i<a.length;i++)for(var c=a[i].year,f=a[i].month,h=new Date(c,f+1,0).getDate(),p=1;p<=h;p++){var b=new Date(c,f,p).getDay();if(Me(b)){var w=oe(c,f,p);o[w]=!0;var S=j[w];S==="closed"?(r.push({date:w,dow:b}),n[w]=!0):S==="open"&&(l.push({date:w,dow:b}),n[w]=!0)}}t&&(t.innerHTML='<span style="color:#86868b;">Removing old weekend banners...</span>');try{for(var m=J.filter(function(ye){return Lt(ye.label)&&o[ye.startDate]}),B=0;B<m.length;B++)await Qe(m[B].id);t&&(t.innerHTML='<span style="color:#86868b;">Creating '+(r.length+l.length)+" banners...</span>");for(var E=0,T=0;T<r.length;T++){var N=r[T],te=N.dow===0?"Sunday":"Saturday",ve=rn(N.date);await ue({label:te+" Closed \u2013 "+N.date,startDate:N.date,endDate:N.date,recurrence:{mode:"dates",days:[]},banner:{enabled:!0,color:"red",showPill:!0,showButton:!1,pill:{en:"Closed Today",es:"Cerrado Hoy"},message:ve,ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1}},e),E++}for(var K=0;K<l.length;K++){var ge=l[K],At=ge.dow===0?"Sunday":"Saturday";await ue({label:At+" Open \u2013 "+ge.date,startDate:ge.date,endDate:ge.date,recurrence:{mode:"dates",days:[]},banner:{enabled:!0,color:"green",showPill:!0,showButton:!0,pill:{en:"Weekend Hours",es:"Horario de Fin de Semana"},message:{en:"The clinic is open today from 8:00 AM \u2013 1:00 PM.",es:"La cl\xEDnica est\xE1 abierta hoy de 8:00 AM a 1:00 PM."},ctaLabel:{en:"Call the Office",es:"Llamar a la Oficina"},ctaUrl:"tel:3012082273",ctaNewTab:!1}},e),E++}var Ct=m.length>0?" ("+m.length+" old removed)":"",Pt=E>0?E+" banner"+(E!==1?"s":"")+" saved.":"All cleared \u2014 no banners for this window.";t&&(t.innerHTML='<span style="color:#34c759;">'+Pt+Ct+"</span>"),setTimeout(function(){t&&(t.innerHTML="")},5e3)}catch(ye){t&&(t.innerHTML='<span style="color:#ff3b30;">'+u(g(ye))+"</span>")}}function ln(){for(var e=De(),t={},a=0;a<e.length;a++)for(var n=e[a].year,r=e[a].month,l=new Date(n,r+1,0).getDate(),o=1;o<=l;o++){var i=new Date(n,r,o).getDay();Me(i)&&(t[oe(n,r,o)]=!0)}for(var c=0;c<J.length;c++){var f=J[c];if(Lt(f.label)){var h=f.startDate;if(!(!h||!t[h])){var p=f.label.match(/^(?:Saturday|Sunday)\s+(Open|Closed)/);p&&(j[h]=p[1].toLowerCase())}}}Bt()}function on(){var e=document.getElementById("weekendCalendarGrid");if(e){e.addEventListener("click",function(n){var r=n.target.closest("[data-wkcal-date]");r&&nn(r.dataset.wkcalDate)});var t=document.querySelector(".wkcal-cursor-bar");t&&t.addEventListener("click",function(n){var r=n.target.closest("[data-wkcal-cursor]");if(r){var l=r.dataset.wkcalCursor;Tt(l!=="erase"&&be===l?"erase":l)}});var a=document.getElementById("weekendApplyButton");a&&a.addEventListener("click",sn),Bt()}}function dn(){k(s.lockForm,"submit",Xa),k(s.resetPasswordButton,"click",Qa),k(s.editorList,"input",ht),k(s.editorList,"change",ht),k(s.editorList,"click",pt),document.addEventListener("input",yt),document.addEventListener("change",yt),k(s.templateGrid,"click",pt),k(s.bannerPresetGrid,"click",_a),s.bannerColorPicker&&s.bannerColorPicker.addEventListener("click",function(t){var a=t.target.closest("[data-banner-color]");a&&(lt(a.dataset.bannerColor),C=F(),G(),O("Banner color updated. Publish when ready."))}),s.tabButtons.forEach(function(t){t.addEventListener("click",function(){se(t.dataset.adminTab)})}),k(s.saveButton,"click",Ea),k(s.addButton,"click",function(){Ke(L.createSlideTemplate(),"Blank slide added. Publish when ready.")}),k(s.reloadButton,"click",Ba),k(s.resetButton,"click",Ta),k(s.exportButton,"click",La),k(s.importInput,"change",Aa),k(s.logoutButton,"click",Za),s.bannerSaveButton&&s.bannerSaveButton.addEventListener("click",Ia),s.bannerReloadButton&&s.bannerReloadButton.addEventListener("click",Na),s.bannerResetButton&&s.bannerResetButton.addEventListener("click",Ua),s.bannerTranslateButton&&s.bannerTranslateButton.addEventListener("click",function(){Ve()}),s.bannerCopyButton&&s.bannerCopyButton.addEventListener("click",fa),k(s.scheduleAddButton,"click",function(){vt()}),k(s.scheduleReloadButton,"click",ja),k(s.scheduledBannerList,"click",Ga),k(s.scheduledBannerList,"change",Ya),k(s.scheduledBannerList,"input",za);var e=document.getElementById("schedTemplateBar");e&&e.addEventListener("click",Ja),document.querySelectorAll(".studio-richtext-toolbar").forEach(function(t){t.addEventListener("click",function(a){var n=a.target.closest("[data-rt-cmd]");if(!(!n||n.tagName==="INPUT")){a.preventDefault();var r=n.dataset.rtCmd;document.execCommand(r,!1,null),Oe(t),C=F(),G(),O("You have unpublished banner changes.")}})}),document.querySelectorAll('.studio-rt-color input[type="color"]').forEach(function(t){t.addEventListener("input",function(){document.execCommand("foreColor",!1,t.value);var a=t.parentElement.querySelector(".studio-rt-color-icon");a&&(a.style.borderBottomColor=t.value),C=F(),G(),O("You have unpublished banner changes.")})}),document.querySelectorAll(".studio-richtext").forEach(function(t){t.addEventListener("input",function(){C=F(),G(),O("You have unpublished banner changes."),t.id==="adminBannerMessageEn"&&ut(),t.id==="adminBannerMessageEs"&&mt()}),t.addEventListener("keyup",function(){var a=t.previousElementSibling;a&&a.classList.contains("studio-richtext-toolbar")&&Oe(a)}),t.addEventListener("mouseup",function(){var a=t.previousElementSibling;a&&a.classList.contains("studio-richtext-toolbar")&&Oe(a)})}),k(s.bannerShowPill,"change",function(){C=F(),G(),O("You have unpublished banner changes.")}),k(s.bannerShowButton,"change",function(){C=F(),G(),O("You have unpublished banner changes.")}),s.translateAllButton&&s.translateAllButton.addEventListener("click",ba),s.autoTranslateToggle&&s.autoTranslateToggle.addEventListener("change",function(){this.checked||me(),v(this.checked?"Automatic Spanish fill is on. Type English and the Spanish side will update.":"Automatic Spanish fill is off. Use the Translate buttons when needed.","info")}),window.addEventListener("beforeunload",function(t){nt()&&(t.preventDefault(),t.returnValue="")})}function cn(){xt(async function(e){if(jt(!!e),Gt(e),!e){wt(),St(),gt(),ia(),oa(),v("Sign in to edit the homepage slides.","info"),A("Sign in to edit the urgent banner.","info"),y("Sign in to manage scheduled banners.","info"),I("Sign in with the office admin email and password.","info"),s.emailInput&&s.emailInput.focus();return}I("Signed in as "+(e.email||"admin user")+".","success"),await Promise.all([Ka(),$a(),Va()])})}var ee=null,de=null;function un(){return ee||(ee=document.createElement("div"),ee.id="tmpl-preview-popover",ee.innerHTML='<div class="tmpl-preview-card"></div>',document.body.appendChild(ee)),ee}function fn(e){var t=e.isGroup?e.entries[0].banner:e.banner,a=t&&t.color||"red",n=t&&t.pill&&t.pill.en?u(t.pill.en):"",r=t&&t.message&&t.message.en?u(t.message.en):"",l=t&&t.ctaLabel&&t.ctaLabel.en?u(t.ctaLabel.en):"",o=t&&t.ctaUrl?u(t.ctaUrl):"",i=!!(t&&t.showPill&&n),c=!!(t&&t.showButton&&l&&o);return['<div class="site-emergency-banner" data-color="'+a+'">','<div class="site-emergency-banner-inner">','<div class="site-emergency-banner-copy">',i?'<span class="site-emergency-banner-pill">'+n+"</span>":"",'<span class="site-emergency-banner-message">'+r+"</span>","</div>",c?'<a class="site-emergency-banner-link" href="#">'+l+"</a>":"","</div>","</div>"].join("")}function hn(e,t){if(e==="banner-preset"){var a=Ie.find(function(i){return i.id===t});if(!a)return null;var n=Object.assign({enabled:!0,color:"red",showPill:!0,showButton:!0},a.banner);return{title:"Quick Start Preview",name:a.label,bannerHtml:rt(n),metaChips:[a.banner.ctaUrl?"\u{1F4DE} Includes call button":null].filter(Boolean),groupNote:null}}if(e==="sched-template"){var r=tt[t];if(!r)return null;var l=r.isGroup?"Alternating weeks":r.recurrence&&r.recurrence.mode==="weekly"?"Repeats weekly":r.recurrence&&r.recurrence.mode==="dates"?"Specific dates":"",o=r.isGroup?r.entries.length+" banners created":null;return{title:"Template Preview",name:r.label,bannerHtml:'<div class="tmpl-preview-banner-wrap admin-banner-preview">'+fn(r)+"</div>",metaChips:[l,o].filter(Boolean),groupNote:r.isGroup?"Creates "+r.entries.length+" banner entries (one per alternating week).":null}}return null}function pn(e,t,a){de&&(clearTimeout(de),de=null);var n=hn(t,a);if(n){var r=un(),l=r.querySelector(".tmpl-preview-card"),o=t==="banner-preset"?'<div class="tmpl-preview-banner-wrap admin-banner-preview">'+n.bannerHtml+"</div>":n.bannerHtml,i=n.metaChips.length?'<div class="tmpl-preview-meta">'+n.metaChips.map(function(te){return'<span class="tmpl-preview-meta-chip">'+u(te)+"</span>"}).join("")+"</div>":"",c=n.groupNote?'<div class="tmpl-preview-group-note">'+u(n.groupNote)+"</div>":"";l.innerHTML='<div class="tmpl-preview-header"><span class="tmpl-preview-title">'+u(n.title)+'</span><span class="tmpl-preview-name">'+u(n.name)+"</span></div>"+o+i+c,r.classList.remove("is-visible","arrow-top","arrow-bottom");var f=e.getBoundingClientRect(),h=320,p=10,b=f.left+f.width/2-h/2;b=Math.max(8,Math.min(b,window.innerWidth-h-8));var w=220,S=f.top-w-p,m=f.bottom+p,B=S>=8,E=B?S:m;r.classList.add(B?"arrow-bottom":"arrow-top");var T=f.left+f.width/2-b;T=Math.max(20,Math.min(T,h-20)),r.style.setProperty("--arrow-x",T+"px");var N=r;r.style.left=b+"px",r.style.top=E+"px",r.offsetWidth,r.classList.add("is-visible")}}function mn(){de||(de=setTimeout(function(){de=null;var e=ee;e&&e.classList.remove("is-visible")},100))}function bn(){document.addEventListener("mouseover",function(e){var t=e.target.closest("[data-tmpl-preview]");t&&pn(t,t.dataset.tmplPreview,t.dataset.tmplPresetId||t.dataset.schedTemplate)}),document.addEventListener("mouseout",function(e){var t=e.target.closest("[data-tmpl-preview]");if(t){var a=e.relatedTarget;a&&t.contains(a)||mn()}})}function vn(){!s.lockForm||!s.editorList||(Qt(),Jt(),_($()),se(Te),dn(),on(),bn(),cn())}vn();
+import {
+    auth,
+    createDefaultEmergencyBanner,
+    deleteScheduledBanner,
+    deleteUserAccount,
+    fetchEmergencyBanner,
+    fetchHomepageSlides,
+    fetchScheduledBanners,
+    getFriendlyFirebaseError,
+    inviteUser,
+    isAdminUser,
+    muteRecipient,
+    normalizeEmergencyBanner,
+    observeAuthState,
+    removeUserRecord,
+    saveEmergencyBanner,
+    saveHomepageSlides,
+    saveScheduledBanner,
+    sendAdminPasswordReset,
+    sendUserPasswordReset,
+    setUserDisabled,
+    signInAdmin,
+    signOutAdmin,
+    subscribeToEmergencyBanner,
+    subscribeToHomepageSlides,
+    subscribeToMutedRecipients,
+    subscribeToScheduledBanners,
+    subscribeToUsers,
+    unmuteRecipient
+} from './firebase-client.js?v=2026042802';
+
+const store = window.MMCSlideshowStore;
+const slideshow = window.MMCSlideshow;
+
+if (!store || !slideshow) {
+    throw new Error('MMC slideshow editor failed to initialize.');
+}
+
+const GOOGLE_TRANSLATE_URL = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=';
+const COLOR_PRESETS = [
+    { label: 'Clinic Blue', value: '#0d47a1' },
+    { label: 'Warm Orange', value: '#e67e22' },
+    { label: 'Light Blue', value: '#1976d2' },
+    { label: 'Fresh Green', value: '#2e7d32' },
+    { label: 'Berry Red', value: '#c62828' }
+];
+
+const SLIDE_TEMPLATES = [
+    {
+        id: 'appointment',
+        name: 'Appointment Push',
+        tag: 'Most useful',
+        description: 'Best for booking visits, flu shots, physicals, and same-day care.',
+        accent: '#e67e22',
+        buildSlide: function () {
+            return {
+                accent: '#e67e22',
+                pill: { en: 'Now Booking', es: '' },
+                title: { en: 'Book Your Same-Week Visit', es: '' },
+                titleAccent: { en: 'Same-Week Visit', es: '' },
+                kicker: { en: 'Quick access to care', es: '' },
+                subtext: {
+                    en: 'Use this slide to send patients to booking right away.',
+                    es: ''
+                },
+                ctaLabel: { en: 'Schedule Appointment', es: '' },
+                ctaUrl: 'https://nextpatient.co/p/montgomerymedclinic/schedule',
+                ctaNewTab: true,
+                credentials: []
+            };
+        }
+    },
+    {
+        id: 'service',
+        name: 'Service Spotlight',
+        tag: 'Departments',
+        description: 'Highlight one department or service with a strong call to action.',
+        accent: '#0d47a1',
+        buildSlide: function () {
+            return {
+                accent: '#0d47a1',
+                pill: { en: 'Service Spotlight', es: '' },
+                title: { en: 'Dermatology Appointments Available', es: '' },
+                titleAccent: { en: 'Dermatology', es: '' },
+                kicker: { en: 'Featured this week', es: '' },
+                subtext: {
+                    en: 'Use this for dermatology, physical therapy, occupational health, or any featured department.',
+                    es: ''
+                },
+                ctaLabel: { en: 'Learn More', es: '' },
+                ctaUrl: 'dermatology/',
+                ctaNewTab: false,
+                credentials: []
+            };
+        }
+    },
+    {
+        id: 'announcement',
+        name: 'Simple Announcement',
+        tag: 'Easy update',
+        description: 'Good for office updates, reminders, and quick clinic messages.',
+        accent: '#1976d2',
+        buildSlide: function () {
+            return {
+                accent: '#1976d2',
+                pill: { en: 'Clinic Update', es: '' },
+                title: { en: 'New Hours This Month', es: '' },
+                titleAccent: { en: 'New Hours', es: '' },
+                kicker: { en: 'Important reminder', es: '' },
+                subtext: {
+                    en: 'Use the supporting text area to explain the update in simple words.',
+                    es: ''
+                },
+                ctaLabel: { en: '', es: '' },
+                ctaUrl: '',
+                ctaNewTab: false,
+                credentials: []
+            };
+        }
+    },
+    {
+        id: 'credentials',
+        name: 'Credentials / Highlights',
+        tag: 'Trust builder',
+        description: 'Best for FAA, immigration, certifications, and special qualifications.',
+        accent: '#0d47a1',
+        buildSlide: function () {
+            return {
+                accent: '#0d47a1',
+                pill: { en: 'Specialized Services', es: '' },
+                title: { en: 'FAA & Immigration Physicals', es: '' },
+                titleAccent: { en: 'Physicals', es: '' },
+                kicker: { en: '', es: '' },
+                subtext: { en: '', es: '' },
+                ctaLabel: { en: '', es: '' },
+                ctaUrl: '',
+                ctaNewTab: false,
+                credentials: [
+                    { en: 'Authorized Aviation Medical Examiner', es: '' },
+                    { en: 'USCIS-Authorized Civil Surgeon', es: '' }
+                ]
+            };
+        }
+    },
+    {
+        id: 'seasonal',
+        name: 'Seasonal Promotion',
+        tag: 'Popular',
+        description: 'Great for flu shots, wellness campaigns, and time-sensitive promos.',
+        accent: '#e67e22',
+        buildSlide: function () {
+            return {
+                accent: '#e67e22',
+                pill: { en: 'Available Today', es: '' },
+                title: { en: 'Flu Shots Available This Week', es: '' },
+                titleAccent: { en: 'Flu Shots', es: '' },
+                kicker: { en: 'Protect your family this season', es: '' },
+                subtext: {
+                    en: 'Update this message whenever you want to promote a seasonal service or event.',
+                    es: ''
+                },
+                ctaLabel: { en: 'Book Now', es: '' },
+                ctaUrl: 'https://nextpatient.co/p/montgomerymedclinic/schedule',
+                ctaNewTab: true,
+                credentials: []
+            };
+        }
+    },
+    {
+        id: 'blank',
+        name: 'Blank Slide',
+        tag: 'From scratch',
+        description: 'Start with an empty slide and fill in the details yourself.',
+        accent: '#0d47a1',
+        buildSlide: function () {
+            return store.createSlideTemplate();
+        }
+    }
+];
+
+const BANNER_PRESETS = [
+    {
+        id: 'weather-closed',
+        label: 'Weather Closure',
+        banner: {
+            enabled: true,
+            pill: { en: 'Weather Alert', es: '' },
+            message: {
+                en: 'Due to inclement weather, Montgomery Medical Clinic is closed today.',
+                es: ''
+            },
+            ctaLabel: { en: 'Call the Office', es: '' },
+            ctaUrl: 'tel:3012082273',
+            ctaNewTab: false
+        }
+    },
+    {
+        id: 'delayed-opening',
+        label: 'Delayed Opening',
+        banner: {
+            enabled: true,
+            pill: { en: 'Office Update', es: '' },
+            message: {
+                en: 'Due to weather conditions, we will open later than usual today. Please check back for the updated opening time.',
+                es: ''
+            },
+            ctaLabel: { en: 'Call for Updates', es: '' },
+            ctaUrl: 'tel:3012082273',
+            ctaNewTab: false
+        }
+    },
+    {
+        id: 'service-delay',
+        label: 'Service Delay',
+        banner: {
+            enabled: true,
+            pill: { en: 'Important Notice', es: '' },
+            message: {
+                en: 'We are experiencing delays today. Thank you for your patience while our team assists scheduled and walk-in patients.',
+                es: ''
+            },
+            ctaLabel: { en: '', es: '' },
+            ctaUrl: '',
+            ctaNewTab: false
+        }
+    },
+    {
+        id: 'power-outage',
+        label: 'Office Disruption',
+        banner: {
+            enabled: true,
+            pill: { en: 'Urgent Office Update', es: '' },
+            message: {
+                en: 'Due to an unexpected office disruption, appointments may be delayed. Please call before arriving if you have questions.',
+                es: ''
+            },
+            ctaLabel: { en: 'Call Now', es: '' },
+            ctaUrl: 'tel:3012082273',
+            ctaNewTab: false
+        }
+    }
+];
+
+const elements = {
+    lockForm: document.getElementById('adminUnlockForm'),
+    lockMessage: document.getElementById('adminLockMessage'),
+    emailInput: document.getElementById('adminEmail'),
+    passwordInput: document.getElementById('adminPassword'),
+    resetPasswordButton: document.getElementById('adminResetPasswordButton'),
+    userEmail: document.getElementById('adminUserEmail'),
+    status: document.getElementById('adminStatus'),
+    slideCount: document.getElementById('adminSlideCount'),
+    liveCount: document.getElementById('adminLiveCount'),
+    editorList: document.getElementById('slideEditorList'),
+    saveButton: document.getElementById('adminSaveButton'),
+    addButton: document.getElementById('adminAddButton'),
+    reloadButton: document.getElementById('adminReloadButton'),
+    resetButton: document.getElementById('adminResetButton'),
+    exportButton: document.getElementById('adminExportButton'),
+    importInput: document.getElementById('adminImportInput'),
+    logoutButton: document.getElementById('adminLogoutButton'),
+    translateAllButton: document.getElementById('adminTranslateAllButton'),
+    autoTranslateToggle: document.getElementById('adminAutoTranslateToggle'),
+    templateGrid: document.getElementById('adminTemplateGrid'),
+    bannerStatus: document.getElementById('adminBannerStatus'),
+    bannerEnabled: document.getElementById('adminBannerEnabled'),
+    bannerNewTab: document.getElementById('adminBannerNewTab'),
+    bannerShowPill: document.getElementById('adminBannerShowPill'),
+    bannerShowButton: document.getElementById('adminBannerShowButton'),
+    bannerPillEn: document.getElementById('adminBannerPillEn'),
+    bannerPillEs: document.getElementById('adminBannerPillEs'),
+    bannerMessageEn: document.getElementById('adminBannerMessageEn'),
+    bannerMessageEs: document.getElementById('adminBannerMessageEs'),
+    bannerCtaLabelEn: document.getElementById('adminBannerCtaLabelEn'),
+    bannerCtaLabelEs: document.getElementById('adminBannerCtaLabelEs'),
+    bannerCtaUrl: document.getElementById('adminBannerCtaUrl'),
+    bannerPreview: document.getElementById('adminBannerPreview'),
+    bannerSaveButton: document.getElementById('adminBannerSaveButton'),
+    bannerReloadButton: document.getElementById('adminBannerReloadButton'),
+    bannerResetButton: document.getElementById('adminBannerResetButton'),
+    bannerTranslateButton: document.getElementById('adminBannerTranslateButton'),
+    bannerCopyButton: document.getElementById('adminBannerCopyButton'),
+    bannerAutoTranslateToggle: document.getElementById('adminBannerAutoTranslateToggle'),
+    bannerPresetGrid: document.getElementById('adminBannerPresetGrid'),
+    bannerColorPicker: document.getElementById('adminBannerColorPicker'),
+    scheduleStatus: document.getElementById('adminScheduleStatus'),
+    scheduleAddButton: document.getElementById('adminScheduleAddButton'),
+    scheduleReloadButton: document.getElementById('adminScheduleReloadButton'),
+    scheduledBannerList: document.getElementById('scheduledBannerList'),
+    scheduledBannerEmpty: document.getElementById('scheduledBannerEmpty'),
+    tabButtons: Array.from(document.querySelectorAll('[data-admin-tab]')),
+    tabPanels: Array.from(document.querySelectorAll('[data-admin-panel]')),
+    adminOnlySections: Array.from(document.querySelectorAll('[data-admin-section="admin-only"]')),
+    inviteForm: document.getElementById('adminInviteForm'),
+    inviteEmail: document.getElementById('adminInviteEmail'),
+    inviteStatus: document.getElementById('adminInviteStatus'),
+    userList: document.getElementById('adminUserList'),
+    muteForm: document.getElementById('adminMuteForm'),
+    muteEmail: document.getElementById('adminMuteEmail'),
+    muteNote: document.getElementById('adminMuteNote'),
+    muteStatus: document.getElementById('adminMuteStatus'),
+    muteList: document.getElementById('adminMuteList')
+};
+
+let slides = [];
+let remoteSlides = store.getSlides();
+let hasUnsavedChanges = false;
+let unsubscribeSlides = null;
+let emergencyBanner = createDefaultEmergencyBanner();
+let remoteEmergencyBanner = createDefaultEmergencyBanner();
+let hasUnsavedBannerChanges = false;
+let unsubscribeBanner = null;
+let bannerTranslateTimer = null;
+let bannerTranslateRun = 0;
+let scheduledBanners = [];
+let unsubscribeScheduled = null;
+let expandedSlideId = null;
+let activeAdminTab = 'banner';
+let currentUser = null;
+let isCurrentUserAdmin = false;
+let adminUsers = [];
+let mutedRecipients = [];
+let unsubscribeUsers = null;
+let unsubscribeMuted = null;
+
+const SCHED_TEMPLATES = {
+    'weekend-hours': {
+        label: 'Weekend Hours',
+        recurrence: { mode: 'weekly', days: [6, 0] },
+        banner: {
+            enabled: true, color: 'green', showPill: true, showButton: true,
+            pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+            message: { en: 'We are open today from 8:00 AM - 1:00 PM.', es: 'Estamos abiertos hoy de 8:00 AM a 1:00 PM.' },
+            ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+            ctaUrl: 'tel:3012082273', ctaNewTab: false
+        }
+    },
+    'closed-weekend': {
+        label: 'Closed Weekend',
+        recurrence: { mode: 'weekly', days: [6, 0] },
+        banner: {
+            enabled: true, color: 'green', showPill: true, showButton: false,
+            pill: { en: 'Weekend Notice', es: 'Aviso de Fin de Semana' },
+            message: { en: 'We are closed today. Enjoy your weekend!', es: 'Estamos cerrados hoy. \u00A1Disfrute su fin de semana!' },
+            ctaLabel: { en: '', es: '' },
+            ctaUrl: '', ctaNewTab: false
+        }
+    },
+    'holiday-closed': {
+        label: 'Holiday Closure',
+        recurrence: { mode: 'dates' },
+        banner: {
+            enabled: true, color: 'orange', showPill: true, showButton: true,
+            pill: { en: 'Holiday Notice', es: 'Aviso de Feriado' },
+            message: { en: 'Our office is closed today in observance of the holiday. We will reopen on the next business day.', es: 'Nuestra oficina est\u00E1 cerrada hoy por el feriado. Reabriremos el pr\u00F3ximo d\u00EDa h\u00E1bil.' },
+            ctaLabel: { en: 'Call for Emergencies', es: 'Llamar por Emergencias' },
+            ctaUrl: 'tel:3012082273', ctaNewTab: false
+        }
+    },
+    'early-close': {
+        label: 'Early Close',
+        recurrence: { mode: 'dates' },
+        banner: {
+            enabled: true, color: 'yellow', showPill: true, showButton: true,
+            pill: { en: 'Office Update', es: 'Actualizaci\u00F3n de la Oficina' },
+            message: { en: 'We will be closing early today at 3:00 PM. Please plan your visit accordingly.', es: 'Cerraremos temprano hoy a las 3:00 PM. Por favor planifique su visita.' },
+            ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+            ctaUrl: 'tel:3012082273', ctaNewTab: false
+        }
+    },
+    'alternating-open-sat': {
+        label: 'Alternating Sat Open',
+        isGroup: true,
+        entries: [
+            {
+                label: 'Week A \u2013 Saturday Open',
+                recurrence: { mode: 'biweekly', days: [6], weekParity: 0, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'green', showPill: true, showButton: true,
+                    pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+                    message: { en: 'The clinic is open today from 8:00 AM \u2013 1:00 PM.', es: 'La cl\u00EDnica est\u00E1 abierta hoy de 8:00 AM a 1:00 PM.' },
+                    ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+                    ctaUrl: 'tel:3012082273', ctaNewTab: false
+                }
+            },
+            {
+                label: 'Week A \u2013 Sunday Closed',
+                recurrence: { mode: 'biweekly', days: [0], weekParity: 0, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'red', showPill: true, showButton: false,
+                    pill: { en: 'Closed Today', es: 'Cerrado Hoy' },
+                    message: { en: 'The clinic is closed today. Enjoy your weekend!', es: '\u00A1La cl\u00EDnica est\u00E1 cerrada hoy. Disfrute su fin de semana!' },
+                    ctaLabel: { en: '', es: '' },
+                    ctaUrl: '', ctaNewTab: false
+                }
+            },
+            {
+                label: 'Week B \u2013 Saturday Closed',
+                recurrence: { mode: 'biweekly', days: [6], weekParity: 1, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'red', showPill: true, showButton: false,
+                    pill: { en: 'Closed Today', es: 'Cerrado Hoy' },
+                    message: { en: 'Our clinic is closed today, but will be open tomorrow.', es: 'Nuestra cl\u00EDnica est\u00E1 cerrada hoy, pero abrir\u00E1 ma\u00F1ana.' },
+                    ctaLabel: { en: '', es: '' },
+                    ctaUrl: '', ctaNewTab: false
+                }
+            },
+            {
+                label: 'Week B \u2013 Sunday Open',
+                recurrence: { mode: 'biweekly', days: [0], weekParity: 1, anchorDate: '' },
+                banner: {
+                    enabled: true, color: 'green', showPill: true, showButton: true,
+                    pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+                    message: { en: 'The clinic is open today from 8:00 AM \u2013 1:00 PM.', es: 'La cl\u00EDnica est\u00E1 abierta hoy de 8:00 AM a 1:00 PM.' },
+                    ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+                    ctaUrl: 'tel:3012082273', ctaNewTab: false
+                }
+            }
+        ]
+    }
+};
+
+const translationTimers = new Map();
+const translationRuns = new Map();
+const translationCache = new Map();
+const slideAutoTranslateState = new Map();
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function cloneSlides(value) {
+    return Array.isArray(value) ? value.map(store.normalizeSlide) : [];
+}
+
+function isSameSlides(left, right) {
+    return JSON.stringify(cloneSlides(left)) === JSON.stringify(cloneSlides(right));
+}
+
+function getSlideName(slide, index) {
+    const title = slide && slide.title ? (slide.title.en || slide.title.es) : '';
+    return title || 'Untitled Slide ' + (index + 1);
+}
+
+function setStatus(message, tone) {
+    if (!elements.status) {
+        return;
+    }
+
+    elements.status.textContent = message;
+    elements.status.dataset.tone = tone || 'info';
+}
+
+function setLockMessage(message, tone) {
+    if (!elements.lockMessage) {
+        return;
+    }
+
+    elements.lockMessage.textContent = message;
+    elements.lockMessage.dataset.tone = tone || 'info';
+}
+
+function setAuthenticated(isAuthenticated) {
+    document.body.classList.toggle('admin-authenticated', isAuthenticated);
+}
+
+function setUserEmail(user) {
+    if (!elements.userEmail) {
+        return;
+    }
+
+    elements.userEmail.textContent = user && user.email ? user.email : 'Not signed in';
+}
+
+function refreshMetrics() {
+    const liveSlides = slides.filter(function (slide) {
+        return slide.enabled;
+    }).length;
+
+    if (elements.slideCount) {
+        elements.slideCount.textContent = String(slides.length);
+    }
+
+    if (elements.liveCount) {
+        elements.liveCount.textContent = String(liveSlides);
+    }
+}
+
+function markDirty(message) {
+    hasUnsavedChanges = true;
+    setStatus(message || 'You have unpublished slide changes.', 'warning');
+    refreshMetrics();
+}
+
+function clearDirty(message) {
+    hasUnsavedChanges = false;
+    setStatus(message || 'Homepage slides are up to date.', 'success');
+    refreshMetrics();
+}
+
+function hasPendingChanges() {
+    return hasUnsavedChanges || hasUnsavedBannerChanges;
+}
+
+function setActiveAdminTab(tabId) {
+    var validTabs = ['banner', 'slides', 'schedule', 'weekend', 'users', 'mute'];
+    var adminOnly = ['users', 'mute'];
+    var requested = validTabs.indexOf(tabId) >= 0 ? tabId : 'banner';
+    if (adminOnly.indexOf(requested) >= 0 && !isCurrentUserAdmin) {
+        requested = 'banner';
+    }
+    activeAdminTab = requested;
+
+    elements.tabButtons.forEach(function (button) {
+        const isActive = button.dataset.adminTab === activeAdminTab;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    elements.tabPanels.forEach(function (panel) {
+        const isActive = panel.dataset.adminPanel === activeAdminTab;
+        panel.classList.toggle('is-active', isActive);
+        panel.hidden = !isActive;
+    });
+}
+
+function setBannerStatus(message, tone) {
+    if (!elements.bannerStatus) {
+        return;
+    }
+
+    elements.bannerStatus.textContent = message;
+    elements.bannerStatus.dataset.tone = tone || 'info';
+}
+
+function markBannerDirty(message) {
+    hasUnsavedBannerChanges = true;
+    setBannerStatus(message || 'You have unpublished banner changes.', 'warning');
+}
+
+function clearBannerDirty(message) {
+    hasUnsavedBannerChanges = false;
+    setBannerStatus(message || 'Urgent banner is up to date.', 'success');
+}
+
+function buildBannerPresetGrid() {
+    if (!elements.bannerPresetGrid) {
+        return;
+    }
+
+    elements.bannerPresetGrid.innerHTML = BANNER_PRESETS.map(function (preset) {
+        return [
+            '<button class="admin-preset-button" type="button" data-banner-preset="',
+            escapeHtml(preset.id),
+            '" data-tmpl-preview="banner-preset" data-tmpl-preset-id="',
+            escapeHtml(preset.id),
+            '">',
+            escapeHtml(preset.label),
+            '</button>'
+        ].join('');
+    }).join('');
+}
+
+
+function sanitizeBannerUrl(value) {
+    const url = typeof value === 'string' ? value.trim() : '';
+
+    if (!url) {
+        return '';
+    }
+
+    if (
+        url.startsWith('#') ||
+        url.startsWith('/') ||
+        url.startsWith('./') ||
+        url.startsWith('../')
+    ) {
+        return url;
+    }
+
+    if (/^(https?:|mailto:|tel:|sms:)/i.test(url)) {
+        return url;
+    }
+
+    if (/^[a-z0-9][a-z0-9/_\-.]*([?#].*)?$/i.test(url)) {
+        return url;
+    }
+
+    return '';
+}
+
+function sanitizeBannerHtml(raw) {
+    if (typeof raw !== 'string') return '';
+    var temp = document.createElement('div');
+    temp.innerHTML = raw;
+    var ALLOWED = { B: 1, STRONG: 1, I: 1, EM: 1, U: 1, SPAN: 1, BR: 1 };
+    function walk(parent) {
+        var nodes = Array.from(parent.childNodes);
+        for (var i = 0; i < nodes.length; i++) {
+            var n = nodes[i];
+            if (n.nodeType === 3) continue;
+            if (n.nodeType !== 1 || !ALLOWED[n.tagName]) {
+                while (n.firstChild) n.parentNode.insertBefore(n.firstChild, n);
+                n.parentNode.removeChild(n);
+                continue;
+            }
+            if (n.tagName === 'SPAN') {
+                var color = n.style.color;
+                var attrs = Array.from(n.attributes);
+                for (var a = 0; a < attrs.length; a++) n.removeAttribute(attrs[a].name);
+                if (color) n.style.color = color;
+            } else {
+                var attrs2 = Array.from(n.attributes);
+                for (var a2 = 0; a2 < attrs2.length; a2++) n.removeAttribute(attrs2[a2].name);
+            }
+            walk(n);
+        }
+    }
+    walk(temp);
+    return temp.innerHTML.trim();
+}
+
+function stripHtmlTags(html) {
+    if (typeof html !== 'string') return '';
+    var temp = document.createElement('div');
+    temp.innerHTML = html;
+    return (temp.textContent || temp.innerText || '').trim();
+}
+
+function updateRichToolbarState(toolbar) {
+    toolbar.querySelectorAll('[data-rt-cmd]').forEach(function (btn) {
+        if (btn.tagName === 'INPUT') return;
+        var cmd = btn.dataset.rtCmd;
+        if (cmd === 'foreColor') return;
+        try {
+            btn.classList.toggle('is-active', document.queryCommandState(cmd));
+        } catch (e) { /* ignore */ }
+    });
+}
+
+function getLocalizedBannerText(copy, locale) {
+    const source = copy && typeof copy === 'object' ? copy : {};
+    const primary = typeof source[locale] === 'string' ? source[locale].trim() : '';
+    const fallback = typeof source[locale === 'en' ? 'es' : 'en'] === 'string'
+        ? source[locale === 'en' ? 'es' : 'en'].trim()
+        : '';
+    return primary || fallback;
+}
+
+function buildBannerPreviewMarkup(banner) {
+    const previewBanner = normalizeEmergencyBanner(banner);
+    const pillText = getLocalizedBannerText(previewBanner.pill, 'en');
+    const messageHtml = sanitizeBannerHtml(getLocalizedBannerText(previewBanner.message, 'en'));
+    const messagePlain = stripHtmlTags(messageHtml);
+    const linkText = getLocalizedBannerText(previewBanner.ctaLabel, 'en');
+    const linkUrl = sanitizeBannerUrl(previewBanner.ctaUrl);
+
+    if (!previewBanner.enabled || !messagePlain) {
+        return [
+            '<div class="admin-empty-state">',
+            '<p>Turn the banner on and add a message to preview it here.</p>',
+            '</div>'
+        ].join('');
+    }
+
+    var showPill = previewBanner.showPill !== false && !!pillText;
+    var showButton = previewBanner.showButton !== false && !!linkText && !!linkUrl;
+
+    return [
+        '<div class="site-emergency-banner" data-color="' + escapeHtml(previewBanner.color || 'red') + '">',
+        '<div class="site-emergency-banner-inner">',
+        '<div class="site-emergency-banner-copy">',
+        showPill ? '<span class="site-emergency-banner-pill">' + escapeHtml(pillText) + '</span>' : '',
+        '<span class="site-emergency-banner-message">',
+        messageHtml,
+        '</span>',
+        '</div>',
+        showButton
+            ? '<a class="site-emergency-banner-link" href="' + escapeHtml(linkUrl) + '">' + escapeHtml(linkText) + '</a>'
+            : '',
+        '</div>',
+        '</div>'
+    ].join('');
+}
+
+function isBannerAutoTranslateEnabled() {
+    return !elements.bannerAutoTranslateToggle || !!elements.bannerAutoTranslateToggle.checked;
+}
+
+function setBannerAutoTranslateEnabled(enabled) {
+    if (!elements.bannerAutoTranslateToggle) {
+        return;
+    }
+
+    elements.bannerAutoTranslateToggle.checked = !!enabled;
+}
+
+function isSlideExpanded(slideId) {
+    return !!slideId && expandedSlideId === slideId;
+}
+
+function ensureExpandedSlide() {
+    const hasExpanded = slides.some(function (slide) {
+        return slide.id === expandedSlideId;
+    });
+
+    if (!hasExpanded) {
+        expandedSlideId = slides.length ? slides[0].id : null;
+    }
+}
+
+function toggleSlideExpanded(slideId) {
+    expandedSlideId = expandedSlideId === slideId ? null : slideId;
+    renderEditors();
+}
+
+function clearTranslationTimer(slideId) {
+    const existingTimer = translationTimers.get(slideId);
+
+    if (existingTimer) {
+        window.clearTimeout(existingTimer);
+        translationTimers.delete(slideId);
+    }
+}
+
+function cancelPendingTranslation(slideId) {
+    if (!slideId) {
+        return;
+    }
+
+    clearTranslationTimer(slideId);
+    translationRuns.set(slideId, getTranslationRun(slideId) + 1);
+}
+
+function cancelAllPendingTranslations() {
+    Array.from(translationTimers.keys()).forEach(clearTranslationTimer);
+}
+
+function findSlideIndexById(slideId) {
+    return slides.findIndex(function (slide) {
+        return slide.id === slideId;
+    });
+}
+
+function getSlideCardById(slideId) {
+    if (!elements.editorList || !slideId) {
+        return null;
+    }
+
+    return Array.from(elements.editorList.querySelectorAll('.admin-slide-card')).find(function (card) {
+        return card.dataset.slideId === slideId;
+    }) || null;
+}
+
+function reconcileSlideStateMaps() {
+    const validSlideIds = new Set(slides.map(function (slide) {
+        return slide.id;
+    }));
+
+    Array.from(slideAutoTranslateState.keys()).forEach(function (slideId) {
+        if (!validSlideIds.has(slideId)) {
+            slideAutoTranslateState.delete(slideId);
+        }
+    });
+
+    Array.from(translationRuns.keys()).forEach(function (slideId) {
+        if (!validSlideIds.has(slideId)) {
+            translationRuns.delete(slideId);
+        }
+    });
+
+    Array.from(translationTimers.keys()).forEach(function (slideId) {
+        if (!validSlideIds.has(slideId)) {
+            clearTranslationTimer(slideId);
+        }
+    });
+
+    slides.forEach(function (slide) {
+        if (!slideAutoTranslateState.has(slide.id)) {
+            slideAutoTranslateState.set(slide.id, true);
+        }
+    });
+}
+
+function isGlobalAutoTranslateEnabled() {
+    return !elements.autoTranslateToggle || !!elements.autoTranslateToggle.checked;
+}
+
+function isSlideAutoTranslateEnabled(slideId) {
+    if (!slideId) {
+        return isGlobalAutoTranslateEnabled();
+    }
+
+    if (!slideAutoTranslateState.has(slideId)) {
+        slideAutoTranslateState.set(slideId, true);
+    }
+
+    return slideAutoTranslateState.get(slideId) && isGlobalAutoTranslateEnabled();
+}
+
+function setSlideAutoTranslateEnabled(slideId, enabled) {
+    if (!slideId) {
+        return;
+    }
+
+    slideAutoTranslateState.set(slideId, !!enabled);
+}
+
+function renderTemplateGrid() {
+    if (!elements.templateGrid) {
+        return;
+    }
+
+    elements.templateGrid.innerHTML = SLIDE_TEMPLATES.map(function (template) {
+        var icon = '';
+        switch (template.id) {
+            case 'appointment': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 5h11M4.5 1.5v2M9.5 1.5v2M4.5 8h2M4.5 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'; break;
+            case 'service': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'; break;
+            case 'announcement': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 2L5 5H2.5a.5.5 0 00-.5.5v3a.5.5 0 00.5.5H5l6 3V2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>'; break;
+            case 'credentials': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 7l1.5 1.5L9.5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/></svg>'; break;
+            case 'seasonal': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5v1M7 11.5v1M1.5 7h1M11.5 7h1M3.1 3.1l.7.7M10.2 10.2l.7.7M10.2 3.1l-.7.7M3.1 10.2l.7.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.2"/></svg>'; break;
+            case 'blank': icon = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'; break;
+        }
+        return [
+            '<button class="studio-template-pill" type="button" data-action="use-template" data-template-id="',
+            escapeHtml(template.id),
+            '" title="',
+            escapeHtml(template.description),
+            '">',
+            icon,
+            '<span>',
+            escapeHtml(template.name),
+            '</span>',
+            '</button>'
+        ].join('');
+    }).join('');
+
+    // Attach hover preview listeners after rendering pills
+    attachTemplatePreviewListeners();
+}
+
+/* ── Template hover preview ── */
+
+var templatePreviewTooltip = null;
+var templatePreviewTimer = null;
+
+function getOrCreatePreviewTooltip() {
+    if (!templatePreviewTooltip) {
+        templatePreviewTooltip = document.createElement('div');
+        templatePreviewTooltip.className = 'template-preview-tooltip';
+        document.body.appendChild(templatePreviewTooltip);
+    }
+    return templatePreviewTooltip;
+}
+
+function showTemplatePreview(pill, template) {
+    var tooltip = getOrCreatePreviewTooltip();
+    var previewSlide = template.buildSlide();
+    var previewHtml = slideshow.buildPreviewMarkup(previewSlide, 'en');
+
+    tooltip.innerHTML = [
+        '<div class="template-preview-header">',
+        '<p class="template-preview-name">', escapeHtml(template.name), '</p>',
+        '<p class="template-preview-desc">', escapeHtml(template.description), '</p>',
+        '</div>',
+        '<div class="template-preview-body">',
+        previewHtml,
+        '</div>',
+        '<div class="template-preview-footer">',
+        '<span>Click to add this slide</span>',
+        '</div>'
+    ].join('');
+
+    // Position below the pill button
+    var rect = pill.getBoundingClientRect();
+    var tooltipWidth = 340;
+    var left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+
+    // Keep within viewport
+    if (left < 12) left = 12;
+    if (left + tooltipWidth > window.innerWidth - 12) {
+        left = window.innerWidth - tooltipWidth - 12;
+    }
+
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = (rect.bottom + 8) + 'px';
+
+    // Force reflow then show
+    void tooltip.offsetWidth;
+    tooltip.classList.add('is-visible');
+}
+
+function hideTemplatePreview() {
+    clearTimeout(templatePreviewTimer);
+    templatePreviewTimer = null;
+    if (templatePreviewTooltip) {
+        templatePreviewTooltip.classList.remove('is-visible');
+    }
+}
+
+function attachTemplatePreviewListeners() {
+    if (!elements.templateGrid) return;
+
+    var pills = elements.templateGrid.querySelectorAll('.studio-template-pill');
+    pills.forEach(function (pill) {
+        pill.addEventListener('mouseenter', function () {
+            var templateId = pill.dataset.templateId;
+            var template = SLIDE_TEMPLATES.find(function (t) { return t.id === templateId; });
+            if (!template) return;
+
+            clearTimeout(templatePreviewTimer);
+            templatePreviewTimer = setTimeout(function () {
+                showTemplatePreview(pill, template);
+            }, 250);
+        });
+
+        pill.addEventListener('mouseleave', function () {
+            hideTemplatePreview();
+        });
+    });
+}
+
+function buildColorPresetButtons() {
+    return COLOR_PRESETS.map(function (preset) {
+        return [
+            '<button class="admin-color-preset" type="button" data-action="set-color" data-color="',
+            escapeHtml(preset.value),
+            '" title="',
+            escapeHtml(preset.label),
+            '">',
+            '<span class="admin-color-swatch" style="background:',
+            escapeHtml(preset.value),
+            ';"></span>',
+            '<span>',
+            escapeHtml(preset.label),
+            '</span>',
+            '</button>'
+        ].join('');
+    }).join('');
+}
+
+function buildCredentialRows(slide) {
+    if (!slide.credentials.length) {
+        return [
+            '<div class="admin-empty-state">',
+            '<p>Add trust points only if this slide needs credentials, certifications, or other highlights.</p>',
+            '</div>'
+        ].join('');
+    }
+
+    return slide.credentials.map(function (credential, credentialIndex) {
+        return [
+            '<div class="admin-credential-row" data-credential-index="',
+            credentialIndex,
+            '">',
+            '<label class="admin-field">',
+            '<span class="admin-field-label">Trust Point (EN)</span>',
+            '<input type="text" data-role="credential-en" value="',
+            escapeHtml(credential.en || ''),
+            '" placeholder="Authorized Aviation Medical Examiner">',
+            '</label>',
+            '<label class="admin-field">',
+            '<span class="admin-field-label">Trust Point (ES)</span>',
+            '<input type="text" data-role="credential-es" value="',
+            escapeHtml(credential.es || ''),
+            '" placeholder="Examinador autorizado">',
+            '</label>',
+            '<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-credential">Delete</button>',
+            '</div>'
+        ].join('');
+    }).join('');
+}
+
+function buildSlideCard(slide, index) {
+    const autoTranslateChecked = isSlideAutoTranslateEnabled(slide.id) ? ' checked' : '';
+    const expanded = isSlideExpanded(slide.id);
+    const statusLabel = slide.enabled ? 'Live' : 'Hidden';
+    const toggleLabel = expanded ? 'Close' : 'Edit';
+
+    return [
+        '<article class="admin-slide-card" data-slide-index="',
+        index,
+        '" data-slide-id="',
+        escapeHtml(slide.id),
+        '">',
+        '<div class="admin-slide-header admin-slide-header-clean">',
+        '<div class="admin-slide-header-left">',
+        '<span class="admin-slide-number">',
+        index + 1,
+        '</span>',
+        '<div>',
+        '<h2 class="admin-slide-name" data-role="slide-name">',
+        escapeHtml(getSlideName(slide, index)),
+        '</h2>',
+        '<div class="admin-slide-header-meta">',
+        '<span class="admin-pill" data-role="slide-live-pill" data-state="',
+        slide.enabled ? 'live' : 'disabled',
+        '">',
+        statusLabel,
+        '</span>',
+        '<span class="admin-pill" data-role="slide-accent-pill" style="border-left:3px solid ',
+        escapeHtml(slide.accent),
+        '">',
+        escapeHtml(slide.accent),
+        '</span>',
+        '</div>',
+        '</div>',
+        '</div>',
+        '<div class="admin-slide-actions">',
+        '<button class="admin-btn admin-btn-primary admin-btn-small" type="button" data-action="toggle-slide" aria-expanded="',
+        expanded ? 'true' : 'false',
+        '">',
+        toggleLabel,
+        '</button>',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small admin-btn-icon" type="button" data-action="move-up" title="Move Earlier">\u2191</button>',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small admin-btn-icon" type="button" data-action="move-down" title="Move Later">\u2193</button>',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="duplicate-slide">Copy</button>',
+        '<button class="admin-btn admin-btn-danger admin-btn-small" type="button" data-action="remove-slide">Delete</button>',
+        '</div>',
+        '</div>',
+        '<div class="admin-slide-body"',
+        expanded ? '' : ' hidden',
+        '>',
+        '<div class="admin-slide-settings-bar">',
+        '<label class="admin-toggle admin-toggle-prominent">',
+        '<input type="checkbox" data-field="enabled"',
+        slide.enabled ? ' checked' : '',
+        '>',
+        '<span>Show on homepage</span>',
+        '</label>',
+        '<label class="admin-checkbox admin-checkbox-inline">',
+        '<input type="checkbox" data-field="ctaNewTab"',
+        slide.ctaNewTab ? ' checked' : '',
+        '>',
+        '<span>Open link in new tab</span>',
+        '</label>',
+        '<div class="admin-color-picker-inline">',
+        '<input type="color" data-field="accent" value="',
+        escapeHtml(slide.accent),
+        '">',
+        '<span class="admin-color-value" data-role="accent-value">',
+        escapeHtml(slide.accent),
+        '</span>',
+        '<div class="admin-color-presets">',
+        buildColorPresetButtons(),
+        '</div>',
+        '</div>',
+        '</div>',
+        '<div class="admin-slide-layout">',
+        '<section class="admin-form-panel">',
+        '<div class="admin-copy-columns admin-copy-columns-clean">',
+        '<section class="admin-copy-panel">',
+        '<div class="admin-copy-header">',
+        '<div>',
+        '<span class="admin-copy-badge">English</span>',
+        '</div>',
+        '</div>',
+        '<div class="admin-field-grid admin-field-grid-single">',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Top Label <span class="admin-field-optional">(optional)</span></span>',
+        '<input type="text" data-field="pill-en" value="',
+        escapeHtml(slide.pill.en),
+        '" placeholder="Available Today">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Main Title</span>',
+        '<input type="text" data-field="title-en" value="',
+        escapeHtml(slide.title.en),
+        '" placeholder="Seasonal Flu Shots Are Here">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Highlight Words <span class="admin-field-optional">(optional)</span></span>',
+        '<input type="text" data-field="titleAccent-en" value="',
+        escapeHtml(slide.titleAccent.en),
+        '" placeholder="Flu Shots">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Small Line</span>',
+        '<input type="text" data-field="kicker-en" value="',
+        escapeHtml(slide.kicker.en),
+        '" placeholder="Protect yourself this season">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Supporting Text</span>',
+        '<textarea data-field="subtext-en" placeholder="Tell visitors what this slide is about.">',
+        escapeHtml(slide.subtext.en),
+        '</textarea>',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Button Text <span class="admin-field-optional">(optional)</span></span>',
+        '<input type="text" data-field="ctaLabel-en" value="',
+        escapeHtml(slide.ctaLabel.en),
+        '" placeholder="Schedule Appointment">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Button Link</span>',
+        '<input type="text" data-field="ctaUrl" value="',
+        escapeHtml(slide.ctaUrl),
+        '" placeholder="https://example.com or #services">',
+        '</label>',
+        '</div>',
+        '</section>',
+        '<section class="admin-copy-panel">',
+        '<div class="admin-copy-header">',
+        '<div>',
+        '<span class="admin-copy-badge">Spanish</span>',
+        '</div>',
+        '<div class="admin-copy-actions">',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="translate-slide">Translate</button>',
+        '<button class="admin-btn admin-btn-secondary admin-btn-small" type="button" data-action="copy-english">Copy English</button>',
+        '</div>',
+        '</div>',
+        '<label class="admin-toggle admin-toggle-block admin-copy-toggle">',
+        '<input type="checkbox" data-role="slide-auto-translate"',
+        autoTranslateChecked,
+        '>',
+        '<span>Auto-translate while typing</span>',
+        '</label>',
+        '<div class="admin-field-grid admin-field-grid-single">',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Etiqueta (ES)</span>',
+        '<input type="text" data-field="pill-es" value="',
+        escapeHtml(slide.pill.es),
+        '" placeholder="Disponible Hoy">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Titulo (ES)</span>',
+        '<input type="text" data-field="title-es" value="',
+        escapeHtml(slide.title.es),
+        '" placeholder="Las Vacunas contra la Gripe Estan Aqui">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Palabras en Color (ES)</span>',
+        '<input type="text" data-field="titleAccent-es" value="',
+        escapeHtml(slide.titleAccent.es),
+        '" placeholder="Vacunas contra la Gripe">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Linea Pequena (ES)</span>',
+        '<input type="text" data-field="kicker-es" value="',
+        escapeHtml(slide.kicker.es),
+        '" placeholder="Protejase esta temporada">',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Texto de Apoyo (ES)</span>',
+        '<textarea data-field="subtext-es" placeholder="Revise o ajuste la traduccion al espanol aqui.">',
+        escapeHtml(slide.subtext.es),
+        '</textarea>',
+        '</label>',
+        '<label class="admin-field">',
+        '<span class="admin-field-label">Texto del Boton (ES)</span>',
+        '<input type="text" data-field="ctaLabel-es" value="',
+        escapeHtml(slide.ctaLabel.es),
+        '" placeholder="Programar Cita">',
+        '</label>',
+        '</div>',
+        '</section>',
+        '</div>',
+        '</section>',
+        '<div class="admin-side-column">',
+        '<section class="admin-side-panel">',
+        '<h3 class="admin-panel-title">Preview</h3>',
+        '<div class="admin-preview" data-role="slide-preview">',
+        slideshow.buildPreviewMarkup(slide, 'en'),
+        '</div>',
+        '</section>',
+        '<section class="admin-side-panel">',
+        '<div class="admin-credentials-head">',
+        '<div>',
+        '<h3 class="admin-panel-title">Trust Points</h3>',
+        '</div>',
+        '<button class="admin-btn admin-btn-ghost admin-btn-small" type="button" data-action="add-credential">Add</button>',
+        '</div>',
+        '<div class="admin-credential-list">',
+        buildCredentialRows(slide),
+        '</div>',
+        '</section>',
+        '</div>',
+        '</div>',
+        '</div>',
+        '</article>'
+    ].join('');
+}
+
+function renderEditors() {
+    if (!elements.editorList) {
+        return;
+    }
+
+    reconcileSlideStateMaps();
+    elements.editorList.innerHTML = slides.map(buildSlideCard).join('');
+    refreshMetrics();
+}
+
+function getSelectedBannerColor() {
+    if (!elements.bannerColorPicker) {
+        return 'red';
+    }
+
+    var active = elements.bannerColorPicker.querySelector('.banner-color-btn.is-active');
+    return active ? (active.dataset.bannerColor || 'red') : 'red';
+}
+
+function setSelectedBannerColor(color) {
+    if (!elements.bannerColorPicker) {
+        return;
+    }
+
+    var buttons = elements.bannerColorPicker.querySelectorAll('.banner-color-btn');
+    buttons.forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.dataset.bannerColor === color);
+    });
+}
+
+function readBannerFromForm() {
+    return normalizeEmergencyBanner({
+        enabled: !!(elements.bannerEnabled && elements.bannerEnabled.checked),
+        color: getSelectedBannerColor(),
+        showPill: !elements.bannerShowPill || elements.bannerShowPill.checked,
+        showButton: !elements.bannerShowButton || elements.bannerShowButton.checked,
+        pill: {
+            en: elements.bannerPillEn ? elements.bannerPillEn.value : '',
+            es: elements.bannerPillEs ? elements.bannerPillEs.value : ''
+        },
+        message: {
+            en: elements.bannerMessageEn ? sanitizeBannerHtml(elements.bannerMessageEn.innerHTML) : '',
+            es: elements.bannerMessageEs ? sanitizeBannerHtml(elements.bannerMessageEs.innerHTML) : ''
+        },
+        ctaLabel: {
+            en: elements.bannerCtaLabelEn ? elements.bannerCtaLabelEn.value : '',
+            es: elements.bannerCtaLabelEs ? elements.bannerCtaLabelEs.value : ''
+        },
+        ctaUrl: elements.bannerCtaUrl ? elements.bannerCtaUrl.value : '',
+        ctaNewTab: !!(elements.bannerNewTab && elements.bannerNewTab.checked)
+    });
+}
+
+function renderBannerPreview() {
+    if (!elements.bannerPreview) {
+        return;
+    }
+
+    elements.bannerPreview.innerHTML = buildBannerPreviewMarkup(emergencyBanner);
+}
+
+function applyBannerToForm(banner) {
+    const nextBanner = normalizeEmergencyBanner(banner);
+
+    emergencyBanner = nextBanner;
+
+    if (elements.bannerEnabled) {
+        elements.bannerEnabled.checked = nextBanner.enabled;
+    }
+    if (elements.bannerNewTab) {
+        elements.bannerNewTab.checked = nextBanner.ctaNewTab;
+    }
+    if (elements.bannerShowPill) {
+        elements.bannerShowPill.checked = nextBanner.showPill !== false;
+    }
+    if (elements.bannerShowButton) {
+        elements.bannerShowButton.checked = nextBanner.showButton !== false;
+    }
+    setSelectedBannerColor(nextBanner.color);
+    if (elements.bannerPillEn) {
+        elements.bannerPillEn.value = nextBanner.pill.en;
+    }
+    if (elements.bannerPillEs) {
+        elements.bannerPillEs.value = nextBanner.pill.es;
+    }
+    if (elements.bannerMessageEn) {
+        elements.bannerMessageEn.innerHTML = sanitizeBannerHtml(nextBanner.message.en);
+    }
+    if (elements.bannerMessageEs) {
+        elements.bannerMessageEs.innerHTML = sanitizeBannerHtml(nextBanner.message.es);
+    }
+    if (elements.bannerCtaLabelEn) {
+        elements.bannerCtaLabelEn.value = nextBanner.ctaLabel.en;
+    }
+    if (elements.bannerCtaLabelEs) {
+        elements.bannerCtaLabelEs.value = nextBanner.ctaLabel.es;
+    }
+    if (elements.bannerCtaUrl) {
+        elements.bannerCtaUrl.value = nextBanner.ctaUrl;
+    }
+
+    renderBannerPreview();
+}
+
+function getFieldValue(card, fieldName) {
+    const field = card.querySelector('[data-field="' + fieldName + '"]');
+    return field ? field.value.trim() : '';
+}
+
+function getCheckboxValue(card, fieldName) {
+    const field = card.querySelector('[data-field="' + fieldName + '"]');
+    return !!(field && field.checked);
+}
+
+function readSlideFromCard(card) {
+    const credentials = Array.from(card.querySelectorAll('.admin-credential-row')).map(function (row) {
+        const englishInput = row.querySelector('[data-role="credential-en"]');
+        const spanishInput = row.querySelector('[data-role="credential-es"]');
+
+        return {
+            en: englishInput ? englishInput.value.trim() : '',
+            es: spanishInput ? spanishInput.value.trim() : ''
+        };
+    }).filter(function (credential) {
+        return credential.en || credential.es;
+    });
+
+    return store.normalizeSlide({
+        id: card.dataset.slideId || '',
+        enabled: getCheckboxValue(card, 'enabled'),
+        accent: getFieldValue(card, 'accent'),
+        pill: {
+            en: getFieldValue(card, 'pill-en'),
+            es: getFieldValue(card, 'pill-es')
+        },
+        title: {
+            en: getFieldValue(card, 'title-en'),
+            es: getFieldValue(card, 'title-es')
+        },
+        titleAccent: {
+            en: getFieldValue(card, 'titleAccent-en'),
+            es: getFieldValue(card, 'titleAccent-es')
+        },
+        kicker: {
+            en: getFieldValue(card, 'kicker-en'),
+            es: getFieldValue(card, 'kicker-es')
+        },
+        subtext: {
+            en: getFieldValue(card, 'subtext-en'),
+            es: getFieldValue(card, 'subtext-es')
+        },
+        ctaLabel: {
+            en: getFieldValue(card, 'ctaLabel-en'),
+            es: getFieldValue(card, 'ctaLabel-es')
+        },
+        ctaUrl: getFieldValue(card, 'ctaUrl'),
+        ctaNewTab: getCheckboxValue(card, 'ctaNewTab'),
+        credentials: credentials
+    });
+}
+
+function syncSlidesFromDom() {
+    const cards = elements.editorList
+        ? Array.from(elements.editorList.querySelectorAll('.admin-slide-card'))
+        : [];
+
+    if (!cards.length) {
+        return slides;
+    }
+
+    slides = cards.map(readSlideFromCard);
+    cards.forEach(function (card) {
+        const toggle = card.querySelector('[data-role="slide-auto-translate"]');
+        const slideId = card.dataset.slideId;
+        if (toggle && slideId) {
+            setSlideAutoTranslateEnabled(slideId, toggle.checked);
+        }
+    });
+    refreshMetrics();
+    return slides;
+}
+
+function setCardFieldValue(card, fieldName, value) {
+    const field = card.querySelector('[data-field="' + fieldName + '"]');
+    if (field) {
+        field.value = value || '';
+    }
+}
+
+function setCredentialValue(row, role, value) {
+    const field = row.querySelector('[data-role="' + role + '"]');
+    if (field) {
+        field.value = value || '';
+    }
+}
+
+function refreshSlideCard(card, slide, index) {
+    const name = card.querySelector('[data-role="slide-name"]');
+    const livePill = card.querySelector('[data-role="slide-live-pill"]');
+    const accentPill = card.querySelector('[data-role="slide-accent-pill"]');
+    const preview = card.querySelector('[data-role="slide-preview"]');
+    const accentValue = card.querySelector('[data-role="accent-value"]');
+    const slideNumber = card.querySelector('.admin-slide-number');
+
+    if (name) {
+        name.textContent = getSlideName(slide, index);
+    }
+
+    if (slideNumber) {
+        slideNumber.textContent = index + 1;
+    }
+
+    if (livePill) {
+        livePill.textContent = slide.enabled ? 'Live' : 'Hidden';
+        livePill.dataset.state = slide.enabled ? 'live' : 'disabled';
+    }
+
+    if (preview) {
+        preview.innerHTML = slideshow.buildPreviewMarkup(slide, 'en');
+    }
+
+    if (accentValue) {
+        accentValue.textContent = slide.accent;
+    }
+
+    if (accentPill) {
+        accentPill.textContent = slide.accent;
+        accentPill.style.borderLeft = '3px solid ' + slide.accent;
+    }
+}
+
+function applySlideToCard(card, slide, index, options) {
+    const settings = options || {};
+    const englishOnly = !!settings.englishOnly;
+    const spanishOnly = !!settings.spanishOnly;
+
+    if (!spanishOnly) {
+        setCardFieldValue(card, 'pill-en', slide.pill.en);
+        setCardFieldValue(card, 'title-en', slide.title.en);
+        setCardFieldValue(card, 'titleAccent-en', slide.titleAccent.en);
+        setCardFieldValue(card, 'kicker-en', slide.kicker.en);
+        setCardFieldValue(card, 'subtext-en', slide.subtext.en);
+        setCardFieldValue(card, 'ctaLabel-en', slide.ctaLabel.en);
+        setCardFieldValue(card, 'ctaUrl', slide.ctaUrl);
+    }
+
+    if (!englishOnly) {
+        setCardFieldValue(card, 'pill-es', slide.pill.es);
+        setCardFieldValue(card, 'title-es', slide.title.es);
+        setCardFieldValue(card, 'titleAccent-es', slide.titleAccent.es);
+        setCardFieldValue(card, 'kicker-es', slide.kicker.es);
+        setCardFieldValue(card, 'subtext-es', slide.subtext.es);
+        setCardFieldValue(card, 'ctaLabel-es', slide.ctaLabel.es);
+
+        const rows = Array.from(card.querySelectorAll('.admin-credential-row'));
+        rows.forEach(function (row, credentialIndex) {
+            const credential = slide.credentials[credentialIndex] || { en: '', es: '' };
+            setCredentialValue(row, 'credential-es', credential.es);
+            if (!spanishOnly) {
+                setCredentialValue(row, 'credential-en', credential.en);
+            }
+        });
+    }
+
+    refreshSlideCard(card, slide, index);
+}
+
+function validateSlides(candidateSlides) {
+    if (!candidateSlides.length) {
+        return 'Create at least one slide before saving.';
+    }
+
+    const liveSlides = candidateSlides.filter(function (slide) {
+        return slide.enabled;
+    });
+
+    if (!liveSlides.length) {
+        return 'Leave at least one slide enabled for the homepage.';
+    }
+
+    const invalidTitle = candidateSlides.find(function (slide) {
+        return !(slide.title.en || slide.title.es);
+    });
+
+    if (invalidTitle) {
+        return 'Every slide needs a title in at least one language.';
+    }
+
+    return '';
+}
+
+function clearEditorState() {
+    cancelAllPendingTranslations();
+    slides = [];
+    remoteSlides = store.getSlides();
+    hasUnsavedChanges = false;
+    expandedSlideId = null;
+    slideAutoTranslateState.clear();
+    translationRuns.clear();
+    renderEditors();
+}
+
+function clearBannerEditorState() {
+    cancelPendingBannerTranslation();
+    remoteEmergencyBanner = createDefaultEmergencyBanner();
+    hasUnsavedBannerChanges = false;
+    setBannerAutoTranslateEnabled(true);
+    applyBannerToForm(createDefaultEmergencyBanner());
+    translationCache.clear();
+}
+
+function applyRemoteSlides(nextSlides, message, force) {
+    cancelAllPendingTranslations();
+    remoteSlides = cloneSlides(nextSlides);
+    store.setRemoteSlides(remoteSlides);
+
+    if (!expandedSlideId || !remoteSlides.some(function (slide) {
+        return slide.id === expandedSlideId;
+    })) {
+        expandedSlideId = remoteSlides.length ? remoteSlides[0].id : null;
+    }
+
+    if (!slides.length || force || !hasUnsavedChanges) {
+        slides = cloneSlides(remoteSlides);
+        renderEditors();
+        clearDirty(message || 'Homepage slides are up to date.');
+        return;
+    }
+
+    if (!isSameSlides(remoteSlides, slides)) {
+        setStatus('A newer saved version of the homepage slides is available. Reload it or publish your current edits first.', 'warning');
+    }
+}
+
+function applyRemoteBanner(nextBanner, message, force) {
+    remoteEmergencyBanner = normalizeEmergencyBanner(nextBanner);
+
+    if (force || !hasUnsavedBannerChanges) {
+        applyBannerToForm(remoteEmergencyBanner);
+        clearBannerDirty(message || 'Urgent banner is up to date.');
+        return;
+    }
+
+    if (JSON.stringify(remoteEmergencyBanner) !== JSON.stringify(emergencyBanner)) {
+        setBannerStatus('A newer saved version of the urgent banner is available. Reload it or publish your current edits first.', 'warning');
+    }
+}
+
+async function translateTextToSpanish(text) {
+    const cleanText = typeof text === 'string' ? text.trim() : '';
+
+    if (!cleanText) {
+        return '';
+    }
+
+    if (translationCache.has(cleanText)) {
+        return translationCache.get(cleanText);
+    }
+
+    const request = fetch(GOOGLE_TRANSLATE_URL + encodeURIComponent(cleanText))
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('Automatic Spanish translation is temporarily unavailable.');
+            }
+
+            return response.json();
+        })
+        .then(function (data) {
+            const chunks = Array.isArray(data) ? data[0] : null;
+
+            if (!Array.isArray(chunks)) {
+                throw new Error('Automatic Spanish translation returned an unexpected response.');
+            }
+
+            return chunks.map(function (chunk) {
+                return Array.isArray(chunk) ? chunk[0] || '' : '';
+            }).join('').trim();
+        })
+        .catch(function (error) {
+            translationCache.delete(cleanText);
+            throw error;
+        });
+
+    translationCache.set(cleanText, request);
+    return request;
+}
+
+async function buildTranslatedSlide(slide) {
+    const translatedSlide = cloneSlides([slide])[0];
+
+    const translations = await Promise.all([
+        translateTextToSpanish(slide.pill.en),
+        translateTextToSpanish(slide.title.en),
+        translateTextToSpanish(slide.titleAccent.en),
+        translateTextToSpanish(slide.kicker.en),
+        translateTextToSpanish(slide.subtext.en),
+        translateTextToSpanish(slide.ctaLabel.en)
+    ]);
+
+    translatedSlide.pill.es = translations[0];
+    translatedSlide.title.es = translations[1];
+    translatedSlide.titleAccent.es = translations[2];
+    translatedSlide.kicker.es = translations[3];
+    translatedSlide.subtext.es = translations[4];
+    translatedSlide.ctaLabel.es = translations[5];
+
+    translatedSlide.credentials = await Promise.all(slide.credentials.map(async function (credential) {
+        return {
+            en: credential.en,
+            es: await translateTextToSpanish(credential.en)
+        };
+    }));
+
+    return store.normalizeSlide(translatedSlide);
+}
+
+function nextBannerTranslationRun() {
+    bannerTranslateRun += 1;
+    return bannerTranslateRun;
+}
+
+function cancelPendingBannerTranslation() {
+    if (bannerTranslateTimer) {
+        window.clearTimeout(bannerTranslateTimer);
+        bannerTranslateTimer = null;
+    }
+
+    nextBannerTranslationRun();
+}
+
+async function buildTranslatedBanner(banner) {
+    const translatedBanner = normalizeEmergencyBanner(banner);
+    const translations = await Promise.all([
+        translateTextToSpanish(translatedBanner.pill.en),
+        translateTextToSpanish(stripHtmlTags(translatedBanner.message.en)),
+        translateTextToSpanish(translatedBanner.ctaLabel.en)
+    ]);
+
+    translatedBanner.pill.es = translations[0] || translatedBanner.pill.es;
+    translatedBanner.message.es = translations[1];
+    translatedBanner.ctaLabel.es = translations[2];
+    return normalizeEmergencyBanner(translatedBanner);
+}
+
+function copyBannerEnglishToSpanishData(banner) {
+    return normalizeEmergencyBanner({
+        enabled: banner.enabled,
+        color: banner.color,
+        showPill: banner.showPill,
+        showButton: banner.showButton,
+        pill: { en: banner.pill.en, es: banner.pill.en },
+        message: { en: banner.message.en, es: banner.message.en },
+        ctaLabel: { en: banner.ctaLabel.en, es: banner.ctaLabel.en },
+        ctaUrl: banner.ctaUrl,
+        ctaNewTab: banner.ctaNewTab
+    });
+}
+
+async function translateBannerToSpanish(options) {
+    const settings = options || {};
+    const silent = !!settings.silent;
+    const bannerToTranslate = readBannerFromForm();
+    const run = nextBannerTranslationRun();
+
+    try {
+        if (!silent) {
+            setBannerStatus('Translating the urgent banner into Spanish...', 'info');
+        }
+
+        const translatedBanner = await buildTranslatedBanner(bannerToTranslate);
+
+        if (bannerTranslateRun !== run) {
+            return false;
+        }
+
+        const latestBanner = readBannerFromForm();
+        emergencyBanner = normalizeEmergencyBanner({
+            enabled: latestBanner.enabled,
+            color: latestBanner.color,
+            showPill: latestBanner.showPill,
+            showButton: latestBanner.showButton,
+            pill: {
+                en: latestBanner.pill.en,
+                es: translatedBanner.pill.es
+            },
+            message: {
+                en: latestBanner.message.en,
+                es: translatedBanner.message.es
+            },
+            ctaLabel: {
+                en: latestBanner.ctaLabel.en,
+                es: translatedBanner.ctaLabel.es
+            },
+            ctaUrl: latestBanner.ctaUrl,
+            ctaNewTab: latestBanner.ctaNewTab
+        });
+        applyBannerToForm(emergencyBanner);
+        bannerTranslateTimer = null;
+
+        if (!silent) {
+            markBannerDirty('Spanish banner text updated. Publish when ready.');
+        } else {
+            renderBannerPreview();
+        }
+
+        return true;
+    } catch (error) {
+        bannerTranslateTimer = null;
+        if (!silent) {
+            setBannerStatus(error.message || getFriendlyFirebaseError(error), 'danger');
+        } else {
+            console.warn('MMC banner auto-translate:', error.message || getFriendlyFirebaseError(error));
+        }
+
+        return false;
+    }
+}
+
+function copyBannerEnglishToSpanish() {
+    cancelPendingBannerTranslation();
+    emergencyBanner = copyBannerEnglishToSpanishData(readBannerFromForm());
+    applyBannerToForm(emergencyBanner);
+    markBannerDirty('English banner text copied into the Spanish fields. Publish when ready.');
+}
+
+function scheduleBannerAutoTranslate() {
+    if (!isBannerAutoTranslateEnabled()) {
+        return;
+    }
+
+    cancelPendingBannerTranslation();
+    bannerTranslateTimer = window.setTimeout(function () {
+        translateBannerToSpanish({ silent: true });
+    }, 900);
+}
+
+function copyEnglishToSpanishData(slide) {
+    return store.normalizeSlide({
+        id: slide.id,
+        enabled: slide.enabled,
+        accent: slide.accent,
+        pill: { en: slide.pill.en, es: slide.pill.en },
+        title: { en: slide.title.en, es: slide.title.en },
+        titleAccent: { en: slide.titleAccent.en, es: slide.titleAccent.en },
+        kicker: { en: slide.kicker.en, es: slide.kicker.en },
+        subtext: { en: slide.subtext.en, es: slide.subtext.en },
+        ctaLabel: { en: slide.ctaLabel.en, es: slide.ctaLabel.en },
+        ctaUrl: slide.ctaUrl,
+        ctaNewTab: slide.ctaNewTab,
+        credentials: slide.credentials.map(function (credential) {
+            return {
+                en: credential.en,
+                es: credential.en
+            };
+        })
+    });
+}
+
+function getTranslationRun(slideId) {
+    return translationRuns.get(slideId) || 0;
+}
+
+function nextTranslationRun(slideId) {
+    const nextRun = getTranslationRun(slideId) + 1;
+    translationRuns.set(slideId, nextRun);
+    return nextRun;
+}
+
+async function translateSlideById(slideId, options) {
+    const settings = options || {};
+    const silent = !!settings.silent;
+
+    syncSlidesFromDom();
+
+    let index = findSlideIndexById(slideId);
+    let card = getSlideCardById(slideId);
+
+    if (index < 0 || !card) {
+        return;
+    }
+
+    const slide = slides[index];
+    const run = nextTranslationRun(slideId);
+
+    try {
+        if (!silent) {
+            setStatus('Translating slide ' + (index + 1) + ' into Spanish...', 'info');
+        }
+
+        const translatedSlide = await buildTranslatedSlide(slide);
+
+        if (getTranslationRun(slideId) !== run) {
+            return false;
+        }
+
+        syncSlidesFromDom();
+        index = findSlideIndexById(slideId);
+        card = getSlideCardById(slideId);
+
+        if (index < 0 || !card) {
+            return false;
+        }
+
+        slides[index] = store.normalizeSlide({
+            id: slideId,
+            enabled: slides[index].enabled,
+            accent: slides[index].accent,
+            pill: {
+                en: slides[index].pill.en,
+                es: translatedSlide.pill.es
+            },
+            title: {
+                en: slides[index].title.en,
+                es: translatedSlide.title.es
+            },
+            titleAccent: {
+                en: slides[index].titleAccent.en,
+                es: translatedSlide.titleAccent.es
+            },
+            kicker: {
+                en: slides[index].kicker.en,
+                es: translatedSlide.kicker.es
+            },
+            subtext: {
+                en: slides[index].subtext.en,
+                es: translatedSlide.subtext.es
+            },
+            ctaLabel: {
+                en: slides[index].ctaLabel.en,
+                es: translatedSlide.ctaLabel.es
+            },
+            ctaUrl: slides[index].ctaUrl,
+            ctaNewTab: slides[index].ctaNewTab,
+            credentials: slides[index].credentials.map(function (credential, credentialIndex) {
+                return {
+                    en: credential.en,
+                    es: translatedSlide.credentials[credentialIndex]
+                        ? translatedSlide.credentials[credentialIndex].es
+                        : ''
+                };
+            })
+        });
+        applySlideToCard(card, slides[index], index, { spanishOnly: true });
+        clearTranslationTimer(slideId);
+
+        if (!silent) {
+            markDirty('Spanish translation updated. Publish when ready.');
+        } else {
+            refreshMetrics();
+        }
+
+        return true;
+    } catch (error) {
+        clearTranslationTimer(slideId);
+        if (!silent) {
+            setStatus(error.message || getFriendlyFirebaseError(error), 'danger');
+        } else {
+            console.warn('MMC auto-translate:', error.message || getFriendlyFirebaseError(error));
+        }
+
+        return false;
+    }
+}
+
+async function translateSlide(index, options) {
+    syncSlidesFromDom();
+
+    if (index < 0 || index >= slides.length) {
+        return false;
+    }
+
+    return translateSlideById(slides[index].id, options);
+}
+
+async function translateAllSlides() {
+    const currentSlides = syncSlidesFromDom();
+
+    if (!currentSlides.length) {
+        setStatus('Add a slide first, then run automatic Spanish translation.', 'warning');
+        return;
+    }
+
+    setStatus('Translating all slides into Spanish...', 'info');
+
+    let successCount = 0;
+    let failureCount = 0;
+
+    for (const slide of currentSlides) {
+        const translated = await translateSlideById(slide.id, { silent: true });
+        if (translated) {
+            successCount += 1;
+        } else {
+            failureCount += 1;
+        }
+    }
+
+    if (!successCount) {
+        setStatus('Automatic Spanish translation is temporarily unavailable. You can still edit the Spanish fields manually.', 'danger');
+        return;
+    }
+
+    hasUnsavedChanges = true;
+    setStatus(
+        failureCount
+            ? 'Translated ' + successCount + ' slides. ' + failureCount + ' slide(s) still need manual Spanish review.'
+            : 'Spanish translation updated for all slides. Publish when ready.',
+        failureCount ? 'warning' : 'success'
+    );
+    refreshMetrics();
+}
+
+function copyEnglishToSpanish(index) {
+    const slideCards = elements.editorList
+        ? Array.from(elements.editorList.querySelectorAll('.admin-slide-card'))
+        : [];
+    const card = slideCards[index];
+
+    syncSlidesFromDom();
+
+    if (index < 0 || index >= slides.length || !card) {
+        return;
+    }
+
+    cancelPendingTranslation(slides[index].id);
+    slides[index] = copyEnglishToSpanishData(slides[index]);
+    applySlideToCard(card, slides[index], index, { spanishOnly: true });
+    markDirty('English text copied into the Spanish fields. Publish when ready.');
+}
+
+function scheduleAutoTranslate(slideId) {
+    const slideIndex = findSlideIndexById(slideId);
+    const slide = slideIndex >= 0 ? slides[slideIndex] : null;
+
+    if (!slide || !isSlideAutoTranslateEnabled(slide.id)) {
+        return;
+    }
+
+    clearTranslationTimer(slide.id);
+
+    translationTimers.set(slide.id, window.setTimeout(function () {
+        translateSlideById(slide.id, { silent: true });
+    }, 900));
+}
+
+function shouldAutoTranslateTarget(target) {
+    if (!target) {
+        return false;
+    }
+
+    const fieldName = target.dataset.field || '';
+    return fieldName.endsWith('-en') || target.dataset.role === 'credential-en';
+}
+
+function shouldProtectManualSpanishEdit(target) {
+    if (!target) {
+        return false;
+    }
+
+    const fieldName = target.dataset.field || '';
+    return fieldName.endsWith('-es') || target.dataset.role === 'credential-es';
+}
+
+function turnOffSlideAutoTranslate(card) {
+    if (!card) {
+        return;
+    }
+
+    const slideId = card.dataset.slideId;
+    const toggle = card.querySelector('[data-role="slide-auto-translate"]');
+
+    if (!slideId || !isSlideAutoTranslateEnabled(slideId)) {
+        return;
+    }
+
+    cancelPendingTranslation(slideId);
+    setSlideAutoTranslateEnabled(slideId, false);
+
+    if (toggle) {
+        toggle.checked = false;
+    }
+
+    setStatus('Automatic Spanish fill was turned off for this slide so your manual Spanish edits stay in place.', 'info');
+}
+
+function addSlide(slideData, message) {
+    syncSlidesFromDom();
+    const nextSlide = store.normalizeSlide(slideData || store.createSlideTemplate());
+
+    if (!slideAutoTranslateState.has(nextSlide.id)) {
+        slideAutoTranslateState.set(nextSlide.id, true);
+    }
+
+    slides.push(nextSlide);
+    expandedSlideId = nextSlide.id;
+    setActiveAdminTab('slides');
+    renderEditors();
+    markDirty(message || 'New slide added. Publish when ready.');
+
+    const cards = elements.editorList
+        ? elements.editorList.querySelectorAll('.admin-slide-card')
+        : [];
+    const lastCard = cards[cards.length - 1];
+
+    if (lastCard) {
+        lastCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (isGlobalAutoTranslateEnabled()) {
+        window.setTimeout(function () {
+            translateSlideById(nextSlide.id, { silent: true });
+        }, 120);
+    }
+}
+
+function useTemplate(templateId) {
+    const template = SLIDE_TEMPLATES.find(function (item) {
+        return item.id === templateId;
+    });
+
+    if (!template) {
+        return;
+    }
+
+    addSlide(template.buildSlide(), template.name + ' added. Publish when ready.');
+}
+
+async function reloadFromFirebase() {
+    if (hasUnsavedChanges && !window.confirm('Discard your current slide edits and reload the latest saved version?')) {
+        return;
+    }
+
+    try {
+        const latestSlides = await fetchHomepageSlides();
+        applyRemoteSlides(latestSlides, 'Latest saved homepage slides loaded.', true);
+    } catch (error) {
+        setStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function saveSlides() {
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+        setStatus('Sign in before publishing homepage slide changes.', 'danger');
+        return;
+    }
+
+    const candidateSlides = syncSlidesFromDom();
+    const validationError = validateSlides(candidateSlides);
+
+    if (validationError) {
+        setStatus(validationError, 'danger');
+        return;
+    }
+
+    try {
+        const savedSlides = await saveHomepageSlides(candidateSlides, currentUser);
+        applyRemoteSlides(savedSlides, 'Homepage slides published.', true);
+    } catch (error) {
+        setStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+function resetSlidesToDefault() {
+    if (!window.confirm('Load the starter slides into the editor? You can review them, then publish when ready.')) {
+        return;
+    }
+
+    cancelAllPendingTranslations();
+    slides = cloneSlides(store.defaultSlides);
+    expandedSlideId = slides.length ? slides[0].id : null;
+    setActiveAdminTab('slides');
+    renderEditors();
+    markDirty('Starter slides loaded. Publish when ready.');
+}
+
+function exportSlides() {
+    const payload = {
+        version: 3,
+        exportedAt: new Date().toISOString(),
+        slides: syncSlidesFromDom()
+    };
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+        type: 'application/json'
+    });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.href = url;
+    link.download = 'mmc-homepage-slides.json';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+
+    setStatus('Backup downloaded.', 'success');
+}
+
+function importSlides(event) {
+    const file = event.target.files && event.target.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (loadEvent) {
+        try {
+            const parsed = JSON.parse(String(loadEvent.target.result || ''));
+            const incomingSlides = Array.isArray(parsed) ? parsed : parsed.slides;
+
+            if (!Array.isArray(incomingSlides) || !incomingSlides.length) {
+                throw new Error('That backup file does not contain any slides.');
+            }
+
+            cancelAllPendingTranslations();
+            slides = cloneSlides(incomingSlides);
+            expandedSlideId = slides.length ? slides[0].id : null;
+            setActiveAdminTab('slides');
+            renderEditors();
+            markDirty('Backup loaded. Publish when ready.');
+        } catch (error) {
+            setStatus(error.message || 'That backup file could not be opened.', 'danger');
+        } finally {
+            event.target.value = '';
+        }
+    };
+
+    reader.onerror = function () {
+        setStatus('That backup file could not be read.', 'danger');
+        event.target.value = '';
+    };
+
+    reader.readAsText(file);
+}
+
+function duplicateSlide(index) {
+    syncSlidesFromDom();
+
+    if (index < 0 || index >= slides.length) {
+        return;
+    }
+
+    const copy = JSON.parse(JSON.stringify(slides[index]));
+    copy.id = '';
+    addSlide(copy, 'Slide copied. Publish when ready.');
+}
+
+function moveSlide(index, direction) {
+    syncSlidesFromDom();
+
+    if (index < 0 || index >= slides.length) {
+        return;
+    }
+
+    const targetIndex = index + direction;
+
+    if (targetIndex < 0 || targetIndex >= slides.length) {
+        return;
+    }
+
+    const movingSlide = slides[index];
+    slides[index] = slides[targetIndex];
+    slides[targetIndex] = movingSlide;
+    renderEditors();
+    markDirty('Slide order updated. Publish when ready.');
+}
+
+function removeSlide(index) {
+    syncSlidesFromDom();
+
+    if (index < 0 || index >= slides.length) {
+        return;
+    }
+
+    if (slides.length === 1) {
+        setStatus('Keep at least one slide in the slideshow.', 'danger');
+        return;
+    }
+
+    if (!window.confirm('Remove this slide from the editor?')) {
+        return;
+    }
+
+    const removedSlideId = slides[index].id;
+    slides.splice(index, 1);
+    if (expandedSlideId === removedSlideId) {
+        expandedSlideId = slides[index] ? slides[index].id : (slides[index - 1] ? slides[index - 1].id : null);
+    }
+    renderEditors();
+    markDirty('Slide removed. Publish when ready.');
+}
+
+function addCredential(index) {
+    syncSlidesFromDom();
+
+    if (index < 0 || index >= slides.length) {
+        return;
+    }
+
+    slides[index].credentials.push({ en: '', es: '' });
+    renderEditors();
+    markDirty('Trust point added. Publish when ready.');
+}
+
+function removeCredential(index, credentialIndex) {
+    syncSlidesFromDom();
+
+    if (index < 0 || index >= slides.length) {
+        return;
+    }
+
+    if (credentialIndex < 0 || credentialIndex >= slides[index].credentials.length) {
+        return;
+    }
+
+    slides[index].credentials.splice(credentialIndex, 1);
+    renderEditors();
+    markDirty('Trust point removed. Publish when ready.');
+}
+
+function handleEditorInput(event) {
+    const card = event.target.closest('.admin-slide-card');
+
+    if (!card) {
+        return;
+    }
+
+    const slideIndex = Number(card.dataset.slideIndex);
+
+    if (Number.isNaN(slideIndex) || !slides[slideIndex]) {
+        return;
+    }
+
+    if (event.target.dataset.role === 'slide-auto-translate') {
+        setSlideAutoTranslateEnabled(card.dataset.slideId, event.target.checked);
+        if (!event.target.checked) {
+            cancelPendingTranslation(card.dataset.slideId);
+        }
+        setStatus(event.target.checked
+            ? 'Automatic Spanish fill turned on for this slide.'
+            : 'Automatic Spanish fill turned off for this slide. Manual Spanish text will stay as written.', 'info');
+        refreshMetrics();
+        return;
+    }
+
+    if (shouldProtectManualSpanishEdit(event.target)) {
+        turnOffSlideAutoTranslate(card);
+    }
+
+    slides[slideIndex] = readSlideFromCard(card);
+    refreshSlideCard(card, slides[slideIndex], slideIndex);
+    markDirty('You have unpublished slide changes.');
+
+    if (shouldAutoTranslateTarget(event.target)) {
+        scheduleAutoTranslate(card.dataset.slideId);
+    }
+}
+
+function handleEditorClick(event) {
+    const actionTrigger = event.target.closest('[data-action]');
+
+    if (!actionTrigger) {
+        return;
+    }
+
+    const action = actionTrigger.dataset.action;
+
+    if (action === 'use-template') {
+        useTemplate(actionTrigger.dataset.templateId);
+        return;
+    }
+
+    const card = actionTrigger.closest('.admin-slide-card');
+    const slideIndex = card ? Number(card.dataset.slideIndex) : -1;
+
+    if (action === 'toggle-slide') {
+        if (card && card.dataset.slideId) {
+            toggleSlideExpanded(card.dataset.slideId);
+        }
+    } else if (action === 'move-up') {
+        moveSlide(slideIndex, -1);
+    } else if (action === 'move-down') {
+        moveSlide(slideIndex, 1);
+    } else if (action === 'duplicate-slide') {
+        duplicateSlide(slideIndex);
+    } else if (action === 'remove-slide') {
+        removeSlide(slideIndex);
+    } else if (action === 'add-credential') {
+        addCredential(slideIndex);
+    } else if (action === 'remove-credential') {
+        const row = actionTrigger.closest('.admin-credential-row');
+        const credentialIndex = row ? Number(row.dataset.credentialIndex) : -1;
+
+        if (!Number.isNaN(credentialIndex) && credentialIndex >= 0) {
+            removeCredential(slideIndex, credentialIndex);
+        }
+    } else if (action === 'translate-slide') {
+        translateSlide(slideIndex);
+    } else if (action === 'copy-english') {
+        copyEnglishToSpanish(slideIndex);
+    } else if (action === 'set-color') {
+        if (card && actionTrigger.dataset.color) {
+            setCardFieldValue(card, 'accent', actionTrigger.dataset.color);
+            slides[slideIndex] = readSlideFromCard(card);
+            refreshSlideCard(card, slides[slideIndex], slideIndex);
+            markDirty('Highlight color updated.');
+        }
+    }
+}
+
+function useBannerPreset(presetId) {
+    const preset = BANNER_PRESETS.find(function (item) {
+        return item.id === presetId;
+    });
+
+    if (!preset) {
+        return;
+    }
+
+    applyBannerToForm(preset.banner);
+    setActiveAdminTab('banner');
+    markBannerDirty(preset.label + ' example loaded. Publish when ready.');
+
+    if (isBannerAutoTranslateEnabled()) {
+        window.setTimeout(function () {
+            translateBannerToSpanish({ silent: true });
+        }, 120);
+    }
+}
+
+async function reloadBannerFromFirebase() {
+    if (hasUnsavedBannerChanges && !window.confirm('Discard your current banner edits and reload the latest saved version?')) {
+        return;
+    }
+
+    try {
+        const latestBanner = await fetchEmergencyBanner();
+        applyRemoteBanner(latestBanner, 'Latest saved urgent banner loaded.', true);
+    } catch (error) {
+        setBannerStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function saveBanner() {
+    const currentUser = auth.currentUser;
+    const candidateBanner = readBannerFromForm();
+
+    if (!currentUser) {
+        setBannerStatus('Sign in before publishing urgent banner changes.', 'danger');
+        return;
+    }
+
+    if (candidateBanner.enabled && !getLocalizedBannerText(candidateBanner.message, 'en')) {
+        setBannerStatus('Add a banner message before turning the sitewide alert on.', 'danger');
+        return;
+    }
+
+    try {
+        const savedBanner = await saveEmergencyBanner(candidateBanner, currentUser);
+        applyRemoteBanner(savedBanner, 'Urgent banner published.', true);
+    } catch (error) {
+        setBannerStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+function resetBanner() {
+    if (!window.confirm('Turn off the sitewide emergency banner and clear the current message?')) {
+        return;
+    }
+
+    cancelPendingBannerTranslation();
+    setBannerAutoTranslateEnabled(true);
+    applyBannerToForm(createDefaultEmergencyBanner());
+    markBannerDirty('Urgent banner cleared. Publish when ready.');
+}
+
+function turnOffBannerAutoTranslate() {
+    if (!isBannerAutoTranslateEnabled()) {
+        return;
+    }
+
+    cancelPendingBannerTranslation();
+    setBannerAutoTranslateEnabled(false);
+    setBannerStatus('Automatic Spanish fill was turned off for the banner so your manual Spanish edits stay in place.', 'info');
+}
+
+/* ═══════════════════════════════════════════════════
+   Scheduled Banners
+   ═══════════════════════════════════════════════════ */
+
+function setScheduleStatus(message, tone) {
+    if (!elements.scheduleStatus) return;
+    elements.scheduleStatus.textContent = message;
+    elements.scheduleStatus.dataset.tone = tone || 'info';
+}
+
+function formatDateDisplay(dateStr) {
+    if (!dateStr) return '';
+    var parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var m = parseInt(parts[1], 10);
+    var d = parseInt(parts[2], 10);
+    var y = parts[0];
+    return months[m - 1] + ' ' + d + ', ' + y;
+}
+
+function getScheduledBannerStatus(entry) {
+    var recurrence = entry.recurrence || { mode: 'dates', days: [] };
+    var now = new Date();
+
+    if (recurrence.mode === 'weekly') {
+        if (!Array.isArray(recurrence.days) || recurrence.days.length === 0) {
+            return { label: 'Incomplete', tone: 'muted' };
+        }
+        if (recurrence.days.indexOf(now.getDay()) !== -1) {
+            return { label: 'Active Now', tone: 'success' };
+        }
+        return { label: 'Recurring', tone: 'info' };
+    }
+
+    if (recurrence.mode === 'biweekly') {
+        if (!Array.isArray(recurrence.days) || recurrence.days.length === 0 || !recurrence.anchorDate) {
+            return { label: 'Incomplete', tone: 'muted' };
+        }
+        var todayDow = now.getDay();
+        if (recurrence.days.indexOf(todayDow) !== -1) {
+            // Check if this is the correct parity week
+            var anchorParts = recurrence.anchorDate.split('-');
+            var anchorMs = new Date(parseInt(anchorParts[0], 10), parseInt(anchorParts[1], 10) - 1, parseInt(anchorParts[2], 10)).getTime();
+            var todayMs = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+            var diffDays = Math.floor((todayMs - anchorMs) / 86400000);
+            var currentWeekIndex = Math.floor(diffDays / 7);
+            var currentParity = ((currentWeekIndex % 2) + 2) % 2;
+            if (currentParity === (recurrence.weekParity || 0)) {
+                return { label: 'Active Now', tone: 'success' };
+            }
+        }
+        var parityLabel = recurrence.weekParity === 1 ? 'Week B' : 'Week A';
+        return { label: 'Alternating \u00B7 ' + parityLabel, tone: 'info' };
+    }
+
+    if (!entry.startDate || !entry.endDate) return { label: 'Incomplete', tone: 'muted' };
+    var todayStr = now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0');
+
+    if (todayStr > entry.endDate) return { label: 'Expired', tone: 'muted' };
+    if (todayStr >= entry.startDate && todayStr <= entry.endDate) return { label: 'Active Now', tone: 'success' };
+    return { label: 'Upcoming', tone: 'info' };
+}
+
+function renderScheduledBannerCard(entry) {
+    var status = getScheduledBannerStatus(entry);
+    var messageText = stripHtmlTags(getLocalizedBannerText(entry.banner.message, 'en'));
+    var pillText = getLocalizedBannerText(entry.banner.pill, 'en');
+    var color = entry.banner.color || 'green';
+    var showPill = entry.banner.showPill !== false;
+    var truncatedMessage = messageText.length > 100 ? messageText.substring(0, 100) + '...' : messageText;
+    var recurrence = entry.recurrence || { mode: 'dates', days: [] };
+    var isWeekly = recurrence.mode === 'weekly';
+    var isBiweekly = recurrence.mode === 'biweekly';
+    var activeDays = Array.isArray(recurrence.days) ? recurrence.days : [];
+    var dayLabels = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+    var dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    var recurrenceLabel = '';
+    if ((isWeekly || isBiweekly) && activeDays.length > 0) {
+        recurrenceLabel = activeDays.map(function (d) { return dayNames[d]; }).join(', ');
+    }
+
+    var dateDisplay = '';
+    if (isBiweekly) {
+        var weekLabel = (recurrence.weekParity === 1) ? 'Week B' : 'Week A';
+        dateDisplay = '<span class="sched-recurrence-tag sched-recurrence-biweekly"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px"><path d="M1 6a5 5 0 019.33-2.5M11 6a5 5 0 01-9.33 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M10 1v2.5H7.5M2 11V8.5h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> ' + weekLabel + ' &middot; ' + recurrenceLabel + '</span>';
+    } else if (isWeekly) {
+        dateDisplay = '<span class="sched-recurrence-tag"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px"><path d="M1 6a5 5 0 019.33-2.5M11 6a5 5 0 01-9.33 2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M10 1v2.5H7.5M2 11V8.5h2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Every ' + recurrenceLabel + '</span>';
+    } else {
+        dateDisplay = '<span class="sched-date-range"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px;margin-right:3px;"><rect x="1.5" y="1.5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1"/><path d="M1.5 4.5h9M4 1.5v2M8 1.5v2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>' + formatDateDisplay(entry.startDate) + ' &mdash; ' + formatDateDisplay(entry.endDate) + '</span>';
+    }
+
+    var dayPickerHtml = dayLabels.map(function (lbl, idx) {
+        var active = activeDays.indexOf(idx) !== -1 ? ' is-active' : '';
+        return '<button type="button" class="sched-day-btn' + active + '" data-sched-day="' + idx + '">' + lbl + '</button>';
+    }).join('');
+
+    return [
+        '<div class="sched-card" data-sched-id="' + escapeHtml(entry.id) + '">',
+        '  <div class="sched-card-header">',
+        '    <div class="sched-card-header-left">',
+        '      <span class="sched-status sched-status-' + status.tone + '">' + status.label + '</span>',
+        '      <span class="sched-label">' + escapeHtml(entry.label) + '</span>',
+        '    </div>',
+        '    <div class="sched-card-header-right">',
+        '      <button type="button" class="sched-action sched-action-delete" data-sched-delete="' + escapeHtml(entry.id) + '" title="Delete">',
+        '        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+        '      </button>',
+        '    </div>',
+        '  </div>',
+        '  <div class="sched-card-body">',
+        '    <div class="sched-dates">' + dateDisplay + '</div>',
+        '    <div class="sched-banner-preview-mini">',
+        '      <span class="sched-color-dot" style="background:' + (color === 'red' ? '#ff3b30' : color === 'orange' ? '#ff9500' : color === 'yellow' ? '#ffcc00' : '#34c759') + '"></span>',
+        (pillText ? '<span class="sched-pill-text">' + escapeHtml(pillText) + '</span>' : ''),
+        '      <span class="sched-message-text">' + escapeHtml(truncatedMessage) + '</span>',
+        '    </div>',
+        '  </div>',
+        '  <details class="sched-card-edit">',
+        '    <summary class="sched-edit-trigger"></summary>',
+        '    <div class="sched-edit-body">',
+
+        '      <div class="sched-section">',
+        '        <p class="sched-section-title">General</p>',
+        '        <div class="sched-grid">',
+        '          <label class="sched-field sched-field-full">',
+        '            <span class="sched-label-text">Label</span>',
+        '            <input type="text" class="sched-input" data-sched-field="label" value="' + escapeHtml(entry.label) + '">',
+        '          </label>',
+        '          <div class="sched-field sched-field-full">',
+        '            <span class="sched-label-text">Color</span>',
+        '            <div class="sched-color-picker">',
+        '              <button type="button" class="banner-color-btn' + (color === 'red' ? ' is-active' : '') + '" data-sched-color="red"><span class="banner-color-swatch" style="background:#ff3b30;"></span>Red</button>',
+        '              <button type="button" class="banner-color-btn' + (color === 'orange' ? ' is-active' : '') + '" data-sched-color="orange"><span class="banner-color-swatch" style="background:#ff9500;"></span>Orange</button>',
+        '              <button type="button" class="banner-color-btn' + (color === 'yellow' ? ' is-active' : '') + '" data-sched-color="yellow"><span class="banner-color-swatch" style="background:#ffcc00;"></span>Yellow</button>',
+        '              <button type="button" class="banner-color-btn' + (color === 'green' ? ' is-active' : '') + '" data-sched-color="green"><span class="banner-color-swatch" style="background:#34c759;"></span>Green</button>',
+        '            </div>',
+        '          </div>',
+        '        </div>',
+        '      </div>',
+
+        '      <div class="sched-section">',
+        '        <p class="sched-section-title">Schedule</p>',
+        '        <div class="sched-mode-toggle">',
+        '          <button type="button" class="sched-mode-btn' + (!isWeekly && !isBiweekly ? ' is-active' : '') + '" data-sched-mode="dates">Date Range</button>',
+        '          <button type="button" class="sched-mode-btn' + (isWeekly ? ' is-active' : '') + '" data-sched-mode="weekly">Every Week</button>',
+        '          <button type="button" class="sched-mode-btn' + (isBiweekly ? ' is-active' : '') + '" data-sched-mode="biweekly">Alternating Weeks</button>',
+        '        </div>',
+        '        <div class="sched-dates-row" ' + (isWeekly || isBiweekly ? 'style="display:none;"' : '') + '>',
+        '          <div class="sched-grid">',
+        '            <label class="sched-field">',
+        '              <span class="sched-label-text">Start Date</span>',
+        '              <input type="date" class="sched-input" data-sched-field="startDate" value="' + escapeHtml(entry.startDate) + '">',
+        '            </label>',
+        '            <label class="sched-field">',
+        '              <span class="sched-label-text">End Date</span>',
+        '              <input type="date" class="sched-input" data-sched-field="endDate" value="' + escapeHtml(entry.endDate) + '">',
+        '            </label>',
+        '          </div>',
+        '        </div>',
+        '        <div class="sched-weekly-row" ' + (!isWeekly && !isBiweekly ? 'style="display:none;"' : '') + '>',
+        '          <span class="sched-label-text" style="margin-bottom:6px;display:block;">Active Days</span>',
+        '          <div class="sched-day-picker">' + dayPickerHtml + '</div>',
+        '        </div>',
+        '        <div class="sched-biweekly-row" ' + (!isBiweekly ? 'style="display:none;"' : '') + '>',
+        '          <div class="sched-grid" style="margin-top:10px;">',
+        '            <div class="sched-field">',
+        '              <span class="sched-label-text">Which week?</span>',
+        '              <div class="sched-parity-toggle">',
+        '                <button type="button" class="sched-parity-btn' + ((recurrence.weekParity || 0) === 0 ? ' is-active' : '') + '" data-sched-parity="0">Week A</button>',
+        '                <button type="button" class="sched-parity-btn' + (recurrence.weekParity === 1 ? ' is-active' : '') + '" data-sched-parity="1">Week B</button>',
+        '              </div>',
+        '            </div>',
+        '            <label class="sched-field">',
+        '              <span class="sched-label-text">Anchor Monday <span class="sched-section-optional">defines week A/B</span></span>',
+        '              <input type="date" class="sched-input" data-sched-field="anchorDate" value="' + escapeHtml(recurrence.anchorDate || '') + '">',
+        '            </label>',
+        '          </div>',
+        '          <p class="sched-biweekly-hint">Pick any Monday as "Week A start." All entries that share the same anchor date will alternate together.</p>',
+        '        </div>',
+        '      </div>',
+
+        '      <div class="sched-section">',
+        '        <p class="sched-section-title">Content</p>',
+        '        <div class="sched-grid">',
+        '          <div class="sched-field sched-field-full">',
+        '            <div class="sched-toggle-row">',
+        '              <span class="sched-label-text">Show Alert Label (Pill)</span>',
+        '              <label class="sched-switch">',
+        '                <input type="checkbox" data-sched-field="showPill"' + (showPill ? ' checked' : '') + '>',
+        '                <span class="sched-switch-track"></span>',
+        '              </label>',
+        '            </div>',
+        '          </div>',
+        '          <label class="sched-field' + (showPill ? '' : ' sched-field-hidden') + ' sched-pill-en-field">',
+        '            <span class="sched-label-text">Alert Label <span class="sched-lang-badge">EN</span></span>',
+        '            <input type="text" class="sched-input" data-sched-field="pillEn" data-sched-translate="pillEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.pill, 'en')) + '">',
+        '          </label>',
+        '          <label class="sched-field' + (showPill ? '' : ' sched-field-hidden') + ' sched-pill-es-field">',
+        '            <span class="sched-label-text">Alert Label <span class="sched-lang-badge sched-lang-badge-es">ES</span> <span class="sched-auto-badge">Auto</span></span>',
+        '            <input type="text" class="sched-input" data-sched-field="pillEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.pill, 'es')) + '">',
+        '          </label>',
+        '          <label class="sched-field sched-field-full">',
+        '            <span class="sched-label-text">Message <span class="sched-lang-badge">EN</span></span>',
+        '            <input type="text" class="sched-input" data-sched-field="messageEn" data-sched-translate="messageEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.message, 'en')) + '">',
+        '          </label>',
+        '          <label class="sched-field sched-field-full">',
+        '            <span class="sched-label-text">Message <span class="sched-lang-badge sched-lang-badge-es">ES</span> <span class="sched-auto-badge">Auto</span></span>',
+        '            <input type="text" class="sched-input" data-sched-field="messageEs" value="' + escapeHtml(getLocalizedBannerText(entry.banner.message, 'es')) + '">',
+        '          </label>',
+        '        </div>',
+        '      </div>',
+
+        '      <div class="sched-section">',
+        '        <p class="sched-section-title">Button <span class="sched-section-optional">Optional</span></p>',
+        '        <div class="sched-grid">',
+        '          <label class="sched-field">',
+        '            <span class="sched-label-text">Button Text</span>',
+        '            <input type="text" class="sched-input" data-sched-field="ctaLabelEn" value="' + escapeHtml(getLocalizedBannerText(entry.banner.ctaLabel, 'en')) + '">',
+        '          </label>',
+        '          <label class="sched-field">',
+        '            <span class="sched-label-text">Button Link</span>',
+        '            <input type="text" class="sched-input" data-sched-field="ctaUrl" value="' + escapeHtml(entry.banner.ctaUrl || '') + '">',
+        '          </label>',
+        '        </div>',
+        '      </div>',
+
+        '      <div class="sched-save-row">',
+        '        <button type="button" class="studio-btn studio-btn-publish sched-save-btn" data-sched-save="' + escapeHtml(entry.id) + '">Save Changes</button>',
+        '      </div>',
+        '    </div>',
+        '  </details>',
+        '</div>'
+    ].join('\n');
+}
+
+function renderScheduledBanners() {
+    if (!elements.scheduledBannerList) return;
+
+    if (!scheduledBanners.length) {
+        elements.scheduledBannerList.innerHTML = '';
+        if (elements.scheduledBannerEmpty) elements.scheduledBannerEmpty.hidden = false;
+        return;
+    }
+
+    if (elements.scheduledBannerEmpty) elements.scheduledBannerEmpty.hidden = true;
+    elements.scheduledBannerList.innerHTML = scheduledBanners.map(renderScheduledBannerCard).join('');
+}
+
+function readScheduledBannerFromCard(card) {
+    var id = card.dataset.schedId || '';
+    var label = (card.querySelector('[data-sched-field="label"]') || {}).value || '';
+    var startDate = (card.querySelector('[data-sched-field="startDate"]') || {}).value || '';
+    var endDate = (card.querySelector('[data-sched-field="endDate"]') || {}).value || '';
+    var pillEn = (card.querySelector('[data-sched-field="pillEn"]') || {}).value || '';
+    var pillEs = (card.querySelector('[data-sched-field="pillEs"]') || {}).value || '';
+    var messageEn = (card.querySelector('[data-sched-field="messageEn"]') || {}).value || '';
+    var messageEs = (card.querySelector('[data-sched-field="messageEs"]') || {}).value || '';
+    var ctaLabelEn = (card.querySelector('[data-sched-field="ctaLabelEn"]') || {}).value || '';
+    var ctaUrl = (card.querySelector('[data-sched-field="ctaUrl"]') || {}).value || '';
+    var activeColorBtn = card.querySelector('.sched-color-picker .banner-color-btn.is-active');
+    var color = activeColorBtn ? activeColorBtn.dataset.schedColor : 'green';
+    var showPillCheckbox = card.querySelector('[data-sched-field="showPill"]');
+    var showPill = showPillCheckbox ? showPillCheckbox.checked : true;
+
+    var activeModeBtn = card.querySelector('.sched-mode-btn.is-active');
+    var mode = activeModeBtn ? activeModeBtn.dataset.schedMode : 'dates';
+    var activeDayBtns = card.querySelectorAll('.sched-day-btn.is-active');
+    var days = Array.from(activeDayBtns).map(function (btn) { return parseInt(btn.dataset.schedDay, 10); }).filter(function (d) { return !isNaN(d); });
+
+    var recurrenceObj = { mode: mode, days: days };
+    if (mode === 'biweekly') {
+        var anchorInput = card.querySelector('[data-sched-field="anchorDate"]');
+        recurrenceObj.anchorDate = anchorInput ? anchorInput.value : '';
+        var activeParityBtn = card.querySelector('.sched-parity-btn.is-active');
+        recurrenceObj.weekParity = activeParityBtn ? parseInt(activeParityBtn.dataset.schedParity, 10) : 0;
+    }
+
+    return {
+        id: id,
+        label: label,
+        startDate: startDate,
+        endDate: endDate,
+        recurrence: recurrenceObj,
+        banner: {
+            enabled: true,
+            color: color,
+            showPill: showPill,
+            showButton: !!(ctaLabelEn && ctaUrl),
+            pill: { en: pillEn, es: pillEs },
+            message: { en: messageEn, es: messageEs },
+            ctaLabel: { en: ctaLabelEn, es: '' },
+            ctaUrl: ctaUrl,
+            ctaNewTab: false
+        }
+    };
+}
+
+function computeAnchorDate() {
+    // Find the Monday of the current week as the default anchor
+    var now = new Date();
+    var day = now.getDay(); // 0=Sun
+    var diff = (day === 0 ? -6 : 1 - day); // shift to Monday
+    var monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + diff);
+    return monday.getFullYear() + '-' +
+        String(monday.getMonth() + 1).padStart(2, '0') + '-' +
+        String(monday.getDate()).padStart(2, '0');
+}
+
+async function addScheduledBanner(templateId) {
+    var currentUser = auth.currentUser;
+    if (!currentUser) {
+        setScheduleStatus('Sign in before adding a scheduled banner.', 'danger');
+        return;
+    }
+
+    var now = new Date();
+    var todayStr = now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0');
+
+    var template = templateId && SCHED_TEMPLATES[templateId];
+
+    // Group templates create multiple entries at once (e.g. alternating weeks)
+    if (template && template.isGroup && Array.isArray(template.entries)) {
+        var anchor = computeAnchorDate();
+        try {
+            for (var g = 0; g < template.entries.length; g++) {
+                var tpl = template.entries[g];
+                var groupEntry = {
+                    label: tpl.label,
+                    startDate: todayStr,
+                    endDate: todayStr,
+                    recurrence: {
+                        mode: tpl.recurrence.mode,
+                        days: Array.isArray(tpl.recurrence.days) ? tpl.recurrence.days.slice() : [],
+                        anchorDate: tpl.recurrence.anchorDate || anchor,
+                        weekParity: tpl.recurrence.weekParity || 0
+                    },
+                    banner: JSON.parse(JSON.stringify(tpl.banner))
+                };
+                await saveScheduledBanner(groupEntry, currentUser);
+            }
+            setScheduleStatus('Alternating-week banners created (' + template.entries.length + ' entries). Edit each one below.', 'success');
+        } catch (error) {
+            setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+        }
+        return;
+    }
+
+    var newEntry;
+
+    if (template) {
+        newEntry = {
+            label: template.label,
+            startDate: todayStr,
+            endDate: todayStr,
+            recurrence: {
+                mode: template.recurrence.mode,
+                days: Array.isArray(template.recurrence.days) ? template.recurrence.days.slice() : []
+            },
+            banner: JSON.parse(JSON.stringify(template.banner))
+        };
+    } else {
+        newEntry = {
+            label: 'New Banner',
+            startDate: todayStr,
+            endDate: todayStr,
+            recurrence: { mode: 'dates', days: [] },
+            banner: {
+                enabled: true,
+                color: 'green',
+                showPill: true,
+                showButton: true,
+                pill: { en: 'Notice', es: 'Aviso' },
+                message: { en: 'Enter your message here.', es: 'Ingrese su mensaje aqu\u00ED.' },
+                ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+                ctaUrl: 'tel:3012082273',
+                ctaNewTab: false
+            }
+        };
+    }
+
+    try {
+        await saveScheduledBanner(newEntry, currentUser);
+        setScheduleStatus(template ? ('"' + template.label + '" template added. Customize below.') : 'New scheduled banner added. Edit the details below.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function handleScheduleSave(schedId) {
+    var currentUser = auth.currentUser;
+    if (!currentUser) {
+        setScheduleStatus('Sign in before saving.', 'danger');
+        return;
+    }
+
+    var card = elements.scheduledBannerList.querySelector('[data-sched-id="' + schedId + '"]');
+    if (!card) return;
+
+    var entry = readScheduledBannerFromCard(card);
+
+    if (entry.recurrence && (entry.recurrence.mode === 'weekly' || entry.recurrence.mode === 'biweekly')) {
+        if (!Array.isArray(entry.recurrence.days) || entry.recurrence.days.length === 0) {
+            setScheduleStatus('Please select at least one day of the week.', 'danger');
+            return;
+        }
+        if (entry.recurrence.mode === 'biweekly' && !entry.recurrence.anchorDate) {
+            setScheduleStatus('Please set an anchor Monday so the system knows which week is A and which is B.', 'danger');
+            return;
+        }
+    } else {
+        if (!entry.startDate || !entry.endDate) {
+            setScheduleStatus('Please set both a start date and end date.', 'danger');
+            return;
+        }
+
+        if (entry.startDate > entry.endDate) {
+            setScheduleStatus('Start date must be on or before the end date.', 'danger');
+            return;
+        }
+    }
+
+    var messageText = (entry.banner.message.en || '').trim();
+    if (!messageText) {
+        setScheduleStatus('Please add a banner message.', 'danger');
+        return;
+    }
+
+    try {
+        await saveScheduledBanner(entry, currentUser);
+        setScheduleStatus('Scheduled banner saved.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function handleScheduleDelete(schedId) {
+    if (!window.confirm('Delete this scheduled banner? This cannot be undone.')) return;
+
+    try {
+        await deleteScheduledBanner(schedId);
+        setScheduleStatus('Scheduled banner deleted.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function reloadScheduledBanners() {
+    try {
+        setScheduleStatus('Reloading scheduled banners...', 'info');
+        scheduledBanners = await fetchScheduledBanners();
+        renderScheduledBanners();
+        setScheduleStatus('Scheduled banners reloaded.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+function handleScheduleListClick(event) {
+    var deleteBtn = event.target.closest('[data-sched-delete]');
+    if (deleteBtn) {
+        handleScheduleDelete(deleteBtn.dataset.schedDelete);
+        return;
+    }
+
+    var saveBtn = event.target.closest('[data-sched-save]');
+    if (saveBtn) {
+        handleScheduleSave(saveBtn.dataset.schedSave);
+        return;
+    }
+
+    var colorBtn = event.target.closest('[data-sched-color]');
+    if (colorBtn) {
+        var picker = colorBtn.closest('.sched-color-picker');
+        if (picker) {
+            picker.querySelectorAll('.banner-color-btn').forEach(function (btn) {
+                btn.classList.remove('is-active');
+            });
+            colorBtn.classList.add('is-active');
+        }
+        return;
+    }
+
+    var modeBtn = event.target.closest('[data-sched-mode]');
+    if (modeBtn) {
+        var toggle = modeBtn.closest('.sched-mode-toggle');
+        if (toggle) {
+            toggle.querySelectorAll('.sched-mode-btn').forEach(function (btn) {
+                btn.classList.remove('is-active');
+            });
+            modeBtn.classList.add('is-active');
+        }
+        var card = modeBtn.closest('.sched-card');
+        if (card) {
+            var selectedMode = modeBtn.dataset.schedMode;
+            var datesRow = card.querySelector('.sched-dates-row');
+            var weeklyRow = card.querySelector('.sched-weekly-row');
+            var biweeklyRow = card.querySelector('.sched-biweekly-row');
+            if (datesRow) datesRow.style.display = selectedMode === 'dates' ? '' : 'none';
+            if (weeklyRow) weeklyRow.style.display = (selectedMode === 'weekly' || selectedMode === 'biweekly') ? '' : 'none';
+            if (biweeklyRow) biweeklyRow.style.display = selectedMode === 'biweekly' ? '' : 'none';
+        }
+        return;
+    }
+
+    var parityBtn = event.target.closest('[data-sched-parity]');
+    if (parityBtn) {
+        var parityToggle = parityBtn.closest('.sched-parity-toggle');
+        if (parityToggle) {
+            parityToggle.querySelectorAll('.sched-parity-btn').forEach(function (btn) {
+                btn.classList.remove('is-active');
+            });
+            parityBtn.classList.add('is-active');
+        }
+        return;
+    }
+
+    var dayBtn = event.target.closest('[data-sched-day]');
+    if (dayBtn) {
+        dayBtn.classList.toggle('is-active');
+        return;
+    }
+}
+
+function handleScheduleListChange(event) {
+    var toggle = event.target.closest('[data-sched-field="showPill"]');
+    if (toggle) {
+        var card = toggle.closest('.sched-card');
+        if (!card) return;
+        var pillEnField = card.querySelector('.sched-pill-en-field');
+        var pillEsField = card.querySelector('.sched-pill-es-field');
+        if (pillEnField) pillEnField.classList.toggle('sched-field-hidden', !toggle.checked);
+        if (pillEsField) pillEsField.classList.toggle('sched-field-hidden', !toggle.checked);
+    }
+}
+
+var schedTranslateTimers = {};
+
+function handleScheduleListInput(event) {
+    var input = event.target;
+    var targetField = input.dataset.schedTranslate;
+    if (!targetField) return;
+
+    var card = input.closest('.sched-card');
+    if (!card) return;
+    var schedId = card.dataset.schedId || '';
+    var timerKey = schedId + ':' + targetField;
+
+    if (schedTranslateTimers[timerKey]) {
+        window.clearTimeout(schedTranslateTimers[timerKey]);
+    }
+
+    schedTranslateTimers[timerKey] = window.setTimeout(function () {
+        delete schedTranslateTimers[timerKey];
+        var enText = input.value.trim();
+        var esInput = card.querySelector('[data-sched-field="' + targetField + '"]');
+        if (!esInput || !enText) return;
+
+        translateTextToSpanish(enText)
+            .then(function (translated) {
+                if (card.dataset.schedId === schedId) {
+                    esInput.value = translated;
+                }
+            })
+            .catch(function () {
+                /* translation failed silently */
+            });
+    }, 600);
+}
+
+function handleSchedTemplateClick(event) {
+    var btn = event.target.closest('[data-sched-template]');
+    if (!btn) return;
+    addScheduledBanner(btn.dataset.schedTemplate);
+}
+
+function disconnectScheduledListener() {
+    if (typeof unsubscribeScheduled === 'function') {
+        unsubscribeScheduled();
+    }
+    unsubscribeScheduled = null;
+}
+
+async function connectScheduledListener() {
+    disconnectScheduledListener();
+    setScheduleStatus('Loading scheduled banners...', 'info');
+
+    try {
+        scheduledBanners = await fetchScheduledBanners();
+        renderScheduledBanners();
+        syncWeekendStateFromBanners();
+        setScheduleStatus('Scheduled banners loaded.', 'success');
+    } catch (error) {
+        setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+
+    unsubscribeScheduled = subscribeToScheduledBanners(
+        function (liveBanners) {
+            scheduledBanners = liveBanners;
+            renderScheduledBanners();
+        },
+        function (error) {
+            setScheduleStatus(getFriendlyFirebaseError(error), 'danger');
+        }
+    );
+}
+
+function handleBannerInput(event) {
+    const target = event.target;
+
+    if (!target || !target.id) {
+        return;
+    }
+
+    const bannerFieldIds = new Set([
+        'adminBannerEnabled',
+        'adminBannerNewTab',
+        'adminBannerShowPill',
+        'adminBannerPillEn',
+        'adminBannerPillEs',
+        'adminBannerCtaLabelEn',
+        'adminBannerCtaLabelEs',
+        'adminBannerCtaUrl',
+        'adminBannerAutoTranslateToggle'
+    ]);
+
+    if (!bannerFieldIds.has(target.id)) {
+        return;
+    }
+
+    if (target.id === 'adminBannerAutoTranslateToggle') {
+        if (!target.checked) {
+            cancelPendingBannerTranslation();
+        }
+        setBannerStatus(target.checked
+            ? 'Automatic Spanish fill is on for the banner.'
+            : 'Automatic Spanish fill is off for the banner. Use the Translate button when needed.', 'info');
+        return;
+    }
+
+    if (
+        target.id === 'adminBannerPillEs'
+        || target.id === 'adminBannerCtaLabelEs'
+    ) {
+        turnOffBannerAutoTranslate();
+    }
+
+    emergencyBanner = readBannerFromForm();
+    renderBannerPreview();
+    markBannerDirty('You have unpublished banner changes.');
+
+    if (
+        target.id === 'adminBannerPillEn'
+        || target.id === 'adminBannerCtaLabelEn'
+    ) {
+        scheduleBannerAutoTranslate();
+    }
+}
+
+function handleBannerClick(event) {
+    const presetTrigger = event.target.closest('[data-banner-preset]');
+
+    if (presetTrigger) {
+        useBannerPreset(presetTrigger.dataset.bannerPreset);
+    }
+}
+
+function disconnectSlidesListener() {
+    if (typeof unsubscribeSlides === 'function') {
+        unsubscribeSlides();
+    }
+
+    unsubscribeSlides = null;
+}
+
+function disconnectBannerListener() {
+    if (typeof unsubscribeBanner === 'function') {
+        unsubscribeBanner();
+    }
+
+    unsubscribeBanner = null;
+}
+
+async function connectSlidesListener() {
+    disconnectSlidesListener();
+    setStatus('Loading homepage slides...', 'info');
+
+    try {
+        const initialSlides = await fetchHomepageSlides();
+        applyRemoteSlides(initialSlides, 'Homepage slides loaded.', true);
+    } catch (error) {
+        setStatus(getFriendlyFirebaseError(error), 'danger');
+        slides = cloneSlides(store.getSlides());
+        renderEditors();
+    }
+
+    unsubscribeSlides = subscribeToHomepageSlides(
+        function (liveSlides) {
+            applyRemoteSlides(liveSlides, 'Homepage slides updated.');
+        },
+        function (error) {
+            setStatus(getFriendlyFirebaseError(error), 'danger');
+        }
+    );
+}
+
+async function connectBannerListener() {
+    disconnectBannerListener();
+    setBannerStatus('Loading urgent banner...', 'info');
+
+    try {
+        const initialBanner = await fetchEmergencyBanner();
+        applyRemoteBanner(initialBanner, 'Urgent banner loaded.', true);
+    } catch (error) {
+        setBannerStatus(getFriendlyFirebaseError(error), 'danger');
+        applyBannerToForm(createDefaultEmergencyBanner());
+    }
+
+    unsubscribeBanner = subscribeToEmergencyBanner(
+        function (liveBanner) {
+            applyRemoteBanner(liveBanner, 'Urgent banner updated.');
+        },
+        function (error) {
+            setBannerStatus(getFriendlyFirebaseError(error), 'danger');
+        }
+    );
+}
+
+async function handlePasswordReset() {
+    const email = elements.emailInput ? elements.emailInput.value.trim() : '';
+
+    if (!email) {
+        setLockMessage('Enter your admin email address above, then click Forgot Password.', 'warning');
+        if (elements.emailInput) {
+            elements.emailInput.focus();
+        }
+        return;
+    }
+
+    // Basic email format check before hitting Firebase
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setLockMessage('Enter a valid email address.', 'warning');
+        if (elements.emailInput) {
+            elements.emailInput.focus();
+        }
+        return;
+    }
+
+    setLockMessage('Sending reset link…', 'info');
+
+    try {
+        await sendAdminPasswordReset(email);
+        // Success — only authorized/registered users exist in Firebase,
+        // so reaching here confirms the email is a valid approved account.
+        setLockMessage(
+            '\u2713 Reset link sent to ' + email + '. ' +
+            'Check your inbox and your Spam/Junk folder. ' +
+            'The email will come from \u201Cmmcoffice\u201D at mmc@mmcblog-6573f.firebaseapp.com \u2014 ' +
+            'look for it there if you don\u2019t see it in your inbox.',
+            'success'
+        );
+    } catch (error) {
+        const code = error && error.code ? error.code : '';
+        if (code === 'auth/user-not-found' || code === 'auth/invalid-email') {
+            setLockMessage(
+                'That email address is not registered as an authorized admin. ' +
+                'Only approved office accounts can reset their password here.',
+                'danger'
+            );
+        } else {
+            setLockMessage(getFriendlyFirebaseError(error), 'danger');
+        }
+    }
+}
+
+async function handleLogin(event) {
+    event.preventDefault();
+
+    const email = elements.emailInput ? elements.emailInput.value.trim() : '';
+    const password = elements.passwordInput ? elements.passwordInput.value : '';
+
+    if (!email || !password) {
+        setLockMessage('Enter the admin email and password.', 'warning');
+        return;
+    }
+
+    setLockMessage('Signing in...', 'info');
+
+    try {
+        await signInAdmin(email, password);
+        if (elements.passwordInput) {
+            elements.passwordInput.value = '';
+        }
+        setLockMessage('Signed in.', 'success');
+    } catch (error) {
+        setLockMessage(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+async function handleLogout() {
+    if (hasPendingChanges() && !window.confirm('You have unsaved website changes. Sign out anyway?')) {
+        return;
+    }
+
+    try {
+        await signOutAdmin();
+    } catch (error) {
+        setStatus(getFriendlyFirebaseError(error), 'danger');
+    }
+}
+
+function safeListen(el, event, handler) {
+    if (el) {
+        el.addEventListener(event, handler);
+    }
+}
+
+/* ── Weekend Hours Calendar (3-month, rolling) ── */
+
+// Tracks each weekend date: 'open', 'closed', or undefined (unselected)
+var weekendDateState = {};
+
+// Current cursor mode: 'open' or 'closed'
+var weekendCursorMode = 'open';
+
+var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+// Mon-first week: Mo Tu We Th Fr S(at) Su(n) — keeps Sat & Sun adjacent
+var DOW_LABELS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'S', 'Su'];
+// Converts JS getDay() (0=Sun … 6=Sat) → column index in Mon-first grid
+function dowToCol(dow) { return (dow + 6) % 7; }
+
+function dateKey(year, month, day) {
+    return year + '-' + String(month + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
+}
+
+function parseDateKey(key) {
+    var parts = key.split('-');
+    return new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+}
+
+function isWeekendDay(dayOfWeek) {
+    return dayOfWeek === 0 || dayOfWeek === 6;
+}
+
+function getWeekendCalendarMonths() {
+    // Always show current month + next 2 months (rolling window)
+    var now = new Date();
+    var months = [];
+    for (var m = 0; m < 3; m++) {
+        var target = new Date(now.getFullYear(), now.getMonth() + m, 1);
+        months.push({ year: target.getFullYear(), month: target.getMonth() });
+    }
+    return months;
+}
+
+function renderWeekendCalendar() {
+    var container = document.getElementById('weekendCalendarGrid');
+    if (!container) return;
+
+    var now = new Date();
+    var todayKey = dateKey(now.getFullYear(), now.getMonth(), now.getDate());
+    var months = getWeekendCalendarMonths();
+    var html = '';
+
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        var firstDow = dowToCol(new Date(year, month, 1).getDay());
+
+        html += '<div class="wkcal-month">';
+        html += '<h3 class="wkcal-month-title">' + MONTH_NAMES[month] + ' ' + year + '</h3>';
+
+        html += '<div class="wkcal-dow-row">';
+        for (var d = 0; d < 7; d++) {
+            html += '<span class="wkcal-dow">' + DOW_LABELS[d] + '</span>';
+        }
+        html += '</div>';
+
+        html += '<div class="wkcal-days">';
+
+        for (var e = 0; e < firstDow; e++) {
+            html += '<span class="wkcal-day wkcal-empty"></span>';
+        }
+
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            var key = dateKey(year, month, day);
+            var isToday = key === todayKey;
+            var isWknd = isWeekendDay(dow);
+            var state = weekendDateState[key]; // 'open', 'closed', or undefined
+
+            var classes = 'wkcal-day';
+            if (isWknd) {
+                classes += ' wkcal-weekend';
+                if (state === 'open') classes += ' wkcal-open';
+                else if (state === 'closed') classes += ' wkcal-closed';
+                // else: neutral — no open/closed class
+            } else {
+                classes += ' wkcal-weekday';
+            }
+            if (isToday) classes += ' wkcal-today';
+
+            if (isWknd) {
+                html += '<button type="button" class="' + classes + '" data-wkcal-date="' + key + '">' + day + '</button>';
+            } else {
+                html += '<span class="' + classes + '">' + day + '</span>';
+            }
+        }
+
+        html += '</div></div>';
+    }
+
+    container.innerHTML = html;
+    renderWeekendSummary();
+}
+
+function renderWeekendSummary() {
+    var container = document.getElementById('weekendSummary');
+    if (!container) return;
+
+    var months = getWeekendCalendarMonths();
+    var closedKeys = [];
+    var openKeys = [];
+
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            if (isWeekendDay(dow)) {
+                var key = dateKey(year, month, day);
+                var state = weekendDateState[key];
+                if (state === 'closed') closedKeys.push(key);
+                else if (state === 'open') openKeys.push(key);
+            }
+        }
+    }
+
+    if (closedKeys.length === 0 && openKeys.length === 0) {
+        container.innerHTML = [
+            '<div class="wkcal-summary">',
+            '<p class="wkcal-summary-empty">No days selected yet. Pick a cursor above, then click weekend days on the calendar.</p>',
+            '</div>'
+        ].join('');
+        return;
+    }
+
+    var dayAbbrs = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var monthAbbrs = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    function formatChip(key) {
+        var d = parseDateKey(key);
+        return dayAbbrs[d.getDay()] + ', ' + monthAbbrs[d.getMonth()] + ' ' + d.getDate();
+    }
+
+    var html = '<div class="wkcal-summary">';
+
+    if (closedKeys.length > 0) {
+        html += '<p class="wkcal-summary-title">Closed (' + closedKeys.length + ')</p>';
+        html += '<div class="wkcal-summary-list" style="margin-bottom:' + (openKeys.length > 0 ? '12px' : '0') + ';">';
+        html += closedKeys.map(function (key) {
+            return '<span class="wkcal-summary-chip wkcal-chip-closed">' + formatChip(key) + '</span>';
+        }).join('');
+        html += '</div>';
+    }
+
+    if (openKeys.length > 0) {
+        html += '<p class="wkcal-summary-title">Open (' + openKeys.length + ')</p>';
+        html += '<div class="wkcal-summary-list">';
+        html += openKeys.map(function (key) {
+            return '<span class="wkcal-summary-chip wkcal-chip-open">' + formatChip(key) + '</span>';
+        }).join('');
+        html += '</div>';
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function handleWeekendDayClick(dateStr) {
+    var currentState = weekendDateState[dateStr];
+
+    if (weekendCursorMode === 'erase') {
+        // Erase cursor: always reset to neutral regardless of current state
+        delete weekendDateState[dateStr];
+    } else if (currentState === weekendCursorMode) {
+        // Tapping the same state as the active cursor: deselect (back to neutral)
+        delete weekendDateState[dateStr];
+    } else {
+        weekendDateState[dateStr] = weekendCursorMode;
+    }
+
+    // Update just the clicked button
+    var btn = document.querySelector('[data-wkcal-date="' + dateStr + '"]');
+    if (btn) {
+        var newState = weekendDateState[dateStr];
+        btn.classList.remove('wkcal-open', 'wkcal-closed');
+        if (newState === 'open') btn.classList.add('wkcal-open');
+        else if (newState === 'closed') btn.classList.add('wkcal-closed');
+    }
+
+    renderWeekendSummary();
+}
+
+function setWeekendCursor(mode) {
+    weekendCursorMode = mode;
+    var buttons = document.querySelectorAll('.wkcal-cursor-btn');
+    buttons.forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.dataset.wkcalCursor === mode);
+    });
+}
+
+function getClosedMessage(dateStr) {
+    // Saturday closed: check if Sunday (next day) is open → "open tomorrow"
+    // Sunday closed: always "enjoy your weekend"
+    var d = parseDateKey(dateStr);
+    var dow = d.getDay();
+
+    if (dow === 6) {
+        // Saturday — check Sunday
+        var sun = new Date(d);
+        sun.setDate(sun.getDate() + 1);
+        var sunKey = dateKey(sun.getFullYear(), sun.getMonth(), sun.getDate());
+        if (weekendDateState[sunKey] === 'open') {
+            return {
+                en: 'We are closed today but will be open tomorrow.',
+                es: 'Estamos cerrados hoy, pero abriremos ma\u00F1ana.'
+            };
+        }
+    }
+
+    // Sunday, or Saturday where Sunday is also closed/unset
+    return {
+        en: 'The clinic is closed today. Enjoy your weekend!',
+        es: '\u00A1La cl\u00EDnica est\u00E1 cerrada hoy. Disfrute su fin de semana!'
+    };
+}
+
+function isWeekendBannerLabel(label) {
+    // Match labels created by the weekend calendar: "Saturday Open – 2026-04-18", "Sunday Closed – 2026-05-03", etc.
+    return /^(Saturday|Sunday)\s+(Open|Closed)\s+\u2013\s+\d{4}-\d{2}-\d{2}$/.test(label);
+}
+
+async function applyWeekendSchedule() {
+    var currentUser = auth.currentUser;
+    var statusEl = document.getElementById('weekendStatus');
+
+    if (!currentUser) {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ff3b30;">Sign in first.</span>';
+        return;
+    }
+
+    // Collect only explicitly selected weekend dates
+    var months = getWeekendCalendarMonths();
+    var allSelectedDates = {};
+    var closedDates = [];
+    var openDates = [];
+
+    // Also build a complete set of ALL weekend dates in the 3-month window
+    // so we can wipe every existing banner in that window (including erased ones)
+    var calendarWindowDates = {};
+
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            if (isWeekendDay(dow)) {
+                var key = dateKey(year, month, day);
+                calendarWindowDates[key] = true; // track every visible weekend date
+                var state = weekendDateState[key];
+                if (state === 'closed') {
+                    closedDates.push({ date: key, dow: dow });
+                    allSelectedDates[key] = true;
+                } else if (state === 'open') {
+                    openDates.push({ date: key, dow: dow });
+                    allSelectedDates[key] = true;
+                }
+            }
+        }
+    }
+
+    if (statusEl) statusEl.innerHTML = '<span style="color:#86868b;">Removing old weekend banners...</span>';
+
+    try {
+        // Step 1: Delete ALL existing weekend-calendar banners within the visible 3-month window.
+        // This ensures erased (gray) days have their old Firestore banners removed too,
+        // so they don't reappear on refresh.
+        var toDelete = scheduledBanners.filter(function (entry) {
+            return isWeekendBannerLabel(entry.label) && calendarWindowDates[entry.startDate];
+        });
+
+        for (var d = 0; d < toDelete.length; d++) {
+            await deleteScheduledBanner(toDelete[d].id);
+        }
+
+        if (statusEl) statusEl.innerHTML = '<span style="color:#86868b;">Creating ' + (closedDates.length + openDates.length) + ' banners...</span>';
+
+        // Step 2: Create fresh banners
+        var count = 0;
+
+        for (var i = 0; i < closedDates.length; i++) {
+            var cd = closedDates[i];
+            var dayLabel = cd.dow === 0 ? 'Sunday' : 'Saturday';
+            var closedMsg = getClosedMessage(cd.date);
+
+            await saveScheduledBanner({
+                label: dayLabel + ' Closed \u2013 ' + cd.date,
+                startDate: cd.date,
+                endDate: cd.date,
+                recurrence: { mode: 'dates', days: [] },
+                banner: {
+                    enabled: true, color: 'red', showPill: true, showButton: false,
+                    pill: { en: 'Closed Today', es: 'Cerrado Hoy' },
+                    message: closedMsg,
+                    ctaLabel: { en: '', es: '' },
+                    ctaUrl: '', ctaNewTab: false
+                }
+            }, currentUser);
+            count++;
+        }
+
+        for (var j = 0; j < openDates.length; j++) {
+            var od = openDates[j];
+            var odLabel = od.dow === 0 ? 'Sunday' : 'Saturday';
+            await saveScheduledBanner({
+                label: odLabel + ' Open \u2013 ' + od.date,
+                startDate: od.date,
+                endDate: od.date,
+                recurrence: { mode: 'dates', days: [] },
+                banner: {
+                    enabled: true, color: 'green', showPill: true, showButton: true,
+                    pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+                    message: { en: 'The clinic is open today from 8:00 AM \u2013 1:00 PM.', es: 'La cl\u00EDnica est\u00E1 abierta hoy de 8:00 AM a 1:00 PM.' },
+                    ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
+                    ctaUrl: 'tel:3012082273', ctaNewTab: false
+                }
+            }, currentUser);
+            count++;
+        }
+
+        var deletedNote = toDelete.length > 0 ? ' (' + toDelete.length + ' old removed)' : '';
+        var createdNote = count > 0 ? count + ' banner' + (count !== 1 ? 's' : '') + ' saved.' : 'All cleared — no banners for this window.';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#34c759;">' + createdNote + deletedNote + '</span>';
+        setTimeout(function () {
+            if (statusEl) statusEl.innerHTML = '';
+        }, 5000);
+    } catch (error) {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ff3b30;">' + escapeHtml(getFriendlyFirebaseError(error)) + '</span>';
+    }
+}
+
+function syncWeekendStateFromBanners() {
+    // Rebuild weekendDateState from existing scheduled banners in Firestore
+    // so the calendar shows the same open/closed selections after refresh
+    var months = getWeekendCalendarMonths();
+    var calendarDates = {};
+
+    // Build a set of all weekend dates in the visible 3-month window
+    for (var mi = 0; mi < months.length; mi++) {
+        var year = months[mi].year;
+        var month = months[mi].month;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        for (var day = 1; day <= daysInMonth; day++) {
+            var dow = new Date(year, month, day).getDay();
+            if (isWeekendDay(dow)) {
+                calendarDates[dateKey(year, month, day)] = true;
+            }
+        }
+    }
+
+    // Scan existing scheduled banners for weekend-calendar entries
+    for (var i = 0; i < scheduledBanners.length; i++) {
+        var entry = scheduledBanners[i];
+        if (!isWeekendBannerLabel(entry.label)) continue;
+        var d = entry.startDate;
+        if (!d || !calendarDates[d]) continue;
+
+        // Parse state from the label: "Saturday Open – …" or "Sunday Closed – …"
+        var match = entry.label.match(/^(?:Saturday|Sunday)\s+(Open|Closed)/);
+        if (match) {
+            weekendDateState[d] = match[1].toLowerCase();
+        }
+    }
+
+    renderWeekendCalendar();
+}
+
+function initWeekendCalendar() {
+    var grid = document.getElementById('weekendCalendarGrid');
+    if (!grid) return;
+
+    // Click handler for calendar day buttons
+    grid.addEventListener('click', function (event) {
+        var btn = event.target.closest('[data-wkcal-date]');
+        if (!btn) return;
+        handleWeekendDayClick(btn.dataset.wkcalDate);
+    });
+
+    // Cursor mode toggle — re-clicking the active cursor switches to erase mode
+    var cursorBar = document.querySelector('.wkcal-cursor-bar');
+    if (cursorBar) {
+        cursorBar.addEventListener('click', function (event) {
+            var btn = event.target.closest('[data-wkcal-cursor]');
+            if (!btn) return;
+            var tapped = btn.dataset.wkcalCursor;
+            // Toggle: clicking the already-active Open/Closed cursor deactivates it
+            if (tapped !== 'erase' && weekendCursorMode === tapped) {
+                setWeekendCursor('erase');
+            } else {
+                setWeekendCursor(tapped);
+            }
+        });
+    }
+
+    var applyBtn = document.getElementById('weekendApplyButton');
+    if (applyBtn) {
+        applyBtn.addEventListener('click', applyWeekendSchedule);
+    }
+
+    renderWeekendCalendar();
+}
+
+function initEvents() {
+    safeListen(elements.lockForm, 'submit', handleLogin);
+    safeListen(elements.resetPasswordButton, 'click', handlePasswordReset);
+    safeListen(elements.editorList, 'input', handleEditorInput);
+    safeListen(elements.editorList, 'change', handleEditorInput);
+    safeListen(elements.editorList, 'click', handleEditorClick);
+    document.addEventListener('input', handleBannerInput);
+    document.addEventListener('change', handleBannerInput);
+    safeListen(elements.templateGrid, 'click', handleEditorClick);
+    safeListen(elements.bannerPresetGrid, 'click', handleBannerClick);
+    if (elements.bannerColorPicker) {
+        elements.bannerColorPicker.addEventListener('click', function (event) {
+            var btn = event.target.closest('[data-banner-color]');
+            if (!btn) {
+                return;
+            }
+            setSelectedBannerColor(btn.dataset.bannerColor);
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('Banner color updated. Publish when ready.');
+        });
+    }
+    elements.tabButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            setActiveAdminTab(button.dataset.adminTab);
+        });
+    });
+    safeListen(elements.saveButton, 'click', saveSlides);
+    safeListen(elements.addButton, 'click', function () {
+        addSlide(store.createSlideTemplate(), 'Blank slide added. Publish when ready.');
+    });
+    safeListen(elements.reloadButton, 'click', reloadFromFirebase);
+    safeListen(elements.resetButton, 'click', resetSlidesToDefault);
+    safeListen(elements.exportButton, 'click', exportSlides);
+    safeListen(elements.importInput, 'change', importSlides);
+    safeListen(elements.logoutButton, 'click', handleLogout);
+    if (elements.bannerSaveButton) {
+        elements.bannerSaveButton.addEventListener('click', saveBanner);
+    }
+    if (elements.bannerReloadButton) {
+        elements.bannerReloadButton.addEventListener('click', reloadBannerFromFirebase);
+    }
+    if (elements.bannerResetButton) {
+        elements.bannerResetButton.addEventListener('click', resetBanner);
+    }
+    if (elements.bannerTranslateButton) {
+        elements.bannerTranslateButton.addEventListener('click', function () {
+            translateBannerToSpanish();
+        });
+    }
+    if (elements.bannerCopyButton) {
+        elements.bannerCopyButton.addEventListener('click', copyBannerEnglishToSpanish);
+    }
+
+    /* Scheduled banner events */
+    safeListen(elements.scheduleAddButton, 'click', function () { addScheduledBanner(); });
+    safeListen(elements.scheduleReloadButton, 'click', reloadScheduledBanners);
+    safeListen(elements.scheduledBannerList, 'click', handleScheduleListClick);
+    safeListen(elements.scheduledBannerList, 'change', handleScheduleListChange);
+    safeListen(elements.scheduledBannerList, 'input', handleScheduleListInput);
+
+    /* Scheduled banner template bar */
+    var schedTemplateBar = document.getElementById('schedTemplateBar');
+    if (schedTemplateBar) {
+        schedTemplateBar.addEventListener('click', handleSchedTemplateClick);
+    }
+
+    /* Rich text toolbar buttons */
+    document.querySelectorAll('.studio-richtext-toolbar').forEach(function (toolbar) {
+        toolbar.addEventListener('click', function (event) {
+            var btn = event.target.closest('[data-rt-cmd]');
+            if (!btn || btn.tagName === 'INPUT') return;
+            event.preventDefault();
+            var cmd = btn.dataset.rtCmd;
+            document.execCommand(cmd, false, null);
+            updateRichToolbarState(toolbar);
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('You have unpublished banner changes.');
+        });
+    });
+
+    /* Rich text color pickers */
+    document.querySelectorAll('.studio-rt-color input[type="color"]').forEach(function (picker) {
+        picker.addEventListener('input', function () {
+            document.execCommand('foreColor', false, picker.value);
+            var icon = picker.parentElement.querySelector('.studio-rt-color-icon');
+            if (icon) icon.style.borderBottomColor = picker.value;
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('You have unpublished banner changes.');
+        });
+    });
+
+    /* Contenteditable input tracking */
+    document.querySelectorAll('.studio-richtext').forEach(function (el) {
+        el.addEventListener('input', function () {
+            emergencyBanner = readBannerFromForm();
+            renderBannerPreview();
+            markBannerDirty('You have unpublished banner changes.');
+            if (el.id === 'adminBannerMessageEn') {
+                scheduleBannerAutoTranslate();
+            }
+            if (el.id === 'adminBannerMessageEs') {
+                turnOffBannerAutoTranslate();
+            }
+        });
+        el.addEventListener('keyup', function () {
+            var toolbar = el.previousElementSibling;
+            if (toolbar && toolbar.classList.contains('studio-richtext-toolbar')) {
+                updateRichToolbarState(toolbar);
+            }
+        });
+        el.addEventListener('mouseup', function () {
+            var toolbar = el.previousElementSibling;
+            if (toolbar && toolbar.classList.contains('studio-richtext-toolbar')) {
+                updateRichToolbarState(toolbar);
+            }
+        });
+    });
+
+    /* Show Pill toggle */
+    safeListen(elements.bannerShowPill, 'change', function () {
+        emergencyBanner = readBannerFromForm();
+        renderBannerPreview();
+        markBannerDirty('You have unpublished banner changes.');
+    });
+
+    /* Show Button toggle */
+    safeListen(elements.bannerShowButton, 'change', function () {
+        emergencyBanner = readBannerFromForm();
+        renderBannerPreview();
+        markBannerDirty('You have unpublished banner changes.');
+    });
+
+    if (elements.translateAllButton) {
+        elements.translateAllButton.addEventListener('click', translateAllSlides);
+    }
+
+    if (elements.autoTranslateToggle) {
+        elements.autoTranslateToggle.addEventListener('change', function () {
+            if (!this.checked) {
+                cancelAllPendingTranslations();
+            }
+            setStatus(this.checked
+                ? 'Automatic Spanish fill is on. Type English and the Spanish side will update.'
+                : 'Automatic Spanish fill is off. Use the Translate buttons when needed.', 'info');
+        });
+    }
+
+    window.addEventListener('beforeunload', function (event) {
+        if (!hasPendingChanges()) {
+            return;
+        }
+
+        event.preventDefault();
+        event.returnValue = '';
+    });
+}
+
+function applyAdminVisibility() {
+    elements.adminOnlySections.forEach(function (section) {
+        section.hidden = !isCurrentUserAdmin;
+    });
+}
+
+function disconnectAdminListeners() {
+    if (typeof unsubscribeUsers === 'function') {
+        unsubscribeUsers();
+        unsubscribeUsers = null;
+    }
+    if (typeof unsubscribeMuted === 'function') {
+        unsubscribeMuted();
+        unsubscribeMuted = null;
+    }
+    adminUsers = [];
+    mutedRecipients = [];
+    renderUserList();
+    renderMuteList();
+}
+
+function connectAdminListeners() {
+    if (!isCurrentUserAdmin) return;
+    if (typeof unsubscribeUsers !== 'function') {
+        unsubscribeUsers = subscribeToUsers(
+            function (rows) {
+                adminUsers = rows;
+                renderUserList();
+            },
+            function (error) {
+                setInviteStatus(getFriendlyFirebaseError(error), 'error');
+            }
+        );
+    }
+    if (typeof unsubscribeMuted !== 'function') {
+        unsubscribeMuted = subscribeToMutedRecipients(
+            function (rows) {
+                mutedRecipients = rows;
+                renderMuteList();
+            },
+            function (error) {
+                setMuteStatus(getFriendlyFirebaseError(error), 'error');
+            }
+        );
+    }
+}
+
+/* ══════════════════════════════════════════════════
+   Admin: Users + Mute List UI
+   ══════════════════════════════════════════════════ */
+
+function setInviteStatus(message, tone) {
+    if (!elements.inviteStatus) return;
+    elements.inviteStatus.textContent = message;
+    elements.inviteStatus.dataset.tone = tone || 'info';
+}
+
+function setMuteStatus(message, tone) {
+    if (!elements.muteStatus) return;
+    elements.muteStatus.textContent = message;
+    elements.muteStatus.dataset.tone = tone || 'info';
+}
+
+function formatTimestamp(ts) {
+    if (!ts) return '';
+    try {
+        var date = ts.toDate ? ts.toDate() : (ts instanceof Date ? ts : null);
+        if (!date) return '';
+        return date.toLocaleString();
+    } catch (e) {
+        return '';
+    }
+}
+
+function renderUserList() {
+    if (!elements.userList) return;
+    if (!isCurrentUserAdmin) {
+        elements.userList.innerHTML = '<p style="font-size:13px;color:#86868b;margin:0;">Sign in as an admin to manage users.</p>';
+        return;
+    }
+    if (!adminUsers.length) {
+        elements.userList.innerHTML = '<p style="font-size:13px;color:#86868b;margin:0;">No invited users yet. Send an invite above to add the first one.</p>';
+        return;
+    }
+
+    var rowsHtml = adminUsers.map(function (u) {
+        var disabledBadge = u.disabled
+            ? '<span style="font-size:11px;font-weight:600;color:#ff3b30;background:#ffe5e3;padding:2px 8px;border-radius:999px;">Disabled</span>'
+            : '<span style="font-size:11px;font-weight:600;color:#34c759;background:#e3fbe7;padding:2px 8px;border-radius:999px;">Active</span>';
+        var invitedLine = u.invitedBy
+            ? '<span style="font-size:11px;color:#86868b;">Invited by ' + escapeHtml(u.invitedBy) + (u.invitedAt ? ' · ' + escapeHtml(formatTimestamp(u.invitedAt)) : '') + '</span>'
+            : '';
+        var toggleBtn = u.disabled
+            ? '<button type="button" class="studio-btn-sm" data-admin-user-action="enable" data-uid="' + escapeHtml(u.uid) + '">Re-enable</button>'
+            : '<button type="button" class="studio-btn-sm" data-admin-user-action="disable" data-uid="' + escapeHtml(u.uid) + '">Disable</button>';
+        var resetBtn = '<button type="button" class="studio-btn-sm" data-admin-user-action="reset" data-email="' + escapeHtml(u.email) + '">Send password reset</button>';
+        var removeBtn = '<button type="button" class="studio-btn-sm studio-btn-danger-outline" data-admin-user-action="remove" data-uid="' + escapeHtml(u.uid) + '" data-email="' + escapeHtml(u.email) + '">Remove</button>';
+        return [
+            '<div class="admin-user-row" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f3;flex-wrap:wrap;">',
+            '<div style="min-width:0;flex:1;">',
+            '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">',
+            '<span style="font-size:13px;font-weight:600;color:#1d1d1f;">' + escapeHtml(u.email || '(unknown)') + '</span>',
+            disabledBadge,
+            '</div>',
+            invitedLine ? '<div style="margin-top:2px;">' + invitedLine + '</div>' : '',
+            '</div>',
+            '<div style="display:flex;gap:6px;flex-wrap:wrap;">',
+            resetBtn,
+            toggleBtn,
+            removeBtn,
+            '</div>',
+            '</div>'
+        ].join('');
+    }).join('');
+    elements.userList.innerHTML = rowsHtml;
+}
+
+function renderMuteList() {
+    if (!elements.muteList) return;
+    if (!isCurrentUserAdmin) {
+        elements.muteList.innerHTML = '<p style="font-size:13px;color:#86868b;margin:0;">Sign in as an admin to manage the mute list.</p>';
+        return;
+    }
+    if (!mutedRecipients.length) {
+        elements.muteList.innerHTML = '<p style="font-size:13px;color:#86868b;margin:0;">No addresses are muted. Reminders go to all users.</p>';
+        return;
+    }
+
+    var rowsHtml = mutedRecipients.map(function (m) {
+        var noteLine = m.note
+            ? '<span style="font-size:11px;color:#86868b;">' + escapeHtml(m.note) + '</span>'
+            : '';
+        var byLine = m.mutedBy
+            ? '<span style="font-size:11px;color:#86868b;">Muted by ' + escapeHtml(m.mutedBy) + (m.mutedAt ? ' · ' + escapeHtml(formatTimestamp(m.mutedAt)) : '') + '</span>'
+            : '';
+        return [
+            '<div class="admin-mute-row" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f3;flex-wrap:wrap;">',
+            '<div style="min-width:0;flex:1;">',
+            '<div style="font-size:13px;font-weight:600;color:#1d1d1f;">' + escapeHtml(m.email) + '</div>',
+            noteLine ? '<div style="margin-top:2px;">' + noteLine + '</div>' : '',
+            byLine ? '<div style="margin-top:2px;">' + byLine + '</div>' : '',
+            '</div>',
+            '<button type="button" class="studio-btn-sm" data-admin-mute-action="unmute" data-email="' + escapeHtml(m.email) + '">Unmute</button>',
+            '</div>'
+        ].join('');
+    }).join('');
+    elements.muteList.innerHTML = rowsHtml;
+}
+
+function bindAdminEvents() {
+    if (elements.inviteForm) {
+        elements.inviteForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            if (!isCurrentUserAdmin) {
+                setInviteStatus('Only admins can invite users.', 'error');
+                return;
+            }
+            var email = elements.inviteEmail ? elements.inviteEmail.value : '';
+            if (!email) {
+                setInviteStatus('Enter a valid email address.', 'error');
+                return;
+            }
+            setInviteStatus('Sending invite…', 'info');
+            try {
+                var result = await inviteUser(email, currentUser);
+                setInviteStatus('Invited ' + result.email + '. They will get an email to set their password.', 'success');
+                if (elements.inviteEmail) elements.inviteEmail.value = '';
+            } catch (error) {
+                var code = error && error.code;
+                if (code === 'auth/email-already-in-use') {
+                    setInviteStatus('That email already has an account. Use "Send password reset" if they need access.', 'error');
+                } else {
+                    setInviteStatus(getFriendlyFirebaseError(error) || (error && error.message) || 'Could not send invite.', 'error');
+                }
+            }
+        });
+    }
+
+    if (elements.userList) {
+        elements.userList.addEventListener('click', async function (event) {
+            var btn = event.target.closest('[data-admin-user-action]');
+            if (!btn) return;
+            if (!isCurrentUserAdmin) return;
+            var action = btn.dataset.adminUserAction;
+            var uid = btn.dataset.uid || '';
+            var email = btn.dataset.email || '';
+            try {
+                if (action === 'disable') {
+                    if (!window.confirm('Disable ' + (email || 'this user') + '? They will no longer be able to make changes.')) return;
+                    await setUserDisabled(uid, true, currentUser);
+                    setInviteStatus('User disabled.', 'success');
+                } else if (action === 'enable') {
+                    await setUserDisabled(uid, false, currentUser);
+                    setInviteStatus('User re-enabled.', 'success');
+                } else if (action === 'reset') {
+                    await sendUserPasswordReset(email);
+                    setInviteStatus('Password reset email sent to ' + email + '.', 'success');
+                } else if (action === 'remove') {
+                    if (!window.confirm('Remove ' + (email || 'this user') + ' completely?\n\nThis permanently deletes their login account. They will not be able to sign in unless re-invited.')) return;
+                    setInviteStatus('Removing ' + (email || 'user') + '…', 'info');
+                    // Belt and suspenders: disable in Firestore first so they can't write
+                    // anything between now and the auth-delete completing.
+                    try {
+                        await setUserDisabled(uid, true, currentUser);
+                    } catch (e) {
+                        // ignore — auth delete is the source of truth
+                    }
+                    await deleteUserAccount(uid, email, currentUser);
+                    setInviteStatus('Deleted ' + (email || 'user') + '.', 'success');
+                }
+            } catch (error) {
+                setInviteStatus(getFriendlyFirebaseError(error) || (error && error.message) || 'Could not complete that action.', 'error');
+            }
+        });
+    }
+
+    if (elements.muteForm) {
+        elements.muteForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            if (!isCurrentUserAdmin) {
+                setMuteStatus('Only admins can mute recipients.', 'error');
+                return;
+            }
+            var email = elements.muteEmail ? elements.muteEmail.value : '';
+            var note = elements.muteNote ? elements.muteNote.value : '';
+            if (!email) {
+                setMuteStatus('Enter a valid email address.', 'error');
+                return;
+            }
+            try {
+                await muteRecipient(email, note, currentUser);
+                setMuteStatus('Muted ' + email + '.', 'success');
+                if (elements.muteEmail) elements.muteEmail.value = '';
+                if (elements.muteNote) elements.muteNote.value = '';
+            } catch (error) {
+                setMuteStatus(getFriendlyFirebaseError(error) || (error && error.message) || 'Could not mute that address.', 'error');
+            }
+        });
+    }
+
+    if (elements.muteList) {
+        elements.muteList.addEventListener('click', async function (event) {
+            var btn = event.target.closest('[data-admin-mute-action]');
+            if (!btn) return;
+            if (!isCurrentUserAdmin) return;
+            if (btn.dataset.adminMuteAction !== 'unmute') return;
+            var email = btn.dataset.email || '';
+            if (!email) return;
+            try {
+                await unmuteRecipient(email, currentUser);
+                setMuteStatus('Unmuted ' + email + '.', 'success');
+            } catch (error) {
+                setMuteStatus(getFriendlyFirebaseError(error) || (error && error.message) || 'Could not unmute that address.', 'error');
+            }
+        });
+    }
+}
+
+function initAuthObserver() {
+    observeAuthState(async function (user) {
+        currentUser = user || null;
+        isCurrentUserAdmin = isAdminUser(user);
+        applyAdminVisibility();
+        setAuthenticated(!!user);
+        setUserEmail(user);
+
+        if (!user) {
+            disconnectSlidesListener();
+            disconnectBannerListener();
+            disconnectScheduledListener();
+            disconnectAdminListeners();
+            clearEditorState();
+            clearBannerEditorState();
+            setStatus('Sign in to edit the homepage slides.', 'info');
+            setBannerStatus('Sign in to edit the urgent banner.', 'info');
+            setScheduleStatus('Sign in to manage scheduled banners.', 'info');
+            setLockMessage('Sign in with the office admin email and password.', 'info');
+            if (elements.emailInput) {
+                elements.emailInput.focus();
+            }
+            // If we landed on an admin-only tab, fall back to the banner tab.
+            if (activeAdminTab === 'users' || activeAdminTab === 'mute') {
+                setActiveAdminTab('banner');
+            }
+            return;
+        }
+
+        setLockMessage('Signed in as ' + (user.email || 'admin user') + '.', 'success');
+        await Promise.all([
+            connectSlidesListener(),
+            connectBannerListener(),
+            connectScheduledListener()
+        ]);
+        connectAdminListeners();
+        if (!isCurrentUserAdmin && (activeAdminTab === 'users' || activeAdminTab === 'mute')) {
+            setActiveAdminTab('banner');
+        }
+    });
+}
+
+/* ══════════════════════════════════════════════════
+   Template preview tooltip
+   ══════════════════════════════════════════════════ */
+
+var _tmplPopover = null;
+var _tmplPopoverHideTimer = null;
+
+function getTmplPopover() {
+    if (!_tmplPopover) {
+        _tmplPopover = document.createElement('div');
+        _tmplPopover.id = 'tmpl-preview-popover';
+        _tmplPopover.innerHTML = '<div class="tmpl-preview-card"></div>';
+        document.body.appendChild(_tmplPopover);
+    }
+    return _tmplPopover;
+}
+
+function buildSchedTemplateBannerHtml(tmpl) {
+    // For group templates (alternating), preview the first entry
+    var banner = tmpl.isGroup ? tmpl.entries[0].banner : tmpl.banner;
+    var color = (banner && banner.color) || 'red';
+    var pillText = (banner && banner.pill && banner.pill.en) ? escapeHtml(banner.pill.en) : '';
+    var msgText = (banner && banner.message && banner.message.en) ? escapeHtml(banner.message.en) : '';
+    var ctaText = (banner && banner.ctaLabel && banner.ctaLabel.en) ? escapeHtml(banner.ctaLabel.en) : '';
+    var ctaUrl = (banner && banner.ctaUrl) ? escapeHtml(banner.ctaUrl) : '';
+    var showPill = !!(banner && banner.showPill && pillText);
+    var showButton = !!(banner && banner.showButton && ctaText && ctaUrl);
+
+    return [
+        '<div class="site-emergency-banner" data-color="' + color + '">',
+        '<div class="site-emergency-banner-inner">',
+        '<div class="site-emergency-banner-copy">',
+        showPill ? '<span class="site-emergency-banner-pill">' + pillText + '</span>' : '',
+        '<span class="site-emergency-banner-message">' + msgText + '</span>',
+        '</div>',
+        showButton ? '<a class="site-emergency-banner-link" href="#">' + ctaText + '</a>' : '',
+        '</div>',
+        '</div>'
+    ].join('');
+}
+
+function buildTmplPreviewHtml(kind, id) {
+    if (kind === 'banner-preset') {
+        var preset = BANNER_PRESETS.find(function (p) { return p.id === id; });
+        if (!preset) return null;
+        var fakeBanner = Object.assign({
+            enabled: true, color: 'red', showPill: true, showButton: true
+        }, preset.banner);
+        return {
+            title: 'Quick Start Preview',
+            name: preset.label,
+            bannerHtml: buildBannerPreviewMarkup(fakeBanner),
+            metaChips: [
+                preset.banner.ctaUrl ? '📞 Includes call button' : null
+            ].filter(Boolean),
+            groupNote: null
+        };
+    }
+
+    if (kind === 'sched-template') {
+        var tmpl = SCHED_TEMPLATES[id];
+        if (!tmpl) return null;
+        var recMode = tmpl.isGroup
+            ? 'Alternating weeks'
+            : (tmpl.recurrence && tmpl.recurrence.mode === 'weekly' ? 'Repeats weekly' :
+                tmpl.recurrence && tmpl.recurrence.mode === 'dates' ? 'Specific dates' : '');
+        var entryCount = tmpl.isGroup ? tmpl.entries.length + ' banners created' : null;
+        return {
+            title: 'Template Preview',
+            name: tmpl.label,
+            bannerHtml: '<div class="tmpl-preview-banner-wrap admin-banner-preview">' + buildSchedTemplateBannerHtml(tmpl) + '</div>',
+            metaChips: [recMode, entryCount].filter(Boolean),
+            groupNote: tmpl.isGroup ? 'Creates ' + tmpl.entries.length + ' banner entries (one per alternating week).' : null
+        };
+    }
+
+    return null;
+}
+
+function showTmplPreview(anchor, kind, id) {
+    if (_tmplPopoverHideTimer) {
+        clearTimeout(_tmplPopoverHideTimer);
+        _tmplPopoverHideTimer = null;
+    }
+
+    var data = buildTmplPreviewHtml(kind, id);
+    if (!data) return;
+
+    var pop = getTmplPopover();
+    var card = pop.querySelector('.tmpl-preview-card');
+
+    var bannerSection = kind === 'banner-preset'
+        ? '<div class="tmpl-preview-banner-wrap admin-banner-preview">' + data.bannerHtml + '</div>'
+        : data.bannerHtml;
+
+    var metaHtml = data.metaChips.length
+        ? '<div class="tmpl-preview-meta">' +
+        data.metaChips.map(function (c) { return '<span class="tmpl-preview-meta-chip">' + escapeHtml(c) + '</span>'; }).join('') +
+        '</div>'
+        : '';
+
+    var groupNoteHtml = data.groupNote
+        ? '<div class="tmpl-preview-group-note">' + escapeHtml(data.groupNote) + '</div>'
+        : '';
+
+    card.innerHTML =
+        '<div class="tmpl-preview-header">' +
+        '<span class="tmpl-preview-title">' + escapeHtml(data.title) + '</span>' +
+        '<span class="tmpl-preview-name">' + escapeHtml(data.name) + '</span>' +
+        '</div>' +
+        bannerSection +
+        metaHtml +
+        groupNoteHtml;
+
+    // Position: prefer above the button, fall back to below
+    pop.classList.remove('is-visible', 'arrow-top', 'arrow-bottom');
+
+    var rect = anchor.getBoundingClientRect();
+    var popW = 320;
+    var gap = 10;
+
+    // Horizontal: center on button, clamp to viewport
+    var left = rect.left + rect.width / 2 - popW / 2;
+    left = Math.max(8, Math.min(left, window.innerWidth - popW - 8));
+
+    // Vertical: above by default
+    var estimatedHeight = 220;
+    var topAbove = rect.top - estimatedHeight - gap;
+    var topBelow = rect.bottom + gap;
+
+    var useAbove = topAbove >= 8;
+    var top = useAbove ? topAbove : topBelow;
+    pop.classList.add(useAbove ? 'arrow-bottom' : 'arrow-top');
+
+    // Nudge the arrow to point at the button center
+    var arrowOffset = (rect.left + rect.width / 2) - left;
+    arrowOffset = Math.max(20, Math.min(arrowOffset, popW - 20));
+    pop.style.setProperty('--arrow-x', arrowOffset + 'px');
+    var afterEl = pop; // arrow via ::after pseudo, override left via custom prop if needed
+    // (We use a simpler approach: just center the arrow at popover center since we already centered on button)
+
+    pop.style.left = left + 'px';
+    pop.style.top = top + 'px';
+
+    // Force a reflow so the transition fires
+    void pop.offsetWidth;
+    pop.classList.add('is-visible');
+}
+
+function hideTmplPreview() {
+    if (_tmplPopoverHideTimer) return;
+    _tmplPopoverHideTimer = setTimeout(function () {
+        _tmplPopoverHideTimer = null;
+        var pop = _tmplPopover;
+        if (pop) pop.classList.remove('is-visible');
+    }, 100);
+}
+
+function initTemplatePreviewTooltips() {
+    // Banner preset buttons (Quick Start)
+    document.addEventListener('mouseover', function (e) {
+        var btn = e.target.closest('[data-tmpl-preview]');
+        if (!btn) return;
+        showTmplPreview(btn, btn.dataset.tmplPreview, btn.dataset.tmplPresetId || btn.dataset.schedTemplate);
+    });
+
+    document.addEventListener('mouseout', function (e) {
+        var btn = e.target.closest('[data-tmpl-preview]');
+        if (!btn) return;
+        // Don't hide if moving into the popover itself (pointer-events:none so this won't trigger,
+        // but guard mouseout from child elements too)
+        var related = e.relatedTarget;
+        if (related && btn.contains(related)) return;
+        hideTmplPreview();
+    });
+}
+
+function init() {
+    if (!elements.lockForm || !elements.editorList) {
+        return;
+    }
+
+    renderTemplateGrid();
+    buildBannerPresetGrid();
+    applyBannerToForm(createDefaultEmergencyBanner());
+    setActiveAdminTab(activeAdminTab);
+    initEvents();
+    initWeekendCalendar();
+    initTemplatePreviewTooltips();
+    bindAdminEvents();
+    renderUserList();
+    renderMuteList();
+    initAuthObserver();
+}
+
+init();

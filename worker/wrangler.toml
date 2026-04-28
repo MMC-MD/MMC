@@ -1,0 +1,27 @@
+name = "mmc-reminders"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+# 9:00 AM America/New_York on Wed, Thu, Fri.
+# DST-aware option isn't free in Workers cron; we run two crons (EDT 13:00 UTC and EST 14:00 UTC)
+# and the Worker drops the wrong one based on the actual local time when it fires.
+[triggers]
+crons = [
+  "0 13 * * 3,4,5",
+  "0 14 * * 3,4,5"
+]
+
+# Allow manual testing from the dashboard's "Run" button or HTTP fetch.
+# Variables (non-secret) — fill in values that aren't sensitive here.
+[vars]
+SITE_URL = "https://mmccare.com/frontdesk-briefing-room/"
+PUBLIC_SITE_URL = "https://mmccare.com/"
+FROM_EMAIL = "MMC Briefing Room <hello@mmccare.com>"
+ADMIN_EMAILS = "efikess@gmail.com,bendoryair@gmail.com"
+TZ_NAME = "America/New_York"
+
+# Secrets (set via `wrangler secret put`):
+# - RESEND_API_KEY
+# - FIREBASE_PROJECT_ID                  (e.g. mmcblog-6573f)
+# - FIREBASE_SERVICE_ACCOUNT_EMAIL       (from the service-account JSON, "client_email")
+# - FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY (from the service-account JSON, "private_key" — keep the literal \n line breaks)

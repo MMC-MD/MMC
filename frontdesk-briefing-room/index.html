@@ -130,6 +130,16 @@
                     </button>
                 </div>
 
+                <div class="px-3 border-t border-[#d2d2d7]/60 pt-4 mt-2 admin-only-section" data-admin-section="admin-only" hidden>
+                    <p class="text-[10px] font-semibold text-[#86868b] uppercase tracking-wider px-2 mb-1.5">Admin</p>
+                    <button type="button" data-admin-tab="users" aria-selected="false" class="sidebar-link w-full flex items-center gap-2.5 px-2.5 py-[7px] rounded-lg text-[13px] font-medium transition-all mb-0.5 text-left">
+                        <i data-lucide="users" class="w-[15px] h-[15px] shrink-0 opacity-60"></i> Users
+                    </button>
+                    <button type="button" data-admin-tab="mute" aria-selected="false" class="sidebar-link w-full flex items-center gap-2.5 px-2.5 py-[7px] rounded-lg text-[13px] font-medium transition-all mb-0.5 text-left">
+                        <i data-lucide="bell-off" class="w-[15px] h-[15px] shrink-0 opacity-60"></i> Email Mute List
+                    </button>
+                </div>
+
                 <div class="px-3 border-t border-[#d2d2d7]/60 pt-4 mt-2">
                     <p class="text-[10px] font-semibold text-[#86868b] uppercase tracking-wider px-2 mb-2">Overview</p>
                     <div class="space-y-2 px-2">
@@ -469,13 +479,85 @@
                     </div>
                 </div>
 
+                <!-- ============================================ -->
+                <!--  USERS TAB (admins only)                     -->
+                <!-- ============================================ -->
+                <div class="admin-tab-panel" data-admin-panel="users" hidden>
+                    <div style="padding:24px;max-width:880px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                            <div>
+                                <h2 style="margin:0;font-size:20px;font-weight:600;letter-spacing:-0.02em;color:#1d1d1f;">Users</h2>
+                                <p style="margin:4px 0 0;font-size:13px;color:#86868b;">Invite teammates to manage the website. They'll get an email to set their own password.</p>
+                            </div>
+                        </div>
+
+                        <!-- Invite form -->
+                        <div class="studio-card" style="margin-bottom:20px;">
+                            <h3 class="studio-section-title">Invite a user</h3>
+                            <form id="adminInviteForm" style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+                                <label class="studio-field" style="flex:1;min-width:240px;margin:0;">
+                                    <span class="studio-field-label">Email</span>
+                                    <input id="adminInviteEmail" type="email" inputmode="email" placeholder="teammate@mmccare.com" required>
+                                </label>
+                                <button type="submit" class="studio-btn studio-btn-publish" style="min-height:38px;">Send Invite</button>
+                            </form>
+                            <div id="adminInviteStatus" class="studio-status" style="margin-top:12px;">Enter an email and click Send Invite. They'll receive a link to set their password.</div>
+                        </div>
+
+                        <!-- User list -->
+                        <div class="studio-card">
+                            <h3 class="studio-section-title">Existing users</h3>
+                            <div id="adminUserList" class="admin-user-list">
+                                <p style="font-size:13px;color:#86868b;margin:0;">Loading users…</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================ -->
+                <!--  MUTE LIST TAB (admins only)                 -->
+                <!-- ============================================ -->
+                <div class="admin-tab-panel" data-admin-panel="mute" hidden>
+                    <div style="padding:24px;max-width:880px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+                            <div>
+                                <h2 style="margin:0;font-size:20px;font-weight:600;letter-spacing:-0.02em;color:#1d1d1f;">Email Mute List</h2>
+                                <p style="margin:4px 0 0;font-size:13px;color:#86868b;">Stop automated reminders (e.g. weekend-schedule nudges) from being sent to specific people.</p>
+                            </div>
+                        </div>
+
+                        <div class="studio-card" style="margin-bottom:20px;">
+                            <h3 class="studio-section-title">Mute an email</h3>
+                            <form id="adminMuteForm" style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+                                <label class="studio-field" style="flex:1;min-width:220px;margin:0;">
+                                    <span class="studio-field-label">Email</span>
+                                    <input id="adminMuteEmail" type="email" inputmode="email" placeholder="someone@example.com" required>
+                                </label>
+                                <label class="studio-field" style="flex:1.5;min-width:220px;margin:0;">
+                                    <span class="studio-field-label">Note <span class="studio-optional">optional</span></span>
+                                    <input id="adminMuteNote" type="text" placeholder="On leave, doesn't want reminders, etc.">
+                                </label>
+                                <button type="submit" class="studio-btn studio-btn-publish" style="min-height:38px;">Mute</button>
+                            </form>
+                            <div id="adminMuteStatus" class="studio-status" style="margin-top:12px;">Muted addresses will not receive automated reminders.</div>
+                        </div>
+
+                        <div class="studio-card">
+                            <h3 class="studio-section-title">Currently muted</h3>
+                            <div id="adminMuteList" class="admin-mute-list">
+                                <p style="font-size:13px;color:#86868b;margin:0;">Loading…</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div><!-- /studio-main-scroll -->
         </div><!-- /flex-1 -->
     </main>
 
-    <script src="../js/slideshow-data.js?v=2026041304"></script>
-    <script src="../js/slideshow.js?v=2026041304"></script>
-    <script type="module" src="../js/admin-slideshow.js?v=2026041501"></script>
+    <script src="../js/slideshow-data.js?v=2026042802"></script>
+    <script src="../js/slideshow.js?v=2026042802"></script>
+    <script type="module" src="../js/admin-slideshow.js?v=2026042802"></script>
     <script>
         // Initialize Lucide icons
         if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -489,7 +571,9 @@
                 banner: 'Urgent Banner',
                 slides: 'Homepage Slides',
                 schedule: 'Scheduled Banners',
-                weekend: 'Weekend Hours'
+                weekend: 'Weekend Hours',
+                users: 'Users',
+                mute: 'Email Mute List'
             };
 
             sidebarLinks.forEach(link => {
