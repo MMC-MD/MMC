@@ -429,6 +429,42 @@ async function removeUserRecord(uid, currentUser) {
 const REMINDER_WORKER_URL = (typeof window !== 'undefined' && window.MMC_REMINDER_WORKER_URL)
     || 'https://mmc-reminders.efikess.workers.dev';
 
+async function sendManualReminder(recipients, currentUser) {
+    if (!isAdminUser(currentUser)) throw new Error('Only admins can send reminders.');
+    if (!auth.currentUser) throw new Error('You are not signed in.');
+    if (!Array.isArray(recipients) || recipients.length === 0) {
+        throw new Error('Add at least one recipient.');
+    }
+
+    const cleanRecipients = recipients
+        .map(function (e) { return typeof e === 'string' ? e.trim().toLowerCase() : ''; })
+        .filter(function (e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e); });
+    if (cleanRecipients.length === 0) throw new Error('No valid email addresses provided.');
+
+    const idToken = await auth.currentUser.getIdToken(true);
+
+    const res = await fetch(REMINDER_WORKER_URL.replace(/\/+$/, '') + '/admin/send-reminder', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + idToken
+        },
+        body: JSON.stringify({ recipients: cleanRecipients })
+    });
+
+    if (!res.ok) {
+        let message = 'Could not send reminder (HTTP ' + res.status + ').';
+        try {
+            const body = await res.json();
+            if (body && body.error) message = body.error;
+        } catch (e) {
+            // ignore
+        }
+        throw new Error(message);
+    }
+    return await res.json();
+}
+
 async function deleteUserAccount(uid, email, currentUser) {
     if (!uid) throw new Error('Missing user id.');
     if (!isAdminUser(currentUser)) throw new Error('Only admins can delete users.');
@@ -714,6 +750,7 @@ export {
     saveHomepageSlides,
     saveScheduledBanner,
     sendAdminPasswordReset,
+    sendManualReminder,
     sendUserPasswordReset,
     setUserDisabled,
     signInAdmin,

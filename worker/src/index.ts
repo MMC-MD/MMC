@@ -937,6 +937,116 @@ async function handleDeleteUser(request: Request, env: Env): Promise<Response> {
     });
 }
 
+async function handleSendReminder(request: Request, env: Env): Promise<Response> {
+    const origin = request.headers.get('origin');
+    const cors = corsHeaders(origin);
+    const adminList = (env.ADMIN_EMAILS || '')
+        .split(',')
+        .map((e) => e.trim().toLowerCase())
+        .filter(Boolean);
+
+    const authHeader = request.headers.get('authorization') || '';
+    const match = /^Bearer\s+(.+)$/.exec(authHeader);
+    if (!match) {
+        return new Response(JSON.stringify({ error: 'Missing bearer token' }), {
+            status: 401,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    let payload: FirebaseJwtPayload;
+    try {
+        payload = await verifyFirebaseIdToken(match[1].trim(), env.FIREBASE_PROJECT_ID);
+    } catch (e: any) {
+        return new Response(JSON.stringify({ error: 'Invalid ID token: ' + (e?.message || String(e)) }), {
+            status: 401,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    const callerEmail = (payload.email || '').trim().toLowerCase();
+    if (!callerEmail || adminList.indexOf(callerEmail) < 0) {
+        return new Response(JSON.stringify({ error: 'Caller is not an admin' }), {
+            status: 403,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    let body: { recipients?: string[] };
+    try {
+        body = (await request.json()) as { recipients?: string[] };
+    } catch {
+        return new Response(JSON.stringify({ error: 'Invalid JSON body' }), {
+            status: 400,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    const recipients = (Array.isArray(body.recipients) ? body.recipients : [])
+        .map((e) => (typeof e === 'string' ? e.trim().toLowerCase() : ''))
+        .filter((e) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e));
+    if (recipients.length === 0) {
+        return new Response(JSON.stringify({ error: 'Provide at least one valid recipient email' }), {
+            status: 400,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+    if (recipients.length > 50) {
+        return new Response(JSON.stringify({ error: 'Too many recipients (max 50)' }), {
+            status: 400,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    // Compute the upcoming Sat & Sun in the brand timezone, regardless of when
+    // the admin presses the button — so the email content stays accurate.
+    const now = new Date();
+    const local = partsInZone(now, env.TZ_NAME);
+    const todayWeekday = local.weekday;
+    let daysUntilSat = (6 - todayWeekday + 7) % 7;
+    if (daysUntilSat === 0) daysUntilSat = 0; // today is already Saturday — show today
+    const saturdayYmd = addDaysYmd(local.year, local.month, local.day, daysUntilSat);
+    const sundayYmd = addDaysYmd(local.year, local.month, local.day, daysUntilSat + 1);
+
+    let satCovered = false;
+    let sunCovered = false;
+    try {
+        const banners = await loadScheduledBanners(env);
+        satCovered = !!findCoveringBanner(banners, saturdayYmd);
+        sunCovered = !!findCoveringBanner(banners, sundayYmd);
+    } catch (e) {
+        // If Firestore is unreachable, default to "not covered" so the email
+        // still goes out and admins know to check.
+    }
+
+    let emailId = '';
+    try {
+        emailId = await sendResend(
+            env,
+            recipients,
+            { date: saturdayYmd, covered: satCovered },
+            { date: sundayYmd, covered: sunCovered }
+        );
+    } catch (e: any) {
+        return new Response(JSON.stringify({ error: e?.message || String(e) }), {
+            status: 500,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    return new Response(JSON.stringify({
+        ok: true,
+        emailId,
+        recipients,
+        saturday: { date: saturdayYmd, covered: satCovered },
+        sunday: { date: sundayYmd, covered: sunCovered },
+        sentBy: callerEmail
+    }), {
+        status: 200,
+        headers: { ...cors, 'Content-Type': 'application/json' }
+    });
+}
+
 /* ──────────────────────────────────────────────
    Worker entry points
    ────────────────────────────────────────────── */
@@ -956,8 +1066,8 @@ export default {
     async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
         const url = new URL(request.url);
 
-        // CORS preflight for the admin endpoint.
-        if (request.method === 'OPTIONS' && url.pathname === '/admin/delete-user') {
+        // CORS preflight for admin endpoints.
+        if (request.method === 'OPTIONS' && url.pathname.startsWith('/admin/')) {
             return new Response(null, {
                 status: 204,
                 headers: corsHeaders(request.headers.get('origin'))
@@ -967,6 +1077,11 @@ export default {
         // POST /admin/delete-user — admin-only via verified Firebase ID token
         if (url.pathname === '/admin/delete-user' && request.method === 'POST') {
             return handleDeleteUser(request, env);
+        }
+
+        // POST /admin/send-reminder — admin-only manual reminder send
+        if (url.pathname === '/admin/send-reminder' && request.method === 'POST') {
+            return handleSendReminder(request, env);
         }
 
         // GET / — quick health check

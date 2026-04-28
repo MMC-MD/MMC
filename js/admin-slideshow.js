@@ -17,6 +17,7 @@ import {
     saveHomepageSlides,
     saveScheduledBanner,
     sendAdminPasswordReset,
+    sendManualReminder,
     sendUserPasswordReset,
     setUserDisabled,
     signInAdmin,
@@ -27,7 +28,7 @@ import {
     subscribeToScheduledBanners,
     subscribeToUsers,
     unmuteRecipient
-} from './firebase-client.js?v=2026042803';
+} from './firebase-client.js?v=2026042804';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;
@@ -295,6 +296,10 @@ const elements = {
     inviteEmail: document.getElementById('adminInviteEmail'),
     inviteStatus: document.getElementById('adminInviteStatus'),
     userList: document.getElementById('adminUserList'),
+    sendReminderForm: document.getElementById('adminSendReminderForm'),
+    sendReminderRecipients: document.getElementById('adminSendReminderRecipients'),
+    sendReminderAllButton: document.getElementById('adminSendReminderAll'),
+    sendReminderStatus: document.getElementById('adminSendReminderStatus'),
     muteForm: document.getElementById('adminMuteForm'),
     muteEmail: document.getElementById('adminMuteEmail'),
     muteNote: document.getElementById('adminMuteNote'),
@@ -3830,6 +3835,12 @@ function setMuteStatus(message, tone) {
     elements.muteStatus.dataset.tone = tone || 'info';
 }
 
+function setSendReminderStatus(message, tone) {
+    if (!elements.sendReminderStatus) return;
+    elements.sendReminderStatus.textContent = message;
+    elements.sendReminderStatus.dataset.tone = tone || 'info';
+}
+
 function formatTimestamp(ts) {
     if (!ts) return '';
     try {
@@ -4021,6 +4032,87 @@ function bindAdminEvents() {
             } catch (error) {
                 setMuteStatus(getFriendlyFirebaseError(error) || (error && error.message) || 'Could not unmute that address.', 'error');
             }
+        });
+    }
+
+    function parseRecipientList(raw) {
+        if (typeof raw !== 'string') return [];
+        return raw
+            .split(/[,;\s]+/)
+            .map(function (e) { return e.trim().toLowerCase(); })
+            .filter(function (e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e); });
+    }
+
+    function buildAllUsersRecipientList() {
+        var muted = {};
+        for (var i = 0; i < mutedRecipients.length; i++) muted[mutedRecipients[i].email] = true;
+        var seen = {};
+        var out = [];
+        // Always include admins so they're in the loop.
+        var ADMIN_LIST = ['efikess@gmail.com', 'bendoryair@gmail.com'];
+        for (var a = 0; a < ADMIN_LIST.length; a++) {
+            var ae = ADMIN_LIST[a];
+            if (!muted[ae] && !seen[ae]) { seen[ae] = true; out.push(ae); }
+        }
+        for (var u = 0; u < adminUsers.length; u++) {
+            var rec = adminUsers[u];
+            if (!rec || !rec.email || rec.disabled) continue;
+            if (muted[rec.email] || seen[rec.email]) continue;
+            seen[rec.email] = true;
+            out.push(rec.email);
+        }
+        return out;
+    }
+
+    async function performSendReminder(recipients) {
+        if (!isCurrentUserAdmin) {
+            setSendReminderStatus('Only admins can send reminders.', 'error');
+            return;
+        }
+        if (!recipients || !recipients.length) {
+            setSendReminderStatus('Add at least one valid email.', 'error');
+            return;
+        }
+        setSendReminderStatus('Sending reminder to ' + recipients.length + ' recipient' + (recipients.length === 1 ? '' : 's') + '…', 'info');
+        try {
+            var result = await sendManualReminder(recipients, currentUser);
+            var summary = 'Sent to ' + result.recipients.length + ' recipient' + (result.recipients.length === 1 ? '' : 's') + '.';
+            if (result.saturday && result.sunday) {
+                var bothCovered = result.saturday.covered && result.sunday.covered;
+                summary += bothCovered
+                    ? ' (Heads-up: both Sat and Sun are already covered — the email will say so.)'
+                    : '';
+            }
+            setSendReminderStatus(summary, 'success');
+        } catch (error) {
+            setSendReminderStatus((error && error.message) || 'Could not send reminder.', 'error');
+        }
+    }
+
+    if (elements.sendReminderForm) {
+        elements.sendReminderForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            var raw = elements.sendReminderRecipients ? elements.sendReminderRecipients.value : '';
+            var list = parseRecipientList(raw);
+            if (!list.length) {
+                setSendReminderStatus('Enter one or more valid email addresses (comma- or space-separated).', 'error');
+                return;
+            }
+            await performSendReminder(list);
+        });
+    }
+
+    if (elements.sendReminderAllButton) {
+        elements.sendReminderAllButton.addEventListener('click', async function () {
+            var list = buildAllUsersRecipientList();
+            if (!list.length) {
+                setSendReminderStatus('No active users in the roster (or all are muted).', 'error');
+                return;
+            }
+            if (!window.confirm('Send the weekend-schedule reminder to ' + list.length + ' recipient' + (list.length === 1 ? '' : 's') + '?')) {
+                return;
+            }
+            await performSendReminder(list);
         });
     }
 }
