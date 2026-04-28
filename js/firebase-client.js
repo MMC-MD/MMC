@@ -427,7 +427,7 @@ async function removeUserRecord(uid, currentUser) {
 // Set/override at runtime by setting window.MMC_REMINDER_WORKER_URL before this
 // module loads.
 const REMINDER_WORKER_URL = (typeof window !== 'undefined' && window.MMC_REMINDER_WORKER_URL)
-    || 'https://mmc-reminders.helloman696.workers.dev';
+    || 'https://mmc-reminders.efikess.workers.dev';
 
 async function deleteUserAccount(uid, email, currentUser) {
     if (!uid) throw new Error('Missing user id.');

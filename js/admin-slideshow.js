@@ -27,7 +27,7 @@ import {
     subscribeToScheduledBanners,
     subscribeToUsers,
     unmuteRecipient
-} from './firebase-client.js?v=2026042802';
+} from './firebase-client.js?v=2026042803';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;
