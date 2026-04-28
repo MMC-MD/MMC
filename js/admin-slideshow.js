@@ -28,7 +28,7 @@ import {
     subscribeToScheduledBanners,
     subscribeToUsers,
     unmuteRecipient
-} from './firebase-client.js?v=2026042804';
+} from './firebase-client.js?v=2026042805';
 
 const store = window.MMCSlideshowStore;
 const slideshow = window.MMCSlideshow;
@@ -3501,8 +3501,8 @@ async function applyWeekendSchedule() {
                 endDate: cd.date,
                 recurrence: { mode: 'dates', days: [] },
                 banner: {
-                    enabled: true, color: 'red', showPill: true, showButton: false,
-                    pill: { en: 'Closed Today', es: 'Cerrado Hoy' },
+                    enabled: true, color: 'red', showPill: false, showButton: false,
+                    pill: { en: '', es: '' },
                     message: closedMsg,
                     ctaLabel: { en: '', es: '' },
                     ctaUrl: '', ctaNewTab: false
@@ -3520,11 +3520,11 @@ async function applyWeekendSchedule() {
                 endDate: od.date,
                 recurrence: { mode: 'dates', days: [] },
                 banner: {
-                    enabled: true, color: 'green', showPill: true, showButton: true,
-                    pill: { en: 'Weekend Hours', es: 'Horario de Fin de Semana' },
+                    enabled: true, color: 'green', showPill: false, showButton: false,
+                    pill: { en: '', es: '' },
                     message: { en: 'The clinic is open today from 8:00 AM \u2013 1:00 PM.', es: 'La cl\u00EDnica est\u00E1 abierta hoy de 8:00 AM a 1:00 PM.' },
-                    ctaLabel: { en: 'Call the Office', es: 'Llamar a la Oficina' },
-                    ctaUrl: 'tel:3012082273', ctaNewTab: false
+                    ctaLabel: { en: '', es: '' },
+                    ctaUrl: '', ctaNewTab: false
                 }
             }, currentUser);
             count++;
