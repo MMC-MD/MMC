@@ -45,7 +45,7 @@ rule. Dates come from a **generated table** in
 [`src/jewish-holidays.ts`](src/jewish-holidays.ts), built from
 [hebcal.com](https://www.hebcal.com)'s Diaspora-rules JSON feed.
 
-Currently covers **2026–2040**.
+Currently covers **2026–2055**.
 
 | Holiday | What we send |
 |---|---|
@@ -57,7 +57,7 @@ Currently covers **2026–2040**.
 | Passover (Pesach VII) | Final "no work" day |
 | Shavuot | First day only |
 
-To extend coverage past 2040, run:
+To extend coverage past 2055, run:
 
 ```bash
 cd worker

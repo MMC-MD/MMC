@@ -6,7 +6,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 START=2026
-END=2040
+END=2055
 
 CACHE=$(mktemp -d)
 trap 'rm -rf "$CACHE"' EXIT

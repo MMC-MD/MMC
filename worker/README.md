@@ -49,8 +49,16 @@ npx wrangler secret put FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY
 ### 4. Deploy
 
 ```bash
-npx wrangler deploy
+npm run deploy
 ```
+
+(or `npx wrangler deploy --config wrangler.toml` directly).
+
+> **Note:** the parent repo has its own `wrangler.jsonc` for the public
+> Cloudflare Pages site. Always pass `--config wrangler.toml` (or use
+> `npm run deploy`) so wrangler picks up *this* Worker's config rather
+> than walking up to the parent and trying to upload the entire repo
+> as static assets.
 
 Wrangler prints the Worker URL. Save it.
 
