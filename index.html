@@ -194,14 +194,19 @@
 
         /* Pre-reserve header height so the async-loaded header doesn't
            cause layout shift. Body's padding-top compensates for the
-           sticky header, and we reserve a matching min-height on the
-           placeholder so any rendered baseline matches the final state. */
+           sticky header, so once the header is injected (its children
+           become position:fixed and leave normal flow), the placeholder
+           must collapse to 0 — otherwise we get a duplicate gap below
+           the header. The min-height only applies before injection. */
         #header-placeholder {
-            min-height: 140px;
             display: block;
+            min-height: 140px;
         }
         @media (max-width: 640px) {
             #header-placeholder { min-height: 120px; }
+        }
+        #header-placeholder[data-mmc-header-inserted="true"] {
+            min-height: 0;
         }
 
         /* Hero must paint at a known height immediately to register as LCP.
