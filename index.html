@@ -215,6 +215,13 @@
             }
         }
 
+        /* Tailwind responsive `sm:flex` is missing from the compiled
+           css/tailwind.css used here, which caused the hero text to stay
+           display:none on desktop. Restore it locally. */
+        @media (min-width: 640px) {
+            .sm\:flex { display: flex; }
+        }
+
         /* Ensure touch targets are at least 44x44px */
         button, a, input, select, textarea {
             min-height: 44px;
