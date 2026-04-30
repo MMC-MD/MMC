@@ -213,7 +213,8 @@ async function getGoogleAccessToken(env: Env): Promise<string> {
     const header = { alg: 'RS256', typ: 'JWT' };
     const claim = {
         iss: env.FIREBASE_SERVICE_ACCOUNT_EMAIL,
-        scope: 'https://www.googleapis.com/auth/datastore',
+        // datastore: Firestore REST. firebase: Identity Toolkit (list/delete auth users).
+        scope: 'https://www.googleapis.com/auth/datastore https://www.googleapis.com/auth/firebase',
         aud: 'https://oauth2.googleapis.com/token',
         iat: now,
         exp: now + 3600
@@ -319,12 +320,91 @@ async function loadScheduledBanners(env: Env): Promise<ScheduledBanner[]> {
     });
 }
 
+interface AuthUserRecord {
+    uid: string;
+    email: string;
+    disabled: boolean;
+    createdAt?: string;
+    lastLoginAt?: string;
+}
+
+// List every user from Firebase Authentication. This is the source of truth for
+// "who can sign in and edit banners" — far more reliable than a hand-maintained
+// Firestore /users collection, which can drift if accounts were created via the
+// Firebase console rather than the in-app invite form.
+async function listAuthUsers(env: Env): Promise<AuthUserRecord[]> {
+    const token = await getGoogleAccessToken(env);
+    const out: AuthUserRecord[] = [];
+    let nextPageToken = '';
+    // Identity Toolkit caps at 1000 per page; loop in case there are more.
+    for (let page = 0; page < 20; page++) {
+        const body: Record<string, any> = { maxResults: 1000 };
+        if (nextPageToken) body.nextPageToken = nextPageToken;
+        const res = await fetch(
+            `https://identitytoolkit.googleapis.com/v1/projects/${env.FIREBASE_PROJECT_ID}/accounts:batchGet?maxResults=1000${nextPageToken ? `&nextPageToken=${encodeURIComponent(nextPageToken)}` : ''}`,
+            {
+                method: 'GET',
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        );
+        if (!res.ok) {
+            const text = await res.text();
+            throw new Error(`Identity Toolkit list users failed (${res.status}): ${text}`);
+        }
+        const json = (await res.json()) as { users?: any[]; nextPageToken?: string };
+        for (const u of json.users || []) {
+            const email = typeof u.email === 'string' ? u.email.trim().toLowerCase() : '';
+            if (!email) continue;
+            out.push({
+                uid: u.localId || '',
+                email,
+                disabled: u.disabled === true,
+                createdAt: u.createdAt,
+                lastLoginAt: u.lastLoginAt
+            });
+        }
+        nextPageToken = json.nextPageToken || '';
+        if (!nextPageToken) break;
+    }
+    return out;
+}
+
 async function loadUsers(env: Env): Promise<UserRecord[]> {
+    // Authoritative roster: every Firebase Auth account.
+    let authUsers: AuthUserRecord[] = [];
+    try {
+        authUsers = await listAuthUsers(env);
+    } catch (e) {
+        console.error('[mmc-reminders] listAuthUsers failed, falling back to Firestore /users', e);
+    }
+
+    // Overlay the Firestore /users disabled flag — admins use that to revoke
+    // edit access without deleting the account outright.
+    const firestoreDisabled = new Map<string, boolean>();
+    try {
+        const docs = await firestoreList(env, 'users');
+        for (const d of docs) {
+            const data = decodeFields(d.fields);
+            const email = typeof data.email === 'string' ? data.email.trim().toLowerCase() : '';
+            if (email) firestoreDisabled.set(email, data.disabled === true);
+        }
+    } catch (e) {
+        // Collection may not exist yet — that's fine, treat all as enabled.
+    }
+
+    if (authUsers.length > 0) {
+        return authUsers.map((u) => ({
+            email: u.email,
+            disabled: u.disabled || firestoreDisabled.get(u.email) === true
+        }));
+    }
+
+    // Fallback: if we couldn't reach Identity Toolkit, use the legacy
+    // Firestore-only path so cron emails still go out to invited users.
     let docs: any[] = [];
     try {
         docs = await firestoreList(env, 'users');
     } catch (e) {
-        // Collection may not exist yet — treat as empty.
         return [];
     }
     return docs
@@ -1492,6 +1572,95 @@ async function handleSendHolidayReminder(request: Request, env: Env): Promise<Re
     });
 }
 
+async function handleListUsers(request: Request, env: Env): Promise<Response> {
+    const origin = request.headers.get('origin');
+    const cors = corsHeaders(origin);
+    const adminList = (env.ADMIN_EMAILS || '')
+        .split(',')
+        .map((e) => e.trim().toLowerCase())
+        .filter(Boolean);
+
+    const authHeader = request.headers.get('authorization') || '';
+    const match = /^Bearer\s+(.+)$/.exec(authHeader);
+    if (!match) {
+        return new Response(JSON.stringify({ error: 'Missing bearer token' }), {
+            status: 401,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    let payload: FirebaseJwtPayload;
+    try {
+        payload = await verifyFirebaseIdToken(match[1].trim(), env.FIREBASE_PROJECT_ID);
+    } catch (e: any) {
+        return new Response(JSON.stringify({ error: 'Invalid ID token: ' + (e?.message || String(e)) }), {
+            status: 401,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    const callerEmail = (payload.email || '').trim().toLowerCase();
+    if (!callerEmail || adminList.indexOf(callerEmail) < 0) {
+        return new Response(JSON.stringify({ error: 'Caller is not an admin' }), {
+            status: 403,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    let authUsers: AuthUserRecord[] = [];
+    try {
+        authUsers = await listAuthUsers(env);
+    } catch (e: any) {
+        return new Response(JSON.stringify({ error: e?.message || String(e) }), {
+            status: 500,
+            headers: { ...cors, 'Content-Type': 'application/json' }
+        });
+    }
+
+    // Overlay Firestore-side metadata (invitedBy/invitedAt + admin-toggled disabled).
+    const firestoreMeta = new Map<string, any>();
+    try {
+        const docs = await firestoreList(env, 'users');
+        for (const d of docs) {
+            const data = decodeFields(d.fields);
+            const email = typeof data.email === 'string' ? data.email.trim().toLowerCase() : '';
+            if (email) {
+                firestoreMeta.set(email, {
+                    disabled: data.disabled === true,
+                    invitedBy: data.invitedBy || null,
+                    invitedAt: data.invitedAt || null
+                });
+            }
+        }
+    } catch (e) {
+        // ignore — Firestore /users may not exist yet
+    }
+
+    const muted = await loadMutedRecipients(env);
+
+    const users = authUsers.map((u) => {
+        const meta = firestoreMeta.get(u.email) || {};
+        return {
+            uid: u.uid,
+            email: u.email,
+            disabled: u.disabled || meta.disabled === true,
+            isAdmin: adminList.indexOf(u.email) >= 0,
+            isMuted: muted.has(u.email),
+            createdAt: u.createdAt || null,
+            lastLoginAt: u.lastLoginAt || null,
+            invitedBy: meta.invitedBy || null,
+            invitedAt: meta.invitedAt || null
+        };
+    });
+
+    users.sort((a, b) => a.email.localeCompare(b.email));
+
+    return new Response(JSON.stringify({ ok: true, users, admins: adminList }), {
+        status: 200,
+        headers: { ...cors, 'Content-Type': 'application/json' }
+    });
+}
+
 /* ──────────────────────────────────────────────
    Worker entry points
    ────────────────────────────────────────────── */
@@ -1522,6 +1691,11 @@ export default {
         // POST /admin/delete-user — admin-only via verified Firebase ID token
         if (url.pathname === '/admin/delete-user' && request.method === 'POST') {
             return handleDeleteUser(request, env);
+        }
+
+        // GET /admin/list-users — admin-only roster of every Firebase Auth account
+        if (url.pathname === '/admin/list-users' && request.method === 'GET') {
+            return handleListUsers(request, env);
         }
 
         // POST /admin/send-reminder — admin-only manual reminder send

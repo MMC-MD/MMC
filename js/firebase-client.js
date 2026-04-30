@@ -405,16 +405,22 @@ function subscribeToUsers(onData, onError) {
     );
 }
 
-async function setUserDisabled(uid, disabled, currentUser) {
+async function setUserDisabled(uid, disabled, currentUser, email) {
     if (!uid) throw new Error('Missing user id.');
     if (!isAdminUser(currentUser)) throw new Error('Only admins can change user status.');
 
     const userRef = doc(db, usersCollection, uid);
-    await setDoc(userRef, {
+    const payload = {
+        uid: uid,
         disabled: !!disabled,
         disabledAt: disabled ? serverTimestamp() : null,
         disabledBy: disabled ? (currentUser.email || null) : null
-    }, { merge: true });
+    };
+    // Always stamp the email when we know it, so the Worker can correlate the
+    // Firestore disable flag with the Auth user (it joins on email, not uid).
+    const cleanEmail = normalizeEmail(email);
+    if (cleanEmail) payload.email = cleanEmail;
+    await setDoc(userRef, payload, { merge: true });
 }
 
 async function removeUserRecord(uid, currentUser) {
@@ -428,6 +434,32 @@ async function removeUserRecord(uid, currentUser) {
 // module loads.
 const REMINDER_WORKER_URL = (typeof window !== 'undefined' && window.MMC_REMINDER_WORKER_URL)
     || 'https://mmc-reminders.efikess.workers.dev';
+
+// Authoritative roster from the Worker — pulls every Firebase Auth account
+// (so accounts created via the console show up too), then overlays the
+// Firestore /users disabled flag and the mute list.
+async function fetchAllAuthUsers(currentUser) {
+    if (!isAdminUser(currentUser)) throw new Error('Only admins can list users.');
+    if (!auth.currentUser) throw new Error('You are not signed in.');
+
+    const idToken = await auth.currentUser.getIdToken(true);
+    const res = await fetch(REMINDER_WORKER_URL.replace(/\/+$/, '') + '/admin/list-users', {
+        method: 'GET',
+        headers: { Authorization: 'Bearer ' + idToken }
+    });
+
+    if (!res.ok) {
+        let message = 'Could not load users (HTTP ' + res.status + ').';
+        try {
+            const body = await res.json();
+            if (body && body.error) message = body.error;
+        } catch (e) { /* ignore */ }
+        throw new Error(message);
+    }
+
+    const body = await res.json();
+    return Array.isArray(body && body.users) ? body.users : [];
+}
 
 async function fetchUpcomingHolidays(days) {
     const url = REMINDER_WORKER_URL.replace(/\/+$/, '') + '/holidays?days=' + (days || 180);
@@ -777,6 +809,7 @@ export {
     emergencyBannerCollection,
     emergencyBannerDocument,
     fetchHomepageSlides,
+    fetchAllAuthUsers,
     fetchEmergencyBanner,
     fetchMutedRecipients,
     fetchScheduledBanners,

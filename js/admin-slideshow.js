@@ -3,6 +3,7 @@ import {
     createDefaultEmergencyBanner,
     deleteScheduledBanner,
     deleteUserAccount,
+    fetchAllAuthUsers,
     fetchEmergencyBanner,
     fetchHomepageSlides,
     fetchScheduledBanners,
@@ -28,7 +29,6 @@ import {
     subscribeToHomepageSlides,
     subscribeToMutedRecipients,
     subscribeToScheduledBanners,
-    subscribeToUsers,
     unmuteRecipient
 } from './firebase-client.js?v=2026042806';
 
@@ -332,7 +332,6 @@ let currentUser = null;
 let isCurrentUserAdmin = false;
 let adminUsers = [];
 let mutedRecipients = [];
-let unsubscribeUsers = null;
 let unsubscribeMuted = null;
 
 const SCHED_TEMPLATES = {
@@ -3786,10 +3785,6 @@ function applyAdminVisibility() {
 }
 
 function disconnectAdminListeners() {
-    if (typeof unsubscribeUsers === 'function') {
-        unsubscribeUsers();
-        unsubscribeUsers = null;
-    }
     if (typeof unsubscribeMuted === 'function') {
         unsubscribeMuted();
         unsubscribeMuted = null;
@@ -3800,19 +3795,23 @@ function disconnectAdminListeners() {
     renderMuteList();
 }
 
+async function refreshAdminUsers() {
+    if (!isCurrentUserAdmin) return;
+    try {
+        var rows = await fetchAllAuthUsers(currentUser);
+        adminUsers = rows;
+        renderUserList();
+    } catch (error) {
+        setInviteStatus(getFriendlyFirebaseError(error) || (error && error.message) || 'Could not load users.', 'error');
+    }
+}
+
 function connectAdminListeners() {
     if (!isCurrentUserAdmin) return;
-    if (typeof unsubscribeUsers !== 'function') {
-        unsubscribeUsers = subscribeToUsers(
-            function (rows) {
-                adminUsers = rows;
-                renderUserList();
-            },
-            function (error) {
-                setInviteStatus(getFriendlyFirebaseError(error), 'error');
-            }
-        );
-    }
+    // Pull the full Auth roster from the Worker. We refresh on demand (after
+    // invite/disable/delete) instead of using a Firestore snapshot listener,
+    // because the source of truth is Firebase Auth — not Firestore /users.
+    refreshAdminUsers();
     if (typeof unsubscribeMuted !== 'function') {
         unsubscribeMuted = subscribeToMutedRecipients(
             function (rows) {
@@ -3908,7 +3907,7 @@ function renderUserList() {
         return;
     }
     if (!adminUsers.length) {
-        elements.userList.innerHTML = '<p style="font-size:13px;color:#86868b;margin:0;">No invited users yet. Send an invite above to add the first one.</p>';
+        elements.userList.innerHTML = '<p style="font-size:13px;color:#86868b;margin:0;">Loading users… If this stays empty, check that your admin account is listed in the Worker\'s ADMIN_EMAILS env var.</p>';
         return;
     }
 
@@ -3916,20 +3915,35 @@ function renderUserList() {
         var disabledBadge = u.disabled
             ? '<span style="font-size:11px;font-weight:600;color:#ff3b30;background:#ffe5e3;padding:2px 8px;border-radius:999px;">Disabled</span>'
             : '<span style="font-size:11px;font-weight:600;color:#34c759;background:#e3fbe7;padding:2px 8px;border-radius:999px;">Active</span>';
+        var adminBadge = u.isAdmin
+            ? '<span style="font-size:11px;font-weight:600;color:#0d47a1;background:#dbeafe;padding:2px 8px;border-radius:999px;">Admin</span>'
+            : '';
+        var mutedBadge = u.isMuted
+            ? '<span style="font-size:11px;font-weight:600;color:#92400e;background:#fef3c7;padding:2px 8px;border-radius:999px;">Muted</span>'
+            : '';
         var invitedLine = u.invitedBy
             ? '<span style="font-size:11px;color:#86868b;">Invited by ' + escapeHtml(u.invitedBy) + (u.invitedAt ? ' · ' + escapeHtml(formatTimestamp(u.invitedAt)) : '') + '</span>'
             : '';
-        var toggleBtn = u.disabled
-            ? '<button type="button" class="studio-btn-sm" data-admin-user-action="enable" data-uid="' + escapeHtml(u.uid) + '">Re-enable</button>'
-            : '<button type="button" class="studio-btn-sm" data-admin-user-action="disable" data-uid="' + escapeHtml(u.uid) + '">Disable</button>';
+        // Admin accounts cannot be disabled or removed from the UI — they're
+        // pinned by the Worker's ADMIN_EMAILS env var. Editing that requires
+        // a deploy, which is intentional.
+        var toggleBtn = u.isAdmin
+            ? ''
+            : (u.disabled
+                ? '<button type="button" class="studio-btn-sm" data-admin-user-action="enable" data-uid="' + escapeHtml(u.uid) + '" data-email="' + escapeHtml(u.email) + '">Re-enable</button>'
+                : '<button type="button" class="studio-btn-sm" data-admin-user-action="disable" data-uid="' + escapeHtml(u.uid) + '" data-email="' + escapeHtml(u.email) + '">Disable</button>');
         var resetBtn = '<button type="button" class="studio-btn-sm" data-admin-user-action="reset" data-email="' + escapeHtml(u.email) + '">Send password reset</button>';
-        var removeBtn = '<button type="button" class="studio-btn-sm studio-btn-danger-outline" data-admin-user-action="remove" data-uid="' + escapeHtml(u.uid) + '" data-email="' + escapeHtml(u.email) + '">Remove</button>';
+        var removeBtn = u.isAdmin
+            ? ''
+            : '<button type="button" class="studio-btn-sm studio-btn-danger-outline" data-admin-user-action="remove" data-uid="' + escapeHtml(u.uid) + '" data-email="' + escapeHtml(u.email) + '">Remove</button>';
         return [
             '<div class="admin-user-row" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f3;flex-wrap:wrap;">',
             '<div style="min-width:0;flex:1;">',
             '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">',
             '<span style="font-size:13px;font-weight:600;color:#1d1d1f;">' + escapeHtml(u.email || '(unknown)') + '</span>',
             disabledBadge,
+            adminBadge,
+            mutedBadge,
             '</div>',
             invitedLine ? '<div style="margin-top:2px;">' + invitedLine + '</div>' : '',
             '</div>',
@@ -3994,6 +4008,7 @@ function bindAdminEvents() {
                 var result = await inviteUser(email, currentUser);
                 setInviteStatus('Invited ' + result.email + '. They will get an email to set their password.', 'success');
                 if (elements.inviteEmail) elements.inviteEmail.value = '';
+                refreshAdminUsers();
             } catch (error) {
                 var code = error && error.code;
                 if (code === 'auth/email-already-in-use') {
@@ -4016,10 +4031,10 @@ function bindAdminEvents() {
             try {
                 if (action === 'disable') {
                     if (!window.confirm('Disable ' + (email || 'this user') + '? They will no longer be able to make changes.')) return;
-                    await setUserDisabled(uid, true, currentUser);
+                    await setUserDisabled(uid, true, currentUser, email);
                     setInviteStatus('User disabled.', 'success');
                 } else if (action === 'enable') {
-                    await setUserDisabled(uid, false, currentUser);
+                    await setUserDisabled(uid, false, currentUser, email);
                     setInviteStatus('User re-enabled.', 'success');
                 } else if (action === 'reset') {
                     await sendUserPasswordReset(email);
@@ -4030,13 +4045,14 @@ function bindAdminEvents() {
                     // Belt and suspenders: disable in Firestore first so they can't write
                     // anything between now and the auth-delete completing.
                     try {
-                        await setUserDisabled(uid, true, currentUser);
+                        await setUserDisabled(uid, true, currentUser, email);
                     } catch (e) {
                         // ignore — auth delete is the source of truth
                     }
                     await deleteUserAccount(uid, email, currentUser);
                     setInviteStatus('Deleted ' + (email || 'user') + '.', 'success');
                 }
+                refreshAdminUsers();
             } catch (error) {
                 setInviteStatus(getFriendlyFirebaseError(error) || (error && error.message) || 'Could not complete that action.', 'error');
             }
