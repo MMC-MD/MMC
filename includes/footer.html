@@ -2,7 +2,7 @@
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-12 mb-6 sm:mb-8 md:mb-10 lg:mb-12">
             <div class="lg:col-span-1 text-center sm:text-left">
-                <img src="images/Logo-fast.webp" alt="Montgomery Medical Clinic Logo" width="240" height="85" loading="eager" decoding="async" class="h-12 sm:h-14 md:h-16 w-auto mb-4 sm:mb-5 md:mb-6 footer-logo mx-auto sm:mx-0">
+                <img src="/images/brand/mmc-logo-800.png" srcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" sizes="230px" alt="Montgomery Medical Clinic Logo" width="231" height="64" loading="lazy" decoding="async" class="h-12 sm:h-14 md:h-16 w-auto mb-4 sm:mb-5 md:mb-6 footer-logo mx-auto sm:mx-0">
                 <p class="text-gray-300 text-sm sm:text-base leading-relaxed" data-en="Your trusted partner for comprehensive healthcare in Gaithersburg, Maryland." data-es="Su socio de confianza para atenci&oacute;n m&eacute;dica integral en Gaithersburg, Maryland.">Your trusted partner for comprehensive healthcare in Gaithersburg, Maryland.</p>
             </div>
             <div class="text-center sm:text-left">
@@ -20,7 +20,7 @@
                 <ul class="space-y-2 sm:space-y-2.5 md:space-y-3 text-gray-300 text-sm sm:text-base">
                     <li data-en="Mon-Thu: 8am - 7pm" data-es="Lun-Jue: 8am - 7pm">Mon-Thu: 8am - 7pm</li>
                     <li data-en="Friday: 8am - 6pm" data-es="Viernes: 8am - 6pm">Friday: 8am - 6pm</li>
-                    <li data-en="Sat/Sun: 8am - 1pm" data-es="S&aacute;b/Dom: 8am - 1pm">Sat/Sun: 8am - 1pm</li>
+                    <li id="mmcFooterWeekend" data-en="Weekends: 8am - 1pm" data-es="Fines de semana: 8am - 1pm">Weekends: 8am - 1pm</li>
                 </ul>
             </div>
             <div class="text-center sm:text-left">
@@ -62,3 +62,5 @@
         </div>
     </div>
 </footer>
+
+<!-- Dev only: VS Code Live Server injects its reload script before every closing svg tag unless it finds a body close tag, which truncates this partial in Safari. This marker makes it inject once: </body> -->

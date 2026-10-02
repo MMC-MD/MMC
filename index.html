@@ -139,7 +139,7 @@
 
     <!-- Critical CSS: blocks render -->
     <link rel="stylesheet" href="css/tailwind.css">
-    <link rel="stylesheet" href="css/style.css?v=20260413">
+    <link rel="stylesheet" href="css/style.css?v=2026100210">
 
     <!-- Non-critical CSS: load async (for AOS, header tweaks, modal, in-page nav, etc.) -->
     <link rel="preload" as="style" href="vendor/aos.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -157,14 +157,14 @@
         <link rel="stylesheet" href="css/in-page-nav.css?v=6">
     </noscript>
     <link rel="preload" href="includes/header.html" as="fetch" crossorigin="anonymous">
-    <link rel="preload" href="js/header-footer-loader.js?v=2026041202" as="script">
+    <link rel="preload" href="js/header-footer-loader.js?v=2026100201" as="script">
     <link rel="preload" href="js/critical-header.js?v=2026041202" as="script">
     <script>
         // Set lang attribute early to avoid flash of wrong language
         try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}
     </script>
     <script src="js/in-page-nav.js?v=6" defer></script>
-    <link rel="preload" href="images/Logo-fast.webp" as="image" type="image/webp" fetchpriority="high" imagesizes="(max-width:640px) 160px, (max-width:1024px) 200px, 240px">
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
     <!-- Hero image preload: desktop only (mobile uses CSS gradient, no image needed) -->
     <link rel="preload" as="image" type="image/webp" fetchpriority="high"
           href="images/NewImage.webp"
@@ -673,7 +673,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
                 <a href="urgent-primary-care/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="primary" data-aos="fade-up">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/PrimaryCare.webp" type="image/webp"><img src="icons/PrimaryCare.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Urgent care center and primary care provider services"/></picture>
+                        <picture><source srcset="icons/dept/PrimaryCare-192.webp 2x, icons/dept/PrimaryCare-288.webp 3x" type="image/webp"><img src="icons/dept/PrimaryCare-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Urgent care center and primary care provider services"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family." data-es="Su base para una salud de por vida, con atenci&oacute;n urgente sin cita y atenci&oacute;n primaria programada para toda su familia.">Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family.</p>
@@ -684,7 +684,7 @@
 
                 <a href="dermatology/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="derma" data-aos="fade-up" data-aos-delay="50">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/Dermatology.webp" type="image/webp"><img src="icons/Dermatology.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Dermatology skin care services icon"/></picture>
+                        <picture><source srcset="icons/dept/Dermatology-192.webp 2x, icons/dept/Dermatology-288.webp 3x" type="image/webp"><img src="icons/dept/Dermatology-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Dermatology skin care services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Advanced solutions for skin health, from managing conditions to aesthetic treatments." data-es="Soluciones avanzadas para la salud de la piel, desde el manejo de condiciones hasta tratamientos est&eacute;ticos.">Advanced solutions for skin health, from managing conditions to aesthetic treatments.</p>
@@ -695,7 +695,7 @@
 
                 <a href="occupational-health/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="occupational" data-aos="fade-up" data-aos-delay="100">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/OccupationalHealth.webp" type="image/webp"><img src="icons/OccupationalHealth.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Occupational Health and workplace safety services icon"/></picture>
+                        <picture><source srcset="icons/dept/OccupationalHealth-192.webp 2x, icons/dept/OccupationalHealth-288.webp 3x" type="image/webp"><img src="icons/dept/OccupationalHealth-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Occupational Health and workplace safety services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services." data-es="Colaborando con empresas para garantizar una fuerza laboral segura, saludable y en cumplimiento con servicios expertos de salud ocupacional y m&eacute;dicos de inmigraci&oacute;n.">Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services.</p>
@@ -706,7 +706,7 @@
 
                 <a href="five-elements-acupuncture/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="acupuncture" data-aos="fade-up" data-aos-delay="150">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/Accupuncture.webp" type="image/webp"><img src="icons/Accupuncture.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Five Elements Acupuncture and wellness services icon"/></picture>
+                        <picture><source srcset="icons/dept/Accupuncture-192.webp 2x, icons/dept/Accupuncture-288.webp 3x" type="image/webp"><img src="icons/dept/Accupuncture-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Five Elements Acupuncture and wellness services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health." data-es="Medicina tradicional china y acupuntura para sanaci&oacute;n hol&iacute;stica, manejo del dolor y salud de la mujer.">Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health.</p>
@@ -717,7 +717,7 @@
 
                 <a href="nutrition-wellness/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="nutrition" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/Nutrition.webp" type="image/webp"><img src="icons/Nutrition.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Nutrition and Wellness Center services icon"/></picture>
+                        <picture><source srcset="icons/dept/Nutrition-192.webp 2x, icons/dept/Nutrition-288.webp 3x" type="image/webp"><img src="icons/dept/Nutrition-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Nutrition and Wellness Center services icon"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Nutrition and personal training to fuel your body and mind for optimal performance." data-es="Nutrici&oacute;n y entrenamiento personal para potenciar su cuerpo y mente para un rendimiento &oacute;ptimo.">Nutrition and personal training to fuel your body and mind for optimal performance.</p>
@@ -728,7 +728,7 @@
 
                 <a href="sports-medicine/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="sports" data-aos="fade-up" data-aos-delay="250">
                     <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/PhysicalTherapy.webp" type="image/webp"><img src="icons/PhysicalTherapy.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Sports medicine doctors at medical center"/></picture>
+                        <picture><source srcset="icons/dept/PhysicalTherapy-192.webp 2x, icons/dept/PhysicalTherapy-288.webp 3x" type="image/webp"><img src="icons/dept/PhysicalTherapy-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Sports medicine doctors at medical center"/></picture>
                     </div>
                     <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</h3>
                     <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before." data-es="Rehabilitaci&oacute;n integral y atenci&oacute;n de lesiones deportivas para que regrese m&aacute;s fuerte que antes.">Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before.</p>
@@ -861,7 +861,9 @@
 
     <script src="vendor/aos.js" defer></script>
     <script src="js/lang-toggle.js?v=2" defer></script>
-    <script src="js/header-footer-loader.js?v=2026041202" defer></script>
+    <script src="js/header-footer-loader.js?v=2026100201" defer></script>
+    <script src="js/weekend-hours.js?v=2026100205" defer></script>
+    <script src="js/mobile-menu-fit.js?v=2026100203" defer></script>
     <script src="js/main-simple.js?v=20260413" defer></script>
     <script src="js/slideshow-data.js" defer></script>
     <script src="js/slideshow.js" defer></script>
