@@ -750,21 +750,22 @@ html body .contact-close:focus-visible { outline: 2px solid #c9d6ea !important; 
     .page-header.page-header--photo { background-image: var(--hero-md) !important; min-height: 500px; padding-top: 200px !important; }
 }
 
-/* ═══ Accessibility button: small, quiet, still easy to find ═══ */
+/* ═══ Accessibility: slim tab on the left edge (a real labelled button, 44px tall) ═══ */
 html body .a11y-trigger {
-    width: 40px !important; height: 40px !important; bottom: 18px !important; left: 18px !important;
-    border: 0 !important; background: #0d47a1 !important;
-    box-shadow: 0 2px 4px rgba(15, 23, 42, .12), 0 6px 16px -6px rgba(15, 23, 42, .35) !important;
-    transition: background-color .15s ease, box-shadow .2s ease !important; transform: none !important;
+    left: 0 !important; bottom: 120px !important; top: auto !important;
+    width: 34px !important; height: 44px !important; border-radius: 0 10px 10px 0 !important;
+    border: 0 !important; background: #0d47a1 !important; color: #fff !important;
+    box-shadow: 0 4px 14px -6px rgba(15, 23, 42, .45) !important; transform: none !important;
+    transition: width .2s var(--ds-ease), background-color .15s ease !important;
 }
-html body .a11y-trigger svg { width: 20px !important; height: 20px !important; }
-html body .a11y-trigger:hover { background: #0b3c8a !important; transform: none !important; outline: none !important; }
-html body .a11y-trigger:focus-visible { outline: 2px solid #ff8f00 !important; outline-offset: 3px !important; transform: none !important; }
-html body .a11y-panel { bottom: 70px !important; left: 18px !important; }
+html body .a11y-trigger svg { width: 19px !important; height: 19px !important; margin-left: -2px; }
+html body .a11y-trigger:hover { width: 40px !important; background: #0b3c8a !important; outline: none !important; transform: none !important; }
+html body .a11y-trigger:focus-visible { outline: 2px solid #ff8f00 !important; outline-offset: 2px !important; transform: none !important; }
+html body .a11y-panel { left: 46px !important; bottom: 24px !important; }
 @media (max-width: 640px) {
-    html body .a11y-trigger { width: 36px !important; height: 36px !important; bottom: 14px !important; left: 14px !important; }
-    html body .a11y-trigger svg { width: 18px !important; height: 18px !important; }
-    html body .a11y-panel { bottom: 60px !important; left: 12px !important; }
+    html body .a11y-trigger { bottom: 96px !important; width: 30px !important; height: 44px !important; }
+    html body .a11y-trigger svg { width: 17px !important; height: 17px !important; }
+    html body .a11y-panel { left: 12px !important; right: 12px !important; bottom: 12px !important; }
 }
 @media (max-width: 799px) {
     .page-header.page-header--about { background-size: auto 330px !important; background-position: 74% top !important; padding-top: 262px !important; }
@@ -778,4 +779,52 @@ html body .a11y-panel { bottom: 70px !important; left: 18px !important; }
 }
 @media (min-width: 500px) and (max-width: 799px) {
     .page-header--about::before { background: linear-gradient(180deg, rgba(8, 24, 54, .08) 0, rgba(8, 24, 54, .3) 190px, rgba(8, 24, 54, .85) 330px, rgb(8, 24, 54) 400px) !important; }
+}
+
+/* ═══ Provider cards on phones: photo beside name, short bio with "Read full bio" ═══ */
+.mmc-pcard-more { display: none; }
+@media (max-width: 767px) {
+    html body .mmc-pcard {
+        display: grid !important; grid-template-columns: 76px minmax(0, 1fr); column-gap: 16px; row-gap: 0;
+        align-items: center; padding: 20px !important; height: auto !important;
+    }
+    html body .mmc-pcard .mmc-pcard-photo {
+        grid-column: 1; grid-row: 1 / span 2; position: relative !important;
+        width: 76px !important; height: 76px !important; padding: 0 !important; margin: 0 !important; aspect-ratio: auto !important;
+        border-radius: 14px !important; overflow: hidden !important; background: #eef2f7 !important;
+    }
+    html body .mmc-pcard .mmc-pcard-photo img {
+        position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important;
+        object-fit: cover !important; object-position: 50% 14% !important; transform: none !important; max-width: none !important;
+    }
+    html body .mmc-pcard .mmc-pcard-info { display: contents !important; }
+    html body .mmc-pcard .mmc-pcard-info > * { grid-column: 1 / -1; }
+    html body .mmc-pcard .mmc-pcard-name {
+        grid-column: 2; align-self: end; margin: 0 !important; padding: 0 !important;
+        font-size: 18px !important; line-height: 1.25 !important; letter-spacing: -0.01em !important;
+    }
+    html body .mmc-pcard .mmc-pcard-role {
+        grid-column: 2; align-self: start; margin: 3px 0 0 !important; padding: 0 !important; border: 0 !important;
+        font-size: 13.5px !important; line-height: 1.35 !important;
+    }
+    html body .mmc-pcard .mmc-pcard-role::after { display: none !important; }
+    html body .mmc-pcard .mmc-pcard-bio {
+        margin-top: 16px !important; max-height: calc(1.6em * 4); overflow: hidden; position: relative;
+        -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent);
+    }
+    html body .mmc-pcard .mmc-pcard-bio, html body .mmc-pcard .mmc-pcard-bio p { font-size: 14.5px !important; line-height: 1.6 !important; }
+    html body .mmc-pcard .mmc-pcard-bio p { margin: 0 0 10px !important; }
+    html body .mmc-pcard .mmc-pcard-bio > .space-y-4, html body .mmc-pcard .mmc-pcard-bio.space-y-4 { display: block; }
+    html body .mmc-pcard.is-open .mmc-pcard-bio { max-height: none; -webkit-mask-image: none; mask-image: none; }
+    html body .mmc-pcard .mmc-pcard-more {
+        display: inline-flex; justify-self: start; align-items: center; gap: 6px; margin: 4px 0 0; padding: 6px 0;
+        min-height: 0 !important; min-width: 0 !important; border: 0; background: none;
+        font-size: 14px; font-weight: 600; color: var(--ds-blue); cursor: pointer;
+    }
+    html body .mmc-pcard .mmc-pcard-more::after {
+        content: ""; width: 7px; height: 7px; border-right: 1.75px solid currentColor; border-bottom: 1.75px solid currentColor;
+        transform: rotate(45deg) translateY(-2px); transition: transform .2s ease;
+    }
+    html body .mmc-pcard.is-open .mmc-pcard-more::after { transform: rotate(-135deg) translateY(-1px); }
+    html body .mmc-pcard .specialty-badges { margin-top: 12px !important; }
 }
