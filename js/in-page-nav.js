@@ -87,6 +87,18 @@
         }
 
         var activeId = null;
+        // Right-to-left pages (Arabic, Hebrew) report scrollLeft from 0 down to
+        // -max; these convert to and from a plain left-edge position.
+        function isRtl() { return getComputedStyle(list).direction === 'rtl'; }
+        function viewLeft() {
+            var max = list.scrollWidth - list.clientWidth;
+            return isRtl() ? max + list.scrollLeft : list.scrollLeft;
+        }
+        function scrollToView(left) {
+            var max = list.scrollWidth - list.clientWidth;
+            list.scrollTo({ left: isRtl() ? left - max : left, behavior: 'smooth' });
+        }
+
         function setActive(id) {
             if (id === activeId) return;
             activeId = id;
@@ -98,8 +110,9 @@
                     // Keep the active link visible inside the horizontally scrolling bar.
                     var left = a.offsetLeft - 24;
                     var right = a.offsetLeft + a.offsetWidth + 24;
-                    if (left < list.scrollLeft) list.scrollTo({ left: left, behavior: 'smooth' });
-                    else if (right > list.scrollLeft + list.clientWidth) list.scrollTo({ left: right - list.clientWidth, behavior: 'smooth' });
+                    var view = viewLeft();
+                    if (left < view) scrollToView(left);
+                    else if (right > view + list.clientWidth) scrollToView(right - list.clientWidth);
                 } else {
                     a.removeAttribute('aria-current');
                 }
@@ -148,8 +161,9 @@
         // Fade the edges when the links overflow (phones / long lists).
         function syncOverflow() {
             var max = list.scrollWidth - list.clientWidth;
-            bar.classList.toggle('has-more-left', list.scrollLeft > 4);
-            bar.classList.toggle('has-more-right', list.scrollLeft < max - 4);
+            var view = viewLeft();
+            bar.classList.toggle('has-more-left', view > 4);
+            bar.classList.toggle('has-more-right', view < max - 4);
         }
         list.addEventListener('scroll', syncOverflow, { passive: true });
 

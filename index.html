@@ -2,6 +2,10 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <!-- Site translation (header language menu): load the chosen dictionary early -->
+    <script>window.MMC_PT_V='2026101701';(function(){try{var l=localStorage.getItem('mmc-site-lang'),d=document.documentElement;if(l&&l!=='en'&&l!=='es'&&localStorage.getItem('mmc-lang')!=='es'){d.setAttribute('data-pt-lang',l);d.lang=l==='zh'?'zh-Hans':l;if(l==='ar'||l==='he')d.dir='rtl';d.className+=' pt-pending';var s=document.createElement('script');s.src='/js/i18n/site.'+l+'.js?v=2026101701';s.setAttribute('data-pt-dict','');document.head.appendChild(s);setTimeout(function(){d.classList.remove('pt-pending')},2500)}}catch(e){}})();</script>
+    <style>html.pt-pending body{opacity:0!important}</style>
+    <script src="/js/site-translate.js?v=2026101702" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Montgomery Medical Clinic in Gaithersburg, MD: walk-in urgent care, primary care, dermatology, FAA & immigration physicals, acupuncture. Open 7 days.">
     <title>Montgomery Medical Clinic | Primary Care, Dermatology, Sports Medicine, Acupuncture & Wellness in Gaithersburg, MD</title>
@@ -165,7 +169,7 @@
         // Set lang attribute early to avoid flash of wrong language
         try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}
     </script>
-    <script src="js/in-page-nav.js?v=2026101501" defer></script>
+    <script src="js/in-page-nav.js?v=2026101701" defer></script>
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
     <!-- Hero image preload (AVIF; browsers without AVIF use the WebP in the <picture>) -->
     <link rel="preload" as="image" type="image/avif" fetchpriority="high"
@@ -250,8 +254,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="css/polish.css?v=2026101502">
-    <link rel="stylesheet" href="css/sections.css?v=2026101507">
+    <link rel="stylesheet" href="css/polish.css?v=2026101702">
+    <link rel="stylesheet" href="css/sections.css?v=2026101701">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -483,7 +487,7 @@
     <script src="vendor/aos.js" defer></script>
     <script src="js/lang-toggle.js?v=2026100401" defer></script>
     <script src="js/header-footer-loader.js?v=2026101302" defer></script>
-    <script src="js/weekend-hours.js?v=2026101302" defer></script>
+    <script src="js/weekend-hours.js?v=2026101701" defer></script>
     <script src="js/mobile-menu-fit.js?v=2026100203" defer></script>
     <script src="js/main-simple.js?v=2026101401" defer></script>
     <script src="js/slideshow-data.js?v=2026101505" defer></script>

@@ -2,6 +2,10 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
+    <!-- Site translation (header language menu): load the chosen dictionary early -->
+    <script>window.MMC_PT_V='2026101701';(function(){try{var l=localStorage.getItem('mmc-site-lang'),d=document.documentElement;if(l&&l!=='en'&&l!=='es'&&localStorage.getItem('mmc-lang')!=='es'){d.setAttribute('data-pt-lang',l);d.lang=l==='zh'?'zh-Hans':l;if(l==='ar'||l==='he')d.dir='rtl';d.className+=' pt-pending';var s=document.createElement('script');s.src='/js/i18n/site.'+l+'.js?v=2026101701';s.setAttribute('data-pt-dict','');document.head.appendChild(s);setTimeout(function(){d.classList.remove('pt-pending')},2500)}}catch(e){}})();</script>
+    <style>html.pt-pending body{opacity:0!important}</style>
+    <script src="/js/site-translate.js?v=2026101702" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free FAA pilot resources: medication lookup, all 27 CACI worksheets, medical-class guide, and pre-visit checklist by Senior AME Dr. Efraim Kessous.">
     <title>FAA Pilot Resource Center — 1,000+ Medication Lookup, CACI Worksheets, Medical Classes & Pre-Exam Checklist | Montgomery Medical Clinic</title>
@@ -450,10 +454,10 @@
             .validity-table th, .validity-table td { padding: 0.75rem 0.875rem; font-size: 0.8125rem; }
         }
     </style>
-    <link rel="stylesheet" href="../../css/polish.css?v=2026101502">
-    <link rel="stylesheet" href="../../css/sections.css?v=2026101507">
+    <link rel="stylesheet" href="../../css/polish.css?v=2026101702">
+    <link rel="stylesheet" href="../../css/sections.css?v=2026101701">
     <link rel="stylesheet" href="../../css/in-page-nav.css?v=2026101401">
-    <script src="../../js/in-page-nav.js?v=2026101501" defer></script>
+    <script src="../../js/in-page-nav.js?v=2026101701" defer></script>
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/pilot-800.webp 800w, /images/heroes/pilot-1200.webp 1200w, /images/heroes/pilot-2000.webp 2000w" imagesizes="100vw">
 </head>
 <body class="bg-light-gray text-dark-gray">
@@ -1266,16 +1270,18 @@
             var count = document.getElementById('caci-count');
             if (!input) return;
             var cards = Array.prototype.slice.call(document.querySelectorAll('.caci-card'));
-            function es() { return document.documentElement.lang === 'es'; }
+            var WORDS = { en: [' of ', ' conditions'], es: [' de ', ' condiciones'], fr: [' sur ', ' affections'], ar: [' من ', ' حالة'], he: [' מתוך ', ' מצבים'], zh: [' / ', ' 种病症'] };
+            function lang() { var l = document.documentElement.getAttribute('data-pt-lang'); return WORDS[l] ? l : (document.documentElement.lang === 'es' ? 'es' : 'en'); }
+            function es() { return lang() === 'es'; }
             function run() {
-                var q = input.value.trim().toLowerCase(), shown = 0;
+                var q = input.value.trim().toLowerCase(), shown = 0, w = WORDS[lang()];
                 cards.forEach(function (c) {
                     var hit = !q || c.textContent.toLowerCase().indexOf(q) >= 0;
                     c.hidden = !hit; if (hit) shown++;
                 });
-                count.textContent = q ? (shown + (es() ? ' de ' : ' of ') + cards.length) : (cards.length + (es() ? ' condiciones' : ' conditions'));
+                count.textContent = q ? (shown + w[0] + cards.length) : (cards.length + w[1]);
             }
-            function placeholder() { input.placeholder = input.getAttribute(es() ? 'data-es-placeholder' : 'data-en-placeholder'); run(); }
+            function placeholder() { if (lang() === 'en' || es()) input.placeholder = input.getAttribute(es() ? 'data-es-placeholder' : 'data-en-placeholder'); run(); }
             input.addEventListener('input', run);
             new MutationObserver(placeholder).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
             placeholder();
@@ -1284,7 +1290,7 @@
     <script src="../../vendor/aos.js"></script>
     <script src="../../js/lang-toggle.js?v=2026100401"></script>
     <script src="../../js/header-footer-loader.js?v=2026101302"></script>
-    <script src="../../js/weekend-hours.js?v=2026101302" defer></script>
+    <script src="../../js/weekend-hours.js?v=2026101701" defer></script>
     <script src="../../js/mobile-menu-fit.js?v=2026100203" defer></script>
     <script src="../../js/main.js?v=2026101401"></script>
     <script>

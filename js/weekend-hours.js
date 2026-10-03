@@ -58,6 +58,66 @@
             and: '&',
             popLabel: 'Upcoming weekend hours'
         },
+        fr: {
+            hoursShort: '8h-13h', hoursLong: '8 h – 13 h',
+            sat: 'Sam.', sun: 'Dim.', satLong: 'Samedi', sunLong: 'Dimanche', bothLong: 'Samedi et dimanche',
+            months: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
+            openNow: 'Ouvert aujourd’hui jusqu’à 13 h', openToday: 'Ouvert aujourd’hui 8 h–13 h', openTomorrow: 'Ouvert demain 8 h–13 h',
+            openThis: function (d) { return 'Ouvert ce ' + d.toLowerCase() + ' 8 h–13 h'; },
+            openNext: function (d) { return 'Ouvert le ' + d.toLowerCase() + ' prochain 8 h–13 h'; },
+            openBoth: 'Ouvert sam. et dim. 8 h–13 h', closedThis: 'Fermé ce week-end', closedNext: 'Fermé le week-end prochain',
+            varies: 'Horaires du week-end variables', open: 'Ouvert', closed: 'Fermé', tbd: 'Appelez pour confirmer',
+            today: 'Aujourd’hui', thisWeekend: 'Ce week-end', nextWeekend: 'Week-end prochain',
+            popTitle: 'Heures d’ouverture', monThu: 'Lundi – jeudi', friday: 'Vendredi', weekdayHours: ['8 h – 19 h', '8 h – 18 h'],
+            popSub: 'Week-ends · ouvert un jour, 8 h – 13 h', popNote: 'Les horaires peuvent changer les jours fériés. Des questions ?',
+            tbdLong: 'À confirmer', upcoming: 'Prochains week-ends', footerThis: 'Ce week-end', footerNext: 'Week-end prochain',
+            and: 'et', popLabel: 'Horaires des prochains week-ends'
+        },
+        ar: {
+            hoursShort: '8ص-1م', hoursLong: '8 ص – 1 م',
+            sat: 'السبت', sun: 'الأحد', satLong: 'السبت', sunLong: 'الأحد', bothLong: 'السبت والأحد',
+            months: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+            openNow: 'مفتوح اليوم حتى 1 م', openToday: 'مفتوح اليوم 8 ص–1 م', openTomorrow: 'مفتوح غدًا 8 ص–1 م',
+            openThis: function (d) { return 'مفتوح هذا ' + d + ' 8 ص–1 م'; },
+            openNext: function (d) { return 'مفتوح ' + d + ' القادم 8 ص–1 م'; },
+            openBoth: 'مفتوح السبت والأحد 8 ص–1 م', closedThis: 'مغلق في عطلة نهاية هذا الأسبوع', closedNext: 'مغلق في عطلة نهاية الأسبوع القادم',
+            varies: 'مواعيد عطلة نهاية الأسبوع متغيرة', open: 'مفتوح', closed: 'مغلق', tbd: 'اتصل للتأكيد',
+            today: 'اليوم', thisWeekend: 'نهاية هذا الأسبوع', nextWeekend: 'نهاية الأسبوع القادم',
+            popTitle: 'ساعات العمل', monThu: 'الاثنين – الخميس', friday: 'الجمعة', weekdayHours: ['8 ص – 7 م', '8 ص – 6 م'],
+            popSub: 'عطلة نهاية الأسبوع · مفتوح يومًا واحدًا، 8 ص – 1 م', popNote: 'قد تختلف المواعيد في العطلات الرسمية. هل لديك أسئلة؟',
+            tbdLong: 'سيتم التأكيد', upcoming: 'عطلات نهاية الأسبوع القادمة', footerThis: 'نهاية هذا الأسبوع', footerNext: 'نهاية الأسبوع القادم',
+            and: 'و', popLabel: 'مواعيد عطلات نهاية الأسبوع القادمة'
+        },
+        he: {
+            hoursShort: '8:00-13:00', hoursLong: '8:00 – 13:00',
+            sat: 'שבת', sun: 'ראשון', satLong: 'שבת', sunLong: 'יום ראשון', bothLong: 'שבת וראשון',
+            months: ['ינו׳', 'פבר׳', 'מרץ', 'אפר׳', 'מאי', 'יוני', 'יולי', 'אוג׳', 'ספט׳', 'אוק׳', 'נוב׳', 'דצמ׳'],
+            openNow: 'פתוח היום עד 13:00', openToday: 'פתוח היום 8:00–13:00', openTomorrow: 'פתוח מחר 8:00–13:00',
+            openThis: function (d) { return 'פתוח ב' + d + ' הקרוב 8:00–13:00'; },
+            openNext: function (d) { return 'פתוח ב' + d + ' הבא 8:00–13:00'; },
+            openBoth: 'פתוח בשבת ובראשון 8:00–13:00', closedThis: 'סגור בסוף השבוע הזה', closedNext: 'סגור בסוף השבוע הבא',
+            varies: 'שעות סוף השבוע משתנות', open: 'פתוח', closed: 'סגור', tbd: 'התקשרו לאישור',
+            today: 'היום', thisWeekend: 'סוף השבוע הזה', nextWeekend: 'סוף השבוע הבא',
+            popTitle: 'שעות פעילות', monThu: 'שני – חמישי', friday: 'שישי', weekdayHours: ['8:00 – 19:00', '8:00 – 18:00'],
+            popSub: 'סופי שבוע · פתוח יום אחד, 8:00 – 13:00', popNote: 'השעות עשויות להשתנות בחגים. שאלות?',
+            tbdLong: 'טרם נקבע', upcoming: 'סופי השבוע הקרובים', footerThis: 'סוף השבוע הזה', footerNext: 'סוף השבוע הבא',
+            and: 'ו', popLabel: 'שעות סופי השבוע הקרובים'
+        },
+        zh: {
+            hoursShort: '上午8点-下午1点', hoursLong: '上午 8 点 – 下午 1 点',
+            sat: '周六', sun: '周日', satLong: '星期六', sunLong: '星期日', bothLong: '星期六和星期日',
+            months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            openNow: '今天营业至下午 1 点', openToday: '今天营业 上午 8 点–下午 1 点', openTomorrow: '明天营业 上午 8 点–下午 1 点',
+            openThis: function (d) { return '本' + d + '营业 上午 8 点–下午 1 点'; },
+            openNext: function (d) { return '下' + d + '营业 上午 8 点–下午 1 点'; },
+            openBoth: '周六和周日营业 上午 8 点–下午 1 点', closedThis: '本周末休息', closedNext: '下周末休息',
+            varies: '周末营业时间不定', open: '营业', closed: '休息', tbd: '请致电确认',
+            today: '今天', thisWeekend: '本周末', nextWeekend: '下周末',
+            popTitle: '营业时间', monThu: '周一 – 周四', friday: '周五', weekdayHours: ['上午 8 点 – 晚上 7 点', '上午 8 点 – 下午 6 点'],
+            popSub: '周末 · 只开放一天，上午 8 点 – 下午 1 点', popNote: '节假日营业时间可能不同。有疑问？',
+            tbdLong: '待确认', upcoming: '近期周末', footerThis: '本周末', footerNext: '下周末',
+            and: '和', popLabel: '近期周末营业时间'
+        },
         es: {
             hoursShort: '8am-1pm',
             hoursLong: '8 AM – 1 PM',
@@ -156,6 +216,8 @@
         try {
             if (localStorage.getItem('mmc-lang') === 'es') return 'es';
         } catch (e) { /* storage blocked */ }
+        var site = document.documentElement.getAttribute('data-pt-lang');
+        if (site && T[site]) return site;
         return document.documentElement.lang === 'es' ? 'es' : 'en';
     }
 
@@ -164,7 +226,8 @@
     function dateLabel(key, t, l) {
         var d = keyToDate(key);
         var m = t.months[d.getUTCMonth()];
-        return l === 'es' ? d.getUTCDate() + ' ' + m : m + ' ' + d.getUTCDate();
+        if (l === 'zh') return m + d.getUTCDate() + '日';
+        return l === 'en' ? m + ' ' + d.getUTCDate() : d.getUTCDate() + ' ' + m;
     }
 
     function rangeLabel(weekend, t, l) {
@@ -172,7 +235,8 @@
         var b = keyToDate(weekend.days[1].key);
         var ma = t.months[a.getUTCMonth()];
         var mb = t.months[b.getUTCMonth()];
-        if (l === 'es') {
+        if (l === 'zh') return ma === mb ? ma + a.getUTCDate() + '–' + b.getUTCDate() + '日' : ma + a.getUTCDate() + '日 – ' + mb + b.getUTCDate() + '日';
+        if (l !== 'en') {
             return ma === mb ? a.getUTCDate() + '–' + b.getUTCDate() + ' ' + ma : a.getUTCDate() + ' ' + ma + ' – ' + b.getUTCDate() + ' ' + mb;
         }
         return ma === mb ? ma + ' ' + a.getUTCDate() + '–' + b.getUTCDate() : ma + ' ' + a.getUTCDate() + ' – ' + mb + ' ' + b.getUTCDate();

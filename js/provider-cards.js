@@ -16,10 +16,19 @@
 
     var COPY = {
         en: { more: 'Read full bio', less: 'Show less' },
-        es: { more: 'Leer biografía completa', less: 'Mostrar menos' }
+        es: { more: 'Leer biografía completa', less: 'Mostrar menos' },
+        fr: { more: 'Lire la biographie complète', less: 'Réduire' },
+        ar: { more: 'اقرأ السيرة الكاملة', less: 'عرض أقل' },
+        he: { more: 'לקריאת הביוגרפיה המלאה', less: 'הצג פחות' },
+        zh: { more: '阅读完整简介', less: '收起' },
+        it: { more: 'Leggi la biografia completa', less: 'Mostra meno' }
     };
 
-    function lang() { return document.documentElement.lang === 'es' ? 'es' : 'en'; }
+    function lang() {
+        var site = document.documentElement.getAttribute('data-pt-lang');
+        if (site && COPY[site]) return site;
+        return document.documentElement.lang === 'es' ? 'es' : 'en';
+    }
 
     function label(button, open) {
         button.textContent = COPY[lang()][open ? 'less' : 'more'];

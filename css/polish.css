@@ -982,3 +982,46 @@ html body .mmc-pcard.mmc-pcard--fits .mmc-pcard-more { display: none !important;
 html body .mmc-pcard.mmc-pcard--fits .mmc-pcard-bio { -webkit-mask-image: none !important; mask-image: none !important; }
 /* About page filter: hidden provider cards stay hidden on phones too */
 html body #providers-container > .provider-card:not(.active) { display: none !important; }
+
+/* ═══ Header language menu (js/site-translate.js) ═══ */
+html body .top-contact-bar #lang-toggle { display: none !important; }
+.mmc-lang { position: relative; flex-shrink: 0; }
+.mmc-lang-btn {
+    display: inline-flex; align-items: center; gap: 6px; height: 26px; min-height: 26px !important; min-width: 0 !important; padding: 0 8px 0 9px;
+    border: 1px solid rgba(255, 255, 255, .4); border-radius: 6px; background: transparent; color: #fff; cursor: pointer;
+    font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: .02em; line-height: 1; transition: background-color .15s ease, border-color .15s ease;
+}
+.mmc-lang-btn:hover, .mmc-lang.is-open .mmc-lang-btn { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .65); }
+.mmc-lang-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.mmc-lang-globe { width: 14px; height: 14px; }
+.mmc-lang-chev { width: 13px; height: 13px; opacity: .8; transition: transform .2s ease; }
+.mmc-lang.is-open .mmc-lang-chev { transform: rotate(180deg); }
+.mmc-lang-menu {
+    /* Placed on <body> by the script (top/left/right set when opened). */
+    position: fixed; top: 0; z-index: 1000002; min-width: 210px; margin: 0; padding: 6px; list-style: none;
+    border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px rgba(15, 23, 42, .08), 0 18px 40px -14px rgba(15, 23, 42, .4);
+    opacity: 0; visibility: hidden; transform: translateY(-4px); transition: opacity .15s ease, transform .15s ease, visibility 0s linear .15s;
+}
+.mmc-lang-menu.is-open { opacity: 1; visibility: visible; transform: none; transition: opacity .15s ease, transform .15s ease; }
+.mmc-lang-menu button {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 14px; width: 100%; min-height: 38px !important; min-width: 0 !important;
+    padding: 8px 12px; border: 0; border-radius: 9px; background: none; cursor: pointer; font-family: inherit; text-align: start;
+}
+.mmc-lang-menu button span { color: #0f172a; font-size: 14.5px; font-weight: 600; }
+.mmc-lang-menu button small { color: #5b6475; font-size: 12px; }
+.mmc-lang-menu button:hover, .mmc-lang-menu button:focus-visible { background: #f5f8fc; outline: none; }
+.mmc-lang-menu button.is-active { background: #eaf1fb; }
+.mmc-lang-menu button.is-active span { color: #0d47a1; }
+@media (max-width: 640px) {
+    .mmc-lang-btn { height: 28px; min-height: 28px !important; padding: 0 7px; }
+    .mmc-lang-cur { max-width: 64px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+/* ═══ Translated pages: scripts the site font lacks ═══ */
+html[data-pt-lang="ar"] body { font-family: "Inter", "Geeza Pro", "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif; }
+html[data-pt-lang="he"] body { font-family: "Inter", "Arial Hebrew", "Noto Sans Hebrew", "Segoe UI", Arial, sans-serif; }
+html[data-pt-lang="zh"] body { font-family: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
+html:is([data-pt-lang="ar"], [data-pt-lang="he"], [data-pt-lang="zh"]) :is(h1, h2, h3, h4, p, li, span, a, button, dt, dd, td, th, small, label) { letter-spacing: 0 !important; }
+html:is([data-pt-lang="ar"], [data-pt-lang="he"], [data-pt-lang="zh"]) :is(.hp-eyebrow, .oc-jump-label, .up-pillar-kicker, .slide-pill, .slide-kicker, .service-tag, .osha-tag, .wellness-label, .pr-class-num) { text-transform: none !important; }
+html[data-pt-lang="ar"] :is(h1, h2, h3), html[data-pt-lang="he"] :is(h1, h2, h3) { line-height: 1.3 !important; }
+html[data-pt-lang="zh"] :is(h1, h2) { line-height: 1.25 !important; }
