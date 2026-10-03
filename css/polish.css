@@ -284,7 +284,7 @@ h3.text-3xl, h3.text-4xl { font-size: 1.625rem !important; line-height: 1.25 !im
 
 /* ═══ FAQ (same component on every page) ═══ */
 :is(#faq, #insurance-faq) > .container {
-    max-width: 1216px !important; margin-left: auto !important; margin-right: auto !important;
+    max-width: calc(1216px + 2 * var(--ds-gutter, 32px)) !important; margin-left: auto !important; margin-right: auto !important;
 }
 @media (min-width: 1024px) {
     :is(#faq, #insurance-faq) > .container {
@@ -828,3 +828,15 @@ html body .a11y-panel { left: 46px !important; bottom: 24px !important; }
     html body .mmc-pcard.is-open .mmc-pcard-more::after { transform: rotate(-135deg) translateY(-1px); }
     html body .mmc-pcard .specialty-badges { margin-top: 12px !important; }
 }
+
+/* ═══ One page gutter everywhere: 20px phones · 24px tablets · 32px desktop, 1216px content ═══ */
+:root { --ds-gutter: 20px; }
+@media (min-width: 640px) { :root { --ds-gutter: 24px; } }
+@media (min-width: 1024px) { :root { --ds-gutter: 32px; } }
+section .container, .page-header > .container, footer#contact > .container {
+    padding-left: var(--ds-gutter) !important; padding-right: var(--ds-gutter) !important;
+    max-width: calc(1216px + 2 * var(--ds-gutter)) !important;
+}
+.apple-split { max-width: none !important; }
+.mmc-subnav-inner, .mmc-cta-inner { width: calc(100% - 2 * var(--ds-gutter)) !important; max-width: 1216px !important; }
+@media (max-width: 767px) { .mmc-subnav-inner { width: calc(100% - 2 * var(--ds-gutter)) !important; } }
