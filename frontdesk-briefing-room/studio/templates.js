@@ -13,6 +13,8 @@ export const IMAGE_LIBRARY = [
     { id: 'spot-travel', label: 'Travel & immigration', tags: 'faa pilot aviation immigration travel airport passport physical uscis civil surgeon' },
     { id: 'spot-services-collage', label: 'All our services', tags: 'one stop all services departments collage multi-specialty' },
     { id: 'spot-exam-room', label: 'Urgent care room', tags: 'urgent care walk-in same day exam room clinic' },
+    { id: 'spot-flu-kid', label: 'Flu shot (proud kid)', tags: 'flu shot vaccine immunization kids children pediatric bandage' },
+    { id: 'spot-flu-nurse', label: 'Flu shot (nurse)', tags: 'flu shot vaccine immunization nurse bandage adult' },
     { id: 'spot-flu-family', label: 'Flu season (family)', tags: 'flu shot vaccine immunization season family autumn' },
     { id: 'spot-flu-cozy', label: 'Flu season (cozy)', tags: 'flu shot vaccine immunization season autumn bandage' },
     { id: 'lobby', label: 'Our lobby', tags: 'clinic lobby reception welcome' },

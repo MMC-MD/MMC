@@ -112,7 +112,7 @@
     // matching library photo, so older content looks as polished as new slides.
     // Once edited and published in MMC Studio, the chosen layout/image is stored.
     var VISUALS = [
-        [/flu|vaccin/i, 'spot-flu-family', 'spotlight'],
+        [/flu|vaccin/i, 'spot-flu-kid', 'spotlight'],
         [/faa|pilot|aviation/i, 'spot-travel', 'spotlight', { en: 'Learn more', es: 'M\u00e1s informaci\u00f3n', url: '/occupational-health/' }],
         [/immigration|i-693|uscis/i, 'spot-travel', 'spotlight'],
         [/urgent|walk-?in|same[ -]day/i, 'spot-exam-room', 'spotlight'],
