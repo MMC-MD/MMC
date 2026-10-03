@@ -1206,3 +1206,6 @@ html body #plans-hub.in-hub { background: #fff !important; }
 html body .in-plans { padding: 0 !important; }
 html body .in-list .info-card h4 { padding-left: 0 !important; }
 html body .in-check .checker-result:not(.visible) { display: none; }
+html body .in-list .in-legend { max-width: none; margin: 16px 0 0; gap: 10px; font-size: 14.5px; }
+html body .in-list .in-legend { display: block; text-align: left; justify-content: flex-start; line-height: 1.6; }
+html body .in-list .in-legend .referral-badge { display: inline-block; margin-right: 8px; vertical-align: 1px; }
