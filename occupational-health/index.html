@@ -369,6 +369,7 @@
         }
     </style>
     <link rel="stylesheet" href="../css/polish.css?v=2026101305">
+    <link rel="stylesheet" href="../css/sections.css?v=2026101405">
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/occupational-800.webp 800w, /images/heroes/occupational-1200.webp 1200w, /images/heroes/occupational-2000.webp 2000w" imagesizes="100vw">
 </head>
 <body class="bg-light-gray text-dark-gray">
@@ -397,107 +398,69 @@
     <!-- ════════════════════════════════════════════
          QUICK NAVIGATION + INTRO
          ════════════════════════════════════════════ -->
-    <section class="py-20 lg:py-24 bg-white" data-page-nav data-page-nav-title="Overview">
-        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <p class="text-lg lg:text-xl text-medium-gray leading-relaxed max-w-3xl mx-auto">
-                    Montgomery Medical Clinic provides a full range of occupational health services led by <strong class="text-gray-800">Dr. Efraim Kessous, MPH</strong> &mdash; a USCIS-authorized civil surgeon, FAA Senior Aviation Medical Examiner, and board-certified occupational medicine physician.
-                </p>
+    <section class="hp-section oc-overview" data-page-nav data-page-nav-title="Overview">
+        <div class="container mx-auto">
+            <div class="up-intro" data-aos="fade-up">
+                <div>
+                    <p class="hp-eyebrow" data-en="Occupational health" data-es="Salud ocupacional">Occupational health</p>
+                    <h2 class="hp-title" data-en="Exams and programs for work, travel and licensing" data-es="Ex&aacute;menes y programas para el trabajo, los viajes y las licencias">Exams and programs for work, travel and licensing</h2>
+                </div>
+                <div>
+                    <p class="hp-lede">Montgomery Medical Clinic provides a full range of occupational health services led by <strong class="text-gray-800">Dr. Efraim Kessous, MPH</strong> &mdash; a USCIS-authorized civil surgeon, FAA Senior Aviation Medical Examiner, and board-certified occupational medicine physician.</p>
+                    <div class="hp-actions">
+                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Book an Appointment</a>
+                        <a href="tel:3012082273" class="hp-link"><span>Call (301) 208-2273</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
+                </div>
             </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="150">
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all inline-flex items-center justify-center gap-2">
-                    Book an Appointment
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </a>
-                <a href="tel:3012082273" class="btn bg-brand-orange text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-all inline-flex items-center justify-center gap-2">
-                    Call (301) 208-2273
-                </a>
-            </div>
+            <ul class="oc-jump" data-aos="fade-up" data-aos-delay="50"><li><a href="#immigration"><span class="oc-jump-label" data-en="Immigration" data-es="Inmigraci&oacute;n">Immigration</span><span class="oc-jump-title">I-693 USCIS Medical Exam</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="#faa"><span class="oc-jump-label" data-en="Aviation" data-es="Aviaci&oacute;n">Aviation</span><span class="oc-jump-title">FAA Physical Examinations</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="#corporate"><span class="oc-jump-label" data-en="Employers" data-es="Empleadores">Employers</span><span class="oc-jump-title">Corporate Occupational Health Services</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="#mva"><span class="oc-jump-label" data-en="Driver licensing" data-es="Licencias de conducir">Driver licensing</span><span class="oc-jump-title">MVA Physicals for DUI</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
         </div>
     </section>
 
     <!-- ════════════════════════════════════════════
          1. IMMIGRATION PHYSICALS (i693)
          ════════════════════════════════════════════ -->
-    <section id="immigration" class="service-section py-20 lg:py-24 bg-light-blue-bg" data-page-nav data-page-nav-title="Immigration">
-        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
-            <div class="mb-12 max-w-3xl" data-aos="fade-up">
-                <div class="section-rule mb-5"></div>
-                <h2 class="text-3xl lg:text-4xl font-black text-dark-gray mb-3">I-693 USCIS Medical Exam</h2>
-                <p class="text-brand-orange font-bold mb-5">Dr. Efraim Kessous &mdash; USCIS Authorized Civil Surgeon</p>
-                <p class="text-lg text-medium-gray leading-relaxed">
-                    If you're applying for a green card, <a href="https://www.uscis.gov/i-693" target="_blank" rel="noopener" class="text-link">USCIS</a> requires a medical examination and <a href="https://www.uscis.gov/i-693" target="_blank" rel="noopener" class="text-link">Form I-693</a> completed by an authorized civil surgeon. The exam screens for communicable diseases and verifies your vaccinations per <a href="https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/" target="_blank" rel="noopener" class="text-link">CDC technical instructions</a>.
-                </p>
-            </div>
-
-            <div class="service-grid" style="grid-template-columns: repeat(2, 1fr);">
-
-                <article class="service-card-lg" data-aos="fade-up" style="grid-column: span 1;">
-                    <span class="eyebrow">Before Your Visit</span>
-                    <h3>What to Bring</h3>
-                    <p>Come prepared with the following to ensure a smooth appointment and timely I-693 form processing.</p>
-                    <div class="tag-row">
-                        <span class="service-tag">Government Photo ID</span>
-                        <span class="service-tag">Vaccination Records</span>
-                        <span class="service-tag">Current Medications List</span>
-                        <span class="service-tag">Prior TB/STI Records</span>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="50" style="grid-column: span 1;">
-                    <span class="eyebrow">After Your Exam</span>
-                    <h3>Turnaround Time</h3>
-                    <p>If all test results come back normal, expect a call within <strong style="color:#0a0e27;">1&ndash;2 weeks</strong> to collect your signed and sealed I-693 paperwork. Submit the sealed envelope to USCIS with your <a href="https://www.uscis.gov/i-485" target="_blank" rel="noopener" class="text-link">Form I-485</a> application.</p>
-                    <div class="tag-row">
-                        <span class="service-tag">1&ndash;2 Week Processing</span>
-                        <span class="service-tag">Sealed &amp; Signed</span>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="100" style="grid-column: span 1;">
-                    <span class="eyebrow">Resources</span>
-                    <h3>Government Resources</h3>
-                    <p>Official links to help you prepare for your immigration medical exam and understand the requirements.</p>
-                    <div class="tag-row">
-                        <a class="service-tag" href="https://www.uscis.gov/tools/find-a-civil-surgeon" target="_blank" rel="noopener">USCIS Civil Surgeon Finder</a>
-                        <a class="service-tag" href="https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/vaccination.html" target="_blank" rel="noopener">CDC Vaccination Guide</a>
-                        <a class="service-tag" href="https://www.uscis.gov/i-485" target="_blank" rel="noopener">Form I-485</a>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="150" style="grid-column: span 1;">
-                    <span class="eyebrow">Authorization</span>
-                    <h3>Why Montgomery Medical Clinic</h3>
-                    <p>Dr. Efraim Kessous is listed in the official <a href="https://www.uscis.gov/tools/find-a-civil-surgeon" target="_blank" rel="noopener" class="text-link">USCIS civil surgeon directory</a> and is fully authorized to conduct I-693 medical examinations in Maryland. All exams follow the latest CDC and USCIS protocols.</p>
-                    <div class="tag-row">
-                        <span class="service-tag">USCIS Authorized</span>
-                        <span class="service-tag">CDC Compliant</span>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="callout mt-10" data-aos="fade-up" data-aos-delay="200" style="text-align: center; padding: 2rem 1.75rem; border: 2px solid var(--medical-blue, #0d47a1); background: #eff6ff;">
-                <h3 style="font-size: 1.375rem; font-weight: 800; color: #0a0e27; margin: 0 0 0.5rem;">Immigration Physicals &amp; I-693 Guide</h3>
-                <p class="text-medium-gray" style="line-height: 1.6; margin: 0 0 1.25rem; max-width: 36rem; margin-left: auto; margin-right: auto;">
-                    Full I-693 exam process, required vaccinations, what to expect at each visit, and answers to common questions &mdash; all in one dedicated page.
-                </p>
-                <a href="../immigration-physicals/" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all" style="font-size: 1.0625rem;">
-                    View Immigration Physicals Guide
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
-            <div class="mt-10" data-aos="fade-up" data-aos-delay="250">
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all">
-                    Schedule Your Immigration Exam
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </a>
+    <section id="immigration" class="hp-section oc-section oc-tint" data-page-nav data-page-nav-title="Immigration">
+        <div class="container mx-auto">
+            <div class="oc-grid">
+                <div class="oc-aside" data-aos="fade-up">
+                    <p class="hp-eyebrow" data-en="Immigration" data-es="Inmigraci&oacute;n">Immigration</p>
+                    <h2 class="hp-title">I-693 USCIS Medical Exam</h2>
+                    <p class="oc-cred">Dr. Efraim Kessous &mdash; USCIS Authorized Civil Surgeon</p>
+                    <p class="hp-lede">If you're applying for a green card, <a href="https://www.uscis.gov/i-693" target="_blank" rel="noopener" class="text-link">USCIS</a> requires a medical examination and <a href="https://www.uscis.gov/i-693" target="_blank" rel="noopener" class="text-link">Form I-693</a> completed by an authorized civil surgeon. The exam screens for communicable diseases and verifies your vaccinations per <a href="https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/" target="_blank" rel="noopener" class="text-link">CDC technical instructions</a>.</p>
+                    <div class="hp-actions"><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Schedule Your Immigration Exam</a></div>
+                    <a class="oc-guide" href="../immigration-physicals/">
+                        <span class="oc-guide-title">Immigration Physicals &amp; I-693 Guide</span>
+                        <span class="oc-guide-text">Full I-693 exam process, required vaccinations, what to expect at each visit, and answers to common questions &mdash; all in one dedicated page.</span>
+                        <span class="oc-guide-cta"><span>View Immigration Physicals Guide</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </a>
+                </div>
+                <div class="oc-rows" data-aos="fade-up" data-aos-delay="50">
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Before Your Visit</p>
+                        <h3>What to Bring</h3>
+                        <p>Come prepared with the following to ensure a smooth appointment and timely I-693 form processing.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Government Photo ID</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Vaccination Records</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Current Medications List</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Prior TB/STI Records</span></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">After Your Exam</p>
+                        <h3>Turnaround Time</h3>
+                        <p>If all test results come back normal, expect a call within <strong style="color:#0a0e27;">1&ndash;2 weeks</strong> to collect your signed and sealed I-693 paperwork. Submit the sealed envelope to USCIS with your <a href="https://www.uscis.gov/i-485" target="_blank" rel="noopener" class="text-link">Form I-485</a> application.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1&ndash;2 Week Processing</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Sealed &amp; Signed</span></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Resources</p>
+                        <h3>Government Resources</h3>
+                        <p>Official links to help you prepare for your immigration medical exam and understand the requirements.</p>
+                        <ul class="up-tags"><li><a href="https://www.uscis.gov/tools/find-a-civil-surgeon" target="_blank" rel="noopener" class="up-res">USCIS Civil Surgeon Finder<svg class="up-ext" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5H5.5A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16h8a1.5 1.5 0 0 0 1.5-1.5V12M11 4h5v5M16 4l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="https://www.cdc.gov/immigrant-refugee-health/hcp/civil-surgeons/vaccination.html" target="_blank" rel="noopener" class="up-res">CDC Vaccination Guide<svg class="up-ext" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5H5.5A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16h8a1.5 1.5 0 0 0 1.5-1.5V12M11 4h5v5M16 4l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="https://www.uscis.gov/i-485" target="_blank" rel="noopener" class="up-res">Form I-485<svg class="up-ext" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5H5.5A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16h8a1.5 1.5 0 0 0 1.5-1.5V12M11 4h5v5M16 4l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Authorization</p>
+                        <h3>Why Montgomery Medical Clinic</h3>
+                        <p>Dr. Efraim Kessous is listed in the official <a href="https://www.uscis.gov/tools/find-a-civil-surgeon" target="_blank" rel="noopener" class="text-link">USCIS civil surgeon directory</a> and is fully authorized to conduct I-693 medical examinations in Maryland. All exams follow the latest CDC and USCIS protocols.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>USCIS Authorized</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>CDC Compliant</span></li></ul>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
@@ -505,77 +468,42 @@
     <!-- ════════════════════════════════════════════
          2. FAA PHYSICAL EXAMS
          ════════════════════════════════════════════ -->
-    <section id="faa" class="service-section py-20 lg:py-24 bg-white" data-page-nav data-page-nav-title="FAA Physicals">
-        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
-            <div class="mb-12 max-w-3xl" data-aos="fade-up">
-                <div class="section-rule mb-5"></div>
-                <h2 class="text-3xl lg:text-4xl font-black text-dark-gray mb-3">FAA Physical Examinations</h2>
-                <p class="text-brand-orange font-bold mb-5">Dr. Efraim Kessous &mdash; Senior Aviation Medical Examiner (AME)</p>
-                <p class="text-lg text-medium-gray leading-relaxed">
-                    The <a href="https://www.faa.gov/pilots/medical_certification" target="_blank" rel="noopener" class="text-link">Federal Aviation Administration</a> requires all pilots to pass a medical examination with an authorized <a href="https://www.faa.gov/pilots/amelocator" target="_blank" rel="noopener" class="text-link">Aviation Medical Examiner (AME)</a>. The exam evaluates your physical and mental fitness to operate an aircraft.
-                </p>
-            </div>
-
-            <div class="service-grid" style="grid-template-columns: repeat(3, 1fr);">
-
-                <article class="service-card-lg" data-aos="fade-up" style="grid-column: span 1;">
-                    <span class="eyebrow">Certificate Classes</span>
-                    <h3>Who Needs an FAA Physical</h3>
-                    <p>All pilots need a valid FAA medical certificate. The class depends on how you fly.</p>
-                    <div class="tag-row">
-                        <span class="service-tag">1st Class &mdash; Airline Transport</span>
-                        <span class="service-tag">2nd Class &mdash; Commercial</span>
-                        <span class="service-tag">3rd Class &mdash; Student &amp; Recreational</span>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="50" style="grid-column: span 1;">
-                    <span class="eyebrow">Before Your Visit</span>
-                    <h3>How to Prepare</h3>
-                    <p>Complete your <a href="https://medxpress.faa.gov/medxpress/" target="_blank" rel="noopener" class="text-link">FAA MedXPress</a> form before your appointment. Expect hearing, vision, and urine tests, plus an ECG for first-class certificates.</p>
-                    <div class="tag-row">
-                        <a class="service-tag" href="https://www.faa.gov/ame_guide" target="_blank" rel="noopener">AME Guide</a>
-                        <a class="service-tag" href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener">AMAS Medication Database</a>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="100" style="grid-column: span 1;">
-                    <span class="eyebrow">Renewals</span>
-                    <h3>How Often to Renew</h3>
-                    <p>Frequency depends on your certificate class and age &mdash; ranging from every 6 months to every 60 months. See the <a href="https://www.faa.gov/faq?combine=&field_faq_category_target_id=11581" target="_blank" rel="noopener" class="text-link">FAA medical certification FAQ</a> for details.</p>
-                    <div class="tag-row">
-                        <span class="service-tag">6&ndash;60 Month Intervals</span>
-                        <span class="service-tag">Age-Dependent</span>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="callout mt-8" data-aos="fade-up" data-aos-delay="100">
-                <p class="text-medium-gray leading-relaxed">
-                    <strong class="text-gray-800">Partner program:</strong> Montgomery Medical Clinic is proud to work with the <a href="https://www.learntoflydc.com" target="_blank" rel="noopener" class="text-link">Washington International Flight Academy</a> in Washington, DC &mdash; providing FAA physicals for their student and professional pilots.
-                </p>
-            </div>
-
-            <!-- ── FAA Pilot Resource Center CTA ── -->
-            <div class="callout mt-10" data-aos="fade-up" style="text-align: center; padding: 2rem 1.75rem; border: 2px solid var(--medical-blue, #0d47a1); background: #eff6ff;">
-                <h3 style="font-size: 1.375rem; font-weight: 800; color: #0a0e27; margin: 0 0 0.5rem;">FAA Pilot Resource Center</h3>
-                <p class="text-medium-gray" style="line-height: 1.6; margin: 0 0 1.25rem; max-width: 36rem; margin-left: auto; margin-right: auto;">
-                    Pre-visit checklist, medical certificate classes, medication lookup, CACI condition worksheets, and guidance for new &amp; returning pilots &mdash; all in one page.
-                </p>
-                <a href="../faa-physicals/pilot-resources/" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all" style="font-size: 1.0625rem;">
-                    Open Pilot Resource Center
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
-            <div class="mt-10" data-aos="fade-up" data-aos-delay="150">
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all">
-                    Schedule Your FAA Physical
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </a>
+    <section id="faa" class="hp-section oc-section" data-page-nav data-page-nav-title="FAA Physicals">
+        <div class="container mx-auto">
+            <div class="oc-grid">
+                <div class="oc-aside" data-aos="fade-up">
+                    <p class="hp-eyebrow" data-en="Aviation" data-es="Aviaci&oacute;n">Aviation</p>
+                    <h2 class="hp-title">FAA Physical Examinations</h2>
+                    <p class="oc-cred">Dr. Efraim Kessous &mdash; Senior Aviation Medical Examiner (AME)</p>
+                    <p class="hp-lede">The <a href="https://www.faa.gov/pilots/medical_certification" target="_blank" rel="noopener" class="text-link">Federal Aviation Administration</a> requires all pilots to pass a medical examination with an authorized <a href="https://www.faa.gov/pilots/amelocator" target="_blank" rel="noopener" class="text-link">Aviation Medical Examiner (AME)</a>. The exam evaluates your physical and mental fitness to operate an aircraft.</p>
+                    <div class="hp-actions"><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Schedule Your FAA Physical</a></div>
+                    <a class="oc-guide" href="../faa-physicals/pilot-resources/">
+                        <span class="oc-guide-title">FAA Pilot Resource Center</span>
+                        <span class="oc-guide-text">Pre-visit checklist, medical certificate classes, medication lookup, CACI condition worksheets, and guidance for new &amp; returning pilots &mdash; all in one page.</span>
+                        <span class="oc-guide-cta"><span>Open Pilot Resource Center</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </a>
+                </div>
+                <div class="oc-rows" data-aos="fade-up" data-aos-delay="50">
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Certificate Classes</p>
+                        <h3>Who Needs an FAA Physical</h3>
+                        <p>All pilots need a valid FAA medical certificate. The class depends on how you fly.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1st Class &mdash; Airline Transport</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>2nd Class &mdash; Commercial</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3rd Class &mdash; Student &amp; Recreational</span></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Before Your Visit</p>
+                        <h3>How to Prepare</h3>
+                        <p>Complete your <a href="https://medxpress.faa.gov/medxpress/" target="_blank" rel="noopener" class="text-link">FAA MedXPress</a> form before your appointment. Expect hearing, vision, and urine tests, plus an ECG for first-class certificates.</p>
+                        <ul class="up-tags"><li><a href="https://www.faa.gov/ame_guide" target="_blank" rel="noopener" class="up-res">AME Guide<svg class="up-ext" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5H5.5A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16h8a1.5 1.5 0 0 0 1.5-1.5V12M11 4h5v5M16 4l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="https://www.aviationmedicine.com/medication-database/" target="_blank" rel="noopener" class="up-res">AMAS Medication Database<svg class="up-ext" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5H5.5A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16h8a1.5 1.5 0 0 0 1.5-1.5V12M11 4h5v5M16 4l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Renewals</p>
+                        <h3>How Often to Renew</h3>
+                        <p>Frequency depends on your certificate class and age &mdash; ranging from every 6 months to every 60 months. See the <a href="https://www.faa.gov/faq?combine=&field_faq_category_target_id=11581" target="_blank" rel="noopener" class="text-link">FAA medical certification FAQ</a> for details.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>6&ndash;60 Month Intervals</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Age-Dependent</span></li></ul>
+                    </article>
+                    <p class="up-callout oc-note"><strong class="text-gray-800">Partner program:</strong> Montgomery Medical Clinic is proud to work with the <a href="https://www.learntoflydc.com" target="_blank" rel="noopener" class="text-link">Washington International Flight Academy</a> in Washington, DC &mdash; providing FAA physicals for their student and professional pilots.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -583,115 +511,54 @@
     <!-- ════════════════════════════════════════════
          3. CORPORATE WELLNESS
          ════════════════════════════════════════════ -->
-    <section id="corporate" class="service-section py-20 lg:py-24 bg-light-blue-bg" data-page-nav data-page-nav-title="Corporate">
-        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
-            <div class="mb-12 max-w-3xl" data-aos="fade-up">
-                <div class="section-rule mb-5"></div>
-                <h2 class="text-3xl lg:text-4xl font-black text-dark-gray mb-3">Corporate Occupational Health Services</h2>
-                <p class="text-brand-orange font-bold mb-5">Dr. Efraim Kessous, MPH &mdash; Board-Certified Occupational Medicine Physician</p>
-                <p class="text-lg text-medium-gray leading-relaxed">
-                    Montgomery Medical Clinic partners with businesses across Maryland to deliver comprehensive occupational health and workplace wellness programs. Our services follow <a href="https://www.osha.gov/medical-surveillance" target="_blank" rel="noopener" class="text-link">OSHA medical surveillance standards</a> and are fully tailored to your industry's requirements.
-                </p>
-            </div>
-
-            <div class="service-grid">
-
-                <article class="service-card-lg" data-aos="fade-up">
-                    <span class="eyebrow">Pre-Employment</span>
-                    <h3>Fit-for-Duty Physicals</h3>
-                    <p>
-                        Thorough pre-hire examinations and drug testing that ensure new team members are ready for the demands of their specific roles &mdash; so every employee is safe and fit for duty from day one.
-                    </p>
-                    <div class="tag-row">
-                        <a class="service-tag" href="https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.134" target="_blank" rel="noopener">Respirator Fit Testing</a>
-                        <span class="service-tag">Audiometric Testing</span>
-                        <span class="service-tag">Lift &amp; Strength</span>
-                        <a class="service-tag" href="https://www.samhsa.gov/workplace" target="_blank" rel="noopener">Drug Testing</a>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="50">
-                    <span class="eyebrow">Workplace Injury</span>
-                    <h3>Workers' Compensation</h3>
-                    <p>
-                        Compassionate care for on-the-job injuries with a clear clinical path to recovery, following <a href="https://www.wcc.state.md.us/" target="_blank" rel="noopener" class="text-link">Maryland WCC</a> guidelines.
-                    </p>
-                    <div class="tag-row">
-                        <span class="service-tag">Injury Evaluation</span>
-                        <span class="service-tag">Treatment Plans</span>
-                        <span class="service-tag">Follow-Up Care</span>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="100">
-                    <span class="eyebrow">On-Site Services</span>
-                    <h3>Corporate Wellness Days</h3>
-                    <p>
-                        Bring healthcare directly to your workplace with <a href="https://www.cdc.gov/flu/prevent/index.html" target="_blank" rel="noopener" class="text-link">seasonal flu shots</a>, health screenings, and quick check-ups &mdash; keeping your team healthy with minimal time away from work.
-                    </p>
-                    <div class="tag-row">
-                        <span class="service-tag">Flu Shot Clinics</span>
-                        <span class="service-tag">Blood Pressure</span>
-                        <span class="service-tag">Biometric Screening</span>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="150">
-                    <span class="eyebrow">Recovery</span>
-                    <h3>Return-to-Work Evaluations</h3>
-                    <p>
-                        Comprehensive evaluations confirming employees are physically ready to resume their duties after illness or injury, with clear documented clearance aligned with job requirements.
-                    </p>
-                    <div class="tag-row">
-                        <span class="service-tag">Functional Capacity</span>
-                        <span class="service-tag">Medical Clearance</span>
-                        <span class="service-tag">Work Restrictions</span>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="200">
-                    <span class="eyebrow">Compliance &amp; Prevention</span>
-                    <h3>OSHA Surveillance &amp; Vaccinations</h3>
-                    <p>
-                        <a href="https://www.osha.gov/medical-surveillance" target="_blank" rel="noopener" class="text-link">OSHA-compliant surveillance protocols</a> and <a href="https://www.cdc.gov/acip-recs/hcp/vaccine-specific/?CDC_AAref_Val=https://www.cdc.gov/vaccines/hcp/acip-recs/index.html" target="_blank" rel="noopener" class="text-link">CDC-recommended vaccinations</a> for corporate, laboratory, and pharmaceutical environments with biological or chemical hazards.
-                    </p>
-                    <div class="tag-row">
-                        <span class="service-tag">Hepatitis B</span>
-                        <span class="service-tag">Tdap &amp; Flu</span>
-                        <span class="service-tag">TB Screening</span>
-                        <span class="service-tag">Bloodborne Pathogens</span>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="callout mt-10" data-aos="fade-up" data-aos-delay="100">
-                <p class="text-medium-gray leading-relaxed">
-                    <strong class="text-gray-800">Why businesses choose us:</strong> Flexible scheduling for teams of any size, clear and timely reporting for HR and insurers, and a single physician-led point of contact for all your workforce health needs.
-                </p>
-            </div>
-
-            <div class="callout mt-10" data-aos="fade-up" data-aos-delay="150" style="text-align: center; padding: 2rem 1.75rem; border: 2px solid var(--medical-blue, #0d47a1); background: #eff6ff;">
-                <h3 style="font-size: 1.375rem; font-weight: 800; color: #0a0e27; margin: 0 0 0.5rem;">Corporate Health Services</h3>
-                <p class="text-medium-gray" style="line-height: 1.6; margin: 0 0 1.25rem; max-width: 36rem; margin-left: auto; margin-right: auto;">
-                    Pre-employment physicals, OSHA surveillance programs, workers' comp care, respirator fit testing, drug screening, and on-site wellness &mdash; everything your business needs in one dedicated page.
-                </p>
-                <a href="corporate-health/" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all" style="font-size: 1.0625rem;">
-                    View Corporate Health Services
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
-            <div class="mt-10 flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="200">
-                <a href="tel:3012082273" class="inline-flex items-center justify-center gap-2 bg-brand-orange text-white font-bold px-8 py-4 rounded-xl hover:bg-orange-600 transition-all">
-                    Call to Discuss Corporate Programs
-                </a>
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white text-brand-blue border-2 border-brand-blue font-bold px-8 py-4 rounded-xl hover:bg-brand-blue hover:text-white transition-all">
-                    Request a Consultation
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
-                </a>
+    <section id="corporate" class="hp-section oc-section oc-tint" data-page-nav data-page-nav-title="Corporate">
+        <div class="container mx-auto">
+            <div class="oc-grid">
+                <div class="oc-aside" data-aos="fade-up">
+                    <p class="hp-eyebrow" data-en="Employers" data-es="Empleadores">Employers</p>
+                    <h2 class="hp-title">Corporate Occupational Health Services</h2>
+                    <p class="oc-cred">Dr. Efraim Kessous, MPH &mdash; Board-Certified Occupational Medicine Physician</p>
+                    <p class="hp-lede">Montgomery Medical Clinic partners with businesses across Maryland to deliver comprehensive occupational health and workplace wellness programs. Our services follow <a href="https://www.osha.gov/medical-surveillance" target="_blank" rel="noopener" class="text-link">OSHA medical surveillance standards</a> and are fully tailored to your industry's requirements.</p>
+                    <div class="hp-actions"><a href="tel:3012082273" class="btn btn-primary">Call to Discuss Corporate Programs</a><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-outline">Request a Consultation</a></div>
+                    <a class="oc-guide" href="corporate-health/">
+                        <span class="oc-guide-title">Corporate Health Services</span>
+                        <span class="oc-guide-text">Pre-employment physicals, OSHA surveillance programs, workers' comp care, respirator fit testing, drug screening, and on-site wellness &mdash; everything your business needs in one dedicated page.</span>
+                        <span class="oc-guide-cta"><span>View Corporate Health Services</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    </a>
+                </div>
+                <div class="oc-rows" data-aos="fade-up" data-aos-delay="50">
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Pre-Employment</p>
+                        <h3>Fit-for-Duty Physicals</h3>
+                        <p>Thorough pre-hire examinations and drug testing that ensure new team members are ready for the demands of their specific roles &mdash; so every employee is safe and fit for duty from day one.</p>
+                        <ul class="up-tags"><li><a href="https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.134" target="_blank" rel="noopener" class="up-res">Respirator Fit Testing<svg class="up-ext" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5H5.5A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16h8a1.5 1.5 0 0 0 1.5-1.5V12M11 4h5v5M16 4l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Audiometric Testing</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Lift &amp; Strength</span></li><li><a href="https://www.samhsa.gov/workplace" target="_blank" rel="noopener" class="up-res">Drug Testing<svg class="up-ext" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 5H5.5A1.5 1.5 0 0 0 4 6.5v8A1.5 1.5 0 0 0 5.5 16h8a1.5 1.5 0 0 0 1.5-1.5V12M11 4h5v5M16 4l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Workplace Injury</p>
+                        <h3>Workers' Compensation</h3>
+                        <p>Compassionate care for on-the-job injuries with a clear clinical path to recovery, following <a href="https://www.wcc.state.md.us/" target="_blank" rel="noopener" class="text-link">Maryland WCC</a> guidelines.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Injury Evaluation</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Treatment Plans</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Follow-Up Care</span></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">On-Site Services</p>
+                        <h3>Corporate Wellness Days</h3>
+                        <p>Bring healthcare directly to your workplace with <a href="https://www.cdc.gov/flu/prevent/index.html" target="_blank" rel="noopener" class="text-link">seasonal flu shots</a>, health screenings, and quick check-ups &mdash; keeping your team healthy with minimal time away from work.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Flu Shot Clinics</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Blood Pressure</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Biometric Screening</span></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Recovery</p>
+                        <h3>Return-to-Work Evaluations</h3>
+                        <p>Comprehensive evaluations confirming employees are physically ready to resume their duties after illness or injury, with clear documented clearance aligned with job requirements.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Functional Capacity</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Medical Clearance</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Work Restrictions</span></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Compliance &amp; Prevention</p>
+                        <h3>OSHA Surveillance &amp; Vaccinations</h3>
+                        <p><a href="https://www.osha.gov/medical-surveillance" target="_blank" rel="noopener" class="text-link">OSHA-compliant surveillance protocols</a> and <a href="https://www.cdc.gov/acip-recs/hcp/vaccine-specific/?CDC_AAref_Val=https://www.cdc.gov/vaccines/hcp/acip-recs/index.html" target="_blank" rel="noopener" class="text-link">CDC-recommended vaccinations</a> for corporate, laboratory, and pharmaceutical environments with biological or chemical hazards.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Hepatitis B</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Tdap &amp; Flu</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TB Screening</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Bloodborne Pathogens</span></li></ul>
+                    </article>
+                    <p class="up-callout oc-note"><strong class="text-gray-800">Why businesses choose us:</strong> Flexible scheduling for teams of any size, clear and timely reporting for HR and insurers, and a single physician-led point of contact for all your workforce health needs.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -699,46 +566,30 @@
     <!-- ════════════════════════════════════════════
          4. MVA PHYSICALS
          ════════════════════════════════════════════ -->
-    <section id="mva" class="service-section py-20 lg:py-24 bg-white" data-page-nav data-page-nav-title="MVA Physicals">
-        <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
-            <div class="mb-12 max-w-3xl" data-aos="fade-up">
-                <div class="section-rule mb-5"></div>
-                <h2 class="text-3xl lg:text-4xl font-black text-dark-gray mb-3">MVA Physicals for DUI</h2>
-                <p class="text-brand-orange font-bold mb-5">Dr. Efraim Kessous &mdash; Licensed Physician</p>
-                <p class="text-lg text-medium-gray leading-relaxed">
-                    If you've been charged with a DUI, the <a href="https://mva.maryland.gov/about-mva/Pages/info/26200/26200-03T.aspx" target="_blank" rel="noopener" class="text-link">Maryland Motor Vehicle Administration (MVA)</a> may require a physical examination with a licensed physician before your driving privileges can be reinstated.
-                </p>
-            </div>
-
-            <div class="service-grid" style="grid-template-columns: repeat(2, 1fr);">
-
-                <article class="service-card-lg" data-aos="fade-up" style="grid-column: span 1;">
-                    <span class="eyebrow">Requirements</span>
-                    <h3>What to Expect</h3>
-                    <p>Dr. Kessous conducts DUI physical evaluations in accordance with <a href="https://mva.maryland.gov/about-mva/Pages/info/26200/26200-01T.aspx" target="_blank" rel="noopener" class="text-link">Maryland MVA medical requirements</a>. The exam reviews your physical and mental fitness to safely operate a motor vehicle.</p>
-                    <div class="tag-row">
-                        <span class="service-tag">Physical Examination</span>
-                        <span class="service-tag">Medical History Review</span>
-                        <span class="service-tag">MVA Documentation</span>
-                    </div>
-                </article>
-
-                <article class="service-card-lg" data-aos="fade-up" data-aos-delay="50" style="grid-column: span 1;">
-                    <span class="eyebrow">Scheduling</span>
-                    <h3>How to Book</h3>
-                    <p>MVA physicals are scheduled by phone. Call our office and we'll find a time that works for you so you can get your paperwork completed and submitted promptly.</p>
-                    <div class="tag-row">
-                        <span class="service-tag">Same-Week Availability</span>
-                        <span class="service-tag">Quick Turnaround</span>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="mt-10" data-aos="fade-up" data-aos-delay="100">
-                <a href="tel:3012082273" class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all">
-                    Call (301) 208-2273
-                </a>
+    <section id="mva" class="hp-section oc-section" data-page-nav data-page-nav-title="MVA Physicals">
+        <div class="container mx-auto">
+            <div class="oc-grid">
+                <div class="oc-aside" data-aos="fade-up">
+                    <p class="hp-eyebrow" data-en="Driver licensing" data-es="Licencias de conducir">Driver licensing</p>
+                    <h2 class="hp-title">MVA Physicals for DUI</h2>
+                    <p class="oc-cred">Dr. Efraim Kessous &mdash; Licensed Physician</p>
+                    <p class="hp-lede">If you've been charged with a DUI, the <a href="https://mva.maryland.gov/about-mva/Pages/info/26200/26200-03T.aspx" target="_blank" rel="noopener" class="text-link">Maryland Motor Vehicle Administration (MVA)</a> may require a physical examination with a licensed physician before your driving privileges can be reinstated.</p>
+                    <div class="hp-actions"><a href="tel:3012082273" class="btn btn-primary">Call (301) 208-2273</a></div>
+                </div>
+                <div class="oc-rows" data-aos="fade-up" data-aos-delay="50">
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Requirements</p>
+                        <h3>What to Expect</h3>
+                        <p>Dr. Kessous conducts DUI physical evaluations in accordance with <a href="https://mva.maryland.gov/about-mva/Pages/info/26200/26200-01T.aspx" target="_blank" rel="noopener" class="text-link">Maryland MVA medical requirements</a>. The exam reviews your physical and mental fitness to safely operate a motor vehicle.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Physical Examination</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Medical History Review</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>MVA Documentation</span></li></ul>
+                    </article>
+                    <article class="oc-row">
+                        <p class="up-pillar-kicker">Scheduling</p>
+                        <h3>How to Book</h3>
+                        <p>MVA physicals are scheduled by phone. Call our office and we'll find a time that works for you so you can get your paperwork completed and submitted promptly.</p>
+                        <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Same-Week Availability</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Quick Turnaround</span></li></ul>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
