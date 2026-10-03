@@ -337,3 +337,10 @@ html body .up-providers .provider-image { position: absolute; inset: 0; width: 1
 @media (max-width: 479px) { .up-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 html body .up-providers .provider-name { font-weight: 700 !important; }
 html body .up-providers .provider-title { font-weight: 600 !important; text-transform: uppercase; }
+/* Service lists: no header icons, small round bullets instead of check icons */
+.up-svc-head { padding-bottom: 18px; }
+.up-svc-list li { position: relative; display: block; padding-left: 18px; }
+.up-svc-list li::before {
+    content: ""; position: absolute; left: 2px; top: .62em; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--ds-blue); opacity: .55;
+}
