@@ -471,10 +471,7 @@ body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden 
     display: block !important; content: "" !important; position: absolute !important; inset: 0 !important; width: auto !important; height: auto !important;
     background: linear-gradient(90deg, rgba(248, 250, 252, .97) 0%, rgba(248, 250, 252, .9) 34%, rgba(248, 250, 252, .45) 58%, rgba(248, 250, 252, 0) 78%) !important;
 }
-@media (max-width: 799px) {
-    .page-header.page-header--photo { padding: 40px 0 262px !important; background-size: auto 230px !important; background-position: 72% bottom !important; background-color: #f8fafc !important; }
-    .page-header--photo::before { background: linear-gradient(180deg, #f8fafc 0%, #f8fafc calc(100% - 232px), rgba(248, 250, 252, 0) calc(100% - 176px)) !important; }
-}
+
 .page-header--photo > .container { position: relative; z-index: 2; max-width: 1280px; }
 .page-header--photo h1 {
     color: var(--ds-ink) !important; font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem) !important;
@@ -488,7 +485,7 @@ body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden 
 /* About hero: real team photo; faces sit on the right */
 .page-header--about { background-position: right 22% !important; }
 @media (min-width: 1300px) { .page-header--about { background-position: right 22% !important; } }
-@media (max-width: 799px) { .page-header.page-header--about { background-position: 78% bottom !important; } }
+
 .page-header--photo .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
 @media (max-width: 480px) { .page-header--photo .hero-actions .btn { flex: 1 1 100%; } }
 @media (min-width: 800px) {
@@ -590,10 +587,7 @@ body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden 
     .page-header--about h1 { font-size: clamp(2.25rem, 1.5rem + 2.2vw, 3.25rem) !important; }
     .page-header--about .hero-actions { margin-top: 24px; }
 }
-@media (max-width: 799px) {
-    .page-header.page-header--about { padding: 36px 0 214px !important; background-size: auto 190px !important; }
-    .page-header--about::before { background: linear-gradient(180deg, #f8fafc 0%, #f8fafc calc(100% - 192px), rgba(248, 250, 252, 0) calc(100% - 150px)) !important; }
-}
+
 /* Contact popup refinements */
 .contact-book { margin-top: 24px; }
 .contact-book .btn { width: 100%; }
@@ -728,3 +722,41 @@ html body .contact-modal .contact-info-row .contact-item.contact-info .contact-l
 }
 html body .contact-close, html body .contact-close:focus { outline: none !important; box-shadow: none !important; border: 0 !important; }
 html body .contact-close:focus-visible { outline: 2px solid #c9d6ea !important; outline-offset: 2px !important; }
+
+/* ═══ Photo heroes on phones & small tablets: text, then a full-width photo card ═══ */
+@media (max-width: 799px) {
+    .page-header.page-header--photo {
+        background: #f8fafc !important;
+        padding: 36px 0 calc(clamp(210px, 52vw, 340px) + 40px) !important;
+    }
+    .page-header--photo::before { display: none !important; }
+    .page-header.page-header--photo::after {
+        display: block !important; content: "" !important; position: absolute !important;
+        left: 16px !important; right: 16px !important; bottom: 24px !important; top: auto !important;
+        width: auto !important; height: clamp(210px, 52vw, 340px) !important;
+        background: var(--hero-sm) 72% center / cover no-repeat !important;
+        border-radius: 16px !important; opacity: 1 !important;
+    }
+    .page-header.page-header--about::after { background-position: 82% 30% !important; }
+    .page-header--photo h1 { font-size: clamp(2rem, 1.3rem + 3.6vw, 2.75rem) !important; }
+}
+@media (min-width: 500px) and (max-width: 799px) {
+    .page-header.page-header--photo::after { background-image: var(--hero-md) !important; }
+}
+
+/* ═══ Accessibility button: small, quiet, still easy to find ═══ */
+html body .a11y-trigger {
+    width: 40px !important; height: 40px !important; bottom: 18px !important; left: 18px !important;
+    border: 0 !important; background: #0d47a1 !important;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, .12), 0 6px 16px -6px rgba(15, 23, 42, .35) !important;
+    transition: background-color .15s ease, box-shadow .2s ease !important; transform: none !important;
+}
+html body .a11y-trigger svg { width: 20px !important; height: 20px !important; }
+html body .a11y-trigger:hover { background: #0b3c8a !important; transform: none !important; outline: none !important; }
+html body .a11y-trigger:focus-visible { outline: 2px solid #ff8f00 !important; outline-offset: 3px !important; transform: none !important; }
+html body .a11y-panel { bottom: 70px !important; left: 18px !important; }
+@media (max-width: 640px) {
+    html body .a11y-trigger { width: 36px !important; height: 36px !important; bottom: 14px !important; left: 14px !important; }
+    html body .a11y-trigger svg { width: 18px !important; height: 18px !important; }
+    html body .a11y-panel { bottom: 60px !important; left: 12px !important; }
+}
