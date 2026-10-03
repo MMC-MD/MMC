@@ -371,3 +371,116 @@ footer#contact .footer-copyright { max-width: none !important; white-space: nowr
 }
 /* Keep scroll locking for the mobile menu and popups */
 body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden !important; }
+
+/* ═══ Desktop header: calmer nav, lighter logo, clear button hierarchy ═══ */
+@media (min-width: 1280px) {
+    .main-header-nav { padding-top: 14px !important; padding-bottom: 14px !important; }
+    .logo-img { height: 68px !important; width: auto !important; filter: none !important; }
+    .main-header-links { gap: 34px !important; }
+    .main-header-links .nav-link {
+        font-size: 15.5px !important; font-weight: 500 !important; color: #1f2937 !important;
+        padding: 10px 0 !important; letter-spacing: -0.005em !important;
+    }
+    .main-header-links .nav-link strong { font-weight: 500 !important; }
+    .main-header-links .nav-link:hover { color: var(--ds-blue) !important; }
+    .main-header-links .nav-link::after {
+        height: 2px !important; bottom: 2px !important; background: var(--ds-blue) !important;
+        left: 0 !important; transform: scaleX(0) !important; width: 100% !important; transform-origin: center;
+        transition: transform .25s var(--ds-ease) !important;
+    }
+    .main-header-links .nav-link.active { color: var(--ds-blue) !important; font-weight: 600 !important; }
+    .main-header-links .nav-link.active::after { transform: scaleX(1) !important; }
+    #services-button svg { width: 14px !important; height: 14px !important; opacity: .65; transition: transform .25s var(--ds-ease) !important; }
+    .main-header-actions { gap: 10px !important; }
+    .main-header-actions .btn { min-height: 44px !important; padding: 0 20px !important; font-size: 14.5px !important; }
+    /* Portal is secondary: outlined, so "Request Appointment" leads */
+    .main-header-actions .btn-primary { background: #fff !important; color: var(--ds-blue) !important; border: 1px solid #c9d6ea !important; }
+    .main-header-actions .btn-primary:hover { background: var(--ds-tint) !important; border-color: var(--ds-blue) !important; }
+}
+
+/* ═══ Services menu (two-column panel) ═══ */
+#services-dropdown.mmc-mega {
+    width: 640px !important; max-width: calc(100vw - 48px) !important; padding: 10px !important;
+    background: #fff !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+    border: 1px solid var(--ds-line) !important; border-radius: 18px !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, .04), 0 28px 60px -20px rgba(15, 23, 42, .28) !important;
+    transition: opacity .18s ease, transform .22s var(--ds-ease), visibility 0s linear .22s !important;
+}
+#services-dropdown.mmc-mega.active, .services-dropdown-wrapper:hover #services-dropdown.mmc-mega {
+    transition: opacity .18s ease, transform .22s var(--ds-ease), visibility 0s !important;
+}
+#services-dropdown.mmc-mega::before { background: #fff !important; border-color: var(--ds-line) !important; }
+.mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.mega-item {
+    display: flex !important; align-items: flex-start; gap: 14px; padding: 12px 14px !important;
+    border-radius: 12px; text-decoration: none; color: inherit; transition: background-color .15s ease;
+    min-height: 0 !important; min-width: 0 !important;
+}
+.mega-item:hover, .mega-item:focus-visible { background: var(--ds-tint); outline: none; }
+.mega-icon {
+    flex: 0 0 40px; width: 40px; height: 40px; border-radius: 11px; background: #fff;
+    border: 1px solid var(--ds-line); display: inline-flex; align-items: center; justify-content: center;
+    transition: border-color .15s ease;
+}
+.mega-icon img { width: 26px; height: 26px; object-fit: contain; }
+.mega-item:hover .mega-icon { border-color: #c9d6ea; }
+.mega-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; text-align: left; }
+.mega-title { font-size: 14.5px; font-weight: 600; color: var(--ds-ink); line-height: 1.3; letter-spacing: -0.005em; }
+.mega-item:hover .mega-title { color: var(--ds-blue); }
+.mega-desc { font-size: 13px; color: var(--ds-muted); line-height: 1.4; }
+.mega-programs {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+    margin: 6px 4px 0; padding: 12px 10px; border-top: 1px solid var(--ds-line);
+}
+.mega-programs-label { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ds-muted); margin-right: 4px; }
+.mega-chip {
+    display: inline-flex !important; align-items: center; height: 30px; padding: 0 12px !important; border-radius: 999px;
+    border: 1px solid var(--ds-line); font-size: 13px; font-weight: 500; color: var(--ds-body) !important; text-decoration: none;
+    min-height: 0 !important; min-width: 0 !important; transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+}
+.mega-chip:hover { border-color: #c9d6ea; color: var(--ds-blue) !important; background: var(--ds-tint); }
+.mega-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin: 2px -10px -10px; padding: 14px 24px; background: var(--ds-tint); border-top: 1px solid var(--ds-line);
+    border-radius: 0 0 18px 18px; font-size: 13.5px; color: var(--ds-muted);
+}
+.mega-foot a { color: var(--ds-blue); font-weight: 600; text-decoration: none; min-height: 0 !important; min-width: 0 !important; }
+.mega-foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.mega-book::after { content: " \2192"; }
+
+/* Mobile footer: center the short description under the logo */
+@media (max-width: 639px) {
+    footer#contact .grid > div:first-child { text-align: center !important; }
+    footer#contact .grid > div:first-child p { margin-left: auto !important; margin-right: auto !important; }
+    footer#contact .footer-logo { margin-left: auto !important; margin-right: auto !important; }
+}
+
+/* ═══ Service page photo heroes ═══ */
+.page-header.page-header--photo {
+    background-color: #f4f6f9 !important;
+    background-image: var(--hero-sm) !important;
+    background-size: cover !important; background-position: 70% center !important; background-repeat: no-repeat !important;
+    color: var(--ds-ink) !important;
+    padding: 96px 0 88px !important;
+    min-height: 0;
+}
+@media (min-width: 800px)  { .page-header.page-header--photo { background-image: var(--hero-md) !important; padding: 120px 0 112px !important; } }
+@media (min-width: 1300px) { .page-header.page-header--photo { background-image: var(--hero-lg) !important; padding: 136px 0 128px !important; background-position: right center !important; } }
+.page-header--photo::after { display: none !important; }
+.page-header--photo::before {
+    display: block !important; content: "" !important; position: absolute !important; inset: 0 !important; width: auto !important; height: auto !important;
+    background: linear-gradient(90deg, rgba(248, 250, 252, .97) 0%, rgba(248, 250, 252, .9) 34%, rgba(248, 250, 252, .45) 58%, rgba(248, 250, 252, 0) 78%) !important;
+}
+@media (max-width: 799px) {
+    .page-header.page-header--photo { padding: 40px 0 262px !important; background-size: auto 230px !important; background-position: 72% bottom !important; background-color: #f8fafc !important; }
+    .page-header--photo::before { background: linear-gradient(180deg, #f8fafc 0%, #f8fafc calc(100% - 232px), rgba(248, 250, 252, 0) calc(100% - 176px)) !important; }
+}
+.page-header--photo > .container { position: relative; z-index: 2; max-width: 1280px; }
+.page-header--photo h1 {
+    color: var(--ds-ink) !important; font-size: clamp(2.25rem, 1.4rem + 3vw, 3.75rem) !important;
+    line-height: 1.08 !important; letter-spacing: -0.035em !important; max-width: 720px; margin-bottom: 20px !important; padding-bottom: 0 !important;
+}
+.page-header--photo p { color: var(--ds-body) !important; font-size: clamp(1.0625rem, .95rem + .5vw, 1.3125rem) !important; line-height: 1.55 !important; max-width: 560px !important; }
+.page-header--photo .breadcrumb, .page-header--photo .breadcrumb a, .page-header--photo .breadcrumb span { color: var(--ds-muted) !important; }
+.page-header--photo .breadcrumb a:hover { color: var(--ds-blue) !important; }
+.page-header--photo .breadcrumb { margin-bottom: 18px !important; font-size: 14px !important; }

@@ -83,13 +83,12 @@
                         srcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w"
                         sizes="(min-width: 1280px) 346px, 288px"
                         alt="Montgomery Medical Clinic"
-                        class="h-14 sm:h-16 md:h-18 lg:h-20 xl:h-24 w-auto object-contain transition-transform duration-200 group-hover:scale-105 logo-img"
+                        class="h-14 sm:h-16 md:h-18 lg:h-20 xl:h-24 w-auto object-contain logo-img"
                         loading="eager"
                         fetchpriority="high"
                         width="346"
                         height="96"
                         decoding="async"
-                        style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));"
                     />
                 </a>
             </div>
@@ -104,19 +103,62 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <div class="services-dropdown" id="services-dropdown">
-                        <a href="#" class="dropdown-link nav-urgent" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</a>
-                        <a href="#" class="dropdown-link nav-derma" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</a>
-                        <a href="#" class="dropdown-link nav-occupational has-sublinks" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health <svg class="sublink-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></a>
-                        <div class="dropdown-sublinks" id="occupational-sublinks">
-                            <a href="faa-physicals/pilot-resources/" class="dropdown-sublink nav-faa" data-en="FAA Pilot Exams" data-es="Ex&aacute;menes Piloto FAA">FAA Pilot Exams</a>
-                            <a href="immigration-physicals/" class="dropdown-sublink nav-immigration" data-en="Immigration Physicals" data-es="Ex&aacute;menes de Inmigraci&oacute;n">Immigration Physicals</a>
-                            <a href="occupational-health/corporate-health/" class="dropdown-sublink nav-corporate-health" data-en="Corporate Health" data-es="Salud Corporativa">Corporate Health</a>
-                        </div>
-                        <a href="#" class="dropdown-link nav-acupuncture" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</a>
-                        <a href="#" class="dropdown-link nav-wellness" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</a>
-                        <a href="#" class="dropdown-link nav-sports" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</a>
+                    <div class="services-dropdown mmc-mega" id="services-dropdown" role="menu">
+                    <div class="mega-grid">
+                        <a href="#" class="mega-item nav-urgent">
+                            <span class="mega-icon"><img src="/icons/dept/PrimaryCare-192.webp" alt="" width="28" height="28" loading="lazy" decoding="async"></span>
+                            <span class="mega-text">
+                                <span class="mega-title" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</span>
+                                <span class="mega-desc" data-en="Walk-in visits and everyday care" data-es="Visitas sin cita y atenci&oacute;n diaria">Walk-in visits and everyday care</span>
+                            </span>
+                        </a>
+                        <a href="#" class="mega-item nav-derma">
+                            <span class="mega-icon"><img src="/icons/dept/Dermatology-192.webp" alt="" width="28" height="28" loading="lazy" decoding="async"></span>
+                            <span class="mega-text">
+                                <span class="mega-title" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</span>
+                                <span class="mega-desc" data-en="Medical and cosmetic skin care" data-es="Cuidado m&eacute;dico y est&eacute;tico de la piel">Medical and cosmetic skin care</span>
+                            </span>
+                        </a>
+                        <a href="#" class="mega-item nav-occupational">
+                            <span class="mega-icon"><img src="/icons/dept/OccupationalHealth-192.webp" alt="" width="28" height="28" loading="lazy" decoding="async"></span>
+                            <span class="mega-text">
+                                <span class="mega-title" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</span>
+                                <span class="mega-desc" data-en="Employer and workplace physicals" data-es="Ex&aacute;menes laborales y para empleadores">Employer and workplace physicals</span>
+                            </span>
+                        </a>
+                        <a href="#" class="mega-item nav-acupuncture">
+                            <span class="mega-icon"><img src="/icons/dept/Accupuncture-192.webp" alt="" width="28" height="28" loading="lazy" decoding="async"></span>
+                            <span class="mega-text">
+                                <span class="mega-title" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</span>
+                                <span class="mega-desc" data-en="Acupuncture and Chinese medicine" data-es="Acupuntura y medicina china">Acupuncture and Chinese medicine</span>
+                            </span>
+                        </a>
+                        <a href="#" class="mega-item nav-wellness">
+                            <span class="mega-icon"><img src="/icons/dept/Nutrition-192.webp" alt="" width="28" height="28" loading="lazy" decoding="async"></span>
+                            <span class="mega-text">
+                                <span class="mega-title" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</span>
+                                <span class="mega-desc" data-en="Nutrition and personal training" data-es="Nutrici&oacute;n y entrenamiento personal">Nutrition and personal training</span>
+                            </span>
+                        </a>
+                        <a href="#" class="mega-item nav-sports">
+                            <span class="mega-icon"><img src="/icons/dept/PhysicalTherapy-192.webp" alt="" width="28" height="28" loading="lazy" decoding="async"></span>
+                            <span class="mega-text">
+                                <span class="mega-title" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</span>
+                                <span class="mega-desc" data-en="Injury care and rehabilitation" data-es="Lesiones y rehabilitaci&oacute;n">Injury care and rehabilitation</span>
+                            </span>
+                        </a>
                     </div>
+                    <div class="mega-programs">
+                        <span class="mega-programs-label" data-en="Specialized exams" data-es="Ex&aacute;menes especializados">Specialized exams</span>
+                        <a href="faa-physicals/pilot-resources/" class="mega-chip nav-faa" data-en="FAA Pilot Exams" data-es="Ex&aacute;menes Piloto FAA">FAA Pilot Exams</a>
+                        <a href="immigration-physicals/" class="mega-chip nav-immigration" data-en="Immigration Physicals" data-es="Ex&aacute;menes de Inmigraci&oacute;n">Immigration Physicals</a>
+                        <a href="occupational-health/corporate-health/" class="mega-chip nav-corporate-health" data-en="Corporate Health" data-es="Salud Corporativa">Corporate Health</a>
+                    </div>
+                    <div class="mega-foot">
+                        <span><span data-en="Not sure where to start?" data-es="&iquest;No sabe por d&oacute;nde empezar?">Not sure where to start?</span> <a href="tel:3012082273" data-en="Call (301) 208-2273" data-es="Llame al (301) 208-2273">Call (301) 208-2273</a></span>
+                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="mega-book" data-en="Book an appointment" data-es="Reservar una cita">Book an appointment</a>
+                    </div>
+                </div>
                 </div>
                 <a href="#" class="nav-link nav-about" data-en="About" data-es="Nosotros">About</a>
                 <a href="#" class="nav-link nav-insurance" data-en="Insurance" data-es="Seguros">Insurance</a>
