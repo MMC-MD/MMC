@@ -966,3 +966,15 @@ html body .home-hero h1 {
     }
     html body #main-content.page-header--photo > .container { width: 100%; }
 }
+
+/* ═══ Scroll reveals: quick and subtle (AOS) ═══ */
+html body [data-aos^="fade"] { transition-timing-function: cubic-bezier(.2, .7, .3, 1) !important; }
+html body [data-aos="fade-up"] { transform: translate3d(0, 14px, 0); }
+html body [data-aos="fade-down"] { transform: translate3d(0, -14px, 0); }
+html body [data-aos="fade-right"] { transform: translate3d(-14px, 0, 0); }
+html body [data-aos="fade-left"] { transform: translate3d(14px, 0, 0); }
+html body [data-aos^="fade"].aos-animate { transform: none; }
+html body [data-aos][data-aos-delay]:not([data-aos-delay="0"]) { transition-delay: 60ms !important; }
+@media (prefers-reduced-motion: reduce) {
+    html body [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}

@@ -250,8 +250,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="css/polish.css?v=2026101305">
-    <link rel="stylesheet" href="css/sections.css?v=2026101418">
+    <link rel="stylesheet" href="css/polish.css?v=2026101401">
+    <link rel="stylesheet" href="css/sections.css?v=2026101419">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -485,7 +485,7 @@
     <script src="js/header-footer-loader.js?v=2026101302" defer></script>
     <script src="js/weekend-hours.js?v=2026101302" defer></script>
     <script src="js/mobile-menu-fit.js?v=2026100203" defer></script>
-    <script src="js/main-simple.js?v=20260413" defer></script>
+    <script src="js/main-simple.js?v=2026101401" defer></script>
     <script src="js/slideshow-data.js?v=2026101302" defer></script>
     <script src="js/slideshow.js?v=2026101302" defer></script>
     <!-- Lazy-load Firebase only when the user gets near the Updates slideshow.
@@ -534,7 +534,7 @@
             if (prefersReduced || smallScreen) {
                 AOS.init({ disable: true });
             } else {
-                AOS.init({ duration: 600, once: true, offset: 60 });
+                AOS.init({ duration: 450, once: true, offset: 24, easing: 'ease-out' });
             }
         });
     </script>
