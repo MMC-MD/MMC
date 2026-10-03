@@ -847,3 +847,16 @@ html body .med-card:hover .arrow span { text-decoration: underline; text-underli
     html body .validity-table td { display: block; overflow: hidden; }
     html body .validity-table td::before { float: left; margin-right: 12px; }
 }
+/* FAA page: headings may use the full width (paragraphs stay at a readable measure) */
+.pr-head { max-width: none; }
+/* OTC wait-times dropdown: real inner padding and tidy rows */
+html body .pilot-layout-main details.group > div { margin: 0 !important; padding: 0 22px 22px !important; }
+html body .pilot-layout-main details.group > div > p { margin: 0 0 12px !important; color: var(--ds-muted) !important; font-size: 14.5px !important; }
+html body .pilot-layout-main details.group .space-y-2 { display: grid; gap: 0; border-top: 1px solid var(--ds-line); }
+html body .pilot-layout-main details.group .space-y-2 > div { margin: 0 !important; padding: 11px 0; border-bottom: 1px solid var(--ds-line); font-size: 15px; }
+html body .pilot-layout-main details.group .space-y-2 > div:last-child { border-bottom: 0; padding-bottom: 0; }
+html body .pilot-layout-main details.group > div { padding-bottom: 26px !important; }
+html body .pilot-layout-main details.group .space-y-2 > div > span:last-child { font-weight: 600; }
+html body .pilot-layout-main details.group .text-amber-600 { color: #b45309; }
+html body .pilot-layout-main details.group .text-emerald-600 { color: #047857; }
+html body .pilot-layout-main details.group strong { color: var(--ds-ink); font-weight: 600; }
