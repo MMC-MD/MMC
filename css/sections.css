@@ -669,3 +669,180 @@ html body .wl-card-title { margin: 0 0 12px; color: var(--ds-ink); font-size: 20
     .wl-card { padding: 26px 22px; }
 }
 @media (max-width: 1023px) { .wl-pillars .up-pillar { display: block; } }
+
+/* ═══ FAA Pilot Resource Center (pr-*) ═══ */
+html body .pilot-layout-main > section { padding-right: 0 !important; }   /* old sidebar gutter */
+html body .pilot-layout-main > section.hp-section { background: #fff; }
+html body .pilot-layout-main > section.pr-tint { background: var(--ds-tint); }
+.pr-head { margin-bottom: 40px; }
+.pr-head .hp-body { margin-top: 12px; max-width: 720px; }
+html body .pr-sub { margin: 0 0 16px; color: var(--ds-ink); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.pr-note { margin: 14px 0 0; color: var(--ds-muted); font-size: 14px; line-height: 1.55; }
+.pr-note a, .pilot-layout-main .text-link { color: var(--ds-blue); font-weight: 500; text-decoration: underline; text-decoration-color: rgba(13, 71, 161, .3); text-underline-offset: 3px; }
+
+/* Certificate classes */
+.pr-class-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.pr-class { padding: 32px; border-radius: 20px; background: #fff; box-shadow: inset 0 0 0 1px var(--ds-line); }
+.pr-class-num { display: inline-flex; padding: 5px 11px; border-radius: 999px; background: #eaf1fb; color: var(--ds-blue); font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+html body .pr-class-title { margin: 16px 0 0; color: var(--ds-ink); font-size: 20px; font-weight: 700; line-height: 1.3; letter-spacing: -0.012em; }
+.pr-class-text { margin: 10px 0 0; color: var(--ds-muted); font-size: 15px; line-height: 1.65; }
+.pr-class-text strong { color: var(--ds-ink); font-weight: 600; }
+.pr-checks { list-style: none; margin: 20px 0 0; padding: 18px 0 0; border-top: 1px solid var(--ds-line); display: grid; gap: 10px; }
+.pr-checks li { display: flex; align-items: flex-start; gap: 10px; color: var(--ds-body); font-size: 14.5px; line-height: 1.5; }
+@media (min-width: 1024px) {
+    .pr-class-grid { row-gap: 0; }
+    .pr-class { display: grid; grid-template-rows: subgrid; grid-row: span 4; align-content: start; }
+    .pr-class > * { align-self: start; }
+    .pr-class-num { justify-self: start; }
+}
+
+/* Validity table */
+#classes .mb-10 { margin: 56px 0 0 !important; }
+.pr-table-wrap { overflow-x: auto; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--ds-line); }
+html body .validity-table { border-radius: 0; }
+html body .validity-table th {
+    background: none !important; color: var(--ds-muted) !important; font-size: 12.5px !important; font-weight: 600 !important;
+    letter-spacing: .06em; text-transform: uppercase; padding: 16px 22px !important; border-bottom: 1px solid var(--ds-line) !important; text-align: left;
+}
+html body .validity-table td { padding: 16px 22px !important; border-bottom: 1px solid var(--ds-line) !important; color: var(--ds-body); font-size: 15px; }
+html body .validity-table tbody tr:nth-child(even) { background: none !important; }
+html body .validity-table td strong { color: var(--ds-ink); font-weight: 650; }
+
+/* Callouts: quiet left-rule notes */
+html body .pilot-layout-main .callout {
+    margin-top: 32px; padding: 22px 26px !important; border: 0 !important; border-radius: 16px !important;
+    background: #fff !important; box-shadow: inset 0 0 0 1px var(--ds-line), inset 3px 0 0 var(--ds-blue) !important;
+}
+html body .pilot-layout-main .callout-amber { box-shadow: inset 0 0 0 1px var(--ds-line), inset 3px 0 0 var(--ds-orange) !important; }
+html body .pilot-layout-main .callout h4 { margin: 0 0 8px !important; color: var(--ds-ink); font-size: 17px !important; font-weight: 700; }
+html body .pilot-layout-main .callout p { color: var(--ds-body) !important; font-size: 15px !important; line-height: 1.65 !important; }
+html body .pilot-layout-main .callout strong { color: var(--ds-ink); font-weight: 600; }
+html body .pr-tint .callout { background: #fff !important; }
+html body .hp-section:not(.pr-tint) .callout { background: var(--ds-tint) !important; }
+
+/* Guidance tabs as a segmented control */
+html body .tab-bar { display: inline-flex; gap: 2px; padding: 4px; border: 0; border-radius: 999px; background: var(--ds-tint); box-shadow: inset 0 0 0 1px var(--ds-line); max-width: 100%; overflow-x: auto; }
+html body .tab-btn { margin: 0; padding: 10px 18px; border: 0 !important; border-radius: 999px; color: var(--ds-muted); font-size: 14.5px; font-weight: 600; min-height: 0; }
+html body .tab-btn:hover { color: var(--ds-ink); }
+html body .tab-btn.active { background: var(--ds-ink); color: #fff; }
+html body .tab-panel { padding-top: 36px; }
+.pr-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
+.pr-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.pr-steps li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 14px; color: var(--ds-body); font-size: 15.5px; line-height: 1.65; }
+.pr-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-top: 1px; border-radius: 50%; background: #eaf1fb; color: var(--ds-blue); font-size: 13.5px; font-weight: 700; }
+.pr-steps strong, .pr-bullets strong, .pr-points strong { color: var(--ds-ink); font-weight: 600; }
+.pr-bullets { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--ds-line); }
+.pr-bullets li { padding: 12px 0; border-bottom: 1px solid var(--ds-line); color: var(--ds-body); font-size: 15.5px; line-height: 1.5; }
+.pr-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.pr-points li { position: relative; padding-left: 18px; color: var(--ds-body); font-size: 15.5px; line-height: 1.65; }
+.pr-points li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: var(--ds-blue); opacity: .55; }
+
+/* Checklist: two columns of numbered rows */
+.pr-checklist { padding: 0; background: none; }
+.pr-checklist-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+html body .checklist-item {
+    position: relative; display: block; padding: 24px 24px 24px 64px !important; border: 0 !important; border-radius: 16px;
+    background: #fff; box-shadow: inset 0 0 0 1px var(--ds-line); color: var(--ds-body); font-size: 15px; line-height: 1.65;
+}
+html body .checklist-item strong { color: var(--ds-ink); font-weight: 600; }
+html body .checklist-item > strong:first-of-type { display: block; margin-bottom: 4px; font-size: 16px; }
+html body .checklist-num {
+    position: absolute !important; left: 22px; top: 22px; width: 28px !important; height: 28px !important; margin: 0 !important;
+    border-radius: 50%; background: var(--ds-ink) !important; color: #fff !important; font-size: 13px !important; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+.pr-checklist .callout { margin-top: 24px; }
+
+/* Medication search */
+html body .med-tool-card { padding: 28px !important; border: 0 !important; border-radius: 20px !important; background: var(--ds-tint) !important; box-shadow: none !important; }
+html body .med-tool-title { color: var(--ds-ink) !important; font-size: 17px !important; font-weight: 700 !important; margin-bottom: 16px !important; }
+html body .med-tool-title svg { color: var(--ds-blue); width: 20px !important; height: 20px !important; }
+html body .med-search-box input { height: 56px; padding-left: 48px !important; border: 1px solid var(--ds-line) !important; border-radius: 14px !important; background: #fff !important; font-size: 16px !important; box-shadow: 0 1px 2px rgba(15, 23, 42, .04); }
+html body .med-search-box input:focus { border-color: var(--ds-blue) !important; box-shadow: 0 0 0 4px rgba(13, 71, 161, .12) !important; }
+html body .med-filters select { height: 40px; border: 1px solid var(--ds-line) !important; border-radius: 10px !important; background-color: #fff !important; font-size: 14px !important; }
+html body #med-results-scroll { border: 0 !important; border-radius: 14px !important; background: #fff !important; box-shadow: inset 0 0 0 1px var(--ds-line); }
+html body .pilot-layout-main details.group {
+    border: 0 !important; border-radius: 16px !important; background: #fff !important; box-shadow: inset 0 0 0 1px var(--ds-line), inset 3px 0 0 var(--ds-orange);
+}
+html body .pilot-layout-main details.group > summary { padding: 18px 22px !important; font-size: 16px; }
+html body .pilot-layout-main details.group > summary:hover { background: none !important; }
+
+/* CACI: filter + compact two-column list */
+.pr-dcpn { margin-bottom: 32px; padding: 24px 28px; border-radius: 18px; background: #fff; box-shadow: inset 0 0 0 1px var(--ds-line); }
+.pr-dcpn .pr-sub { margin-bottom: 14px; }
+.pr-dcpn-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 24px; }
+.pr-dcpn-item { display: flex; align-items: flex-start; gap: 8px; color: var(--ds-body); font-size: 14.5px; line-height: 1.5; }
+.pr-filter { position: relative; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.pr-filter svg { position: absolute; left: 16px; width: 18px; height: 18px; color: var(--ds-muted); pointer-events: none; }
+.pr-filter input {
+    flex: 1; height: 50px; padding: 0 16px 0 44px; border: 1px solid var(--ds-line); border-radius: 12px; background: #fff;
+    color: var(--ds-ink); font: inherit; font-size: 15.5px;
+}
+.pr-filter input:focus { outline: none; border-color: var(--ds-blue); box-shadow: 0 0 0 4px rgba(13, 71, 161, .12); }
+.pr-filter-count { flex: 0 0 auto; color: var(--ds-muted); font-size: 14px; }
+html body .caci-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; border-top: 1px solid #d9e1ec; }
+html body .caci-card {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 16px; align-items: start;
+    padding: 18px 4px !important; border: 0 !important; border-bottom: 1px solid #d9e1ec !important; border-radius: 0 !important;
+    background: none !important; box-shadow: none !important; transform: none !important; text-decoration: none;
+}
+html body .caci-card[hidden] { display: none; }
+html body .caci-card:hover { background: rgba(255, 255, 255, .7) !important; }
+html body .caci-card h4 { grid-column: 1; margin: 0 !important; color: var(--ds-ink) !important; font-size: 16px !important; font-weight: 650 !important; line-height: 1.35; }
+html body .caci-card p { grid-column: 1; margin: 4px 0 0 !important; color: var(--ds-muted) !important; font-size: 14.5px !important; line-height: 1.55 !important; }
+html body .caci-card .pdf-badge {
+    grid-column: 2; grid-row: 1 / span 2; align-self: center; margin: 0 !important; padding: 6px 10px; border-radius: 8px;
+    background: #fff; box-shadow: inset 0 0 0 1px var(--ds-line); color: var(--ds-blue) !important; font-size: 12.5px !important; font-weight: 600; white-space: nowrap;
+}
+html body .caci-card:hover .pdf-badge { box-shadow: inset 0 0 0 1px var(--ds-blue); }
+
+/* Official resources: quiet three-column links */
+html body .pr-res-title { margin: 0 0 32px; }
+html body .med-resource-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; border-top: 1px solid var(--ds-line); }
+html body .med-card {
+    display: flex; flex-direction: column; padding: 24px 0 26px !important; border: 0 !important; border-bottom: 1px solid var(--ds-line) !important;
+    border-radius: 0 !important; background: none !important; box-shadow: none !important; transform: none !important;
+}
+html body .med-card:hover { box-shadow: none !important; transform: none !important; }
+html body .med-card h4 { color: var(--ds-ink); font-size: 17px; }
+html body .med-card p { color: var(--ds-muted); font-size: 15px; }
+html body .med-card .arrow { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--ds-blue); font-size: 14.5px; font-weight: 600; }
+html body .med-card:hover .arrow span { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 1023px) {
+    .pr-class-grid, .pr-two, .pr-checklist-list { grid-template-columns: 1fr; }
+    .pr-two { gap: 40px; }
+    .pr-dcpn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    html body .caci-grid, html body .med-resource-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 639px) {
+    .pr-class { padding: 26px 22px; }
+    .pr-dcpn { padding: 22px 20px; }
+    .pr-dcpn-grid { grid-template-columns: 1fr; }
+    html body .checklist-item { padding: 20px 18px 20px 56px !important; }
+    html body .checklist-num { left: 16px; top: 20px; }
+    html body .med-tool-card { padding: 20px 16px !important; }
+    html body .tab-btn { padding: 9px 14px; font-size: 13.5px; }
+    .pr-filter-count { display: none; }
+}
+@media (max-width: 639px) {
+    /* Validity table as one card per class */
+    html body .validity-table thead { display: none; }
+    html body .validity-table, html body .validity-table tbody, html body .validity-table tr, html body .validity-table td { display: block; width: 100%; }
+    html body .validity-table tr { padding: 14px 18px; border-bottom: 1px solid var(--ds-line); }
+    html body .validity-table tr:last-child { border-bottom: 0; }
+    html body .validity-table td { display: flex; justify-content: space-between; gap: 16px; padding: 4px 0 !important; border: 0 !important; font-size: 14.5px !important; text-align: right; }
+    html body .validity-table td::before { content: attr(data-label); color: var(--ds-muted); font-size: 13.5px; text-align: left; }
+    html body .validity-table td.class-label { padding-bottom: 6px !important; font-size: 16px !important; }
+    html body .validity-table td.class-label::before { content: none; }
+    /* Worksheet rows: badge under the text */
+    html body .caci-card { grid-template-columns: 1fr; }
+    html body .caci-card .pdf-badge { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 10px !important; }
+    /* Tabs: two equal halves */
+    html body .tab-bar { display: grid; grid-template-columns: 1fr 1fr; width: 100%; border-radius: 16px; }
+    html body .tab-btn { white-space: normal; line-height: 1.3; border-radius: 12px; padding: 10px 8px; }
+}
+@media (max-width: 639px) {
+    html body .validity-table td { display: block; overflow: hidden; }
+    html body .validity-table td::before { float: left; margin-right: 12px; }
+}
