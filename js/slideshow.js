@@ -151,13 +151,13 @@
         // the newer photos also have a sharp name-1920.webp for large screens.
         var m = /^(.*)-1280\.webp$/i.exec(image);
         if (!m) return {};
-        var hd = /\/(flu-vaccine|aviation-immigration|urgent-care|exam-room)$/.test(m[1]) ? ', ' + m[1] + '-1920.webp 1920w' : '';
+        var hd = /\/(flu-vaccine|aviation-immigration|urgent-care|exam-room|spot-[a-z-]+|clinic-lobby)$/.test(m[1]) ? ', ' + m[1] + '-1920.webp 1920w' : '';
         return { srcset: m[1] + '-720.webp 720w, ' + image + ' 1280w' + hd };
     }
 
     function mediaHtml(slide, layout, eager) {
         var sources = imageSources(slide.image);
-        var sizes = layout === 'photo' ? '(max-width: 600px) 100vw, 608px' : '(max-width: 1216px) 100vw, 1216px';
+        var sizes = layout === 'photo' || layout === 'spotlight' ? '(max-width: 600px) 100vw, 660px' : '(max-width: 1216px) 100vw, 1216px';
         return '<div class="slide-media"><img src="' + escapeAttr(slide.image) + '"'
             + (sources.srcset ? ' srcset="' + escapeAttr(sources.srcset) + '" sizes="' + sizes + '"' : '')
             + ' alt="" ' + (eager ? 'fetchpriority="low"' : 'loading="lazy"') + ' decoding="async"></div>';
@@ -175,7 +175,7 @@
         var locale = opts.locale === 'es' ? 'es' : 'en';
         var accent = normalizeAccent(slide && slide.accent);
         var layout = slide && slide.layout ? slide.layout : 'classic';
-        if ((layout === 'photo' || layout === 'feature' || layout === 'light') && !(slide && slide.image)) layout = 'classic';
+        if ((layout === 'photo' || layout === 'feature' || layout === 'light' || layout === 'spotlight') && !(slide && slide.image)) layout = 'classic';
 
         var pillEn = escapeMultiline(pick(slide.pill, 'en'));
         var pillEs = escapeMultiline(pick(slide.pill, 'es'));
@@ -212,7 +212,7 @@
             + '" data-layout="' + layout + '" style="' + escapeAttr(accentVars(accent)) + '">';
         if (layout === 'classic' || layout === 'bold') {
             html += copy;
-        } else if (layout === 'photo') {
+        } else if (layout === 'photo' || layout === 'spotlight') {
             html += '<div class="slide-copy">' + copy + '</div>' + mediaHtml(slide, layout, isActive);
         } else {
             html += mediaHtml(slide, layout, isActive) + '<div class="slide-scrim"></div><div class="slide-copy">' + copy + '</div>';

@@ -192,6 +192,7 @@ export function createSlidesPage({ api }) {
                         <div class="st-slide-list-head">
                             <b>On the homepage</b><span data-live-count></span>
                         </div>
+                        <div class="st-upgrade" data-upgrade hidden></div>
                         <div class="st-slide-list" data-list></div>
                         <button type="button" class="st-add-slide" data-add>${icon('plus')} Add a slide</button>
                         <p class="st-hint" data-list-hint></p>
@@ -223,6 +224,31 @@ export function createSlidesPage({ api }) {
                 <span class="st-drag" title="Drag to reorder">${icon('grip-vertical')}</span>
             </div>`).join('') || `<div class="st-empty st-empty--sm">${icon('gallery-horizontal-end')}<p>No slides yet.</p></div>`;
         observeThumbs(list);
+        renderUpgrade();
+    }
+
+    // Slides still on the plain Classic look can take the Spotlight photo design in one click.
+    const upgradeable = () => (draft || []).filter((s) => s.layout === 'classic' && !s.image);
+    function renderUpgrade() {
+        const box = qs('[data-upgrade]', root);
+        if (!box) return;
+        const n = upgradeable().length;
+        box.hidden = !n || !store.suggestVisual;
+        if (box.hidden) return;
+        box.innerHTML = `
+            <b>${icon('wand-sparkles')} New slide design</b>
+            <p>Give ${n === 1 ? 'this plain slide' : `these ${n} plain slides`} the Spotlight look: a matching photo beside your text. Nothing goes live until you publish.</p>
+            <button type="button" class="st-btn st-btn--primary st-btn--sm" data-upgrade-apply>Apply the new design</button>`;
+    }
+    function applyUpgrade() {
+        const items = upgradeable();
+        items.forEach((s) => {
+            const v = store.suggestVisual(s);
+            s.layout = v.layout; s.image = v.image;
+            if (v.cta && !(s.ctaLabel.en || s.ctaLabel.es)) { s.ctaLabel = { en: v.cta.en, es: v.cta.es }; s.ctaUrl = v.cta.url; s.ctaNewTab = false; }
+        });
+        renderAll();
+        toast(`New design applied to ${items.length} slide${items.length === 1 ? '' : 's'}. Review them, then publish.`);
     }
 
     function field(name, label, { placeholder = '', multiline = false, max = 120, hint = '' } = {}) {
@@ -264,7 +290,7 @@ export function createSlidesPage({ api }) {
             return;
         }
         const index = draft.indexOf(s);
-        const needsImage = s.layout === 'photo' || s.layout === 'feature' || s.layout === 'light';
+        const needsImage = ['photo', 'feature', 'light', 'spotlight'].includes(s.layout);
         if (!qs('[data-eform]', host)) {
             host.innerHTML = `<div data-ehead></div>
             <div class="st-preview-card st-preview-card--slide">
@@ -600,6 +626,7 @@ export function createSlidesPage({ api }) {
                 if (menuBtn) { panel.hidden = !panel.hidden; return; }
                 if (!t.closest('.st-menu')) panel.hidden = true;
                 if (t.closest('[data-add]')) openTemplateGallery({ onPick: addSlide });
+                if (t.closest('[data-upgrade-apply]')) { applyUpgrade(); return; }
                 if (item && !t.closest('[data-drag]')) {
                     if (item.dataset.slide !== selectedId) { selectedId = item.dataset.slide; renderList(); renderEditor(); }
                 }
@@ -626,7 +653,7 @@ export function createSlidesPage({ api }) {
                 const moveBtn = t.closest('[data-move]');
                 if (layoutBtn) mutate((x) => {
                     x.layout = layoutBtn.dataset.layout;
-                    if ((x.layout === 'photo' || x.layout === 'feature' || x.layout === 'light') && !x.image) x.image = IMAGE_LIBRARY[0].src;
+                    if (['photo', 'feature', 'light', 'spotlight'].includes(x.layout) && !x.image) x.image = (store.suggestVisual ? store.suggestVisual(x).image : IMAGE_LIBRARY[0].src);
                 });
                 if (imageBtn) mutate((x) => { x.image = imageBtn.dataset.image; });
                 if (accentBtn) mutate((x) => { x.accent = accentBtn.dataset.accent; });

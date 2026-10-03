@@ -10,6 +10,10 @@ const t = (en, es) => ({ en, es });
 /* ═══ Image library (generated for MMC; files in /images/slides/) ═══ */
 
 export const IMAGE_LIBRARY = [
+    { id: 'spot-aviation', label: 'FAA & immigration', tags: 'faa pilot aviation immigration passport physical uscis civil surgeon' },
+    { id: 'spot-exam-room', label: 'Urgent care room', tags: 'urgent care walk-in same day exam room clinic' },
+    { id: 'spot-flu', label: 'Flu shot', tags: 'flu shot vaccine immunization season' },
+    { id: 'clinic-lobby', label: 'Our lobby', tags: 'clinic lobby reception one stop all services welcome' },
     { id: 'flu-vaccine', label: 'Flu vaccine', tags: 'vaccine flu shot immunization covid' },
     { id: 'urgent-care', label: 'Clinic lobby', tags: 'urgent care clinic reception waiting walk-in welcome' },
     { id: 'exam-room', label: 'Exam room', tags: 'exam room multi-specialty ultrasound one stop services' },
@@ -431,6 +435,7 @@ export function blankSlide() {
 }
 
 export const LAYOUT_OPTIONS = [
+    { id: 'spotlight', label: 'Spotlight', hint: 'Copy beside a framed photo' },
     { id: 'light', label: 'Light photo', hint: 'Photo fading to white' },
     { id: 'classic', label: 'Classic', hint: 'Clean white card' },
     { id: 'photo', label: 'Photo', hint: 'Text beside a photo' },
