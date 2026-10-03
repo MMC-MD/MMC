@@ -16,7 +16,8 @@ html body .hp-title {
     font-size: clamp(1.875rem, 1.35rem + 1.6vw, 2.75rem); line-height: 1.12; letter-spacing: -0.028em;
 }
 .hp-lede { margin: 16px 0 0; color: var(--ds-body); font-size: clamp(1rem, .96rem + .2vw, 1.125rem); line-height: 1.65; max-width: 600px; }
-.hp-head { max-width: 720px; margin-bottom: 48px; }
+.hp-head { max-width: 880px; margin-bottom: 48px; }
+.hp-head .hp-lede, .hp-head .hp-body { max-width: 820px; }
 .hp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 32px; }
 .hp-link {
     display: inline-flex; align-items: center; gap: 6px; min-height: 44px;
@@ -675,7 +676,7 @@ html body .pilot-layout-main > section { padding-right: 0 !important; }   /* old
 html body .pilot-layout-main > section.hp-section { background: #fff; }
 html body .pilot-layout-main > section.pr-tint { background: var(--ds-tint); }
 .pr-head { margin-bottom: 40px; }
-.pr-head .hp-body { margin-top: 12px; max-width: 720px; }
+.pr-head .hp-body { margin-top: 12px; }
 html body .pr-sub { margin: 0 0 16px; color: var(--ds-ink); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
 .pr-note { margin: 14px 0 0; color: var(--ds-muted); font-size: 14px; line-height: 1.55; }
 .pr-note a, .pilot-layout-main .text-link { color: var(--ds-blue); font-weight: 500; text-decoration: underline; text-decoration-color: rgba(13, 71, 161, .3); text-underline-offset: 3px; }
