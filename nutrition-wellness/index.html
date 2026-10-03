@@ -342,6 +342,8 @@
         }
     </style>
     <link rel="stylesheet" href="../css/polish.css?v=2026101305">
+    <link rel="stylesheet" href="../css/sections.css?v=2026101412">
+    <script src="../js/provider-cards.js?v=2026101101" defer></script>
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/wellness-800.webp 800w, /images/heroes/wellness-1200.webp 1200w, /images/heroes/wellness-2000.webp 2000w" imagesizes="100vw">
 </head>
 <body class="bg-light-gray text-dark-gray">
@@ -366,247 +368,135 @@
     </section>
 
     <!-- INTRO SECTION -->
-    <section id="wellness-overview" data-page-nav data-page-nav-title="Overview" class="py-20 lg:py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="max-w-4xl mx-auto text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl lg:text-5xl font-black mb-6 text-brand-blue">Your Complete Wellness Journey</h2>
-                <p class="text-xl text-medium-gray leading-relaxed">
-                    We combine expert nutrition guidance with personalized fitness training to optimize your well-being. Whether you're managing a health condition or looking to improve your overall wellness, our integrated programs are designed to help you succeed.
-                </p>
+    <section id="wellness-overview" data-page-nav data-page-nav-title="Overview" class="hp-section up-overview wl-overview">
+        <div class="container mx-auto">
+            <div class="up-intro" data-aos="fade-up">
+                <div>
+                    <p class="hp-eyebrow" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</p>
+                    <h2 class="hp-title">Your Complete Wellness Journey</h2>
+                </div>
+                <div>
+                    <p class="hp-lede">We combine expert nutrition guidance with personalized fitness training to optimize your well-being. Whether you're managing a health condition or looking to improve your overall wellness, our integrated programs are designed to help you succeed.</p>
+                    <div class="hp-actions">
+                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Book Online</a>
+                        <a href="tel:3012082273" class="hp-link"><span>Call (301) 208-2273</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- TWO MAIN DIVISIONS -->
-    <section id="wellness-divisions" data-page-nav data-page-nav-title="Divisions" class="py-20 lg:py-24 bg-light-blue-bg">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl lg:text-5xl font-black mb-6">Our Two Divisions</h2>
-                <p class="text-xl text-medium-gray max-w-3xl mx-auto">We combine nutrition and fitness to support your optimal health and wellness.</p>
+    <section id="wellness-divisions" data-page-nav data-page-nav-title="Divisions" class="hp-section wl-divisions">
+        <div class="container mx-auto">
+            <div class="hp-head" data-aos="fade-up">
+                <h2 class="hp-title">Our Two Divisions</h2>
+                <p class="hp-lede">We combine nutrition and fitness to support your optimal health and wellness.</p>
             </div>
-
-            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                
-                <!-- NUTRITION DIVISION -->
-                <article class="division-card nutrition-card" data-aos="fade-up">
-                    <div class="p-8 lg:p-10">
-                        <span class="division-eyebrow">Nutrition</span>
-                        <h3 class="division-title">Nutrition Services</h3>
-                        <p class="division-lede">
-                            Evidence-based nutrition counseling tailored to your health goals and medical needs.
-                        </p>
-
-                        <span class="division-offer-label">What we offer</span>
-                        <ul class="service-list">
-                            <li>Personalized Nutrition Counseling</li>
-                            <li>Weight Management Programs</li>
-                            <li>Diabetes &amp; Disease Management</li>
-                            <li>Meal Planning &amp; Education</li>
-                            <li>Heart Health &amp; Cholesterol Support</li>
-                            <li>Digestive &amp; Gut Health Guidance</li>
-                            <li>Habit &amp; Lifestyle Coaching</li>
-                            <li>Ongoing Progress Check-Ins</li>
-                        </ul>
-
-                        <div class="provider-highlight">
-                            <p>Expert Wellness Guidance</p>
-                            <p>Our nutritionist works alongside your physician to help patients — whether overweight, underweight, or managing a medical condition — build healthier habits and sustainable plans for long-term well-being.</p>
-                        </div>
-
-                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="division-cta">
-                            <span>Book Nutrition Consultation</span>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- PERSONAL TRAINING DIVISION -->
-                <article class="division-card training-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-8 lg:p-10">
-                        <span class="division-eyebrow">Fitness</span>
-                        <h3 class="division-title">Personal Training</h3>
-                        <p class="division-lede">
-                            Customized fitness programs designed to help you build strength, improve performance, and reach your goals.
-                        </p>
-
-                        <span class="division-offer-label">What we offer</span>
-                        <ul class="service-list">
-                            <li>One-on-One Personal Training</li>
-                            <li>Customized Workout Programs</li>
-                            <li>Strength &amp; Conditioning</li>
-                            <li>Weight Loss Training</li>
-                            <li>Athletic Performance Enhancement</li>
-                            <li>Post-Injury Rehabilitation Training</li>
-                            <li>Senior Fitness Programs</li>
-                            <li>Functional Fitness Training</li>
-                        </ul>
-
-                        <div class="provider-highlight">
-                            <p>Personalized Training Approach</p>
-                            <p>Our personal trainers work closely with each patient to understand their goals, assess physical limitations, and build safe, effective programs that strengthen the body while preventing injury.</p>
-                        </div>
-
-                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="division-cta">
-                            <span>Book Training Session</span>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-            </div>
+            <article class="wl-row" data-aos="fade-up">
+                <div class="wl-row-media"><picture><source type="image/avif" srcset="../images/wellness/nutrition-600.avif 600w, ../images/wellness/nutrition-1000.avif 1000w" sizes="(min-width: 1024px) 520px, 100vw"><img src="../images/wellness/nutrition-600.webp" srcset="../images/wellness/nutrition-600.webp 600w, ../images/wellness/nutrition-1000.webp 1000w" sizes="(min-width: 1024px) 520px, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="A balanced meal and meal plan on a nutrition consultation table"></picture></div>
+                <div class="wl-row-body">
+                    <p class="hp-eyebrow" data-en="Nutrition" data-es="Nutrici&oacute;n">Nutrition</p>
+                    <h3 class="hp-title up-title-sm">Nutrition Services</h3>
+                    <p class="hp-lede">Evidence-based nutrition counseling tailored to your health goals and medical needs.</p>
+                    <p class="wl-label">What we offer</p>
+                    <ul class="up-svc-list up-svc-list--2col"><li><span>Personalized Nutrition Counseling</span></li><li><span>Weight Management Programs</span></li><li><span>Diabetes &amp; Disease Management</span></li><li><span>Meal Planning &amp; Education</span></li><li><span>Heart Health &amp; Cholesterol Support</span></li><li><span>Digestive &amp; Gut Health Guidance</span></li><li><span>Habit &amp; Lifestyle Coaching</span></li><li><span>Ongoing Progress Check-Ins</span></li></ul>
+                    <p class="up-callout wl-callout"><strong>Expert Wellness Guidance</strong> <span>Our nutritionist works alongside your physician to help patients — whether overweight, underweight, or managing a medical condition — build healthier habits and sustainable plans for long-term well-being.</span></p>
+                    <div class="hp-actions"><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Book Nutrition Consultation</a></div>
+                </div>
+            </article>
+            <article class="wl-row wl-row--rev" data-aos="fade-up">
+                <div class="wl-row-media"><picture><source type="image/avif" srcset="../images/wellness/training-600.avif 600w, ../images/wellness/training-1000.avif 1000w" sizes="(min-width: 1024px) 520px, 100vw"><img src="../images/wellness/training-600.webp" srcset="../images/wellness/training-600.webp 600w, ../images/wellness/training-1000.webp 1000w" sizes="(min-width: 1024px) 520px, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="A calm private personal-training studio with dumbbells and mats"></picture></div>
+                <div class="wl-row-body">
+                    <p class="hp-eyebrow" data-en="Fitness" data-es="Acondicionamiento f&iacute;sico">Fitness</p>
+                    <h3 class="hp-title up-title-sm">Personal Training</h3>
+                    <p class="hp-lede">Customized fitness programs designed to help you build strength, improve performance, and reach your goals.</p>
+                    <p class="wl-label">What we offer</p>
+                    <ul class="up-svc-list up-svc-list--2col"><li><span>One-on-One Personal Training</span></li><li><span>Customized Workout Programs</span></li><li><span>Strength &amp; Conditioning</span></li><li><span>Weight Loss Training</span></li><li><span>Athletic Performance Enhancement</span></li><li><span>Post-Injury Rehabilitation Training</span></li><li><span>Senior Fitness Programs</span></li><li><span>Functional Fitness Training</span></li></ul>
+                    <p class="up-callout wl-callout"><strong>Personalized Training Approach</strong> <span>Our personal trainers work closely with each patient to understand their goals, assess physical limitations, and build safe, effective programs that strengthen the body while preventing injury.</span></p>
+                    <div class="hp-actions"><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Book Training Session</a></div>
+                </div>
+            </article>
         </div>
     </section>
 
     <!-- INTEGRATED APPROACH -->
-    <section id="wellness-integration" data-page-nav data-page-nav-title="Integration" class="py-20 lg:py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-20" data-aos="fade-up">
-                    <span style="display:inline-block;font-size:12px;font-weight:600;color:#0d47a1;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;">
-                        Our Approach
-                    </span>
-                    <h2 style="font-size:clamp(1.85rem,3.4vw,2.65rem);font-weight:700;color:#0a0e27;letter-spacing:-0.028em;line-height:1.2;margin-bottom:1.25rem;">Why nutrition and fitness belong together</h2>
-                    <p style="font-size:1.1rem;line-height:1.7;color:#52606d;max-width:40rem;margin:0 auto;">When your meal plan and training program are designed as one, every part of your care reinforces the other.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto" data-aos="fade-up" data-aos-delay="100" style="padding:1.5rem;margin:-1.5rem;">
-                    <article style="background:#fff;border:1px solid #e8ecf1;border-radius:16px;padding:2.5rem 2rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.4s cubic-bezier(0.22,1,0.36,1),box-shadow 0.4s cubic-bezier(0.22,1,0.36,1),border-color 0.4s ease;box-shadow:0 1px 2px rgba(16,24,40,0.04),0 4px 12px -2px rgba(16,24,40,0.04);" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 4px 6px -1px rgba(16,24,40,0.06),0 18px 32px -6px rgba(13,71,161,0.14)';this.style.borderColor='#d4dde9';" onmouseleave="this.style.transform='';this.style.boxShadow='0 1px 2px rgba(16,24,40,0.04),0 4px 12px -2px rgba(16,24,40,0.04)';this.style.borderColor='#e8ecf1';">
-                        
-                        <span style="font-size:0.72rem;font-weight:700;color:#ff8f00;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.75rem;">Coordinated Care</span>
-                        <h3 style="font-size:1.35rem;font-weight:700;color:#0a0e27;letter-spacing:-0.018em;line-height:1.25;margin-bottom:0.85rem;">One team, one plan.</h3>
-                        <p style="font-size:0.97rem;line-height:1.65;color:#52606d;margin:0;">Your nutritionist and trainer collaborate together, so your diet fuels your workouts and your workouts reinforce your nutrition goals.</p>
-                    </article>
-
-                    <article style="background:#fff;border:1px solid #e8ecf1;border-radius:16px;padding:2.5rem 2rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.4s cubic-bezier(0.22,1,0.36,1),box-shadow 0.4s cubic-bezier(0.22,1,0.36,1),border-color 0.4s ease;box-shadow:0 1px 2px rgba(16,24,40,0.04),0 4px 12px -2px rgba(16,24,40,0.04);" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 4px 6px -1px rgba(16,24,40,0.06),0 18px 32px -6px rgba(13,71,161,0.14)';this.style.borderColor='#d4dde9';" onmouseleave="this.style.transform='';this.style.boxShadow='0 1px 2px rgba(16,24,40,0.04),0 4px 12px -2px rgba(16,24,40,0.04)';this.style.borderColor='#e8ecf1';">
-                        
-                        <span style="font-size:0.72rem;font-weight:700;color:#ff8f00;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.75rem;">Faster Progress</span>
-                        <h3 style="font-size:1.35rem;font-weight:700;color:#0a0e27;letter-spacing:-0.018em;line-height:1.25;margin-bottom:0.85rem;">Better results, together.</h3>
-                        <p style="font-size:0.97rem;line-height:1.65;color:#52606d;margin:0;">Pairing guided exercise with a structured meal plan accelerates progress — whether you're losing weight, managing a condition, or building strength.</p>
-                    </article>
-
-                    <article style="background:#fff;border:1px solid #e8ecf1;border-radius:16px;padding:2.5rem 2rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:transform 0.4s cubic-bezier(0.22,1,0.36,1),box-shadow 0.4s cubic-bezier(0.22,1,0.36,1),border-color 0.4s ease;box-shadow:0 1px 2px rgba(16,24,40,0.04),0 4px 12px -2px rgba(16,24,40,0.04);" onmouseenter="this.style.transform='translateY(-4px)';this.style.boxShadow='0 4px 6px -1px rgba(16,24,40,0.06),0 18px 32px -6px rgba(13,71,161,0.14)';this.style.borderColor='#d4dde9';" onmouseleave="this.style.transform='';this.style.boxShadow='0 1px 2px rgba(16,24,40,0.04),0 4px 12px -2px rgba(16,24,40,0.04)';this.style.borderColor='#e8ecf1';">
-                        
-                        <span style="font-size:0.72rem;font-weight:700;color:#ff8f00;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.75rem;">Physician-Backed</span>
-                        <h3 style="font-size:1.35rem;font-weight:700;color:#0a0e27;letter-spacing:-0.018em;line-height:1.25;margin-bottom:0.85rem;">Guided by your doctor.</h3>
-                        <p style="font-size:0.97rem;line-height:1.65;color:#52606d;margin:0;">Every wellness program is backed by the clinical team at Montgomery Medical Clinic, so your training and nutrition stay aligned with your medical care.</p>
-                    </article>
-                </div>
+    <section id="wellness-integration" data-page-nav data-page-nav-title="Integration" class="hp-section wl-integration">
+        <div class="container mx-auto">
+            <div class="hp-head" data-aos="fade-up">
+                <p class="hp-eyebrow">Our Approach</p>
+                <h2 class="hp-title">Why nutrition and fitness belong together</h2>
+                <p class="hp-lede">When your meal plan and training program are designed as one, every part of your care reinforces the other.</p>
+            </div>
+            <div class="up-pillars wl-pillars" data-aos="fade-up">
+                <article class="up-pillar"><p class="up-pillar-kicker">Coordinated Care</p><h3>One team, one plan.</h3><p>Your nutritionist and trainer collaborate together, so your diet fuels your workouts and your workouts reinforce your nutrition goals.</p></article>
+                <article class="up-pillar"><p class="up-pillar-kicker">Faster Progress</p><h3>Better results, together.</h3><p>Pairing guided exercise with a structured meal plan accelerates progress — whether you're losing weight, managing a condition, or building strength.</p></article>
+                <article class="up-pillar"><p class="up-pillar-kicker">Physician-Backed</p><h3>Guided by your doctor.</h3><p>Every wellness program is backed by the clinical team at Montgomery Medical Clinic, so your training and nutrition stay aligned with your medical care.</p></article>
             </div>
         </div>
     </section>
 
     <!-- WEIGHT MANAGEMENT PROGRAM -->
-    <section id="weight-management" data-page-nav data-page-nav-title="Weight Management" class="py-20 lg:py-24 bg-light-blue-bg">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto">
-
-                <!-- Section Header -->
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <span style="display:inline-block;font-size:12px;font-weight:600;color:#0d47a1;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px;">
-                        New Program
-                    </span>
-                    <h2 style="font-size:clamp(1.85rem,3.4vw,2.65rem);font-weight:700;color:#0a0e27;letter-spacing:-0.028em;line-height:1.2;margin-bottom:1.25rem;">Medical Weight Management Program</h2>
-                    <p style="font-size:1.1rem;line-height:1.7;color:#52606d;max-width:42rem;margin:0 auto;">A physician-supervised weight loss program that combines weekly clinical visits, personalized nutrition coaching, and FDA-approved GLP-1 medications for safe, lasting results.</p>
+    <section id="weight-management" data-page-nav data-page-nav-title="Weight Management" class="hp-section wl-weight">
+        <div class="container mx-auto">
+            <div class="wl-weight-head" data-aos="fade-up">
+                <div>
+                    <p class="hp-eyebrow">New Program</p>
+                    <h2 class="hp-title">Medical Weight Management Program</h2>
+                    <p class="hp-lede">A physician-supervised weight loss program that combines weekly clinical visits, personalized nutrition coaching, and FDA-approved GLP-1 medications for safe, lasting results.</p>
+                    <div class="hp-actions"><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Get Started &mdash; Book a Consultation</a></div>
                 </div>
+                <div class="wl-weight-media"><picture><source type="image/avif" srcset="../images/wellness/weight-800.avif 800w, ../images/wellness/weight-1400.avif 1400w" sizes="(min-width: 1024px) 600px, 100vw"><img src="../images/wellness/weight-800.webp" srcset="../images/wellness/weight-800.webp 800w, ../images/wellness/weight-1400.webp 1400w" sizes="(min-width: 1024px) 600px, 100vw" width="1400" height="800" loading="lazy" decoding="async" alt="A clinic consultation desk with a progress chart, measuring tape and stethoscope"></picture></div>
+            </div>
 
-                <!-- Program Card -->
-                <article class="division-card weight-card" data-aos="fade-up" style="margin:0 auto;">
-                    <div class="p-8 lg:p-10">
-                        <span class="division-eyebrow">Physician-Supervised</span>
-                        <h3 class="division-title">How the Program Works</h3>
-                        <p class="division-lede">
-                            Sustainable weight loss requires more than medication alone. Our program pairs GLP-1 therapy with the hands-on guidance of your nutritionist and physician &mdash; so every pound you lose stays off.
-                        </p>
+            <div class="wl-how" data-aos="fade-up">
+                <div class="wl-how-head">
+                    <p class="hp-eyebrow">Physician-Supervised</p>
+                    <h3 class="hp-title up-title-sm">How the Program Works</h3>
+                    <p class="hp-lede">Sustainable weight loss requires more than medication alone. Our program pairs GLP-1 therapy with the hands-on guidance of your nutritionist and physician &mdash; so every pound you lose stays off.</p>
+                </div>
+                <ol class="ac-steps wl-steps"><li class="ac-step"><span class="ac-step-num">01</span><h3>Weekly Check-In</h3><p>Visit the clinic each week to meet with your nutritionist and review your progress, habits, and goals.</p></li><li class="ac-step"><span class="ac-step-num">02</span><h3>Physician Review</h3><p>Your doctor monitors your health, adjusts medication dosing, and ensures the plan is safe and effective.</p></li><li class="ac-step"><span class="ac-step-num">03</span><h3>Ongoing Support</h3><p>Receive updated meal plans, lifestyle coaching, and accountability to keep you on track week after week.</p></li></ol>
+            </div>
 
-                        <!-- Weekly Visit Steps -->
-                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-bottom:2rem;">
-                            <div style="background:#f5f8fc;border:1px solid #dbe5f3;border-radius:16px;padding:1.5rem;text-align:center;">
-                                <div style="width:48px;height:48px;border-radius:50%;background:#0d47a1;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;margin-bottom:0.75rem;">1</div>
-                                <h4 style="font-size:1rem;font-weight:700;color:#0a0e27;margin-bottom:0.4rem;">Weekly Check-In</h4>
-                                <p style="font-size:0.9rem;line-height:1.55;color:#52606d;margin:0;">Visit the clinic each week to meet with your nutritionist and review your progress, habits, and goals.</p>
-                            </div>
-                            <div style="background:#f5f8fc;border:1px solid #dbe5f3;border-radius:16px;padding:1.5rem;text-align:center;">
-                                <div style="width:48px;height:48px;border-radius:50%;background:#0d47a1;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;margin-bottom:0.75rem;">2</div>
-                                <h4 style="font-size:1rem;font-weight:700;color:#0a0e27;margin-bottom:0.4rem;">Physician Review</h4>
-                                <p style="font-size:0.9rem;line-height:1.55;color:#52606d;margin:0;">Your doctor monitors your health, adjusts medication dosing, and ensures the plan is safe and effective.</p>
-                            </div>
-                            <div style="background:#f5f8fc;border:1px solid #dbe5f3;border-radius:16px;padding:1.5rem;text-align:center;">
-                                <div style="width:48px;height:48px;border-radius:50%;background:#0d47a1;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;margin-bottom:0.75rem;">3</div>
-                                <h4 style="font-size:1rem;font-weight:700;color:#0a0e27;margin-bottom:0.4rem;">Ongoing Support</h4>
-                                <p style="font-size:0.9rem;line-height:1.55;color:#52606d;margin:0;">Receive updated meal plans, lifestyle coaching, and accountability to keep you on track week after week.</p>
-                            </div>
-                        </div>
-
-                        <span class="division-offer-label">What&rsquo;s included</span>
-                        <ul class="service-list" style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.7rem 2rem;">
-                            <li>Weekly in-clinic nutritionist visits</li>
-                            <li>Regular physician consultations</li>
-                            <li>GLP-1 medication management (semaglutide)</li>
-                            <li>Personalized meal &amp; nutrition plans</li>
-                            <li>Habit &amp; lifestyle coaching</li>
-                            <li>Body composition tracking</li>
-                            <li>Ongoing progress monitoring</li>
-                            <li>Medication available for purchase on-site</li>
-                        </ul>
-
-                        <!-- GLP-1 Highlight Box -->
-                        <div style="background:#f5f8fc;border:1px solid #c9d6ea;border-radius:16px;padding:1.75rem 1.75rem;margin-bottom:1.75rem;">
-                            <h4 style="font-size:0.95rem;font-weight:700;color:#0d47a1;margin-bottom:0.6rem;">About GLP-1 Medications</h4>
-                            <p style="font-size:0.95rem;line-height:1.65;color:#52606d;margin:0 0 0.75rem;">
-                                GLP-1 receptor agonists, including <strong style="color:#0a3a85;">semaglutide</strong>, are FDA-approved medications clinically proven to support significant weight loss by reducing appetite and improving metabolic health. When combined with nutrition counseling and regular physician oversight, patients achieve better and more sustainable outcomes than with medication or lifestyle changes alone.
-                            </p>
-                            <p style="font-size:0.95rem;line-height:1.65;color:#52606d;margin:0;">
-                                We prescribe and dispense these medications directly at our clinic, making it easy and convenient for you to stay on your treatment plan.
-                            </p>
-                        </div>
-
-                        <div class="provider-highlight" style="min-height:auto;">
-                            <p>Why It Works</p>
-                            <p>The most effective approach to weight loss combines medical treatment with professional guidance. Working alongside your nutritionist and doctor each week gives you the accountability, clinical oversight, and personalized adjustments that medication alone cannot provide &mdash; helping you build habits that last well beyond the program.</p>
-                        </div>
-
-                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="division-cta">
-                            <span>Get Started &mdash; Book a Consultation</span>
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </article>
-
+            <div class="wl-details" data-aos="fade-up">
+                <div class="wl-card">
+                    <p class="wl-label">What&rsquo;s included</p>
+                    <ul class="wl-checks"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Weekly in-clinic nutritionist visits</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Regular physician consultations</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>GLP-1 medication management (semaglutide)</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Personalized meal &amp; nutrition plans</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Habit &amp; lifestyle coaching</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Body composition tracking</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ongoing progress monitoring</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Medication available for purchase on-site</span></li></ul>
+                </div>
+                <div class="wl-card">
+                    <h3 class="wl-card-title">About GLP-1 Medications</h3>
+                    <p>GLP-1 receptor agonists, including <strong>semaglutide</strong>, are FDA-approved medications clinically proven to support significant weight loss by reducing appetite and improving metabolic health. When combined with nutrition counseling and regular physician oversight, patients achieve better and more sustainable outcomes than with medication or lifestyle changes alone.</p><p>We prescribe and dispense these medications directly at our clinic, making it easy and convenient for you to stay on your treatment plan.</p>
+                    <p class="up-callout wl-callout"><strong>Why It Works</strong> <span>The most effective approach to weight loss combines medical treatment with professional guidance. Working alongside your nutritionist and doctor each week gives you the accountability, clinical oversight, and personalized adjustments that medication alone cannot provide &mdash; helping you build habits that last well beyond the program.</span></p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- WELLNESS TEAM -->
-    <section id="wellness-team" data-page-nav data-page-nav-title="Our Team" class="py-20 lg:py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl lg:text-5xl font-black mb-5 text-brand-blue">Meet Our Wellness Team</h2>
-                <p class="text-xl text-medium-gray leading-relaxed">
-                    Our nutrition and fitness professionals collaborate with the clinical team to deliver practical guidance, approachable coaching, and the accountability you need to live well.
-                </p>
-            </div>
-
-            <div class="grid gap-10 lg:grid-cols-2">
-                <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col h-full" data-aos="fade-up">
-                    <div class="rounded-3xl overflow-hidden shadow-lg mb-6 provider-photo-wrapper">
-                        <img src="../images/Hodaya.jpg" alt="Hodaya Cohen - Nutrition Coach at Montgomery Medical Clinic Wellness Center" class="provider-photo">
-                    </div>
-                    <span class="text-sm font-semibold uppercase tracking-widest text-brand-blue mb-2">Nutrition Coach</span>
-                    <h3 class="text-2xl font-bold mb-4">Hodaya Cohen</h3>
-                    <p class="text-medium-gray leading-relaxed">
-                        Hodaya partners with patients to translate medical recommendations into real-world nutrition habits. She focuses on sustainable meal planning, mindful eating strategies, and building confidence in the kitchen so every client can make consistent, nourishing choices.
-                    </p>
+    <section id="wellness-team" data-page-nav data-page-nav-title="Our Team" class="hp-section up-providers wl-team">
+        <div class="container mx-auto">
+            <div class="up-head-row" data-aos="fade-up">
+                <div class="hp-head">
+                    <h2 class="hp-title">Meet Our Wellness Team</h2>
+                    <p class="hp-lede">Our nutrition and fitness professionals collaborate with the clinical team to deliver practical guidance, approachable coaching, and the accountability you need to live well.</p>
                 </div>
-
-                <div class="bg-white rounded-3xl shadow-xl p-8 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
-                    <div class="rounded-3xl overflow-hidden shadow-lg mb-6 provider-photo-wrapper">
-                        <img src="../images/Kevin.jpg" alt="Kevin Cedellios - Personal Trainer at Montgomery Medical Clinic Wellness Center" class="provider-photo">
+            </div>
+            <div class="up-provider-grid up-provider-grid--pair">
+                <div class="provider-card">
+                    <div class="provider-image-container"><img src="../images/Hodaya.jpg" alt="Hodaya Cohen - Nutrition Coach at Montgomery Medical Clinic Wellness Center" class="provider-image" loading="lazy" decoding="async"></div>
+                    <div class="provider-info">
+                        <h3 class="provider-name">Hodaya Cohen</h3>
+                        <p class="provider-title">Nutrition Coach</p>
+                        <p class="text-medium-gray leading-relaxed">Hodaya partners with patients to translate medical recommendations into real-world nutrition habits. She focuses on sustainable meal planning, mindful eating strategies, and building confidence in the kitchen so every client can make consistent, nourishing choices.</p>
                     </div>
-                    <span class="text-sm font-semibold uppercase tracking-widest text-brand-orange mb-2">Personal Trainer</span>
-                    <h3 class="text-2xl font-bold mb-4">Kevin Cedellios</h3>
-                    <p class="text-medium-gray leading-relaxed">
-                        Kevin designs individualized training programs that improve strength, mobility, and overall stamina. He blends functional movement with steady coaching support, helping each person stay motivated, recover safely, and celebrate measurable progress.
-                    </p>
+                </div>
+                <div class="provider-card">
+                    <div class="provider-image-container"><img src="../images/Kevin.jpg" alt="Kevin Cedellios - Personal Trainer at Montgomery Medical Clinic Wellness Center" class="provider-image" loading="lazy" decoding="async"></div>
+                    <div class="provider-info">
+                        <h3 class="provider-name">Kevin Cedellios</h3>
+                        <p class="provider-title">Personal Trainer</p>
+                        <p class="text-medium-gray leading-relaxed">Kevin designs individualized training programs that improve strength, mobility, and overall stamina. He blends functional movement with steady coaching support, helping each person stay motivated, recover safely, and celebrate measurable progress.</p>
+                    </div>
                 </div>
             </div>
         </div>
