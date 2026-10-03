@@ -148,22 +148,39 @@
         });
     }
 
+    function tagCounts(list) {
+        var c = {};
+        list.forEach(function (t) { t = t.toUpperCase(); c[t] = (c[t] || 0) + 1; });
+        return JSON.stringify(Object.keys(c).sort().map(function (k) { return k + c[k]; }));
+    }
+
+    // Returns false when the block should not be replaced as a whole, so the
+    // caller translates its parts instead.
     function translateUnit(el, map) {
         var key = norm(el.textContent);
         var tr = map[key];
+        if (!tr) return false;
         // Other scripts (e.g. the Spanish toggle) may put the English back later;
         // only the current text decides, so those blocks are translated again.
-        if (!tr || norm(tr.replace(/<[^>]+>/g, '')) === key) return;
+        if (norm(tr.replace(/<[^>]+>/g, '')) === key) return true;
+        // Never flatten a block holding named slots (elements with an id) that the
+        // translation doesn't reproduce, e.g. the site banner with its label
+        // hidden: its script writes into those slots later, and losing them left
+        // the banner stuck in one language.
+        var inner = Array.prototype.map.call(el.getElementsByTagName('*'), function (n) { return n.tagName; });
+        var trTags = (tr.match(/<([a-zA-Z0-9]+)/g) || []).map(function (t) { return t.slice(1); });
+        if (tagCounts(inner) !== tagCounts(trTags) && el.querySelector('[id]')) return false;
         var originals = {};
         Array.prototype.forEach.call(el.getElementsByTagName('*'), function (n) { (originals[n.tagName] = originals[n.tagName] || []).push(n.cloneNode(false)); });
-        if (tr.indexOf('<') >= 0) { el.innerHTML = tr; restoreAttrs(el, originals); }
+        if (trTags.length) { el.innerHTML = tr; restoreAttrs(el, originals); }
         else el.textContent = tr;
         el.__ptDone = tr;
+        return true;
     }
 
     function walk(root, map) {
         if (root.nodeType !== 1 || (root.matches && root.matches(SKIP))) return;
-        if (root !== document.body && isUnit(root)) { translateUnit(root, map); return; }
+        if (root !== document.body && isUnit(root) && translateUnit(root, map)) return;
         for (var n = root.firstChild; n; n = n.nextSibling) {
             if (n.nodeType === 1) walk(n, map);
             else if (n.nodeType === 3) {
