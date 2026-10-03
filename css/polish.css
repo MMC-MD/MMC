@@ -185,25 +185,9 @@ a { transition: color .15s ease, background-color .15s ease, border-color .15s e
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 }
 
-/* ── Pages with the "In this page" sidebar: align with the site grid ─ */
-@media (min-width: 1280px) {
-    :is(.imm-layout-main, .corp-layout-main, .pilot-layout-main) > section {
-        --ds-gutter: max(32px, calc((100% - 1216px) / 2));
-        padding-left: var(--ds-gutter) !important;
-        padding-right: calc(var(--ds-gutter) + 340px) !important;
-    }
-    :is(.imm-layout-main, .corp-layout-main, .pilot-layout-main) > section > .container {
-        max-width: none !important; margin-left: 0 !important; margin-right: 0 !important;
-        padding-left: 0 !important; padding-right: 0 !important;
-    }
-    :is(.imm-sidebar, .corp-sidebar, .pilot-sidebar) {
-        right: max(20px, calc((100% - 1216px) / 2)) !important;
-        box-shadow: var(--ds-shadow) !important;
-        border: 1px solid var(--ds-line) !important;
-        border-radius: var(--ds-radius) !important;
-    }
-}
-:is(.imm-sidebar-cta, .corp-sidebar-cta, .pilot-sidebar-cta) { box-shadow: none !important; border-radius: var(--ds-radius-sm) !important; font-weight: 600 !important; }
+/* ── Former sidebar pages: sidebar removed, content uses the full site grid ─ */
+:is(.imm-layout-main, .corp-layout-main, .pilot-layout-main) > section { padding-left: 0 !important; padding-right: 0 !important; }
+:is(.imm-sidebar, .corp-sidebar, .pilot-sidebar) { display: none !important; }
 
 /* ── Fine-tuning from the page-by-page review ───────────────────── */
 /* Brand gradient bands: no off-angle orange overlay rectangle */
@@ -306,7 +290,7 @@ h3.text-3xl, h3.text-4xl { font-size: 1.625rem !important; line-height: 1.25 !im
     :is(#faq, #insurance-faq) > .container {
         display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr); gap: 72px; align-items: start;
     }
-    :is(#faq, #insurance-faq) > .container > :first-child { position: sticky; top: calc(var(--site-sticky-header-height, 140px) + 32px); }
+    :is(#faq, #insurance-faq) > .container > :first-child { position: sticky; top: calc(var(--mmc-subnav-offset, 200px) + 20px); }
 }
 :is(#faq, #insurance-faq) > .container > :first-child { text-align: left !important; margin-bottom: 0 !important; max-width: none !important; }
 :is(#faq, #insurance-faq) > .container > :first-child h2 { text-align: left !important; margin-bottom: 14px !important; }
@@ -355,10 +339,6 @@ h3.text-3xl, h3.text-4xl { font-size: 1.625rem !important; line-height: 1.25 !im
     :is(#faq, #insurance-faq) details > :not(summary) { padding-right: 0 !important; }
 }
 .faq-help a { white-space: nowrap; }
-/* Pages with the "In this page" sidebar: the content column is narrower, so stack intro above the list */
-:is(.imm-layout-main, .corp-layout-main, .pilot-layout-main) :is(#faq, #insurance-faq) > .container { display: block !important; }
-:is(.imm-layout-main, .corp-layout-main, .pilot-layout-main) :is(#faq, #insurance-faq) > .container > :first-child { position: static !important; margin-bottom: 36px !important; }
-:is(.imm-layout-main, .corp-layout-main, .pilot-layout-main) :is(#faq, #insurance-faq) .faq-help { max-width: none; }
 
 /* Closing CTA follows a padded section: don't double the gap */
 .mmc-cta { padding-top: 24px; }
@@ -380,6 +360,14 @@ footer#contact p { color: #b6c2d3 !important; font-size: 15px !important; line-h
     footer#contact .footer-logo { margin-left: 0 !important; margin-right: 0 !important; }
 }
 footer#contact .border-t, footer#contact [class*="border-gray-7"], footer#contact [class*="border-gray-8"] { border-color: rgba(255, 255, 255, .1) !important; }
-footer#contact .footer-logo { background: #fff; padding: 10px 14px; border-radius: 12px; height: auto !important; width: 200px !important; box-sizing: content-box; }
+footer#contact .footer-logo { width: 210px !important; height: auto !important; filter: none !important; }
 footer#contact .footer-copyright { max-width: none !important; white-space: nowrap; font-size: 13.5px !important; color: #8d9ab0 !important; }
 @media (max-width: 640px) { footer#contact .footer-copyright { white-space: normal; } }
+
+/* Prevent sideways scroll without turning <body> into a scroll container
+   (overflow-x:hidden breaks position:sticky for the in-page section bar). */
+@supports (overflow: clip) {
+    html, body { overflow-x: clip !important; overflow-y: visible !important; }
+}
+/* Keep scroll locking for the mobile menu and popups */
+body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden !important; }

@@ -1,10 +1,181 @@
-document.addEventListener("DOMContentLoaded",()=>{const c=Array.from(document.querySelectorAll("[data-page-nav]")).filter(e=>e.id);if(!c.length)return;const l=document.createElement("nav");l.id="page-nav",l.className="hidden lg:hidden fixed top-1/2 z-50 opacity-0 pointer-events-none transition-opacity duration-300";const f=document.createElement("ul");f.className="page-nav-list space-y-1",c.forEach(e=>{const t=e.dataset.pageNavTitle||e.getAttribute("data-page-nav-title")||e.getAttribute("aria-label")||(e.querySelector("h1, h2, h3, h4")?e.querySelector("h1, h2, h3, h4").textContent.trim():e.id.replace(/-/g," ")),n=document.createElement("li"),o=document.createElement("a");o.href=`#${e.id}`,o.className="nav-link group flex items-center rounded-lg transition-all duration-300";const p=document.createElement("span");p.className="nav-indicator";const r=document.createElement("span");r.className="nav-text font-medium text-medium-gray group-hover:text-brand-blue transition-colors duration-300",r.textContent=t,o.appendChild(p),o.appendChild(r),n.appendChild(o),f.appendChild(n)});const u=document.createElement("div");u.className="page-nav-inner",u.setAttribute("aria-hidden","false");const s=document.createElement("button");s.type="button",s.id="page-nav-toggle",s.setAttribute("aria-label","Collapse in-page navigation"),s.setAttribute("aria-expanded","true");const i=document.createElementNS("http://www.w3.org/2000/svg","svg");i.setAttribute("width","10"),i.setAttribute("height","10"),i.setAttribute("viewBox","0 0 24 24"),i.setAttribute("fill","none"),i.setAttribute("stroke","currentColor"),i.setAttribute("stroke-width","2.5"),i.setAttribute("stroke-linecap","round"),i.setAttribute("stroke-linejoin","round"),i.setAttribute("aria-hidden","true"),i.classList.add("toggle-icon");const y=document.createElementNS("http://www.w3.org/2000/svg","polyline");y.setAttribute("points","18 15 12 9 6 15"),i.appendChild(y),s.appendChild(i),u.appendChild(f),l.appendChild(u),l.appendChild(s),document.body.appendChild(l);const a=l,g=Array.from(a.querySelectorAll(".nav-link"));if(!g.length){a.remove();return}const S=document.querySelector(".page-header"),m=(()=>{const e=Array.from(document.querySelectorAll('[data-page-nav-stop="footer"]'));if(e.length)return e;const t=document.getElementById("footer-placeholder");return t?[t]:[]})(),C=c[0];let w=!1,x=!1,d=!1,b=!1;const T=()=>{const e=b&&!d;u.setAttribute("aria-hidden",String(!e)),g.forEach(t=>{t.tabIndex=e?0:-1})},k=e=>{d=e,a.classList.toggle("collapsed",d),s.setAttribute("aria-expanded",String(!d)),s.setAttribute("aria-label",d?"Expand in-page navigation":"Collapse in-page navigation"),T()};k(!1),s.addEventListener("click",()=>{k(!d)});const q=()=>{const e=window.matchMedia("(min-width: 1024px)").matches;b=w&&!x&&e,b?(a.classList.remove("hidden"),a.classList.add("visible"),a.classList.remove("lg:hidden"),a.classList.add("lg:block")):(a.classList.remove("visible"),a.classList.add("hidden"),a.classList.add("lg:hidden"),a.classList.remove("lg:block")),T()},M=220;
-// Cache the layout threshold so scroll handler never reads offsetHeight/offsetTop.
-// Only resize re-reads the DOM (layout is stable between resizes).
-let _cachedThreshold=-1;
-const _computeThreshold=S?()=>Math.max(S.offsetHeight-90,0):C?()=>{const n=Math.max(C.offsetTop-60,0),o=Math.max(window.innerHeight*.6,0);return Math.min(n,o)}:()=>0;
-const _refreshThreshold=()=>{_cachedThreshold=_computeThreshold()};
-const _onScroll=()=>{if(_cachedThreshold<0)return;const o=window.scrollY;o>=_cachedThreshold?w=!0:o<=Math.max(_cachedThreshold-M,0)&&(w=!1),q()};
-const _onResize=()=>{_refreshThreshold();_onScroll()};
-if(S||C){window.addEventListener("resize",_onResize);window.addEventListener("scroll",_onScroll,{passive:!0});_refreshThreshold();_onScroll();}
-if(m.length){const e=new Map(m.map(n=>[n,!1])),t=new IntersectionObserver(n=>{n.forEach(o=>{const p=o.target.getBoundingClientRect().top,r=window.innerHeight,v=p<=r*.5;e.set(o.target,v)}),x=Array.from(e.values()).some(Boolean),q()},{root:null,rootMargin:"0px",threshold:[0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1]});m.forEach(n=>t.observe(n))}const O=e=>{let t=!1;return g.forEach(n=>{const o=n.getAttribute("href")===`#${e}`;o&&!n.classList.contains("active")?(n.classList.add("active"),t=!0):!o&&n.classList.contains("active")&&(n.classList.remove("active"),t=!0)}),t},N=()=>{const e=window.innerHeight*.35;let t=c[0]?c[0].id:null;for(const n of c)if(n.getBoundingClientRect().top-e<=0)t=n.id;else break;t&&O(t)};let A=!1;const B=()=>{A||(A=!0,window.requestAnimationFrame(()=>{N(),A=!1}))};window.addEventListener("scroll",B,{passive:!0}),window.addEventListener("resize",B),N(),g.forEach(e=>{e.addEventListener("click",t=>{t.preventDefault();const n=e.getAttribute("href").substring(1),o=document.getElementById(n);if(!o)return;const r=o.getBoundingClientRect().top+window.pageYOffset+-100;window.scrollTo({top:r,behavior:"smooth"}),o.hasAttribute("data-page-nav-accordion")&&setTimeout(()=>{const v=document.getElementById(n+"-content"),L=o.querySelector(".accordion-header"),E=L?L.querySelector(".accordion-icon"):null;v&&L&&(document.querySelectorAll(".accordion-content").forEach(h=>{h.id!==n+"-content"&&h.classList.remove("active")}),document.querySelectorAll(".accordion-icon").forEach(h=>{h!==E&&h.classList.remove("active")}),v.classList.add("active"),E&&E.classList.add("active"))},600)})});const H=g[0];H&&H.classList.add("active")});
+/*
+ * In-page section bar.
+ * Builds a slim bar of links to every [data-page-nav] section, placed right
+ * after the page's title banner. It sticks below the site header while you
+ * scroll, highlights the section in view, and scrolls sideways on phones.
+ * Styles: css/in-page-nav.css.
+ */
+(function () {
+    'use strict';
+
+    // Spanish labels for section titles (the site's language toggle sets <html lang>).
+    var ES = {
+        'Overview': 'Resumen', 'Services': 'Servicios', 'FAQ': 'Preguntas', 'Providers': 'Proveedores',
+        'Provider': 'Proveedora', 'Preparation': 'Preparación', 'Pilot Resources': 'Recursos para Pilotos',
+        'Insurance': 'Seguros', 'Why Join': 'Por Qué Unirse', 'Weight Mgmt': 'Control de Peso',
+        'Updates': 'Novedades', 'Team': 'Equipo', 'Our Team': 'Nuestro Equipo', 'Renewal': 'Renovación',
+        'Plans': 'Planes', 'Partnership': 'Alianzas', 'Openings': 'Vacantes', 'Mission': 'Misión',
+        'MVA Physicals': 'Exámenes MVA', 'Integration': 'Integración', 'Immigration': 'Inmigración',
+        'Facility': 'Instalaciones', 'FAA Physicals': 'Exámenes FAA', 'Divisions': 'Divisiones',
+        'Corporate': 'Corporativo', 'Contact': 'Contacto', 'Conditions': 'Condiciones',
+        'Care Journey': 'Su Atención', 'About Us': 'Nosotros', 'What to Bring': 'Qué Traer',
+        'Exam Process': 'Proceso del Examen', 'Vaccinations': 'Vacunas', 'After the Exam': 'Después del Examen',
+        'Resources': 'Recursos', 'Programs': 'Programas', 'Pre-Employment': 'Pre-Empleo', 'Testing': 'Pruebas',
+        'Drug Panels': 'Paneles de Drogas', 'Workers’ Comp': 'Compensación Laboral', 'Wellness': 'Bienestar',
+        'Vaccines': 'Vacunas', 'Medical Classes': 'Clases Médicas', 'New vs. Returning': 'Nuevos vs. Recurrentes',
+        'Checklist': 'Lista', 'Medications': 'Medicamentos', 'Official Resources': 'Recursos Oficiales'
+    };
+
+    function lang() {
+        return document.documentElement.lang === 'es' ? 'es' : 'en';
+    }
+
+    function titleOf(section) {
+        return section.getAttribute('data-page-nav-title')
+            || section.getAttribute('aria-label')
+            || (section.querySelector('h2, h3') ? section.querySelector('h2, h3').textContent.trim() : section.id);
+    }
+
+    function headerHeight() {
+        var header = document.querySelector('.site-sticky-header');
+        return header ? Math.round(header.getBoundingClientRect().height) : 0;
+    }
+
+    function init() {
+        var sections = Array.prototype.slice.call(document.querySelectorAll('[data-page-nav][id]'))
+            .filter(function (s) { return s.id !== 'footer-placeholder'; });
+        if (sections.length < 2 || document.querySelector('.mmc-subnav')) return;
+
+        var bar = document.createElement('nav');
+        bar.className = 'mmc-subnav';
+        bar.setAttribute('aria-label', 'On this page');
+        var inner = document.createElement('div');
+        inner.className = 'mmc-subnav-inner';
+        var list = document.createElement('div');
+        list.className = 'mmc-subnav-links';
+        inner.appendChild(list);
+        bar.appendChild(inner);
+
+        var links = sections.map(function (section) {
+            var en = titleOf(section);
+            var a = document.createElement('a');
+            a.href = '#' + section.id;
+            a.className = 'mmc-subnav-link';
+            a.setAttribute('data-en', en);
+            a.setAttribute('data-es', ES[en] || en);
+            a.textContent = lang() === 'es' ? (ES[en] || en) : en;
+            list.appendChild(a);
+            return a;
+        });
+
+        // Place the bar right after the title banner (or before the first section on the homepage).
+        var anchor = document.querySelector('.page-header');
+        if (anchor && anchor.parentNode) {
+            anchor.parentNode.insertBefore(bar, anchor.nextSibling);
+        } else {
+            sections[0].parentNode.insertBefore(bar, sections[0]);
+        }
+
+        function offset() {
+            return headerHeight() + bar.offsetHeight + 12;
+        }
+
+        function syncTop() {
+            var h = headerHeight();
+            bar.style.top = h + 'px';
+            document.documentElement.style.setProperty('--mmc-subnav-offset', (h + bar.offsetHeight + 12) + 'px');
+        }
+
+        var activeId = null;
+        function setActive(id) {
+            if (id === activeId) return;
+            activeId = id;
+            links.forEach(function (a) {
+                var on = a.getAttribute('href') === '#' + id;
+                a.classList.toggle('is-active', on);
+                if (on) {
+                    a.setAttribute('aria-current', 'true');
+                    // Keep the active link visible inside the horizontally scrolling bar.
+                    var left = a.offsetLeft - 24;
+                    var right = a.offsetLeft + a.offsetWidth + 24;
+                    if (left < list.scrollLeft) list.scrollTo({ left: left, behavior: 'smooth' });
+                    else if (right > list.scrollLeft + list.clientWidth) list.scrollTo({ left: right - list.clientWidth, behavior: 'smooth' });
+                } else {
+                    a.removeAttribute('aria-current');
+                }
+            });
+        }
+
+        var ticking = false;
+        function update() {
+            ticking = false;
+            var line = offset() + window.innerHeight * 0.15;
+            var current = null;
+            for (var i = 0; i < sections.length; i++) {
+                if (sections[i].getBoundingClientRect().top <= line) current = sections[i].id;
+            }
+            // At the very bottom, the last section is the one being read.
+            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+                current = sections[sections.length - 1].id;
+            }
+            setActive(current);
+            bar.classList.toggle('is-stuck', bar.getBoundingClientRect().top <= headerHeight() + 1);
+        }
+        function requestUpdate() {
+            if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+        }
+
+        links.forEach(function (a) {
+            // Capture phase + stopImmediatePropagation: the site's generic smooth-scroll
+            // handler (js/main.js) would otherwise scroll again with a different offset.
+            a.addEventListener('click', function (event) {
+                var target = document.getElementById(a.getAttribute('href').slice(1));
+                if (!target) return;
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                // Use the section's resting position (ignore an in-progress fade-in slide).
+                var shift = 0;
+                var m = /matrix.*\((.+)\)/.exec(getComputedStyle(target).transform || '');
+                if (m) { var v = m[1].split(',').map(parseFloat); shift = v.length === 6 ? v[5] : (v[13] || 0); }
+                var top = target.getBoundingClientRect().top - shift + window.scrollY - offset() + 1;
+                var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                window.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' });
+                setActive(target.id);
+                if (history.replaceState) history.replaceState(null, '', '#' + target.id);
+            }, true);
+        });
+
+        // Fade the edges when the links overflow (phones / long lists).
+        function syncOverflow() {
+            var max = list.scrollWidth - list.clientWidth;
+            bar.classList.toggle('has-more-left', list.scrollLeft > 4);
+            bar.classList.toggle('has-more-right', list.scrollLeft < max - 4);
+        }
+        list.addEventListener('scroll', syncOverflow, { passive: true });
+
+        // Re-label when the language toggle runs.
+        new MutationObserver(function () {
+            links.forEach(function (a) { a.textContent = a.getAttribute(lang() === 'es' ? 'data-es' : 'data-en'); });
+            syncOverflow();
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', function () { syncTop(); syncOverflow(); requestUpdate(); });
+        document.addEventListener('mmc:sticky-header-metrics', function () { syncTop(); requestUpdate(); });
+        document.addEventListener('mmc:header-ready', function () { syncTop(); requestUpdate(); });
+        var header = document.querySelector('.site-sticky-header');
+        // Defer to the next frame so measuring never re-triggers the observer in the same frame.
+        function onResize() { window.requestAnimationFrame(function () { syncTop(); requestUpdate(); }); }
+        if (window.ResizeObserver) {
+            new ResizeObserver(onResize).observe(document.body);
+            if (header) new ResizeObserver(onResize).observe(header);
+        }
+
+        syncTop();
+        syncOverflow();
+        update();
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+})();

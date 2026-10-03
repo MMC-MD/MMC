@@ -421,7 +421,9 @@
             .jump-link { font-size: 0.8125rem; padding: 0.5rem 1rem; }
         }
     </style>
-    <link rel="stylesheet" href="../../css/polish.css?v=2026100408">
+    <link rel="stylesheet" href="../../css/polish.css?v=2026100504">
+    <link rel="stylesheet" href="../../css/in-page-nav.css?v=2026100502">
+    <script src="../../js/in-page-nav.js?v=2026100502" defer></script>
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -454,20 +456,6 @@
     <div class="corp-layout">
 
     <!-- ── Desktop Sidebar TOC ── -->
-    <aside class="corp-sidebar" id="corp-sidebar" aria-label="Page contents">
-        <div class="corp-sidebar-title">In This Page</div>
-        <ul class="corp-sidebar-list">
-            <li><a href="#pre-employment" class="corp-sidebar-link" data-target="pre-employment">Pre-Employment Exams</a></li>
-            <li><a href="#osha" class="corp-sidebar-link" data-target="osha">OSHA Surveillance</a></li>
-            <li><a href="#testing" class="corp-sidebar-link" data-target="testing">Diagnostic Testing</a></li>
-            <li><a href="#drug-testing" class="corp-sidebar-link" data-target="drug-testing">Drug Testing Panels</a></li>
-            <li><a href="#workers-comp" class="corp-sidebar-link" data-target="workers-comp">Workers&rsquo; Comp &amp; RTW</a></li>
-            <li><a href="#wellness" class="corp-sidebar-link" data-target="wellness">Corporate Wellness</a></li>
-            <li><a href="#vaccinations" class="corp-sidebar-link" data-target="vaccinations">Vaccinations</a></li>
-            <li><a href="#faq" class="corp-sidebar-link" data-target="faq">FAQ</a></li>
-        </ul>
-        <a href="tel:3012082273" class="corp-sidebar-cta">Call to Discuss Programs</a>
-    </aside>
 
     <!-- ── Main Content ── -->
     <div class="corp-layout-main">
@@ -482,17 +470,6 @@
                     <strong class="text-gray-800">Dr. Efraim Kessous, MPH</strong> is a board-certified Occupational Medicine physician partnering with businesses across Maryland to deliver comprehensive occupational health and workplace wellness programs. Our services follow <strong class="text-gray-800">OSHA medical surveillance standards</strong> and are fully tailored to your industry&rsquo;s requirements.
                 </p>
             </div>
-            <!-- Mobile-only jump nav (sidebar replaces this on desktop) -->
-            <nav class="jump-nav mb-8 xl:hidden" data-aos="fade-up" data-aos-delay="100" aria-label="Jump to section">
-                <a href="#pre-employment" class="jump-link">Pre-Employment</a>
-                <a href="#osha" class="jump-link">OSHA</a>
-                <a href="#testing" class="jump-link">Testing</a>
-                <a href="#drug-testing" class="jump-link">Drug Panels</a>
-                <a href="#workers-comp" class="jump-link">Workers&rsquo; Comp</a>
-                <a href="#wellness" class="jump-link">Wellness</a>
-                <a href="#vaccinations" class="jump-link">Vaccines</a>
-                <a href="#faq" class="jump-link">FAQ</a>
-            </nav>
             <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="150">
                 <a href="tel:3012082273" class="btn bg-brand-blue text-white font-bold px-8 py-4 rounded-xl hover:bg-deep-blue transition-all inline-flex items-center justify-center gap-2">
                     Call to Discuss Corporate Programs
@@ -508,7 +485,7 @@
     <!-- ════════════════════════════════════════════
          1. SERVICES OVERVIEW
          ════════════════════════════════════════════ -->
-    <section id="services" class="py-20 lg:py-24 bg-light-blue-bg">
+    <section id="services" class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav data-page-nav-title="Programs">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-12" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -599,7 +576,7 @@
     <!-- ════════════════════════════════════════════
          2. PRE-EMPLOYMENT PHYSICALS
          ════════════════════════════════════════════ -->
-    <section id="pre-employment" class="py-20 lg:py-24 bg-white">
+    <section id="pre-employment" class="py-20 lg:py-24 bg-white" data-page-nav data-page-nav-title="Pre-Employment">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -697,7 +674,7 @@
     <!-- ════════════════════════════════════════════
          3. OSHA MEDICAL SURVEILLANCE
          ════════════════════════════════════════════ -->
-    <section id="osha" class="py-20 lg:py-24 bg-light-blue-bg">
+    <section id="osha" class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav data-page-nav-title="OSHA">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -766,7 +743,7 @@
     <!-- ════════════════════════════════════════════
          4. DIAGNOSTIC TESTING
          ════════════════════════════════════════════ -->
-    <section id="testing" class="py-20 lg:py-24 bg-white">
+    <section id="testing" class="py-20 lg:py-24 bg-white" data-page-nav data-page-nav-title="Testing">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -852,7 +829,7 @@
     <!-- ════════════════════════════════════════════
          5. DRUG TESTING
          ════════════════════════════════════════════ -->
-    <section id="drug-testing" class="py-20 lg:py-24 bg-light-blue-bg">
+    <section id="drug-testing" class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav data-page-nav-title="Drug Panels">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -945,7 +922,7 @@
     <!-- ════════════════════════════════════════════
          6. WORKERS' COMP & RETURN TO WORK
          ════════════════════════════════════════════ -->
-    <section id="workers-comp" class="py-20 lg:py-24 bg-white">
+    <section id="workers-comp" class="py-20 lg:py-24 bg-white" data-page-nav data-page-nav-title="Workers’ Comp">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -1060,7 +1037,7 @@
     <!-- ════════════════════════════════════════════
          7. CORPORATE WELLNESS
          ════════════════════════════════════════════ -->
-    <section id="wellness" class="py-20 lg:py-24 bg-light-blue-bg">
+    <section id="wellness" class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav data-page-nav-title="Wellness">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -1115,7 +1092,7 @@
     <!-- ════════════════════════════════════════════
          8. VACCINATIONS
          ════════════════════════════════════════════ -->
-    <section id="vaccinations" class="py-20 lg:py-24 bg-white">
+    <section id="vaccinations" class="py-20 lg:py-24 bg-white" data-page-nav data-page-nav-title="Vaccines">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
@@ -1191,7 +1168,7 @@
     <!-- ════════════════════════════════════════════
          9. FAQ
          ════════════════════════════════════════════ -->
-    <section id="faq" class="py-20 lg:py-24 bg-light-blue-bg">
+    <section id="faq" class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav data-page-nav-title="FAQ">
         <div class="container mx-auto px-6 lg:px-8 max-w-6xl">
             <div class="mb-10" data-aos="fade-up">
                 <div class="section-rule mb-5"></div>
