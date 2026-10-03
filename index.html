@@ -193,23 +193,6 @@
             .slideshow-section .slide-container { min-height: 440px; }
         }
 
-        /* Pre-reserve header height so the async-loaded header doesn't
-           cause layout shift. Body's padding-top compensates for the
-           sticky header, so once the header is injected (its children
-           become position:fixed and leave normal flow), the placeholder
-           must collapse to 0 — otherwise we get a duplicate gap below
-           the header. The min-height only applies before injection. */
-        #header-placeholder {
-            display: block;
-            min-height: 140px;
-        }
-        @media (max-width: 640px) {
-            #header-placeholder { min-height: 120px; }
-        }
-        #header-placeholder[data-mmc-header-inserted="true"] {
-            min-height: 0;
-        }
-
         /* Tailwind responsive `sm:flex` is missing from the compiled
            css/tailwind.css used here, which caused the hero text to stay
            display:none on desktop. Restore it locally. */
@@ -535,7 +518,7 @@
     <script src="vendor/aos.js" defer></script>
     <script src="js/lang-toggle.js?v=2026100401" defer></script>
     <script src="js/header-footer-loader.js?v=2026101301" defer></script>
-    <script src="js/weekend-hours.js?v=2026100701" defer></script>
+    <script src="js/weekend-hours.js?v=2026101301" defer></script>
     <script src="js/mobile-menu-fit.js?v=2026100203" defer></script>
     <script src="js/main-simple.js?v=20260413" defer></script>
     <script src="js/slideshow-data.js?v=2026101302" defer></script>
