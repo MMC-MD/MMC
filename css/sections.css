@@ -964,3 +964,8 @@ html body [dir="rtl"] .validity-table th, html body [dir="rtl"] .validity-table 
 }
 html body [dir="rtl"]:is(#faq) > .container > :first-child, html body [dir="rtl"]:is(#faq) > .container > :first-child h2 { text-align: right !important; }
 html body [dir="rtl"] #faq summary, html body #faq[dir="rtl"] summary { text-align: right; }
+
+/* Right-to-left pages: mirror the hero photo and its light fade so the text side is on the right */
+html body #main-content.page-header--photo[dir="rtl"] { transform: scaleX(-1); }
+html body #main-content.page-header--photo[dir="rtl"] > .container { transform: scaleX(-1); }
+html body #main-content.page-header--photo[dir="rtl"] .pt-menu { left: auto; right: 0; }
