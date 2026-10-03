@@ -494,3 +494,80 @@ body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden 
 @media (min-width: 800px) {
     .page-header--about::before { background: linear-gradient(90deg, rgba(248, 250, 252, .97) 0%, rgba(248, 250, 252, .9) 32%, rgba(248, 250, 252, 0) 50%) !important; }
 }
+
+/* ═══ Contact popup (desktop & tablet): centered, calm, white ═══ */
+.contact-directions::after { content: none !important; display: none !important; }
+@media (min-width: 641px) {
+    html body .contact-modal {
+        align-items: center !important; padding: 32px !important;
+        background: rgba(15, 23, 42, .42) !important;
+        -webkit-backdrop-filter: blur(4px) !important; backdrop-filter: blur(4px) !important;
+    }
+    html body .contact-modal.active { animation: mmcModalFade .2s ease !important; }
+    html body .contact-modal-content {
+        max-width: 860px !important; padding: 36px 40px 32px !important; border-radius: 20px !important;
+        background: #fff !important; border: 1px solid rgba(15, 23, 42, .06) !important;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, .06), 0 40px 90px -30px rgba(15, 23, 42, .45) !important;
+        max-height: calc(100vh - 64px); overflow-y: auto; animation: mmcModalRise .28s var(--ds-ease) !important;
+    }
+    html body .contact-modal-content::before { display: none !important; }
+    html body .contact-modal-title {
+        font-size: 26px !important; font-weight: 700 !important; letter-spacing: -0.02em !important; line-height: 1.2 !important;
+        background: none !important; -webkit-text-fill-color: currentColor !important; color: var(--ds-ink) !important;
+        margin-bottom: 8px !important; padding-right: 56px !important;
+    }
+    html body .contact-intro { color: var(--ds-muted) !important; font-size: 15px !important; line-height: 1.55 !important; font-weight: 400 !important; max-width: 600px !important; margin-bottom: 28px !important; }
+    html body .contact-close {
+        top: 24px !important; right: 24px !important; width: 36px !important; height: 36px !important;
+        border: 1px solid var(--ds-line) !important; background: #fff !important; box-shadow: none !important; transform: none !important;
+        transition: background-color .15s ease, border-color .15s ease !important;
+    }
+    html body .contact-close:hover { background: var(--ds-tint) !important; border-color: #cdd8e8 !important; transform: none !important; box-shadow: none !important; }
+    html body .contact-close:hover svg { color: var(--ds-ink) !important; }
+    html body .contact-close svg { width: 16px !important; height: 16px !important; color: var(--ds-muted) !important; }
+    html body .contact-modal-body { gap: 12px !important; }
+    html body .contact-methods-row { gap: 12px !important; }
+    html body .contact-info-row { gap: 12px !important; grid-template-columns: 1.1fr 1fr !important; }
+    html body .contact-item, html body .contact-item.contact-info {
+        padding: 18px 20px !important; gap: 14px !important; border-radius: 14px !important;
+        background: #fff !important; border: 1px solid var(--ds-line) !important; box-shadow: none !important; transform: none !important;
+        transition: border-color .15s ease, background-color .15s ease !important;
+    }
+    html body .contact-item::before { display: none !important; }
+    html body a.contact-item:hover { background: var(--ds-tint) !important; border-color: #c9d6ea !important; transform: none !important; box-shadow: none !important; }
+    html body .contact-item.contact-info:hover { background: #fff !important; border-color: var(--ds-line) !important; transform: none !important; box-shadow: none !important; }
+    html body .contact-icon, html body .contact-item.contact-info .contact-icon {
+        width: 36px !important; height: 36px !important; padding: 9px; border-radius: 10px; margin-top: 0 !important;
+        background: #eef3fb; color: var(--ds-blue) !important; filter: none !important; box-sizing: border-box;
+    }
+    html body .contact-label, html body .contact-item.contact-info .contact-label {
+        font-size: 12px !important; font-weight: 600 !important; letter-spacing: .06em !important; color: var(--ds-muted) !important; opacity: 1 !important;
+    }
+    html body .contact-value { font-size: 16px !important; font-weight: 600 !important; color: var(--ds-ink) !important; letter-spacing: -0.005em; }
+    html body .contact-subtext, html body .contact-note { font-size: 13.5px !important; color: var(--ds-muted) !important; font-weight: 400 !important; line-height: 1.45 !important; }
+    html body .contact-note { margin-top: 10px !important; }
+    html body .contact-directions { font-size: 14px !important; font-weight: 600 !important; color: var(--ds-blue) !important; margin-top: 8px !important; }
+    html body .contact-hours-list { gap: 8px !important; margin: 6px 0 2px !important; }
+    html body .contact-hours-list li { font-size: 14.5px !important; color: var(--ds-ink) !important; }
+    html body .contact-hours-list li span:first-child { color: var(--ds-body) !important; font-weight: 500 !important; }
+    html body .contact-hours-list li span:last-child { color: var(--ds-ink) !important; font-size: 14.5px !important; font-weight: 500 !important; }
+    html body .mmc-modal-upcoming { border-top-color: var(--ds-line) !important; padding-top: 10px !important; margin-top: 10px !important; }
+}
+@keyframes mmcModalFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mmcModalRise { from { opacity: 0; transform: translateY(10px) scale(.99); } to { opacity: 1; transform: none; } }
+@media (min-width: 641px) {
+    html body .contact-methods-row .contact-item { flex-direction: column !important; gap: 14px !important; }
+    html body .contact-text { min-width: 0 !important; }
+    html body .contact-value { overflow-wrap: anywhere; }
+    html body .contact-close:focus:not(:focus-visible) { outline: none !important; }
+}
+/* About hero: shorter, so the team photo frames faces instead of filling the screen */
+@media (min-width: 800px) {
+    .page-header.page-header--photo.page-header--about { padding: 80px 0 76px !important; background-position: right 26% !important; }
+    .page-header--about h1 { font-size: clamp(2.25rem, 1.5rem + 2.2vw, 3.25rem) !important; }
+    .page-header--about .hero-actions { margin-top: 24px; }
+}
+@media (max-width: 799px) {
+    .page-header.page-header--about { padding: 36px 0 214px !important; background-size: auto 190px !important; }
+    .page-header--about::before { background: linear-gradient(180deg, #f8fafc 0%, #f8fafc calc(100% - 192px), rgba(248, 250, 252, 0) calc(100% - 150px)) !important; }
+}

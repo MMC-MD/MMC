@@ -574,7 +574,8 @@
             #insurance-search { font-size: 1rem; padding: 1rem 1rem 1rem 2.8rem; }
         }
     </style>
-    <link rel="stylesheet" href="../css/polish.css?v=2026100606">
+    <link rel="stylesheet" href="../css/polish.css?v=2026100703">
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/insurance-800.webp 800w, /images/heroes/insurance-1200.webp 1200w, /images/heroes/insurance-2000.webp 2000w" imagesizes="100vw">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -582,17 +583,21 @@
     <div id="header-placeholder"></div>
     <script src="../js/critical-header.js?v=2026041202"></script>
 
-    <section id="main-content" class="page-header">
+    <section id="main-content" class="page-header page-header--photo" style="--hero-sm:url(/images/heroes/insurance-800.webp);--hero-md:url(/images/heroes/insurance-1200.webp);--hero-lg:url(/images/heroes/insurance-2000.webp)">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="breadcrumb" data-aos="fade-right">
+            <div class="breadcrumb">
                 <a href="../index.html">Home</a>
                 <span>/</span>
                 <span>Insurance Information</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight" data-aos="fade-up">Insurance Information</h1>
-            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight">Insurance Information</h1>
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed">
                 Search your plan in seconds. We work with most major commercial carriers, Medicare, Medicaid, Tricare, and Maryland state plans.
             </p>
+            <div class="hero-actions">
+                <a href="#plans-hub" class="btn btn-secondary" data-en="Check your coverage" data-es="Verifique su cobertura">Check your coverage</a>
+                <a href="tel:3012082273" class="btn btn-outline" data-en="Call (301) 208-2273" data-es="Llame al (301) 208-2273">Call (301) 208-2273</a>
+            </div>
         </div>
     </section>
 
