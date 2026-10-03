@@ -473,7 +473,7 @@ select.st-input { appearance: none; padding-right: 34px; background-image: url("
 .st-frame-host { border-radius: 12px; overflow: hidden; background: #f5f5f7; border: 1px solid var(--line-2); }
 .st-preview-frame { display: block; width: 100%; height: 520px; border: 0; transition: height .2s ease; }
 .st-frame-host--phone { max-width: 390px; margin: 0 auto; border-radius: 26px; border: 7px solid #111827; }
-.st-layout-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
+.st-layout-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 18px; }
 .st-layout { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 8px 8px 10px; border-radius: 13px; border: 1.5px solid var(--line); background: #fff; text-align: left; transition: all .15s ease; }
 .st-layout:hover { border-color: #cfd7e3; }
 .st-layout.is-active { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(13, 71, 161, .12); }
@@ -486,6 +486,10 @@ select.st-input { appearance: none; padding-right: 34px; background-image: url("
 .st-layout-art--photo i:nth-child(1) { left: 8%; width: 36%; top: 32%; height: 9%; background: #0d47a1; opacity: .7; }
 .st-layout-art--photo i:nth-child(2) { left: 8%; width: 30%; top: 50%; height: 7%; }
 .st-layout-art--photo i:nth-child(3) { right: 0; top: 0; bottom: 0; width: 46%; border-radius: 0; background: linear-gradient(135deg, #9ec5f0, #5b8fd6); }
+.st-layout-art--light { background: linear-gradient(90deg, #f8fafc 0, #f8fafc 34%, rgba(248, 250, 252, 0) 70%), linear-gradient(135deg, #cfe0f3, #8fb3df); }
+.st-layout-art--light i:nth-child(1) { left: 8%; width: 36%; top: 32%; height: 9%; background: #0f172a; opacity: .75; }
+.st-layout-art--light i:nth-child(2) { left: 8%; width: 28%; top: 50%; height: 7%; }
+.st-layout-art--light i:nth-child(3) { left: 8%; width: 18%; top: 66%; height: 11%; border-radius: 99px; background: #0d47a1; }
 .st-layout-art--feature { background: linear-gradient(135deg, #7ea9de, #2a5aa6); }
 .st-layout-art--feature i:nth-child(1) { left: 8%; width: 40%; top: 34%; height: 9%; background: #fff; }
 .st-layout-art--feature i:nth-child(2) { left: 8%; width: 30%; top: 52%; height: 7%; background: rgba(255, 255, 255, .6); }

@@ -13,7 +13,7 @@
     var CACHE_KEY = 'mmc-homepage-slides-cache-v1';
     var LEGACY_STORAGE_KEY = 'mmc-homepage-slides-v1';
     var DEFAULT_ACCENT = '#0d47a1';
-    var LAYOUTS = ['classic', 'photo', 'feature', 'bold'];
+    var LAYOUTS = ['classic', 'light', 'photo', 'feature', 'bold'];
     var remoteSlides = null;
 
     var DEFAULT_SLIDES = [
@@ -108,12 +108,44 @@
             : [];
     }
 
+    // Slides saved before photo layouts existed (no layout and no image) get a
+    // matching library photo, so older content looks as polished as new slides.
+    // Once edited and published in MMC Studio, the chosen layout/image is stored.
+    var VISUALS = [
+        [/flu|vaccin/i, 'flu-vaccine', 'light'],
+        [/faa|pilot|aviation/i, 'aviation-immigration', 'light'],
+        [/immigration|i-693|uscis/i, 'aviation-immigration', 'light'],
+        [/urgent|walk-?in|same[ -]day/i, 'urgent-care', 'light'],
+        [/dermatolog|skin/i, 'dermatology', 'photo'],
+        [/acupunct/i, 'acupuncture', 'photo'],
+        [/weight/i, 'weight-management', 'photo'],
+        [/nutrition|wellness/i, 'nutrition', 'photo'],
+        [/occupational|employer|workplace/i, 'occupational', 'photo'],
+        [/sports|physical therapy|rehab/i, 'physical-therapy', 'feature'],
+        [/lab|blood/i, 'lab-tests', 'photo'],
+        [/screening|blood pressure|heart/i, 'blood-pressure', 'photo'],
+        [/one stop|primary|family|all your/i, 'exam-room', 'light']
+    ];
+
+    function inferVisual(source) {
+        var text = [source.title, source.pill, source.subtext].map(function (c) {
+            return c && typeof c === 'object' ? (c.en || '') + ' ' + (c.es || '') : '';
+        }).join(' ');
+        for (var i = 0; i < VISUALS.length; i++) {
+            if (VISUALS[i][0].test(text)) return { image: '/images/slides/' + VISUALS[i][1] + '-1280.webp', layout: VISUALS[i][2] };
+        }
+        return { image: '/images/slides/exam-room-1280.webp', layout: 'light' };
+    }
+
     function normalizeSlide(value) {
         var source = value && typeof value === 'object' ? value : {};
+        if (source.layout === undefined && !source.image) {
+            source = Object.assign({}, source, inferVisual(source));
+        }
         var image = normalizeImage(source.image);
         var layout = normalizeLayout(source.layout);
         // Image layouts need an image; fall back gracefully if it's missing.
-        if (!image && (layout === 'photo' || layout === 'feature')) {
+        if (!image && (layout === 'photo' || layout === 'feature' || layout === 'light')) {
             layout = 'classic';
         }
         return {

@@ -350,7 +350,7 @@
             border-color: rgba(255, 143, 0, 0.4);
         }
     </style>
-    <link rel="stylesheet" href="../css/polish.css?v=2026101202">
+    <link rel="stylesheet" href="../css/polish.css?v=2026101302">
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/about-800.webp 800w, /images/heroes/about-1200.webp 1200w, /images/heroes/about-1426.webp 1426w" imagesizes="100vw">
     <script src="../js/provider-cards.js?v=2026101101" defer></script>
 </head>
@@ -412,6 +412,11 @@
                 }
                 .apple-split-img:hover img {
                     transform: scale(1.03);
+                }
+                /* Stacked (phones/tablets): photo always above its text */
+                @media (max-width: 1023px) {
+                    .apple-split { gap: 1.75rem; }
+                    .apple-split-img { order: -1; min-height: 0; aspect-ratio: 3 / 2; }
                 }
                 .apple-split-body {
                     display: flex;

@@ -157,8 +157,8 @@
         <link rel="stylesheet" href="css/in-page-nav.css?v=2026100502">
     </noscript>
     <link rel="preload" href="includes/header.html" as="fetch" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/slides.css?v=2026100301" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="css/slides.css?v=2026100301"></noscript>
+    <link rel="stylesheet" href="css/slides.css?v=2026101302" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="css/slides.css?v=2026101302"></noscript>
     <link rel="preload" href="js/header-footer-loader.js?v=2026100201" as="script">
     <link rel="preload" href="js/critical-header.js?v=2026041202" as="script">
     <script>
@@ -167,11 +167,10 @@
     </script>
     <script src="js/in-page-nav.js?v=2026100601" defer></script>
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
-    <!-- Hero image preload: desktop only (mobile uses CSS gradient, no image needed) -->
+    <!-- Hero image preload -->
     <link rel="preload" as="image" type="image/webp" fetchpriority="high"
-          href="images/NewImage.webp"
-          imagesrcset="images/NewImage-800.webp 800w, images/NewImage.webp 1600w"
-          imagesizes="(max-width: 640px) 0px, 100vw">
+          imagesrcset="images/heroes/home-800.webp 800w, images/heroes/home-1200.webp 1200w, images/heroes/home-2000.webp 2000w"
+          imagesizes="(max-width: 799px) 100vw, 66vw">
     <style>
         /* Prevent horizontal overflow at all zoom levels */
         html, body {
@@ -188,10 +187,10 @@
         /* Reserve vertical space for the deferred slideshow so it doesn't
            cause layout shift when slides finally load. */
         .slideshow-section .slide-container {
-            min-height: 360px;
+            min-height: 500px;
         }
-        @media (min-width: 768px) {
-            .slideshow-section .slide-container { min-height: 480px; }
+        @media (min-width: 601px) {
+            .slideshow-section .slide-container { min-height: 440px; }
         }
 
         /* Pre-reserve header height so the async-loaded header doesn't
@@ -209,17 +208,6 @@
         }
         #header-placeholder[data-mmc-header-inserted="true"] {
             min-height: 0;
-        }
-
-        /* Hero must paint at a known height immediately to register as LCP.
-           Use a viewport-stable height instead of aspect-ratio on small
-           screens, which can otherwise re-resolve and cause a layout shift. */
-        @media (max-width: 640px) {
-            #main-content {
-                aspect-ratio: auto !important;
-                height: auto !important;
-                min-height: 520px !important;
-            }
         }
 
         /* Tailwind responsive `sm:flex` is missing from the compiled
@@ -279,7 +267,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="css/polish.css?v=2026101202">
+    <link rel="stylesheet" href="css/polish.css?v=2026101302">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -290,81 +278,23 @@
 
 
 
-    <section id="main-content" class="relative text-white flex items-center" style="z-index: 1; position: relative; isolation: isolate; width: 100%; overflow: hidden; aspect-ratio: 22 / 9; min-height: 420px;">
-
-        <!-- Desktop: photo background (hidden on mobile) -->
-        <picture class="absolute inset-0 z-0 block hidden sm:block">
-            <source srcset="images/NewImage-800.webp 800w, images/NewImage.webp 1600w" type="image/webp" sizes="100vw">
-            <source srcset="images/NewImage-800.jpg 800w, images/NewImage.jpeg 1600w" type="image/jpeg" sizes="100vw">
-            <img src="images/NewImage.jpeg"
-                 alt="Expert doctors and primary care providers at Montgomery Medical Clinic urgent care center"
-                 class="w-full h-full block"
-                 style="object-fit: cover; object-position: center;"
-                 loading="eager"
-                 decoding="sync"
-                 fetchpriority="high"
-                 width="1600"
-                 height="893">
-        </picture>
-
-        <!-- Mobile: instant-loading CSS gradient (no image request) -->
-        <div class="absolute inset-0 z-0 sm:hidden" style="background: linear-gradient(155deg, #0d3b8c 0%, #1565c0 35%, #1976d2 60%, #0a6ebd 80%, #0d47a1 100%);"></div>
-        <!-- subtle radial highlight to give depth -->
-        <div class="absolute inset-0 z-0 sm:hidden" style="background: radial-gradient(ellipse at 60% 30%, rgba(100,181,246,0.18) 0%, transparent 65%);"></div>
-
-        <!-- Desktop overlay -->
-        <div class="absolute inset-0 hidden sm:block bg-gradient-to-r from-dark-gray/85 via-dark-gray/65 via-30% to-dark-gray/20" style="z-index: 10;"></div>
-
-        <!-- Desktop content: left-aligned -->
-        <div class="hidden sm:flex relative z-20 w-full h-full items-center justify-start" style="padding: clamp(2.5rem, 6vh, 4rem) clamp(1rem, 5vw, 4rem);">
-            <div class="text-left" style="max-width: clamp(300px, 45%, 600px);">
-                <h1 style="font-size: clamp(1.5rem, 3.5vw, 3.5rem); line-height: 1.15; font-weight: 900; letter-spacing: -0.02em; margin-bottom: clamp(0.5rem, 1.5vw, 1rem);" data-en="Compassionate, &lt;span class='text-brand-orange'&gt;Personalized&lt;/span&gt; Healthcare." data-es="Atenci&oacute;n M&eacute;dica &lt;span class='text-brand-orange'&gt;Personalizada&lt;/span&gt; y Compasiva.">
-                    Compassionate,
-                    <span class="text-brand-orange">Personalized</span>
-                    Healthcare.
-                </h1>
-                <p style="color: rgba(229, 231, 235, 1); line-height: 1.5; font-size: clamp(0.875rem, 1.8vw, 1.125rem); margin-bottom: clamp(0.4rem, 1vw, 0.75rem);" data-en="Comprehensive healthcare services from experienced physicians committed to patient-centered care. Walk in for immediate attention or schedule an appointment at our clinic in Gaithersburg." data-es="Servicios de salud integrales de m&eacute;dicos experimentados comprometidos con el cuidado centrado en el paciente. Visite sin cita o programe una cita en nuestra cl&iacute;nica en Gaithersburg.">
-                    Comprehensive healthcare services from experienced physicians committed to patient-centered care. Walk in for immediate attention or schedule an appointment at our clinic in Gaithersburg.
-                </p>
-                <p style="color: rgba(255, 255, 255, 0.9); font-size: clamp(0.875rem, 1.8vw, 1.125rem); font-weight: 600; margin-bottom: clamp(0.75rem, 2vw, 1.5rem);" data-en="Proudly serving Gaithersburg, Montgomery County, and the surrounding areas." data-es="Orgullosamente sirviendo a Gaithersburg, el Condado de Montgomery y las &aacute;reas circundantes.">
-                    Proudly serving Gaithersburg, Montgomery County, and the surrounding areas.
-                </p>
-                <div class="flex flex-row" style="gap: clamp(0.5rem, 1.2vw, 0.75rem);">
-                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary text-center" style="padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(1rem, 2.2vw, 1.75rem); font-size: clamp(0.75rem, 1.3vw, 1rem);" data-en="Schedule Your Visit" data-es="Programe Su Visita">
-                        Schedule Your Visit
-                    </a>
-                    <a href="#services" class="btn bg-white text-brand-blue font-bold hover:bg-gray-100 rounded-full text-center" style="padding: clamp(0.5rem, 1.2vw, 0.85rem) clamp(1rem, 2.2vw, 1.75rem); font-size: clamp(0.75rem, 1.3vw, 1rem);" data-en="Explore Services" data-es="Explorar Servicios">
-                        Explore Services
-                    </a>
-                </div>
-            </div>
+    <section id="main-content" class="home-hero" aria-label="Montgomery Medical Clinic">
+        <div class="home-hero-media">
+            <img src="images/heroes/home-1200.webp"
+                 srcset="images/heroes/home-800.webp 800w, images/heroes/home-1200.webp 1200w, images/heroes/home-2000.webp 2000w"
+                 sizes="(max-width: 799px) 100vw, 66vw"
+                 alt="Physicians at Montgomery Medical Clinic"
+                 width="2000" height="1116" fetchpriority="high" decoding="async">
         </div>
-
-        <!-- Mobile content: centered -->
-        <div class="flex sm:hidden relative z-20 w-full h-full items-center justify-center" style="padding: 2.5rem 1.5rem;">
-            <div class="text-center w-full">
-                <h1 style="font-size: clamp(1.6rem, 7vw, 2.2rem); line-height: 1.18; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 0.75rem;" data-en="Compassionate, &lt;span style='color:#ffb347'&gt;Personalized&lt;/span&gt; Healthcare." data-es="Atenci&oacute;n M&eacute;dica &lt;span style='color:#ffb347'&gt;Personalizada&lt;/span&gt; y Compasiva.">
-                    Compassionate,
-                    <span style="color: #ffb347;">Personalized</span>
-                    Healthcare.
-                </h1>
-                <p style="color: rgba(219, 234, 254, 0.95); line-height: 1.55; font-size: 0.95rem; margin-bottom: 0.6rem;">
-                    Comprehensive healthcare services from experienced physicians committed to patient-centered care. Walk in for immediate attention or schedule an appointment at our clinic in Gaithersburg.
-                </p>
-                <p style="color: rgba(255,255,255,0.92); font-size: 0.9rem; font-weight: 600; margin-bottom: 1.5rem;">
-                    Proudly serving Gaithersburg, Montgomery County, and the surrounding areas.
-                </p>
-                <div class="flex flex-col items-center" style="gap: 0.65rem;">
-                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary text-center w-full" style="max-width: 16rem; font-size: 0.95rem; padding: 0.8rem 1.5rem;" data-en="Schedule Your Visit" data-es="Programe Su Visita">
-                        Schedule Your Visit
-                    </a>
-                    <a href="#services" class="btn bg-white text-brand-blue font-bold hover:bg-gray-100 rounded-full text-center w-full" style="max-width: 16rem; font-size: 0.95rem; padding: 0.8rem 1.5rem;" data-en="Explore Services" data-es="Explorar Servicios">
-                        Explore Services
-                    </a>
-                </div>
+        <div class="home-hero-inner">
+            <h1 data-en="Compassionate, &lt;span class='accent'&gt;Personalized&lt;/span&gt; Healthcare." data-es="Atenci&oacute;n M&eacute;dica &lt;span class='accent'&gt;Personalizada&lt;/span&gt; y Compasiva.">Compassionate, <span class="accent">Personalized</span> Healthcare.</h1>
+            <p class="home-hero-lede" data-en="Comprehensive healthcare services from experienced physicians committed to patient-centered care. Walk in for immediate attention or schedule an appointment at our clinic in Gaithersburg." data-es="Servicios de salud integrales de m&eacute;dicos experimentados comprometidos con el cuidado centrado en el paciente. Visite sin cita o programe una cita en nuestra cl&iacute;nica en Gaithersburg.">Comprehensive healthcare services from experienced physicians committed to patient-centered care. Walk in for immediate attention or schedule an appointment at our clinic in Gaithersburg.</p>
+            <div class="home-hero-actions">
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-secondary" data-en="Schedule Your Visit" data-es="Programe Su Visita">Schedule Your Visit</a>
+                <a href="#services" class="btn btn-outline" data-en="Explore Services" data-es="Explorar Servicios">Explore Services</a>
             </div>
+            <p class="home-hero-area" data-en="Proudly serving Gaithersburg, Montgomery County, and the surrounding areas." data-es="Orgullosamente sirviendo a Gaithersburg, el Condado de Montgomery y las &aacute;reas circundantes.">Proudly serving Gaithersburg, Montgomery County, and the surrounding areas.</p>
         </div>
-
     </section>
 
     <section id="updates" data-page-nav data-page-nav-title="Updates" class="slideshow-section">
@@ -604,8 +534,8 @@
     <script src="js/weekend-hours.js?v=2026100701" defer></script>
     <script src="js/mobile-menu-fit.js?v=2026100203" defer></script>
     <script src="js/main-simple.js?v=20260413" defer></script>
-    <script src="js/slideshow-data.js?v=2026100301" defer></script>
-    <script src="js/slideshow.js?v=2026100301" defer></script>
+    <script src="js/slideshow-data.js?v=2026101302" defer></script>
+    <script src="js/slideshow.js?v=2026101302" defer></script>
     <!-- Lazy-load Firebase only when the user gets near the Updates slideshow.
          Firebase + Firestore is ~180 KB of JS that's not needed for first paint
          since it just hydrates the homepage updates slideshow with live data.

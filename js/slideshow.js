@@ -7,7 +7,7 @@
     'use strict';
 
     var DEFAULT_ACCENT = '#0d47a1';
-    var INTERVAL_MS = 6000;
+    var INTERVAL_MS = 5000;
     var state = {
         currentIndex: 0,
         intervalId: null,
@@ -86,6 +86,24 @@
         return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
     }
 
+    // A vivid, light version of the accent for words on dark photos/backgrounds.
+    function vividLight(hex) {
+        var c = hexToRgb(hex).map(function (v) { return v / 255; });
+        var max = Math.max(c[0], c[1], c[2]), min = Math.min(c[0], c[1], c[2]);
+        var h = 0, d = max - min;
+        if (d) {
+            if (max === c[0]) h = ((c[1] - c[2]) / d) % 6;
+            else if (max === c[1]) h = (c[2] - c[0]) / d + 2;
+            else h = (c[0] - c[1]) / d + 4;
+            h *= 60; if (h < 0) h += 360;
+        }
+        var sat = d ? Math.max(0.95, d / (1 - Math.abs(max + min - 1))) : 0;
+        var light = 0.68;
+        var k = (1 - Math.abs(2 * light - 1)) * sat, x = k * (1 - Math.abs((h / 60) % 2 - 1)), m = light - k / 2;
+        var rgb = h < 60 ? [k, x, 0] : h < 120 ? [x, k, 0] : h < 180 ? [0, k, x] : h < 240 ? [0, x, k] : h < 300 ? [x, 0, k] : [k, 0, x];
+        return rgbToHex(rgb.map(function (v) { return (v + m) * 255; }));
+    }
+
     function accentVars(accent) {
         var rgb = hexToRgb(accent);
         var bright = luminance(accent) > 0.3;
@@ -93,7 +111,7 @@
             '--accent: ' + accent,
             '--accent-bg: rgba(' + rgb.join(',') + ',0.08)',
             '--accent-deep: ' + mix(accent, '#000000', 0.38),
-            '--accent-light: ' + mix(accent, '#ffffff', bright ? 0.25 : 0.6),
+            '--accent-light: ' + vividLight(accent),
             // Text colour on white buttons placed over dark layouts.
             '--accent-ink: ' + (bright ? mix(accent, '#000000', 0.35) : accent)
         ].join('; ');
@@ -129,14 +147,17 @@
     }
 
     function imageSources(image) {
-        // Library images ship as name-1280.webp plus a name-720.webp sibling.
+        // Library images ship as name-1280.webp plus a name-720.webp sibling;
+        // the newer photos also have a sharp name-1920.webp for large screens.
         var m = /^(.*)-1280\.webp$/i.exec(image);
-        return m ? { srcset: m[1] + '-720.webp 720w, ' + image + ' 1280w' } : {};
+        if (!m) return {};
+        var hd = /\/(flu-vaccine|aviation-immigration|urgent-care|exam-room)$/.test(m[1]) ? ', ' + m[1] + '-1920.webp 1920w' : '';
+        return { srcset: m[1] + '-720.webp 720w, ' + image + ' 1280w' + hd };
     }
 
     function mediaHtml(slide, layout, eager) {
         var sources = imageSources(slide.image);
-        var sizes = layout === 'photo' ? '(max-width: 600px) 100vw, 490px' : '(max-width: 1060px) 100vw, 1060px';
+        var sizes = layout === 'photo' ? '(max-width: 600px) 100vw, 608px' : '(max-width: 1216px) 100vw, 1216px';
         return '<div class="slide-media"><img src="' + escapeAttr(slide.image) + '"'
             + (sources.srcset ? ' srcset="' + escapeAttr(sources.srcset) + '" sizes="' + sizes + '"' : '')
             + ' alt="" ' + (eager ? 'fetchpriority="low"' : 'loading="lazy"') + ' decoding="async"></div>';
@@ -154,7 +175,7 @@
         var locale = opts.locale === 'es' ? 'es' : 'en';
         var accent = normalizeAccent(slide && slide.accent);
         var layout = slide && slide.layout ? slide.layout : 'classic';
-        if ((layout === 'photo' || layout === 'feature') && !(slide && slide.image)) layout = 'classic';
+        if ((layout === 'photo' || layout === 'feature' || layout === 'light') && !(slide && slide.image)) layout = 'classic';
 
         var pillEn = escapeMultiline(pick(slide.pill, 'en'));
         var pillEs = escapeMultiline(pick(slide.pill, 'es'));
@@ -212,7 +233,13 @@
 
     /* ── Homepage carousel ── */
 
+    function setAutoplayClass(on) {
+        var container = document.getElementById('slideshow');
+        if (container) container.classList.toggle('is-autoplay', on);
+    }
+
     function stopTimers() {
+        setAutoplayClass(false);
         window.clearInterval(state.intervalId);
         window.clearTimeout(state.resumeTimer);
         state.intervalId = null;
@@ -231,6 +258,7 @@
     function startAutoplay() {
         stopTimers();
         if (state.slides.length <= 1) return;
+        setAutoplayClass(true);
         state.intervalId = window.setInterval(function () { showSlide(state.currentIndex + 1); }, INTERVAL_MS);
     }
 
@@ -253,6 +281,7 @@
         var controls = document.getElementById('slideControls');
         var store = window.MMCSlideshowStore;
         if (!container || !track || !dots || !controls || !store) return;
+        container.style.setProperty('--slide-interval', INTERVAL_MS + 'ms');
 
         state.slides = store.getSlidesForRender();
         state.currentIndex = 0;
@@ -288,6 +317,13 @@
             var delta = state.touchStartX - event.changedTouches[0].clientX;
             if (Math.abs(delta) > 40) slideMove(delta > 0 ? 1 : -1);
         }, { passive: true });
+        // Pause while a mouse is over the slide so it can be read.
+        container.addEventListener('pointerenter', function (event) {
+            if (event.pointerType === 'mouse') stopTimers();
+        });
+        container.addEventListener('pointerleave', function (event) {
+            if (event.pointerType === 'mouse') startAutoplay();
+        });
         state.touchBound = true;
     }
 

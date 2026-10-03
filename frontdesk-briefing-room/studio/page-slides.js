@@ -264,7 +264,7 @@ export function createSlidesPage({ api }) {
             return;
         }
         const index = draft.indexOf(s);
-        const needsImage = s.layout === 'photo' || s.layout === 'feature';
+        const needsImage = s.layout === 'photo' || s.layout === 'feature' || s.layout === 'light';
         if (!qs('[data-eform]', host)) {
             host.innerHTML = `<div data-ehead></div>
             <div class="st-preview-card st-preview-card--slide">
@@ -616,7 +616,7 @@ export function createSlidesPage({ api }) {
                 }
                 const s = selected();
                 if (!s) return;
-                const layoutBtn = t.closest('[data-layout]');
+                const layoutBtn = t.closest('.st-layout[data-layout]');
                 const imageBtn = t.closest('[data-image]');
                 const accentBtn = t.closest('[data-accent]');
                 const langBtn = t.closest('[data-lang]');
@@ -626,7 +626,7 @@ export function createSlidesPage({ api }) {
                 const moveBtn = t.closest('[data-move]');
                 if (layoutBtn) mutate((x) => {
                     x.layout = layoutBtn.dataset.layout;
-                    if ((x.layout === 'photo' || x.layout === 'feature') && !x.image) x.image = IMAGE_LIBRARY[0].src;
+                    if ((x.layout === 'photo' || x.layout === 'feature' || x.layout === 'light') && !x.image) x.image = IMAGE_LIBRARY[0].src;
                 });
                 if (imageBtn) mutate((x) => { x.image = imageBtn.dataset.image; });
                 if (accentBtn) mutate((x) => { x.accent = accentBtn.dataset.accent; });

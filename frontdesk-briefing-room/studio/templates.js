@@ -10,6 +10,10 @@ const t = (en, es) => ({ en, es });
 /* ═══ Image library (generated for MMC; files in /images/slides/) ═══ */
 
 export const IMAGE_LIBRARY = [
+    { id: 'flu-vaccine', label: 'Flu vaccine', tags: 'vaccine flu shot immunization covid' },
+    { id: 'urgent-care', label: 'Clinic lobby', tags: 'urgent care clinic reception waiting walk-in welcome' },
+    { id: 'exam-room', label: 'Exam room', tags: 'exam room multi-specialty ultrasound one stop services' },
+    { id: 'aviation-immigration', label: 'FAA & immigration', tags: 'faa pilot aviation immigration passport physical' },
     { id: 'flu-shot', label: 'Flu shot', tags: 'vaccine flu shot immunization covid' },
     { id: 'primary-care', label: 'Primary care', tags: 'doctor stethoscope checkup physical primary' },
     { id: 'clinic', label: 'Our clinic', tags: 'clinic office reception waiting walk-in welcome' },
@@ -427,6 +431,7 @@ export function blankSlide() {
 }
 
 export const LAYOUT_OPTIONS = [
+    { id: 'light', label: 'Light photo', hint: 'Photo fading to white' },
     { id: 'classic', label: 'Classic', hint: 'Clean white card' },
     { id: 'photo', label: 'Photo', hint: 'Text beside a photo' },
     { id: 'feature', label: 'Feature', hint: 'Full photo background' },
