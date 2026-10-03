@@ -146,8 +146,10 @@
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
     <script src="../js/in-page-nav.js?v=2026101401" defer></script>
     <link rel="stylesheet" href="../css/polish.css?v=2026101305">
-    <link rel="stylesheet" href="../css/sections.css?v=2026101408">
+    <link rel="stylesheet" href="../css/sections.css?v=2026101409">
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/acupuncture-800.webp 800w, /images/heroes/acupuncture-1200.webp 1200w, /images/heroes/acupuncture-2000.webp 2000w" imagesizes="100vw">
+    <script src="../js/acupuncture-zh-dict.js?v=2026101401" defer></script>
+    <script src="../js/acupuncture-zh.js?v=2026101401" defer></script>
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -175,6 +177,10 @@
         <div class="container mx-auto">
             <div class="ac-welcome" data-aos="fade-up">
                 <div class="ac-welcome-copy">
+                    <div class="ac-langbar" role="group" aria-label="Page language / 页面语言">
+                        <button type="button" class="is-active" aria-pressed="true" data-zh-off>English</button>
+                        <button type="button" aria-pressed="false" data-zh-on lang="zh-Hans">中文</button>
+                    </div>
                     <p class="hp-eyebrow" data-en="Traditional Wisdom · Modern Care" data-es="Sabidur&iacute;a tradicional · Atenci&oacute;n moderna">Traditional Wisdom · Modern Care</p>
                     <h2 class="hp-title" data-en="Welcome to &lt;span class='up-accent'&gt;Five Elements&lt;/span&gt; Acupuncture &amp;amp; Wellness" data-es="Bienvenido a &lt;span class='up-accent'&gt;Five Elements&lt;/span&gt; Acupuntura y Bienestar">Welcome to <span class="up-accent">Five Elements</span> Acupuncture &amp; Wellness</h2>
                     <p class="hp-lede">Experience the healing power of traditional Chinese medicine combined with modern functional health care. Dr. Min Lu provides personalized <strong>acupuncture</strong> treatments and holistic wellness solutions to help you achieve optimal health.</p>
@@ -249,21 +255,6 @@
         </div>
     </section>
 
-    <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="hp-section ac-insurance">
-        <div class="container mx-auto">
-            <div class="ac-ins" data-aos="fade-up">
-                <div>
-                    <h2 class="hp-title up-title-sm">Insurance &amp; Payment Options</h2>
-                </div>
-                <div>
-                    <p class="ac-ins-lead">WE ACCEPT MOST INSURANCE PROVIDERS</p>
-                    <p class="hp-body">We also accept auto and personal injury insurance for <strong>acupuncture</strong> treatments.</p>
-                    <p class="hp-body">If you have specific questions regarding your coverage for acupuncture services, please contact us for additional information.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="preparation" data-page-nav data-page-nav-title="Preparation" class="hp-section ac-prep">
         <div class="container mx-auto">
             <div class="hp-head" data-aos="fade-up">
@@ -297,10 +288,6 @@
                     <p class="hp-eyebrow" data-en="Your acupuncturist" data-es="Su acupunturista">Your acupuncturist</p>
                     <h2 class="hp-title">Meet Dr. Min Lu | 路敏医师简介</h2>
                     <p class="hp-lede">Dr. Min Lu is a licensed acupuncturist dedicated to providing exceptional <strong>acupuncture</strong> care tailored to your unique health needs, integrating traditional Chinese medicine with modern biomedical knowledge.</p>
-                </div>
-                <div class="ml-switch" role="group" aria-label="Biography language">
-                    <button type="button" class="is-active" aria-pressed="true" onclick="setMinLuBioView('en')">English</button>
-                    <button type="button" aria-pressed="false" onclick="setMinLuBioView('zh')">中文</button>
                 </div>
             </div>
             <div class="ml-view" data-minlu-bio-view="en">
@@ -370,13 +357,34 @@
                     document.querySelectorAll('[data-minlu-bio-view]').forEach(function (view) {
                         view.classList.toggle('hidden', view.getAttribute('data-minlu-bio-view') !== lang);
                     });
-                    document.querySelectorAll('.ml-switch button').forEach(function (b, i) {
-                        var on = (i === 0) === (lang === 'en');
-                        b.classList.toggle('is-active', on);
-                        b.setAttribute('aria-pressed', on ? 'true' : 'false');
-                    });
                 }
             </script>
+        </div>
+    </section>
+
+    <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="hp-section ac-insurance">
+        <div class="container mx-auto">
+            <div class="ac-ins2" data-aos="fade-up">
+                <div class="ac-ins2-head">
+                    <p class="hp-eyebrow" data-en="Coverage" data-es="Cobertura">Coverage</p>
+                    <h2 class="hp-title">Insurance &amp; Payment Options</h2>
+                    <p class="ac-ins2-lead" data-en="We accept most insurance providers." data-es="Aceptamos la mayor&iacute;a de los proveedores de seguros.">We accept most insurance providers.</p>
+                    <div class="hp-actions">
+                        <a href="../insurance/" class="btn btn-primary" data-en="View accepted plans" data-es="Ver planes aceptados">View accepted plans</a>
+                        <a href="tel:3017094551" class="hp-link"><span>Call (301) 709-4551</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
+                </div>
+                <div class="ac-ins2-items">
+                    <div class="ac-ins2-item">
+                        <h3 data-en="Auto &amp; personal injury" data-es="Autom&oacute;vil y lesiones personales">Auto &amp; personal injury</h3>
+                        <p>We also accept auto and personal injury insurance for acupuncture treatments.</p>
+                    </div>
+                    <div class="ac-ins2-item">
+                        <h3 data-en="Questions about your coverage" data-es="Preguntas sobre su cobertura">Questions about your coverage</h3>
+                        <p>If you have specific questions regarding your coverage for acupuncture services, please contact us for additional information.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
