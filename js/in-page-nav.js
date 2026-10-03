@@ -153,6 +153,15 @@
         }
         list.addEventListener('scroll', syncOverflow, { passive: true });
 
+        // Vertical wheel/trackpad scrolling over the bar scrolls the page,
+        // never the bar sideways (only clearly horizontal swipes move the bar).
+        list.addEventListener('wheel', function (event) {
+            if (event.ctrlKey || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+            event.preventDefault();
+            var unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
+            window.scrollBy({ top: event.deltaY * unit, left: 0, behavior: 'instant' });
+        }, { passive: false });
+
         // Re-label when the language toggle runs.
         new MutationObserver(function () {
             links.forEach(function (a) { a.textContent = a.getAttribute(lang() === 'es' ? 'data-es' : 'data-en'); });
