@@ -411,3 +411,102 @@ html body .oc-row h3 { margin: 0; color: var(--ds-ink); font-size: 20px; font-we
     .oc-jump a { padding: 18px 0; }
     .oc-row { padding: 24px 0; }
 }
+
+/* ═══ Five Elements Acupuncture ═══ */
+html body #welcome.up-overview { background: #fff; }
+.up-overview .up-tags { margin-top: 20px; }
+html body .ac-services, html body .ac-journey { background: var(--ds-tint); }
+html body .ac-conditions, html body .ac-prep { background: #fff; }
+html body .ac-insurance { background: #fff; padding-bottom: 0; }
+html body .ac-provider { background: var(--ds-tint); }
+
+/* Services: quiet 4 × 2 grid with hairline tops */
+.ac-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; }
+.ac-item { padding: 24px 0 32px; border-top: 1px solid #d9e1ec; }
+html body .ac-item h3 { margin: 0; color: var(--ds-ink); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+.ac-item p { margin: 6px 0 0; color: var(--ds-muted); font-size: 15px; line-height: 1.6; }
+
+/* Conditions: two lists + booking panel */
+.ac-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ac-two .up-svc { background: var(--ds-tint); border-color: transparent; }
+.ac-book {
+    display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: 24px;
+    padding: 32px 36px; border: 1px solid var(--ds-line); border-radius: 20px; background: #fff;
+}
+html body .ac-book h3 { margin: 0; color: var(--ds-ink); font-size: 20px; font-weight: 700; letter-spacing: -0.012em; }
+.ac-book p { margin: 6px 0 0; color: var(--ds-muted); font-size: 15.5px; line-height: 1.6; max-width: 640px; }
+.ac-book .hp-actions { margin-top: 0; flex: 0 0 auto; flex-wrap: nowrap; }
+
+/* Care journey: numbered steps */
+.ac-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.ac-step { padding-top: 22px; border-top: 2px solid var(--ds-blue); }
+.ac-step-num { display: block; color: var(--ds-blue); font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+html body .ac-step h3 { margin: 10px 0 0; color: var(--ds-ink); font-size: 18px; font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; }
+.ac-step p { margin: 8px 0 0; color: var(--ds-muted); font-size: 15px; line-height: 1.65; }
+
+/* Insurance: one compact row */
+.ac-ins {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 56px; align-items: start;
+    padding: 40px 44px; border: 1px solid var(--ds-line); border-radius: 20px;
+}
+.ac-ins-lead { margin: 0; color: var(--ds-ink); font-size: 18px; font-weight: 600; line-height: 1.5; text-transform: none; }
+.ac-ins .hp-body { margin-top: 10px; }
+.ac-ins .hp-body strong { font-weight: 500; color: inherit; }
+
+/* Preparation: three columns separated by hairlines */
+.ac-prep-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ds-line); }
+.ac-prep-col { padding: 28px 32px 0 0; }
+.ac-prep-col + .ac-prep-col { padding-left: 32px; border-left: 1px solid var(--ds-line); }
+html body .ac-prep-col h3 { margin: 0 0 14px; color: var(--ds-ink); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+
+/* Subgrid alignment (titles that wrap don't push text down) */
+@media (min-width: 1024px) {
+    .ac-grid { grid-auto-rows: auto; }
+    .ac-steps { row-gap: 0; }
+    .ac-step { display: grid; grid-template-rows: subgrid; grid-row: span 3; row-gap: 0; }
+    .ac-two { row-gap: 0; }
+    .ac-two .up-svc { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
+}
+
+/* Dr. Min Lu profile: flatter, quieter */
+html body .ac-provider .minlu-profile-shell { max-width: none; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none !important; }
+html body .ac-provider .minlu-portrait-frame { padding: 0; border: 0 !important; background: none; box-shadow: none !important; }
+html body .ac-provider .minlu-portrait { border-radius: 18px; }
+html body .ac-provider .minlu-portrait::after { display: none; }
+html body .ac-provider .minlu-portrait-frame:hover .minlu-portrait img { transform: none; }
+html body .ac-provider :is(.minlu-side-note, .minlu-panel, .minlu-language-panel) {
+    background: #fff !important; border: 1px solid var(--ds-line) !important; border-radius: 16px !important; box-shadow: none !important;
+}
+html body .ac-provider .minlu-quote {
+    background: none !important; color: var(--ds-ink) !important; box-shadow: none !important;
+    border: 0 !important; border-left: 2px solid var(--ds-blue) !important; border-radius: 0 !important; padding: 6px 0 6px 22px !important; text-align: left !important;
+}
+html body .ac-provider .minlu-quote * { color: inherit !important; text-align: left !important; }
+html body .ac-provider .minlu-specialty-chip { background: var(--ds-tint) !important; color: var(--ds-ink) !important; border: 1px solid var(--ds-line) !important; }
+
+@media (max-width: 1023px) {
+    .ac-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ac-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+    .ac-two { grid-template-columns: 1fr; }
+    .ac-book { flex-direction: column; align-items: flex-start; }
+    .ac-ins { grid-template-columns: 1fr; gap: 16px; padding: 32px; }
+    .ac-prep-grid { grid-template-columns: 1fr; }
+    .ac-prep-col, .ac-prep-col + .ac-prep-col { padding: 24px 0; border-left: 0; }
+    .ac-prep-col + .ac-prep-col { border-top: 1px solid var(--ds-line); }
+}
+@media (max-width: 639px) {
+    .ac-grid { grid-template-columns: 1fr; }
+    .ac-item { padding: 18px 0 20px; }
+    .ac-steps { grid-template-columns: 1fr; }
+    .ac-book { padding: 24px 22px; }
+    .ac-book .hp-actions { flex-wrap: wrap; width: 100%; }
+    .ac-ins { padding: 24px 22px; }
+}
+/* Phones/tablets: Dr. Lu's photo, then her name & bio, then the supporting panels */
+@media (max-width: 1023px) {
+    html body .ac-provider .minlu-profile-hero { display: flex; flex-direction: column; align-items: stretch; gap: 1.25rem; }
+    html body .ac-provider .minlu-column-left { display: contents; }
+    html body .ac-provider .minlu-portrait-frame { order: 0; }
+    html body .ac-provider .minlu-column-right { order: 1; }
+    html body .ac-provider .minlu-column-left > :not(.minlu-portrait-frame) { order: 2; }
+}

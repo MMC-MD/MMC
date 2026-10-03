@@ -146,6 +146,7 @@
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
     <script src="../js/in-page-nav.js?v=2026100601" defer></script>
     <link rel="stylesheet" href="../css/polish.css?v=2026101305">
+    <link rel="stylesheet" href="../css/sections.css?v=2026101406">
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/acupuncture-800.webp 800w, /images/heroes/acupuncture-1200.webp 1200w, /images/heroes/acupuncture-2000.webp 2000w" imagesizes="100vw">
 </head>
 <body class="bg-light-gray text-dark-gray">
@@ -170,183 +171,128 @@
         </div>
     </section>
 
-    <section id="welcome" class="pt-40 pb-16 lg:pt-52 lg:pb-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative">
-            <!-- Welcome Section -->
-            <style>
-                @keyframes welcomeFadeUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(24px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                @keyframes welcomeDividerGrow {
-                    from {
-                        opacity: 0;
-                        transform: scaleX(0);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: scaleX(1);
-                    }
-                }
-                @keyframes welcomeDotPulse {
-                    0% {
-                        box-shadow: 0 0 0 0 rgba(255, 143, 0, 0.45);
-                    }
-                    70% {
-                        box-shadow: 0 0 0 12px rgba(255, 143, 0, 0);
-                    }
-                    100% {
-                        box-shadow: 0 0 0 0 rgba(255, 143, 0, 0);
-                    }
-                }
-                .welcome-hero {
-                    position: relative;
-                    max-width: 960px;
-                    margin: 0 auto;
-                    padding: clamp(2rem, 4vw, 3.5rem) 0 clamp(1.25rem, 2.5vw, 2rem);
-                    text-align: center;
-                }
-                .welcome-hero > * {
-                    opacity: 0;
-                    animation: welcomeFadeUp 0.9s ease-out forwards;
-                }
-                .welcome-hero .welcome-eyebrow { animation-delay: 0.05s; }
-                .welcome-hero .welcome-title { animation-delay: 0.2s; }
-                .welcome-hero .welcome-divider { animation-delay: 0.35s; }
-                .welcome-hero .welcome-lead { animation-delay: 0.5s; }
-                .welcome-hero .welcome-pillars { animation-delay: 0.65s; }
-                @media (prefers-reduced-motion: reduce) {
-                    .welcome-hero > * {
-                        opacity: 1;
-                        animation: none;
-                    }
-                }
-                .welcome-eyebrow {
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 0.6rem;
-                    padding: 0.45rem 1.1rem;
-                    border-radius: 999px;
-                    background: rgba(13, 71, 161, 0.08);
-                    color: #0d47a1;
-                    font-size: 0.78rem;
-                    font-weight: 700;
-                    letter-spacing: 0.18em;
-                    text-transform: uppercase;
-                    margin-bottom: 1.5rem;
-                }
-                .welcome-eyebrow::before,
-                .welcome-eyebrow::after {
-                    content: "";
-                    width: 22px;
-                    height: 1px;
-                    background: rgba(13, 71, 161, 0.35);
-                }
-                .welcome-title {
-                    font-size: clamp(2rem, 4.2vw, 3.5rem);
-                    line-height: 1.15;
-                    font-weight: 900;
-                    color: #0d47a1;
-                    margin-bottom: 1.25rem;
-                    letter-spacing: -0.01em;
-                }
-                .welcome-title .accent {
-                    background: linear-gradient(90deg, #0d47a1 0%, #ff8f00 100%);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
-                }
-                .welcome-divider {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 0.75rem;
-                    margin: 0 auto 1.5rem;
-                }
-                .welcome-divider span {
-                    height: 1px;
-                    width: 64px;
-                    background: linear-gradient(90deg, transparent, rgba(13, 71, 161, 0.4), transparent);
-                    transform-origin: center;
-                    animation: welcomeDividerGrow 0.9s ease-out 0.45s both;
-                }
-                .welcome-divider .dot {
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    background: #ff8f00;
-                    animation: welcomeDotPulse 2.4s ease-out 1.2s infinite;
-                }
-                .welcome-lead {
-                    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-                    line-height: 1.8;
-                    color: #4a5568;
-                    max-width: 780px;
-                    margin: 0 auto 2.25rem;
-                }
-                .welcome-lead strong {
-                    color: #0d47a1;
-                    font-weight: 700;
-                }
-                .welcome-pillars {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                    gap: 0.85rem;
-                    max-width: 820px;
-                    margin: 0 auto;
-                }
-                .welcome-pillar {
-                    padding: 0.7rem 1.4rem;
-                    background: #ffffff;
-                    border: 1px solid rgba(13, 71, 161, 0.15);
-                    border-radius: 999px;
-                    font-weight: 600;
-                    color: #0d47a1;
-                    font-size: 0.95rem;
-                    box-shadow: 0 4px 14px rgba(13, 71, 161, 0.05);
-                    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-                }
-                .welcome-pillar:hover {
-                    transform: translateY(-2px);
-                    border-color: rgba(255, 143, 0, 0.35);
-                    box-shadow: 0 12px 24px rgba(13, 71, 161, 0.10);
-                }
-            </style>
-            <div class="welcome-hero">
-                <span class="welcome-eyebrow">Traditional Wisdom · Modern Care</span>
-                <h2 class="welcome-title">
-                    Welcome to <span class="accent">Five Elements</span><br class="hidden sm:block" />
-                    Acupuncture &amp; Wellness
-                </h2>
-                <div class="welcome-divider" aria-hidden="true">
-                    <span></span>
-                    <i class="dot"></i>
-                    <span></span>
+    <section id="welcome" class="hp-section up-overview">
+        <div class="container mx-auto">
+            <div class="up-intro" data-aos="fade-up">
+                <div>
+                    <p class="hp-eyebrow" data-en="Traditional Wisdom · Modern Care" data-es="Sabidur&iacute;a tradicional · Atenci&oacute;n moderna">Traditional Wisdom · Modern Care</p>
+                    <h2 class="hp-title" data-en="Welcome to &lt;span class='up-accent'&gt;Five Elements&lt;/span&gt; Acupuncture &amp;amp; Wellness" data-es="Bienvenido a &lt;span class='up-accent'&gt;Five Elements&lt;/span&gt; Acupuntura y Bienestar">Welcome to <span class="up-accent">Five Elements</span> Acupuncture &amp; Wellness</h2>
                 </div>
-                <p class="welcome-lead">
-                    Experience the healing power of traditional Chinese medicine combined with modern functional health care. Dr. Min Lu provides personalized <strong>acupuncture</strong> treatments and holistic wellness solutions to help you achieve optimal health.
-                </p>
-                <div class="welcome-pillars">
-                    <div class="welcome-pillar">Holistic Healing</div>
-                    <div class="welcome-pillar">Personalized Care</div>
-                    <div class="welcome-pillar">Whole-Body Wellness</div>
+                <div>
+                    <p class="hp-lede">Experience the healing power of traditional Chinese medicine combined with modern functional health care. Dr. Min Lu provides personalized <strong>acupuncture</strong> treatments and holistic wellness solutions to help you achieve optimal health.</p>
+                    <ul class="up-tags"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-en="Holistic Healing" data-es="Sanaci&oacute;n hol&iacute;stica">Holistic Healing</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-en="Personalized Care" data-es="Atenci&oacute;n personalizada">Personalized Care</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-en="Whole-Body Wellness" data-es="Bienestar integral">Whole-Body Wellness</span></li></ul>
+                    <div class="hp-actions"><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Book Online</a><a href="tel:3017094551" class="hp-link"><span>Call (301) 709-4551</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Provider profile is mounted near the bottom of the page -->
+    <section id="services" data-page-nav data-page-nav-title="Services" class="hp-section ac-services">
+        <div class="container mx-auto">
+            <div class="hp-head" data-aos="fade-up">
+                <h2 class="hp-title">Our Acupuncture Services</h2>
+                <p class="hp-lede">At Five Elements Acupuncture & Wellness, Dr. Lu provides a wide range of <strong>acupuncture</strong> and Chinese medicine services, including cupping therapy, moxibustion, massage therapy, and stress management to help you achieve optimal wellness.</p>
+            </div>
+            <div class="ac-grid" data-aos="fade-up">
+                <div class="ac-item"><h3>Pain Management</h3><p>Acupuncture therapy for chronic and acute pain relief</p></div>
+                <div class="ac-item"><h3>Massage Therapy</h3><p>Therapeutic massage for relaxation and pain relief</p></div>
+                <div class="ac-item"><h3>Stress Management</h3><p>Acupuncture and holistic approaches to reduce stress</p></div>
+                <div class="ac-item"><h3>Insomnia</h3><p>Acupuncture treatment for sleep disorders</p></div>
+                <div class="ac-item"><h3>Cupping Therapy</h3><p>Ancient technique combined with acupuncture</p></div>
+                <div class="ac-item"><h3>Moxibustion</h3><p>Heat therapy to enhance acupuncture treatment</p></div>
+                <div class="ac-item"><h3>Fertility</h3><p>Acupuncture for fertility and reproductive health</p></div>
+                <div class="ac-item"><h3>Digestive Health</h3><p>Acupuncture for digestive disorders and wellness</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="conditions" data-page-nav data-page-nav-title="Conditions" class="hp-section ac-conditions">
+        <div class="container mx-auto">
+            <div class="hp-head" data-aos="fade-up">
+                <h2 class="hp-title">Conditions We Treat</h2>
+                <p class="hp-lede">Dr. Lu provides specialized care for a wide range of conditions, combining traditional Chinese medicine with modern functional health practices.</p>
+            </div>
+            <div class="up-svc-grid ac-two" data-aos="fade-up">
+                <div class="up-svc">
+                    <div class="up-svc-head"><h3>Women's Health</h3></div>
+                    <ul class="up-svc-list"><li><span>Infertility & Ovarian Dysfunction</span></li><li><span>Polycystic Ovary Syndrome (PCOS)</span></li><li><span>Menstrual Disease & Irregular Periods</span></li><li><span>Menopausal Syndrome</span></li><li><span>Pelvic Inflammatory Disease</span></li><li><span>Vulva Leukoplakia</span></li><li><span>Postnatal Care</span></li></ul>
+                </div>
+                <div class="up-svc">
+                    <div class="up-svc-head"><h3>General Health Conditions</h3></div>
+                    <ul class="up-svc-list"><li><span>Depression & Anxiety</span></li><li><span>Insomnia & Sleep Disorders</span></li><li><span>Allergies & Respiratory Issues</span></li><li><span>Pain Management (Chronic & Acute)</span></li><li><span>Digestive Disorders</span></li><li><span>Stress & Fatigue</span></li></ul>
+                </div>
+            </div>
+            <div class="ac-book" data-aos="fade-up">
+                <div>
+                    <h3>Experience High-Quality Holistic Acupuncture Care</h3>
+                    <p>To receive high-quality holistic health care in a warm and welcoming environment, partner with Dr. Lu. Make an appointment at Five Elements Acupuncture & Wellness for professional <strong>acupuncture</strong> treatment by calling the office or booking online today.</p>
+                </div>
+                <div class="hp-actions"><a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary">Book Online</a><a href="tel:3017094551" class="hp-link"><span>Call (301) 709-4551</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="care-journey" data-page-nav data-page-nav-title="Care Journey" class="hp-section ac-journey">
+        <div class="container mx-auto">
+            <div class="hp-head" data-aos="fade-up">
+                <h2 class="hp-title">Personalized Acupuncture Care Journey</h2>
+                <p class="hp-lede">Every acupuncture visit begins with thoughtful listening, collaborative goal-setting, and a tailored treatment plan that integrates traditional Chinese medicine, bodywork, and lifestyle guidance for lasting wellness.</p>
+            </div>
+            <ol class="ac-steps" data-aos="fade-up">
+                <li class="ac-step"><span class="ac-step-num">01</span><h3>Comprehensive Consultation</h3><p>Dr. Lu performs a detailed health history, pulse reading, and tongue analysis to understand the root imbalances before beginning your acupuncture session.</p></li>
+                <li class="ac-step"><span class="ac-step-num">02</span><h3>Targeted Acupuncture Therapy</h3><p>Precise acupuncture point selection, gentle needling, and supportive modalities like moxibustion or cupping amplify circulation, reduce pain, and restore energy flow.</p></li>
+                <li class="ac-step"><span class="ac-step-num">03</span><h3>Integrative Support</h3><p>Sessions may include herbal guidance, massage therapy, or stress management tools that complement acupuncture and help you maintain balance between visits.</p></li>
+                <li class="ac-step"><span class="ac-step-num">04</span><h3>Ongoing Wellness Planning</h3><p>Regular acupuncture follow-ups, personalized nutrition tips, and movement recommendations keep your wellness plan actionable and aligned with your lifestyle.</p></li>
+            </ol>
+        </div>
+    </section>
+
+    <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="hp-section ac-insurance">
+        <div class="container mx-auto">
+            <div class="ac-ins" data-aos="fade-up">
+                <div>
+                    <h2 class="hp-title up-title-sm">Insurance &amp; Payment Options</h2>
+                </div>
+                <div>
+                    <p class="ac-ins-lead">WE ACCEPT MOST INSURANCE PROVIDERS</p>
+                    <p class="hp-body">We also accept auto and personal injury insurance for <strong>acupuncture</strong> treatments.</p>
+                    <p class="hp-body">If you have specific questions regarding your coverage for acupuncture services, please contact us for additional information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="preparation" data-page-nav data-page-nav-title="Preparation" class="hp-section ac-prep">
+        <div class="container mx-auto">
+            <div class="hp-head" data-aos="fade-up">
+                <h2 class="hp-title">Preparing for Your Acupuncture Treatment</h2>
+                <p class="hp-lede">Simple habits before and after each acupuncture appointment help you feel relaxed, supported, and ready to embrace the healing process Dr. Lu designs for you.</p>
+            </div>
+            <div class="ac-prep-grid" data-aos="fade-up">
+                <div class="ac-prep-col">
+                    <h3>Before Your Session</h3>
+                    <ul class="up-svc-list"><li><span>Enjoy a light, nourishing meal and arrive hydrated to support acupuncture circulation.</span></li><li><span>Wear comfortable clothing that can easily be rolled to access acupuncture points on the arms and legs.</span></li></ul>
+                </div>
+                <div class="ac-prep-col">
+                    <h3>During Treatment</h3>
+                    <ul class="up-svc-list"><li><span>Settle into a quiet, spa-like environment while Dr. Lu places acupuncture needles with precision and care.</span></li><li><span>Experience complementary therapies such as cupping therapy, moxibustion, or massage therapy when appropriate.</span></li></ul>
+                </div>
+                <div class="ac-prep-col">
+                    <h3>Aftercare Tips</h3>
+                    <ul class="up-svc-list"><li><span>Drink water, rest, and notice how your body responds as the acupuncture session continues to work.</span></li><li><span>Follow the customized acupuncture care plan, including herbal medicine and gentle exercises between visits.</span></li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hp-section up-providers ac-provider">
+        <div class="container mx-auto">
             <div id="providers" data-page-nav data-page-nav-title="Provider">
-                <div class="text-center mb-12 max-w-4xl mx-auto">
-                    <h2 class="text-4xl lg:text-5xl font-black text-brand-blue mb-6" data-aos="fade-up">Meet Dr. Min Lu | 路敏医师简介</h2>
-                    <p class="text-xl text-center text-medium-gray leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                        Dr. Min Lu is a licensed acupuncturist dedicated to providing exceptional <strong>acupuncture</strong> care tailored to your unique health needs, integrating traditional Chinese medicine with modern biomedical knowledge.
-                    </p>
+                <div class="up-head-row" data-aos="fade-up">
+                    <div class="hp-head">
+                        <h2 class="hp-title">Meet Dr. Min Lu | 路敏医师简介</h2>
+                        <p class="hp-lede">Dr. Min Lu is a licensed acupuncturist dedicated to providing exceptional <strong>acupuncture</strong> care tailored to your unique health needs, integrating traditional Chinese medicine with modern biomedical knowledge.</p>
+                    </div>
                 </div>
 
                 <style>
@@ -835,310 +781,9 @@
                         });
                     }
                 </script>
-                <script>
-                    (function() {
-                        var providers = document.getElementById('providers');
-                        if (providers && !window.__minluProviderNode) {
-                            window.__minluProviderNode = providers;
-                            providers.remove();
-                        }
-                    })();
-                </script>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="services" data-page-nav data-page-nav-title="Services" class="py-24 lg:py-32 bg-light-blue-bg">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <h2 class="text-4xl font-black text-brand-blue mb-8 text-center" data-aos="fade-up">Our Acupuncture Services</h2>
-                <p class="text-xl text-center text-medium-gray mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    At Five Elements Acupuncture & Wellness, Dr. Lu provides a wide range of <strong>acupuncture</strong> and Chinese medicine services, including cupping therapy, moxibustion, massage therapy, and stress management to help you achieve optimal wellness.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="0">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Pain Management</h3>
-                        <p class="text-medium-gray">Acupuncture therapy for chronic and acute pain relief</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="75">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Massage Therapy</h3>
-                        <p class="text-medium-gray">Therapeutic massage for relaxation and pain relief</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="150">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Stress Management</h3>
-                        <p class="text-medium-gray">Acupuncture and holistic approaches to reduce stress</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="225">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Insomnia</h3>
-                        <p class="text-medium-gray">Acupuncture treatment for sleep disorders</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="0">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Cupping Therapy</h3>
-                        <p class="text-medium-gray">Ancient technique combined with acupuncture</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="75">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Moxibustion</h3>
-                        <p class="text-medium-gray">Heat therapy to enhance acupuncture treatment</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="150">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Fertility</h3>
-                        <p class="text-medium-gray">Acupuncture for fertility and reproductive health</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl ring-1 ring-black/5 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="225">
-                        <h3 class="text-xl font-bold text-brand-blue mb-3">Digestive Health</h3>
-                        <p class="text-medium-gray">Acupuncture for digestive disorders and wellness</p>
-                    </div>
-                </div>
-        </div>
-    </section>
-
-    <section id="conditions" data-page-nav data-page-nav-title="Conditions" class="py-24 lg:py-32 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <h2 class="text-4xl font-black text-brand-blue mb-8 text-center" data-aos="fade-up">Conditions We Treat</h2>
-                <p class="text-xl text-center text-medium-gray mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Dr. Lu provides specialized care for a wide range of conditions, combining traditional Chinese medicine with modern functional health practices.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-green-600" data-aos="fade-up" data-aos-delay="0">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-6">Women's Health</h3>
-                        <ul class="space-y-3 text-medium-gray">
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Infertility & Ovarian Dysfunction</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Polycystic Ovary Syndrome (PCOS)</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Menstrual Disease & Irregular Periods</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Menopausal Syndrome</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Pelvic Inflammatory Disease</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Vulva Leukoplakia</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Postnatal Care</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-6">General Health Conditions</h3>
-                        <ul class="space-y-3 text-medium-gray">
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Depression & Anxiety</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Insomnia & Sleep Disorders</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Allergies & Respiratory Issues</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Pain Management (Chronic & Acute)</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Digestive Disorders</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Stress & Fatigue</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-        </div>
-    </section>
-
-    <section class="py-24 lg:py-32 bg-light-blue-bg">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div class="bg-gradient-to-r from-green-100 to-blue-100 p-8 lg:p-12 rounded-3xl" data-aos="fade-up">
-                <h3 class="text-3xl font-bold text-brand-blue mb-6 text-center">Experience High-Quality Holistic Acupuncture Care</h3>
-                <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto">
-                    To receive high-quality holistic health care in a warm and welcoming environment, partner with Dr. Lu. Make an appointment at Five Elements Acupuncture & Wellness for professional <strong>acupuncture</strong> treatment by calling the office or booking online today.
-                </p>
             </div>
         </div>
     </section>
-
-    <section id="care-journey" data-page-nav data-page-nav-title="Care Journey" class="py-24 lg:py-32 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <h2 class="text-4xl font-black text-brand-blue mb-8 text-center" data-aos="fade-up">Personalized Acupuncture Care Journey</h2>
-                <p class="text-xl text-center text-medium-gray mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Every acupuncture visit begins with thoughtful listening, collaborative goal-setting, and a tailored treatment plan that integrates traditional Chinese medicine, bodywork, and lifestyle guidance for lasting wellness.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-green-600" data-aos="fade-up" data-aos-delay="0">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-4">Comprehensive Consultation</h3>
-                        <p class="text-medium-gray leading-relaxed">
-                            Dr. Lu performs a detailed health history, pulse reading, and tongue analysis to understand the root imbalances before beginning your acupuncture session.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-4">Targeted Acupuncture Therapy</h3>
-                        <p class="text-medium-gray leading-relaxed">
-                            Precise acupuncture point selection, gentle needling, and supportive modalities like moxibustion or cupping amplify circulation, reduce pain, and restore energy flow.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-orange-500" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-4">Integrative Support</h3>
-                        <p class="text-medium-gray leading-relaxed">
-                            Sessions may include herbal guidance, massage therapy, or stress management tools that complement acupuncture and help you maintain balance between visits.
-                        </p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-purple-500" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-4">Ongoing Wellness Planning</h3>
-                        <p class="text-medium-gray leading-relaxed">
-                            Regular acupuncture follow-ups, personalized nutrition tips, and movement recommendations keep your wellness plan actionable and aligned with your lifestyle.
-                        </p>
-                    </div>
-                </div>
-        </div>
-    </section>
-
-    <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="py-24 lg:py-32 bg-light-blue-bg">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <h2 class="text-4xl font-black text-brand-blue mb-8 text-center" data-aos="fade-up">Insurance & Payment Options</h2>
-                <div class="bg-white p-8 lg:p-12 rounded-2xl shadow-lg text-center" data-aos="fade-up" data-aos-delay="100">
-                    <p class="text-xl text-medium-gray mb-6">
-                        <strong>WE ACCEPT MOST INSURANCE PROVIDERS</strong>
-                    </p>
-                    <p class="text-lg text-medium-gray mb-6">
-                        We also accept auto and personal injury insurance for <strong>acupuncture</strong> treatments.
-                    </p>
-                    <p class="text-medium-gray">
-                        If you have specific questions regarding your coverage for acupuncture services, please contact us for additional information.
-                    </p>
-                </div>
-        </div>
-    </section>
-
-    <section id="preparation" data-page-nav data-page-nav-title="Preparation" class="py-24 lg:py-32 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-                <h2 class="text-4xl font-black text-brand-blue mb-8 text-center" data-aos="fade-up">Preparing for Your Acupuncture Treatment</h2>
-                <p class="text-xl text-center text-medium-gray mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Simple habits before and after each acupuncture appointment help you feel relaxed, supported, and ready to embrace the healing process Dr. Lu designs for you.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-green-600" data-aos="fade-up" data-aos-delay="0">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-4">Before Your Session</h3>
-                        <ul class="space-y-3 text-medium-gray leading-relaxed">
-                            <li class="flex gap-3 items-start">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Enjoy a light, nourishing meal and arrive hydrated to support acupuncture circulation.</span>
-                            </li>
-                            <li class="flex gap-3 items-start">
-                                <svg class="w-6 h-6 text-green-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Wear comfortable clothing that can easily be rolled to access acupuncture points on the arms and legs.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-blue-600" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-4">During Treatment</h3>
-                        <ul class="space-y-3 text-medium-gray leading-relaxed">
-                            <li class="flex gap-3 items-start">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Settle into a quiet, spa-like environment while Dr. Lu places acupuncture needles with precision and care.</span>
-                            </li>
-                            <li class="flex gap-3 items-start">
-                                <svg class="w-6 h-6 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Experience complementary therapies such as cupping therapy, moxibustion, or massage therapy when appropriate.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-orange-500" data-aos="fade-up" data-aos-delay="200">
-                        <h3 class="text-2xl font-bold text-brand-blue mb-4">Aftercare Tips</h3>
-                        <ul class="space-y-3 text-medium-gray leading-relaxed">
-                            <li class="flex gap-3 items-start">
-                                <svg class="w-6 h-6 text-orange-500 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Drink water, rest, and notice how your body responds as the acupuncture session continues to work.</span>
-                            </li>
-                            <li class="flex gap-3 items-start">
-                                <svg class="w-6 h-6 text-orange-500 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Follow the customized acupuncture care plan, including herbal medicine and gentle exercises between visits.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-        </div>
-    </section>
-
-    <section class="py-24 lg:py-32 bg-light-blue-bg">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div id="providers-mount"></div>
-        </div>
-    </section>
-
-    <script>
-        (function() {
-            var providers = window.__minluProviderNode || document.getElementById('providers');
-            var mount = document.getElementById('providers-mount');
-            if (providers && mount) {
-                mount.appendChild(providers);
-            }
-        })();
-    </script>
 
     <!-- FAQ SECTION -->
     <section id="faq" data-page-nav data-page-nav-title="FAQ" class="py-20 lg:py-24 bg-white">
