@@ -93,9 +93,15 @@
         return LAYOUTS.indexOf(value) >= 0 ? value : 'classic';
     }
 
+    // Library photos that were replaced: map the old file to its successor so
+    // already-published slides pick up the new photo (and no stale cached copy).
+    var RENAMED = { 'spot-flu': 'spot-flu-kid', 'spot-aviation': 'spot-travel', 'clinic-lobby': 'spot-services-collage' };
+
     // Images are site-hosted (/images/...) or https URLs; anything else is dropped.
     function normalizeImage(value) {
-        var text = cleanText(value);
+        var text = cleanText(value).replace(/^(\/?images\/slides\/)([a-z-]+)(-\d+\.webp)$/i, function (m, dir, name, rest) {
+            return dir + (RENAMED[name] || name) + rest;
+        });
         if (/^\/?images\/[a-z0-9/_\-.]+\.(webp|jpe?g|png|avif)$/i.test(text)) {
             return text.charAt(0) === '/' ? text : '/' + text;
         }
