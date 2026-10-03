@@ -860,3 +860,37 @@ html body .pilot-layout-main details.group .space-y-2 > div > span:last-child { 
 html body .pilot-layout-main details.group .text-amber-600 { color: #b45309; }
 html body .pilot-layout-main details.group .text-emerald-600 { color: #047857; }
 html body .pilot-layout-main details.group strong { color: var(--ds-ink); font-weight: 600; }
+
+/* ═══ Immigration physicals (im-*), built on the FAA (pr-*) blocks ═══ */
+.pr-class-grid.im-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pr-class-grid.im-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.im-card .pr-checks { margin-top: 18px; }
+.im-two .im-card > .pr-class-title:first-child { margin-top: 0; }
+.im-visit-head { display: flex; align-items: center; gap: 14px; }
+.im-visit-head .pr-class-title { margin: 0; }
+.im-num { width: 34px; height: 34px; flex: 0 0 34px; font-size: 15px; background: var(--ds-ink); color: #fff; }
+.im-three .pr-class-title { margin-top: 0; }
+.im-bring { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.im-bring-item { display: flex; align-items: flex-start; gap: 12px; padding: 22px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--ds-line); }
+.hp-section:not(.pr-tint) .im-bring-item { background: var(--ds-tint); box-shadow: none; }
+html body .im-bring-item h4 { margin: 0; color: var(--ds-ink); font-size: 16px; font-weight: 650; line-height: 1.35; }
+.im-bring-item p { margin: 4px 0 0; color: var(--ds-muted); font-size: 14.5px; line-height: 1.5; }
+.im-table { margin-bottom: 8px; }
+html body .im-vax td:first-child { white-space: normal; min-width: 220px; }
+html body .im-vax td:first-child strong { color: var(--ds-ink); }
+@media (min-width: 1024px) {
+    .im-three .im-card, .im-two .im-card { grid-row: span 3; }
+}
+@media (max-width: 1023px) {
+    .pr-class-grid.im-two, .pr-class-grid.im-three { grid-template-columns: 1fr; }
+    .im-bring { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 639px) {
+    .im-bring { grid-template-columns: 1fr; }
+    html body .im-vax td:first-child { min-width: 0; }
+    html body .im-vax td[data-label="Notes"] { text-align: left; }
+    html body .im-vax td[data-label="Notes"]::before { float: none; display: block; margin: 0 0 2px; }
+}
+@media (max-width: 639px) {
+    html body .validity-table td.class-label { text-align: left; }
+}
