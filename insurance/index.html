@@ -136,7 +136,7 @@
     <link rel="preload" href="../js/critical-header.js?v=2026101302" as="script">
     <script>try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}</script>
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
-    <script src="../js/in-page-nav.js?v=2026101402" defer></script>
+    <script src="../js/in-page-nav.js?v=2026101501" defer></script>
 
     <style>
         /* Insurance page refined styles */
@@ -575,6 +575,7 @@
         }
     </style>
     <link rel="stylesheet" href="../css/polish.css?v=2026101502">
+    <link rel="stylesheet" href="../css/sections.css?v=2026101505">
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/insurance-800.webp 800w, /images/heroes/insurance-1200.webp 1200w, /images/heroes/insurance-2000.webp 2000w" imagesizes="100vw">
 </head>
 <body class="bg-light-gray text-dark-gray">
@@ -601,19 +602,15 @@
         </div>
     </section>
 
-    <section id="plans-hub" data-page-nav data-page-nav-title="Plans" class="py-16 sm:py-20 md:py-24 lg:py-28">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-6xl mx-auto">
-
-                <div class="section-intro" data-aos="fade-up">
-                    <span class="section-kicker">Coverage Checker</span>
-                    <h2 class="section-title-lg">Is your insurance accepted?</h2>
-                    <p class="section-lede">
-                        Type your carrier or plan name below to instantly check if it's in our network. We continually update our list — if you don't see yours, call us at <a href="tel:3012082273" class="text-brand-blue font-semibold hover:underline">(301) 208-2273</a> and we'll confirm.
-                    </p>
+    <section id="plans-hub" data-page-nav data-page-nav-title="Check Coverage" class="hp-section in-hub">
+        <div class="container mx-auto">
+            <div class="in-check">
+                <div class="in-check-copy" data-aos="fade-up">
+                    <p class="hp-eyebrow">Coverage Checker</p>
+                    <h2 class="hp-title">Is your insurance accepted?</h2>
+                    <p class="hp-lede">Type your carrier or plan name below to instantly check if it's in our network. We continually update our list — if you don't see yours, call us at <a href="tel:3012082273" class="text-brand-blue font-semibold hover:underline">(301) 208-2273</a> and we'll confirm.</p>
                 </div>
-
-                <div class="coverage-checker" data-aos="fade-up" data-aos-delay="100">
+                <div class="coverage-checker" data-aos="fade-up" data-aos-delay="50">
                     <label for="insurance-search" class="checker-label">Check your plan</label>
                     <div class="checker-input-wrap">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -621,19 +618,25 @@
                         </svg>
                         <input type="text" id="insurance-search" placeholder="e.g. Aetna, BlueCross, Medicare, Priority Partners…" autocomplete="off" aria-describedby="checker-hint">
                     </div>
+                    <div class="in-chips" role="group" aria-label="Popular plans"><span class="in-chips-label" data-en="Popular:" data-es="Populares:">Popular:</span><button type="button" class="in-chip" data-plan="Aetna">Aetna</button><button type="button" class="in-chip" data-plan="BlueCross">BlueCross</button><button type="button" class="in-chip" data-plan="Cigna">Cigna</button><button type="button" class="in-chip" data-plan="UnitedHealthcare">UnitedHealthcare</button><button type="button" class="in-chip" data-plan="Medicare">Medicare</button><button type="button" class="in-chip" data-plan="Medicaid">Medicaid</button><button type="button" class="in-chip" data-plan="Tricare">Tricare</button><button type="button" class="in-chip" data-plan="Priority Partners">Priority Partners</button></div>
                     <div id="checker-result" class="checker-result" role="status" aria-live="polite"></div>
                     <p id="checker-hint" class="checker-hint">Not sure? Call <a href="tel:3012082273" class="text-brand-blue font-semibold">(301) 208-2273</a> or text <a href="sms:3012052293" class="text-brand-blue font-semibold">(301) 205-2293</a>.</p>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="section-intro" data-aos="fade-up" style="margin-top: 1rem;">
-                    <span class="section-kicker">Full Plan List</span>
-                    <h2 class="section-title-lg">Insurance plans we accept</h2>
-                    <p class="section-lede">
-                        We're pleased to accept a wide variety of insurance providers. Please remember it's your responsibility to know your co-pay, deductible, and any limits that apply to your plan.
-                    </p>
+    <section id="plan-list" data-page-nav data-page-nav-title="Accepted Plans" class="hp-section in-list">
+        <div class="container mx-auto">
+            <div class="up-head-row" data-aos="fade-up">
+                <div class="hp-head">
+                    <p class="hp-eyebrow">Full Plan List</p>
+                    <h2 class="hp-title">Insurance plans we accept</h2>
+                    <p class="hp-lede">We're pleased to accept a wide variety of insurance providers. Please remember it's your responsibility to know your co-pay, deductible, and any limits that apply to your plan.</p>
                 </div>
-
-                <div class="plan-grid" data-aos="fade-up" data-aos-delay="100">
+                <p class="in-legend"><span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span> <span data-en="A referral may be needed for specialty visits." data-es="Puede necesitar un referido para consultas especializadas.">A referral may be needed for specialty visits.</span></p>
+            </div>
+            <div class="plan-grid in-plans" data-aos="fade-up" data-aos-delay="50">
                     <article class="plan-category">
                         <div class="plan-category-header">
                             <div>
@@ -649,8 +652,8 @@
                             <li>GEHA</li>
                             <li>Coresource</li>
                             <li>First Health</li>
-                            <li>UnitedHealthcare commercial plans <span class="referral-badge">Referral</span></li>
-                            <li>Tricare (Military) <span class="referral-badge">Referral</span></li>
+                            <li>UnitedHealthcare commercial plans <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
+                            <li>Tricare (Military) <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
                         </ul>
                         <p class="plan-category-footnote">Most PPO and HMO commercial plans are accepted for both primary care and walk-in urgent visits.</p>
                     </article>
@@ -663,15 +666,15 @@
                             </div>
                         </div>
                         <ul class="plan-list">
-                            <li>Priority Partners <span class="referral-badge">Referral</span></li>
-                            <li>Amerigroup / Wellpoint <span class="referral-badge">Referral</span></li>
-                            <li>Maryland Physicians Care <span class="referral-badge">Referral</span></li>
-                            <li>Medicaid <span class="referral-badge">Referral</span></li>
+                            <li>Priority Partners <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
+                            <li>Amerigroup / Wellpoint <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
+                            <li>Maryland Physicians Care <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
+                            <li>Medicaid <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
                             <li>Medicare</li>
-                            <li>Medstar <span class="referral-badge">Referral</span></li>
-                            <li>CareFirst Community Health Plan <span class="referral-badge">Referral</span></li>
+                            <li>Medstar <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
+                            <li>CareFirst Community Health Plan <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
                             <li>Humana</li>
-                            <li>Johns Hopkins US Family Health <span class="referral-badge">Referral</span></li>
+                            <li>Johns Hopkins US Family Health <span class="referral-badge" data-en="Referral" data-es="Referido">Referral</span></li>
                         </ul>
                         <p class="plan-category-footnote">Serving Maryland residents with Medicare, Medicaid, and state-sponsored managed care plans across Montgomery County. Aetna Better Health and UnitedHealthcare Community Plan are not accepted.</p>
                     </article>
@@ -694,8 +697,7 @@
                         <p class="plan-category-footnote">No insurance? No problem. Call for current self-pay pricing before your visit.</p>
                     </article>
                 </div>
-
-                <div class="info-strip" data-aos="fade-up">
+            <div class="info-strip" data-aos="fade-up">
                     <div class="info-card">
                         <h4>What to bring</h4>
                         <p>A valid photo ID, your current insurance card, a medication list, and any referral paperwork if your plan requires it.</p>
@@ -708,8 +710,7 @@
                         <h4>Still not sure?</h4>
                         <p>Call <a href="tel:3012082273">(301) 208-2273</a> or text <a href="sms:3012052293">(301) 205-2293</a>. Our front desk will verify your plan before you come in.</p>
                     </div>
-                </div>
-            </div>
+                
         </div>
     </section>
 
@@ -903,6 +904,14 @@
 
                 return bestMatch;
             }
+
+            document.querySelectorAll('.in-chip').forEach(function (chip) {
+                chip.addEventListener('click', function () {
+                    input.value = chip.getAttribute('data-plan');
+                    input.dispatchEvent(new Event('input'));
+                    input.focus();
+                });
+            });
 
             let debounce;
             input.addEventListener('input', function() {

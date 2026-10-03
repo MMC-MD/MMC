@@ -1133,3 +1133,76 @@ html body .ab-providers .specialty-badge:hover { transform: none; background: va
     html body .ab-providers .tab-button { flex: 0 0 auto; }
     html body .ab-providers .doctor-name-enhanced { font-size: 18px; }
 }
+
+/* ═══ Insurance (in-*) ═══ */
+html body .in-hub { background: #fff; }
+html body .in-list { background: var(--ds-tint); }
+.in-check { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 64px; align-items: center; }
+html body .in-check .coverage-checker {
+    max-width: none !important; margin: 0 !important; padding: 28px !important; border: 0 !important; border-radius: 24px !important;
+    background: var(--ds-tint) !important; box-shadow: none !important;
+}
+html body .in-check .checker-label { color: var(--ds-ink) !important; font-size: 15px !important; font-weight: 650 !important; letter-spacing: 0 !important; text-transform: none !important; margin-bottom: 10px !important; }
+html body .in-check .checker-input-wrap input {
+    height: 58px; border: 1px solid var(--ds-line) !important; border-radius: 14px !important; background: #fff !important;
+    font-size: 16.5px !important; box-shadow: 0 1px 2px rgba(15, 23, 42, .04) !important;
+}
+html body .in-check .checker-input-wrap input:focus { border-color: var(--ds-blue) !important; box-shadow: 0 0 0 4px rgba(13, 71, 161, .12) !important; outline: none; }
+.in-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 14px; }
+.in-chips-label { margin-right: 4px; color: var(--ds-muted); font-size: 13.5px; }
+.in-chip {
+    min-height: 32px; min-width: 0; padding: 0 12px; border: 0; border-radius: 999px; background: #fff; cursor: pointer;
+    box-shadow: inset 0 0 0 1px var(--ds-line); color: var(--ds-ink); font-family: inherit; font-size: 13.5px; font-weight: 500;
+    transition: box-shadow .15s ease, color .15s ease;
+}
+.in-chip:hover { box-shadow: inset 0 0 0 1px var(--ds-blue); color: var(--ds-blue); }
+.in-chip:focus-visible { outline: 2px solid var(--ds-blue); outline-offset: 2px; }
+html body .in-check .checker-result.visible { margin-top: 16px !important; border-radius: 14px !important; }
+html body .in-check .checker-hint { margin-top: 16px !important; text-align: left !important; }
+
+.in-legend { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; margin: 0; color: var(--ds-muted); font-size: 14px; max-width: 320px; }
+html body .in-list .referral-badge {
+    flex: 0 0 auto; padding: 3px 8px !important; border: 0 !important; border-radius: 6px !important;
+    background: #fff4e5 !important; color: #b45309 !important; font-size: 11.5px !important; font-weight: 600 !important; letter-spacing: .02em !important;
+}
+html body .in-plans { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 20px !important; max-width: none !important; margin: 0 !important; }
+html body .in-plans .plan-category {
+    display: flex; flex-direction: column; padding: 28px !important; border: 0 !important; border-radius: 20px !important;
+    background: #fff !important; box-shadow: inset 0 0 0 1px var(--ds-line) !important; transform: none !important;
+}
+html body .in-plans .plan-category::before { display: none !important; }
+html body .in-plans .plan-category:hover { transform: none !important; box-shadow: inset 0 0 0 1px #d3dbe6 !important; }
+html body .in-plans .plan-category-header { margin: 0 0 6px !important; padding: 0 !important; border: 0 !important; }
+html body .in-plans .plan-category h3 { margin: 0 !important; color: var(--ds-ink) !important; font-size: 19px !important; font-weight: 700 !important; }
+html body .in-plans .plan-category-count { display: block; margin-top: 4px !important; color: var(--ds-muted) !important; font-size: 13.5px !important; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important; }
+html body .in-plans .plan-list { margin: 14px 0 0 !important; padding: 0 !important; gap: 0 !important; display: block !important; border-top: 1px solid var(--ds-line); }
+html body .in-plans .plan-list li {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 !important; padding: 11px 0 !important;
+    border-bottom: 1px solid var(--ds-line); color: var(--ds-ink) !important; font-size: 15px !important; font-weight: 500 !important; line-height: 1.4 !important;
+}
+html body .in-plans .plan-list li::before { display: none !important; }
+html body .in-plans .plan-category-footnote { margin: auto 0 0 !important; padding: 16px 0 0 !important; border: 0 !important; color: var(--ds-muted) !important; font-size: 14px !important; line-height: 1.55 !important; }
+
+html body .in-list .info-strip { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 0 !important; margin: 48px 0 0 !important; border-top: 1px solid #d9e1ec; max-width: none !important; }
+html body .in-list .info-card { padding: 28px 32px 0 0 !important; border: 0 !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; transform: none !important; }
+html body .in-list .info-card + .info-card { padding-left: 32px !important; border-left: 1px solid #d9e1ec !important; }
+html body .in-list .info-card h4 { margin: 0 0 8px !important; color: var(--ds-ink) !important; font-size: 17px !important; font-weight: 700 !important; }
+html body .in-list .info-card h4::before { display: none !important; }
+html body .in-list .info-card p { color: var(--ds-body) !important; font-size: 15px !important; line-height: 1.65 !important; }
+html body .in-list .info-card a { color: var(--ds-blue); font-weight: 600; }
+@media (max-width: 1023px) {
+    .in-check { grid-template-columns: 1fr; gap: 28px; }
+    html body .in-plans { grid-template-columns: 1fr !important; }
+    html body .in-list .info-strip { grid-template-columns: 1fr !important; }
+    html body .in-list .info-card, html body .in-list .info-card + .info-card { padding: 22px 0 !important; border-left: 0 !important; }
+    html body .in-list .info-card + .info-card { border-top: 1px solid #d9e1ec !important; }
+}
+@media (max-width: 767px) { .in-legend { max-width: none; } }
+@media (max-width: 639px) {
+    html body .in-check .coverage-checker { padding: 20px !important; border-radius: 20px !important; }
+    html body .in-plans .plan-category { padding: 22px !important; }
+}
+html body #plans-hub.in-hub { background: #fff !important; }
+html body .in-plans { padding: 0 !important; }
+html body .in-list .info-card h4 { padding-left: 0 !important; }
+html body .in-check .checker-result:not(.visible) { display: none; }
