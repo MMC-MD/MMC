@@ -277,3 +277,63 @@ html body .up-svc-head h3 { margin: 0; color: var(--ds-ink); font-size: 19px; fo
     .up-svc { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
     .up-svc-list { align-self: start; }
 }
+
+/* ═══ Dermatology additions ═══ */
+html body #overview.up-overview { background: #fff; }
+html body #services.up-services { background: var(--ds-tint); }
+.up-feature-gap { margin-top: 64px; }
+html body .up-title-sm { font-size: clamp(1.5rem, 1.2rem + .9vw, 2rem); }
+.up-callout {
+    margin: 20px 0 0; padding: 4px 0 4px 16px; border-left: 2px solid var(--ds-blue);
+    color: var(--ds-ink); font-size: 15.5px; line-height: 1.6; max-width: 520px;
+}
+.up-icon--warm { background: #fff3e2; color: #c26a00; }
+
+/* Conditions: label left, chips right, in one white panel */
+.up-conditions {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 32px; align-items: center;
+    margin-bottom: 24px; padding: 28px 32px; background: #fff; border: 1px solid var(--ds-line); border-radius: 20px;
+}
+html body .up-conditions h3 { margin: 0; color: var(--ds-ink); font-size: 19px; font-weight: 700; letter-spacing: -0.012em; }
+.up-conditions p { margin: 6px 0 0; color: var(--ds-muted); font-size: 15px; line-height: 1.55; }
+.up-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.up-chips li {
+    padding: 8px 14px; border: 1px solid var(--ds-line); border-radius: 999px; background: var(--ds-tint);
+    color: var(--ds-ink); font-size: 14.5px; font-weight: 500; line-height: 1.3;
+}
+
+/* Medical list is long: give it two thirds and two columns */
+.up-svc-grid--derm { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.up-svc-list--2col { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+
+/* Two providers: photo beside the bio */
+@media (min-width: 768px) {
+    .up-provider-grid--pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+    html body .up-provider-grid--pair .provider-card { display: grid; grid-template-columns: 200px minmax(0, 1fr); column-gap: 28px; align-items: start; }
+    html body .up-provider-grid--pair .provider-image-container { aspect-ratio: 4 / 5; }
+    html body .up-provider-grid--pair .provider-info { padding: 4px 0 0; }
+    html body .up-provider-grid--pair .provider-name { font-size: 21px; }
+    html body .up-provider-grid--pair .mmc-pcard-bio { max-height: calc(1.65em * 7); }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+    .up-provider-grid--pair { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 1023px) {
+    .up-conditions { grid-template-columns: 1fr; gap: 18px; }
+    .up-svc-grid--derm { grid-template-columns: 1fr; }
+    .up-feature-gap { margin-top: 48px; }
+}
+@media (max-width: 639px) {
+    .up-conditions { padding: 22px 20px; border-radius: 16px; }
+    .up-svc-list--2col { grid-template-columns: 1fr; }
+    .up-chips li { font-size: 14px; padding: 7px 12px; }
+}
+/* Provider photo frame (shared, so pages without their own provider CSS work too) */
+html body .up-providers .provider-image-container { position: relative; overflow: hidden; }
+html body .up-providers .provider-image { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+/* Conditions as an even 4 × 2 grid instead of wrapping chips */
+.up-chips { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.up-chips li { text-align: center; }
+@media (max-width: 479px) { .up-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+html body .up-providers .provider-name { font-weight: 700 !important; }
+html body .up-providers .provider-title { font-weight: 600 !important; text-transform: uppercase; }
