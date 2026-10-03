@@ -113,8 +113,8 @@
     // Once edited and published in MMC Studio, the chosen layout/image is stored.
     var VISUALS = [
         [/flu|vaccin/i, 'spot-flu-family', 'spotlight'],
-        [/faa|pilot|aviation/i, 'spot-aviation', 'spotlight', { en: 'Learn more', es: 'M\u00e1s informaci\u00f3n', url: '/occupational-health/' }],
-        [/immigration|i-693|uscis/i, 'spot-aviation', 'spotlight'],
+        [/faa|pilot|aviation/i, 'spot-travel', 'spotlight', { en: 'Learn more', es: 'M\u00e1s informaci\u00f3n', url: '/occupational-health/' }],
+        [/immigration|i-693|uscis/i, 'spot-travel', 'spotlight'],
         [/urgent|walk-?in|same[ -]day/i, 'spot-exam-room', 'spotlight'],
         [/dermatolog|skin/i, 'dermatology', 'photo'],
         [/acupunct/i, 'acupuncture', 'photo'],
@@ -124,7 +124,7 @@
         [/sports|physical therapy|rehab/i, 'physical-therapy', 'feature'],
         [/lab|blood/i, 'lab-tests', 'photo'],
         [/screening|blood pressure|heart/i, 'blood-pressure', 'photo'],
-        [/one stop|primary|family|all your/i, 'clinic-lobby', 'spotlight']
+        [/one stop|primary|family|all your/i, 'spot-services-collage', 'spotlight']
     ];
 
     function inferVisual(source) {
@@ -134,7 +134,7 @@
         for (var i = 0; i < VISUALS.length; i++) {
             if (VISUALS[i][0].test(text)) return { image: '/images/slides/' + VISUALS[i][1] + '-1280.webp', layout: VISUALS[i][2], cta: VISUALS[i][3] || null };
         }
-        return { image: '/images/slides/clinic-lobby-1280.webp', layout: 'spotlight' };
+        return { image: '/images/slides/spot-services-collage-1280.webp', layout: 'spotlight' };
     }
 
     function normalizeSlide(value) {

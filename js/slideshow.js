@@ -151,7 +151,7 @@
         // the newer photos also have a sharp name-1920.webp for large screens.
         var m = /^(.*)-1280\.webp$/i.exec(image);
         if (!m) return {};
-        var hd = /\/(flu-vaccine|aviation-immigration|urgent-care|exam-room|spot-[a-z-]+|clinic-lobby)$/.test(m[1]) ? ', ' + m[1] + '-1920.webp 1920w' : '';
+        var hd = /\/(flu-vaccine|aviation-immigration|urgent-care|exam-room|spot-[a-z-]+|clinic-lobby|lobby)$/.test(m[1]) ? ', ' + m[1] + '-1920.webp 1920w' : '';
         return { srcset: m[1] + '-720.webp 720w, ' + image + ' 1280w' + hd };
     }
 
