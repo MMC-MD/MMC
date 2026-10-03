@@ -723,25 +723,31 @@ html body .contact-modal .contact-info-row .contact-item.contact-info .contact-l
 html body .contact-close, html body .contact-close:focus { outline: none !important; box-shadow: none !important; border: 0 !important; }
 html body .contact-close:focus-visible { outline: 2px solid #c9d6ea !important; outline-offset: 2px !important; }
 
-/* ═══ Photo heroes on phones & small tablets: text, then a full-width photo card ═══ */
+/* ═══ Photo heroes on phones & small tablets: photo background, navy wash, white text ═══ */
 @media (max-width: 799px) {
     .page-header.page-header--photo {
-        background: #f8fafc !important;
-        padding: 36px 0 calc(clamp(210px, 52vw, 340px) + 40px) !important;
+        background-color: #0b2550 !important;
+        background-image: var(--hero-sm) !important;
+        background-size: cover !important; background-position: 72% center !important; background-repeat: no-repeat !important;
+        padding: 150px 0 44px !important; min-height: 460px; display: flex !important; align-items: flex-end;
+        color: #fff !important;
     }
-    .page-header--photo::before { display: none !important; }
-    .page-header.page-header--photo::after {
-        display: block !important; content: "" !important; position: absolute !important;
-        left: 16px !important; right: 16px !important; bottom: 24px !important; top: auto !important;
-        width: auto !important; height: clamp(210px, 52vw, 340px) !important;
-        background: var(--hero-sm) 72% center / cover no-repeat !important;
-        border-radius: 16px !important; opacity: 1 !important;
+    .page-header.page-header--about { background-position: 80% 30% !important; }
+    .page-header--photo::after { display: none !important; }
+    .page-header--photo::before {
+        display: block !important;
+        background: linear-gradient(180deg, rgba(8, 24, 54, .12) 0%, rgba(8, 24, 54, .38) 30%, rgba(8, 24, 54, .8) 62%, rgba(8, 24, 54, .9) 100%) !important;
     }
-    .page-header.page-header--about::after { background-position: 82% 30% !important; }
-    .page-header--photo h1 { font-size: clamp(2rem, 1.3rem + 3.6vw, 2.75rem) !important; }
+    .page-header--photo > .container { width: 100%; }
+    .page-header--photo h1 { color: #fff !important; font-size: clamp(2rem, 1.3rem + 3.6vw, 2.75rem) !important; text-shadow: 0 1px 2px rgba(0, 0, 0, .15); }
+    .page-header--photo p { color: rgba(255, 255, 255, .88) !important; }
+    .page-header--photo .breadcrumb, .page-header--photo .breadcrumb a, .page-header--photo .breadcrumb span { color: rgba(255, 255, 255, .75) !important; }
+    .page-header--photo .hero-actions .btn-outline {
+        background: rgba(255, 255, 255, .1) !important; color: #fff !important; border: 1px solid rgba(255, 255, 255, .45) !important;
+    }
 }
 @media (min-width: 500px) and (max-width: 799px) {
-    .page-header.page-header--photo::after { background-image: var(--hero-md) !important; }
+    .page-header.page-header--photo { background-image: var(--hero-md) !important; min-height: 500px; padding-top: 200px !important; }
 }
 
 /* ═══ Accessibility button: small, quiet, still easy to find ═══ */
@@ -759,4 +765,17 @@ html body .a11y-panel { bottom: 70px !important; left: 18px !important; }
     html body .a11y-trigger { width: 36px !important; height: 36px !important; bottom: 14px !important; left: 14px !important; }
     html body .a11y-trigger svg { width: 18px !important; height: 18px !important; }
     html body .a11y-panel { bottom: 60px !important; left: 12px !important; }
+}
+@media (max-width: 799px) {
+    .page-header.page-header--about { background-size: auto 330px !important; background-position: 74% top !important; padding-top: 262px !important; }
+}
+@media (min-width: 500px) and (max-width: 799px) {
+    .page-header.page-header--about { background-size: auto 400px !important; padding-top: 330px !important; }
+}
+@media (max-width: 799px) {
+    .page-header.page-header--about { background-color: rgb(8, 24, 54) !important; }
+    .page-header--about::before { background: linear-gradient(180deg, rgba(8, 24, 54, .08) 0, rgba(8, 24, 54, .3) 150px, rgba(8, 24, 54, .85) 270px, rgb(8, 24, 54) 330px) !important; }
+}
+@media (min-width: 500px) and (max-width: 799px) {
+    .page-header--about::before { background: linear-gradient(180deg, rgba(8, 24, 54, .08) 0, rgba(8, 24, 54, .3) 190px, rgba(8, 24, 54, .85) 330px, rgb(8, 24, 54) 400px) !important; }
 }
