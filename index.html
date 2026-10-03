@@ -251,6 +251,7 @@
         }
     </style>
     <link rel="stylesheet" href="css/polish.css?v=2026101305">
+    <link rel="stylesheet" href="css/home.css?v=2026101301">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -300,203 +301,154 @@
         </div>
     </section>
 
-    <section id="stats" class="bg-gradient-blue text-white py-12 sm:py-16">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-center">
-                <div class="stat-card" data-aos="fade-up">
-                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="18+" data-es="18+">18+</div>
-                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Insurances Accepted" data-es="Seguros Aceptados">Insurances Accepted</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="7" data-es="7">7</div>
-                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Specialized Departments" data-es="Departamentos Especializados">Specialized Departments</div>
-                </div>
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-number text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl" data-en="10K+" data-es="10K+">10K+</div>
-                    <div class="stat-label text-white/90 text-xs sm:text-sm md:text-base" data-en="Patients Served Annually" data-es="Pacientes Atendidos Anualmente">Patients Served Annually</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" data-page-nav data-page-nav-title="Services" class="py-16 sm:py-20 md:py-24 lg:py-32 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16 md:mb-20 max-w-3xl mx-auto" data-aos="fade-up">
-                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl" data-en="Our Departments" data-es="Nuestros Departamentos">Our Departments</h2>
-                <p class="section-subtitle text-sm sm:text-base" data-en="Comprehensive healthcare services delivered by board-certified physicians." data-es="Servicios de salud integrales proporcionados por m&eacute;dicos certificados.">Comprehensive healthcare services delivered by board-certified physicians.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-                <a href="urgent-primary-care/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="primary" data-aos="fade-up">
-                    <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/dept/PrimaryCare-192.webp 2x, icons/dept/PrimaryCare-288.webp 3x" type="image/webp"><img src="icons/dept/PrimaryCare-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Urgent care center and primary care provider services"/></picture>
-                    </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family." data-es="Su base para una salud de por vida, con atenci&oacute;n urgente sin cita y atenci&oacute;n primaria programada para toda su familia.">Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Urgent Care" data-es="Explorar Cuidado Urgente">
-                        Explore Urgent Care
+    <section id="services" data-page-nav data-page-nav-title="Services" class="hp-section hp-services">
+        <div class="container mx-auto">
+            <header class="hp-head" data-aos="fade-up">
+                <p class="hp-eyebrow" data-en="Our departments" data-es="Nuestros departamentos">Our departments</p>
+                <h2 class="hp-title" data-en="Specialty care, all under one roof" data-es="Atenci&oacute;n especializada, todo bajo un mismo techo">Specialty care, all under one roof</h2>
+                <p class="hp-lede" data-en="Board-certified physicians across primary care, dermatology, occupational health and more, so your referrals, records and follow-ups stay in one place." data-es="M&eacute;dicos certificados en atenci&oacute;n primaria, dermatolog&iacute;a, salud ocupacional y m&aacute;s, para que sus referidos, expedientes y seguimientos est&eacute;n en un solo lugar.">Board-certified physicians across primary care, dermatology, occupational health and more, so your referrals, records and follow-ups stay in one place.</p>
+            </header>
+            <div class="hp-dept-grid">
+                <a href="urgent-primary-care/" class="hp-dept" data-aos="fade-up">
+                    <span class="hp-dept-media"><img src="images/slides/primary-care-720.webp" srcset="images/slides/primary-care-360.webp 360w, images/slides/primary-care-720.webp 720w, images/slides/primary-care-1280.webp 1280w" sizes="(min-width: 1024px) 384px, (min-width: 640px) 46vw, 96px" width="720" height="478" loading="lazy" decoding="async" alt="Doctor's desk with a stethoscope"></span>
+                    <span class="hp-dept-body">
+                        <span class="hp-dept-title" data-en="Urgent &amp; Primary Care" data-es="Cuidado Urgente y Primario">Urgent & Primary Care</span>
+                        <span class="hp-dept-desc" data-en="Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family." data-es="Su base para una salud de por vida, con atenci&oacute;n urgente sin cita y atenci&oacute;n primaria programada para toda su familia.">Your foundation for lifelong health, with walk-in urgent care and scheduled primary care for your whole family.</span>
+                        <span class="hp-dept-more"><span data-en="Learn more" data-es="M&aacute;s informaci&oacute;n">Learn more</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                     </span>
                 </a>
-
-                <a href="dermatology/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="derma" data-aos="fade-up" data-aos-delay="50">
-                    <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/dept/Dermatology-192.webp 2x, icons/dept/Dermatology-288.webp 3x" type="image/webp"><img src="icons/dept/Dermatology-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Dermatology skin care services icon"/></picture>
-                    </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Advanced solutions for skin health, from managing conditions to aesthetic treatments." data-es="Soluciones avanzadas para la salud de la piel, desde el manejo de condiciones hasta tratamientos est&eacute;ticos.">Advanced solutions for skin health, from managing conditions to aesthetic treatments.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Dermatology" data-es="Explorar Dermatolog&iacute;a">
-                        Explore Dermatology
+                <a href="dermatology/" class="hp-dept" data-aos="fade-up" data-aos-delay="50">
+                    <span class="hp-dept-media"><img src="images/slides/dermatology-720.webp" srcset="images/slides/dermatology-360.webp 360w, images/slides/dermatology-720.webp 720w, images/slides/dermatology-1280.webp 1280w" sizes="(min-width: 1024px) 384px, (min-width: 640px) 46vw, 96px" width="720" height="478" loading="lazy" decoding="async" alt="Skin care products in a calm treatment room"></span>
+                    <span class="hp-dept-body">
+                        <span class="hp-dept-title" data-en="Dermatology" data-es="Dermatolog&iacute;a">Dermatology</span>
+                        <span class="hp-dept-desc" data-en="Advanced solutions for skin health, from managing conditions to aesthetic treatments." data-es="Soluciones avanzadas para la salud de la piel, desde el manejo de condiciones hasta tratamientos est&eacute;ticos.">Advanced solutions for skin health, from managing conditions to aesthetic treatments.</span>
+                        <span class="hp-dept-more"><span data-en="Learn more" data-es="M&aacute;s informaci&oacute;n">Learn more</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                     </span>
                 </a>
-
-                <a href="occupational-health/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="occupational" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/dept/OccupationalHealth-192.webp 2x, icons/dept/OccupationalHealth-288.webp 3x" type="image/webp"><img src="icons/dept/OccupationalHealth-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Occupational Health and workplace safety services icon"/></picture>
-                    </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services." data-es="Colaborando con empresas para garantizar una fuerza laboral segura, saludable y en cumplimiento con servicios expertos de salud ocupacional y m&eacute;dicos de inmigraci&oacute;n.">Partnering with businesses to ensure a safe, healthy, and compliant workforce with expert occupational health and immigration medical services.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Occupational Health" data-es="Explorar Salud Ocupacional">
-                        Explore Occupational Health
+                <a href="occupational-health/" class="hp-dept" data-aos="fade-up" data-aos-delay="100">
+                    <span class="hp-dept-media"><img src="images/slides/occupational-720.webp" srcset="images/slides/occupational-360.webp 360w, images/slides/occupational-720.webp 720w, images/slides/occupational-1280.webp 1280w" sizes="(min-width: 1024px) 384px, (min-width: 640px) 46vw, 96px" width="720" height="478" loading="lazy" decoding="async" alt="Hard hat and safety gear for workplace health"></span>
+                    <span class="hp-dept-body">
+                        <span class="hp-dept-title" data-en="Occupational Health" data-es="Salud Ocupacional">Occupational Health</span>
+                        <span class="hp-dept-desc" data-en="A safe, healthy and compliant workforce: employer services, DOT and immigration medical exams." data-es="Una fuerza laboral segura, saludable y en cumplimiento: servicios para empleadores, ex&aacute;menes DOT y de inmigraci&oacute;n.">A safe, healthy and compliant workforce: employer services, DOT and immigration medical exams.</span>
+                        <span class="hp-dept-more"><span data-en="Learn more" data-es="M&aacute;s informaci&oacute;n">Learn more</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                     </span>
                 </a>
-
-                <a href="five-elements-acupuncture/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="acupuncture" data-aos="fade-up" data-aos-delay="150">
-                    <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/dept/Accupuncture-192.webp 2x, icons/dept/Accupuncture-288.webp 3x" type="image/webp"><img src="icons/dept/Accupuncture-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Five Elements Acupuncture and wellness services icon"/></picture>
-                    </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health." data-es="Medicina tradicional china y acupuntura para sanaci&oacute;n hol&iacute;stica, manejo del dolor y salud de la mujer.">Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Acupuncture" data-es="Explorar Acupuntura">
-                        Explore Acupuncture
+                <a href="five-elements-acupuncture/" class="hp-dept" data-aos="fade-up">
+                    <span class="hp-dept-media"><img src="images/slides/acupuncture-720.webp" srcset="images/slides/acupuncture-360.webp 360w, images/slides/acupuncture-720.webp 720w, images/slides/acupuncture-1280.webp 1280w" sizes="(min-width: 1024px) 384px, (min-width: 640px) 46vw, 96px" width="720" height="478" loading="lazy" decoding="async" alt="Acupuncture treatment setting"></span>
+                    <span class="hp-dept-body">
+                        <span class="hp-dept-title" data-en="Five Elements Acupuncture" data-es="Acupuntura Cinco Elementos">Five Elements Acupuncture</span>
+                        <span class="hp-dept-desc" data-en="Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health." data-es="Medicina tradicional china y acupuntura para sanaci&oacute;n hol&iacute;stica, manejo del dolor y salud de la mujer.">Traditional Chinese medicine and acupuncture for holistic healing, pain management, and women's health.</span>
+                        <span class="hp-dept-more"><span data-en="Learn more" data-es="M&aacute;s informaci&oacute;n">Learn more</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                     </span>
                 </a>
-
-                <a href="nutrition-wellness/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="nutrition" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/dept/Nutrition-192.webp 2x, icons/dept/Nutrition-288.webp 3x" type="image/webp"><img src="icons/dept/Nutrition-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Nutrition and Wellness Center services icon"/></picture>
-                    </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Nutrition and personal training to fuel your body and mind for optimal performance." data-es="Nutrici&oacute;n y entrenamiento personal para potenciar su cuerpo y mente para un rendimiento &oacute;ptimo.">Nutrition and personal training to fuel your body and mind for optimal performance.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Wellness" data-es="Explorar Bienestar">
-                        Explore Wellness
+                <a href="nutrition-wellness/" class="hp-dept" data-aos="fade-up" data-aos-delay="50">
+                    <span class="hp-dept-media"><img src="images/slides/nutrition-720.webp" srcset="images/slides/nutrition-360.webp 360w, images/slides/nutrition-720.webp 720w, images/slides/nutrition-1280.webp 1280w" sizes="(min-width: 1024px) 384px, (min-width: 640px) 46vw, 96px" width="720" height="478" loading="lazy" decoding="async" alt="Fresh, healthy food for nutrition care"></span>
+                    <span class="hp-dept-body">
+                        <span class="hp-dept-title" data-en="Wellness Center" data-es="Centro de Bienestar">Wellness Center</span>
+                        <span class="hp-dept-desc" data-en="Nutrition and personal training to fuel your body and mind for optimal performance." data-es="Nutrici&oacute;n y entrenamiento personal para potenciar su cuerpo y mente para un rendimiento &oacute;ptimo.">Nutrition and personal training to fuel your body and mind for optimal performance.</span>
+                        <span class="hp-dept-more"><span data-en="Learn more" data-es="M&aacute;s informaci&oacute;n">Learn more</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                     </span>
                 </a>
-
-                <a href="sports-medicine/" class="card service-card p-5 pb-12 sm:p-6 sm:pb-14 md:p-8 md:pb-16 lg:p-10 lg:pb-20 text-center flex flex-col group" data-service="sports" data-aos="fade-up" data-aos-delay="250">
-                    <div class="icon-wrap-new bg-white p-4 sm:p-5 md:p-6 rounded-2xl mb-4 sm:mb-6 md:mb-8 mx-auto flex items-center justify-center shadow-md">
-                        <picture><source srcset="icons/dept/PhysicalTherapy-192.webp 2x, icons/dept/PhysicalTherapy-288.webp 3x" type="image/webp"><img src="icons/dept/PhysicalTherapy-192.png" width="96" height="96" loading="lazy" decoding="async" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain" alt="Sports medicine doctors at medical center"/></picture>
-                    </div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</h3>
-                    <p class="text-xs sm:text-sm md:text-base text-medium-gray mb-4 sm:mb-5 md:mb-6 flex-grow leading-relaxed" data-en="Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before." data-es="Rehabilitaci&oacute;n integral y atenci&oacute;n de lesiones deportivas para que regrese m&aacute;s fuerte que antes.">Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before.</p>
-                    <span class="btn btn-outline border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold transition-all" data-en="Explore Sports Medicine" data-es="Explorar Medicina Deportiva">
-                        Explore Sports Medicine
+                <a href="sports-medicine/" class="hp-dept" data-aos="fade-up" data-aos-delay="100">
+                    <span class="hp-dept-media"><img src="images/slides/physical-therapy-720.webp" srcset="images/slides/physical-therapy-360.webp 360w, images/slides/physical-therapy-720.webp 720w, images/slides/physical-therapy-1280.webp 1280w" sizes="(min-width: 1024px) 384px, (min-width: 640px) 46vw, 96px" width="720" height="478" loading="lazy" decoding="async" alt="Physical therapy equipment"></span>
+                    <span class="hp-dept-body">
+                        <span class="hp-dept-title" data-en="Sports Medicine &amp; Physical Therapy" data-es="Medicina Deportiva y Terapia F&iacute;sica">Sports Medicine & Physical Therapy</span>
+                        <span class="hp-dept-desc" data-en="Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before." data-es="Rehabilitaci&oacute;n integral y atenci&oacute;n de lesiones deportivas para que regrese m&aacute;s fuerte que antes.">Comprehensive rehabilitation and sports injury care to get you back in the game stronger than before.</span>
+                        <span class="hp-dept-more"><span data-en="Learn more" data-es="M&aacute;s informaci&oacute;n">Learn more</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                     </span>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="pilot-resources" data-page-nav data-page-nav-title="Pilot Resources" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32" style="background: linear-gradient(180deg, #fff8ee 0%, #fff2dd 100%);">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
-                <span class="block text-xs font-extrabold uppercase tracking-widest mb-3" style="color: var(--medical-orange, #ff8f00);" data-en="For Pilots" data-es="Para Pilotos">For Pilots</span>
-                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" data-en="Pilot Resource Center" data-es="Centro de Recursos para Pilotos">Pilot Resource Center</h2>
-                <p class="section-subtitle text-sm sm:text-base leading-relaxed" data-en="Your trusted resource for FAA medical exams and aviation physicals in Gaithersburg. Access FAA medical certification guidance, a searchable medication reference, and the information you need to prepare for your appointment with our experienced providers." data-es="Su recurso de confianza para ex&aacute;menes m&eacute;dicos de la FAA y f&iacute;sicos de aviaci&oacute;n en Gaithersburg. Acceda a orientaci&oacute;n sobre la certificaci&oacute;n m&eacute;dica de la FAA, una referencia de medicamentos con b&uacute;squeda y la informaci&oacute;n que necesita para prepararse para su cita con nuestros proveedores con experiencia.">Your trusted resource for FAA medical exams and aviation physicals in Gaithersburg. Access FAA medical certification guidance, a searchable medication reference, and the information you need to prepare for your appointment with our experienced providers.</p>
-                <a href="faa-physicals/pilot-resources/" class="btn btn-secondary mt-6 sm:mt-8 inline-flex text-sm sm:text-base px-6 sm:px-8 py-2.5 sm:py-3.5" data-en="Visit the Pilot Resource Center" data-es="Visite el Centro de Recursos para Pilotos">
-                    Visit the Pilot Resource Center
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" data-page-nav data-page-nav-title="About Us" class="relative py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 overflow-hidden" style="background: radial-gradient(circle at top right, rgba(13,71,161,0.1), transparent 34%), radial-gradient(circle at bottom left, rgba(25,118,210,0.08), transparent 30%), linear-gradient(180deg, #f4f8fc 0%, #edf3f9 100%);">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative mx-auto rounded-2xl sm:rounded-3xl" style="max-width: 1240px; padding: clamp(1.5rem, 2vw + 1rem, 3.25rem); border: 1px solid rgba(13,71,161,0.1); background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,251,255,0.92) 100%); box-shadow: 0 24px 60px rgba(13,71,161,0.1);">
-                <div class="grid gap-10 lg:grid-cols-2 lg:gap-16 items-stretch">
-                    <div class="relative" data-aos="fade-right">
-                        <div class="relative overflow-hidden rounded-2xl h-full" style="min-height: 420px; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid rgba(13,71,161,0.12); background: #dfe8f3; box-shadow: 0 28px 50px -28px rgba(13,71,161,0.4);">
-                            <picture class="absolute inset-0 block">
-                                <source srcset="images/office.webp" type="image/webp">
-                                <img src="images/office.jpeg"
-                                     alt="Montgomery Medical Clinic office interior and reception area in Gaithersburg"
-                                     width="1856"
-                                     height="2298"
-                                     loading="lazy"
-                                     class="absolute inset-0 w-full h-full object-cover"
-                                     style="object-position: 52% 18%;">
-                            </picture>
-                            <div class="relative z-10 rounded-xl p-4 backdrop-blur-sm" style="margin: 1rem; align-self: flex-start; max-width: 19rem; border: 1px solid rgba(13,71,161,0.1); background: rgba(255,255,255,0.92); box-shadow: 0 20px 40px -24px rgba(0,33,113,0.35);">
-                                <span class="block mb-1 text-xs font-extrabold uppercase tracking-widest" style="color: var(--medical-blue, #0d47a1);" data-en="Comprehensive Care" data-es="Atenci&oacute;n Integral">Comprehensive Care</span>
-                                <p class="text-sm leading-relaxed" style="color: var(--dark-gray, #333);" data-en="Urgent &amp; primary care, dermatology, sports medicine, physical therapy, nutrition, and acupuncture — all under one roof." data-es="Atenci&oacute;n urgente y primaria, dermatolog&iacute;a, medicina deportiva, terapia f&iacute;sica, nutrici&oacute;n y acupuntura, todo bajo un mismo techo.">
-                                    Urgent &amp; primary care, dermatology, sports medicine, physical therapy, nutrition, and acupuncture &mdash; all under one roof.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col justify-center" data-aos="fade-left">
-                        <div class="flex items-center gap-3 mb-5">
-                                                        <span class="section-eyebrow" data-en="Who We Are" data-es="Qui&eacute;nes Somos">Who We Are</span>
-                        </div>
-
-                        <h2 class="section-title font-black leading-tight" style="font-size: clamp(2rem, 3.2vw, 3.6rem); line-height: 1.08; max-width: 11ch;" data-en="About Our Medical Center" data-es="Sobre Nuestro Centro M&eacute;dico">About Our Medical Center</h2>
-
-                        <p class="mt-4 max-w-lg leading-relaxed" style="font-size: clamp(1rem, 1.15vw, 1.12rem); line-height: 1.72; color: var(--medium-gray, #666);" data-en="Montgomery Medical Clinic serves Gaithersburg with compassionate, patient-focused care in a modern, coordinated clinic setting." data-es="Montgomery Medical Clinic sirve a Gaithersburg con atenci&oacute;n compasiva y centrada en el paciente en un entorno cl&iacute;nico moderno y coordinado.">
-                            Montgomery Medical Clinic serves Gaithersburg with compassionate, patient-focused care in a modern, coordinated clinic setting.
-                        </p>
-
-                        <div class="mt-4">
-                            <p class="max-w-lg leading-relaxed" style="font-size: 1rem; line-height: 1.72; color: var(--medium-gray, #666);" data-en="Urgent &amp; primary care, dermatology, sports medicine, physical therapy, nutrition, and acupuncture work together under one roof, supported by board-certified providers focused on clear communication and long-term care." data-es="Atenci&oacute;n urgente y primaria, dermatolog&iacute;a, medicina deportiva, terapia f&iacute;sica, nutrici&oacute;n y acupuntura trabajan juntas bajo un mismo techo, respaldadas por proveedores certificados enfocados en la comunicaci&oacute;n clara y la atenci&oacute;n a largo plazo.">
-                                Urgent &amp; primary care, dermatology, sports medicine, physical therapy, nutrition, and acupuncture work together under one roof, supported by board-certified providers focused on clear communication and long-term care.
-                            </p>
-                        </div>
-
-                        <div class="grid gap-3 mt-8 sm:grid-cols-2 lg:grid-cols-3">
-                            <div class="relative rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5" style="background: #f9fafb; border: 1px solid rgba(13,71,161,0.06);">
-                                <div class="absolute top-0 left-0 right-0 rounded-t-xl" style="height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.12) 100%);"></div>
-                                <p class="font-semibold" style="font-size: 0.82rem; letter-spacing: 0.01em; color: var(--dark-gray, #1d1d1f);" data-en="Open 7 Days" data-es="Abierto 7 D&iacute;as">Open 7 Days</p>
-                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #6b6b70;" data-en="Evening and weekend availability for urgent needs and routine follow-up care." data-es="Disponibilidad por las tardes y fines de semana para necesidades urgentes y atenci&oacute;n de seguimiento.">
-                                    Evening and weekend availability for urgent needs and routine follow-up care.
-                                </p>
-                            </div>
-
-                            <div class="relative rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5" style="background: #f9fafb; border: 1px solid rgba(13,71,161,0.06);">
-                                <div class="absolute top-0 left-0 right-0 rounded-t-xl" style="height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.12) 100%);"></div>
-                                <p class="font-semibold" style="font-size: 0.82rem; letter-spacing: 0.01em; color: var(--dark-gray, #1d1d1f);" data-en="Gaithersburg, MD" data-es="Gaithersburg, MD">Gaithersburg, MD</p>
-                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #6b6b70;" data-en="Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking." data-es="Ubicados convenientemente en 800 S Frederick Ave, Suite 110 con acceso y estacionamiento f&aacute;ciles.">
-                                    Conveniently located at 800 S Frederick Ave, Suite 110 for easy access and parking.
-                                </p>
-                            </div>
-
-                            <div class="relative rounded-xl p-4 transition-all duration-300 hover:-translate-y-0.5" style="background: #f9fafb; border: 1px solid rgba(13,71,161,0.06);">
-                                <div class="absolute top-0 left-0 right-0 rounded-t-xl" style="height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(25,118,210,0.12) 100%);"></div>
-                                <p class="font-semibold" style="font-size: 0.82rem; letter-spacing: 0.01em; color: var(--dark-gray, #1d1d1f); white-space: nowrap;" data-en="Board-Certified Team" data-es="Equipo Certificado">Board-Certified Team</p>
-                                <p class="mt-1" style="font-size: 0.78rem; line-height: 1.55; color: #6b6b70;" data-en="Experienced physicians and primary care providers focused on trusted, personalized care." data-es="M&eacute;dicos y proveedores de atenci&oacute;n primaria con experiencia, enfocados en una atenci&oacute;n confiable y personalizada.">
-                                    Experienced physicians and primary care providers focused on trusted, personalized care.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-center mt-8">
-                            <a href="about/" class="btn btn-primary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5" style="min-width: 17.5rem;" data-en="Learn More About Our Clinic" data-es="Conozca M&aacute;s Sobre Nuestra Cl&iacute;nica">Learn More About Our Clinic</a>
-                        </div>
+    <section id="pilot-resources" data-page-nav data-page-nav-title="Pilot Resources" class="hp-section hp-pilot">
+        <div class="container mx-auto">
+            <div class="hp-feature" data-aos="fade-up">
+                <div class="hp-feature-media">
+                    <img src="images/slides/faa-pilot-720.webp" srcset="images/slides/faa-pilot-720.webp 720w, images/slides/faa-pilot-1280.webp 1280w" sizes="(min-width: 1024px) 600px, 100vw" width="1280" height="850" loading="lazy" decoding="async" alt="Aviation headset and aviator sunglasses beside a stethoscope">
+                </div>
+                <div class="hp-feature-body">
+                    <p class="hp-eyebrow" data-en="For pilots" data-es="Para pilotos">For pilots</p>
+                    <h2 class="hp-title" data-en="Pilot Resource Center" data-es="Centro de Recursos para Pilotos">Pilot Resource Center</h2>
+                    <p class="hp-lede" data-en="FAA medical exams in Gaithersburg with an authorized Aviation Medical Examiner, plus the guidance you need before your appointment." data-es="Ex&aacute;menes m&eacute;dicos de la FAA en Gaithersburg con un Examinador M&eacute;dico de Aviaci&oacute;n autorizado, adem&aacute;s de la orientaci&oacute;n que necesita antes de su cita.">FAA medical exams in Gaithersburg with an authorized Aviation Medical Examiner, plus the guidance you need before your appointment.</p>
+                    <ul class="hp-checks">
+                        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-en="FAA medical certification guidance" data-es="Orientaci&oacute;n sobre la certificaci&oacute;n m&eacute;dica de la FAA">FAA medical certification guidance</span></li>
+                        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-en="Searchable medication reference" data-es="Referencia de medicamentos con b&uacute;squeda">Searchable medication reference</span></li>
+                        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-en="How to prepare for your exam" data-es="C&oacute;mo prepararse para su examen">How to prepare for your exam</span></li>
+                    </ul>
+                    <div class="hp-actions">
+                        <a href="faa-physicals/pilot-resources/" class="btn btn-primary" data-en="Visit the Pilot Resource Center" data-es="Visite el Centro de Recursos para Pilotos">Visit the Pilot Resource Center</a>
+                        <a href="faa-physicals/" class="hp-link"><span data-en="About FAA physicals" data-es="Sobre los ex&aacute;menes de la FAA">About FAA physicals</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10 sm:mb-12 md:mb-16 max-w-4xl mx-auto" data-aos="fade-up">
-                <h2 class="section-title text-dark-gray mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl" data-en="Insurance Information" data-es="Informaci&oacute;n de Seguros">Insurance Information</h2>
-                <p class="section-subtitle text-sm sm:text-base leading-relaxed" data-en="We accept a wide variety of insurance plans to make quality healthcare accessible to everyone in our community." data-es="Aceptamos una amplia variedad de planes de seguro para hacer que la atenci&oacute;n m&eacute;dica de calidad sea accesible para todos en nuestra comunidad.">We accept a wide variety of insurance plans to make quality healthcare accessible to everyone in our community.</p>
-                <a href="insurance/" class="btn btn-primary mt-6 sm:mt-8 block sm:inline-flex text-sm sm:text-base px-5 sm:px-6 py-2.5 sm:py-3 text-center leading-snug" style="white-space: normal; word-break: break-word;" data-en="View All Accepted Insurance Plans" data-es="Ver Todos los Planes de Seguro Aceptados">
-                    View All Accepted Insurance Plans
-                </a>
+    <section id="about" data-page-nav data-page-nav-title="About Us" class="hp-section hp-about">
+        <div class="container mx-auto">
+            <div class="hp-about-grid">
+                <div class="hp-about-media" data-aos="fade-up">
+                    <picture>
+                        <source type="image/avif" srcset="images/heroes/lobby-800.avif 800w, images/heroes/lobby-1200.avif 1200w" sizes="(min-width: 1024px) 600px, 100vw">
+                        <img src="images/heroes/lobby-1200.webp" srcset="images/heroes/lobby-800.webp 800w, images/heroes/lobby-1200.webp 1200w" sizes="(min-width: 1024px) 600px, 100vw" width="1200" height="670" loading="lazy" decoding="async" alt="The lobby of Montgomery Medical Clinic in Gaithersburg">
+                    </picture>
+                </div>
+                <div class="hp-about-body" data-aos="fade-up" data-aos-delay="50">
+                    <p class="hp-eyebrow" data-en="Who we are" data-es="Qui&eacute;nes somos">Who we are</p>
+                    <h2 class="hp-title" data-en="About Our Medical Center" data-es="Sobre Nuestro Centro M&eacute;dico">About Our Medical Center</h2>
+                    <p class="hp-lede" data-en="Montgomery Medical Clinic serves Gaithersburg with compassionate, patient-focused care in a modern, coordinated clinic setting." data-es="Montgomery Medical Clinic sirve a Gaithersburg con atenci&oacute;n compasiva y centrada en el paciente en un entorno cl&iacute;nico moderno y coordinado.">Montgomery Medical Clinic serves Gaithersburg with compassionate, patient-focused care in a modern, coordinated clinic setting.</p>
+                    <dl class="hp-stats">
+                        <div><dt data-en="Patients a year" data-es="Pacientes al a&ntilde;o">Patients a year</dt><dd>10K+</dd></div>
+                        <div><dt data-en="Specialized departments" data-es="Departamentos especializados">Specialized departments</dt><dd>7</dd></div>
+                        <div><dt data-en="Insurance plans accepted" data-es="Planes de seguro aceptados">Insurance plans accepted</dt><dd>18+</dd></div>
+                    </dl>
+                    <ul class="hp-facts">
+                        <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><div><strong data-en="Evenings &amp; weekends" data-es="Tardes y fines de semana">Evenings &amp; weekends</strong><span data-en="Open until 7 PM Monday through Thursday, plus weekend hours." data-es="Abierto hasta las 7 PM de lunes a jueves, adem&aacute;s de horario de fin de semana.">Open until 7 PM Monday through Thursday, plus weekend hours.</span></div></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11s-7-6-7-11a7 7 0 0 1 14 0Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.7"/></svg><div><strong data-en="800 S Frederick Ave, Suite 110" data-es="800 S Frederick Ave, Suite 110">800 S Frederick Ave, Suite 110</strong><span data-en="Gaithersburg, MD, with easy access and parking." data-es="Gaithersburg, MD, con f&aacute;cil acceso y estacionamiento.">Gaithersburg, MD, with easy access and parking.</span></div></li>
+                        <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.2 7.5 9.5 4.3-1.3 7.5-4.9 7.5-9.5V6L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m8.8 12 2.2 2.2 4.3-4.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong data-en="Board-certified team" data-es="Equipo certificado">Board-certified team</strong><span data-en="Experienced physicians focused on trusted, personalized care." data-es="M&eacute;dicos con experiencia enfocados en una atenci&oacute;n confiable y personalizada.">Experienced physicians focused on trusted, personalized care.</span></div></li>
+                    </ul>
+                    <div class="hp-actions">
+                        <a href="about/" class="btn btn-primary" data-en="Learn More About Our Clinic" data-es="Conozca M&aacute;s Sobre Nuestra Cl&iacute;nica">Learn More About Our Clinic</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <section id="insurance" data-page-nav data-page-nav-title="Insurance" class="hp-section hp-insurance">
+        <div class="container mx-auto">
+            <div class="hp-ins" data-aos="fade-up">
+                <div class="hp-ins-copy">
+                    <p class="hp-eyebrow" data-en="Insurance" data-es="Seguros">Insurance</p>
+                    <h2 class="hp-title" data-en="Insurance we accept" data-es="Seguros que aceptamos">Insurance we accept</h2>
+                    <p class="hp-lede" data-en="We accept a wide variety of insurance plans to make quality healthcare accessible to everyone in our community." data-es="Aceptamos una amplia variedad de planes de seguro para hacer que la atenci&oacute;n m&eacute;dica de calidad sea accesible para todos en nuestra comunidad.">We accept a wide variety of insurance plans to make quality healthcare accessible to everyone in our community.</p>
+                    <div class="hp-actions">
+                        <a href="insurance/" class="btn btn-primary" data-en="View All Accepted Insurance Plans" data-es="Ver Todos los Planes de Seguro Aceptados">View All Accepted Insurance Plans</a>
+                        <a href="tel:3012082273" class="hp-link"><span data-en="Questions? (301) 208-2273" data-es="&iquest;Preguntas? (301) 208-2273">Questions? (301) 208-2273</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
+                </div>
+                <div class="hp-ins-plans">
+                    <ul class="hp-plans">
+                        <li>Aetna</li>
+                        <li>BlueCross BlueShield / CareFirst</li>
+                        <li>Cigna</li>
+                        <li>UnitedHealthcare</li>
+                        <li>Medicare</li>
+                        <li>Medicaid</li>
+                        <li>Tricare</li>
+                        <li>Humana</li>
+                        <li>Priority Partners</li>
+                        <li>Wellpoint</li>
+                        <li>Maryland Physicians Care</li>
+                        <li>Johns Hopkins US Family Health</li>
+                    </ul>
+                    <p class="hp-note" data-en="Coverage can vary by service. See the full list or call us to confirm." data-es="La cobertura puede variar seg&uacute;n el servicio. Consulte la lista completa o ll&aacute;menos para confirmar.">Coverage can vary by service. See the full list or call us to confirm.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="mmc-cta" data-page-nav-stop="cta">
         <div class="mmc-cta-inner" data-aos="fade-up">
             <div class="mmc-cta-copy">
