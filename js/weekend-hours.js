@@ -477,6 +477,7 @@
             if (!cache || !cache.days || Date.now() - cache.t > CACHE_MAX_AGE) return;
             dayStatus = cache.days;
             hasData = true;
+            lastFetch = cache.t;
         } catch (e) { /* ignore */ }
     }
 
@@ -582,7 +583,8 @@
     injectStyles();
     readCache();
     render();
-    fetchSchedule();
+    // Saved schedule from the last 10 minutes is fresh enough; skip the database read.
+    if (Date.now() - lastFetch > REFRESH_AFTER) fetchSchedule();
 
     // Header/footer are injected asynchronously - render as soon as they land.
     document.addEventListener('mmc:header-ready', render);
