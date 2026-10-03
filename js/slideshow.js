@@ -274,6 +274,36 @@
         state.resumeTimer = window.setTimeout(startAutoplay, INTERVAL_MS);
     }
 
+    // Slides are stacked on top of each other, so the track only has its CSS
+    // minimum height. Grow it to the tallest slide's content, so on phones a
+    // slide with more text never runs under the arrows or past the bottom edge.
+    function fitTrack(track) {
+        track.style.minHeight = '';
+        var base = track.offsetHeight;
+        var tallest = base;
+        Array.prototype.forEach.call(track.children, function (card) {
+            tallest = Math.max(tallest, Math.ceil(card.scrollHeight));
+        });
+        if (tallest > base + 1) track.style.minHeight = tallest + 'px';
+    }
+
+    function bindFit(track) {
+        var queued = false;
+        function schedule() {
+            if (queued) return;
+            queued = true;
+            window.requestAnimationFrame(function () { queued = false; fitTrack(track); });
+        }
+        schedule();
+        if (state.fitBound) return;
+        state.fitBound = true;
+        window.addEventListener('resize', schedule);
+        window.addEventListener('load', schedule);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+        // Text can change after render (Spanish toggle, site translation).
+        new MutationObserver(schedule).observe(track, { childList: true, subtree: true, characterData: true });
+    }
+
     function renderHomepageSlideshow() {
         var container = document.getElementById('slideshow');
         var track = document.getElementById('slideTrack');
@@ -302,6 +332,7 @@
         });
 
         controls.style.display = state.slides.length > 1 ? 'flex' : 'none';
+        bindFit(track);
         showSlide(0);
         startAutoplay();
         if (typeof window.mmcApplyLang === 'function') window.mmcApplyLang();

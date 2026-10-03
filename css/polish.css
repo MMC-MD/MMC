@@ -752,6 +752,7 @@ html body .contact-close:focus-visible { outline: 2px solid #c9d6ea !important; 
 
 /* ═══ Accessibility: slim tab on the left edge (a real labelled button, 44px tall) ═══ */
 html body .a11y-trigger {
+    min-width: 0 !important; min-height: 0 !important;
     left: 0 !important; bottom: 120px !important; top: auto !important;
     width: 34px !important; height: 44px !important; border-radius: 0 10px 10px 0 !important;
     border: 0 !important; background: #0d47a1 !important; color: #fff !important;
@@ -763,8 +764,15 @@ html body .a11y-trigger:hover { width: 40px !important; background: #0b3c8a !imp
 html body .a11y-trigger:focus-visible { outline: 2px solid #ff8f00 !important; outline-offset: 2px !important; transform: none !important; }
 html body .a11y-panel { left: 46px !important; bottom: 24px !important; }
 @media (max-width: 640px) {
-    html body .a11y-trigger { bottom: 96px !important; width: 30px !important; height: 44px !important; }
-    html body .a11y-trigger svg { width: 17px !important; height: 17px !important; }
+    /* Phones: a narrow tab low on the edge, out of the way of slides and buttons */
+    html body .a11y-trigger {
+        min-width: 0 !important; min-height: 0 !important;
+        bottom: calc(14px + env(safe-area-inset-bottom, 0px)) !important; width: 24px !important; height: 38px !important;
+        border-radius: 0 8px 8px 0 !important; background: rgba(13, 71, 161, .88) !important;
+        box-shadow: 0 2px 8px -4px rgba(15, 23, 42, .5) !important;
+    }
+    html body .a11y-trigger:hover { width: 28px !important; }
+    html body .a11y-trigger svg { width: 14px !important; height: 14px !important; margin-left: -1px; }
     html body .a11y-panel { left: 12px !important; right: 12px !important; bottom: 12px !important; }
 }
 @media (max-width: 799px) {
