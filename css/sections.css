@@ -969,3 +969,87 @@ html body [dir="rtl"] #faq summary, html body #faq[dir="rtl"] summary { text-ali
 html body #main-content.page-header--photo[dir="rtl"] { transform: scaleX(-1); }
 html body #main-content.page-header--photo[dir="rtl"] > .container { transform: scaleX(-1); }
 html body #main-content.page-header--photo[dir="rtl"] .pt-menu { left: auto; right: 0; }
+
+/* ═══ Corporate health (ch-*), built on the FAA (pr-*) blocks ═══ */
+.ch-grid { display: grid; gap: 20px; }
+.ch-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ch-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ch-grid + .callout, .ch-grid + .ch-sub, .ch-table + .callout { margin-top: 32px; }
+html body :is(.service-card, .osha-card, .panel-card, .wellness-card) {
+    display: flex; flex-direction: column; padding: 28px !important; border: 0 !important; border-radius: 20px !important;
+    background: #fff !important; box-shadow: inset 0 0 0 1px var(--ds-line) !important; transform: none !important;
+}
+html body .hp-section:not(.pr-tint) :is(.service-card, .osha-card, .panel-card, .wellness-card) { background: var(--ds-tint) !important; box-shadow: none !important; }
+html body :is(.service-card, .osha-card, .panel-card, .wellness-card):hover { transform: none !important; box-shadow: inset 0 0 0 1px #d3dbe6 !important; }
+html body :is(.service-tag, .osha-tag, .wellness-label) {
+    align-self: flex-start; display: inline-flex; margin: 0 0 14px !important; padding: 5px 11px !important; border-radius: 999px !important;
+    background: #eaf1fb !important; color: var(--ds-blue) !important; font-size: 12px !important; font-weight: 700 !important;
+    letter-spacing: .04em !important; text-transform: uppercase; border: 0 !important;
+}
+html body .osha-tag { text-transform: none; letter-spacing: 0 !important; font-variant-numeric: tabular-nums; }
+html body :is(.service-card h3, .osha-card h4, .panel-card h4, .wellness-title) {
+    margin: 0 !important; color: var(--ds-ink) !important; font-size: 19px !important; font-weight: 700 !important; line-height: 1.3 !important; letter-spacing: -0.012em;
+}
+html body :is(.service-desc, .osha-card p, .panel-desc, .wellness-desc) {
+    margin: 10px 0 0 !important; color: var(--ds-muted) !important; font-size: 15px !important; line-height: 1.65 !important;
+}
+html body .service-card .pr-checks { margin-top: auto; padding-top: 16px; }
+html body .service-card .service-desc { margin-bottom: 18px !important; }
+html body .ch-card-accent { background: var(--ds-ink) !important; box-shadow: none !important; }
+html body .ch-card-accent h3 { color: #fff !important; }
+html body .ch-card-accent .service-desc { color: rgba(255, 255, 255, .78) !important; }
+html body .ch-card-accent .service-tag { background: rgba(255, 255, 255, .12) !important; color: #fff !important; }
+.ch-card-link { margin-top: auto; padding-top: 14px; color: #fff; }
+.ch-card-link:hover { color: #fff; opacity: .85; }
+html body .panel-substances { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px !important; padding-top: 16px; border-top: 1px solid var(--ds-line); }
+html body .substance-pill {
+    padding: 5px 10px !important; border-radius: 8px !important; border: 0 !important; background: #fff !important;
+    box-shadow: inset 0 0 0 1px var(--ds-line); color: var(--ds-ink) !important; font-size: 13px !important; font-weight: 500 !important;
+}
+.ch-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ch-types { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 4px; }
+.ch-types p { margin: 0; color: var(--ds-body); font-size: 14.5px; line-height: 1.6; }
+html body .ch-types .ch-type-title { margin-bottom: 4px; color: var(--ds-ink); font-weight: 650; font-size: 15px; }
+html body .ch-sub { margin: 48px 0 16px; font-size: 20px; }
+html body .test-name { color: var(--ds-ink); font-weight: 650; }
+html body .validity-table small { display: block; margin-top: 2px; color: var(--ds-muted) !important; font-size: 13px; }
+html body .validity-table code, html body .validity-table .osha-ref {
+    display: inline-flex; padding: 3px 8px; border-radius: 6px; background: #eaf1fb !important; color: var(--ds-blue) !important;
+    font: 600 12.5px/1.4 inherit !important; border: 0 !important; white-space: nowrap;
+}
+/* Injury & return-to-work steps */
+html body .step-list { display: grid; gap: 0; padding: 0 !important; border: 0 !important; background: none !important; box-shadow: none !important; border-top: 1px solid var(--ds-line) !important; }
+html body .step-item { display: grid !important; grid-template-columns: 30px minmax(0, 1fr); gap: 14px; padding: 18px 0 !important; border: 0 !important; border-bottom: 1px solid var(--ds-line) !important; background: none !important; }
+html body .step-num {
+    display: inline-flex !important; align-items: center; justify-content: center; width: 28px !important; height: 28px !important; margin: 1px 0 0 !important;
+    border-radius: 50% !important; background: #eaf1fb !important; color: var(--ds-blue) !important; font-size: 13.5px !important; font-weight: 700 !important;
+}
+html body .step-title { margin: 0 !important; color: var(--ds-ink) !important; font-size: 16px !important; font-weight: 650 !important; }
+html body .step-desc { margin: 4px 0 0 !important; color: var(--ds-muted) !important; font-size: 15px !important; line-height: 1.6 !important; }
+@media (min-width: 1024px) {
+    .ch-grid-3, .ch-grid-2 { row-gap: 20px; }
+}
+@media (max-width: 1023px) {
+    .ch-grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ch-types, .ch-cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 639px) {
+    .ch-grid-3, .ch-grid-2, .ch-types, .ch-cols-4 { grid-template-columns: 1fr; }
+    html body :is(.service-card, .osha-card, .panel-card, .wellness-card) { padding: 22px !important; }
+}
+@media (min-width: 640px) {
+    html body .ch-table .validity-table td.class-label { min-width: 190px; }
+}
+@media (min-width: 1024px) {
+    html body .ch-grid { row-gap: 20px; }
+    html body .ch-grid > .service-card { display: grid !important; grid-template-rows: subgrid; grid-row: span 4; row-gap: 0; align-content: start; }
+    html body .ch-grid > :is(.osha-card, .panel-card, .wellness-card) { display: grid !important; grid-template-rows: subgrid; grid-row: span 3; row-gap: 0; align-content: start; }
+    html body .ch-grid > * > * { align-self: start; }
+    html body .ch-grid > * > :is(.service-tag, .osha-tag, .wellness-label, .hp-link) { justify-self: start; }
+    html body .ch-grid > .service-card > .pr-checks, html body .ch-grid > .service-card > .ch-card-link { align-self: end; }
+}
+@media (max-width: 639px) {
+    html body .ch-table .validity-table td { text-align: left !important; padding: 6px 0 !important; }
+    html body .ch-table .validity-table td::before { float: none !important; display: block; margin: 0 0 2px !important; font-size: 12.5px; }
+    html body .ch-table .validity-table td.class-label { padding-bottom: 4px !important; }
+}
