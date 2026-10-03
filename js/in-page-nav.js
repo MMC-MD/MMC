@@ -16,7 +16,7 @@
         'Updates': 'Novedades', 'Team': 'Equipo', 'Our Team': 'Nuestro Equipo', 'Renewal': 'Renovación',
         'Plans': 'Planes', 'Partnership': 'Alianzas', 'Openings': 'Vacantes', 'Mission': 'Misión',
         'MVA Physicals': 'Exámenes MVA', 'Integration': 'Integración', 'Immigration': 'Inmigración',
-        'Facility': 'Instalaciones', 'FAA Physicals': 'Exámenes FAA', 'Divisions': 'Divisiones',
+        'Facility': 'Instalaciones', 'FAA Physicals': 'Exámenes FAA', 'Divisions': 'Divisiones', 'Nutrition': 'Nutrición', 'Personal Training': 'Entrenamiento Personal',
         'Corporate': 'Corporativo', 'Contact': 'Contacto', 'Conditions': 'Condiciones',
         'Care Journey': 'Su Atención', 'About Us': 'Nosotros', 'What to Bring': 'Qué Traer',
         'Exam Process': 'Proceso del Examen', 'Vaccinations': 'Vacunas', 'After the Exam': 'Después del Examen',
