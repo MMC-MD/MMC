@@ -12,7 +12,8 @@ const t = (en, es) => ({ en, es });
 export const IMAGE_LIBRARY = [
     { id: 'spot-aviation', label: 'FAA & immigration', tags: 'faa pilot aviation immigration passport physical uscis civil surgeon' },
     { id: 'spot-exam-room', label: 'Urgent care room', tags: 'urgent care walk-in same day exam room clinic' },
-    { id: 'spot-flu', label: 'Flu shot', tags: 'flu shot vaccine immunization season' },
+    { id: 'spot-flu-family', label: 'Flu season (family)', tags: 'flu shot vaccine immunization season family autumn' },
+    { id: 'spot-flu-cozy', label: 'Flu season (cozy)', tags: 'flu shot vaccine immunization season autumn bandage' },
     { id: 'clinic-lobby', label: 'Our lobby', tags: 'clinic lobby reception one stop all services welcome' },
     { id: 'flu-vaccine', label: 'Flu vaccine', tags: 'vaccine flu shot immunization covid' },
     { id: 'urgent-care', label: 'Clinic lobby', tags: 'urgent care clinic reception waiting walk-in welcome' },
