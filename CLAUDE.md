@@ -61,3 +61,23 @@ preview URL — the preview can be correct while the custom-domain alias is stal
 - Header/footer are injected from `includes/` via `js/header-footer-loader.js`.
 - Brand colors (`css/style.css`): `--medical-blue #0d47a1`, `--medical-orange #ff8f00`.
   `.btn-primary` = blue, `.btn-secondary` = orange.
+
+## MMC Studio (`/frontdesk-briefing-room/`)
+
+Staff admin for the banner, scheduled banners, weekend hours, homepage slides and team.
+Plain ES modules in `frontdesk-briefing-room/studio/` (`app.js` entry, one `page-*.js`
+per screen, `templates.js` for ready-made banner/slide content, `icons.js` generated
+from lucide@0.469.0 — regenerate it if you add icons). Styles: `studio.css`.
+
+- Data goes through `js/firebase-client.js` (shared with the public site) — don't change
+  its document shapes. The header's weekend hours (`js/weekend-hours.js`) and the reminder
+  Worker read scheduled banners labelled exactly `Saturday Open – YYYY-MM-DD` /
+  `Sunday Closed – YYYY-MM-DD`.
+- Homepage slides render with `js/slideshow.js` + `css/slides.css` (layouts: classic,
+  photo, feature, bold; library images in `images/slides/<name>-{1280,720,360}.webp`).
+  The Studio preview uses the same files, so they always match the homepage.
+- Testing without touching the real database: intercept `**/js/firebase-client.js*`
+  with an in-memory stand-in (Playwright `route`) instead of signing in for real.
+- VS Code Live Server injects a reload script before every `</svg>` in partials and
+  truncates them in Safari; the `</body>` comment at the end of `includes/*.html`
+  prevents that. Production is unaffected.

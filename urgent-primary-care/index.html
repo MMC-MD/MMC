@@ -121,7 +121,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/tailwind.css">
-    <link rel="stylesheet" href="../css/style.css?v=2026100210">
+    <link rel="stylesheet" href="../css/style.css?v=2026100301">
     <link rel="stylesheet" href="../css/dropdown-fix.css?v=20260413g">
     <link rel="stylesheet" href="../css/header-fix.css">
     <link rel="stylesheet" href="../css/contact-modal.css">
@@ -408,6 +408,8 @@
             .feature-grid { grid-template-columns: 1fr !important; }
         }
     </style>
+    <link rel="stylesheet" href="../css/polish.css?v=2026100408">
+    <link href="../vendor/aos.css" rel="stylesheet">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -626,6 +628,7 @@
             <div class="text-center mb-12" data-aos="fade-up">
                 <h2 class="text-4xl lg:text-5xl font-black text-brand-blue mb-4">Frequently Asked Questions</h2>
                 <p class="text-lg text-medium-gray">Common questions about urgent care and primary care at Montgomery Medical Clinic.</p>
+                <p class="faq-help"><span data-en="Still have a question?" data-es="&iquest;Tiene otra pregunta?">Still have a question?</span> <a href="tel:3012082273" data-en="Call (301) 208-2273" data-es="Llame al (301) 208-2273">Call (301) 208-2273</a> <span data-en="or" data-es="o">or</span> <a href="sms:3012052293" data-en="text us" data-es="env&iacute;enos un texto">text us</a>.</p>
             </div>
             <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
                 <details class="group bg-light-blue-bg rounded-2xl overflow-hidden">
@@ -718,19 +721,15 @@
     </section>
 
     <!-- CTA SECTION -->
-    <section class="py-20 lg:py-24 bg-light-blue-bg" data-page-nav-stop="cta">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="bg-gradient-blue text-white rounded-3xl p-12 lg:p-16 text-center shadow-2xl max-w-4xl mx-auto">
-                <h2 class="text-3xl lg:text-4xl font-black mb-6">Ready to Get Started?</h2>
-                <p class="text-xl mb-8 text-white/90">Walk in today or schedule an appointment for your convenience.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-10 py-4 text-lg">
-                        Schedule Your Visit
-                    </a>
-                    <a href="tel:3012082273" class="btn bg-white text-brand-blue font-bold hover:bg-gray-100 rounded-full px-10 py-4 text-lg">
-                        Call (301) 208-2273
-                    </a>
-                </div>
+    <section class="mmc-cta" data-page-nav-stop="cta">
+        <div class="mmc-cta-inner" data-aos="fade-up">
+            <div class="mmc-cta-copy">
+                <h2>Ready to Get Started?</h2>
+                <p>Walk in today or schedule an appointment for your convenience.</p>
+            </div>
+            <div class="mmc-cta-actions">
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-secondary">Schedule Your Visit</a>
+                <a href="tel:3012082273" class="btn mmc-cta-ghost">Call (301) 208-2273</a>
             </div>
         </div>
     </section>
@@ -738,10 +737,11 @@
     <!-- FOOTER -->
     <div id="footer-placeholder" data-page-nav-stop="footer"></div>
     
-    <script src="../js/lang-toggle.js?v=2"></script>
+    <script src="../js/lang-toggle.js?v=2026100401"></script>
     <script src="../js/header-footer-loader.js?v=2026100201"></script>
     <script src="../js/weekend-hours.js?v=2026100205" defer></script>
     <script src="../js/mobile-menu-fit.js?v=2026100203" defer></script>
+    <script src="../vendor/aos.js"></script>
     <script src="../js/main.js?v=2026041202"></script>
 
 </body>

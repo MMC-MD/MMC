@@ -139,7 +139,7 @@
 
     <!-- Critical CSS: blocks render -->
     <link rel="stylesheet" href="css/tailwind.css">
-    <link rel="stylesheet" href="css/style.css?v=2026100210">
+    <link rel="stylesheet" href="css/style.css?v=2026100301">
 
     <!-- Non-critical CSS: load async (for AOS, header tweaks, modal, in-page nav, etc.) -->
     <link rel="preload" as="style" href="vendor/aos.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -157,6 +157,8 @@
         <link rel="stylesheet" href="css/in-page-nav.css?v=6">
     </noscript>
     <link rel="preload" href="includes/header.html" as="fetch" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/slides.css?v=2026100301" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="css/slides.css?v=2026100301"></noscript>
     <link rel="preload" href="js/header-footer-loader.js?v=2026100201" as="script">
     <link rel="preload" href="js/critical-header.js?v=2026041202" as="script">
     <script>
@@ -248,271 +250,7 @@
             .card { padding: 1.5rem !important; }
         }
 
-        /* ── Slideshow ── */
-        .slideshow-section {
-            background: #f5f5f7;
-            padding: 72px 24px 80px;
-        }
-        .slideshow-wrapper {
-            max-width: 1060px;
-            margin: 0 auto;
-            border-radius: 24px;
-            box-shadow:
-                0 0 0 0.5px rgba(0,0,0,0.04),
-                0 4px 12px rgba(0,0,0,0.03),
-                0 16px 40px rgba(0,0,0,0.06);
-        }
-
-        .slide-container {
-            position: relative;
-            width: 100%;
-            background: #ffffff;
-            border-radius: 24px;
-            overflow: hidden;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .slide-track {
-            position: relative;
-            width: 100%;
-            min-height: 340px;
-        }
-
-        /* ── Cards ── */
-        .slide-card {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 56px 48px 56px;
-            box-sizing: border-box;
-            background: #ffffff;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(6px);
-            transition:
-                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0s linear 0.5s;
-            z-index: 1;
-        }
-        .slide-card.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            transition:
-                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                visibility 0s linear 0s;
-            z-index: 2;
-        }
-
-        /* Accent stripe at top of each card */
-        .slide-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 72px;
-            height: 3px;
-            border-radius: 0 0 3px 3px;
-            background: var(--accent, #0d47a1);
-        }
-
-        /* ── Pill ── */
-        .slide-pill {
-            display: inline-flex;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 5px 14px;
-            border-radius: 100px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            min-height: auto;
-            min-width: auto;
-            margin-bottom: 18px;
-            color: var(--accent, #0d47a1);
-            background: var(--accent-bg, rgba(13,71,161,0.06));
-        }
-
-        /* ── Title ── */
-        .slide-title {
-            font-size: clamp(24px, 3.2vw, 36px);
-            font-weight: 700;
-            color: #1d1d1f;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-            margin: 0 0 12px 0;
-        }
-        .slide-title .accent {
-            color: var(--accent, #0d47a1);
-        }
-
-        /* ── Subtext ── */
-        .slide-sub {
-            font-size: 16px;
-            color: #6b6b70;
-            line-height: 1.5;
-            margin: 0 0 28px 0;
-            max-width: 520px;
-            font-weight: 400;
-        }
-
-        /* ── CTA Button ── */
-        .slide-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--accent, #0d47a1);
-            color: #fff;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 13px 34px;
-            border-radius: 980px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            min-height: auto;
-            min-width: auto;
-            letter-spacing: 0;
-        }
-        .slide-btn:hover {
-            filter: brightness(1.1);
-            transform: scale(1.03);
-            color: #fff;
-        }
-        .slide-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* ── Credential list ── */
-        .slide-creds {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 8px 0 0 0;
-        }
-        .slide-cred {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #1d1d1f;
-            background: var(--accent-bg, rgba(13,71,161,0.06));
-            padding: 10px 20px;
-            border-radius: 980px;
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-        .slide-cred-icon {
-            width: auto;
-            height: auto;
-            min-width: auto;
-            min-height: auto;
-            font-size: 14px;
-            color: var(--accent, #0d47a1);
-            flex-shrink: 0;
-            line-height: 1;
-        }
-
-        /* ── Breathing kicker ── */
-        .slide-kicker {
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #6b6b70;
-            margin: 0 0 28px 0;
-        }
-
-        /* ── Controls bar ── */
-        .slide-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            padding: 16px 0 20px;
-            border-top: 1px solid rgba(0,0,0,0.04);
-            background: #fff;
-        }
-
-        .s-nav {
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
-            min-height: 36px;
-            border-radius: 50%;
-            border: 1px solid rgba(0,0,0,0.08);
-            background: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1d1d1f;
-            transition: all 0.2s ease;
-            outline: none;
-            padding: 0;
-            position: relative;
-        }
-        .s-nav::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            border-top: 1.5px solid currentColor;
-            border-right: 1.5px solid currentColor;
-            position: absolute;
-        }
-        .s-prev::before { transform: rotate(-135deg); left: 14px; }
-        .s-next::before { transform: rotate(45deg); right: 14px; }
-        .s-nav:hover { background: #f5f5f7; border-color: rgba(0,0,0,0.12); }
-
-        .s-dots { display: flex; gap: 0; align-items: center; }
-        /* Invisible 24x24 tap area; the visible dot is the inner pseudo-element. */
-        .s-dot {
-            position: relative;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: transparent;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            outline: none;
-            min-width: 24px;
-            min-height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .s-dot::before {
-            content: "";
-            display: block;
-            width: 7px;
-            height: 7px;
-            border-radius: 7px;
-            background: rgba(0,0,0,0.12);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .s-dot:hover::before { background: rgba(0,0,0,0.25); }
-        .s-dot.active::before { width: 24px; background: #1d1d1f; }
-        .s-dot:focus-visible::before { outline: 2px solid #0d47a1; outline-offset: 3px; }
-
-        @media (max-width: 600px) {
-            .slideshow-section { padding: 40px 16px 48px; }
-            .slideshow-wrapper { border-radius: 20px; }
-            .slide-container { border-radius: 20px; }
-            .slide-track { min-height: 290px; }
-            .slide-card { padding: 44px 24px 48px; }
-            .slide-title { font-size: 21px; }
-            .slide-sub { font-size: 14px; }
-        }
-
+        /* Slideshow styles live in css/slides.css (shared with MMC Studio). */
 
                 /* Fix service cards hover cutoff */
         #services {
@@ -541,6 +279,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="css/polish.css?v=2026100408">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -780,8 +519,7 @@
 
                     <div class="flex flex-col justify-center" data-aos="fade-left">
                         <div class="flex items-center gap-3 mb-5">
-                            <span class="block rounded-full" style="width: 3.5rem; height: 2px; background: linear-gradient(90deg, var(--medical-blue, #0d47a1) 0%, rgba(13,71,161,0.12) 100%);"></span>
-                            <span class="text-xs font-extrabold uppercase tracking-widest" style="color: var(--medical-blue, #0d47a1);" data-en="Who We Are" data-es="Qui&eacute;nes Somos">Who We Are</span>
+                                                        <span class="section-eyebrow" data-en="Who We Are" data-es="Qui&eacute;nes Somos">Who We Are</span>
                         </div>
 
                         <h2 class="section-title font-black leading-tight" style="font-size: clamp(2rem, 3.2vw, 3.6rem); line-height: 1.08; max-width: 11ch;" data-en="About Our Medical Center" data-es="Sobre Nuestro Centro M&eacute;dico">About Our Medical Center</h2>
@@ -842,14 +580,15 @@
             </div>
         </div>
     </section>
-    <section class="py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 bg-light-blue-bg" data-page-nav-stop="cta">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-blue text-white rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-16 xl:p-20 text-center shadow-2xl" data-aos="fade-up">
-                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black mb-3 sm:mb-4 md:mb-6 leading-tight" data-en="Ready to Experience Quality Care?" data-es="&iquest;Listo Para Experimentar Atenci&oacute;n de Calidad?">Ready to Experience Quality Care?</h2>
-                <p class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-5 sm:mb-6 md:mb-8 lg:mb-10 text-white/90 max-w-2xl mx-auto leading-relaxed" data-en="Join thousands of satisfied patients who trust Montgomery Medical Clinic for their healthcare needs." data-es="&Uacute;nase a miles de pacientes satisfechos que conf&iacute;an en Montgomery Medical Clinic para sus necesidades de salud.">Join thousands of satisfied patients who trust Montgomery Medical Clinic for their healthcare needs.</p>
-                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" class="btn btn-secondary px-5 sm:px-6 md:px-8 lg:px-12 py-2.5 sm:py-3 md:py-4 lg:py-5 text-xs sm:text-sm md:text-base lg:text-lg inline-flex" data-en="Schedule Appointment" data-es="Programar Cita">
-                    Schedule Appointment
-                </a>
+    <section class="mmc-cta" data-page-nav-stop="cta">
+        <div class="mmc-cta-inner" data-aos="fade-up">
+            <div class="mmc-cta-copy">
+                <h2 data-en="Ready to Experience Quality Care?" data-es="&iquest;Listo Para Experimentar Atenci&oacute;n de Calidad?">Ready to Experience Quality Care?</h2>
+                <p data-en="Join thousands of satisfied patients who trust Montgomery Medical Clinic for their healthcare needs." data-es="&Uacute;nase a miles de pacientes satisfechos que conf&iacute;an en Montgomery Medical Clinic para sus necesidades de salud.">Join thousands of satisfied patients who trust Montgomery Medical Clinic for their healthcare needs.</p>
+            </div>
+            <div class="mmc-cta-actions">
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-secondary" data-en="Schedule Appointment" data-es="Programar Cita">Schedule Appointment</a>
+                <a href="tel:3012082273" class="btn mmc-cta-ghost" data-en="Call (301) 208-2273" data-es="Llame al (301) 208-2273">Call (301) 208-2273</a>
             </div>
         </div>
     </section>
@@ -860,13 +599,13 @@
 
 
     <script src="vendor/aos.js" defer></script>
-    <script src="js/lang-toggle.js?v=2" defer></script>
+    <script src="js/lang-toggle.js?v=2026100401" defer></script>
     <script src="js/header-footer-loader.js?v=2026100201" defer></script>
     <script src="js/weekend-hours.js?v=2026100205" defer></script>
     <script src="js/mobile-menu-fit.js?v=2026100203" defer></script>
     <script src="js/main-simple.js?v=20260413" defer></script>
-    <script src="js/slideshow-data.js" defer></script>
-    <script src="js/slideshow.js" defer></script>
+    <script src="js/slideshow-data.js?v=2026100301" defer></script>
+    <script src="js/slideshow.js?v=2026100301" defer></script>
     <!-- Lazy-load Firebase only when the user gets near the Updates slideshow.
          Firebase + Firestore is ~180 KB of JS that's not needed for first paint
          since it just hydrates the homepage updates slideshow with live data.

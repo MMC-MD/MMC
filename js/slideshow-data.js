@@ -1,1 +1,240 @@
-(function(){const l="mmc-homepage-slides-cache-v1",o="mmc-homepage-slides-v1",m="#0d47a1";let r=null;const a=[{id:"flu-shots",enabled:!0,accent:"#e67e22",pill:{en:"Available Today",es:"Disponible Hoy"},title:{en:"Seasonal Flu Shots Are Here",es:"Las Vacunas contra la Gripe Est\xE1n Aqu\xED"},titleAccent:{en:"Flu Shots",es:"Vacunas contra la Gripe"},kicker:{en:"Protect yourself this season",es:"Prot\xE9jase esta temporada"},subtext:{en:"",es:""},ctaLabel:{en:"Walk-Ins Welcome",es:"Sin Cita Previa"},ctaUrl:"https://nextpatient.co/p/montgomerymedclinic/schedule",ctaNewTab:!0,credentials:[]},{id:"physicals",enabled:!0,accent:"#0d47a1",pill:{en:"Specialized Services",es:"Servicios Especializados"},title:{en:"FAA & Immigration Physicals",es:"Ex\xE1menes F\xEDsicos de FAA e Inmigraci\xF3n"},titleAccent:{en:"Physicals",es:"FAA e Inmigraci\xF3n"},kicker:{en:"",es:""},subtext:{en:"",es:""},ctaLabel:{en:"",es:""},ctaUrl:"",ctaNewTab:!1,credentials:[{en:"Authorized Aviation Medical Examiner",es:"Examinador M\xE9dico de Aviaci\xF3n Autorizado"},{en:"USCIS-Authorized Civil Surgeon",es:"Cirujano Civil Autorizado por USCIS"}]},{id:"urgent-care",enabled:!0,accent:"#1976d2",pill:{en:"Available Today",es:"Disponible Hoy"},title:{en:"Same Day Urgent Care",es:"Atenci\xF3n Urgente el Mismo D\xEDa"},titleAccent:{en:"Urgent Care",es:"Atenci\xF3n Urgente"},kicker:{en:"",es:""},subtext:{en:"No appointment needed \u2022 Walk-in basis at our medical center",es:"Sin cita previa \u2022 Atenci\xF3n sin reserva en nuestro centro m\xE9dico"},ctaLabel:{en:"Schedule Appointment",es:"Programar Cita"},ctaUrl:"https://nextpatient.co/p/montgomerymedclinic/schedule",ctaNewTab:!0,credentials:[]},{id:"one-stop",enabled:!0,accent:"#0d47a1",pill:{en:"",es:""},title:{en:"One Stop For All Your Medical Needs",es:"Todo en Un Solo Lugar Para Sus Necesidades Medicas"},titleAccent:{en:"One Stop",es:"Todo en Un Solo Lugar"},kicker:{en:"",es:""},subtext:{en:"Comprehensive multi-specialty care with expert doctors under one roof.",es:"Atenci\xF3n integral multiespecialidad con m\xE9dicos expertos bajo un mismo techo."},ctaLabel:{en:"Explore Our Services",es:"Explorar Nuestros Servicios"},ctaUrl:"#services",ctaNewTab:!1,credentials:[]}];function n(e){return JSON.parse(JSON.stringify(e))}function A(){return window.crypto&&typeof window.crypto.randomUUID=="function"?window.crypto.randomUUID():"slide-"+Date.now()+"-"+Math.random().toString(36).slice(2,8)}function s(e){return typeof e=="string"?e.trim():""}function i(e){const t=e&&typeof e=="object"?e:{};return{en:s(t.en),es:s(t.es)}}function g(e){return/^#[0-9a-f]{6}$/i.test(e)?e:m}function h(e){return Array.isArray(e)?e.map(i).filter(function(t){return t.en||t.es}):[]}function c(e){const t=e&&typeof e=="object"?e:{};return{id:s(t.id)||A(),enabled:t.enabled!==!1,accent:g(t.accent),pill:i(t.pill),title:i(t.title),titleAccent:i(t.titleAccent),kicker:i(t.kicker),subtext:i(t.subtext),ctaLabel:i(t.ctaLabel),ctaUrl:s(t.ctaUrl),ctaNewTab:!!t.ctaNewTab,credentials:h(t.credentials)}}function d(){try{const e="__mmc_slideshow_test__";return window.localStorage.setItem(e,"1"),window.localStorage.removeItem(e),!0}catch{return!1}}function S(e){if(!e)return null;try{const t=JSON.parse(e);if(Array.isArray(t))return t;if(t&&Array.isArray(t.slides))return t.slides}catch{return null}return null}function p(){if(!d())return null;const e=S(window.localStorage.getItem(l))||S(window.localStorage.getItem(o));return!e||!e.length?null:e.map(c)}function u(e){if(!d())return n(e);const t=Array.isArray(e)?e.map(c):[];t.length&&window.localStorage.setItem(l,JSON.stringify(t));try{window.localStorage.removeItem(o)}catch{return n(t)}return n(t)}function b(){d()&&(window.localStorage.removeItem(l),window.localStorage.removeItem(o))}function f(){if(Array.isArray(r)&&r.length)return n(r);const e=p();return e&&e.length?e:n(a)}function y(){const e=f().filter(function(t){return t.enabled&&(t.title.en||t.title.es)});return e.length?e:n(a)}function w(e){const t=Array.isArray(e)?e.map(c):[];return t.length?(r=n(t),u(r),n(r)):(r=n(a),u(r),n(r))}function C(){return r=null,n(a)}function v(){return c({accent:m,pill:{en:"New Update",es:"Nueva Actualizaci\xF3n"},title:{en:"Add your new slide title",es:"Agregue el t\xEDtulo de la diapositiva"},titleAccent:{en:"new slide",es:"diapositiva"},kicker:{en:"",es:""},subtext:{en:"Describe the update you want visitors to notice on the homepage.",es:"Describa la actualizaci\xF3n que quiere mostrar en la p\xE1gina principal."},ctaLabel:{en:"Learn More",es:"M\xE1s Informaci\xF3n"},ctaUrl:"#services",ctaNewTab:!1,credentials:[]})}window.MMCSlideshowStore=Object.freeze({CACHE_KEY:l,LEGACY_STORAGE_KEY:o,defaultSlides:n(a),clearRemoteSlides:C,clearSlidesCache:b,createSlideTemplate:v,getCachedSlides:p,getSlides:f,getSlidesForRender:y,isStorageAvailable:d,normalizeSlide:c,saveSlidesCache:u,setRemoteSlides:w})})();
+/*
+ * Homepage slideshow data store (shared by the homepage and MMC Studio).
+ * Normalizes slide objects, caches the last published slides in localStorage,
+ * and exposes window.MMCSlideshowStore.
+ *
+ * Slide fields: id, enabled, layout, image, accent, pill, title, titleAccent,
+ * kicker, subtext, ctaLabel, ctaUrl, ctaNewTab, credentials[].
+ * Bilingual fields are { en, es }.
+ */
+(function () {
+    'use strict';
+
+    var CACHE_KEY = 'mmc-homepage-slides-cache-v1';
+    var LEGACY_STORAGE_KEY = 'mmc-homepage-slides-v1';
+    var DEFAULT_ACCENT = '#0d47a1';
+    var LAYOUTS = ['classic', 'photo', 'feature', 'bold'];
+    var remoteSlides = null;
+
+    var DEFAULT_SLIDES = [
+        {
+            id: 'flu-shots', enabled: true, accent: '#e67e22',
+            pill: { en: 'Available Today', es: 'Disponible Hoy' },
+            title: { en: 'Seasonal Flu Shots Are Here', es: 'Las Vacunas contra la Gripe Están Aquí' },
+            titleAccent: { en: 'Flu Shots', es: 'Vacunas contra la Gripe' },
+            kicker: { en: 'Protect yourself this season', es: 'Protéjase esta temporada' },
+            subtext: { en: '', es: '' },
+            ctaLabel: { en: 'Walk-Ins Welcome', es: 'Sin Cita Previa' },
+            ctaUrl: 'https://nextpatient.co/p/montgomerymedclinic/schedule', ctaNewTab: true,
+            credentials: []
+        },
+        {
+            id: 'physicals', enabled: true, accent: '#0d47a1',
+            pill: { en: 'Specialized Services', es: 'Servicios Especializados' },
+            title: { en: 'FAA & Immigration Physicals', es: 'Exámenes Físicos de FAA e Inmigración' },
+            titleAccent: { en: 'Physicals', es: 'FAA e Inmigración' },
+            kicker: { en: '', es: '' },
+            subtext: { en: '', es: '' },
+            ctaLabel: { en: '', es: '' },
+            ctaUrl: '', ctaNewTab: false,
+            credentials: [
+                { en: 'Authorized Aviation Medical Examiner', es: 'Examinador Médico de Aviación Autorizado' },
+                { en: 'USCIS-Authorized Civil Surgeon', es: 'Cirujano Civil Autorizado por USCIS' }
+            ]
+        },
+        {
+            id: 'urgent-care', enabled: true, accent: '#1976d2',
+            pill: { en: 'Available Today', es: 'Disponible Hoy' },
+            title: { en: 'Same Day Urgent Care', es: 'Atención Urgente el Mismo Día' },
+            titleAccent: { en: 'Urgent Care', es: 'Atención Urgente' },
+            kicker: { en: '', es: '' },
+            subtext: { en: 'No appointment needed • Walk-in basis at our medical center', es: 'Sin cita previa • Atención sin reserva en nuestro centro médico' },
+            ctaLabel: { en: 'Schedule Appointment', es: 'Programar Cita' },
+            ctaUrl: 'https://nextpatient.co/p/montgomerymedclinic/schedule', ctaNewTab: true,
+            credentials: []
+        },
+        {
+            id: 'one-stop', enabled: true, accent: '#0d47a1',
+            pill: { en: '', es: '' },
+            title: { en: 'One Stop For All Your Medical Needs', es: 'Todo en Un Solo Lugar Para Sus Necesidades Medicas' },
+            titleAccent: { en: 'One Stop', es: 'Todo en Un Solo Lugar' },
+            kicker: { en: '', es: '' },
+            subtext: { en: 'Comprehensive multi-specialty care with expert doctors under one roof.', es: 'Atención integral multiespecialidad con médicos expertos bajo un mismo techo.' },
+            ctaLabel: { en: 'Explore Our Services', es: 'Explorar Nuestros Servicios' },
+            ctaUrl: '#services', ctaNewTab: false,
+            credentials: []
+        }
+    ];
+
+    function clone(value) {
+        return JSON.parse(JSON.stringify(value));
+    }
+
+    function createId() {
+        return window.crypto && typeof window.crypto.randomUUID === 'function'
+            ? window.crypto.randomUUID()
+            : 'slide-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+    }
+
+    function cleanText(value) {
+        return typeof value === 'string' ? value.trim() : '';
+    }
+
+    function normalizeCopy(value) {
+        var source = value && typeof value === 'object' ? value : {};
+        return { en: cleanText(source.en), es: cleanText(source.es) };
+    }
+
+    function normalizeAccent(value) {
+        return /^#[0-9a-f]{6}$/i.test(value) ? value : DEFAULT_ACCENT;
+    }
+
+    function normalizeLayout(value) {
+        return LAYOUTS.indexOf(value) >= 0 ? value : 'classic';
+    }
+
+    // Images are site-hosted (/images/...) or https URLs; anything else is dropped.
+    function normalizeImage(value) {
+        var text = cleanText(value);
+        if (/^\/?images\/[a-z0-9/_\-.]+\.(webp|jpe?g|png|avif)$/i.test(text)) {
+            return text.charAt(0) === '/' ? text : '/' + text;
+        }
+        return /^https:\/\/[^\s"'<>]+$/i.test(text) ? text : '';
+    }
+
+    function normalizeCredentials(value) {
+        return Array.isArray(value)
+            ? value.map(normalizeCopy).filter(function (item) { return item.en || item.es; })
+            : [];
+    }
+
+    function normalizeSlide(value) {
+        var source = value && typeof value === 'object' ? value : {};
+        var image = normalizeImage(source.image);
+        var layout = normalizeLayout(source.layout);
+        // Image layouts need an image; fall back gracefully if it's missing.
+        if (!image && (layout === 'photo' || layout === 'feature')) {
+            layout = 'classic';
+        }
+        return {
+            id: cleanText(source.id) || createId(),
+            enabled: source.enabled !== false,
+            layout: layout,
+            image: image,
+            accent: normalizeAccent(source.accent),
+            pill: normalizeCopy(source.pill),
+            title: normalizeCopy(source.title),
+            titleAccent: normalizeCopy(source.titleAccent),
+            kicker: normalizeCopy(source.kicker),
+            subtext: normalizeCopy(source.subtext),
+            ctaLabel: normalizeCopy(source.ctaLabel),
+            ctaUrl: cleanText(source.ctaUrl),
+            ctaNewTab: !!source.ctaNewTab,
+            credentials: normalizeCredentials(source.credentials)
+        };
+    }
+
+    function isStorageAvailable() {
+        try {
+            var key = '__mmc_slideshow_test__';
+            window.localStorage.setItem(key, '1');
+            window.localStorage.removeItem(key);
+            return true;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function parseStoredSlides(raw) {
+        if (!raw) return null;
+        try {
+            var parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) return parsed;
+            if (parsed && Array.isArray(parsed.slides)) return parsed.slides;
+        } catch (error) {
+            return null;
+        }
+        return null;
+    }
+
+    function getCachedSlides() {
+        if (!isStorageAvailable()) return null;
+        var slides = parseStoredSlides(window.localStorage.getItem(CACHE_KEY))
+            || parseStoredSlides(window.localStorage.getItem(LEGACY_STORAGE_KEY));
+        return slides && slides.length ? slides.map(normalizeSlide) : null;
+    }
+
+    function saveSlidesCache(slides) {
+        if (!isStorageAvailable()) return clone(slides);
+        var normalized = Array.isArray(slides) ? slides.map(normalizeSlide) : [];
+        if (normalized.length) {
+            window.localStorage.setItem(CACHE_KEY, JSON.stringify(normalized));
+        }
+        try {
+            window.localStorage.removeItem(LEGACY_STORAGE_KEY);
+        } catch (error) {
+            return clone(normalized);
+        }
+        return clone(normalized);
+    }
+
+    function clearSlidesCache() {
+        if (!isStorageAvailable()) return;
+        window.localStorage.removeItem(CACHE_KEY);
+        window.localStorage.removeItem(LEGACY_STORAGE_KEY);
+    }
+
+    function getSlides() {
+        if (Array.isArray(remoteSlides) && remoteSlides.length) return clone(remoteSlides);
+        var cached = getCachedSlides();
+        return cached && cached.length ? cached : clone(DEFAULT_SLIDES).map(normalizeSlide);
+    }
+
+    function getSlidesForRender() {
+        var visible = getSlides().filter(function (slide) {
+            return slide.enabled && (slide.title.en || slide.title.es);
+        });
+        return visible.length ? visible : clone(DEFAULT_SLIDES).map(normalizeSlide);
+    }
+
+    function setRemoteSlides(slides) {
+        var normalized = Array.isArray(slides) ? slides.map(normalizeSlide) : [];
+        remoteSlides = normalized.length ? clone(normalized) : clone(DEFAULT_SLIDES).map(normalizeSlide);
+        saveSlidesCache(remoteSlides);
+        return clone(remoteSlides);
+    }
+
+    function clearRemoteSlides() {
+        remoteSlides = null;
+        return clone(DEFAULT_SLIDES);
+    }
+
+    function createSlideTemplate() {
+        return normalizeSlide({
+            accent: DEFAULT_ACCENT,
+            pill: { en: 'New Update', es: 'Nueva Actualización' },
+            title: { en: 'Add your new slide title', es: 'Agregue el título de la diapositiva' },
+            titleAccent: { en: 'new slide', es: 'diapositiva' },
+            subtext: { en: 'Describe the update you want visitors to notice on the homepage.', es: 'Describa la actualización que quiere mostrar en la página principal.' },
+            ctaLabel: { en: 'Learn More', es: 'Más Información' },
+            ctaUrl: '#services'
+        });
+    }
+
+    window.MMCSlideshowStore = Object.freeze({
+        CACHE_KEY: CACHE_KEY,
+        LEGACY_STORAGE_KEY: LEGACY_STORAGE_KEY,
+        LAYOUTS: LAYOUTS.slice(),
+        defaultSlides: clone(DEFAULT_SLIDES),
+        clearRemoteSlides: clearRemoteSlides,
+        clearSlidesCache: clearSlidesCache,
+        createSlideTemplate: createSlideTemplate,
+        getCachedSlides: getCachedSlides,
+        getSlides: getSlides,
+        getSlidesForRender: getSlidesForRender,
+        isStorageAvailable: isStorageAvailable,
+        normalizeSlide: normalizeSlide,
+        saveSlidesCache: saveSlidesCache,
+        setRemoteSlides: setRemoteSlides
+    });
+})();

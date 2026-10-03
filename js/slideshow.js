@@ -1,1 +1,324 @@
-(function(){const q="#0d47a1",F="rgba(13,71,161,0.06)",s={currentIndex:0,intervalId:null,resumeTimer:null,touchStartX:0,touchBound:!1,storageBound:!1,slides:[]};function p(e){return typeof e=="string"?e.trim():""}function G(){try{return window.localStorage.getItem("mmc-lang")==="es"?"es":"en"}catch{return"en"}}function o(e,t){const n=e&&typeof e=="object"?e:{},i=p(n[t]),c=p(n[t==="en"?"es":"en"]);return i||c}function f(e){return String(e).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;")}function r(e){return f(e).replace(/\n/g,"&#10;")}function d(e){return f(e).replace(/\n/g,"<br>")}function P(e){return String(e).replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}function H(e){return/^#[0-9a-f]{6}$/i.test(e)?e:q}function K(e){const t=H(e).slice(1),n=parseInt(t.slice(0,2),16),i=parseInt(t.slice(2,4),16),c=parseInt(t.slice(4,6),16);return[n,i,c].some(Number.isNaN)?F:"rgba("+n+","+i+","+c+",0.08)"}function J(e){const t=p(e);return t&&(t.startsWith("#")||t.startsWith("/")||t.startsWith("./")||t.startsWith("../")||/^(https?:|mailto:|tel:|sms:)/i.test(t)||/^[a-z0-9][a-z0-9/_\-.]*([?#].*)?$/i.test(t))?t:"#"}function N(e,t){const n=p(e),i=p(t);if(!n)return"";if(!i)return f(n);const c=n.match(new RegExp(P(i),"i"));if(!c||typeof c.index!="number")return f(n);const u=c.index,a=u+c[0].length;return[f(n.slice(0,u)),'<span class="accent">',f(n.slice(u,a)),"</span>",f(n.slice(a))].join("")}function _(e){return['<span class="slide-cred-icon">&#10003;</span>',d(e)].join("")}function h(e,t,n){const i=n&&typeof n=="object"?n:{},c=i.locale==="es"?"es":"en",u=!!i.disableLink,a=H(e&&e.accent),m=K(a),k=d(o(e.pill,"en")),T=d(o(e.pill,"es")),S=N(o(e.title,"en"),o(e.titleAccent,"en")),y=N(o(e.title,"es"),o(e.titleAccent,"es")),I=d(o(e.kicker,"en")),L=d(o(e.kicker,"es")),x=d(o(e.subtext,"en")),A=d(o(e.subtext,"es")),j=d(o(e.ctaLabel,"en")),B=d(o(e.ctaLabel,"es")),Z=c==="es"?y||S:S||y,D=c==="es"?T||k:k||T,W=c==="es"?L||I:I||L,X=c==="es"?A||x:x||A,O=c==="es"?B||j:j||B,U=Array.isArray(e.credentials)?e.credentials:[],ee=J(e.ctaUrl),te=e.ctaNewTab?' target="_blank" rel="noopener noreferrer"':"",ne=u?' data-preview-link="true" tabindex="-1"':"";let l=['<div class="slide-card',t?" active":"",'" style="--accent: ',r(a),"; --accent-bg: ",r(m),';">'].join("");return D&&(l+=['<span class="slide-pill" data-en="',r(k),'" data-es="',r(T),'">',D,"</span>"].join("")),l+=['<h2 class="slide-title" data-en="',r(S),'" data-es="',r(y),'">',Z,"</h2>"].join(""),W&&(l+=['<p class="slide-kicker" data-en="',r(I),'" data-es="',r(L),'">',W,"</p>"].join("")),X&&(l+=['<p class="slide-sub" data-en="',r(x),'" data-es="',r(A),'">',X,"</p>"].join("")),U.length&&(l+='<div class="slide-creds">',U.forEach(function($){const C=_(o($,"en")),M=_(o($,"es")),se=c==="es"?M||C:C||M;l+=['<div class="slide-cred" data-en="',r(C),'" data-es="',r(M),'">',se,"</div>"].join("")}),l+="</div>"),O&&(l+=['<a href="',r(ee),'" class="slide-btn"',te,ne,' data-en="',r(j),'" data-es="',r(B),'">',O,"</a>"].join("")),l+="</div>",l}function Y(e,t){return['<div class="admin-slide-preview-frame">','<div class="slide-container">','<div class="slide-track">',h(e,!0,{locale:t==="es"?"es":"en",disableLink:!0}),"</div>","</div>","</div>"].join("")}function w(){window.clearInterval(s.intervalId),window.clearTimeout(s.resumeTimer),s.intervalId=null,s.resumeTimer=null}function g(e){const t=document.querySelectorAll("#slideTrack .slide-card"),n=document.querySelectorAll("#slideDots .s-dot");t.length&&(s.currentIndex=(e+t.length)%t.length,t.forEach(function(i,c){i.classList.toggle("active",c===s.currentIndex)}),n.forEach(function(i,c){i.classList.toggle("active",c===s.currentIndex)}))}function b(){w(),!(s.slides.length<=1)&&(s.intervalId=window.setInterval(function(){g(s.currentIndex+1)},6e3))}function z(e){w(),g(s.currentIndex+e),s.resumeTimer=window.setTimeout(b,6e3)}function R(e){w(),g(e),s.resumeTimer=window.setTimeout(b,6e3)}function v(){const e=document.getElementById("slideshow"),t=document.getElementById("slideTrack"),n=document.getElementById("slideDots"),i=document.getElementById("slideControls"),c=window.MMCSlideshowStore;!e||!t||!n||!i||!c||(s.slides=c.getSlidesForRender(),s.currentIndex=0,t.innerHTML=s.slides.map(function(u,a){return h(u,a===0,{locale:G()})}).join(""),n.innerHTML="",s.slides.forEach(function(u,a){const m=document.createElement("button");m.className="s-dot"+(a===0?" active":""),m.type="button",m.setAttribute("aria-label","Go to slide "+(a+1)),m.addEventListener("click",function(){R(a)}),n.appendChild(m)}),i.style.display=s.slides.length>1?"flex":"none",g(0),b(),typeof window.mmcApplyLang=="function"&&window.mmcApplyLang())}function Q(){const e=document.getElementById("slideshow");!e||s.touchBound||(e.addEventListener("touchstart",function(t){s.touchStartX=t.touches[0].clientX},{passive:!0}),e.addEventListener("touchend",function(t){const n=s.touchStartX-t.changedTouches[0].clientX;Math.abs(n)>40&&z(n>0?1:-1)},{passive:!0}),s.touchBound=!0)}function V(){const e=window.MMCSlideshowStore;!e||s.storageBound||(window.addEventListener("storage",function(t){(t.key===e.STORAGE_KEY||t.key===null)&&v()}),s.storageBound=!0)}function E(){document.getElementById("slideshow")&&(v(),Q(),V())}window.slideMove=z,window.slideJump=R,window.MMCSlideshow=Object.freeze({buildSlideMarkup:h,buildPreviewMarkup:Y,mountHomepageSlideshow:E,renderHomepageSlideshow:v}),document.readyState==="loading"?document.addEventListener("DOMContentLoaded",E,{once:!0}):E()})();
+/*
+ * Homepage slideshow renderer (shared by the homepage and MMC Studio previews).
+ * Exposes window.MMCSlideshow and the slideMove/slideJump globals used by the
+ * homepage controls. Styles live in css/slides.css.
+ */
+(function () {
+    'use strict';
+
+    var DEFAULT_ACCENT = '#0d47a1';
+    var INTERVAL_MS = 6000;
+    var state = {
+        currentIndex: 0,
+        intervalId: null,
+        resumeTimer: null,
+        touchStartX: 0,
+        touchBound: false,
+        storageBound: false,
+        slides: []
+    };
+
+    function cleanText(value) {
+        return typeof value === 'string' ? value.trim() : '';
+    }
+
+    function currentLocale() {
+        try {
+            return window.localStorage.getItem('mmc-lang') === 'es' ? 'es' : 'en';
+        } catch (error) {
+            return 'en';
+        }
+    }
+
+    // Prefer the requested language, fall back to the other one.
+    function pick(copy, locale) {
+        var source = copy && typeof copy === 'object' ? copy : {};
+        return cleanText(source[locale]) || cleanText(source[locale === 'en' ? 'es' : 'en']);
+    }
+
+    function escapeHtml(value) {
+        return String(value)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function escapeAttr(value) {
+        return escapeHtml(value).replace(/\n/g, '&#10;');
+    }
+
+    function escapeMultiline(value) {
+        return escapeHtml(value).replace(/\n/g, '<br>');
+    }
+
+    function escapeRegExp(value) {
+        return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    /* ── Colour helpers ── */
+
+    function normalizeAccent(value) {
+        return /^#[0-9a-f]{6}$/i.test(value) ? value : DEFAULT_ACCENT;
+    }
+
+    function hexToRgb(hex) {
+        var h = normalizeAccent(hex).slice(1);
+        return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+    }
+
+    function rgbToHex(rgb) {
+        return '#' + rgb.map(function (c) {
+            var v = Math.max(0, Math.min(255, Math.round(c)));
+            return (v < 16 ? '0' : '') + v.toString(16);
+        }).join('');
+    }
+
+    function mix(hex, target, amount) {
+        var a = hexToRgb(hex);
+        var b = hexToRgb(target);
+        return rgbToHex(a.map(function (c, i) { return c + (b[i] - c) * amount; }));
+    }
+
+    function luminance(hex) {
+        var rgb = hexToRgb(hex).map(function (c) {
+            var s = c / 255;
+            return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+        });
+        return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+    }
+
+    function accentVars(accent) {
+        var rgb = hexToRgb(accent);
+        var bright = luminance(accent) > 0.3;
+        return [
+            '--accent: ' + accent,
+            '--accent-bg: rgba(' + rgb.join(',') + ',0.08)',
+            '--accent-deep: ' + mix(accent, '#000000', 0.38),
+            '--accent-light: ' + mix(accent, '#ffffff', bright ? 0.25 : 0.6),
+            // Text colour on white buttons placed over dark layouts.
+            '--accent-ink: ' + (bright ? mix(accent, '#000000', 0.35) : accent)
+        ].join('; ');
+    }
+
+    /* ── Markup ── */
+
+    function safeUrl(value) {
+        var url = cleanText(value);
+        if (url && (url.startsWith('#') || url.startsWith('/') || url.startsWith('./') || url.startsWith('../')
+            || /^(https?:|mailto:|tel:|sms:)/i.test(url)
+            || /^[a-z0-9][a-z0-9/_\-.]*([?#].*)?$/i.test(url))) {
+            return url;
+        }
+        return '#';
+    }
+
+    function highlightTitle(title, accentWords) {
+        var text = cleanText(title);
+        var accent = cleanText(accentWords);
+        if (!text) return '';
+        if (!accent) return escapeHtml(text);
+        var match = text.match(new RegExp(escapeRegExp(accent), 'i'));
+        if (!match || typeof match.index !== 'number') return escapeHtml(text);
+        var start = match.index;
+        var end = start + match[0].length;
+        return escapeHtml(text.slice(0, start)) + '<span class="accent">'
+            + escapeHtml(text.slice(start, end)) + '</span>' + escapeHtml(text.slice(end));
+    }
+
+    function credentialHtml(text) {
+        return '<span class="slide-cred-icon">&#10003;</span>' + escapeMultiline(text);
+    }
+
+    function imageSources(image) {
+        // Library images ship as name-1280.webp plus a name-720.webp sibling.
+        var m = /^(.*)-1280\.webp$/i.exec(image);
+        return m ? { srcset: m[1] + '-720.webp 720w, ' + image + ' 1280w' } : {};
+    }
+
+    function mediaHtml(slide, layout, eager) {
+        var sources = imageSources(slide.image);
+        var sizes = layout === 'photo' ? '(max-width: 600px) 100vw, 490px' : '(max-width: 1060px) 100vw, 1060px';
+        return '<div class="slide-media"><img src="' + escapeAttr(slide.image) + '"'
+            + (sources.srcset ? ' srcset="' + escapeAttr(sources.srcset) + '" sizes="' + sizes + '"' : '')
+            + ' alt="" ' + (eager ? 'fetchpriority="low"' : 'loading="lazy"') + ' decoding="async"></div>';
+    }
+
+    // Bilingual element: renders the current language and carries both for the language toggle.
+    function bilingual(tag, cls, en, es, locale, extraAttrs) {
+        var shown = locale === 'es' ? (es || en) : (en || es);
+        return '<' + tag + ' class="' + cls + '"' + (extraAttrs || '')
+            + ' data-en="' + escapeAttr(en) + '" data-es="' + escapeAttr(es) + '">' + shown + '</' + tag + '>';
+    }
+
+    function buildSlideMarkup(slide, isActive, options) {
+        var opts = options && typeof options === 'object' ? options : {};
+        var locale = opts.locale === 'es' ? 'es' : 'en';
+        var accent = normalizeAccent(slide && slide.accent);
+        var layout = slide && slide.layout ? slide.layout : 'classic';
+        if ((layout === 'photo' || layout === 'feature') && !(slide && slide.image)) layout = 'classic';
+
+        var pillEn = escapeMultiline(pick(slide.pill, 'en'));
+        var pillEs = escapeMultiline(pick(slide.pill, 'es'));
+        var titleEn = highlightTitle(pick(slide.title, 'en'), pick(slide.titleAccent, 'en'));
+        var titleEs = highlightTitle(pick(slide.title, 'es'), pick(slide.titleAccent, 'es'));
+        var kickerEn = escapeMultiline(pick(slide.kicker, 'en'));
+        var kickerEs = escapeMultiline(pick(slide.kicker, 'es'));
+        var subEn = escapeMultiline(pick(slide.subtext, 'en'));
+        var subEs = escapeMultiline(pick(slide.subtext, 'es'));
+        var ctaEn = escapeMultiline(pick(slide.ctaLabel, 'en'));
+        var ctaEs = escapeMultiline(pick(slide.ctaLabel, 'es'));
+        var credentials = Array.isArray(slide.credentials) ? slide.credentials : [];
+
+        var copy = '';
+        if (pillEn || pillEs) copy += bilingual('span', 'slide-pill', pillEn, pillEs, locale);
+        copy += bilingual('h2', 'slide-title', titleEn, titleEs, locale);
+        if (kickerEn || kickerEs) copy += bilingual('p', 'slide-kicker', kickerEn, kickerEs, locale);
+        if (subEn || subEs) copy += bilingual('p', 'slide-sub', subEn, subEs, locale);
+        if (credentials.length) {
+            copy += '<div class="slide-creds">';
+            credentials.forEach(function (cred) {
+                copy += bilingual('div', 'slide-cred', credentialHtml(pick(cred, 'en')), credentialHtml(pick(cred, 'es')), locale);
+            });
+            copy += '</div>';
+        }
+        if (ctaEn || ctaEs) {
+            var attrs = ' href="' + escapeAttr(safeUrl(slide.ctaUrl)) + '"'
+                + (slide.ctaNewTab ? ' target="_blank" rel="noopener noreferrer"' : '')
+                + (opts.disableLink ? ' data-preview-link="true" tabindex="-1"' : '');
+            copy += bilingual('a', 'slide-btn', ctaEn, ctaEs, locale, attrs);
+        }
+
+        var html = '<div class="slide-card slide-' + layout + (isActive ? ' active' : '')
+            + '" data-layout="' + layout + '" style="' + escapeAttr(accentVars(accent)) + '">';
+        if (layout === 'classic' || layout === 'bold') {
+            html += copy;
+        } else if (layout === 'photo') {
+            html += '<div class="slide-copy">' + copy + '</div>' + mediaHtml(slide, layout, isActive);
+        } else {
+            html += mediaHtml(slide, layout, isActive) + '<div class="slide-scrim"></div><div class="slide-copy">' + copy + '</div>';
+        }
+        return html + '</div>';
+    }
+
+    function needsTallTrack(slides) {
+        return slides.some(function (slide) { return slide && slide.layout && slide.layout !== 'classic'; });
+    }
+
+    function buildPreviewMarkup(slide, locale) {
+        return '<div class="admin-slide-preview-frame"><div class="slide-container">'
+            + '<div class="slide-track' + (needsTallTrack([slide]) ? ' slide-track--tall' : '') + '">'
+            + buildSlideMarkup(slide, true, { locale: locale === 'es' ? 'es' : 'en', disableLink: true })
+            + '</div></div></div>';
+    }
+
+    /* ── Homepage carousel ── */
+
+    function stopTimers() {
+        window.clearInterval(state.intervalId);
+        window.clearTimeout(state.resumeTimer);
+        state.intervalId = null;
+        state.resumeTimer = null;
+    }
+
+    function showSlide(index) {
+        var cards = document.querySelectorAll('#slideTrack .slide-card');
+        var dots = document.querySelectorAll('#slideDots .s-dot');
+        if (!cards.length) return;
+        state.currentIndex = (index + cards.length) % cards.length;
+        cards.forEach(function (card, i) { card.classList.toggle('active', i === state.currentIndex); });
+        dots.forEach(function (dot, i) { dot.classList.toggle('active', i === state.currentIndex); });
+    }
+
+    function startAutoplay() {
+        stopTimers();
+        if (state.slides.length <= 1) return;
+        state.intervalId = window.setInterval(function () { showSlide(state.currentIndex + 1); }, INTERVAL_MS);
+    }
+
+    function slideMove(step) {
+        stopTimers();
+        showSlide(state.currentIndex + step);
+        state.resumeTimer = window.setTimeout(startAutoplay, INTERVAL_MS);
+    }
+
+    function slideJump(index) {
+        stopTimers();
+        showSlide(index);
+        state.resumeTimer = window.setTimeout(startAutoplay, INTERVAL_MS);
+    }
+
+    function renderHomepageSlideshow() {
+        var container = document.getElementById('slideshow');
+        var track = document.getElementById('slideTrack');
+        var dots = document.getElementById('slideDots');
+        var controls = document.getElementById('slideControls');
+        var store = window.MMCSlideshowStore;
+        if (!container || !track || !dots || !controls || !store) return;
+
+        state.slides = store.getSlidesForRender();
+        state.currentIndex = 0;
+        var locale = currentLocale();
+        track.classList.toggle('slide-track--tall', needsTallTrack(state.slides));
+        track.innerHTML = state.slides.map(function (slide, i) {
+            return buildSlideMarkup(slide, i === 0, { locale: locale });
+        }).join('');
+
+        dots.innerHTML = '';
+        state.slides.forEach(function (slide, i) {
+            var dot = document.createElement('button');
+            dot.className = 's-dot' + (i === 0 ? ' active' : '');
+            dot.type = 'button';
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', function () { slideJump(i); });
+            dots.appendChild(dot);
+        });
+
+        controls.style.display = state.slides.length > 1 ? 'flex' : 'none';
+        showSlide(0);
+        startAutoplay();
+        if (typeof window.mmcApplyLang === 'function') window.mmcApplyLang();
+    }
+
+    function bindTouch() {
+        var container = document.getElementById('slideshow');
+        if (!container || state.touchBound) return;
+        container.addEventListener('touchstart', function (event) {
+            state.touchStartX = event.touches[0].clientX;
+        }, { passive: true });
+        container.addEventListener('touchend', function (event) {
+            var delta = state.touchStartX - event.changedTouches[0].clientX;
+            if (Math.abs(delta) > 40) slideMove(delta > 0 ? 1 : -1);
+        }, { passive: true });
+        state.touchBound = true;
+    }
+
+    function bindStorage() {
+        var store = window.MMCSlideshowStore;
+        if (!store || state.storageBound) return;
+        window.addEventListener('storage', function (event) {
+            if (event.key === store.CACHE_KEY || event.key === null) renderHomepageSlideshow();
+        });
+        state.storageBound = true;
+    }
+
+    function mountHomepageSlideshow() {
+        if (!document.getElementById('slideshow')) return;
+        renderHomepageSlideshow();
+        bindTouch();
+        bindStorage();
+    }
+
+    window.slideMove = slideMove;
+    window.slideJump = slideJump;
+    window.MMCSlideshow = Object.freeze({
+        buildSlideMarkup: buildSlideMarkup,
+        buildPreviewMarkup: buildPreviewMarkup,
+        mountHomepageSlideshow: mountHomepageSlideshow,
+        renderHomepageSlideshow: renderHomepageSlideshow
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mountHomepageSlideshow, { once: true });
+    } else {
+        mountHomepageSlideshow();
+    }
+})();
