@@ -167,10 +167,10 @@
     </script>
     <script src="js/in-page-nav.js?v=2026100601" defer></script>
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
-    <!-- Hero image preload -->
-    <link rel="preload" as="image" type="image/webp" fetchpriority="high"
-          imagesrcset="images/heroes/home-800.webp 800w, images/heroes/home-1200.webp 1200w, images/heroes/home-2000.webp 2000w"
-          imagesizes="(max-width: 799px) 100vw, 66vw">
+    <!-- Hero image preload (AVIF; browsers without AVIF use the WebP in the <picture>) -->
+    <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+          imagesrcset="images/heroes/team-800.avif 800w, images/heroes/team-1200.avif 1200w, images/heroes/team-1600.avif 1600w, images/heroes/team-2400.avif 2400w"
+          imagesizes="(max-width: 499px) 730px, (max-width: 1023px) 1030px, 80vw">
     <style>
         /* Prevent horizontal overflow at all zoom levels */
         html, body {
@@ -267,7 +267,7 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="css/polish.css?v=2026101302">
+    <link rel="stylesheet" href="css/polish.css?v=2026101303">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -280,11 +280,15 @@
 
     <section id="main-content" class="home-hero" aria-label="Montgomery Medical Clinic">
         <div class="home-hero-media">
-            <img src="images/heroes/home-1200.webp"
-                 srcset="images/heroes/home-800.webp 800w, images/heroes/home-1200.webp 1200w, images/heroes/home-2000.webp 2000w"
-                 sizes="(max-width: 799px) 100vw, 66vw"
-                 alt="Physicians at Montgomery Medical Clinic"
-                 width="2000" height="1116" fetchpriority="high" decoding="async">
+            <picture>
+                <source type="image/avif" sizes="(max-width: 499px) 730px, (max-width: 1023px) 1030px, 80vw"
+                        srcset="images/heroes/team-800.avif 800w, images/heroes/team-1200.avif 1200w, images/heroes/team-1600.avif 1600w, images/heroes/team-2400.avif 2400w">
+                <img src="images/heroes/team-1200.webp"
+                     srcset="images/heroes/team-800.webp 800w, images/heroes/team-1200.webp 1200w, images/heroes/team-1600.webp 1600w, images/heroes/team-2400.webp 2400w"
+                     sizes="(max-width: 499px) 730px, (max-width: 1023px) 1030px, 80vw"
+                     alt="The physicians of Montgomery Medical Clinic"
+                     width="2400" height="1091" fetchpriority="high" decoding="async">
+            </picture>
         </div>
         <div class="home-hero-inner">
             <h1 data-en="Compassionate, &lt;span class='accent'&gt;Personalized&lt;/span&gt; Healthcare." data-es="Atenci&oacute;n M&eacute;dica &lt;span class='accent'&gt;Personalizada&lt;/span&gt; y Compasiva.">Compassionate, <span class="accent">Personalized</span> Healthcare.</h1>
