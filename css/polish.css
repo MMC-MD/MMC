@@ -658,3 +658,73 @@ body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden 
     body.modal-open .a11y-trigger { opacity: 0; pointer-events: none; }
 }
 html body .contact-modal .contact-info-row .contact-item.contact-info .contact-label { color: var(--ds-ink) !important; font-weight: 600 !important; font-size: 14px !important; display: block; margin-bottom: 8px; }
+
+/* ═══ Contact popup: fit without scrolling ═══ */
+@media (min-width: 1024px) {
+    html body .contact-modal-content { max-width: 1000px !important; padding: 36px 40px 34px !important; }
+    html body .contact-modal-title { font-size: 25px !important; margin-bottom: 6px !important; }
+    html body .contact-intro { font-size: 15px !important; margin-bottom: 26px !important; max-width: 640px !important; }
+    html body .contact-modal-body { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) !important; gap: 32px !important; }
+    html body .contact-methods-row .contact-item { padding: 14px 32px 14px 0 !important; }
+    html body .contact-methods-row .contact-value { font-size: 18px !important; }
+    html body .contact-modal .contact-subtext { font-size: 13px !important; }
+    html body .contact-book { margin-top: 18px; }
+    html body .contact-book .btn { min-height: 44px !important; }
+    html body .contact-book p { margin-top: 8px; font-size: 12.5px; }
+    html body .contact-info-row { display: grid !important; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) !important; gap: 0 !important; padding: 22px 0 !important; }
+    html body .contact-info-row .contact-item, html body .contact-info-row .contact-item.contact-info { padding: 0 26px !important; }
+    html body .contact-info-row .contact-item + .contact-item { border-top: 0 !important; border-left: 1px solid #e3e8ef !important; }
+    html body .contact-hours-list { gap: 6px !important; }
+    html body .contact-hours-list li, html body .contact-hours-list li span:last-child { font-size: 14px !important; }
+    html body .mmc-modal-upcoming li { font-size: 13px !important; }
+    html body .contact-info-row .contact-value { font-size: 14.5px !important; }
+}
+@media (min-width: 1024px) and (max-height: 820px) {
+    html body .contact-modal-content { padding: 30px 36px 28px !important; }
+    html body .contact-intro { margin-bottom: 20px !important; }
+    html body .contact-methods-row .contact-item { padding: 11px 32px 11px 0 !important; }
+    html body .contact-info-row { padding: 18px 0 !important; }
+}
+
+@media (max-width: 640px) {
+    html body .contact-modal { padding-top: 8px !important; padding-bottom: 8px !important; }
+    html body .contact-modal-content { padding: 14px 18px 16px !important; max-height: none !important; overflow: visible !important; }
+    html body .contact-close { width: 30px !important; height: 30px !important; min-width: 30px !important; min-height: 30px !important; margin-bottom: -26px !important; }
+    html body .contact-modal-title { font-size: 18px !important; margin: 0 0 10px !important; padding-right: 40px !important; }
+    html body .contact-intro { display: none !important; }
+    html body .contact-modal-body { gap: 10px !important; }
+    /* Methods: one line each — label · value · chevron */
+    html body .contact-methods-row .contact-item { padding: 10px 26px 10px 0 !important; }
+    html body .contact-methods-row .contact-text { flex-direction: row !important; align-items: baseline; justify-content: space-between; gap: 12px !important; }
+    html body .contact-methods-row .contact-label { flex: 0 0 auto; }
+    html body .contact-methods-row .contact-value { font-size: 15.5px !important; text-align: right; }
+    html body .contact-methods-row .contact-subtext { display: none !important; }
+    html body .contact-book { margin-top: 10px; }
+    html body .contact-book .btn { min-height: 42px !important; font-size: 15px !important; }
+    html body .contact-book p { display: none; }
+    /* Panel */
+    html body .contact-info-row { padding: 0 14px !important; }
+    html body .contact-info-row .contact-item, html body .contact-info-row .contact-item.contact-info { padding: 11px 0 !important; }
+    html body .contact-modal .contact-info-row .contact-label,
+    html body .contact-modal .contact-info-row .contact-item.contact-info .contact-label { font-size: 13px !important; margin-bottom: 5px !important; }
+    html body .contact-hours-list { gap: 2px !important; }
+    html body .contact-hours-list li, html body .contact-hours-list li span:last-child { font-size: 13px !important; line-height: 1.45 !important; }
+    html body .mmc-modal-upcoming { margin-top: 6px !important; padding-top: 6px !important; }
+    html body .mmc-modal-upcoming-title { font-size: 11.5px !important; margin-bottom: 1px !important; }
+    html body .mmc-modal-upcoming ul { gap: 1px !important; }
+    html body .mmc-modal-upcoming li { font-size: 12.5px !important; }
+    html body .contact-modal .contact-note { font-size: 11.5px !important; margin-top: 6px !important; line-height: 1.4 !important; }
+    html body .contact-info-row .contact-value { font-size: 13.5px !important; line-height: 1.4 !important; }
+    html body .contact-directions { font-size: 13px !important; margin-top: 4px !important; }
+    html body .contact-address-card .contact-note { display: none !important; }
+}
+@media (max-width: 640px) {
+    html body .contact-modal { top: 0 !important; inset: 0 !important; align-items: center !important; padding: 12px !important; }
+    html body .contact-modal-content { width: 100% !important; }
+}
+@media (max-width: 640px) and (max-height: 720px) {
+    html body .mmc-modal-upcoming, html body .contact-hours-card .contact-note { display: none !important; }
+    html body .contact-methods-row .contact-item { padding: 8px 26px 8px 0 !important; }
+}
+html body .contact-close, html body .contact-close:focus { outline: none !important; box-shadow: none !important; border: 0 !important; }
+html body .contact-close:focus-visible { outline: 2px solid #c9d6ea !important; outline-offset: 2px !important; }
