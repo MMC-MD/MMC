@@ -12,7 +12,7 @@
     var ES = {
         'Overview': 'Resumen', 'Services': 'Servicios', 'FAQ': 'Preguntas', 'Providers': 'Proveedores',
         'Provider': 'Proveedora', 'Preparation': 'Preparación', 'Pilot Resources': 'Recursos para Pilotos',
-        'Insurance': 'Seguros', 'Why Join': 'Por Qué Unirse', 'Weight Mgmt': 'Control de Peso',
+        'Insurance': 'Seguros', 'Why Join': 'Por Qué Unirse', 'Weight Management': 'Control de Peso',
         'Updates': 'Novedades', 'Team': 'Equipo', 'Our Team': 'Nuestro Equipo', 'Renewal': 'Renovación',
         'Plans': 'Planes', 'Partnership': 'Alianzas', 'Openings': 'Vacantes', 'Mission': 'Misión',
         'MVA Physicals': 'Exámenes MVA', 'Integration': 'Integración', 'Immigration': 'Inmigración',

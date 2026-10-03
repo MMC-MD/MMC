@@ -77,7 +77,7 @@
     <link rel="preload" href="../js/critical-header.js?v=2026041202" as="script">
     <script>try { if (localStorage.getItem('mmc-lang') === 'es') document.documentElement.lang = 'es'; } catch(e) {}</script>
     <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/brand/mmc-logo-400.webp 400w, /images/brand/mmc-logo-800.webp 800w, /images/brand/mmc-logo-1200.webp 1200w" imagesizes="(min-width: 1280px) 346px, 288px">
-    <script src="../js/in-page-nav.js?v=2026100502" defer></script>
+    <script src="../js/in-page-nav.js?v=2026100601" defer></script>
     <style>
         /* Enhanced Doctor Cards */
 
@@ -350,7 +350,8 @@
             border-color: rgba(255, 143, 0, 0.4);
         }
     </style>
-    <link rel="stylesheet" href="../css/polish.css?v=2026100604">
+    <link rel="stylesheet" href="../css/polish.css?v=2026100606">
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" imagesrcset="/images/heroes/about-800.webp 800w, /images/heroes/about-1200.webp 1200w, /images/heroes/about-1426.webp 1426w" imagesizes="100vw">
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -360,17 +361,21 @@
 
 
 
-    <section id="main-content" class="page-header">
+    <section id="main-content" class="page-header page-header--photo page-header--about" style="--hero-sm:url(/images/heroes/about-800.webp);--hero-md:url(/images/heroes/about-1200.webp);--hero-lg:url(/images/heroes/about-1426.webp)">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="breadcrumb" data-aos="fade-right">
+            <div class="breadcrumb">
                 <a href="../index.html">Home</a>
                 <span>/</span>
                 <span>About Us</span>
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight" data-aos="fade-up">About Montgomery Medical Clinic</h1>
-            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-                Your trusted healthcare partner.
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 sm:mb-6 leading-tight">About Montgomery Medical Clinic</h1>
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl leading-relaxed" data-en="Board-certified physicians caring for Gaithersburg families &mdash; urgent care, primary care and specialty services, all under one roof." data-es="M&eacute;dicos certificados que cuidan a las familias de Gaithersburg &mdash; atenci&oacute;n urgente, primaria y especializada, todo bajo un mismo techo.">
+                Board-certified physicians caring for Gaithersburg families &mdash; urgent care, primary care and specialty services, all under one roof.
             </p>
+            <div class="hero-actions">
+                <a href="#providers" class="btn btn-secondary" data-en="Meet our providers" data-es="Conozca a nuestros proveedores">Meet our providers</a>
+                <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-outline" data-en="Book an appointment" data-es="Reservar una cita">Book an appointment</a>
+            </div>
         </div>
     </section>
 

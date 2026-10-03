@@ -484,3 +484,13 @@ body.mobile-menu-open, body.modal-open, body.overflow-hidden { overflow: hidden 
 .page-header--photo .breadcrumb, .page-header--photo .breadcrumb a, .page-header--photo .breadcrumb span { color: var(--ds-muted) !important; }
 .page-header--photo .breadcrumb a:hover { color: var(--ds-blue) !important; }
 .page-header--photo .breadcrumb { margin-bottom: 18px !important; font-size: 14px !important; }
+
+/* About hero: real team photo; faces sit on the right */
+.page-header--about { background-position: right 22% !important; }
+@media (min-width: 1300px) { .page-header--about { background-position: right 22% !important; } }
+@media (max-width: 799px) { .page-header.page-header--about { background-position: 78% bottom !important; } }
+.page-header--photo .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+@media (max-width: 480px) { .page-header--photo .hero-actions .btn { flex: 1 1 100%; } }
+@media (min-width: 800px) {
+    .page-header--about::before { background: linear-gradient(90deg, rgba(248, 250, 252, .97) 0%, rgba(248, 250, 252, .9) 32%, rgba(248, 250, 252, 0) 50%) !important; }
+}
