@@ -350,10 +350,11 @@
             border-color: rgba(255, 143, 0, 0.4);
         }
     </style>
-    <link rel="stylesheet" href="../css/polish.css?v=2026101401">
+    <link rel="stylesheet" href="../css/polish.css?v=2026101502">
+    <link rel="stylesheet" href="../css/sections.css?v=2026101503">
     <link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(min-width: 800px)" imagesrcset="/images/heroes/lobby-wide-1200.avif 1200w, /images/heroes/lobby-wide-2000.avif 2000w" imagesizes="80vw">
     <link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(max-width: 799px)" imagesrcset="/images/heroes/lobby-800.avif 800w, /images/heroes/lobby-1200.avif 1200w" imagesizes="(max-width: 499px) 600px, 720px">
-    <script src="../js/provider-cards.js?v=2026101101" defer></script>
+    <script src="../js/provider-cards.js?v=2026101501" defer></script>
 </head>
 <body class="bg-light-gray text-dark-gray">
 
@@ -388,146 +389,30 @@
         </div>
     </section>
 
-    <section id="mission" data-page-nav data-page-nav-title="Mission" class="py-20 sm:py-24 md:py-28 lg:py-36 bg-white overflow-visible">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <style>
-                /* Apple-inspired Mission & Facility Sections */
-                .apple-split {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 3rem;
-                    align-items: stretch;
-                    max-width: 1200px;
-                    margin: 0 auto;
-                }
-                @media (min-width: 1024px) {
-                    .apple-split { grid-template-columns: 1fr 1fr; gap: 4rem; }
-                }
-                .apple-split-img {
-                    border-radius: 20px;
-                    overflow: hidden;
-                    position: relative;
-                    min-height: 340px;
-                }
-                .apple-split-img img {
-                    position: absolute;
-                    inset: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    display: block;
-                    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                }
-                .apple-split-img:hover img {
-                    transform: scale(1.03);
-                }
-                /* Stacked (phones/tablets): photo always above its text */
-                @media (max-width: 1023px) {
-                    .apple-split { gap: 1.75rem; }
-                    .apple-split-img { order: -1; min-height: 0; aspect-ratio: 3 / 2; }
-                }
-                .apple-split-body {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                }
-                .apple-overline {
-                    font-size: 0.75rem;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.12em;
-                    color: #0d47a1;
-                    margin-bottom: 0.875rem;
-                }
-                .apple-heading {
-                    font-size: clamp(1.75rem, 4vw, 2.875rem);
-                    font-weight: 800;
-                    line-height: 1.15;
-                    letter-spacing: -0.02em;
-                    color: #1d1d1f;
-                    margin-bottom: 1.5rem;
-                }
-                .apple-body-text {
-                    font-size: 1.0625rem;
-                    line-height: 1.65;
-                    color: #6e6e73;
-                    margin-bottom: 1.25rem;
-                }
-                .apple-benefits {
-                    list-style: none;
-                    padding: 0;
-                    margin: 1.5rem 0 0;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.75rem;
-                }
-                .apple-benefits li {
-                    display: flex;
-                    align-items: flex-start;
-                    gap: 0.75rem;
-                    font-size: 0.9375rem;
-                    line-height: 1.5;
-                    color: #1d1d1f;
-                    font-weight: 500;
-                }
-                .apple-benefits li::before {
-                    content: '';
-                    flex-shrink: 0;
-                    width: 6px;
-                    height: 6px;
-                    margin-top: 0.5em;
-                    background: #0d47a1;
-                    border-radius: 50%;
-                }
-                .apple-cta-bar {
-                    margin-top: 2rem;
-                    padding: 1.125rem 1.5rem;
-                    background: #f5f5f7;
-                    border-radius: 14px;
-                    text-align: center;
-                    font-size: 0.9375rem;
-                    font-weight: 600;
-                    color: #1d1d1f;
-                    line-height: 1.5;
-                }
-            </style>
-
-            <div class="apple-split">
-                <!-- Image Column — perfectly matched height -->
-                <div class="apple-split-img" data-aos="fade-right">
-                    <img src="../images/Clinic.webp" alt="Team of doctors at Montgomery Medical Clinic" loading="lazy">
-                </div>
-
-                <!-- Content Column -->
-                <div class="apple-split-body" data-aos="fade-left">
-                    <span class="apple-overline">Our Mission</span>
-                    <h2 class="apple-heading">A Legacy of Compassionate Care</h2>
-                    <p class="apple-body-text">
-                        When it comes to your health, you deserve exceptional care from a team you can trust. With over five decades of combined experience, our physicians provide compassionate, comprehensive care tailored to your unique needs.
-                    </p>
-                    <p class="apple-body-text">
-                        Whether you need immediate medical attention, a routine vaccination, or your yearly annual, we're here when you need us most. Our Dermatology Department offers specialized expertise in diagnosing and treating a wide range of skin conditions.
-                    </p>
-                    <ul class="apple-benefits">
-                        <li>Personalized attention and continuity of care</li>
-                        <li>Advanced treatments using the latest medical technology</li>
-                        <li>Expert dermatology care for all your skin health needs</li>
-                        <li>A lasting relationship with trusted healthcare professionals</li>
-                        <li>Convenient access to a full range of medical services</li>
-                    </ul>
-                    <div class="apple-cta-bar">
-                        Your health — and your confidence — are our top priorities.
-                    </div>
+    <section id="mission" data-page-nav data-page-nav-title="Mission" class="hp-section ab-mission">
+        <div class="container mx-auto">
+            <div class="ab-split">
+                <figure class="ab-split-media" data-aos="fade-up"><img src="../images/Clinic.webp" alt="Team of doctors at Montgomery Medical Clinic" loading="lazy" decoding="async" width="1920" height="2880"></figure>
+                <div class="ab-split-body" data-aos="fade-up" data-aos-delay="50">
+                    <p class="hp-eyebrow">Our Mission</p>
+                    <h2 class="hp-title">A Legacy of Compassionate Care</h2>
+                    <p class="hp-lede">When it comes to your health, you deserve exceptional care from a team you can trust. With over five decades of combined experience, our physicians provide compassionate, comprehensive care tailored to your unique needs.</p>
+                    <p class="hp-body">Whether you need immediate medical attention, a routine vaccination, or your yearly annual, we're here when you need us most. Our Dermatology Department offers specialized expertise in diagnosing and treating a wide range of skin conditions.</p>
+                    <ul class="ab-checks"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Personalized attention and continuity of care</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Advanced treatments using the latest medical technology</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Expert dermatology care for all your skin health needs</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A lasting relationship with trusted healthcare professionals</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Convenient access to a full range of medical services</span></li></ul>
+                    <p class="up-callout ab-quote">Your health — and your confidence — are our top priorities.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <section id="providers" data-page-nav data-page-nav-title="Providers" class="py-24 lg:py-32 bg-light-blue-bg">
-        <div class="container mx-auto px-6 lg:px-8">
-            <div class="text-center mb-12 max-w-3xl mx-auto" data-aos="fade-up">
-                <h2 class="section-title text-dark-gray mb-6">Meet Our Expert Providers</h2>
-                <p class="section-subtitle">Our team consists of board-certified physicians and healthcare professionals with extensive experience and a shared passion for patient-centered care.</p>
+    <section id="providers" data-page-nav data-page-nav-title="Providers" class="hp-section ab-providers">
+        <div class="container mx-auto">
+            <div class="up-head-row ab-prov-head" data-aos="fade-up">
+                <div class="hp-head">
+                    <p class="hp-eyebrow" data-en="Our team" data-es="Nuestro equipo">Our team</p>
+                    <h2 class="hp-title">Meet Our Expert Providers</h2>
+                    <p class="hp-lede">Our team consists of board-certified physicians and healthcare professionals with extensive experience and a shared passion for patient-centered care.</p>
+                </div>
             </div>
 
             <!-- Provider Filter Tabs -->
@@ -554,7 +439,7 @@
                 </div>
             </div>
 
-            <div class="max-w-7xl mx-auto" id="providers-container">
+            <div id="providers-container">
 
                 <!-- Dr. Efi Kessous - Primary Care -->
                 <div class="doctor-card-enhanced provider-card active" data-category="primary-care" data-aos="fade-up">
@@ -760,30 +645,20 @@
         </div>
     </section>
 
-    <section id="facility" data-page-nav data-page-nav-title="Facility" class="py-20 sm:py-24 md:py-28 lg:py-36 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="apple-split">
-                <!-- Content Column — text first on desktop (image right) -->
-                <div class="apple-split-body" data-aos="fade-right">
-                    <span class="apple-overline">Our Facility</span>
-                    <h2 class="apple-heading">Comprehensive Care Under One Roof</h2>
-                    <p class="apple-body-text">
-                        We've designed our facility to provide convenient, comprehensive care. Our on-site services and experienced medical team ensure you receive prompt diagnosis and treatment without the need for multiple appointments or referrals.
-                    </p>
-                    <p class="apple-body-text">
-                        Quality healthcare should be accessible and efficient. That's why we've integrated essential medical services right here in our clinic, getting you on the path to wellness faster.
-                    </p>
-                    <ul class="apple-benefits">
-                        <li>In-House Radiology & X-Ray Services</li>
-                        <li>Full-Service Physical Therapy</li>
-                        <li>Diagnostic Ultrasound</li>
-                        <li>On-Site Laboratory</li>
-                    </ul>
-                </div>
-
-                <!-- Image Column — new interior photo -->
-                <div class="apple-split-img" data-aos="fade-left">
-                    <img src="../images/imageinsidewide.webp" alt="Inside a modern exam room at Montgomery Medical Clinic" loading="lazy">
+    <section id="facility" data-page-nav data-page-nav-title="Facility" class="hp-section ab-facility">
+        <div class="container mx-auto">
+            <div class="ab-split ab-split--rev">
+                <figure class="ab-split-media ab-split-media--wide" data-aos="fade-up"><img src="../images/imageinsidewide.webp" alt="Inside a modern exam room at Montgomery Medical Clinic" loading="lazy" decoding="async" width="1920" height="1280"></figure>
+                <div class="ab-split-body" data-aos="fade-up" data-aos-delay="50">
+                    <p class="hp-eyebrow">Our Facility</p>
+                    <h2 class="hp-title">Comprehensive Care Under One Roof</h2>
+                    <p class="hp-lede">We've designed our facility to provide convenient, comprehensive care. Our on-site services and experienced medical team ensure you receive prompt diagnosis and treatment without the need for multiple appointments or referrals.</p>
+                    <p class="hp-body">Quality healthcare should be accessible and efficient. That's why we've integrated essential medical services right here in our clinic, getting you on the path to wellness faster.</p>
+                    <ul class="ab-facts"><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>In-House Radiology & X-Ray Services</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Full-Service Physical Therapy</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Diagnostic Ultrasound</span></li><li><svg class="up-check" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 10.5 3.2 3L15 6.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span>On-Site Laboratory</span></li></ul>
+                    <div class="hp-actions">
+                        <a href="https://nextpatient.co/p/montgomerymedclinic/schedule" target="_blank" rel="noopener" class="btn btn-primary" data-en="Book an appointment" data-es="Reservar una cita">Book an appointment</a>
+                        <a href="https://maps.apple.com/?address=800%20S%20Frederick%20Ave,%20Suite%20110,%20Gaithersburg,%20MD%20%2020877" target="_blank" rel="noopener" class="hp-link"><span data-en="Get directions" data-es="C&oacute;mo llegar">Get directions</span><svg class="hp-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -812,10 +687,7 @@
     <script src="../js/mobile-menu-fit.js?v=2026100203" defer></script>
     <script src="../js/main.js?v=2026101401"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
+        AOS.init({ duration: 450, once: true, offset: 24, easing: 'ease-out' });
 
         // Provider filtering functionality
         document.addEventListener('DOMContentLoaded', function() {
@@ -848,10 +720,10 @@
                                 // Stagger the animation slightly for each card
                                 setTimeout(() => {
                                     card.classList.add('active');
-                                }, index * 50);
+                                }, Math.min(index, 6) * 30);
                             }
                         });
-                    }, 150);
+                    }, 60);
                 });
             });
         });

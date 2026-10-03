@@ -1053,3 +1053,83 @@ html body .step-desc { margin: 4px 0 0 !important; color: var(--ds-muted) !impor
     html body .ch-table .validity-table td::before { float: none !important; display: block; margin: 0 0 2px !important; font-size: 12.5px; }
     html body .ch-table .validity-table td.class-label { padding-bottom: 4px !important; }
 }
+
+/* ═══ About page (ab-*) ═══ */
+html body .ab-mission, html body .ab-facility { background: #fff; }
+html body .ab-providers { background: var(--ds-tint); }
+.ab-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 72px; align-items: center; }
+.ab-split--rev { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+.ab-split--rev .ab-split-media { order: 2; }
+.ab-split-media { margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 4 / 5; background: #e9edf2; }
+.ab-split-media--wide { aspect-ratio: 5 / 4; }
+.ab-split-media img { width: 100%; height: 100%; object-fit: cover; display: block; max-width: none; }
+.ab-split-body .hp-lede { margin-top: 18px; }
+.ab-checks, .ab-facts { list-style: none; margin: 28px 0 0; padding: 22px 0 0; border-top: 1px solid var(--ds-line); display: grid; gap: 12px; }
+.ab-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+.ab-checks li, .ab-facts li { display: flex; align-items: flex-start; gap: 10px; color: var(--ds-ink); font-size: 15.5px; line-height: 1.5; font-weight: 500; }
+.ab-quote { margin-top: 28px; font-size: 17px; font-weight: 600; }
+
+/* Providers: filters, then cards with aligned rows and short bios */
+.ab-prov-head { margin-bottom: 28px; }
+html body .ab-providers .provider-tabs-wrapper { margin: 0 0 32px !important; }
+html body .ab-providers .provider-tabs { justify-content: flex-start !important; }
+html body .ab-providers .tab-button { background: #fff !important; }
+html body .ab-providers .tab-button.active { background: var(--ds-ink) !important; border-color: var(--ds-ink) !important; }
+html body .ab-providers #providers-container { gap: 24px; min-height: 0; }
+html body .ab-providers .doctor-card-enhanced {
+    border: 0 !important; border-radius: 20px !important; background: #fff !important; box-shadow: inset 0 0 0 1px var(--ds-line) !important;
+    overflow: hidden; transform: none !important;
+}
+html body .ab-providers .doctor-card-enhanced:hover { transform: none !important; box-shadow: inset 0 0 0 1px #d3dbe6, 0 12px 28px -18px rgba(15, 23, 42, .3) !important; }
+html body .ab-providers .provider-card.active { animation: ab-in .3s ease both; }
+@keyframes ab-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+html body .ab-providers .doctor-image-container { padding-top: 0; aspect-ratio: 1 / 1; background: #e9edf2; }
+html body .ab-providers .doctor-image { object-position: 50% 18%; }
+html body .ab-providers .doctor-card-enhanced:hover .doctor-image { transform: scale(1.03); }
+html body .ab-providers .doctor-info-enhanced { padding: 22px 24px 24px; }
+html body .ab-providers .doctor-name-enhanced { margin: 0; color: var(--ds-ink); font-size: 20px; font-weight: 700; letter-spacing: -0.012em; }
+html body .ab-providers .doctor-title-enhanced {
+    margin: 4px 0 0; padding: 0; border: 0; width: auto; display: block;
+    color: var(--ds-blue); font-size: 12.5px; font-weight: 600; letter-spacing: .06em;
+}
+html body .ab-providers .doctor-bio-enhanced { margin: 0; color: var(--ds-muted); font-size: 15px; line-height: 1.65; }
+html body .ab-providers .specialty-badges { gap: 6px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--ds-line); }
+html body .ab-providers .specialty-badge {
+    padding: 5px 10px; border: 0; border-radius: 8px; background: var(--ds-tint); color: var(--ds-ink);
+    font-size: 12.5px; font-weight: 500; letter-spacing: 0;
+}
+html body .ab-providers .specialty-badge:hover { transform: none; background: var(--ds-tint); }
+@media (min-width: 768px) {
+    /* Bio trimmed to five lines with "Read full bio" (js/provider-cards.js) */
+    html body .ab-providers .mmc-pcard-bio {
+        margin-top: 14px; max-height: calc(1.65em * 6); overflow: hidden;
+        -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent);
+    }
+    html body .ab-providers .mmc-pcard.is-open .mmc-pcard-bio { max-height: none; -webkit-mask-image: none; mask-image: none; }
+    html body .ab-providers .mmc-pcard-more {
+        display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; margin-top: 8px; padding: 4px 0; min-height: 0; min-width: 0;
+        border: 0; background: none; color: var(--ds-blue); font-size: 14.5px; font-weight: 600; cursor: pointer;
+    }
+    html body .ab-providers .mmc-pcard-more::after {
+        content: ""; width: 7px; height: 7px; border-right: 1.75px solid currentColor; border-bottom: 1.75px solid currentColor;
+        transform: rotate(45deg) translateY(-2px); transition: transform .2s ease;
+    }
+    html body .ab-providers .mmc-pcard.is-open .mmc-pcard-more::after { transform: rotate(-135deg) translateY(-1px); }
+    html body .ab-providers .doctor-info-enhanced { display: flex; flex-direction: column; }
+    html body .ab-providers .specialty-badges { margin-top: auto; }
+    html body .ab-providers .mmc-pcard-more { margin-bottom: 16px; }
+    html body .ab-providers .provider-card.active { display: flex !important; flex-direction: column; }
+    html body .ab-providers .doctor-info-enhanced { flex: 1; }
+}
+@media (max-width: 1023px) {
+    .ab-split, .ab-split--rev { grid-template-columns: 1fr; gap: 36px; }
+    .ab-split--rev .ab-split-media { order: 0; }
+    .ab-split-media, .ab-split-media--wide { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 639px) {
+    .ab-split-media, .ab-split-media--wide { border-radius: 18px; aspect-ratio: 4 / 3; }
+    .ab-facts { grid-template-columns: 1fr; }
+    html body .ab-providers .provider-tabs { flex-wrap: nowrap !important; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; scrollbar-width: none; }
+    html body .ab-providers .tab-button { flex: 0 0 auto; }
+    html body .ab-providers .doctor-name-enhanced { font-size: 18px; }
+}

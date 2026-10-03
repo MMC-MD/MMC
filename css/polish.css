@@ -978,3 +978,7 @@ html body [data-aos][data-aos-delay]:not([data-aos-delay="0"]) { transition-dela
 @media (prefers-reduced-motion: reduce) {
     html body [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
+html body .mmc-pcard.mmc-pcard--fits .mmc-pcard-more { display: none !important; }
+html body .mmc-pcard.mmc-pcard--fits .mmc-pcard-bio { -webkit-mask-image: none !important; mask-image: none !important; }
+/* About page filter: hidden provider cards stay hidden on phones too */
+html body #providers-container > .provider-card:not(.active) { display: none !important; }

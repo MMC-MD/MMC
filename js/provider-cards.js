@@ -70,12 +70,27 @@
         });
     }
 
+    // Hide "Read full bio" when the bio already fits in its trimmed height.
+    function syncFits() {
+        Array.prototype.forEach.call(document.querySelectorAll('.mmc-pcard'), function (card) {
+            if (card.classList.contains('is-open')) return;
+            var bio = card.querySelector('.mmc-pcard-bio');
+            if (!bio || !bio.offsetParent) return;
+            card.classList.toggle('mmc-pcard--fits', bio.scrollHeight <= bio.clientHeight + 2);
+        });
+    }
+
     function init() {
         VARIANTS.forEach(function (v) {
             var cards;
             try { cards = document.querySelectorAll(v.card); } catch (e) { return; } // :has() unsupported
             Array.prototype.forEach.call(cards, function (card) { enhance(card, v); });
         });
+        syncFits();
+        window.addEventListener('resize', syncFits);
+        window.addEventListener('load', syncFits);
+        // Filtered lists (About page tabs) reveal cards later.
+        document.addEventListener('click', function (e) { if (e.target.closest('.tab-button')) setTimeout(syncFits, 400); });
     }
 
     // Keep the button text in the current language.
